@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+data
+exports
+.DS_Store
+electron

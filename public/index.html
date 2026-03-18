@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamburg Depo Yonetim Merkezi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <section id="loginScreen" class="auth-screen">
+      <div class="auth-card">
+        <p class="eyebrow">Hamburg Depo</p>
+        <h1>Depo, kasa ve masraf yonetimi</h1>
+        <p class="muted">Varsayilan hesaplar: `admin / admin123` veya `operator / operator123`</p>
+        <form id="loginForm" class="stack-form">
+          <label>
+            Kullanici Adi
+            <input name="username" type="text" required placeholder="admin">
+          </label>
+          <label>
+            Sifre
+            <input name="password" type="password" required placeholder="admin123">
+          </label>
+          <button class="primary-button" type="submit">Giris Yap</button>
+          <p id="loginError" class="error-text"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="appScreen" class="hidden">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Yonetim Merkezi</p>
+          <h1>Stok, barkod, masraf ve kasa tek panelde.</h1>
+          <p class="muted" id="welcomeText"></p>
+        </div>
+        <div class="hero-actions">
+          <button id="downloadXlsx" class="secondary-button" type="button">Excel Rapor</button>
+          <button id="downloadPdf" class="secondary-button" type="button">PDF Ozet</button>
+          <button id="logoutButton" class="danger-button" type="button">Cikis Yap</button>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="stats-grid" id="statsGrid"></section>
+
+        <section class="panel tabs-panel">
+          <div class="tab-buttons">
+            <button class="tab-button active" data-tab="items" type="button">Malzemeler</button>
+            <button class="tab-button" data-tab="movements" type="button">Stok Hareketleri</button>
+            <button class="tab-button" data-tab="expenses" type="button">Masraflar</button>
+            <button class="tab-button" data-tab="cashbook" type="button">Kasa Defteri</button>
+            <button class="tab-button" data-tab="quotes" type="button">Satis Teklifleri</button>
+            <button class="tab-button admin-only" data-tab="users" type="button">Kullanicilar</button>
+          </div>
+
+          <div class="tab-content active" data-tab-content="items">
+            <div class="two-column">
+              <section>
+                <h2>Yeni Malzeme</h2>
+                <form id="itemForm" class="form-grid">
+                  <input name="id" type="hidden">
+                  <label>Malzeme Adi<input name="name" type="text" required></label>
+                  <label>Marka<input name="brand" type="text" placeholder="Orn. Embraco, Hisense"></label>
+                  <label>Kategori<input name="category" type="text" required></label>
+                  <label>Birim<input name="unit" type="text" required></label>
+                  <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" required></label>
+                  <label>Alis Fiyati<input name="defaultPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                  <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                  <label>Barkod<input name="barcode" type="text" placeholder="Opsiyonel benzersiz kod"></label>
+                  <label>Not<input name="notes" type="text" placeholder="Raf veya tedarik notu"></label>
+                  <button id="itemSubmitButton" class="primary-button" type="submit">Malzeme Ekle</button>
+                  <button id="itemCancelEdit" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
+                </form>
+              </section>
+              <section>
+                <h2>Malzeme Listesi</h2>
+                <div class="panel-lite">
+                  <h3>Toplu Fiyat Guncelleme</h3>
+                  <form id="bulkPricingForm" class="form-grid">
+                    <label>Marka<select name="brand" id="bulkBrandFilter"></select></label>
+                    <label>Kategori<select name="category" id="bulkCategoryFilter"></select></label>
+                    <label>Artis Yuzdesi<input name="increasePercent" type="number" step="0.01" value="22"></label>
+                    <button class="secondary-button" type="submit">Satis Fiyatlarini Guncelle</button>
+                  </form>
+                </div>
+                <div class="filter-grid">
+                  <label>Arama<input id="itemSearch" type="search" placeholder="Urun, marka veya barkod ara"></label>
+                  <label>Marka<select id="brandFilter"></select></label>
+                  <label>Kategori<select id="categoryFilter"></select></label>
+                </div>
+                <p id="itemsSummary" class="muted"></p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Malzeme</th>
+                        <th>Marka</th>
+                        <th>Kategori</th>
+                        <th>Stok</th>
+                        <th>Alis</th>
+                        <th>Satis</th>
+                        <th>Kritik</th>
+                        <th>Barkod</th>
+                        <th>Islem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="itemsTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+            <div class="barcode-section">
+              <div>
+                <h2>Barkod Onizleme</h2>
+                <label>Malzeme Sec
+                  <select id="barcodeItemSelect"></select>
+                </label>
+              </div>
+              <div class="barcode-card">
+                <img id="barcodeImage" alt="Barkod onizleme">
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab-content="movements">
+            <div class="two-column">
+              <section>
+                <h2>Stok Giris / Cikis</h2>
+                <form id="movementForm" class="form-grid">
+                  <label>Malzeme<select name="itemId" required></select></label>
+                  <label>Islem<select name="type" required><option value="entry">Giris</option><option value="exit">Cikis</option></select></label>
+                  <label>Miktar<input name="quantity" type="number" min="0.01" step="0.01" required></label>
+                  <label>Birim Maliyet<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
+                  <label>Tarih<input name="date" type="date" required></label>
+                  <label>Aciklama<input name="note" type="text"></label>
+                  <button class="primary-button" type="submit">Hareket Kaydet</button>
+                </form>
+              </section>
+              <section>
+                <h2>Son Hareketler</h2>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tarih</th>
+                        <th>Malzeme</th>
+                        <th>Tip</th>
+                        <th>Miktar</th>
+                        <th>Kullanici</th>
+                      </tr>
+                    </thead>
+                    <tbody id="movementsTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab-content="expenses">
+            <div class="two-column">
+              <section>
+                <h2>Masraf Ekle</h2>
+                <form id="expenseForm" class="form-grid">
+                  <label>Baslik<input name="title" type="text" required></label>
+                  <label>Kategori<input name="category" type="text" required></label>
+                  <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
+                  <label>Tarih<input name="date" type="date" required></label>
+                  <label>Odeme Tipi<select name="paymentType" required><option value="cash">Nakit</option><option value="bank">Banka</option><option value="card">Kart</option></select></label>
+                  <label>Aciklama<input name="note" type="text"></label>
+                  <button class="primary-button" type="submit">Masraf Kaydet</button>
+                </form>
+              </section>
+              <section>
+                <h2>Masraf Listesi</h2>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tarih</th>
+                        <th>Baslik</th>
+                        <th>Kategori</th>
+                        <th>Tutar</th>
+                        <th>Kullanici</th>
+                      </tr>
+                    </thead>
+                    <tbody id="expensesTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab-content="cashbook">
+            <div class="two-column">
+              <section>
+                <h2>Kasa Hareketi</h2>
+                <form id="cashForm" class="form-grid">
+                  <label>Islem<select name="type" required><option value="in">Kasa Girisi</option><option value="out">Kasa Cikisi</option></select></label>
+                  <label>Baslik<input name="title" type="text" required></label>
+                  <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
+                  <label>Tarih<input name="date" type="date" required></label>
+                  <label>Referans<input name="reference" type="text"></label>
+                  <label>Not<input name="note" type="text"></label>
+                  <button class="primary-button" type="submit">Kasa Kaydet</button>
+                </form>
+              </section>
+              <section>
+                <h2>Kasa Defteri</h2>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tarih</th>
+                        <th>Tip</th>
+                        <th>Baslik</th>
+                        <th>Tutar</th>
+                        <th>Kullanici</th>
+                      </tr>
+                    </thead>
+                    <tbody id="cashbookTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="tab-content" data-tab-content="quotes">
+            <div class="two-column">
+              <section>
+                <h2>Yeni Satis Teklifi</h2>
+                <form id="quoteForm" class="form-grid">
+                  <label>Musteri<input name="customerName" type="text" required></label>
+                  <label>Baslik<input name="title" type="text" required placeholder="Orn. Soguk Oda Teklifi"></label>
+                  <label>Tarih<input name="date" type="date" required></label>
+                  <label>Dil<select name="language" required><option value="de">Deutsch</option><option value="tr">Turkce</option></select></label>
+                  <label>Satis Tipi<select name="isExport" required><option value="true">Yurt Disi - KDV Yok</option><option value="false">Yurt Ici - KDV Dahil</option></select></label>
+                  <label>Iskonto<input name="discount" type="number" min="0" step="0.01" value="0"></label>
+                  <label>Not<input name="note" type="text"></label>
+                </form>
+                <div class="panel-lite">
+                  <h3>Teklif Kalemi Ekle</h3>
+                  <form id="quoteLineForm" class="form-grid">
+                    <label>Arama<input id="quoteItemSearch" type="search" placeholder="Urun veya marka ara"></label>
+                    <label>Marka<select id="quoteBrandFilter"></select></label>
+                    <label>Kategori<select id="quoteCategoryFilter"></select></label>
+                    <label>Malzeme<select name="itemId" required></select></label>
+                    <label>Miktar<input name="quantity" type="number" min="0.01" step="0.01" value="1" required></label>
+                    <label>Birim Fiyat<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
+                    <button class="secondary-button" type="submit">Kalem Ekle</button>
+                  </form>
+                </div>
+              </section>
+              <section>
+                <h2>Teklif Taslagi</h2>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Malzeme</th>
+                        <th>Miktar</th>
+                        <th>Birim Fiyat</th>
+                        <th>Toplam</th>
+                        <th>Islem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="quoteDraftBody"></tbody>
+                  </table>
+                </div>
+                <p id="quoteDraftSummary" class="muted"></p>
+                <button id="saveQuoteButton" class="primary-button" type="button">Teklifi Kaydet</button>
+              </section>
+            </div>
+            <section>
+              <h2>Son Teklifler</h2>
+              <div id="quotesList" class="activity-feed"></div>
+            </section>
+          </div>
+
+          <div class="tab-content admin-only" data-tab-content="users">
+            <div class="two-column">
+              <section>
+                <h2>Kullanici Ekle</h2>
+                <form id="userForm" class="form-grid">
+                  <label>Ad Soyad<input name="name" type="text" required></label>
+                  <label>Kullanici Adi<input name="username" type="text" required></label>
+                  <label>Sifre<input name="password" type="password" required></label>
+                  <label>Rol<select name="role" required><option value="operator">Operator</option><option value="admin">Admin</option></select></label>
+                  <button class="primary-button" type="submit">Kullanici Ekle</button>
+                </form>
+              </section>
+              <section>
+                <h2>Kullanicilar</h2>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Ad Soyad</th>
+                        <th>Kullanici Adi</th>
+                        <th>Rol</th>
+                      </tr>
+                    </thead>
+                    <tbody id="usersTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

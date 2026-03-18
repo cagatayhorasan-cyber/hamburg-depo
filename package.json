@@ -1,0 +1,24 @@
+{
+  "name": "hamburg-depo-yonetim",
+  "version": "1.0.0",
+  "description": "Hamburg depo icin stok, masraf, kasa ve barkod takip uygulamasi",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "node server.js",
+    "desktop": "electron .",
+    "check": "node --check server.js && node --check server/app.js && node --check server/db.js && node --check public/app.js && node --check electron/main.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bwip-js": "^4.6.0",
+    "cookie-session": "^2.1.1",
+    "express": "^4.21.2",
+    "pg": "^8.16.3",
+    "pdfkit": "^0.17.1",
+    "serverless-http": "^3.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "electron": "^35.1.4"
+  }
+}
