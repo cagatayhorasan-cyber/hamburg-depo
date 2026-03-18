@@ -419,7 +419,9 @@ function parsePriceToEur(raw) {
 
   let normalized = cleaned;
   if (cleaned.includes(",") && cleaned.includes(".")) {
-    normalized = cleaned.replace(/\./g, "").replace(",", ".");
+    normalized = cleaned.lastIndexOf(".") > cleaned.lastIndexOf(",")
+      ? cleaned.replace(/,/g, "")
+      : cleaned.replace(/\./g, "").replace(",", ".");
   } else if (cleaned.includes(",")) {
     normalized = cleaned.replace(",", ".");
   }
