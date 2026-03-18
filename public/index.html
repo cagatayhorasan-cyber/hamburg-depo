@@ -32,10 +32,11 @@
     </section>
 
     <section id="appScreen" class="hidden">
-      <header class="hero">
+      <header class="hero compact-hero">
         <div>
-          <p class="eyebrow">Yonetim Merkezi</p>
-          <h1>Stok, barkod, masraf ve kasa tek panelde.</h1>
+          <p class="eyebrow">Hamburg Depo</p>
+          <h1>Satis ve stok ekrani</h1>
+          <p class="muted hero-subtitle">En sik kullanilan alanlar one alindi. Hedef: urun bul, fiyat ver, teklif hazirla.</p>
           <p class="muted" id="welcomeText"></p>
         </div>
         <div class="hero-actions">
@@ -50,86 +51,97 @@
 
         <section class="panel tabs-panel">
           <div class="tab-buttons">
-            <button class="tab-button active" data-tab="items" type="button">Malzemeler</button>
+            <button class="tab-button active" data-tab="quotes" type="button">Hizli Satis</button>
+            <button class="tab-button" data-tab="items" type="button">Malzemeler</button>
             <button class="tab-button" data-tab="archive" type="button">Arsiv</button>
-            <button class="tab-button" data-tab="movements" type="button">Stok Hareketleri</button>
-            <button class="tab-button" data-tab="expenses" type="button">Masraflar</button>
-            <button class="tab-button" data-tab="cashbook" type="button">Kasa Defteri</button>
-            <button class="tab-button" data-tab="quotes" type="button">Satis Teklifleri</button>
+            <button class="tab-button" data-tab="movements" type="button">Stok</button>
+            <button class="tab-button" data-tab="expenses" type="button">Masraf</button>
+            <button class="tab-button" data-tab="cashbook" type="button">Kasa</button>
             <button class="tab-button admin-only" data-tab="users" type="button">Kullanicilar</button>
           </div>
 
-          <div class="tab-content active" data-tab-content="items">
-            <div class="two-column">
-              <section>
-                <h2>Yeni Malzeme</h2>
-                <form id="itemForm" class="form-grid">
-                  <input name="id" type="hidden">
-                  <label>Malzeme Adi<input name="name" type="text" required></label>
-                  <label>Marka<input name="brand" type="text" placeholder="Orn. Embraco, Hisense"></label>
-                  <label>Kategori<input name="category" type="text" required></label>
-                  <label>Birim<input name="unit" type="text" required></label>
-                  <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" required></label>
-                  <label>Alis Fiyati<input name="defaultPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
-                  <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
-                  <label>Barkod<input name="barcode" type="text" placeholder="Opsiyonel benzersiz kod"></label>
-                  <label>Not<input name="notes" type="text" placeholder="Raf veya tedarik notu"></label>
-                  <button id="itemSubmitButton" class="primary-button" type="submit">Malzeme Ekle</button>
-                  <button id="itemCancelEdit" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
-                </form>
-              </section>
-              <section>
-                <h2>Malzeme Listesi</h2>
-                <div class="panel-lite">
-                  <h3>Toplu Fiyat Guncelleme</h3>
-                  <form id="bulkPricingForm" class="form-grid">
-                    <label>Marka<select name="brand" id="bulkBrandFilter"></select></label>
-                    <label>Kategori<select name="category" id="bulkCategoryFilter"></select></label>
-                    <label>Hesaplama<select name="pricingMode"><option value="margin">Alisa Gore Marj</option><option value="increase">Mevcut Satisa Artis</option></select></label>
-                    <label>Baz Alan<select name="baseField"><option value="purchase">Alis Fiyati</option><option value="sale">Satis Fiyati</option></select></label>
-                    <label>Artis Yuzdesi<input name="increasePercent" type="number" step="0.01" value="22"></label>
-                    <button class="secondary-button" type="submit">Satis Fiyatlarini Guncelle</button>
+          <div class="tab-content" data-tab-content="items">
+            <section class="sales-search-panel">
+              <div class="section-head">
+                <div>
+                  <h2>Malzeme Arama</h2>
+                  <p class="muted">Listeyi daraltin, uygun urunu bulun, sonra satis sekmesinden teklife ekleyin.</p>
+                </div>
+              </div>
+              <div class="filter-grid simple-filter-grid">
+                <label>Arama<input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Urun, marka veya barkod ara"></label>
+                <label>Marka<select id="brandFilter"></select></label>
+                <label>Kategori<select id="categoryFilter"></select></label>
+              </div>
+              <datalist id="itemSearchSuggestions"></datalist>
+              <div id="itemSearchDropdown" class="search-dropdown hidden"></div>
+              <p id="itemsSummary" class="muted"></p>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Malzeme</th>
+                      <th>Marka</th>
+                      <th>Kategori</th>
+                      <th>Stok</th>
+                      <th>Alis</th>
+                      <th>Satis</th>
+                      <th>Kritik</th>
+                      <th>Barkod</th>
+                      <th>Islem</th>
+                    </tr>
+                  </thead>
+                  <tbody id="itemsTableBody"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <details class="management-drawer admin-only">
+              <summary>Yonetim Araclari</summary>
+              <div class="drawer-grid">
+                <section>
+                  <h2>Malzeme Karti</h2>
+                  <form id="itemForm" class="form-grid">
+                    <input name="id" type="hidden">
+                    <label>Malzeme Adi<input name="name" type="text" required></label>
+                    <label>Marka<input name="brand" type="text" placeholder="Orn. Embraco, Hisense"></label>
+                    <label>Kategori<input name="category" type="text" required></label>
+                    <label>Birim<input name="unit" type="text" required></label>
+                    <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" required></label>
+                    <label>Alis Fiyati<input name="defaultPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                    <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                    <label>Barkod<input name="barcode" type="text" placeholder="Opsiyonel benzersiz kod"></label>
+                    <label>Not<input name="notes" type="text" placeholder="Raf veya tedarik notu"></label>
+                    <button id="itemSubmitButton" class="primary-button" type="submit">Malzeme Ekle</button>
+                    <button id="itemCancelEdit" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
                   </form>
-                </div>
-                <div class="filter-grid">
-                  <label>Arama<input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Urun, marka veya barkod ara"></label>
-                  <label>Marka<select id="brandFilter"></select></label>
-                  <label>Kategori<select id="categoryFilter"></select></label>
-                </div>
-                <datalist id="itemSearchSuggestions"></datalist>
-                <div id="itemSearchDropdown" class="search-dropdown hidden"></div>
-                <p id="itemsSummary" class="muted"></p>
-                <div class="table-wrap">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Malzeme</th>
-                        <th>Marka</th>
-                        <th>Kategori</th>
-                        <th>Stok</th>
-                        <th>Alis</th>
-                        <th>Satis</th>
-                        <th>Kritik</th>
-                        <th>Barkod</th>
-                        <th>Islem</th>
-                      </tr>
-                    </thead>
-                    <tbody id="itemsTableBody"></tbody>
-                  </table>
-                </div>
-              </section>
-            </div>
-            <div class="barcode-section">
-              <div>
-                <h2>Barkod Onizleme</h2>
-                <label>Malzeme Sec
-                  <select id="barcodeItemSelect"></select>
-                </label>
+                </section>
+                <section>
+                  <div class="panel-lite">
+                    <h3>Toplu Fiyat Guncelleme</h3>
+                    <form id="bulkPricingForm" class="form-grid">
+                      <label>Marka<select name="brand" id="bulkBrandFilter"></select></label>
+                      <label>Kategori<select name="category" id="bulkCategoryFilter"></select></label>
+                      <label>Hesaplama<select name="pricingMode"><option value="margin">Alisa Gore Marj</option><option value="increase">Mevcut Satisa Artis</option></select></label>
+                      <label>Baz Alan<select name="baseField"><option value="purchase">Alis Fiyati</option><option value="sale">Satis Fiyati</option></select></label>
+                      <label>Artis Yuzdesi<input name="increasePercent" type="number" step="0.01" value="22"></label>
+                      <button class="secondary-button" type="submit">Satis Fiyatlarini Guncelle</button>
+                    </form>
+                  </div>
+                  <div class="barcode-section compact-barcode">
+                    <div>
+                      <h2>Barkod Onizleme</h2>
+                      <label>Malzeme Sec
+                        <select id="barcodeItemSelect"></select>
+                      </label>
+                    </div>
+                    <div class="barcode-card">
+                      <img id="barcodeImage" alt="Barkod onizleme">
+                    </div>
+                  </div>
+                </section>
               </div>
-              <div class="barcode-card">
-                <img id="barcodeImage" alt="Barkod onizleme">
-              </div>
-            </div>
+            </details>
           </div>
 
           <div class="tab-content" data-tab-content="archive">
@@ -257,10 +269,15 @@
             </div>
           </div>
 
-          <div class="tab-content" data-tab-content="quotes">
-            <div class="two-column">
+          <div class="tab-content active" data-tab-content="quotes">
+            <div class="two-column sales-layout">
               <section>
-                <h2>Yeni Satis Teklifi</h2>
+                <div class="section-head">
+                  <div>
+                    <h2>Hizli Teklif</h2>
+                    <p class="muted">Musteri bilgisi girin, urunleri ekleyin, PDF teklif alin.</p>
+                  </div>
+                </div>
                 <form id="quoteForm" class="form-grid">
                   <label>Musteri<input name="customerName" type="text" required></label>
                   <label>Baslik<input name="title" type="text" required placeholder="Orn. Soguk Oda Teklifi"></label>
@@ -271,7 +288,7 @@
                   <label>Not<input name="note" type="text"></label>
                 </form>
                 <div class="panel-lite">
-                  <h3>Teklif Kalemi Ekle</h3>
+                  <h3>Teklife Urun Ekle</h3>
                   <form id="quoteLineForm" class="form-grid">
                     <label>Arama<input id="quoteItemSearch" type="search" placeholder="Urun veya marka ara"></label>
                     <label>Marka<select id="quoteBrandFilter"></select></label>
@@ -284,7 +301,7 @@
                 </div>
               </section>
               <section>
-                <h2>Teklif Taslagi</h2>
+                <h2>Teklif Ozet</h2>
                 <div class="table-wrap">
                   <table>
                     <thead>
@@ -303,7 +320,7 @@
                 <button id="saveQuoteButton" class="primary-button" type="button">Teklifi Kaydet</button>
               </section>
             </div>
-            <section>
+            <section class="recent-quotes">
               <h2>Son Teklifler</h2>
               <div id="quotesList" class="activity-feed"></div>
             </section>
