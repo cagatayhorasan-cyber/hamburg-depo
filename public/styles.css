@@ -503,6 +503,99 @@ label {
   margin-top: 18px;
 }
 
+.pos-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.9fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.pos-catalog,
+.pos-cart {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(249, 245, 236, 0.9));
+  box-shadow: 0 16px 30px rgba(24, 34, 33, 0.06);
+}
+
+.pos-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.pos-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(57, 69, 67, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(24, 34, 33, 0.05);
+}
+
+.pos-card-head strong,
+.cart-item-main strong {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.pos-card-head span,
+.pos-card-meta,
+.cart-item-main span {
+  color: var(--muted);
+}
+
+.pos-card-meta {
+  display: grid;
+  gap: 4px;
+  font-size: 0.88rem;
+}
+
+.pos-card-price {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
+  color: var(--surface-dark);
+}
+
+.compact-form {
+  margin-bottom: 16px;
+}
+
+.form-span-2 {
+  grid-column: span 2;
+}
+
+.cart-list {
+  display: grid;
+  gap: 12px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid rgba(57, 69, 67, 0.08);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-total {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
 .table-wrap {
   overflow: auto;
   border: 1px solid rgba(57, 69, 67, 0.08);
@@ -701,6 +794,10 @@ th {
     grid-template-columns: 1fr;
   }
 
+  .pos-layout {
+    grid-template-columns: 1fr;
+  }
+
   .tab-buttons {
     top: 8px;
     border-radius: 20px;
@@ -737,6 +834,15 @@ th {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-span-2 {
+    grid-column: auto;
+  }
+
+  .cart-item {
+    grid-template-columns: 1fr;
+    justify-items: start;
   }
 
   .tab-buttons,

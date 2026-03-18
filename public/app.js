@@ -69,7 +69,7 @@ const refs = {
   itemSubmitButton: document.getElementById("itemSubmitButton"),
   itemCancelEdit: document.getElementById("itemCancelEdit"),
   quoteForm: document.getElementById("quoteForm"),
-  quoteLineForm: document.getElementById("quoteLineForm"),
+  posCatalogGrid: document.getElementById("posCatalogGrid"),
   quoteDraftBody: document.getElementById("quoteDraftBody"),
   quoteDraftSummary: document.getElementById("quoteDraftSummary"),
   saveQuoteButton: document.getElementById("saveQuoteButton"),
@@ -90,7 +90,6 @@ function bindEvents() {
   refs.cashForm.addEventListener("submit", (event) => handleSubmit(event, "/api/cashbook"));
   refs.bulkPricingForm.addEventListener("submit", handleBulkPricingSubmit);
   refs.itemCancelEdit.addEventListener("click", resetItemForm);
-  refs.quoteLineForm.addEventListener("submit", handleQuoteLineSubmit);
   refs.saveQuoteButton.addEventListener("click", handleQuoteSave);
 
   if (refs.userForm) {
@@ -106,7 +105,6 @@ function bindEvents() {
   });
   refs.barcodeItemSelect.addEventListener("change", updateBarcodePreview);
   refs.movementForm.elements.itemId.addEventListener("change", syncMovementPrice);
-  refs.quoteLineForm.elements.itemId.addEventListener("change", syncQuoteLinePrice);
   refs.quoteItemSearch.addEventListener("input", handleQuoteFilterChange);
   refs.quoteBrandFilter.addEventListener("change", handleQuoteFilterChange);
   refs.quoteCategoryFilter.addEventListener("change", handleQuoteFilterChange);
@@ -431,6 +429,8 @@ function renderUsers() {
 }
 
 function renderQuotes() {
+  renderPosCatalog();
+
   refs.quotesList.innerHTML = "";
   if (!state.quotes || state.quotes.length === 0) {
     refs.quotesList.innerHTML = `<div class="empty-state">Henuz teklif yok.</div>`;
@@ -461,23 +461,39 @@ function renderQuotes() {
   });
 
   refs.quoteDraftBody.innerHTML = "";
-  state.quoteDraft.forEach((entry, index) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${entry.itemName}</td>
-      <td>${numberFormat.format(entry.quantity)} ${entry.unit}</td>
-      <td>${currency.format(entry.unitPrice)}</td>
-      <td>${currency.format(entry.quantity * entry.unitPrice)}</td>
-      <td><button class="mini-button danger-button" type="button" data-remove-quote-line="${index}">Sil</button></td>
-    `;
-    refs.quoteDraftBody.append(tr);
-  });
+  if (state.quoteDraft.length === 0) {
+    refs.quoteDraftBody.innerHTML = `<div class="empty-state">Sepet bos. Soldan urun secip ekleyin.</div>`;
+  } else {
+    state.quoteDraft.forEach((entry, index) => {
+      const row = document.createElement("article");
+      row.className = "cart-item";
+      row.innerHTML = `
+        <div class="cart-item-main">
+          <strong>${entry.itemName}</strong>
+          <span>${entry.unit} | ${currency.format(entry.unitPrice)} / birim</span>
+        </div>
+        <div class="cart-item-controls">
+          <button class="mini-button secondary-button" type="button" data-quote-qty="${index}" data-delta="-1">-</button>
+          <span>${numberFormat.format(entry.quantity)}</span>
+          <button class="mini-button secondary-button" type="button" data-quote-qty="${index}" data-delta="1">+</button>
+        </div>
+        <div class="cart-item-total">
+          <strong>${currency.format(entry.quantity * entry.unitPrice)}</strong>
+          <button class="mini-button danger-button" type="button" data-remove-quote-line="${index}">Sil</button>
+        </div>
+      `;
+      refs.quoteDraftBody.append(row);
+    });
+  }
 
   refs.quoteDraftBody.querySelectorAll("[data-remove-quote-line]").forEach((button) => {
     button.addEventListener("click", () => {
       state.quoteDraft.splice(Number(button.dataset.removeQuoteLine), 1);
       renderQuotes();
     });
+  });
+  refs.quoteDraftBody.querySelectorAll("[data-quote-qty]").forEach((button) => {
+    button.addEventListener("click", () => changeQuoteQuantity(Number(button.dataset.quoteQty), Number(button.dataset.delta)));
   });
 
   const subtotal = state.quoteDraft.reduce((sum, entry) => sum + entry.quantity * entry.unitPrice, 0);
@@ -487,6 +503,43 @@ function renderQuotes() {
   const vatAmount = isExport ? 0 : netTotal * 0.19;
   const grossTotal = netTotal + vatAmount;
   refs.quoteDraftSummary.textContent = `Ara toplam: ${currency.format(subtotal)} | Iskonto: ${currency.format(discount)} | Net: ${currency.format(netTotal)} | KDV: ${currency.format(vatAmount)} | Brut: ${currency.format(grossTotal)}`;
+}
+
+function renderPosCatalog() {
+  if (!refs.posCatalogGrid) {
+    return;
+  }
+
+  const items = getFilteredQuoteItems();
+  refs.posCatalogGrid.innerHTML = "";
+
+  if (items.length === 0) {
+    refs.posCatalogGrid.innerHTML = `<div class="empty-state">Aramaya uygun urun bulunamadi.</div>`;
+    return;
+  }
+
+  items.slice(0, 60).forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "pos-card";
+    const price = item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0;
+    card.innerHTML = `
+      <div class="pos-card-head">
+        <strong>${item.name}</strong>
+        <span>${item.brand || "-"}</span>
+      </div>
+      <div class="pos-card-meta">
+        <span>${item.category}</span>
+        <span>Stok: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+      </div>
+      <div class="pos-card-price">${price ? currency.format(price) : "-"}</div>
+      <button class="primary-button" type="button" data-add-quote-item="${item.id}">Sepete Ekle</button>
+    `;
+    refs.posCatalogGrid.append(card);
+  });
+
+  refs.posCatalogGrid.querySelectorAll("[data-add-quote-item]").forEach((button) => {
+    button.addEventListener("click", () => addItemToQuote(Number(button.dataset.addQuoteItem)));
+  });
 }
 
 function renderItemSelects() {
@@ -501,16 +554,7 @@ function renderItemSelects() {
     });
   });
 
-  refs.quoteLineForm.elements.itemId.innerHTML = "";
-  getFilteredQuoteItems().forEach((item) => {
-    const option = document.createElement("option");
-    option.value = item.id;
-    option.textContent = `${item.name}${item.brand ? ` / ${item.brand}` : ""} (${item.unit})`;
-    refs.quoteLineForm.elements.itemId.append(option);
-  });
-
   syncMovementPrice();
-  syncQuoteLinePrice();
 }
 
 function updateBarcodePreview() {
@@ -535,15 +579,6 @@ function syncMovementPrice() {
   }
 }
 
-function syncQuoteLinePrice() {
-  const itemId = Number(refs.quoteLineForm.elements.itemId.value);
-  const item = state.items.find((entry) => Number(entry.id) === itemId);
-  if (!item) {
-    return;
-  }
-  refs.quoteLineForm.elements.unitPrice.value = item.salePrice || item.lastPurchasePrice || item.defaultPrice || "";
-}
-
 function activateTab(tab) {
   document.querySelectorAll("[data-tab]").forEach((button) => {
     button.classList.toggle("active", button.dataset.tab === tab);
@@ -565,7 +600,7 @@ function handleQuoteFilterChange() {
   state.quoteFilters.search = refs.quoteItemSearch.value.trim().toLowerCase();
   state.quoteFilters.brand = refs.quoteBrandFilter.value;
   state.quoteFilters.category = refs.quoteCategoryFilter.value;
-  renderItemSelects();
+  renderQuotes();
 }
 
 function getFilteredItems(applySearch = true) {
@@ -743,23 +778,34 @@ async function restoreItem(itemId) {
   await refreshData();
 }
 
-function handleQuoteLineSubmit(event) {
-  event.preventDefault();
-  const payload = formToObject(event.currentTarget);
-  const item = state.items.find((entry) => Number(entry.id) === Number(payload.itemId));
+function addItemToQuote(itemId) {
+  const item = state.items.find((entry) => Number(entry.id) === Number(itemId));
   if (!item) {
     return;
   }
-  state.quoteDraft.push({
-    itemId: Number(item.id),
-    itemName: item.name,
-    quantity: Number(payload.quantity),
-    unitPrice: Number(payload.unitPrice),
-    unit: item.unit,
-  });
-  event.currentTarget.reset();
-  event.currentTarget.elements.quantity.value = 1;
-  renderItemSelects();
+
+  const existing = state.quoteDraft.find((entry) => Number(entry.itemId) === Number(item.id));
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    state.quoteDraft.push({
+      itemId: Number(item.id),
+      itemName: item.name,
+      quantity: 1,
+      unitPrice: Number(item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0),
+      unit: item.unit,
+    });
+  }
+  renderQuotes();
+}
+
+function changeQuoteQuantity(index, delta) {
+  const line = state.quoteDraft[index];
+  if (!line) {
+    return;
+  }
+
+  line.quantity = Math.max(1, Number(line.quantity) + delta);
   renderQuotes();
 }
 

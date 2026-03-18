@@ -270,52 +270,39 @@
           </div>
 
           <div class="tab-content active" data-tab-content="quotes">
-            <div class="two-column sales-layout">
-              <section>
+            <div class="pos-layout">
+              <section class="pos-catalog">
                 <div class="section-head">
                   <div>
-                    <h2>Hizli Teklif</h2>
-                    <p class="muted">Musteri bilgisi girin, urunleri ekleyin, PDF teklif alin.</p>
+                    <h2>Urun Katalogu</h2>
+                    <p class="muted">Arayin, filtreleyin ve tek tikla sepete ekleyin.</p>
                   </div>
                 </div>
-                <form id="quoteForm" class="form-grid">
+                <div class="filter-grid simple-filter-grid">
+                  <label>Arama<input id="quoteItemSearch" type="search" placeholder="Urun veya marka ara"></label>
+                  <label>Marka<select id="quoteBrandFilter"></select></label>
+                  <label>Kategori<select id="quoteCategoryFilter"></select></label>
+                </div>
+                <div id="posCatalogGrid" class="pos-catalog-grid"></div>
+              </section>
+
+              <section class="pos-cart">
+                <div class="section-head">
+                  <div>
+                    <h2>Sepet ve Musteri</h2>
+                    <p class="muted">Teklif olusturmadan once sepeti ve musteri bilgilerini tamamlayin.</p>
+                  </div>
+                </div>
+                <form id="quoteForm" class="form-grid compact-form">
                   <label>Musteri<input name="customerName" type="text" required></label>
                   <label>Baslik<input name="title" type="text" required placeholder="Orn. Soguk Oda Teklifi"></label>
                   <label>Tarih<input name="date" type="date" required></label>
                   <label>Dil<select name="language" required><option value="de">Deutsch</option><option value="tr">Turkce</option></select></label>
                   <label>Satis Tipi<select name="isExport" required><option value="true">Yurt Disi - KDV Yok</option><option value="false">Yurt Ici - KDV Dahil</option></select></label>
                   <label>Iskonto<input name="discount" type="number" min="0" step="0.01" value="0"></label>
-                  <label>Not<input name="note" type="text"></label>
+                  <label class="form-span-2">Not<input name="note" type="text"></label>
                 </form>
-                <div class="panel-lite">
-                  <h3>Teklife Urun Ekle</h3>
-                  <form id="quoteLineForm" class="form-grid">
-                    <label>Arama<input id="quoteItemSearch" type="search" placeholder="Urun veya marka ara"></label>
-                    <label>Marka<select id="quoteBrandFilter"></select></label>
-                    <label>Kategori<select id="quoteCategoryFilter"></select></label>
-                    <label>Malzeme<select name="itemId" required></select></label>
-                    <label>Miktar<input name="quantity" type="number" min="0.01" step="0.01" value="1" required></label>
-                    <label>Birim Fiyat<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
-                    <button class="secondary-button" type="submit">Kalem Ekle</button>
-                  </form>
-                </div>
-              </section>
-              <section>
-                <h2>Teklif Ozet</h2>
-                <div class="table-wrap">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Malzeme</th>
-                        <th>Miktar</th>
-                        <th>Birim Fiyat</th>
-                        <th>Toplam</th>
-                        <th>Islem</th>
-                      </tr>
-                    </thead>
-                    <tbody id="quoteDraftBody"></tbody>
-                  </table>
-                </div>
+                <div id="quoteDraftBody" class="cart-list"></div>
                 <p id="quoteDraftSummary" class="muted"></p>
                 <button id="saveQuoteButton" class="primary-button" type="button">Teklifi Kaydet</button>
               </section>
