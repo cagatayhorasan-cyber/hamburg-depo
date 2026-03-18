@@ -15,6 +15,7 @@ const state = {
   user: null,
   summary: null,
   items: [],
+  archivedItems: [],
   movements: [],
   expenses: [],
   cashbook: [],
@@ -47,6 +48,8 @@ const refs = {
   bulkPricingForm: document.getElementById("bulkPricingForm"),
   itemsTableBody: document.getElementById("itemsTableBody"),
   itemsSummary: document.getElementById("itemsSummary"),
+  archiveTableBody: document.getElementById("archiveTableBody"),
+  archiveSummary: document.getElementById("archiveSummary"),
   movementsTableBody: document.getElementById("movementsTableBody"),
   expensesTableBody: document.getElementById("expensesTableBody"),
   cashbookTableBody: document.getElementById("cashbookTableBody"),
@@ -58,6 +61,7 @@ const refs = {
   downloadPdf: document.getElementById("downloadPdf"),
   itemSearch: document.getElementById("itemSearch"),
   itemSearchSuggestions: document.getElementById("itemSearchSuggestions"),
+  itemSearchDropdown: document.getElementById("itemSearchDropdown"),
   brandFilter: document.getElementById("brandFilter"),
   categoryFilter: document.getElementById("categoryFilter"),
   bulkBrandFilter: document.getElementById("bulkBrandFilter"),
@@ -109,6 +113,10 @@ function bindEvents() {
   refs.quoteForm.elements.discount.addEventListener("input", renderQuotes);
   refs.quoteForm.elements.isExport.addEventListener("change", renderQuotes);
   refs.itemSearch.addEventListener("input", handleFilterChange);
+  refs.itemSearch.addEventListener("focus", renderSearchDropdown);
+  refs.itemSearch.addEventListener("blur", () => {
+    window.setTimeout(() => refs.itemSearchDropdown?.classList.add("hidden"), 120);
+  });
   refs.brandFilter.addEventListener("change", handleFilterChange);
   refs.categoryFilter.addEventListener("change", handleFilterChange);
 
@@ -256,6 +264,7 @@ function renderAll() {
   renderStats();
   renderFilters();
   renderItems();
+  renderArchive();
   renderMovements();
   renderExpenses();
   renderCashbook();
@@ -313,6 +322,7 @@ function renderItems() {
       <td>
         <div class="action-row">
           <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}">Duzenle</button>
+          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}">Arsivle</button>
           <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}">Sil</button>
         </div>
       </td>
@@ -325,6 +335,41 @@ function renderItems() {
   });
   refs.itemsTableBody.querySelectorAll("[data-action='delete-item']").forEach((button) => {
     button.addEventListener("click", () => deleteItem(Number(button.dataset.id)));
+  });
+  refs.itemsTableBody.querySelectorAll("[data-action='archive-item']").forEach((button) => {
+    button.addEventListener("click", () => archiveItem(Number(button.dataset.id)));
+  });
+}
+
+function renderArchive() {
+  if (!refs.archiveTableBody || !refs.archiveSummary) {
+    return;
+  }
+
+  refs.archiveTableBody.innerHTML = "";
+  refs.archiveSummary.textContent = `${state.archivedItems.length} pasif urun arsivde tutuluyor`;
+
+  if (state.archivedItems.length === 0) {
+    refs.archiveTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">Pasif urun yok.</div></td></tr>`;
+    return;
+  }
+
+  state.archivedItems.forEach((item) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.brand || "-"}</td>
+      <td>${item.category}</td>
+      <td>${item.defaultPrice ? currency.format(item.defaultPrice) : "-"}</td>
+      <td>${item.salePrice ? currency.format(item.salePrice) : "-"}</td>
+      <td>${item.barcode}</td>
+      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}">Geri Al</button></td>
+    `;
+    refs.archiveTableBody.append(tr);
+  });
+
+  refs.archiveTableBody.querySelectorAll("[data-action='restore-item']").forEach((button) => {
+    button.addEventListener("click", () => restoreItem(Number(button.dataset.id)));
   });
 }
 
@@ -513,6 +558,7 @@ function handleFilterChange() {
   state.filters.brand = refs.brandFilter.value;
   state.filters.category = refs.categoryFilter.value;
   renderItems();
+  renderSearchDropdown();
 }
 
 function handleQuoteFilterChange() {
@@ -588,6 +634,44 @@ function renderItemSearchSuggestions() {
     });
 }
 
+function renderSearchDropdown() {
+  if (!refs.itemSearchDropdown) {
+    return;
+  }
+
+  const term = refs.itemSearch.value.trim().toLowerCase();
+  if (!term) {
+    refs.itemSearchDropdown.classList.add("hidden");
+    refs.itemSearchDropdown.innerHTML = "";
+    return;
+  }
+
+  const matches = state.items
+    .filter((item) => [item.name, item.brand, item.category, item.barcode, item.notes].filter(Boolean).join(" ").toLowerCase().includes(term))
+    .slice(0, 10);
+
+  if (matches.length === 0) {
+    refs.itemSearchDropdown.classList.add("hidden");
+    refs.itemSearchDropdown.innerHTML = "";
+    return;
+  }
+
+  refs.itemSearchDropdown.innerHTML = matches.map((item) => `
+    <button class="search-suggestion" type="button" data-search-value="${escapeHtml(item.name)}">
+      <strong>${escapeHtml(item.name)}</strong>
+      <span>${escapeHtml(item.brand || "-")} | ${escapeHtml(item.category)} | ${escapeHtml(item.barcode)}</span>
+    </button>
+  `).join("");
+  refs.itemSearchDropdown.classList.remove("hidden");
+  refs.itemSearchDropdown.querySelectorAll("[data-search-value]").forEach((button) => {
+    button.addEventListener("click", () => {
+      refs.itemSearch.value = button.dataset.searchValue;
+      handleFilterChange();
+      refs.itemSearchDropdown.classList.add("hidden");
+    });
+  });
+}
+
 function getFilteredQuoteItems() {
   return state.items.filter((item) => {
     if (state.quoteFilters.brand !== "all" && item.brand !== state.quoteFilters.brand) {
@@ -630,6 +714,28 @@ async function deleteItem(itemId) {
     return;
   }
   const result = await request(`/api/items/${itemId}`, { method: "DELETE" });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+}
+
+async function archiveItem(itemId) {
+  const approved = window.confirm("Bu malzeme aktif listeden kaldirilip arsive tasinsin mi?");
+  if (!approved) {
+    return;
+  }
+  const result = await request(`/api/items/${itemId}/archive`, { method: "POST" });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+}
+
+async function restoreItem(itemId) {
+  const result = await request(`/api/items/${itemId}/restore`, { method: "POST" });
   if (result.error) {
     window.alert(result.error);
     return;
@@ -735,4 +841,12 @@ async function request(url, options = {}) {
   }
 
   return response.json();
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }

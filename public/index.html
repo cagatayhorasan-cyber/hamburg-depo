@@ -51,6 +51,7 @@
         <section class="panel tabs-panel">
           <div class="tab-buttons">
             <button class="tab-button active" data-tab="items" type="button">Malzemeler</button>
+            <button class="tab-button" data-tab="archive" type="button">Arsiv</button>
             <button class="tab-button" data-tab="movements" type="button">Stok Hareketleri</button>
             <button class="tab-button" data-tab="expenses" type="button">Masraflar</button>
             <button class="tab-button" data-tab="cashbook" type="button">Kasa Defteri</button>
@@ -84,6 +85,8 @@
                   <form id="bulkPricingForm" class="form-grid">
                     <label>Marka<select name="brand" id="bulkBrandFilter"></select></label>
                     <label>Kategori<select name="category" id="bulkCategoryFilter"></select></label>
+                    <label>Hesaplama<select name="pricingMode"><option value="margin">Alisa Gore Marj</option><option value="increase">Mevcut Satisa Artis</option></select></label>
+                    <label>Baz Alan<select name="baseField"><option value="purchase">Alis Fiyati</option><option value="sale">Satis Fiyati</option></select></label>
                     <label>Artis Yuzdesi<input name="increasePercent" type="number" step="0.01" value="22"></label>
                     <button class="secondary-button" type="submit">Satis Fiyatlarini Guncelle</button>
                   </form>
@@ -94,6 +97,7 @@
                   <label>Kategori<select id="categoryFilter"></select></label>
                 </div>
                 <datalist id="itemSearchSuggestions"></datalist>
+                <div id="itemSearchDropdown" class="search-dropdown hidden"></div>
                 <p id="itemsSummary" class="muted"></p>
                 <div class="table-wrap">
                   <table>
@@ -126,6 +130,29 @@
                 <img id="barcodeImage" alt="Barkod onizleme">
               </div>
             </div>
+          </div>
+
+          <div class="tab-content" data-tab-content="archive">
+            <section>
+              <h2>Pasif Malzeme Arsivi</h2>
+              <p id="archiveSummary" class="muted"></p>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Malzeme</th>
+                      <th>Marka</th>
+                      <th>Kategori</th>
+                      <th>Alis</th>
+                      <th>Satis</th>
+                      <th>Barkod</th>
+                      <th>Islem</th>
+                    </tr>
+                  </thead>
+                  <tbody id="archiveTableBody"></tbody>
+                </table>
+              </div>
+            </section>
           </div>
 
           <div class="tab-content" data-tab-content="movements">

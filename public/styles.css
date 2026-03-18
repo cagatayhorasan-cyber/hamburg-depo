@@ -206,6 +206,36 @@ h3 {
   margin-bottom: 14px;
 }
 
+.search-dropdown {
+  margin: -6px 0 14px;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 252, 247, 0.95);
+  box-shadow: var(--shadow-md);
+}
+
+.search-suggestion {
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 118, 110, 0.08);
+  background: #fff;
+}
+
+.search-suggestion strong,
+.search-suggestion span {
+  display: block;
+}
+
+.search-suggestion span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
 label {
   display: flex;
   flex-direction: column;

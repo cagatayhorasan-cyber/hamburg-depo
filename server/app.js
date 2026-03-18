@@ -269,7 +269,7 @@ function createApp() {
   });
 
   app.post("/api/pricing/bulk", requireAuth, async (req, res) => {
-    const { brand, category, increasePercent } = req.body || {};
+    const { brand, category, increasePercent, pricingMode, baseField } = req.body || {};
     const multiplier = 1 + Number(increasePercent || 0) / 100;
     const clauses = [];
     const params = [multiplier];
@@ -284,16 +284,36 @@ function createApp() {
     }
 
     const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
+    const sourceField = baseField === "sale" ? "sale_price" : "default_price";
+    const expression = pricingMode === "increase"
+      ? `ROUND(COALESCE(NULLIF(sale_price, 0), ${sourceField}) * ?, 2)`
+      : `ROUND(${sourceField} * ?, 2)`;
     const result = await execute(
       `
         UPDATE items
-        SET sale_price = ROUND(default_price * ?, 2)
+        SET sale_price = ${expression}
         ${whereClause}
       `,
       params
     );
 
     return res.json({ ok: true, updated: result.rowCount });
+  });
+
+  app.post("/api/items/:id/archive", requireAuth, async (req, res) => {
+    const result = await execute("UPDATE items SET is_active = ? WHERE id = ?", [dbClient === "postgres" ? false : 0, Number(req.params.id)]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Malzeme bulunamadi." });
+    }
+    return res.json({ ok: true });
+  });
+
+  app.post("/api/items/:id/restore", requireAuth, async (req, res) => {
+    const result = await execute("UPDATE items SET is_active = ? WHERE id = ?", [dbClient === "postgres" ? true : 1, Number(req.params.id)]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Malzeme bulunamadi." });
+    }
+    return res.json({ ok: true });
   });
 
   app.post("/api/quotes", requireAuth, async (req, res) => {
@@ -503,7 +523,7 @@ async function getItemStock(itemId) {
   return Number(row?.stock || 0);
 }
 
-async function queryItems() {
+async function queryItems(isActive = true) {
   const rows = await query(
     `
       SELECT
@@ -526,9 +546,10 @@ async function queryItems() {
           WHERE item_id = items.id AND type = 'entry'
         ), 0) AS average_purchase_price
       FROM items
-      WHERE COALESCE(items.is_active, TRUE)
+      WHERE COALESCE(items.is_active, TRUE) = ?
       ORDER BY created_at DESC, id DESC
-    `
+    `,
+    [isActive]
   );
 
   return rows.map((row) => ({
@@ -636,9 +657,10 @@ async function computeSummary() {
 }
 
 async function buildBootstrap() {
-  const [summary, items, movements, expenses, cashbook, users, quotes] = await Promise.all([
+  const [summary, items, archivedItems, movements, expenses, cashbook, users, quotes] = await Promise.all([
     computeSummary(),
     queryItems(),
+    queryItems(false),
     queryMovements(),
     queryExpenses(),
     queryCashbook(),
@@ -649,6 +671,7 @@ async function buildBootstrap() {
   return {
     summary,
     items,
+    archivedItems,
     movements,
     expenses,
     cashbook,
