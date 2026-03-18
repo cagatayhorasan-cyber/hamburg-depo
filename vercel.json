@@ -1,9 +1,13 @@
 {
-  "version": 2,
   "functions": {
     "api/[...path].js": {
-      "runtime": "nodejs22.x",
       "maxDuration": 30
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/$1"
+    }
+  ]
 }
