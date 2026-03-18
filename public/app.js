@@ -57,6 +57,7 @@ const refs = {
   downloadXlsx: document.getElementById("downloadXlsx"),
   downloadPdf: document.getElementById("downloadPdf"),
   itemSearch: document.getElementById("itemSearch"),
+  itemSearchSuggestions: document.getElementById("itemSearchSuggestions"),
   brandFilter: document.getElementById("brandFilter"),
   categoryFilter: document.getElementById("categoryFilter"),
   bulkBrandFilter: document.getElementById("bulkBrandFilter"),
@@ -271,6 +272,7 @@ function renderFilters() {
   populateSelect(refs.bulkCategoryFilter, uniqueValues("category"), "Tum Kategoriler", refs.bulkCategoryFilter.value || "all");
   populateSelect(refs.quoteBrandFilter, uniqueValues("brand"), "Tum Markalar", state.quoteFilters.brand);
   populateSelect(refs.quoteCategoryFilter, uniqueValues("category"), "Tum Kategoriler", state.quoteFilters.category);
+  renderItemSearchSuggestions();
 }
 
 function renderStats() {
@@ -563,6 +565,27 @@ function populateSelect(select, values, placeholder, selectedValue) {
     select.append(option);
   });
   select.value = values.includes(previous) || previous === "all" ? previous : "all";
+}
+
+function renderItemSearchSuggestions() {
+  if (!refs.itemSearchSuggestions) {
+    return;
+  }
+
+  const suggestions = new Set();
+  state.items.forEach((item) => {
+    [item.name, item.brand, item.barcode, item.category].filter(Boolean).forEach((value) => suggestions.add(value));
+  });
+
+  refs.itemSearchSuggestions.innerHTML = "";
+  [...suggestions]
+    .sort((a, b) => a.localeCompare(b, "tr"))
+    .slice(0, 250)
+    .forEach((value) => {
+      const option = document.createElement("option");
+      option.value = value;
+      refs.itemSearchSuggestions.append(option);
+    });
 }
 
 function getFilteredQuoteItems() {

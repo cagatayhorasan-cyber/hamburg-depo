@@ -526,6 +526,7 @@ async function queryItems() {
           WHERE item_id = items.id AND type = 'entry'
         ), 0) AS average_purchase_price
       FROM items
+      WHERE COALESCE(items.is_active, TRUE)
       ORDER BY created_at DESC, id DESC
     `
   );

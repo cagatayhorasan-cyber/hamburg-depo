@@ -30,6 +30,7 @@ const sqliteSchema = `
     min_stock REAL NOT NULL DEFAULT 0,
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
+    is_active INTEGER NOT NULL DEFAULT 1,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
@@ -119,6 +120,7 @@ const postgresSchema = `
     min_stock NUMERIC NOT NULL DEFAULT 0,
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
     default_price NUMERIC NOT NULL DEFAULT 0,
     sale_price NUMERIC NOT NULL DEFAULT 0,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -200,6 +202,7 @@ async function initDatabase() {
       ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
     });
     await pgPool.query(postgresSchema);
+    await ensureItemColumnsPostgres();
     await seedUsers({
       get: async (sql, params) => firstRow(await query(sql, params)),
       run: async (sql, params) => query(sql, params),
@@ -330,6 +333,9 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("sale_price")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN sale_price REAL NOT NULL DEFAULT 0");
   }
+  if (!columns.includes("is_active")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN is_active INTEGER NOT NULL DEFAULT 1");
+  }
 }
 
 function ensureQuoteColumnsSqlite() {
@@ -412,6 +418,27 @@ async function withOptionalTransaction(adapter, callback) {
     throw error;
   } finally {
     client.release();
+  }
+}
+
+async function ensureItemColumnsPostgres() {
+  const columns = await pgPool.query(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'items'
+  `);
+  const names = new Set(columns.rows.map((row) => row.column_name));
+  if (!names.has("brand")) {
+    await pgPool.query("ALTER TABLE items ADD COLUMN brand TEXT DEFAULT ''");
+  }
+  if (!names.has("default_price")) {
+    await pgPool.query("ALTER TABLE items ADD COLUMN default_price NUMERIC NOT NULL DEFAULT 0");
+  }
+  if (!names.has("sale_price")) {
+    await pgPool.query("ALTER TABLE items ADD COLUMN sale_price NUMERIC NOT NULL DEFAULT 0");
+  }
+  if (!names.has("is_active")) {
+    await pgPool.query("ALTER TABLE items ADD COLUMN is_active BOOLEAN NOT NULL DEFAULT TRUE");
   }
 }
 

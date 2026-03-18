@@ -89,10 +89,11 @@
                   </form>
                 </div>
                 <div class="filter-grid">
-                  <label>Arama<input id="itemSearch" type="search" placeholder="Urun, marka veya barkod ara"></label>
+                  <label>Arama<input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Urun, marka veya barkod ara"></label>
                   <label>Marka<select id="brandFilter"></select></label>
                   <label>Kategori<select id="categoryFilter"></select></label>
                 </div>
+                <datalist id="itemSearchSuggestions"></datalist>
                 <p id="itemsSummary" class="muted"></p>
                 <div class="table-wrap">
                   <table>
