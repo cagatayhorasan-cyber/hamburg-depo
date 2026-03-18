@@ -73,6 +73,7 @@ const refs = {
   quoteDraftBody: document.getElementById("quoteDraftBody"),
   quoteDraftSummary: document.getElementById("quoteDraftSummary"),
   saveQuoteButton: document.getElementById("saveQuoteButton"),
+  checkoutSaleButton: document.getElementById("checkoutSaleButton"),
   quotesList: document.getElementById("quotesList"),
   quoteItemSearch: document.getElementById("quoteItemSearch"),
   quoteBrandFilter: document.getElementById("quoteBrandFilter"),
@@ -91,6 +92,7 @@ function bindEvents() {
   refs.bulkPricingForm.addEventListener("submit", handleBulkPricingSubmit);
   refs.itemCancelEdit.addEventListener("click", resetItemForm);
   refs.saveQuoteButton.addEventListener("click", handleQuoteSave);
+  refs.checkoutSaleButton.addEventListener("click", handleDirectSale);
 
   if (refs.userForm) {
     refs.userForm.addEventListener("submit", (event) => handleSubmit(event, "/api/users"));
@@ -110,6 +112,7 @@ function bindEvents() {
   refs.quoteCategoryFilter.addEventListener("change", handleQuoteFilterChange);
   refs.quoteForm.elements.discount.addEventListener("input", renderQuotes);
   refs.quoteForm.elements.isExport.addEventListener("change", renderQuotes);
+  refs.quoteForm.elements.collectedAmount.addEventListener("input", renderQuotes);
   refs.itemSearch.addEventListener("input", handleFilterChange);
   refs.itemSearch.addEventListener("focus", renderSearchDropdown);
   refs.itemSearch.addEventListener("blur", () => {
@@ -502,7 +505,9 @@ function renderQuotes() {
   const netTotal = Math.max(subtotal - discount, 0);
   const vatAmount = isExport ? 0 : netTotal * 0.19;
   const grossTotal = netTotal + vatAmount;
-  refs.quoteDraftSummary.textContent = `Ara toplam: ${currency.format(subtotal)} | Iskonto: ${currency.format(discount)} | Net: ${currency.format(netTotal)} | KDV: ${currency.format(vatAmount)} | Brut: ${currency.format(grossTotal)}`;
+  const collectedAmount = Math.max(Number(refs.quoteForm.elements.collectedAmount?.value || 0), 0);
+  const remaining = Math.max(grossTotal - collectedAmount, 0);
+  refs.quoteDraftSummary.textContent = `Ara toplam: ${currency.format(subtotal)} | Iskonto: ${currency.format(discount)} | Net: ${currency.format(netTotal)} | KDV: ${currency.format(vatAmount)} | Brut: ${currency.format(grossTotal)} | Tahsil: ${currency.format(collectedAmount)} | Kalan: ${currency.format(remaining)}`;
 }
 
 function renderPosCatalog() {
@@ -831,6 +836,39 @@ async function handleQuoteSave() {
   refs.quoteForm.elements.discount.value = 0;
   refs.quoteForm.elements.language.value = "de";
   refs.quoteForm.elements.isExport.value = "true";
+  refs.quoteForm.elements.collectedAmount.value = 0;
+  state.quoteDraft = [];
+  await refreshData();
+}
+
+async function handleDirectSale() {
+  if (state.quoteDraft.length === 0) {
+    window.alert("Once sepete urun ekleyin.");
+    return;
+  }
+
+  const payload = {
+    ...formToObject(refs.quoteForm),
+    items: state.quoteDraft,
+  };
+  const result = await request("/api/sales/checkout", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  window.alert(`Direkt satis tamamlandi. Tahsil edilen: ${currency.format(result.paid || 0)} | Kalan: ${currency.format(result.remaining || 0)}`);
+  refs.quoteForm.reset();
+  refs.quoteForm.elements.date.value = today;
+  refs.quoteForm.elements.discount.value = 0;
+  refs.quoteForm.elements.language.value = "de";
+  refs.quoteForm.elements.isExport.value = "true";
+  refs.quoteForm.elements.collectedAmount.value = 0;
+  refs.quoteForm.elements.paymentType.value = "cash";
   state.quoteDraft = [];
   await refreshData();
 }

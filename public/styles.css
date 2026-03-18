@@ -596,6 +596,10 @@ label {
   gap: 8px;
 }
 
+.pos-actions {
+  margin-top: 16px;
+}
+
 .table-wrap {
   overflow: auto;
   border: 1px solid rgba(57, 69, 67, 0.08);

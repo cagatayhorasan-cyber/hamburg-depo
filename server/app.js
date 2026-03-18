@@ -387,6 +387,123 @@ function createApp() {
     }
   });
 
+  app.post("/api/sales/checkout", requireAuth, async (req, res) => {
+    const { customerName, title, date, discount, note, items, language, isExport, paymentType, collectedAmount, reference } = req.body || {};
+    if (!customerName || !date || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: "Direkt satis bilgileri eksik." });
+    }
+
+    const subtotal = items.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
+    const netTotal = Math.max(subtotal - Number(discount || 0), 0);
+    const exportSale = isTruthy(isExport);
+    const vatRate = exportSale ? 0 : 19;
+    const vatAmount = Number((netTotal * (vatRate / 100)).toFixed(2));
+    const grossTotal = Number((netTotal + vatAmount).toFixed(2));
+    const paid = Math.max(Number(collectedAmount || 0), 0);
+    const quoteNo = await generateQuoteNo(date);
+
+    try {
+      const saleResult = await withTransaction(async (tx) => {
+        for (const entry of items) {
+          const itemId = Number(entry.itemId);
+          const item = await tx.get("SELECT * FROM items WHERE id = ?", [itemId]);
+          if (!item) {
+            throw new Error("Malzeme bulunamadi.");
+          }
+          const stock = await getItemStock(itemId);
+          if (Number(entry.quantity) > stock) {
+            throw new Error(`${entry.itemName} icin yeterli stok yok.`);
+          }
+        }
+
+        const quoteResult = await tx.execute(
+          `
+            INSERT INTO quotes (
+              customer_name, title, quote_date, discount, subtotal, total, note, user_id, language,
+              quote_no, vat_rate, vat_amount, net_total, gross_total, is_export
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            RETURNING id
+          `,
+          [
+            customerName.trim(),
+            cleanOptional(title) || "Direkt Satis",
+            date,
+            Number(discount || 0),
+            subtotal,
+            grossTotal,
+            cleanOptional(note),
+            req.session.user.id,
+            language === "tr" ? "tr" : "de",
+            quoteNo,
+            vatRate,
+            vatAmount,
+            netTotal,
+            grossTotal,
+            exportSale ? 1 : 0,
+          ]
+        );
+
+        const insertedQuoteId = Number(quoteResult.rows[0]?.id || quoteResult.lastInsertId);
+        for (const entry of items) {
+          await tx.execute(
+            `
+              INSERT INTO quote_items (quote_id, item_id, item_name, quantity, unit, unit_price, total)
+              VALUES (?, ?, ?, ?, ?, ?, ?)
+            `,
+            [
+              insertedQuoteId,
+              Number(entry.itemId),
+              entry.itemName,
+              Number(entry.quantity),
+              entry.unit || "adet",
+              Number(entry.unitPrice),
+              Number(entry.quantity) * Number(entry.unitPrice),
+            ]
+          );
+
+          await tx.execute(
+            `
+              INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
+              VALUES (?, 'exit', ?, ?, ?, ?, ?)
+            `,
+            [
+              Number(entry.itemId),
+              Number(entry.quantity),
+              Number(entry.unitPrice),
+              date,
+              `Direkt satis - ${customerName}`,
+              req.session.user.id,
+            ]
+          );
+        }
+
+        if (paid > 0) {
+          await tx.execute(
+            `
+              INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
+              VALUES ('in', ?, ?, ?, ?, ?, ?)
+            `,
+            [
+              `Direkt satis tahsilati - ${customerName}`,
+              paid,
+              date,
+              cleanOptional(reference),
+              `${cleanOptional(paymentType) || "cash"} | ${quoteNo}`,
+              req.session.user.id,
+            ]
+          );
+        }
+
+        return { id: insertedQuoteId, paid };
+      });
+
+      return res.json({ ok: true, id: saleResult.id, paid: saleResult.paid, remaining: Number((grossTotal - paid).toFixed(2)) });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Direkt satis olusturulamadi." });
+    }
+  });
+
   app.get("/api/quotes/:id/pdf", requireAuth, async (req, res) => {
     const quote = await getQuoteById(Number(req.params.id));
     if (!quote) {

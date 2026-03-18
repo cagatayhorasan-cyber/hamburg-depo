@@ -300,11 +300,17 @@
                   <label>Dil<select name="language" required><option value="de">Deutsch</option><option value="tr">Turkce</option></select></label>
                   <label>Satis Tipi<select name="isExport" required><option value="true">Yurt Disi - KDV Yok</option><option value="false">Yurt Ici - KDV Dahil</option></select></label>
                   <label>Iskonto<input name="discount" type="number" min="0" step="0.01" value="0"></label>
+                  <label>Tahsilat Tipi<select name="paymentType"><option value="cash">Nakit</option><option value="bank">Banka</option><option value="card">Kart</option></select></label>
+                  <label>Tahsil Edilen<input name="collectedAmount" type="number" min="0" step="0.01" value="0"></label>
+                  <label>Referans<input name="reference" type="text" placeholder="Fis, havale, kart sonu"></label>
                   <label class="form-span-2">Not<input name="note" type="text"></label>
                 </form>
                 <div id="quoteDraftBody" class="cart-list"></div>
                 <p id="quoteDraftSummary" class="muted"></p>
-                <button id="saveQuoteButton" class="primary-button" type="button">Teklifi Kaydet</button>
+                <div class="action-row pos-actions">
+                  <button id="checkoutSaleButton" class="primary-button" type="button">Direkt Satis Yap</button>
+                  <button id="saveQuoteButton" class="secondary-button" type="button">Teklifi Kaydet</button>
+                </div>
               </section>
             </div>
             <section class="recent-quotes">
