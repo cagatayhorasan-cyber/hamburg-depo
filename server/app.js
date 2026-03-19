@@ -95,6 +95,20 @@ function createApp() {
     res.json(await buildBootstrap());
   });
 
+  app.post("/api/assistant/query", requireAuth, async (req, res) => {
+    const message = cleanOptional(req.body?.message);
+    if (!message) {
+      return res.status(400).json({ error: "Soru bos olamaz." });
+    }
+
+    const items = await queryItems();
+    const answer = answerAssistantQuestion(message, items);
+    return res.json({
+      answer: answer.reply,
+      suggestions: answer.suggestions || [],
+    });
+  });
+
   app.post("/api/users", requireAdmin, async (req, res) => {
     const { name, username, password, role } = req.body || {};
     if (!name || !username || !password || !role) {
@@ -809,6 +823,102 @@ function deriveBrand(row) {
   }
 
   return "";
+}
+
+function answerAssistantQuestion(message, items) {
+  const normalized = normalizeAssistantText(message);
+  const candidates = items.filter((item) => {
+    const haystack = normalizeAssistantText([item.name, item.brand, item.category, item.barcode, item.notes].filter(Boolean).join(" "));
+    return normalized.split(" ").filter(Boolean).some((token) => token.length > 2 && haystack.includes(token));
+  });
+
+  if (/(kritik|az stok|stok dusuk|minimum)/.test(normalized)) {
+    const critical = items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).slice(0, 8);
+    if (!critical.length) {
+      return { reply: "Kritik stokta urun yok.", suggestions: [] };
+    }
+    return {
+      reply: `Kritik stoktaki urunler: ${critical.map((item) => `${item.name} (${item.currentStock} ${item.unit})`).join(", ")}`,
+      suggestions: critical.slice(0, 4).map((item) => item.name),
+    };
+  }
+
+  if (/(en pahali|en yuksek fiyat|en yuksek satis)/.test(normalized)) {
+    const sorted = [...items].sort((a, b) => Number(b.salePrice || b.defaultPrice || 0) - Number(a.salePrice || a.defaultPrice || 0)).slice(0, 5);
+    return {
+      reply: `En yuksek fiyatli urunler: ${sorted.map((item) => `${item.name} (${formatEur(item.salePrice || item.defaultPrice)})`).join(", ")}`,
+      suggestions: sorted.map((item) => item.name),
+    };
+  }
+
+  if (/(kategori|sinif|grup)/.test(normalized) && candidates[0]) {
+    const item = candidates[0];
+    return {
+      reply: `${item.name} urunu ${item.category} kategorisinde. Marka: ${item.brand || "-"}.`,
+      suggestions: [`${item.name} fiyat`, `${item.name} stok`],
+    };
+  }
+
+  if (/(stok kodu|kodu|kodu nedir|barkod)/.test(normalized) && candidates[0]) {
+    const item = candidates[0];
+    return {
+      reply: `${item.name} icin stok kodu: ${item.barcode}.`,
+      suggestions: [`${item.name} fiyat`, `${item.name} stok`],
+    };
+  }
+
+  if (/(stok|kac adet|mevcut)/.test(normalized) && candidates[0]) {
+    const item = candidates[0];
+    return {
+      reply: `${item.name} stokta ${item.currentStock} ${item.unit} gorunuyor. Kritik seviye ${item.minStock} ${item.unit}.`,
+      suggestions: [`${item.name} fiyat`, `${item.name} kategori`],
+    };
+  }
+
+  if (/(fiyat|satis|alis|ucret)/.test(normalized) && candidates[0]) {
+    const item = candidates[0];
+    return {
+      reply: `${item.name} icin alis ${formatEur(item.defaultPrice || item.lastPurchasePrice)} ve satis ${formatEur(item.salePrice || item.defaultPrice)}.`,
+      suggestions: [`${item.name} stok`, `${item.name} kategori`],
+    };
+  }
+
+  if (candidates.length > 0) {
+    const top = candidates.slice(0, 5);
+    return {
+      reply: `Su urunler eslesti: ${top.map((item) => `${item.name} (${formatEur(item.salePrice || item.defaultPrice)})`).join(", ")}`,
+      suggestions: top.map((item) => `${item.name} fiyat`).slice(0, 3),
+    };
+  }
+
+  if (/(nasil teklif|teklif|satis yap|direkt satis|tahsilat)/.test(normalized)) {
+    return {
+      reply: "Hizli Satis sekmesinde soldan urunleri sepete ekleyin. Saga musteri bilgisi, tahsil edilen tutar ve referansi yazip Direkt Satis Yap veya Teklifi Kaydet kullanin.",
+      suggestions: ["kritik stok", "en pahali urun", "GNA 1.500-1 fiyat"],
+    };
+  }
+
+  return {
+    reply: "Sunu sorabilirsiniz: urun fiyatı, stok durumu, stok kodu, kategori, kritik stoktaki urunler veya en pahali urunler.",
+    suggestions: ["kritik stok", "en pahali urun", "GNA 1.500-1 fiyat"],
+  };
+}
+
+function normalizeAssistantText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9/.-]+/g, " ")
+    .trim();
+}
+
+function formatEur(value) {
+  return new Intl.NumberFormat("tr-TR", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+  }).format(Number(value || 0));
 }
 
 async function queryQuotes() {

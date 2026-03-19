@@ -352,6 +352,25 @@
       </main>
     </section>
   </div>
+  <aside id="assistantWidget" class="assistant-widget hidden" aria-live="polite">
+    <button id="assistantToggle" class="assistant-toggle" type="button" aria-expanded="false" aria-controls="assistantPanel">
+      Depo Asistani
+    </button>
+    <section id="assistantPanel" class="assistant-panel hidden">
+      <div class="assistant-head">
+        <div>
+          <p class="eyebrow">Soru Cevap</p>
+          <h3>Depo Asistani</h3>
+        </div>
+        <button id="assistantClose" class="assistant-close" type="button" aria-label="Asistani kapat">Kapat</button>
+      </div>
+      <div id="assistantMessages" class="assistant-messages"></div>
+      <form id="assistantForm" class="assistant-form">
+        <input id="assistantInput" type="text" placeholder="Orn. En pahali urun hangisi?" autocomplete="off" required>
+        <button class="primary-button" type="submit">Sor</button>
+      </form>
+    </section>
+  </aside>
   <script src="/app.js"></script>
 </body>
 </html>

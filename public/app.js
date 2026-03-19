@@ -32,6 +32,7 @@ const state = {
     brand: "all",
     category: "all",
   },
+  assistantMessages: [],
 };
 
 const refs = {
@@ -79,6 +80,13 @@ const refs = {
   quoteItemSearch: document.getElementById("quoteItemSearch"),
   quoteBrandFilter: document.getElementById("quoteBrandFilter"),
   quoteCategoryFilter: document.getElementById("quoteCategoryFilter"),
+  assistantWidget: document.getElementById("assistantWidget"),
+  assistantToggle: document.getElementById("assistantToggle"),
+  assistantPanel: document.getElementById("assistantPanel"),
+  assistantClose: document.getElementById("assistantClose"),
+  assistantMessages: document.getElementById("assistantMessages"),
+  assistantForm: document.getElementById("assistantForm"),
+  assistantInput: document.getElementById("assistantInput"),
 };
 
 bindEvents();
@@ -121,6 +129,9 @@ function bindEvents() {
   });
   refs.brandFilter.addEventListener("change", handleFilterChange);
   refs.categoryFilter.addEventListener("change", handleFilterChange);
+  refs.assistantToggle.addEventListener("click", toggleAssistantPanel);
+  refs.assistantClose.addEventListener("click", closeAssistantPanel);
+  refs.assistantForm.addEventListener("submit", handleAssistantSubmit);
 
   document.querySelectorAll("[data-tab]").forEach((button) => {
     button.addEventListener("click", () => activateTab(button.dataset.tab));
@@ -251,15 +262,22 @@ async function refreshData() {
 function showLogin() {
   refs.loginScreen.classList.remove("hidden");
   refs.appScreen.classList.add("hidden");
+  refs.assistantWidget.classList.add("hidden");
+  closeAssistantPanel();
 }
 
 function showApp() {
   refs.loginScreen.classList.add("hidden");
   refs.appScreen.classList.remove("hidden");
+  refs.assistantWidget.classList.remove("hidden");
   refs.welcomeText.textContent = `${state.user.name} olarak giris yaptiniz. Rol: ${state.user.role}`;
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", state.user.role !== "admin");
   });
+
+  if (state.assistantMessages.length === 0) {
+    seedAssistantMessages();
+  }
 }
 
 function renderAll() {
@@ -275,6 +293,7 @@ function renderAll() {
   renderUsers();
   renderItemSelects();
   updateBarcodePreview();
+  renderAssistantMessages();
 }
 
 function renderFilters() {
@@ -609,6 +628,70 @@ function handleQuoteFilterChange() {
   state.quoteFilters.brand = refs.quoteBrandFilter.value;
   state.quoteFilters.category = refs.quoteCategoryFilter.value;
   renderQuotes();
+}
+
+function toggleAssistantPanel() {
+  const isHidden = refs.assistantPanel.classList.contains("hidden");
+  refs.assistantPanel.classList.toggle("hidden", !isHidden);
+  refs.assistantToggle.setAttribute("aria-expanded", String(isHidden));
+  if (isHidden) {
+    refs.assistantInput.focus();
+  }
+}
+
+function closeAssistantPanel() {
+  refs.assistantPanel.classList.add("hidden");
+  refs.assistantToggle.setAttribute("aria-expanded", "false");
+}
+
+function seedAssistantMessages() {
+  state.assistantMessages = [
+    {
+      role: "assistant",
+      text: "Depo Asistani hazir. Stok, fiyat, kategori, kritik urun veya satis akisi ile ilgili soru sorabilirsiniz.",
+    },
+  ];
+}
+
+function renderAssistantMessages() {
+  if (!refs.assistantMessages) {
+    return;
+  }
+
+  refs.assistantMessages.innerHTML = "";
+  state.assistantMessages.forEach((message) => {
+    const article = document.createElement("article");
+    article.className = `assistant-message assistant-${message.role}`;
+    article.innerHTML = `
+      <strong>${message.role === "assistant" ? "Asistan" : "Siz"}</strong>
+      <p>${escapeHtml(message.text)}</p>
+    `;
+    refs.assistantMessages.append(article);
+  });
+  refs.assistantMessages.scrollTop = refs.assistantMessages.scrollHeight;
+}
+
+async function handleAssistantSubmit(event) {
+  event.preventDefault();
+  const message = refs.assistantInput.value.trim();
+  if (!message) {
+    return;
+  }
+
+  state.assistantMessages.push({ role: "user", text: message });
+  refs.assistantInput.value = "";
+  renderAssistantMessages();
+
+  const result = await request("/api/assistant/query", {
+    method: "POST",
+    body: JSON.stringify({ message }),
+  });
+
+  state.assistantMessages.push({
+    role: "assistant",
+    text: result.error || result.answer || "Bu soru icin net bir sonuc bulamadim.",
+  });
+  renderAssistantMessages();
 }
 
 function getFilteredItems(applySearch = true) {

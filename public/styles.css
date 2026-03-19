@@ -115,6 +115,103 @@ input:-webkit-autofill:active {
   position: relative;
 }
 
+.assistant-widget {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  display: grid;
+  justify-items: end;
+  gap: 14px;
+}
+
+.assistant-toggle,
+.assistant-close {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: linear-gradient(135deg, var(--sales) 0%, var(--accent) 100%);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.assistant-toggle {
+  padding: 14px 18px;
+  font-weight: 700;
+}
+
+.assistant-close {
+  padding: 9px 14px;
+  font-size: 0.9rem;
+}
+
+.assistant-panel {
+  width: min(390px, calc(100vw - 30px));
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 26px;
+  background: rgba(255, 251, 245, 0.97);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.assistant-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 18px 12px;
+  background: linear-gradient(180deg, rgba(15, 124, 134, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.assistant-messages {
+  display: grid;
+  gap: 12px;
+  max-height: 380px;
+  padding: 10px 18px 18px;
+  overflow-y: auto;
+}
+
+.assistant-message {
+  max-width: 92%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(24, 34, 33, 0.08);
+}
+
+.assistant-message strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.assistant-message p {
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.assistant-assistant {
+  justify-self: start;
+  background: var(--sales-soft);
+  color: var(--text);
+}
+
+.assistant-user {
+  justify-self: end;
+  background: var(--cart-soft);
+  color: var(--text);
+}
+
+.assistant-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 0 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
 .hidden {
   display: none !important;
 }
@@ -889,5 +986,24 @@ th {
   .danger-button {
     width: 100%;
     justify-content: center;
+  }
+
+  .assistant-widget {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    justify-items: stretch;
+  }
+
+  .assistant-toggle {
+    width: 100%;
+  }
+
+  .assistant-panel {
+    width: 100%;
+  }
+
+  .assistant-form {
+    grid-template-columns: 1fr;
   }
 }
