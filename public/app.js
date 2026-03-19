@@ -14,6 +14,7 @@ const today = new Date().toISOString().split("T")[0];
 const state = {
   user: null,
   summary: null,
+  activeTab: "quotes",
   items: [],
   archivedItems: [],
   movements: [],
@@ -262,6 +263,7 @@ function showApp() {
 }
 
 function renderAll() {
+  activateTab(state.activeTab || "quotes");
   renderStats();
   renderFilters();
   renderItems();
@@ -585,6 +587,7 @@ function syncMovementPrice() {
 }
 
 function activateTab(tab) {
+  state.activeTab = tab;
   document.querySelectorAll("[data-tab]").forEach((button) => {
     button.classList.toggle("active", button.dataset.tab === tab);
   });
