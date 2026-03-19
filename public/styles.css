@@ -163,6 +163,29 @@ input:-webkit-autofill:active {
   background: linear-gradient(180deg, rgba(15, 124, 134, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
+.assistant-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.assistant-language-label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.assistant-language-label select {
+  min-width: 70px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
 .assistant-messages {
   display: grid;
   gap: 12px;
@@ -1005,5 +1028,15 @@ th {
 
   .assistant-form {
     grid-template-columns: 1fr;
+  }
+
+  .assistant-head {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .assistant-head-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }

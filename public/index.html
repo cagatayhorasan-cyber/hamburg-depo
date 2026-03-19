@@ -362,7 +362,16 @@
           <p class="eyebrow">Soru Cevap</p>
           <h3>Depo Asistani</h3>
         </div>
-        <button id="assistantClose" class="assistant-close" type="button" aria-label="Asistani kapat">Kapat</button>
+        <div class="assistant-head-actions">
+          <label class="assistant-language-label">
+            Dil
+            <select id="assistantLanguage">
+              <option value="tr">TR</option>
+              <option value="de">DE</option>
+            </select>
+          </label>
+          <button id="assistantClose" class="assistant-close" type="button" aria-label="Asistani kapat">Kapat</button>
+        </div>
       </div>
       <div id="assistantMessages" class="assistant-messages"></div>
       <form id="assistantForm" class="assistant-form">

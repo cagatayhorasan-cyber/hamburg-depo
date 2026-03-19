@@ -32,6 +32,7 @@ const state = {
     brand: "all",
     category: "all",
   },
+  assistantLanguage: "tr",
   assistantMessages: [],
 };
 
@@ -84,6 +85,7 @@ const refs = {
   assistantToggle: document.getElementById("assistantToggle"),
   assistantPanel: document.getElementById("assistantPanel"),
   assistantClose: document.getElementById("assistantClose"),
+  assistantLanguage: document.getElementById("assistantLanguage"),
   assistantMessages: document.getElementById("assistantMessages"),
   assistantForm: document.getElementById("assistantForm"),
   assistantInput: document.getElementById("assistantInput"),
@@ -131,6 +133,7 @@ function bindEvents() {
   refs.categoryFilter.addEventListener("change", handleFilterChange);
   refs.assistantToggle.addEventListener("click", toggleAssistantPanel);
   refs.assistantClose.addEventListener("click", closeAssistantPanel);
+  refs.assistantLanguage.addEventListener("change", handleAssistantLanguageChange);
   refs.assistantForm.addEventListener("submit", handleAssistantSubmit);
 
   document.querySelectorAll("[data-tab]").forEach((button) => {
@@ -648,7 +651,7 @@ function seedAssistantMessages() {
   state.assistantMessages = [
     {
       role: "assistant",
-      text: "Depo Asistani hazir. Stok, fiyat, kategori, kritik urun veya satis akisi ile ilgili soru sorabilirsiniz.",
+      text: getAssistantWelcomeMessage(),
     },
   ];
 }
@@ -663,12 +666,20 @@ function renderAssistantMessages() {
     const article = document.createElement("article");
     article.className = `assistant-message assistant-${message.role}`;
     article.innerHTML = `
-      <strong>${message.role === "assistant" ? "Asistan" : "Siz"}</strong>
+      <strong>${message.role === "assistant" ? assistantLabel("assistant") : assistantLabel("user")}</strong>
       <p>${escapeHtml(message.text)}</p>
     `;
     refs.assistantMessages.append(article);
   });
   refs.assistantMessages.scrollTop = refs.assistantMessages.scrollHeight;
+}
+
+function handleAssistantLanguageChange() {
+  state.assistantLanguage = refs.assistantLanguage.value || "tr";
+  if (state.assistantMessages.length <= 1) {
+    seedAssistantMessages();
+  }
+  renderAssistantMessages();
 }
 
 async function handleAssistantSubmit(event) {
@@ -684,7 +695,7 @@ async function handleAssistantSubmit(event) {
 
   const result = await request("/api/assistant/query", {
     method: "POST",
-    body: JSON.stringify({ message }),
+    body: JSON.stringify({ message, language: state.assistantLanguage }),
   });
 
   state.assistantMessages.push({
@@ -692,6 +703,20 @@ async function handleAssistantSubmit(event) {
     text: result.error || result.answer || "Bu soru icin net bir sonuc bulamadim.",
   });
   renderAssistantMessages();
+}
+
+function assistantLabel(role) {
+  if (state.assistantLanguage === "de") {
+    return role === "assistant" ? "Assistent" : "Sie";
+  }
+  return role === "assistant" ? "Asistan" : "Siz";
+}
+
+function getAssistantWelcomeMessage() {
+  if (state.assistantLanguage === "de") {
+    return "Der Lagerassistent ist bereit. Sie koennen nach Bestand, Preis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
+  }
+  return "Depo Asistani hazir. Stok, fiyat, kategori, kritik urun veya satis akisi ile ilgili soru sorabilirsiniz.";
 }
 
 function getFilteredItems(applySearch = true) {
