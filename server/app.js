@@ -828,11 +828,8 @@ function deriveBrand(row) {
 
 function answerAssistantQuestion(message, items, language = "tr") {
   const normalized = normalizeAssistantText(message);
-  const candidates = items.filter((item) => {
-    const haystack = normalizeAssistantText([item.name, item.brand, item.category, item.barcode, item.notes].filter(Boolean).join(" "));
-    return normalized.split(" ").filter(Boolean).some((token) => token.length > 2 && haystack.includes(token));
-  });
   const t = createAssistantDictionary(language);
+  const candidates = findAssistantCandidates(normalized, items);
 
   if (/(kritik|az stok|stok dusuk|minimum|kritisch|wenig bestand|mindestbestand)/.test(normalized)) {
     const critical = items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).slice(0, 8);
@@ -942,6 +939,66 @@ function createAssistantDictionary(language) {
     stockWord: "stok",
     categoryWord: "kategori",
   };
+}
+
+function findAssistantCandidates(normalizedMessage, items) {
+  const queryText = extractAssistantQuery(normalizedMessage);
+  const queryTokens = queryText.split(" ").filter((token) => token.length > 1);
+
+  const scored = items
+    .map((item) => {
+      const name = normalizeAssistantText(item.name);
+      const brand = normalizeAssistantText(item.brand);
+      const category = normalizeAssistantText(item.category);
+      const barcode = normalizeAssistantText(item.barcode);
+      const notes = normalizeAssistantText(item.notes);
+      const haystack = [name, brand, category, barcode, notes].filter(Boolean).join(" ");
+
+      let score = 0;
+
+      if (barcode && queryText && barcode === queryText) {
+        score += 100;
+      }
+      if (barcode && queryTokens.some((token) => token === barcode || barcode.includes(token) || token.includes(barcode))) {
+        score += 60;
+      }
+      if (name && queryText && name.includes(queryText)) {
+        score += 50;
+      }
+      if (brand && queryText && brand.includes(queryText)) {
+        score += 24;
+      }
+
+      queryTokens.forEach((token) => {
+        if (name.includes(token)) {
+          score += token.length >= 5 ? 18 : 10;
+        } else if (barcode.includes(token)) {
+          score += 20;
+        } else if (brand.includes(token)) {
+          score += 8;
+        } else if (category.includes(token) || notes.includes(token)) {
+          score += 4;
+        } else if (haystack.includes(token)) {
+          score += 2;
+        }
+      });
+
+      return { item, score };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.item.name.localeCompare(b.item.name, "tr"));
+
+  return scored.slice(0, 8).map((entry) => entry.item);
+}
+
+function extractAssistantQuery(normalizedMessage) {
+  return normalizedMessage
+    .replace(
+      /\b(kritik|az|stok|dusuk|minimum|en|pahali|yuksek|fiyat|satis|alis|ucret|kategori|sinif|grup|kodu|nedir|barkod|kac|adet|mevcut|nasil|teklif|yap|direkt|tahsilat|kritisch|wenig|bestand|mindestbestand|teuerste|hochste|preis|verkauf|einkauf|kategorie|gruppe|artikelcode|lagernummer|code|wie|viel|verfugbar|angebot|direktverkauf|zahlung)\b/g,
+      " "
+    )
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function normalizeAssistantText(value) {
