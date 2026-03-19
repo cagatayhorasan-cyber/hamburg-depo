@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div class="filter-grid simple-filter-grid">
-                <label>Arama<input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Urun, marka veya barkod ara"></label>
+                  <label>Arama<input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Urun, marka veya stok kodu ara"></label>
                 <label>Marka<select id="brandFilter"></select></label>
                 <label>Kategori<select id="categoryFilter"></select></label>
               </div>
@@ -87,7 +87,7 @@
                       <th>Alis</th>
                       <th>Satis</th>
                       <th>Kritik</th>
-                      <th>Barkod</th>
+                      <th>Stok Kodu</th>
                       <th>Islem</th>
                     </tr>
                   </thead>
@@ -110,7 +110,7 @@
                     <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" required></label>
                     <label>Alis Fiyati<input name="defaultPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
                     <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
-                    <label>Barkod<input name="barcode" type="text" placeholder="Opsiyonel benzersiz kod"></label>
+                    <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
                     <label>Not<input name="notes" type="text" placeholder="Raf veya tedarik notu"></label>
                     <button id="itemSubmitButton" class="primary-button" type="submit">Malzeme Ekle</button>
                     <button id="itemCancelEdit" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
@@ -130,13 +130,13 @@
                   </div>
                   <div class="barcode-section compact-barcode">
                     <div>
-                      <h2>Barkod Onizleme</h2>
+                      <h2>Stok Kodu Onizleme</h2>
                       <label>Malzeme Sec
                         <select id="barcodeItemSelect"></select>
                       </label>
                     </div>
                     <div class="barcode-card">
-                      <img id="barcodeImage" alt="Barkod onizleme">
+                      <img id="barcodeImage" alt="Stok kodu onizleme">
                     </div>
                   </div>
                 </section>
@@ -157,7 +157,7 @@
                       <th>Kategori</th>
                       <th>Alis</th>
                       <th>Satis</th>
-                      <th>Barkod</th>
+                      <th>Stok Kodu</th>
                       <th>Islem</th>
                     </tr>
                   </thead>

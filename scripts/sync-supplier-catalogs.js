@@ -9,6 +9,11 @@ const ESEN_PATH = process.argv[3] || "/Users/anilakbas/Desktop/esen-scraper/esen
 // 1 EUR = 1.1641 USD, so 1 USD = 0.85899 EUR.
 const USD_PER_EUR = 1.1641;
 const TRY_PER_EUR = 51.8294;
+const SQL_NAME_KEY = `
+  TRIM(REGEXP_REPLACE(LOWER(COALESCE(brand, '')), '[^a-z0-9]+', ' ', 'g'))
+  || '::' ||
+  TRIM(REGEXP_REPLACE(LOWER(name), '[^a-z0-9]+', ' ', 'g'))
+`;
 
 async function main() {
   await initDatabase();
@@ -17,14 +22,15 @@ async function main() {
     ...readCantasProducts(CANTAS_PATH),
     ...readEsenProducts(ESEN_PATH),
   ]);
+  const normalizedProducts = assignDrcCodes([...merged.values()]);
 
   let inserted = 0;
   let updated = 0;
 
   if (dbClient === "postgres") {
-    ({ inserted, updated } = await syncPostgresFast([...merged.values()]));
+    ({ inserted, updated } = await syncPostgresFast(normalizedProducts));
   } else {
-    ({ inserted, updated } = await syncSqliteFallback(merged));
+    ({ inserted, updated } = await syncSqliteFallback(normalizedProducts));
   }
 
   const activeCountRow = await query("SELECT COUNT(*) AS count FROM items WHERE COALESCE(is_active, TRUE)");
@@ -39,7 +45,7 @@ async function main() {
           cantas: CANTAS_PATH,
           esen: ESEN_PATH,
         },
-        mergedProducts: merged.size,
+        mergedProducts: normalizedProducts.length,
         updated,
         inserted,
         activeItems: Number(activeCountRow[0]?.count || 0),
@@ -60,35 +66,39 @@ async function syncPostgresFast(products) {
 
   try {
     await client.query("BEGIN");
-    await client.query("CREATE TEMP TABLE import_items_raw (name TEXT, brand TEXT, category TEXT, barcode TEXT, notes TEXT, price_eur NUMERIC) ON COMMIT DROP");
+    await client.query("DROP TABLE IF EXISTS import_items_raw");
+    await client.query("DROP TABLE IF EXISTS import_items");
+    await client.query("DROP TABLE IF EXISTS keep_items");
+    await client.query("UPDATE items SET barcode = NULL WHERE barcode LIKE 'DRC-%'");
+    await client.query("CREATE TEMP TABLE import_items_raw (name_key TEXT, name TEXT, brand TEXT, category TEXT, barcode TEXT, notes TEXT, price_eur NUMERIC) ON COMMIT DROP");
 
     for (let index = 0; index < products.length; index += 250) {
       const batch = products.slice(index, index + 250);
       const values = [];
       const params = [];
       batch.forEach((product, offset) => {
-        const base = offset * 6;
-        values.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, $${base + 6})`);
+        const base = offset * 7;
+        values.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, $${base + 6}, $${base + 7})`);
         params.push(
+          product.nameKey,
           product.name,
           product.brand,
           product.category,
-          product.code || null,
+          product.stockCode,
           buildNotes(product),
           product.priceEur
         );
       });
       await client.query(
-        `INSERT INTO import_items_raw (name, brand, category, barcode, notes, price_eur) VALUES ${values.join(", ")}`,
+        `INSERT INTO import_items_raw (name_key, name, brand, category, barcode, notes, price_eur) VALUES ${values.join(", ")}`,
         params
       );
     }
 
     await client.query(`
       CREATE TEMP TABLE import_items AS
-      SELECT DISTINCT ON (
-        COALESCE(NULLIF(barcode, ''), LOWER(name) || '::' || LOWER(COALESCE(brand, '')))
-      )
+      SELECT DISTINCT ON (name_key)
+        name_key,
         name,
         brand,
         category,
@@ -97,9 +107,27 @@ async function syncPostgresFast(products) {
         price_eur
       FROM import_items_raw
       ORDER BY
-        COALESCE(NULLIF(barcode, ''), LOWER(name) || '::' || LOWER(COALESCE(brand, ''))),
+        name_key,
         price_eur DESC,
         LENGTH(COALESCE(notes, '')) DESC
+    `);
+
+    await client.query(`
+      CREATE TEMP TABLE keep_items AS
+      SELECT
+        ${SQL_NAME_KEY} AS name_key,
+        MIN(id) AS keep_id
+      FROM items
+      GROUP BY 1
+    `);
+
+    await client.query(`
+      UPDATE items AS target
+      SET is_active = FALSE
+      FROM keep_items AS keeper
+      WHERE
+        (LOWER(COALESCE(target.brand, '')) || '::' || LOWER(target.name)) = keeper.name_key
+        AND target.id <> keeper.keep_id
     `);
 
     const updated = await client.query(`
@@ -108,24 +136,14 @@ async function syncPostgresFast(products) {
         name = source.name,
         brand = source.brand,
         category = source.category,
-        barcode = CASE
-          WHEN source.barcode IS NULL OR source.barcode = '' THEN target.barcode
-          WHEN target.barcode IS NULL OR target.barcode = '' OR target.barcode = source.barcode THEN source.barcode
-          ELSE target.barcode
-        END,
+        barcode = source.barcode,
         notes = source.notes,
         default_price = source.price_eur,
         sale_price = source.price_eur,
         is_active = TRUE
       FROM import_items AS source
-      WHERE
-        (source.barcode IS NOT NULL AND source.barcode <> '' AND target.barcode = source.barcode)
-        OR (
-          (source.barcode IS NULL OR source.barcode = '')
-          AND
-          LOWER(target.name) = LOWER(source.name)
-          AND LOWER(COALESCE(target.brand, '')) = LOWER(COALESCE(source.brand, ''))
-        )
+      JOIN keep_items AS keeper ON keeper.name_key = source.name_key
+      WHERE target.id = keeper.keep_id
     `);
 
     const inserted = await client.query(`
@@ -134,15 +152,8 @@ async function syncPostgresFast(products) {
       FROM import_items AS source
       WHERE NOT EXISTS (
         SELECT 1
-        FROM items AS target
-        WHERE
-          (source.barcode IS NOT NULL AND source.barcode <> '' AND target.barcode = source.barcode)
-          OR (
-            (source.barcode IS NULL OR source.barcode = '')
-            AND
-            LOWER(target.name) = LOWER(source.name)
-            AND LOWER(COALESCE(target.brand, '')) = LOWER(COALESCE(source.brand, ''))
-          )
+        FROM keep_items AS keeper
+        WHERE keeper.name_key = source.name_key
       )
     `);
 
@@ -152,14 +163,7 @@ async function syncPostgresFast(products) {
       WHERE NOT EXISTS (
         SELECT 1
         FROM import_items AS source
-        WHERE
-          (source.barcode IS NOT NULL AND source.barcode <> '' AND target.barcode = source.barcode)
-          OR (
-            (source.barcode IS NULL OR source.barcode = '')
-            AND
-            LOWER(target.name) = LOWER(source.name)
-            AND LOWER(COALESCE(target.brand, '')) = LOWER(COALESCE(source.brand, ''))
-          )
+        WHERE source.name_key = (${SQL_NAME_KEY})
       )
     `);
 
@@ -174,19 +178,18 @@ async function syncPostgresFast(products) {
   }
 }
 
-async function syncSqliteFallback(merged) {
+async function syncSqliteFallback(products) {
   const existingItems = await query(`
     SELECT id, name, brand, category, unit, min_stock, barcode, notes
     FROM items
   `);
 
-  const byBarcode = new Map();
   const byName = new Map();
   existingItems.forEach((item) => {
-    if (item.barcode) {
-      byBarcode.set(item.barcode.trim(), item);
+    const nameKey = buildNameKey(item.name, item.brand);
+    if (!byName.has(nameKey) || Number(item.id) < Number(byName.get(nameKey).id)) {
+      byName.set(nameKey, item);
     }
-    byName.set(buildNameKey(item.name, item.brand), item);
   });
 
   const touchedIds = new Set();
@@ -194,8 +197,8 @@ async function syncSqliteFallback(merged) {
   let updated = 0;
 
   await withTransaction(async (tx) => {
-    for (const product of merged.values()) {
-      const existing = byBarcode.get(product.code) || byName.get(buildNameKey(product.name, product.brand));
+    for (const product of products) {
+      const existing = byName.get(product.nameKey);
       const notes = buildNotes(product);
 
       if (existing) {
@@ -211,7 +214,7 @@ async function syncSqliteFallback(merged) {
             product.category,
             existing.unit || "adet",
             Number(existing.min_stock || 0),
-            product.code || existing.barcode || null,
+            product.stockCode,
             notes,
             product.priceEur,
             product.priceEur,
@@ -234,7 +237,7 @@ async function syncSqliteFallback(merged) {
             product.category,
             "adet",
             0,
-            product.code || null,
+            product.stockCode,
             notes,
             product.priceEur,
             product.priceEur,
@@ -273,8 +276,10 @@ function readCantasProducts(filePath) {
       const url = normalizeText(row[6] || "");
       const specs = normalizeText(row[7] || "");
       return {
-        key: code || buildNameKey(name, brand),
+        key: buildNameKey(name, brand),
+        nameKey: buildNameKey(name, brand),
         source: "Cantas",
+        sourcePriority: 2,
         category,
         brand,
         name,
@@ -302,8 +307,10 @@ function readEsenProducts(filePath) {
       const onSale = normalizeText(row[8] || "");
       const url = normalizeText(row[9] || "");
       return {
-        key: code || buildNameKey(name, brand),
+        key: buildNameKey(name, brand),
+        nameKey: buildNameKey(name, brand),
         source: "Esen",
+        sourcePriority: 1,
         category,
         brand,
         name,
@@ -325,16 +332,18 @@ function mergeProducts(products) {
       continue;
     }
 
-    const priceWinner = product.priceEur >= existing.priceEur ? product : existing;
+    const sourceWinner = product.sourcePriority === existing.sourcePriority
+      ? (product.priceEur >= existing.priceEur ? product : existing)
+      : (product.sourcePriority > existing.sourcePriority ? product : existing);
     merged.set(product.key, {
-      ...priceWinner,
-      details: longestText(existing.details, product.details),
-      url: existing.url || product.url,
-      source: `${existing.source}, ${product.source}`,
-      category: priceWinner.category || existing.category,
-      brand: priceWinner.brand || existing.brand,
-      name: priceWinner.name || existing.name,
-      code: priceWinner.code || existing.code,
+      ...sourceWinner,
+      details: sourceWinner.source === "Cantas" ? sourceWinner.details : longestText(existing.details, product.details),
+      source: sourceWinner.source,
+      category: sourceWinner.category || existing.category,
+      brand: sourceWinner.brand || existing.brand,
+      name: sourceWinner.name || existing.name,
+      code: sourceWinner.code || existing.code,
+      nameKey: sourceWinner.nameKey || existing.nameKey,
     });
   }
   return merged;
@@ -470,14 +479,8 @@ function deriveBrandFromName(name) {
 }
 
 function buildNotes(product) {
-  return [
-    `Kaynak: ${product.source}`,
-    product.code ? `Kod: ${product.code}` : "",
-    product.details,
-    product.url ? `URL: ${product.url}` : "",
-  ]
-    .filter(Boolean)
-    .join(" | ");
+  const simplifiedDetails = simplifyDetails(product.details);
+  return [`Kaynak: ${product.source}`, simplifiedDetails].filter(Boolean).join(" | ");
 }
 
 function longestText(first, second) {
@@ -504,6 +507,25 @@ function quoteCount(value) {
 
 function roundPrice(value) {
   return Math.round(value * 100) / 100;
+}
+
+function assignDrcCodes(products) {
+  return [...products]
+    .sort((a, b) => a.brand.localeCompare(b.brand, "tr") || a.name.localeCompare(b.name, "tr"))
+    .map((product, index) => ({
+      ...product,
+      stockCode: `DRC-${String(index + 1).padStart(5, "0")}`,
+    }));
+}
+
+function simplifyDetails(details) {
+  return normalizeText(details)
+    .split("|")
+    .map((segment) => segment.trim())
+    .filter(Boolean)
+    .filter((segment) => !/(url|stok:|indirim:|palet|koli|paket|barkod|barcode|urun kodu|kod:|desi|net agirlik|brut agirlik)/i.test(segment))
+    .slice(0, 5)
+    .join(" | ");
 }
 
 main().catch((error) => {
