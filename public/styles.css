@@ -1,19 +1,23 @@
 :root {
-  --bg: #ece7df;
-  --bg-strong: #d8d0c3;
-  --surface: rgba(251, 248, 242, 0.88);
-  --surface-strong: #fffdf8;
-  --surface-dark: #1e2b2c;
-  --line: rgba(57, 69, 67, 0.12);
-  --line-strong: rgba(57, 69, 67, 0.22);
+  --bg: #f3efe7;
+  --bg-strong: #ddd4c4;
+  --surface: rgba(255, 251, 245, 0.92);
+  --surface-strong: #fffdfa;
+  --surface-dark: #17333a;
+  --line: rgba(51, 70, 78, 0.12);
+  --line-strong: rgba(51, 70, 78, 0.24);
   --text: #182221;
-  --muted: #65716f;
-  --accent: #0f766e;
-  --accent-strong: #0a5b55;
-  --accent-soft: #ddf3ee;
-  --accent-softer: #eef8f5;
-  --warm: #b76a2f;
-  --warm-soft: #f7e5d6;
+  --muted: #607074;
+  --accent: #0f7c86;
+  --accent-strong: #0c5f66;
+  --accent-soft: #d7f0f2;
+  --accent-softer: #edf8f8;
+  --warm: #c46a2d;
+  --warm-soft: #f9e6d7;
+  --sales: #124e66;
+  --sales-soft: #dcecf4;
+  --cart: #7a3e2b;
+  --cart-soft: #f6e2d9;
   --danger: #b4234f;
   --danger-soft: #fde8ef;
   --success: #1d7a46;
@@ -39,8 +43,9 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(15, 118, 110, 0.1), transparent 24%),
-    linear-gradient(180deg, #f7f4ee 0%, #ebe5da 100%);
+    radial-gradient(circle at top left, rgba(15, 124, 134, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(196, 106, 45, 0.1), transparent 22%),
+    linear-gradient(180deg, #f8f5ef 0%, #ebe2d2 100%);
 }
 
 body::before {
@@ -264,15 +269,15 @@ label {
 }
 
 .primary-button {
-  background: linear-gradient(135deg, var(--accent) 0%, #15948a 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #17a0a9 100%);
   color: #fff;
-  box-shadow: 0 14px 28px rgba(15, 118, 110, 0.24);
+  box-shadow: 0 14px 28px rgba(15, 124, 134, 0.24);
 }
 
 .secondary-button {
-  background: linear-gradient(135deg, var(--accent-soft) 0%, #cfece4 100%);
-  color: var(--accent-strong);
-  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.12);
+  background: linear-gradient(135deg, var(--sales-soft) 0%, #cfe0eb 100%);
+  color: var(--sales);
+  box-shadow: 0 10px 22px rgba(18, 78, 102, 0.12);
 }
 
 .danger-button {
@@ -308,7 +313,7 @@ label {
   width: 240px;
   height: 240px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 64%);
+  background: radial-gradient(circle, rgba(18, 78, 102, 0.22), transparent 64%);
 }
 
 .hero .muted {
@@ -370,7 +375,7 @@ label {
   width: 86px;
   height: 86px;
   border-radius: 22px;
-  background: linear-gradient(145deg, rgba(15, 118, 110, 0.12), rgba(183, 106, 47, 0.14));
+  background: linear-gradient(145deg, rgba(15, 124, 134, 0.14), rgba(196, 106, 45, 0.16));
 }
 
 .stat-card strong {
@@ -409,9 +414,9 @@ label {
 }
 
 .tab-button.active {
-  background: linear-gradient(135deg, var(--surface-dark), #314445);
+  background: linear-gradient(135deg, var(--sales), #0f7c86);
   color: #fff;
-  box-shadow: 0 14px 24px rgba(30, 43, 44, 0.18);
+  box-shadow: 0 14px 24px rgba(18, 78, 102, 0.22);
 }
 
 .tab-content {
@@ -436,9 +441,9 @@ label {
 .panel-lite {
   margin-bottom: 18px;
   padding: 18px;
-  border: 1px solid rgba(15, 118, 110, 0.1);
+  border: 1px solid rgba(18, 78, 102, 0.12);
   border-radius: 20px;
-  background: linear-gradient(180deg, var(--accent-softer), #f7fcfb);
+  background: linear-gradient(180deg, var(--sales-soft), #f8fcfd);
 }
 
 .panel-lite h3 {
@@ -519,6 +524,14 @@ label {
   box-shadow: 0 16px 30px rgba(24, 34, 33, 0.06);
 }
 
+.pos-catalog {
+  background: linear-gradient(180deg, rgba(236, 246, 249, 0.94), rgba(250, 248, 243, 0.95));
+}
+
+.pos-cart {
+  background: linear-gradient(180deg, rgba(248, 239, 232, 0.95), rgba(255, 250, 245, 0.96));
+}
+
 .pos-catalog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -531,7 +544,7 @@ label {
   padding: 16px;
   border: 1px solid rgba(57, 69, 67, 0.08);
   border-radius: 18px;
-  background: #fff;
+  background: linear-gradient(180deg, #ffffff, #f4fbfc);
   box-shadow: 0 10px 24px rgba(24, 34, 33, 0.05);
 }
 
@@ -557,7 +570,7 @@ label {
 .pos-card-price {
   font-family: "Space Grotesk", sans-serif;
   font-size: 1.35rem;
-  color: var(--surface-dark);
+  color: var(--sales);
 }
 
 .compact-form {
@@ -581,7 +594,8 @@ label {
   padding: 14px 16px;
   border: 1px solid rgba(57, 69, 67, 0.08);
   border-radius: 18px;
-  background: #fff;
+  background: linear-gradient(180deg, #fffdfb, #fdf4ee);
+  border-color: rgba(122, 62, 43, 0.12);
 }
 
 .cart-item-controls {
@@ -594,6 +608,10 @@ label {
   display: grid;
   justify-items: end;
   gap: 8px;
+}
+
+.cart-item-total strong {
+  color: var(--cart);
 }
 
 .pos-actions {
