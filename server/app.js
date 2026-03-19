@@ -953,11 +953,17 @@ function findAssistantCandidates(normalizedMessage, items) {
       const barcode = normalizeAssistantText(item.barcode);
       const notes = normalizeAssistantText(item.notes);
       const haystack = [name, brand, category, barcode, notes].filter(Boolean).join(" ");
+      const nameTokens = tokenizeAssistantText(name);
+      const brandTokens = tokenizeAssistantText(brand);
+      const barcodeTokens = tokenizeAssistantText(barcode);
 
       let score = 0;
 
       if (barcode && queryText && barcode === queryText) {
         score += 100;
+      }
+      if (name && queryText && name.startsWith(queryText)) {
+        score += 90;
       }
       if (barcode && queryTokens.some((token) => token === barcode || barcode.includes(token) || token.includes(barcode))) {
         score += 60;
@@ -970,18 +976,25 @@ function findAssistantCandidates(normalizedMessage, items) {
       }
 
       queryTokens.forEach((token) => {
-        if (name.includes(token)) {
+        if (nameTokens.includes(token)) {
+          score += token.length >= 4 ? 42 : 24;
+        } else if (barcodeTokens.includes(token)) {
+          score += 38;
+        } else if (brandTokens.includes(token)) {
+          score += 18;
+        } else if (name.includes(token)) {
           score += token.length >= 5 ? 18 : 10;
-        } else if (barcode.includes(token)) {
-          score += 20;
-        } else if (brand.includes(token)) {
-          score += 8;
         } else if (category.includes(token) || notes.includes(token)) {
           score += 4;
         } else if (haystack.includes(token)) {
           score += 2;
         }
       });
+
+      const strongTokenMatches = queryTokens.filter((token) => token.length >= 3 && (nameTokens.includes(token) || barcodeTokens.includes(token)));
+      if (strongTokenMatches.length >= Math.min(2, queryTokens.filter((token) => token.length >= 3).length)) {
+        score += 55;
+      }
 
       return { item, score };
     })
@@ -999,6 +1012,12 @@ function extractAssistantQuery(normalizedMessage) {
     )
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function tokenizeAssistantText(value) {
+  return String(value || "")
+    .split(/[^a-z0-9]+/)
+    .filter((token) => token.length > 0);
 }
 
 function normalizeAssistantText(value) {
