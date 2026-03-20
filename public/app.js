@@ -51,6 +51,8 @@ const refs = {
   bulkPricingForm: document.getElementById("bulkPricingForm"),
   itemsTableBody: document.getElementById("itemsTableBody"),
   itemsSummary: document.getElementById("itemsSummary"),
+  stockedItemsSummary: document.getElementById("stockedItemsSummary"),
+  stockedItemsList: document.getElementById("stockedItemsList"),
   archiveTableBody: document.getElementById("archiveTableBody"),
   archiveSummary: document.getElementById("archiveSummary"),
   movementsTableBody: document.getElementById("movementsTableBody"),
@@ -331,6 +333,7 @@ function renderItems() {
   refs.itemsTableBody.innerHTML = "";
   const filteredItems = getFilteredItems();
   refs.itemsSummary.textContent = `${filteredItems.length} / ${state.items.length} malzeme goruntuleniyor`;
+  renderStockedItems(filteredItems);
   filteredItems.forEach((item) => {
     const tr = document.createElement("tr");
     const critical = Number(item.currentStock) <= Number(item.minStock);
@@ -363,6 +366,35 @@ function renderItems() {
   });
   refs.itemsTableBody.querySelectorAll("[data-action='archive-item']").forEach((button) => {
     button.addEventListener("click", () => archiveItem(Number(button.dataset.id)));
+  });
+}
+
+function renderStockedItems(filteredItems) {
+  if (!refs.stockedItemsList || !refs.stockedItemsSummary) {
+    return;
+  }
+
+  const stockedItems = filteredItems.filter((item) => Number(item.currentStock) > 0);
+  refs.stockedItemsSummary.textContent = `${stockedItems.length} urun stokta var. Stok 0 olanlar bu bolume dahil edilmez.`;
+  refs.stockedItemsList.innerHTML = "";
+
+  if (stockedItems.length === 0) {
+    refs.stockedItemsList.innerHTML = `<div class="empty-state">Stokta urun bulunamadi.</div>`;
+    return;
+  }
+
+  stockedItems.slice(0, 80).forEach((item) => {
+    const price = item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0;
+    const card = document.createElement("article");
+    card.className = "stocked-card";
+    card.innerHTML = `
+      <strong>${item.name}</strong>
+      <span>${item.brand || "-"} | ${item.category}</span>
+      <span>Stok: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+      <span>${item.barcode || "-"}</span>
+      <b>${price ? currency.format(price) : "-"}</b>
+    `;
+    refs.stockedItemsList.append(card);
   });
 }
 

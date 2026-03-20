@@ -595,6 +595,41 @@ label {
   gap: 14px;
 }
 
+.stocked-panel {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid rgba(18, 78, 102, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(220, 236, 244, 0.72), rgba(255, 255, 255, 0.76));
+}
+
+.stocked-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.stocked-card {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid rgba(18, 78, 102, 0.1);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #f5fafc);
+  box-shadow: 0 10px 24px rgba(24, 34, 33, 0.05);
+}
+
+.stocked-card strong,
+.stocked-card b {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.stocked-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .simple-filter-grid {
   grid-template-columns: minmax(280px, 2.5fr) 1fr 1fr;
 }
