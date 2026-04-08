@@ -449,7 +449,7 @@ function renderMovements() {
       <td>${movementTypeLabel}</td>
       <td>${numberFormat.format(movement.quantity)} / ${currency.format(movement.unitPrice)}</td>
       <td>${movement.userName || "-"}</td>
-      <td>${actionMarkup}</td>
+      <td class="table-action-cell">${actionMarkup}</td>
     `;
     refs.movementsTableBody.append(tr);
   });
@@ -469,7 +469,7 @@ function renderExpenses() {
       <td>${expense.category}</td>
       <td>${currency.format(expense.amount)}</td>
       <td>${expense.userName || "-"}</td>
-      <td><button class="mini-button danger-button" type="button" data-delete-expense="${expense.id}">Sil</button></td>
+      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}">Masraf Sil</button></td>
     `;
     refs.expensesTableBody.append(tr);
   });
@@ -489,7 +489,7 @@ function renderCashbook() {
       <td>${entry.title}</td>
       <td>${currency.format(entry.amount)}</td>
       <td>${entry.userName || "-"}</td>
-      <td><button class="mini-button danger-button" type="button" data-delete-cash="${entry.id}">Sil</button></td>
+      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}">Kaydi Sil</button></td>
     `;
     refs.cashbookTableBody.append(tr);
   });

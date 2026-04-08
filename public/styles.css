@@ -8,21 +8,21 @@
   --line-strong: rgba(34, 53, 49, 0.18);
   --text: #182522;
   --muted: #64746f;
-  --accent: #2b6c63;
-  --accent-strong: #1d4d47;
-  --accent-soft: #e7f2ef;
-  --accent-softer: #f5faf8;
-  --warm: #b06a2c;
-  --warm-soft: #f7eadb;
-  --sales: #2d5672;
-  --sales-soft: #e8eef4;
-  --cart: #725239;
-  --cart-soft: #f5ece3;
-  --danger: #b74254;
-  --danger-soft: #fbe8ec;
-  --success: #2b7a52;
-  --shadow-lg: 0 24px 56px rgba(25, 37, 34, 0.10);
-  --shadow-md: 0 12px 28px rgba(25, 37, 34, 0.08);
+  --accent: #0f8b7b;
+  --accent-strong: #0d675d;
+  --accent-soft: #d8f5ef;
+  --accent-softer: #eefcf8;
+  --warm: #d37a22;
+  --warm-soft: #feeedb;
+  --sales: #2a63a4;
+  --sales-soft: #e3eefc;
+  --cart: #9a5b2d;
+  --cart-soft: #faece0;
+  --danger: #d13e5b;
+  --danger-soft: #fde7ee;
+  --success: #23925e;
+  --shadow-lg: 0 24px 56px rgba(25, 37, 34, 0.12);
+  --shadow-md: 0 12px 28px rgba(25, 37, 34, 0.10);
   --radius-xl: 26px;
   --radius-lg: 20px;
   --radius-md: 14px;
@@ -43,9 +43,9 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(43, 108, 99, 0.08), transparent 24%),
-    radial-gradient(circle at top right, rgba(45, 86, 114, 0.08), transparent 24%),
-    linear-gradient(180deg, #f8faf9 0%, #eef3f0 100%);
+    radial-gradient(circle at top left, rgba(15, 139, 123, 0.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(42, 99, 164, 0.12), transparent 24%),
+    linear-gradient(180deg, #f8fbfa 0%, #edf4f2 100%);
 }
 
 body::before {
@@ -399,19 +399,19 @@ label {
 .primary-button {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 10px 20px rgba(43, 108, 99, 0.18);
+  box-shadow: 0 12px 22px rgba(15, 139, 123, 0.24);
 }
 
 .secondary-button {
   background: var(--sales-soft);
   color: var(--sales);
-  box-shadow: none;
+  box-shadow: 0 8px 16px rgba(42, 99, 164, 0.10);
 }
 
 .danger-button {
   background: var(--danger-soft);
   color: var(--danger);
-  box-shadow: none;
+  box-shadow: 0 8px 16px rgba(209, 62, 91, 0.10);
 }
 
 .hero {
@@ -422,6 +422,17 @@ label {
   gap: 24px;
   align-items: flex-start;
   overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 20px 0 auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15, 139, 123, 0.16), rgba(42, 99, 164, 0.05) 62%, transparent 70%);
+  pointer-events: none;
 }
 
 .compact-hero {
@@ -541,7 +552,7 @@ label {
 .tab-button.active {
   background: linear-gradient(135deg, var(--accent), var(--sales));
   color: #fff;
-  box-shadow: 0 10px 18px rgba(43, 108, 99, 0.18);
+  box-shadow: 0 12px 20px rgba(15, 139, 123, 0.20);
 }
 
 .tab-content {
@@ -597,6 +608,7 @@ label {
   border: 1px solid var(--line);
   border-radius: 20px;
   background: linear-gradient(180deg, var(--accent-softer), #ffffff);
+  box-shadow: 0 10px 20px rgba(15, 139, 123, 0.06);
 }
 
 .stocked-grid {
@@ -690,7 +702,7 @@ label {
 }
 
 .pos-cart {
-  background: linear-gradient(180deg, #ffffff, #fbfbfa);
+  background: linear-gradient(180deg, #ffffff, #fcf8f4);
 }
 
 .pos-catalog-grid {
@@ -820,6 +832,34 @@ th {
   letter-spacing: 0.08em;
   font-size: 0.77rem;
   color: var(--muted);
+}
+
+th:last-child,
+td:last-child {
+  white-space: nowrap;
+}
+
+.table-action-cell {
+  min-width: 126px;
+}
+
+.table-delete-button {
+  width: 100%;
+  min-height: 36px;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, var(--danger), #ea6f8c);
+  color: #fff;
+  box-shadow: 0 10px 18px rgba(209, 62, 91, 0.20);
+}
+
+.table-delete-button:hover {
+  transform: translateY(-1px);
+}
+
+.section-tip {
+  margin: -6px 0 12px;
+  font-size: 0.92rem;
 }
 
 .status-pill {
