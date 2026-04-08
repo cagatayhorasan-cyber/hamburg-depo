@@ -434,14 +434,28 @@ function renderMovements() {
   refs.movementsTableBody.innerHTML = "";
   state.movements.slice(0, 20).forEach((movement) => {
     const tr = document.createElement("tr");
+    const movementTypeLabel = movement.type === "entry" ? "Giris" : "Cikis";
+    let actionMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}">Iptal Et</button>`;
+
+    if (movement.reversalOf) {
+      actionMarkup = `<span class="muted">Iptal kaydi</span>`;
+    } else if (movement.reversedById) {
+      actionMarkup = `<span class="muted">Iptal edildi</span>`;
+    }
+
     tr.innerHTML = `
       <td>${movement.date}</td>
       <td>${movement.itemName}</td>
-      <td>${movement.type === "entry" ? "Giris" : "Cikis"}</td>
+      <td>${movementTypeLabel}</td>
       <td>${numberFormat.format(movement.quantity)} / ${currency.format(movement.unitPrice)}</td>
       <td>${movement.userName || "-"}</td>
+      <td>${actionMarkup}</td>
     `;
     refs.movementsTableBody.append(tr);
+  });
+
+  refs.movementsTableBody.querySelectorAll("[data-reverse-movement]").forEach((button) => {
+    button.addEventListener("click", () => reverseMovement(Number(button.dataset.reverseMovement)));
   });
 }
 
@@ -957,6 +971,20 @@ async function deleteCashEntry(entryId) {
   }
 
   const result = await request(`/api/cashbook/${entryId}`, { method: "DELETE" });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+}
+
+async function reverseMovement(movementId) {
+  const approved = window.confirm("Bu stok hareketi ters kayit olusturularak iptal edilsin mi?");
+  if (!approved) {
+    return;
+  }
+
+  const result = await request(`/api/movements/${movementId}/reverse`, { method: "POST" });
   if (result.error) {
     window.alert(result.error);
     return;

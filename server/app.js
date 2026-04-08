@@ -249,6 +249,56 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  app.post("/api/movements/:id/reverse", requireAuth, async (req, res) => {
+    const movementId = Number(req.params.id);
+    const movement = await get("SELECT * FROM movements WHERE id = ?", [movementId]);
+    if (!movement) {
+      return res.status(404).json({ error: "Hareket bulunamadi." });
+    }
+    if (movement.reversal_of) {
+      return res.status(400).json({ error: "Iptal kaydi tekrar iptal edilemez." });
+    }
+
+    const existingReverse = await get("SELECT id FROM movements WHERE reversal_of = ?", [movementId]);
+    if (existingReverse) {
+      return res.status(400).json({ error: "Bu hareket zaten iptal edilmis." });
+    }
+
+    const reverseType = movement.type === "entry" ? "exit" : "entry";
+
+    try {
+      await withTransaction(async (tx) => {
+        if (reverseType === "exit") {
+          const stock = await getItemStock(Number(movement.item_id), tx);
+          if (Number(movement.quantity) > stock) {
+            throw new Error("Bu giris hareketi simdi iptal edilemez. Once bagli cikis hareketlerini duzenleyin.");
+          }
+        }
+
+        await tx.execute(
+          `
+            INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, reversal_of, user_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          `,
+          [
+            Number(movement.item_id),
+            reverseType,
+            Number(movement.quantity),
+            Number(movement.unit_price),
+            new Date().toISOString().split("T")[0],
+            `Iptal kaydi #${movementId}${cleanOptional(movement.note) ? ` - ${cleanOptional(movement.note)}` : ""}`,
+            movementId,
+            req.session.user.id,
+          ]
+        );
+      });
+
+      return res.json({ ok: true });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Hareket iptal edilemedi." });
+    }
+  });
+
   app.post("/api/expenses", requireAuth, async (req, res) => {
     const { title, category, amount, date, paymentType, note } = req.body || {};
     if (!title || !category || !amount || !date || !paymentType) {
@@ -658,8 +708,9 @@ function cleanOptional(value) {
   return value ? String(value).trim() : "";
 }
 
-async function getItemStock(itemId) {
-  const row = await get(
+async function getItemStock(itemId, executor = null) {
+  const getter = executor?.get ? executor.get.bind(executor) : get;
+  const row = await getter(
     `
       SELECT COALESCE(SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END), 0) AS stock
       FROM movements
@@ -727,12 +778,15 @@ async function queryMovements() {
         movements.unit_price AS "unitPrice",
         movements.movement_date AS date,
         movements.note,
+        movements.reversal_of AS "reversalOf",
         movements.created_at AS "createdAt",
         items.name AS "itemName",
-        users.name AS "userName"
+        users.name AS "userName",
+        reverse_entry.id AS "reversedById"
       FROM movements
       JOIN items ON items.id = movements.item_id
       LEFT JOIN users ON users.id = movements.user_id
+      LEFT JOIN movements reverse_entry ON reverse_entry.reversal_of = movements.id
       ORDER BY movements.created_at DESC, movements.id DESC
     `
   );

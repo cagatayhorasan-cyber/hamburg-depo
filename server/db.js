@@ -28,6 +28,7 @@ const sqliteSchema = `
     category TEXT NOT NULL,
     unit TEXT NOT NULL,
     min_stock REAL NOT NULL DEFAULT 0,
+    product_code TEXT DEFAULT '',
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
     is_active INTEGER NOT NULL DEFAULT 1,
@@ -42,6 +43,7 @@ const sqliteSchema = `
     unit_price REAL NOT NULL,
     movement_date TEXT NOT NULL,
     note TEXT DEFAULT '',
+    reversal_of INTEGER,
     user_id INTEGER,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(item_id) REFERENCES items(id),
@@ -118,6 +120,7 @@ const postgresSchema = `
     category TEXT NOT NULL,
     unit TEXT NOT NULL,
     min_stock NUMERIC NOT NULL DEFAULT 0,
+    product_code TEXT DEFAULT '',
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
@@ -134,6 +137,7 @@ const postgresSchema = `
     unit_price NUMERIC NOT NULL,
     movement_date DATE NOT NULL,
     note TEXT DEFAULT '',
+    reversal_of BIGINT,
     user_id BIGINT REFERENCES users(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
@@ -203,11 +207,14 @@ async function initDatabase() {
     });
     await pgPool.query(postgresSchema);
     await ensureItemColumnsPostgres();
+    await ensureItemIndexesPostgres();
+    await ensureMovementColumnsPostgres();
+    await ensureMovementIndexesPostgres();
     await seedUsers({
-      get: async (sql, params) => firstRow(await query(sql, params)),
-      run: async (sql, params) => query(sql, params),
-      exec: async (sql) => {
-        await pgPool.query(sql);
+        get: async (sql, params) => firstRow(await query(sql, params)),
+        run: async (sql, params) => query(sql, params),
+        exec: async (sql) => {
+          await pgPool.query(sql);
       },
     });
     return;
@@ -218,6 +225,9 @@ async function initDatabase() {
   sqliteDb.exec("PRAGMA journal_mode = WAL;");
   sqliteDb.exec(sqliteSchema);
   ensureItemColumnsSqlite();
+  ensureItemIndexesSqlite();
+  ensureMovementColumnsSqlite();
+  ensureMovementIndexesSqlite();
   ensureQuoteColumnsSqlite();
   await seedUsers({
     get: async (sql, params) => sqlitePrepare(sql).get(...params),
@@ -327,6 +337,9 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("brand")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN brand TEXT DEFAULT ''");
   }
+  if (!columns.includes("product_code")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN product_code TEXT DEFAULT ''");
+  }
   if (!columns.includes("default_price")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN default_price REAL NOT NULL DEFAULT 0");
   }
@@ -336,6 +349,22 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("is_active")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN is_active INTEGER NOT NULL DEFAULT 1");
   }
+}
+
+function ensureItemIndexesSqlite() {
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_items_product_code ON items(product_code COLLATE NOCASE)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_items_name ON items(name COLLATE NOCASE)");
+}
+
+function ensureMovementColumnsSqlite() {
+  const columns = sqliteDb.prepare("PRAGMA table_info(movements)").all().map((column) => column.name);
+  if (columns.length && !columns.includes("reversal_of")) {
+    sqliteDb.exec("ALTER TABLE movements ADD COLUMN reversal_of INTEGER");
+  }
+}
+
+function ensureMovementIndexesSqlite() {
+  sqliteDb.exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements(reversal_of)");
 }
 
 function ensureQuoteColumnsSqlite() {
@@ -431,6 +460,9 @@ async function ensureItemColumnsPostgres() {
   if (!names.has("brand")) {
     await pgPool.query("ALTER TABLE items ADD COLUMN brand TEXT DEFAULT ''");
   }
+  if (!names.has("product_code")) {
+    await pgPool.query("ALTER TABLE items ADD COLUMN product_code TEXT DEFAULT ''");
+  }
   if (!names.has("default_price")) {
     await pgPool.query("ALTER TABLE items ADD COLUMN default_price NUMERIC NOT NULL DEFAULT 0");
   }
@@ -440,6 +472,27 @@ async function ensureItemColumnsPostgres() {
   if (!names.has("is_active")) {
     await pgPool.query("ALTER TABLE items ADD COLUMN is_active BOOLEAN NOT NULL DEFAULT TRUE");
   }
+}
+
+async function ensureItemIndexesPostgres() {
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_items_product_code ON items (LOWER(product_code))");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_items_name ON items (LOWER(name))");
+}
+
+async function ensureMovementColumnsPostgres() {
+  const columns = await pgPool.query(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'movements'
+  `);
+  const names = new Set(columns.rows.map((row) => row.column_name));
+  if (!names.has("reversal_of")) {
+    await pgPool.query("ALTER TABLE movements ADD COLUMN reversal_of BIGINT");
+  }
+}
+
+async function ensureMovementIndexesPostgres() {
+  await pgPool.query("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
 }
 
 module.exports = {
