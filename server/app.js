@@ -266,6 +266,14 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  app.delete("/api/expenses/:id", requireAuth, async (req, res) => {
+    const result = await execute("DELETE FROM expenses WHERE id = ?", [Number(req.params.id)]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Masraf bulunamadi." });
+    }
+    return res.json({ ok: true });
+  });
+
   app.post("/api/cashbook", requireAuth, async (req, res) => {
     const { type, title, amount, date, reference, note } = req.body || {};
     if (!type || !title || !amount || !date) {
@@ -280,6 +288,14 @@ function createApp() {
       [type, title.trim(), Number(amount), date, cleanOptional(reference), cleanOptional(note), req.session.user.id]
     );
 
+    return res.json({ ok: true });
+  });
+
+  app.delete("/api/cashbook/:id", requireAuth, async (req, res) => {
+    const result = await execute("DELETE FROM cashbook WHERE id = ?", [Number(req.params.id)]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
+    }
     return res.json({ ok: true });
   });
 

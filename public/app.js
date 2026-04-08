@@ -455,8 +455,13 @@ function renderExpenses() {
       <td>${expense.category}</td>
       <td>${currency.format(expense.amount)}</td>
       <td>${expense.userName || "-"}</td>
+      <td><button class="mini-button danger-button" type="button" data-delete-expense="${expense.id}">Sil</button></td>
     `;
     refs.expensesTableBody.append(tr);
+  });
+
+  refs.expensesTableBody.querySelectorAll("[data-delete-expense]").forEach((button) => {
+    button.addEventListener("click", () => deleteExpense(Number(button.dataset.deleteExpense)));
   });
 }
 
@@ -470,8 +475,13 @@ function renderCashbook() {
       <td>${entry.title}</td>
       <td>${currency.format(entry.amount)}</td>
       <td>${entry.userName || "-"}</td>
+      <td><button class="mini-button danger-button" type="button" data-delete-cash="${entry.id}">Sil</button></td>
     `;
     refs.cashbookTableBody.append(tr);
+  });
+
+  refs.cashbookTableBody.querySelectorAll("[data-delete-cash]").forEach((button) => {
+    button.addEventListener("click", () => deleteCashEntry(Number(button.dataset.deleteCash)));
   });
 }
 
@@ -919,6 +929,34 @@ async function archiveItem(itemId) {
 
 async function restoreItem(itemId) {
   const result = await request(`/api/items/${itemId}/restore`, { method: "POST" });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+}
+
+async function deleteExpense(expenseId) {
+  const approved = window.confirm("Bu masraf kaydini silmek istiyor musunuz?");
+  if (!approved) {
+    return;
+  }
+
+  const result = await request(`/api/expenses/${expenseId}`, { method: "DELETE" });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+}
+
+async function deleteCashEntry(entryId) {
+  const approved = window.confirm("Bu kasa hareketini silmek istiyor musunuz?");
+  if (!approved) {
+    return;
+  }
+
+  const result = await request(`/api/cashbook/${entryId}`, { method: "DELETE" });
   if (result.error) {
     window.alert(result.error);
     return;
