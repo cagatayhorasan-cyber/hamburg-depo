@@ -50,6 +50,7 @@ const refs = {
   statsGrid: document.getElementById("statsGrid"),
   itemForm: document.getElementById("itemForm"),
   movementForm: document.getElementById("movementForm"),
+  stockIntakeForm: document.getElementById("stockIntakeForm"),
   expenseForm: document.getElementById("expenseForm"),
   cashForm: document.getElementById("cashForm"),
   userForm: document.getElementById("userForm"),
@@ -105,6 +106,7 @@ function bindEvents() {
   refs.loginForm.addEventListener("submit", handleLogin);
   refs.itemForm.addEventListener("submit", handleItemSubmit);
   refs.movementForm.addEventListener("submit", (event) => handleSubmit(event, "/api/movements"));
+  refs.stockIntakeForm?.addEventListener("submit", handleStockIntakeSubmit);
   refs.expenseForm.addEventListener("submit", (event) => handleSubmit(event, "/api/expenses"));
   refs.cashForm.addEventListener("submit", (event) => handleSubmit(event, "/api/cashbook"));
   refs.bulkPricingForm.addEventListener("submit", handleBulkPricingSubmit);
@@ -147,7 +149,7 @@ function bindEvents() {
     button.addEventListener("click", () => activateTab(button.dataset.tab));
   });
 
-  [refs.movementForm, refs.expenseForm, refs.cashForm].forEach((form) => {
+  [refs.movementForm, refs.stockIntakeForm, refs.expenseForm, refs.cashForm].filter(Boolean).forEach((form) => {
     form.elements.date.value = today;
   });
   refs.quoteForm.elements.date.value = today;
@@ -227,6 +229,35 @@ async function handleItemSubmit(event) {
 
   resetItemForm();
   await refreshData();
+}
+
+async function handleStockIntakeSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const payload = formToObject(form);
+  const result = await request("/api/items/intake", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  form.reset();
+  if (form.elements.date) {
+    form.elements.date.value = today;
+  }
+
+  await refreshData();
+
+  if (result.id && refs.movementForm?.elements?.itemId) {
+    refs.movementForm.elements.itemId.value = String(result.id);
+    syncMovementPrice();
+  }
+
+  window.alert("Yeni urun karti ve ilk stok girisi basariyla kaydedildi.");
 }
 
 async function handleBulkPricingSubmit(event) {

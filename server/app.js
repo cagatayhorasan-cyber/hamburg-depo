@@ -230,6 +230,96 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  app.post("/api/items/intake", requireAuth, async (req, res) => {
+    const {
+      name,
+      brand,
+      category,
+      unit,
+      minStock,
+      barcode,
+      notes,
+      salePrice,
+      quantity,
+      unitPrice,
+      date,
+      movementNote,
+    } = req.body || {};
+
+    if (!name || !category || !unit || !quantity || !unitPrice || !date) {
+      return res.status(400).json({ error: "Yeni urun ve stok girisi icin zorunlu alanlar eksik." });
+    }
+
+    const trimmedName = name.trim();
+    const trimmedBrand = cleanOptional(brand);
+    const quantityValue = Number(quantity);
+    const unitPriceValue = Number(unitPrice);
+
+    if (quantityValue <= 0 || unitPriceValue <= 0) {
+      return res.status(400).json({ error: "Miktar ve birim alis sifirdan buyuk olmali." });
+    }
+
+    try {
+      const itemId = await withTransaction(async (tx) => {
+        const existingItem = await tx.get(
+          `
+            SELECT id, name, brand
+            FROM items
+            WHERE LOWER(name) = LOWER(?) AND LOWER(COALESCE(brand, '')) = LOWER(?)
+            LIMIT 1
+          `,
+          [trimmedName, trimmedBrand]
+        );
+
+        if (existingItem) {
+          throw new Error("Bu urun zaten mevcut. Mevcut kart icin ustteki stok giris formunu kullanin.");
+        }
+
+        const itemResult = await tx.execute(
+          `
+            INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, sale_price)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            RETURNING id
+          `,
+          [
+            trimmedName,
+            trimmedBrand,
+            category.trim(),
+            unit.trim(),
+            Number(minStock || 0),
+            cleanOptional(barcode) || null,
+            cleanOptional(notes),
+            unitPriceValue,
+            Number(salePrice || 0),
+          ]
+        );
+
+        const insertedItemId = Number(itemResult.rows[0]?.id || itemResult.lastInsertId);
+
+        await tx.execute(
+          `
+            INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
+            VALUES (?, 'entry', ?, ?, ?, ?, ?)
+          `,
+          [
+            insertedItemId,
+            quantityValue,
+            unitPriceValue,
+            date,
+            cleanOptional(movementNote),
+            req.session.user.id,
+          ]
+        );
+
+        return insertedItemId;
+      });
+
+      return res.json({ ok: true, id: itemId });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Yeni urun kaydi olusturulamadi." });
+    }
+  });
+
   app.post("/api/movements", requireAuth, async (req, res) => {
     const { itemId, type, quantity, unitPrice, date, note } = req.body || {};
     if (!itemId || !type || !quantity || !unitPrice || !date) {

@@ -185,6 +185,7 @@
             <div class="two-column">
               <section>
                 <h2>Stok Giris / Cikis</h2>
+                <p class="muted section-tip">Mevcut urunler icin bu formu kullanin. Listede olmayan yeni urunleri hemen alttaki hizli kayit alanindan ekleyebilirsiniz.</p>
                 <form id="movementForm" class="form-grid">
                   <label>Malzeme<select name="itemId" required></select></label>
                   <label>Islem<select name="type" required><option value="entry">Giris</option><option value="exit">Cikis</option></select></label>
@@ -194,6 +195,25 @@
                   <label>Aciklama<input name="note" type="text"></label>
                   <button class="primary-button" type="submit">Hareket Kaydet</button>
                 </form>
+                <div class="panel-lite">
+                  <h3>Yeni Urun + Ilk Stok Girisi</h3>
+                  <p class="muted section-tip">Yeni marka, kategori veya urun karti burada acilir. Kaydedince urun otomatik olusur ve ilk stok girisi ayni anda islenir.</p>
+                  <form id="stockIntakeForm" class="form-grid">
+                    <label>Malzeme Adi<input name="name" type="text" required placeholder="Orn. Embraco NJ 6220 Z"></label>
+                    <label>Marka<input name="brand" type="text" placeholder="Orn. Embraco"></label>
+                    <label>Kategori<input name="category" type="text" required placeholder="Orn. Kompresor"></label>
+                    <label>Birim<input name="unit" type="text" required value="adet"></label>
+                    <label>Ilk Miktar<input name="quantity" type="number" min="0.01" step="0.01" required></label>
+                    <label>Birim Alis<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
+                    <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                    <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" value="0"></label>
+                    <label>Tarih<input name="date" type="date" required></label>
+                    <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
+                    <label>Malzeme Notu<input name="notes" type="text" placeholder="Raf, seri veya tedarik notu"></label>
+                    <label>Hareket Notu<input name="movementNote" type="text" placeholder="Ilk alis bilgisi"></label>
+                    <button class="primary-button" type="submit">Yeni Urun ve Stok Girisi Kaydet</button>
+                  </form>
+                </div>
               </section>
               <section>
                 <h2>Son Hareketler</h2>
