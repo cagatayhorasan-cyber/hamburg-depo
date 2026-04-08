@@ -45,6 +45,11 @@ function createApp() {
     app.set("trust proxy", 1);
   }
 
+  app.use("/api", (_req, res, next) => {
+    res.set("Cache-Control", "no-store, max-age=0");
+    next();
+  });
+
   app.use(express.json());
   app.use(
     cookieSession({
@@ -61,7 +66,10 @@ function createApp() {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   app.get("/api/health", (_req, res) => {
-    res.json({ ok: true, dbPath, dbClient });
+    const dbTarget = dbClient === "postgres"
+      ? "postgres"
+      : path.basename(dbPath);
+    res.json({ ok: true, dbClient, dbTarget });
   });
 
   app.post("/api/login", async (req, res) => {
