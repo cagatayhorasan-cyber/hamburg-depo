@@ -10,6 +10,8 @@ const numberFormat = new Intl.NumberFormat("tr-TR", {
 });
 
 const today = new Date().toISOString().split("T")[0];
+const MAX_ITEMS_TABLE_ROWS = 250;
+const SEARCH_DEBOUNCE_MS = 180;
 
 const state = {
   user: null,
@@ -35,6 +37,9 @@ const state = {
   assistantLanguage: "tr",
   assistantMessages: [],
 };
+
+let filterDebounceTimer = null;
+let quoteFilterDebounceTimer = null;
 
 const refs = {
   loginScreen: document.getElementById("loginScreen"),
@@ -332,9 +337,12 @@ function renderStats() {
 function renderItems() {
   refs.itemsTableBody.innerHTML = "";
   const filteredItems = getFilteredItems();
-  refs.itemsSummary.textContent = `${filteredItems.length} / ${state.items.length} malzeme goruntuleniyor`;
+  const visibleItems = filteredItems.slice(0, MAX_ITEMS_TABLE_ROWS);
+  refs.itemsSummary.textContent = filteredItems.length > MAX_ITEMS_TABLE_ROWS
+    ? `${filteredItems.length} / ${state.items.length} malzeme bulundu. Performans icin ilk ${MAX_ITEMS_TABLE_ROWS} kayit gosteriliyor.`
+    : `${filteredItems.length} / ${state.items.length} malzeme goruntuleniyor`;
   renderStockedItems(filteredItems);
-  filteredItems.forEach((item) => {
+  visibleItems.forEach((item) => {
     const tr = document.createElement("tr");
     const critical = Number(item.currentStock) <= Number(item.minStock);
     const purchasePrice = item.lastPurchasePrice || item.defaultPrice || 0;
@@ -675,18 +683,24 @@ function activateTab(tab) {
 }
 
 function handleFilterChange() {
-  state.filters.search = refs.itemSearch.value.trim().toLowerCase();
-  state.filters.brand = refs.brandFilter.value;
-  state.filters.category = refs.categoryFilter.value;
-  renderItems();
-  renderSearchDropdown();
+  window.clearTimeout(filterDebounceTimer);
+  filterDebounceTimer = window.setTimeout(() => {
+    state.filters.search = refs.itemSearch.value.trim().toLowerCase();
+    state.filters.brand = refs.brandFilter.value;
+    state.filters.category = refs.categoryFilter.value;
+    renderItems();
+    renderSearchDropdown();
+  }, SEARCH_DEBOUNCE_MS);
 }
 
 function handleQuoteFilterChange() {
-  state.quoteFilters.search = refs.quoteItemSearch.value.trim().toLowerCase();
-  state.quoteFilters.brand = refs.quoteBrandFilter.value;
-  state.quoteFilters.category = refs.quoteCategoryFilter.value;
-  renderQuotes();
+  window.clearTimeout(quoteFilterDebounceTimer);
+  quoteFilterDebounceTimer = window.setTimeout(() => {
+    state.quoteFilters.search = refs.quoteItemSearch.value.trim().toLowerCase();
+    state.quoteFilters.brand = refs.quoteBrandFilter.value;
+    state.quoteFilters.category = refs.quoteCategoryFilter.value;
+    renderQuotes();
+  }, SEARCH_DEBOUNCE_MS);
 }
 
 function toggleAssistantPanel() {
