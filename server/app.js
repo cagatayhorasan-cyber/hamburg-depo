@@ -6,6 +6,7 @@ const express = require("express");
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");
 const bwipjs = require("bwip-js");
+const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const XLSX = require("xlsx");
 const { dbPath, dbClient, initDatabase, query, get, execute, withTransaction } = require("./db");
@@ -40,6 +41,10 @@ const SHOULD_PERSIST_QUOTES = !process.env.VERCEL && process.env.DISABLE_FILE_EX
 const APP_BASE_URL = process.env.APP_BASE_URL || "";
 const MAIL_FROM = process.env.MAIL_FROM || COMPANY_PROFILE.email;
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+const GMAIL_USER = process.env.GMAIL_USER || "";
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || "";
+
+let gmailTransporter = null;
 
 function createApp() {
   const app = express();
@@ -1211,8 +1216,48 @@ function getAppBaseUrl(req) {
   return `${protocol}://${host}`;
 }
 
+function getMailSenderAddress(provider = "default") {
+  if (provider === "gmail") {
+    return process.env.GMAIL_FROM || GMAIL_USER || process.env.MAIL_FROM || COMPANY_PROFILE.email;
+  }
+
+  return process.env.MAIL_FROM || GMAIL_USER || COMPANY_PROFILE.email;
+}
+
+function getGmailTransporter() {
+  if (!gmailTransporter) {
+    gmailTransporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD,
+      },
+    });
+  }
+
+  return gmailTransporter;
+}
+
 async function sendEmail({ to, subject, html, text }) {
-  if (!RESEND_API_KEY || !MAIL_FROM) {
+  if (GMAIL_USER && GMAIL_APP_PASSWORD) {
+    try {
+      await getGmailTransporter().sendMail({
+        from: getMailSenderAddress("gmail"),
+        to,
+        subject,
+        html,
+        text,
+      });
+      return { sent: true, provider: "gmail" };
+    } catch (error) {
+      console.error("Gmail ile mail gonderilemedi:", error);
+      return { sent: false, reason: "provider_error", provider: "gmail" };
+    }
+  }
+
+  if (!RESEND_API_KEY || !getMailSenderAddress()) {
     console.log(`Mail gonderimi atlandi (${subject}) -> ${to}`);
     return { sent: false, reason: "not_configured" };
   }
@@ -1224,7 +1269,7 @@ async function sendEmail({ to, subject, html, text }) {
       Authorization: `Bearer ${RESEND_API_KEY}`,
     },
     body: JSON.stringify({
-      from: MAIL_FROM,
+      from: getMailSenderAddress(),
       to: [to],
       subject,
       html,

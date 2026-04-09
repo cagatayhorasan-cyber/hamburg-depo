@@ -59,6 +59,29 @@ Not:
 - uygulama dogrudan Postgres baglantisi ile calisir
 - Supabase tablolari daha once SQL Editor icinde olusturulmus olmali
 
+## E-Posta gonderimi
+
+Uygulama mail gonderimi icin iki yol destekler:
+
+- `Gmail SMTP`
+- `Resend API`
+
+Gmail ile gondermek icin `.env` veya Vercel ortam degiskenlerine su alanlari ekleyin:
+
+```env
+APP_BASE_URL=https://hamburg-depo-3bgu.vercel.app
+MAIL_FROM=mailadresiniz@gmail.com
+GMAIL_USER=mailadresiniz@gmail.com
+GMAIL_APP_PASSWORD=google-uygulama-sifresi
+GMAIL_FROM=mailadresiniz@gmail.com
+```
+
+Notlar:
+
+- `GMAIL_APP_PASSWORD` normal Gmail sifresi degil, Google `App Password` olmalidir
+- Gmail icin hesapta `2-Step Verification` acik olmalidir
+- `MAIL_FROM` degeri mumkunse ayni Gmail adresi veya o hesapta tanimli bir alias olmali
+
 ## Internetten erisim icin sunucu kurulumu
 
 Bu kurulum tek bir Linux sunucuda, Docker ile calisacak sekilde hazirlandi. SQLite halen kullaniliyor; yani tek sunucu icin uygundur. Birden fazla uygulama sunucusuna cikilacaksa sonraki adim PostgreSQL gecisidir.
