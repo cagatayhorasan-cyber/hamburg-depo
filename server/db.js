@@ -29,6 +29,7 @@ const sqliteSchema = `
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     email TEXT,
+    email_verified INTEGER NOT NULL DEFAULT 1,
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
   );
@@ -135,6 +136,17 @@ const sqliteSchema = `
     FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY(item_id) REFERENCES items(id)
   );
+
+  CREATE TABLE IF NOT EXISTS auth_tokens (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    token_type TEXT NOT NULL,
+    token_hash TEXT NOT NULL,
+    expires_at TEXT NOT NULL,
+    consumed_at TEXT DEFAULT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+  );
 `;
 
 const postgresSchema = `
@@ -143,6 +155,7 @@ const postgresSchema = `
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     email TEXT,
+    email_verified BOOLEAN NOT NULL DEFAULT TRUE,
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
   );
@@ -248,6 +261,16 @@ const postgresSchema = `
     item_name TEXT NOT NULL,
     quantity NUMERIC NOT NULL,
     unit TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS auth_tokens (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token_type TEXT NOT NULL,
+    token_hash TEXT NOT NULL,
+    expires_at TIMESTAMPTZ NOT NULL,
+    consumed_at TIMESTAMPTZ NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
 `;
 
@@ -412,11 +435,15 @@ function ensureUserColumnsSqlite() {
   if (!columns.includes("email")) {
     sqliteDb.exec("ALTER TABLE users ADD COLUMN email TEXT");
   }
+  if (!columns.includes("email_verified")) {
+    sqliteDb.exec("ALTER TABLE users ADD COLUMN email_verified INTEGER NOT NULL DEFAULT 1");
+  }
   sqliteDb.exec(`
     CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_unique
     ON users(LOWER(email))
     WHERE email IS NOT NULL AND TRIM(email) <> ''
   `);
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_auth_tokens_lookup ON auth_tokens(token_type, token_hash)");
 }
 
 function ensureItemIndexesSqlite() {
@@ -577,11 +604,15 @@ async function ensureUserColumnsPostgres() {
   if (!names.has("email")) {
     await pgPool.query("ALTER TABLE users ADD COLUMN email TEXT");
   }
+  if (!names.has("email_verified")) {
+    await pgPool.query("ALTER TABLE users ADD COLUMN email_verified BOOLEAN NOT NULL DEFAULT TRUE");
+  }
   await pgPool.query(`
     CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_unique
     ON users (LOWER(email))
     WHERE email IS NOT NULL AND BTRIM(email) <> ''
   `);
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_auth_tokens_lookup ON auth_tokens (token_type, token_hash)");
 }
 
 async function ensureUserRoleConstraintPostgres() {

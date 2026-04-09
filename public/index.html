@@ -35,6 +35,20 @@
           <button class="primary-button" type="submit">Giris Yap</button>
           <p id="loginError" class="error-text"></p>
         </form>
+        <section class="auth-subpanel">
+          <div class="section-head auth-section-head">
+            <div>
+              <h3>Sifremi Unuttum</h3>
+              <p class="muted">E-posta veya kullanici adinizi girin. Sistemde kayitliysa size sifre yenileme baglantisi gonderilir.</p>
+            </div>
+          </div>
+          <form id="forgotPasswordForm" class="form-grid" autocomplete="off">
+            <label>Kullanici Adi veya E-Posta<input name="identifier" type="text" required autocapitalize="off" spellcheck="false"></label>
+            <button class="secondary-button auth-register-button" type="submit">Yenileme Baglantisi Gonder</button>
+            <p id="forgotPasswordError" class="error-text auth-message"></p>
+            <p id="forgotPasswordSuccess" class="success-text auth-message"></p>
+          </form>
+        </section>
         <div class="auth-divider"><span>Musteri hesabi yok mu?</span></div>
         <section class="auth-subpanel">
           <div class="section-head auth-section-head">
@@ -51,6 +65,21 @@
             <button class="secondary-button auth-register-button" type="submit">Musteri Hesabi Ac</button>
             <p id="customerRegisterError" class="error-text auth-message"></p>
             <p id="customerRegisterSuccess" class="success-text auth-message"></p>
+          </form>
+        </section>
+        <section id="resetPasswordPanel" class="auth-subpanel hidden">
+          <div class="section-head auth-section-head">
+            <div>
+              <h3>Yeni Sifre Belirle</h3>
+              <p class="muted">E-postadaki baglanti ile geldiyseniz yeni sifrenizi burada belirleyin.</p>
+            </div>
+          </div>
+          <form id="resetPasswordForm" class="form-grid" autocomplete="off">
+            <input type="hidden" name="token">
+            <label>Yeni Sifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
+            <button class="primary-button auth-register-button" type="submit">Sifreyi Guncelle</button>
+            <p id="resetPasswordError" class="error-text auth-message"></p>
+            <p id="resetPasswordSuccess" class="success-text auth-message"></p>
           </form>
         </section>
       </div>
@@ -403,6 +432,14 @@
             </div>
 
             <div class="customer-only">
+              <div id="customerVerificationBanner" class="panel-lite hidden">
+                <h3>E-Posta Dogrulamasi Bekleniyor</h3>
+                <p class="muted">Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.</p>
+                <div class="action-row">
+                  <button id="resendVerificationButton" class="secondary-button" type="button">Dogrulama Mailini Tekrar Gonder</button>
+                </div>
+                <p id="resendVerificationMessage" class="success-text auth-message"></p>
+              </div>
               <div class="pos-layout">
                 <section class="pos-catalog">
                   <div class="section-head">

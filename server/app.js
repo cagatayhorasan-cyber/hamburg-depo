@@ -1,6 +1,7 @@
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const crypto = require("crypto");
 const express = require("express");
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");
@@ -36,6 +37,9 @@ const QUOTES_DIR = process.env.QUOTES_DIR
   ? path.resolve(process.env.QUOTES_DIR)
   : path.join(os.homedir(), "Desktop", "Teklifler");
 const SHOULD_PERSIST_QUOTES = !process.env.VERCEL && process.env.DISABLE_FILE_EXPORT !== "1";
+const APP_BASE_URL = process.env.APP_BASE_URL || "";
+const MAIL_FROM = process.env.MAIL_FROM || COMPANY_PROFILE.email;
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
 function createApp() {
   const app = express();
@@ -95,6 +99,75 @@ function createApp() {
     res.json({ user: req.session.user || null });
   });
 
+  app.post("/api/auth/forgot-password", async (req, res) => {
+    const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
+    const user = await findUserByLoginIdentifier(identifier);
+
+    if (user && user.email) {
+      const token = await issueAuthToken(Number(user.id), "reset_password", 2);
+      const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
+      await sendPasswordResetEmail(user, resetUrl);
+    }
+
+    return res.json({
+      ok: true,
+      message: "Eger hesap bulunduysa sifre yenileme baglantisi e-posta adresine gonderildi.",
+    });
+  });
+
+  app.post("/api/auth/reset-password", async (req, res) => {
+    const token = cleanOptional(req.body?.token);
+    const password = String(req.body?.password || "");
+
+    if (!token || password.length < 6) {
+      return res.status(400).json({ error: "Gecerli token ve en az 6 karakterli sifre gereklidir." });
+    }
+
+    const tokenRow = await consumeAuthToken(token, "reset_password");
+    if (!tokenRow) {
+      return res.status(400).json({ error: "Sifre yenileme baglantisi gecersiz veya suresi dolmus." });
+    }
+
+    await execute("UPDATE users SET password_hash = ? WHERE id = ?", [bcrypt.hashSync(password, 10), Number(tokenRow.user_id)]);
+    return res.json({ ok: true, message: "Sifreniz guncellendi. Yeni sifrenizle giris yapabilirsiniz." });
+  });
+
+  app.post("/api/auth/verify-email", async (req, res) => {
+    const token = cleanOptional(req.body?.token);
+    if (!token) {
+      return res.status(400).json({ error: "Dogrulama baglantisi eksik." });
+    }
+
+    const tokenRow = await consumeAuthToken(token, "verify_email");
+    if (!tokenRow) {
+      return res.status(400).json({ error: "Dogrulama baglantisi gecersiz veya suresi dolmus." });
+    }
+
+    const user = await get("UPDATE users SET email_verified = ? WHERE id = ? RETURNING id, name, username, email, role, email_verified", [1, Number(tokenRow.user_id)]);
+    if (!user) {
+      return res.status(404).json({ error: "Kullanici bulunamadi." });
+    }
+
+    req.session.user = sessionUserFromRow(user);
+    return res.json({ ok: true, user: req.session.user, message: "E-posta adresiniz dogrulandi." });
+  });
+
+  app.post("/api/auth/resend-verification", requireCustomer, async (req, res) => {
+    const user = await get("SELECT * FROM users WHERE id = ?", [req.session.user.id]);
+    if (!user?.email) {
+      return res.status(400).json({ error: "Bu hesapta e-posta bulunmuyor." });
+    }
+    if (toBoolean(user.email_verified)) {
+      return res.json({ ok: true, message: "Bu hesabin e-postasi zaten dogrulanmis." });
+    }
+
+    const token = await issueAuthToken(Number(user.id), "verify_email", 24);
+    const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
+    await sendVerificationEmail(user, verifyUrl);
+
+    return res.json({ ok: true, message: "Dogrulama e-postasi tekrar gonderildi." });
+  });
+
   app.post("/api/customers/register", async (req, res) => {
     const name = cleanOptional(req.body?.name);
     const email = normalizeEmail(req.body?.email);
@@ -128,8 +201,8 @@ function createApp() {
 
     try {
       const result = await execute(
-        "INSERT INTO users (name, username, email, password_hash, role) VALUES (?, ?, ?, ?, ?) RETURNING id",
-        [name, username, email, bcrypt.hashSync(password, 10), "customer"]
+        "INSERT INTO users (name, username, email, email_verified, password_hash, role) VALUES (?, ?, ?, ?, ?, ?) RETURNING id",
+        [name, username, email, 0, bcrypt.hashSync(password, 10), "customer"]
       );
 
       const insertedUser = {
@@ -137,10 +210,14 @@ function createApp() {
         name,
         username,
         email,
+        emailVerified: false,
         role: "customer",
       };
 
       req.session.user = insertedUser;
+      const token = await issueAuthToken(insertedUser.id, "verify_email", 24);
+      const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
+      await sendVerificationEmail(insertedUser, verifyUrl);
       return res.json({ user: insertedUser });
     } catch (_error) {
       return res.status(400).json({ error: "Musteri hesabi olusturulamadi. Bilgileri kontrol edin." });
@@ -806,9 +883,30 @@ function createApp() {
       return res.status(400).json({ error: "Gecersiz siparis durumu." });
     }
 
-    const result = await execute("UPDATE orders SET status = ? WHERE id = ?", [status, Number(req.params.id)]);
-    if (!result.rowCount) {
+    const order = await get(
+      `
+        SELECT orders.id, orders.customer_name, orders.order_date, users.email, users.name AS user_name
+        FROM orders
+        LEFT JOIN users ON users.id = orders.customer_user_id
+        WHERE orders.id = ?
+      `,
+      [Number(req.params.id)]
+    );
+    if (!order) {
       return res.status(404).json({ error: "Siparis bulunamadi." });
+    }
+
+    const result = await execute("UPDATE orders SET status = ? WHERE id = ?", [status, Number(req.params.id)]);
+    if (result.rowCount && order.email) {
+      await sendOrderStatusEmail(
+        { name: order.user_name || order.customer_name, email: order.email },
+        {
+          id: Number(order.id),
+          customerName: order.customer_name,
+          date: order.order_date,
+          status,
+        }
+      );
     }
     return res.json({ ok: true });
   });
@@ -972,8 +1070,20 @@ function cleanOptional(value) {
   return value ? String(value).trim() : "";
 }
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function normalizeEmail(value) {
   return cleanOptional(value).toLowerCase();
+}
+
+function toBoolean(value) {
+  return value === true || value === 1 || value === "1" || value === "true" || value === "t";
 }
 
 function isValidEmail(value) {
@@ -996,6 +1106,7 @@ function sessionUserFromRow(user) {
     name: user.name,
     username: user.username,
     email: user.email || "",
+    emailVerified: toBoolean(user.email_verified),
     role: normalizeRole(user.role),
   };
 }
@@ -1027,6 +1138,162 @@ async function generateUniqueUsernameFromEmail(email) {
   }
 
   return candidate;
+}
+
+function hashAuthToken(token) {
+  return crypto.createHash("sha256").update(String(token)).digest("hex");
+}
+
+async function issueAuthToken(userId, tokenType, expiresInHours = 2) {
+  const token = crypto.randomBytes(24).toString("hex");
+  const expiresAt = new Date(Date.now() + expiresInHours * 60 * 60 * 1000).toISOString();
+  await execute("UPDATE auth_tokens SET consumed_at = ? WHERE user_id = ? AND token_type = ? AND consumed_at IS NULL", [
+    new Date().toISOString(),
+    userId,
+    tokenType,
+  ]);
+  await execute(
+    "INSERT INTO auth_tokens (user_id, token_type, token_hash, expires_at) VALUES (?, ?, ?, ?)",
+    [userId, tokenType, hashAuthToken(token), expiresAt]
+  );
+  return token;
+}
+
+async function consumeAuthToken(token, tokenType) {
+  const tokenHash = hashAuthToken(token);
+  const row = await get(
+    `
+      SELECT id, user_id, expires_at, consumed_at
+      FROM auth_tokens
+      WHERE token_type = ? AND token_hash = ?
+      ORDER BY created_at DESC, id DESC
+      LIMIT 1
+    `,
+    [tokenType, tokenHash]
+  );
+
+  if (!row || row.consumed_at) {
+    return null;
+  }
+
+  if (new Date(row.expires_at).getTime() < Date.now()) {
+    await execute("UPDATE auth_tokens SET consumed_at = ? WHERE id = ?", [new Date().toISOString(), Number(row.id)]);
+    return null;
+  }
+
+  await execute("UPDATE auth_tokens SET consumed_at = ? WHERE id = ?", [new Date().toISOString(), Number(row.id)]);
+  return row;
+}
+
+function getAppBaseUrl(req) {
+  if (APP_BASE_URL) {
+    return APP_BASE_URL.replace(/\/$/, "");
+  }
+
+  const protocol = req.get("x-forwarded-proto") || req.protocol || "https";
+  const host = req.get("x-forwarded-host") || req.get("host");
+  return `${protocol}://${host}`;
+}
+
+async function sendEmail({ to, subject, html, text }) {
+  if (!RESEND_API_KEY || !MAIL_FROM) {
+    console.log(`Mail gonderimi atlandi (${subject}) -> ${to}`);
+    return { sent: false, reason: "not_configured" };
+  }
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+    },
+    body: JSON.stringify({
+      from: MAIL_FROM,
+      to: [to],
+      subject,
+      html,
+      text,
+    }),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    console.error("Mail gonderilemedi:", response.status, body);
+    return { sent: false, reason: "provider_error" };
+  }
+
+  return { sent: true };
+}
+
+async function sendVerificationEmail(user, verifyUrl) {
+  if (!user?.email) {
+    return { sent: false, reason: "missing_email" };
+  }
+
+  return sendEmail({
+    to: user.email,
+    subject: "DRC Musteri Hesabi - E-posta Dogrulama",
+    text: `Merhaba ${user.name || ""},\n\nHesabinizi dogrulamak icin asagidaki baglantiyi acin:\n${verifyUrl}\n\nBaglanti 24 saat gecerlidir.`,
+    html: `
+      <div style="font-family:Arial,sans-serif;line-height:1.6;color:#1f2937">
+        <h2>DRC Musteri Hesabi</h2>
+        <p>Merhaba ${escapeHtml(user.name || "")},</p>
+        <p>Hesabinizi dogrulamak icin asagidaki baglantiyi acin:</p>
+        <p><a href="${verifyUrl}">${verifyUrl}</a></p>
+        <p>Baglanti 24 saat gecerlidir.</p>
+      </div>
+    `,
+  });
+}
+
+async function sendPasswordResetEmail(user, resetUrl) {
+  if (!user?.email) {
+    return { sent: false, reason: "missing_email" };
+  }
+
+  return sendEmail({
+    to: user.email,
+    subject: "DRC Musteri Hesabi - Sifre Yenileme",
+    text: `Merhaba ${user.name || ""},\n\nSifrenizi yenilemek icin asagidaki baglantiyi acin:\n${resetUrl}\n\nBaglanti 2 saat gecerlidir.`,
+    html: `
+      <div style="font-family:Arial,sans-serif;line-height:1.6;color:#1f2937">
+        <h2>DRC Musteri Hesabi</h2>
+        <p>Merhaba ${escapeHtml(user.name || "")},</p>
+        <p>Sifrenizi yenilemek icin asagidaki baglantiyi acin:</p>
+        <p><a href="${resetUrl}">${resetUrl}</a></p>
+        <p>Baglanti 2 saat gecerlidir.</p>
+      </div>
+    `,
+  });
+}
+
+async function sendOrderStatusEmail(user, order) {
+  if (!user?.email) {
+    return { sent: false, reason: "missing_email" };
+  }
+
+  const statusLabels = {
+    pending: "Beklemede",
+    approved: "Onaylandi",
+    preparing: "Hazirlaniyor",
+    completed: "Tamamlandi",
+    cancelled: "Iptal Edildi",
+  };
+
+  return sendEmail({
+    to: user.email,
+    subject: `DRC Siparis Durumu - Siparis #${order.id}`,
+    text: `Merhaba ${user.name || ""},\n\n${order.id} numarali siparisinizin durumu guncellendi: ${statusLabels[order.status] || order.status}.\nSiparis tarihi: ${order.date}\n`,
+    html: `
+      <div style="font-family:Arial,sans-serif;line-height:1.6;color:#1f2937">
+        <h2>DRC Siparis Bilgilendirmesi</h2>
+        <p>Merhaba ${escapeHtml(user.name || "")},</p>
+        <p><strong>#${order.id}</strong> numarali siparisinizin durumu guncellendi.</p>
+        <p>Yeni durum: <strong>${escapeHtml(statusLabels[order.status] || order.status)}</strong></p>
+        <p>Siparis tarihi: ${escapeHtml(order.date || "")}</p>
+      </div>
+    `,
+  });
 }
 
 async function getItemStock(itemId, executor = null) {

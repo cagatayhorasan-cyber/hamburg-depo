@@ -48,9 +48,16 @@ const refs = {
   appScreen: document.getElementById("appScreen"),
   loginForm: document.getElementById("loginForm"),
   loginError: document.getElementById("loginError"),
+  forgotPasswordForm: document.getElementById("forgotPasswordForm"),
+  forgotPasswordError: document.getElementById("forgotPasswordError"),
+  forgotPasswordSuccess: document.getElementById("forgotPasswordSuccess"),
   customerRegisterForm: document.getElementById("customerRegisterForm"),
   customerRegisterError: document.getElementById("customerRegisterError"),
   customerRegisterSuccess: document.getElementById("customerRegisterSuccess"),
+  resetPasswordPanel: document.getElementById("resetPasswordPanel"),
+  resetPasswordForm: document.getElementById("resetPasswordForm"),
+  resetPasswordError: document.getElementById("resetPasswordError"),
+  resetPasswordSuccess: document.getElementById("resetPasswordSuccess"),
   welcomeText: document.getElementById("welcomeText"),
   statsGrid: document.getElementById("statsGrid"),
   itemForm: document.getElementById("itemForm"),
@@ -98,6 +105,9 @@ const refs = {
   customerOrderSummary: document.getElementById("customerOrderSummary"),
   customerOrdersList: document.getElementById("customerOrdersList"),
   submitCustomerOrderButton: document.getElementById("submitCustomerOrderButton"),
+  customerVerificationBanner: document.getElementById("customerVerificationBanner"),
+  resendVerificationButton: document.getElementById("resendVerificationButton"),
+  resendVerificationMessage: document.getElementById("resendVerificationMessage"),
   quoteItemSearch: document.getElementById("quoteItemSearch"),
   quoteBrandFilter: document.getElementById("quoteBrandFilter"),
   quoteCategoryFilter: document.getElementById("quoteCategoryFilter"),
@@ -144,7 +154,9 @@ function bindEvents() {
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("submit", handleLogin);
+  refs.forgotPasswordForm?.addEventListener("submit", handleForgotPassword);
   refs.customerRegisterForm?.addEventListener("submit", handleCustomerRegister);
+  refs.resetPasswordForm?.addEventListener("submit", handleResetPassword);
   refs.itemForm.addEventListener("submit", handleItemSubmit);
   refs.movementForm.addEventListener("submit", (event) => handleSubmit(event, "/api/movements"));
   refs.stockIntakeForm?.addEventListener("submit", handleStockIntakeSubmit);
@@ -155,6 +167,7 @@ function bindEvents() {
   refs.saveQuoteButton.addEventListener("click", handleQuoteSave);
   refs.checkoutSaleButton.addEventListener("click", handleDirectSale);
   refs.submitCustomerOrderButton?.addEventListener("click", handleCustomerOrderSubmit);
+  refs.resendVerificationButton?.addEventListener("click", handleResendVerification);
 
   if (refs.userForm) {
     refs.userForm.addEventListener("submit", (event) => handleSubmit(event, "/api/users"));
@@ -202,6 +215,7 @@ function bindEvents() {
 async function initialize() {
   state.user = null;
   showLogin();
+  await handleAuthUrlActions();
 }
 
 async function handleLogin(event) {
@@ -244,6 +258,47 @@ async function handleCustomerRegister(event) {
   state.user = result.user;
   event.currentTarget.reset();
   await refreshData();
+}
+
+async function handleForgotPassword(event) {
+  event.preventDefault();
+  refs.forgotPasswordError.textContent = "";
+  refs.forgotPasswordSuccess.textContent = "";
+
+  const payload = formToObject(event.currentTarget);
+  const result = await request("/api/auth/forgot-password", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    refs.forgotPasswordError.textContent = result.error;
+    return;
+  }
+
+  refs.forgotPasswordSuccess.textContent = result.message || "Baglanti gonderildiyse e-posta kutunuza dusmus olacaktir.";
+  event.currentTarget.reset();
+}
+
+async function handleResetPassword(event) {
+  event.preventDefault();
+  refs.resetPasswordError.textContent = "";
+  refs.resetPasswordSuccess.textContent = "";
+
+  const payload = formToObject(event.currentTarget);
+  const result = await request("/api/auth/reset-password", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    refs.resetPasswordError.textContent = result.error;
+    return;
+  }
+
+  refs.resetPasswordSuccess.textContent = result.message || "Sifreniz guncellendi.";
+  event.currentTarget.reset();
+  clearAuthQueryParams(["resetToken"]);
 }
 
 async function handleSubmit(event, url) {
@@ -373,6 +428,21 @@ function showLogin() {
   if (refs.customerRegisterSuccess) {
     refs.customerRegisterSuccess.textContent = "";
   }
+  if (refs.forgotPasswordForm) {
+    refs.forgotPasswordForm.reset();
+  }
+  if (refs.forgotPasswordError) {
+    refs.forgotPasswordError.textContent = "";
+  }
+  if (refs.forgotPasswordSuccess) {
+    refs.forgotPasswordSuccess.textContent = "";
+  }
+  if (refs.resetPasswordError) {
+    refs.resetPasswordError.textContent = "";
+  }
+  if (refs.resetPasswordSuccess) {
+    refs.resetPasswordSuccess.textContent = "";
+  }
   lockLoginInputs();
   closeAssistantPanel();
 }
@@ -381,7 +451,7 @@ function showApp() {
   refs.loginScreen.classList.add("hidden");
   refs.appScreen.classList.remove("hidden");
   refs.assistantWidget.classList.toggle("hidden", isCustomerUser());
-  refs.welcomeText.textContent = `${state.user.name} olarak giris yaptiniz. Rol: ${roleLabel()}`;
+  refs.welcomeText.textContent = `${state.user.name} olarak giris yaptiniz. Rol: ${roleLabel()}${isCustomerUser() && !state.user?.emailVerified ? " | E-posta henuz dogrulanmadi" : ""}`;
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", !isAdminUser());
   });
@@ -391,6 +461,10 @@ function showApp() {
   document.querySelectorAll(".customer-only").forEach((node) => {
     node.classList.toggle("hidden", !isCustomerUser());
   });
+  refs.customerVerificationBanner?.classList.toggle("hidden", !isCustomerUser() || Boolean(state.user?.emailVerified));
+  if (refs.resendVerificationMessage) {
+    refs.resendVerificationMessage.textContent = "";
+  }
 
   if (!isCustomerUser() && state.assistantMessages.length === 0) {
     seedAssistantMessages();
@@ -1410,6 +1484,29 @@ async function handleCustomerOrderSubmit() {
   window.alert("Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.");
 }
 
+async function handleResendVerification() {
+  if (!isCustomerUser()) {
+    return;
+  }
+
+  refs.resendVerificationMessage.textContent = "";
+  const result = await request("/api/auth/resend-verification", {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+
+  if (result.error) {
+    refs.resendVerificationMessage.textContent = result.error;
+    refs.resendVerificationMessage.classList.remove("success-text");
+    refs.resendVerificationMessage.classList.add("error-text");
+    return;
+  }
+
+  refs.resendVerificationMessage.classList.remove("error-text");
+  refs.resendVerificationMessage.classList.add("success-text");
+  refs.resendVerificationMessage.textContent = result.message || "Dogrulama maili tekrar gonderildi.";
+}
+
 async function updateOrderStatus(orderId, status) {
   const result = await request(`/api/orders/${orderId}/status`, {
     method: "POST",
@@ -1550,6 +1647,48 @@ async function request(url, options = {}) {
   }
 
   return response.json();
+}
+
+async function handleAuthUrlActions() {
+  const params = new URLSearchParams(window.location.search);
+  const verifyToken = params.get("verifyEmailToken");
+  const resetToken = params.get("resetToken");
+
+  if (verifyToken) {
+    const result = await request("/api/auth/verify-email", {
+      method: "POST",
+      body: JSON.stringify({ token: verifyToken }),
+    });
+
+    if (result.error) {
+      refs.loginError.textContent = result.error;
+    } else {
+      refs.customerRegisterSuccess.textContent = result.message || "E-posta adresiniz dogrulandi.";
+      state.user = result.user || null;
+      if (state.user) {
+        await refreshData();
+      }
+    }
+
+    clearAuthQueryParams(["verifyEmailToken"]);
+  }
+
+  if (resetToken && refs.resetPasswordForm) {
+    refs.resetPasswordPanel?.classList.remove("hidden");
+    refs.resetPasswordForm.elements.token.value = resetToken;
+    clearAuthQueryParams(["resetToken"]);
+  } else {
+    refs.resetPasswordPanel?.classList.add("hidden");
+  }
+}
+
+function clearAuthQueryParams(keys, replace = true) {
+  const url = new URL(window.location.href);
+  keys.forEach((key) => url.searchParams.delete(key));
+  const next = `${url.pathname}${url.searchParams.toString() ? `?${url.searchParams.toString()}` : ""}${url.hash}`;
+  if (replace) {
+    window.history.replaceState({}, "", next);
+  }
 }
 
 function escapeHtml(value) {
