@@ -73,19 +73,15 @@ function createApp() {
   });
 
   app.post("/api/login", async (req, res) => {
-    const { username, password } = req.body || {};
-    const user = await get("SELECT * FROM users WHERE username = ?", [username]);
+    const identifier = cleanOptional(req.body?.identifier || req.body?.username || req.body?.email);
+    const password = req.body?.password;
+    const user = await findUserByLoginIdentifier(identifier);
 
     if (!user || !bcrypt.compareSync(password || "", user.password_hash)) {
-      return res.status(401).json({ error: "Kullanici adi veya sifre hatali." });
+      return res.status(401).json({ error: "Kullanici adi/e-posta veya sifre hatali." });
     }
 
-    req.session.user = {
-      id: Number(user.id),
-      name: user.name,
-      username: user.username,
-      role: normalizeRole(user.role),
-    };
+    req.session.user = sessionUserFromRow(user);
 
     return res.json({ user: req.session.user });
   });
@@ -97,6 +93,58 @@ function createApp() {
 
   app.get("/api/me", (req, res) => {
     res.json({ user: req.session.user || null });
+  });
+
+  app.post("/api/customers/register", async (req, res) => {
+    const name = cleanOptional(req.body?.name);
+    const email = normalizeEmail(req.body?.email);
+    const password = String(req.body?.password || "");
+    const requestedUsername = normalizeUsername(req.body?.username);
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "Ad soyad, e-posta ve sifre zorunludur." });
+    }
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ error: "Gecerli bir e-posta adresi girin." });
+    }
+    if (password.length < 6) {
+      return res.status(400).json({ error: "Sifre en az 6 karakter olmali." });
+    }
+
+    const username = requestedUsername || await generateUniqueUsernameFromEmail(email);
+    if (username.length < 3) {
+      return res.status(400).json({ error: "Kullanici adi en az 3 karakter olmali." });
+    }
+
+    const existingByEmail = await get("SELECT id FROM users WHERE LOWER(COALESCE(email, '')) = LOWER(?)", [email]);
+    if (existingByEmail) {
+      return res.status(400).json({ error: "Bu e-posta ile zaten bir hesap var." });
+    }
+
+    const existingByUsername = await get("SELECT id FROM users WHERE LOWER(username) = LOWER(?)", [username]);
+    if (existingByUsername) {
+      return res.status(400).json({ error: "Bu kullanici adi zaten alinmis." });
+    }
+
+    try {
+      const result = await execute(
+        "INSERT INTO users (name, username, email, password_hash, role) VALUES (?, ?, ?, ?, ?) RETURNING id",
+        [name, username, email, bcrypt.hashSync(password, 10), "customer"]
+      );
+
+      const insertedUser = {
+        id: Number(result.rows[0]?.id || result.lastInsertId),
+        name,
+        username,
+        email,
+        role: "customer",
+      };
+
+      req.session.user = insertedUser;
+      return res.json({ user: insertedUser });
+    } catch (_error) {
+      return res.status(400).json({ error: "Musteri hesabi olusturulamadi. Bilgileri kontrol edin." });
+    }
   });
 
   app.get("/api/bootstrap", requireAuth, async (_req, res) => {
@@ -120,6 +168,8 @@ function createApp() {
 
   app.post("/api/users", requireAdmin, async (req, res) => {
     const { name, username, password, role } = req.body || {};
+    const email = normalizeEmail(req.body?.email);
+    const normalizedUsername = normalizeUsername(username);
     if (!name || !username || !password || !role) {
       return res.status(400).json({ error: "Tum kullanici alanlari zorunlu." });
     }
@@ -127,21 +177,28 @@ function createApp() {
     if (!["admin", "staff", "customer", "operator"].includes(role)) {
       return res.status(400).json({ error: "Gecersiz kullanici rolu." });
     }
+    if (email && !isValidEmail(email)) {
+      return res.status(400).json({ error: "Gecerli bir e-posta adresi girin." });
+    }
+    if (normalizedUsername.length < 3) {
+      return res.status(400).json({ error: "Kullanici adi en az 3 karakter olmali." });
+    }
 
     try {
       const result = await execute(
-        "INSERT INTO users (name, username, password_hash, role) VALUES (?, ?, ?, ?) RETURNING id",
-        [name.trim(), username.trim(), bcrypt.hashSync(password, 10), role]
+        "INSERT INTO users (name, username, email, password_hash, role) VALUES (?, ?, ?, ?, ?) RETURNING id",
+        [name.trim(), normalizedUsername, email || null, bcrypt.hashSync(password, 10), role]
       );
 
       return res.json({
         id: Number(result.rows[0]?.id || result.lastInsertId),
         name,
-        username,
+        username: normalizedUsername,
+        email,
         role,
       });
     } catch (_error) {
-      return res.status(400).json({ error: "Kullanici olusturulamadi. Kullanici adi benzersiz olmali." });
+      return res.status(400).json({ error: "Kullanici olusturulamadi. Kullanici adi ve e-posta benzersiz olmali." });
     }
   });
 
@@ -915,6 +972,63 @@ function cleanOptional(value) {
   return value ? String(value).trim() : "";
 }
 
+function normalizeEmail(value) {
+  return cleanOptional(value).toLowerCase();
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || ""));
+}
+
+function normalizeUsername(value) {
+  return cleanOptional(value)
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9._-]+/g, "")
+    .replace(/^[._-]+|[._-]+$/g, "")
+    .slice(0, 28);
+}
+
+function sessionUserFromRow(user) {
+  return {
+    id: Number(user.id),
+    name: user.name,
+    username: user.username,
+    email: user.email || "",
+    role: normalizeRole(user.role),
+  };
+}
+
+async function findUserByLoginIdentifier(identifier) {
+  if (!identifier) {
+    return null;
+  }
+
+  return get(
+    `
+      SELECT *
+      FROM users
+      WHERE LOWER(username) = LOWER(?) OR LOWER(COALESCE(email, '')) = LOWER(?)
+      LIMIT 1
+    `,
+    [identifier, identifier]
+  );
+}
+
+async function generateUniqueUsernameFromEmail(email) {
+  const base = normalizeUsername(String(email || "").split("@")[0]) || "musteri";
+  let candidate = base;
+  let counter = 1;
+
+  while (await get("SELECT id FROM users WHERE LOWER(username) = LOWER(?)", [candidate])) {
+    counter += 1;
+    candidate = `${base}${counter}`.slice(0, 28);
+  }
+
+  return candidate;
+}
+
 async function getItemStock(itemId, executor = null) {
   const getter = executor?.get ? executor.get.bind(executor) : get;
   const row = await getter(
@@ -1046,7 +1160,7 @@ async function queryCashbook() {
 }
 
 async function queryUsers() {
-  const rows = await query("SELECT id, name, username, role FROM users ORDER BY id ASC");
+  const rows = await query("SELECT id, name, username, email, role FROM users ORDER BY id ASC");
   return rows.map((row) => ({ ...row, id: Number(row.id), role: normalizeRole(row.role) }));
 }
 

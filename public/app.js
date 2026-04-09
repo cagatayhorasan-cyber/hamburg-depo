@@ -48,6 +48,9 @@ const refs = {
   appScreen: document.getElementById("appScreen"),
   loginForm: document.getElementById("loginForm"),
   loginError: document.getElementById("loginError"),
+  customerRegisterForm: document.getElementById("customerRegisterForm"),
+  customerRegisterError: document.getElementById("customerRegisterError"),
+  customerRegisterSuccess: document.getElementById("customerRegisterSuccess"),
   welcomeText: document.getElementById("welcomeText"),
   statsGrid: document.getElementById("statsGrid"),
   itemForm: document.getElementById("itemForm"),
@@ -141,6 +144,7 @@ function bindEvents() {
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("submit", handleLogin);
+  refs.customerRegisterForm?.addEventListener("submit", handleCustomerRegister);
   refs.itemForm.addEventListener("submit", handleItemSubmit);
   refs.movementForm.addEventListener("submit", (event) => handleSubmit(event, "/api/movements"));
   refs.stockIntakeForm?.addEventListener("submit", handleStockIntakeSubmit);
@@ -217,6 +221,28 @@ async function handleLogin(event) {
 
   state.user = result.user;
   refs.loginForm.reset();
+  await refreshData();
+}
+
+async function handleCustomerRegister(event) {
+  event.preventDefault();
+  refs.customerRegisterError.textContent = "";
+  refs.customerRegisterSuccess.textContent = "";
+
+  const payload = formToObject(event.currentTarget);
+  const result = await request("/api/customers/register", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    refs.customerRegisterError.textContent = result.error;
+    return;
+  }
+
+  refs.customerRegisterSuccess.textContent = "Hesabiniz olusturuldu. Simdi kendi musteri panelinizdesiniz.";
+  state.user = result.user;
+  event.currentTarget.reset();
   await refreshData();
 }
 
@@ -338,6 +364,15 @@ function showLogin() {
   refs.assistantWidget.classList.add("hidden");
   refs.loginError.textContent = "";
   refs.loginForm.reset();
+  if (refs.customerRegisterForm) {
+    refs.customerRegisterForm.reset();
+  }
+  if (refs.customerRegisterError) {
+    refs.customerRegisterError.textContent = "";
+  }
+  if (refs.customerRegisterSuccess) {
+    refs.customerRegisterSuccess.textContent = "";
+  }
   lockLoginInputs();
   closeAssistantPanel();
 }
@@ -620,7 +655,7 @@ function renderUsers() {
   state.users.forEach((user) => {
     const tr = document.createElement("tr");
     const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? "Musteri" : "Personel";
-    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${roleText}</td>`;
+    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.email || "-"}</td><td>${roleText}</td>`;
     refs.usersTableBody.append(tr);
   });
 }

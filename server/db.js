@@ -28,6 +28,7 @@ const sqliteSchema = `
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
+    email TEXT,
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
   );
@@ -141,6 +142,7 @@ const postgresSchema = `
     id BIGSERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
+    email TEXT,
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
   );
@@ -258,6 +260,7 @@ async function initDatabase() {
     });
     await pgPool.query(postgresSchema);
     await ensureUserRoleConstraintPostgres();
+    await ensureUserColumnsPostgres();
     await ensureItemColumnsPostgres();
     await ensureItemIndexesPostgres();
     await ensureMovementColumnsPostgres();
@@ -276,6 +279,7 @@ async function initDatabase() {
   sqliteDb = new DatabaseSync(dbPath);
   sqliteDb.exec("PRAGMA journal_mode = WAL;");
   sqliteDb.exec(sqliteSchema);
+  ensureUserColumnsSqlite();
   ensureItemColumnsSqlite();
   ensureItemIndexesSqlite();
   ensureMovementColumnsSqlite();
@@ -403,6 +407,18 @@ function ensureItemColumnsSqlite() {
   }
 }
 
+function ensureUserColumnsSqlite() {
+  const columns = sqliteDb.prepare("PRAGMA table_info(users)").all().map((column) => column.name);
+  if (!columns.includes("email")) {
+    sqliteDb.exec("ALTER TABLE users ADD COLUMN email TEXT");
+  }
+  sqliteDb.exec(`
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_unique
+    ON users(LOWER(email))
+    WHERE email IS NOT NULL AND TRIM(email) <> ''
+  `);
+}
+
 function ensureItemIndexesSqlite() {
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_items_product_code ON items(product_code COLLATE NOCASE)");
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_items_name ON items(name COLLATE NOCASE)");
@@ -453,9 +469,10 @@ async function seedUsers(adapter) {
       }
 
       try {
-        await tx.run("INSERT INTO users (name, username, password_hash, role) VALUES (?, ?, ?, ?)", [
+        await tx.run("INSERT INTO users (name, username, email, password_hash, role) VALUES (?, ?, ?, ?, ?)", [
           user.name,
           user.username,
+          user.email || null,
           bcrypt.hashSync(user.password, 10),
           user.role,
         ]);
@@ -548,6 +565,23 @@ async function ensureMovementColumnsPostgres() {
 
 async function ensureMovementIndexesPostgres() {
   await pgPool.query("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
+}
+
+async function ensureUserColumnsPostgres() {
+  const columns = await pgPool.query(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'users'
+  `);
+  const names = new Set(columns.rows.map((row) => row.column_name));
+  if (!names.has("email")) {
+    await pgPool.query("ALTER TABLE users ADD COLUMN email TEXT");
+  }
+  await pgPool.query(`
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_unique
+    ON users (LOWER(email))
+    WHERE email IS NOT NULL AND BTRIM(email) <> ''
+  `);
 }
 
 async function ensureUserRoleConstraintPostgres() {
