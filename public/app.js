@@ -731,7 +731,7 @@ function renderUsers() {
   state.users.forEach((user) => {
     const tr = document.createElement("tr");
     const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? "Musteri" : "Personel";
-    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.email || "-"}</td><td>${roleText}</td>`;
+    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.email || "-"}</td><td>${user.phone || "-"}</td><td>${roleText}</td>`;
     refs.usersTableBody.append(tr);
   });
 }
@@ -894,6 +894,7 @@ function renderAdminOrders() {
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing">Hazirla</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed">Tamamla</button>
           <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled">Iptal</button>
+          ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}">WhatsApp</button>` : ""}
         </div>
       </td>
     `;
@@ -902,6 +903,10 @@ function renderAdminOrders() {
 
   refs.ordersTableBody.querySelectorAll("[data-order-status]").forEach((button) => {
     button.addEventListener("click", () => updateOrderStatus(Number(button.dataset.orderStatus), button.dataset.status));
+  });
+
+  refs.ordersTableBody.querySelectorAll("[data-order-whatsapp]").forEach((button) => {
+    button.addEventListener("click", () => openOrderWhatsapp(Number(button.dataset.orderWhatsapp)));
   });
 }
 
@@ -1536,6 +1541,37 @@ function getOrderStatusLabel(status) {
     default:
       return "Beklemede";
   }
+}
+
+function openOrderWhatsapp(orderId) {
+  const order = state.orders.find((entry) => Number(entry.id) === Number(orderId));
+  if (!order?.phone) {
+    window.alert("Bu siparis icin kayitli telefon numarasi yok.");
+    return;
+  }
+
+  const phone = formatWhatsappNumber(order.phone);
+  if (!phone) {
+    window.alert("Telefon numarasi WhatsApp icin uygun formatta degil.");
+    return;
+  }
+
+  const statusText = getOrderStatusLabel(order.status);
+  const itemSummary = order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ");
+  const message = [
+    `Merhaba ${order.customerName},`,
+    `DRC siparis bilgilendirmesi: #${order.id}`,
+    `Durum: ${statusText}`,
+    `Tarih: ${order.date}`,
+    itemSummary ? `Kalemler: ${itemSummary}` : "",
+  ].filter(Boolean).join("\n");
+
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+}
+
+function formatWhatsappNumber(value) {
+  const digits = String(value || "").replace(/\D/g, "");
+  return digits.length >= 8 ? digits : "";
 }
 
 async function handleQuoteSave() {

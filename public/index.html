@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- deploy-marker: 2026-04-09-customer-auth -->
+  <!-- deploy-marker: 2026-04-09-whatsapp-orders -->
   <title>Hamburg Depo Yonetim Merkezi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260409-customer-auth-1">
+  <link rel="stylesheet" href="/styles.css?v=20260409-whatsapp-orders-1">
 </head>
 <body>
   <div class="page-shell">
@@ -60,6 +60,7 @@
           <form id="customerRegisterForm" class="form-grid" autocomplete="off">
             <label>Ad Soyad<input name="name" type="text" required></label>
             <label>E-Posta<input name="email" type="email" required autocapitalize="off" spellcheck="false"></label>
+            <label>Telefon / WhatsApp<input name="phone" type="tel" required placeholder="+49..."></label>
             <label>Kullanici Adi (Istege Bagli)<input name="username" type="text" placeholder="Bos birakirsaniz sistem uretir" autocapitalize="off" spellcheck="false"></label>
             <label>Sifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
             <button class="secondary-button auth-register-button" type="submit">Musteri Hesabi Ac</button>
@@ -484,6 +485,7 @@
                   <label>Ad Soyad<input name="name" type="text" required></label>
                   <label>Kullanici Adi<input name="username" type="text" required></label>
                   <label>E-Posta<input name="email" type="email" autocapitalize="off" spellcheck="false"></label>
+                  <label>Telefon / WhatsApp<input name="phone" type="tel" placeholder="+49..."></label>
                   <label>Sifre<input name="password" type="password" required></label>
                   <label>Rol<select name="role" required><option value="staff">Personel</option><option value="customer">Musteri</option><option value="admin">Admin</option></select></label>
                   <button class="primary-button" type="submit">Kullanici Ekle</button>
@@ -498,6 +500,7 @@
                         <th>Ad Soyad</th>
                         <th>Kullanici Adi</th>
                         <th>E-Posta</th>
+                        <th>Telefon</th>
                         <th>Rol</th>
                       </tr>
                     </thead>
@@ -539,6 +542,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260409-customer-auth-1"></script>
+  <script src="/app.js?v=20260409-whatsapp-orders-1"></script>
 </body>
 </html>

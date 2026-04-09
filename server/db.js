@@ -29,6 +29,7 @@ const sqliteSchema = `
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     email TEXT,
+    phone TEXT,
     email_verified INTEGER NOT NULL DEFAULT 1,
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
@@ -155,6 +156,7 @@ const postgresSchema = `
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     email TEXT,
+    phone TEXT,
     email_verified BOOLEAN NOT NULL DEFAULT TRUE,
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
@@ -435,6 +437,9 @@ function ensureUserColumnsSqlite() {
   if (!columns.includes("email")) {
     sqliteDb.exec("ALTER TABLE users ADD COLUMN email TEXT");
   }
+  if (!columns.includes("phone")) {
+    sqliteDb.exec("ALTER TABLE users ADD COLUMN phone TEXT");
+  }
   if (!columns.includes("email_verified")) {
     sqliteDb.exec("ALTER TABLE users ADD COLUMN email_verified INTEGER NOT NULL DEFAULT 1");
   }
@@ -603,6 +608,9 @@ async function ensureUserColumnsPostgres() {
   const names = new Set(columns.rows.map((row) => row.column_name));
   if (!names.has("email")) {
     await pgPool.query("ALTER TABLE users ADD COLUMN email TEXT");
+  }
+  if (!names.has("phone")) {
+    await pgPool.query("ALTER TABLE users ADD COLUMN phone TEXT");
   }
   if (!names.has("email_verified")) {
     await pgPool.query("ALTER TABLE users ADD COLUMN email_verified BOOLEAN NOT NULL DEFAULT TRUE");

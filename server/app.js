@@ -188,14 +188,18 @@ function createApp() {
   app.post("/api/customers/register", async (req, res) => {
     const name = cleanOptional(req.body?.name);
     const email = normalizeEmail(req.body?.email);
+    const phone = normalizePhone(req.body?.phone);
     const password = String(req.body?.password || "");
     const requestedUsername = normalizeUsername(req.body?.username);
 
-    if (!name || !email || !password) {
-      return res.status(400).json({ error: "Ad soyad, e-posta ve sifre zorunludur." });
+    if (!name || !email || !password || !phone) {
+      return res.status(400).json({ error: "Ad soyad, e-posta, telefon ve sifre zorunludur." });
     }
     if (!isValidEmail(email)) {
       return res.status(400).json({ error: "Gecerli bir e-posta adresi girin." });
+    }
+    if (!phone || phone.length < 8) {
+      return res.status(400).json({ error: "Gecerli bir telefon numarasi girin." });
     }
     if (password.length < 6) {
       return res.status(400).json({ error: "Sifre en az 6 karakter olmali." });
@@ -218,8 +222,8 @@ function createApp() {
 
     try {
       const result = await execute(
-        "INSERT INTO users (name, username, email, email_verified, password_hash, role) VALUES (?, ?, ?, ?, ?, ?) RETURNING id",
-        [name, username, email, 0, bcrypt.hashSync(password, 10), "customer"]
+        "INSERT INTO users (name, username, email, phone, email_verified, password_hash, role) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id",
+        [name, username, email, phone, 0, bcrypt.hashSync(password, 10), "customer"]
       );
 
       const insertedUser = {
@@ -227,6 +231,7 @@ function createApp() {
         name,
         username,
         email,
+        phone,
         emailVerified: false,
         role: "customer",
       };
@@ -267,6 +272,7 @@ function createApp() {
   app.post("/api/users", requireAdmin, async (req, res) => {
     const { name, username, password, role } = req.body || {};
     const email = normalizeEmail(req.body?.email);
+    const phone = normalizePhone(req.body?.phone);
     const normalizedUsername = normalizeUsername(username);
     if (!name || !username || !password || !role) {
       return res.status(400).json({ error: "Tum kullanici alanlari zorunlu." });
@@ -284,8 +290,8 @@ function createApp() {
 
     try {
       const result = await execute(
-        "INSERT INTO users (name, username, email, password_hash, role) VALUES (?, ?, ?, ?, ?) RETURNING id",
-        [name.trim(), normalizedUsername, email || null, bcrypt.hashSync(password, 10), role]
+        "INSERT INTO users (name, username, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?, ?) RETURNING id",
+        [name.trim(), normalizedUsername, email || null, phone || null, bcrypt.hashSync(password, 10), role]
       );
 
       return res.json({
@@ -293,6 +299,7 @@ function createApp() {
         name,
         username: normalizedUsername,
         email,
+        phone,
         role,
       });
     } catch (_error) {
@@ -1103,6 +1110,15 @@ function normalizeEmail(value) {
   return cleanOptional(value).toLowerCase();
 }
 
+function normalizePhone(value) {
+  const raw = cleanOptional(value);
+  if (!raw) {
+    return "";
+  }
+  const normalized = raw.replace(/[^\d+]/g, "");
+  return normalized.startsWith("+") ? normalized : `+${normalized.replace(/\D/g, "")}`;
+}
+
 function toBoolean(value) {
   return value === true || value === 1 || value === "1" || value === "true" || value === "t";
 }
@@ -1127,6 +1143,7 @@ function sessionUserFromRow(user) {
     name: user.name,
     username: user.username,
     email: user.email || "",
+    phone: user.phone || "",
     emailVerified: toBoolean(user.email_verified),
     role: normalizeRole(user.role),
   };
@@ -1488,7 +1505,7 @@ async function queryCashbook() {
 }
 
 async function queryUsers() {
-  const rows = await query("SELECT id, name, username, email, role FROM users ORDER BY id ASC");
+  const rows = await query("SELECT id, name, username, email, phone, role FROM users ORDER BY id ASC");
   return rows.map((row) => ({ ...row, id: Number(row.id), role: normalizeRole(row.role) }));
 }
 
@@ -1866,11 +1883,13 @@ async function queryOrders(user) {
         orders.id,
         orders.customer_name AS "customerName",
         orders.customer_user_id AS "customerUserId",
+        users.phone AS phone,
         orders.order_date AS date,
         orders.status,
         orders.note,
         orders.created_at AS "createdAt"
       FROM orders
+      LEFT JOIN users ON users.id = orders.customer_user_id
       ${whereClause}
       ORDER BY orders.created_at DESC, orders.id DESC
       LIMIT 40
