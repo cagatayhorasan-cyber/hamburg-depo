@@ -10,6 +10,16 @@ const configuredDbPath = process.env.SQLITE_PATH ? path.resolve(process.env.SQLI
 const dataDir = path.dirname(configuredDbPath);
 const dbPath = isPostgres ? process.env.DATABASE_URL : configuredDbPath;
 
+const DEFAULT_USERS = [
+  { name: "Depo Admin", username: "admin", password: "admin123", role: "admin" },
+  { name: "Depo Operator", username: "operator", password: "operator123", role: "operator" },
+  { name: "Personel 1", username: "personel1", password: "personel123", role: "staff" },
+  { name: "Personel 2", username: "personel2", password: "personel123", role: "staff" },
+  { name: "Musteri 1", username: "musteri1", password: "musteri123", role: "customer" },
+  { name: "Musteri 2", username: "musteri2", password: "musteri123", role: "customer" },
+  { name: "Musteri 3", username: "musteri3", password: "musteri123", role: "customer" },
+];
+
 let sqliteDb = null;
 let pgPool = null;
 
@@ -19,7 +29,7 @@ const sqliteSchema = `
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
-    role TEXT NOT NULL CHECK(role IN ('admin', 'operator'))
+    role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
   );
 
   CREATE TABLE IF NOT EXISTS items (
@@ -102,6 +112,28 @@ const sqliteSchema = `
     FOREIGN KEY(quote_id) REFERENCES quotes(id) ON DELETE CASCADE,
     FOREIGN KEY(item_id) REFERENCES items(id)
   );
+
+  CREATE TABLE IF NOT EXISTS orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_user_id INTEGER NOT NULL,
+    customer_name TEXT NOT NULL,
+    order_date TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    note TEXT DEFAULT '',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(customer_user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS order_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id INTEGER NOT NULL,
+    item_id INTEGER,
+    item_name TEXT NOT NULL,
+    quantity REAL NOT NULL,
+    unit TEXT NOT NULL,
+    FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY(item_id) REFERENCES items(id)
+  );
 `;
 
 const postgresSchema = `
@@ -110,7 +142,7 @@ const postgresSchema = `
     name TEXT NOT NULL,
     username TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
-    role TEXT NOT NULL CHECK(role IN ('admin', 'operator'))
+    role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
   );
 
   CREATE TABLE IF NOT EXISTS items (
@@ -196,6 +228,25 @@ const postgresSchema = `
     unit_price NUMERIC NOT NULL,
     total NUMERIC NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS orders (
+    id BIGSERIAL PRIMARY KEY,
+    customer_user_id BIGINT NOT NULL REFERENCES users(id),
+    customer_name TEXT NOT NULL,
+    order_date DATE NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    note TEXT DEFAULT '',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+
+  CREATE TABLE IF NOT EXISTS order_items (
+    id BIGSERIAL PRIMARY KEY,
+    order_id BIGINT NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+    item_id BIGINT REFERENCES items(id),
+    item_name TEXT NOT NULL,
+    quantity NUMERIC NOT NULL,
+    unit TEXT NOT NULL
+  );
 `;
 
 async function initDatabase() {
@@ -206,6 +257,7 @@ async function initDatabase() {
       ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
     });
     await pgPool.query(postgresSchema);
+    await ensureUserRoleConstraintPostgres();
     await ensureItemColumnsPostgres();
     await ensureItemIndexesPostgres();
     await ensureMovementColumnsPostgres();
@@ -393,24 +445,27 @@ function ensureQuoteColumnsSqlite() {
 }
 
 async function seedUsers(adapter) {
-  const countRow = await adapter.get("SELECT COUNT(*) AS count FROM users", []);
-  if (Number(countRow?.count || 0) > 0) {
-    return;
-  }
-
   await withOptionalTransaction(adapter, async (tx) => {
-    await tx.run("INSERT INTO users (name, username, password_hash, role) VALUES (?, ?, ?, ?)", [
-      "Depo Admin",
-      "admin",
-      bcrypt.hashSync("admin123", 10),
-      "admin",
-    ]);
-    await tx.run("INSERT INTO users (name, username, password_hash, role) VALUES (?, ?, ?, ?)", [
-      "Depo Operator",
-      "operator",
-      bcrypt.hashSync("operator123", 10),
-      "operator",
-    ]);
+    for (const user of DEFAULT_USERS) {
+      const existing = await adapter.get("SELECT id FROM users WHERE username = ?", [user.username]);
+      if (existing) {
+        continue;
+      }
+
+      try {
+        await tx.run("INSERT INTO users (name, username, password_hash, role) VALUES (?, ?, ?, ?)", [
+          user.name,
+          user.username,
+          bcrypt.hashSync(user.password, 10),
+          user.role,
+        ]);
+      } catch (error) {
+        if (!isPostgres && /CHECK constraint failed/i.test(String(error.message || ""))) {
+          continue;
+        }
+        throw error;
+      }
+    }
   });
 }
 
@@ -493,6 +548,15 @@ async function ensureMovementColumnsPostgres() {
 
 async function ensureMovementIndexesPostgres() {
   await pgPool.query("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
+}
+
+async function ensureUserRoleConstraintPostgres() {
+  await pgPool.query("ALTER TABLE users DROP CONSTRAINT IF EXISTS users_role_check");
+  await pgPool.query(`
+    ALTER TABLE users
+    ADD CONSTRAINT users_role_check
+    CHECK (role IN ('admin', 'operator', 'staff', 'customer'))
+  `);
 }
 
 module.exports = {

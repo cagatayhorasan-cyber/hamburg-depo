@@ -84,7 +84,7 @@ function createApp() {
       id: Number(user.id),
       name: user.name,
       username: user.username,
-      role: user.role,
+      role: normalizeRole(user.role),
     };
 
     return res.json({ user: req.session.user });
@@ -100,7 +100,7 @@ function createApp() {
   });
 
   app.get("/api/bootstrap", requireAuth, async (_req, res) => {
-    res.json(await buildBootstrap());
+    res.json(await buildBootstrap(_req.session.user));
   });
 
   app.post("/api/assistant/query", requireAuth, async (req, res) => {
@@ -124,6 +124,10 @@ function createApp() {
       return res.status(400).json({ error: "Tum kullanici alanlari zorunlu." });
     }
 
+    if (!["admin", "staff", "customer", "operator"].includes(role)) {
+      return res.status(400).json({ error: "Gecersiz kullanici rolu." });
+    }
+
     try {
       const result = await execute(
         "INSERT INTO users (name, username, password_hash, role) VALUES (?, ?, ?, ?) RETURNING id",
@@ -141,7 +145,7 @@ function createApp() {
     }
   });
 
-  app.post("/api/items", requireAuth, async (req, res) => {
+  app.post("/api/items", requireAdmin, async (req, res) => {
     const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
@@ -173,7 +177,7 @@ function createApp() {
     }
   });
 
-  app.put("/api/items/:id", requireAuth, async (req, res) => {
+  app.put("/api/items/:id", requireAdmin, async (req, res) => {
     const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
@@ -210,7 +214,7 @@ function createApp() {
     }
   });
 
-  app.delete("/api/items/:id", requireAuth, async (req, res) => {
+  app.delete("/api/items/:id", requireAdmin, async (req, res) => {
     const itemId = Number(req.params.id);
     const movementCount = Number((await get("SELECT COUNT(*) AS count FROM movements WHERE item_id = ?", [itemId]))?.count || 0);
     if (movementCount > 0) {
@@ -230,7 +234,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/items/intake", requireAuth, async (req, res) => {
+  app.post("/api/items/intake", requireStaffOrAdmin, async (req, res) => {
     const {
       name,
       brand,
@@ -320,7 +324,7 @@ function createApp() {
     }
   });
 
-  app.post("/api/movements", requireAuth, async (req, res) => {
+  app.post("/api/movements", requireStaffOrAdmin, async (req, res) => {
     const { itemId, type, quantity, unitPrice, date, note } = req.body || {};
     if (!itemId || !type || !quantity || !unitPrice || !date) {
       return res.status(400).json({ error: "Stok hareketi icin tum alanlar gereklidir." });
@@ -347,7 +351,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/movements/:id/reverse", requireAuth, async (req, res) => {
+  app.post("/api/movements/:id/reverse", requireStaffOrAdmin, async (req, res) => {
     const movementId = Number(req.params.id);
     const movement = await get("SELECT * FROM movements WHERE id = ?", [movementId]);
     if (!movement) {
@@ -397,7 +401,7 @@ function createApp() {
     }
   });
 
-  app.post("/api/expenses", requireAuth, async (req, res) => {
+  app.post("/api/expenses", requireAdmin, async (req, res) => {
     const { title, category, amount, date, paymentType, note } = req.body || {};
     if (!title || !category || !amount || !date || !paymentType) {
       return res.status(400).json({ error: "Masraf bilgileri eksik." });
@@ -414,7 +418,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.delete("/api/expenses/:id", requireAuth, async (req, res) => {
+  app.delete("/api/expenses/:id", requireAdmin, async (req, res) => {
     const result = await execute("DELETE FROM expenses WHERE id = ?", [Number(req.params.id)]);
     if (!result.rowCount) {
       return res.status(404).json({ error: "Masraf bulunamadi." });
@@ -422,7 +426,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/cashbook", requireAuth, async (req, res) => {
+  app.post("/api/cashbook", requireStaffOrAdmin, async (req, res) => {
     const { type, title, amount, date, reference, note } = req.body || {};
     if (!type || !title || !amount || !date) {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
@@ -439,7 +443,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.delete("/api/cashbook/:id", requireAuth, async (req, res) => {
+  app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {
     const result = await execute("DELETE FROM cashbook WHERE id = ?", [Number(req.params.id)]);
     if (!result.rowCount) {
       return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
@@ -447,7 +451,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/pricing/bulk", requireAuth, async (req, res) => {
+  app.post("/api/pricing/bulk", requireAdmin, async (req, res) => {
     const { brand, category, increasePercent, pricingMode, baseField } = req.body || {};
     const multiplier = 1 + Number(increasePercent || 0) / 100;
     const clauses = [];
@@ -479,7 +483,7 @@ function createApp() {
     return res.json({ ok: true, updated: result.rowCount });
   });
 
-  app.post("/api/items/:id/archive", requireAuth, async (req, res) => {
+  app.post("/api/items/:id/archive", requireAdmin, async (req, res) => {
     const result = await execute("UPDATE items SET is_active = ? WHERE id = ?", [dbClient === "postgres" ? false : 0, Number(req.params.id)]);
     if (!result.rowCount) {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
@@ -487,7 +491,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/items/:id/restore", requireAuth, async (req, res) => {
+  app.post("/api/items/:id/restore", requireAdmin, async (req, res) => {
     const result = await execute("UPDATE items SET is_active = ? WHERE id = ?", [dbClient === "postgres" ? true : 1, Number(req.params.id)]);
     if (!result.rowCount) {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
@@ -495,7 +499,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/quotes", requireAuth, async (req, res) => {
+  app.post("/api/quotes", requireStaffOrAdmin, async (req, res) => {
     const { customerName, title, date, discount, note, items, language, isExport } = req.body || {};
     if (!customerName || !title || !date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Teklif bilgileri eksik." });
@@ -566,7 +570,7 @@ function createApp() {
     }
   });
 
-  app.post("/api/sales/checkout", requireAuth, async (req, res) => {
+  app.post("/api/sales/checkout", requireStaffOrAdmin, async (req, res) => {
     const { customerName, title, date, discount, note, items, language, isExport, paymentType, collectedAmount, reference } = req.body || {};
     if (!customerName || !date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Direkt satis bilgileri eksik." });
@@ -683,7 +687,76 @@ function createApp() {
     }
   });
 
-  app.get("/api/quotes/:id/pdf", requireAuth, async (req, res) => {
+  app.post("/api/orders", requireCustomer, async (req, res) => {
+    const { date, note, items } = req.body || {};
+    if (!date || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: "Siparis icin tarih ve en az bir kalem gerekli." });
+    }
+
+    try {
+      const orderId = await withTransaction(async (tx) => {
+        const orderResult = await tx.execute(
+          `
+            INSERT INTO orders (customer_user_id, customer_name, order_date, status, note)
+            VALUES (?, ?, ?, 'pending', ?)
+            RETURNING id
+          `,
+          [req.session.user.id, req.session.user.name, date, cleanOptional(note)]
+        );
+
+        const insertedOrderId = Number(orderResult.rows[0]?.id || orderResult.lastInsertId);
+
+        for (const entry of items) {
+          const item = await tx.get("SELECT id, name, unit, is_active FROM items WHERE id = ?", [Number(entry.itemId)]);
+          if (!item) {
+            throw new Error("Siparis icindeki bir urun bulunamadi.");
+          }
+          if (item.is_active === false || item.is_active === 0) {
+            throw new Error("Siparis icindeki bir urun aktif degil.");
+          }
+          const currentStock = await getItemStock(Number(item.id), tx);
+          if (Number(entry.quantity) > currentStock) {
+            throw new Error(`${item.name} icin stok yetersiz.`);
+          }
+
+          await tx.execute(
+            `
+              INSERT INTO order_items (order_id, item_id, item_name, quantity, unit)
+              VALUES (?, ?, ?, ?, ?)
+            `,
+            [
+              insertedOrderId,
+              Number(item.id),
+              item.name,
+              Number(entry.quantity),
+              entry.unit || item.unit || "adet",
+            ]
+          );
+        }
+
+        return insertedOrderId;
+      });
+
+      return res.json({ ok: true, id: orderId });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Siparis olusturulamadi." });
+    }
+  });
+
+  app.post("/api/orders/:id/status", requireStaffOrAdmin, async (req, res) => {
+    const status = cleanOptional(req.body?.status).toLowerCase();
+    if (!["pending", "approved", "preparing", "completed", "cancelled"].includes(status)) {
+      return res.status(400).json({ error: "Gecersiz siparis durumu." });
+    }
+
+    const result = await execute("UPDATE orders SET status = ? WHERE id = ?", [status, Number(req.params.id)]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Siparis bulunamadi." });
+    }
+    return res.json({ ok: true });
+  });
+
+  app.get("/api/quotes/:id/pdf", requireStaffOrAdmin, async (req, res) => {
     const quote = await getQuoteById(Number(req.params.id));
     if (!quote) {
       return res.status(404).json({ error: "Teklif bulunamadi." });
@@ -705,7 +778,7 @@ function createApp() {
     }
   });
 
-  app.get("/api/barcodes/:itemId", requireAuth, async (req, res) => {
+  app.get("/api/barcodes/:itemId", requireStaffOrAdmin, async (req, res) => {
     const item = await get("SELECT * FROM items WHERE id = ?", [req.params.itemId]);
     if (!item) {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
@@ -729,8 +802,8 @@ function createApp() {
       });
   });
 
-  app.get("/api/reports/xlsx", requireAuth, async (_req, res) => {
-    const bootstrap = await buildBootstrap();
+  app.get("/api/reports/xlsx", requireStaffOrAdmin, async (req, res) => {
+    const bootstrap = await buildBootstrap(req.session.user);
     const workbook = XLSX.utils.book_new();
 
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(bootstrap.items), "Malzemeler");
@@ -743,7 +816,7 @@ function createApp() {
     res.type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet").send(buffer);
   });
 
-  app.get("/api/reports/pdf", requireAuth, async (_req, res) => {
+  app.get("/api/reports/pdf", requireStaffOrAdmin, async (_req, res) => {
     const summary = await computeSummary();
     const items = await queryItems();
     const doc = new PDFDocument({ margin: 40, size: "A4" });
@@ -796,10 +869,46 @@ function requireAdmin(req, res, next) {
   if (!req.session.user) {
     return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
   }
-  if (req.session.user.role !== "admin") {
+  if (!isAdminRole(req.session.user.role)) {
     return res.status(403).json({ error: "Bu islem icin admin yetkisi gerekiyor." });
   }
   return next();
+}
+
+function requireStaffOrAdmin(req, res, next) {
+  if (!req.session.user) {
+    return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
+  }
+  if (!isStaffRole(req.session.user.role) && !isAdminRole(req.session.user.role)) {
+    return res.status(403).json({ error: "Bu islem icin personel veya admin yetkisi gerekiyor." });
+  }
+  return next();
+}
+
+function requireCustomer(req, res, next) {
+  if (!req.session.user) {
+    return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
+  }
+  if (!isCustomerRole(req.session.user.role)) {
+    return res.status(403).json({ error: "Bu islem sadece musteri kullanicilari icindir." });
+  }
+  return next();
+}
+
+function normalizeRole(role) {
+  return role === "operator" ? "staff" : role;
+}
+
+function isAdminRole(role) {
+  return normalizeRole(role) === "admin";
+}
+
+function isStaffRole(role) {
+  return normalizeRole(role) === "staff";
+}
+
+function isCustomerRole(role) {
+  return normalizeRole(role) === "customer";
 }
 
 function cleanOptional(value) {
@@ -938,7 +1047,7 @@ async function queryCashbook() {
 
 async function queryUsers() {
   const rows = await query("SELECT id, name, username, role FROM users ORDER BY id ASC");
-  return rows.map((row) => ({ ...row, id: Number(row.id) }));
+  return rows.map((row) => ({ ...row, id: Number(row.id), role: normalizeRole(row.role) }));
 }
 
 async function computeSummary() {
@@ -956,16 +1065,61 @@ async function computeSummary() {
   };
 }
 
-async function buildBootstrap() {
-  const [summary, items, archivedItems, movements, expenses, cashbook, users, quotes] = await Promise.all([
+async function buildBootstrap(user) {
+  const normalizedRole = normalizeRole(user?.role);
+
+  if (normalizedRole === "customer") {
+    const [items, orders] = await Promise.all([
+      queryItems(),
+      queryOrders(user),
+    ]);
+
+    const customerItems = items
+      .filter((item) => Number(item.currentStock) > 0)
+      .map((item) => ({
+        id: item.id,
+        name: item.name,
+        brand: item.brand,
+        category: item.category,
+        unit: item.unit,
+        minStock: item.minStock,
+        barcode: item.barcode,
+        notes: item.notes,
+        currentStock: item.currentStock,
+      }));
+
+    return {
+      summary: {
+        totalItems: customerItems.length,
+        stockValue: 0,
+        criticalCount: customerItems.filter((item) => Number(item.currentStock) <= Number(item.minStock)).length,
+        expenseTotal: 0,
+        cashBalance: 0,
+      },
+      items: customerItems,
+      archivedItems: [],
+      movements: [],
+      expenses: [],
+      cashbook: [],
+      users: [],
+      quotes: [],
+      orders,
+    };
+  }
+
+  const includeExpenses = normalizedRole === "admin";
+  const includeUsers = normalizedRole === "admin";
+  const includeArchive = normalizedRole === "admin";
+  const [summary, items, archivedItems, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
     computeSummary(),
     queryItems(),
-    queryItems(false),
+    includeArchive ? queryItems(false) : Promise.resolve([]),
     queryMovements(),
-    queryExpenses(),
+    includeExpenses ? queryExpenses() : Promise.resolve([]),
     queryCashbook(),
-    queryUsers(),
+    includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(),
+    queryOrders(user),
   ]);
 
   return {
@@ -977,6 +1131,7 @@ async function buildBootstrap() {
     cashbook,
     users,
     quotes,
+    orders,
   };
 }
 
@@ -1249,6 +1404,56 @@ async function queryQuotes() {
       items: items.map(numberizeRow),
     });
   }
+  return result;
+}
+
+async function queryOrders(user) {
+  const normalizedRole = normalizeRole(user?.role);
+  const clauses = [];
+  const params = [];
+
+  if (normalizedRole === "customer") {
+    clauses.push("orders.customer_user_id = ?");
+    params.push(Number(user.id));
+  }
+
+  const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
+  const orders = await query(
+    `
+      SELECT
+        orders.id,
+        orders.customer_name AS "customerName",
+        orders.customer_user_id AS "customerUserId",
+        orders.order_date AS date,
+        orders.status,
+        orders.note,
+        orders.created_at AS "createdAt"
+      FROM orders
+      ${whereClause}
+      ORDER BY orders.created_at DESC, orders.id DESC
+      LIMIT 40
+    `,
+    params
+  );
+
+  const result = [];
+  for (const order of orders) {
+    const items = await query(
+      `
+        SELECT item_name AS "itemName", quantity, unit
+        FROM order_items
+        WHERE order_id = ?
+        ORDER BY id ASC
+      `,
+      [order.id]
+    );
+
+    result.push({
+      ...numberizeRow(order),
+      items: items.map(numberizeRow),
+    });
+  }
+
   return result;
 }
 

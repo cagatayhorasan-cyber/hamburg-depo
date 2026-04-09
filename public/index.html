@@ -45,8 +45,8 @@
           <p class="muted" id="welcomeText"></p>
         </div>
         <div class="hero-actions">
-          <button id="downloadXlsx" class="secondary-button" type="button">Excel Rapor</button>
-          <button id="downloadPdf" class="secondary-button" type="button">PDF Ozet</button>
+          <button id="downloadXlsx" class="secondary-button admin-staff-only" type="button">Excel Rapor</button>
+          <button id="downloadPdf" class="secondary-button admin-staff-only" type="button">PDF Ozet</button>
           <button id="logoutButton" class="danger-button" type="button">Cikis Yap</button>
         </div>
       </header>
@@ -56,16 +56,18 @@
 
         <section class="panel tabs-panel">
           <div class="tab-buttons">
-            <button class="tab-button active" data-tab="quotes" type="button">Hizli Satis</button>
-            <button class="tab-button" data-tab="items" type="button">Malzemeler</button>
-            <button class="tab-button" data-tab="archive" type="button">Arsiv</button>
-            <button class="tab-button" data-tab="movements" type="button">Stok</button>
-            <button class="tab-button" data-tab="expenses" type="button">Masraf</button>
-            <button class="tab-button" data-tab="cashbook" type="button">Kasa</button>
-            <button class="tab-button admin-only" data-tab="users" type="button">Kullanicilar</button>
+            <button class="tab-button admin-staff-only active" data-tab="quotes" type="button"><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
+            <button class="tab-button admin-staff-only" data-tab="items" type="button"><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
+            <button class="tab-button admin-only" data-tab="archive" type="button"><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
+            <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
+            <button class="tab-button admin-only" data-tab="expenses" type="button"><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
+            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button"><span class="tab-title">Kasa</span><small>Tahsilat ve kasa hareketlerini takip et</small></button>
+            <button class="tab-button admin-staff-only" data-tab="orders" type="button"><span class="tab-title">Siparisler</span><small>Musteri siparislerini gor ve durum guncelle</small></button>
+            <button class="tab-button customer-only" data-tab="orders" type="button"><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
+            <button class="tab-button admin-only" data-tab="users" type="button"><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
           </div>
 
-          <div class="tab-content" data-tab-content="items">
+          <div class="tab-content admin-staff-only" data-tab-content="items">
             <section class="sales-search-panel">
               <div class="section-head">
                 <div>
@@ -158,7 +160,7 @@
             </details>
           </div>
 
-          <div class="tab-content" data-tab-content="archive">
+          <div class="tab-content admin-only" data-tab-content="archive">
             <section>
               <h2>Pasif Malzeme Arsivi</h2>
               <p id="archiveSummary" class="muted"></p>
@@ -181,7 +183,7 @@
             </section>
           </div>
 
-          <div class="tab-content" data-tab-content="movements">
+          <div class="tab-content admin-staff-only" data-tab-content="movements">
             <div class="two-column">
               <section>
                 <h2>Stok Giris / Cikis</h2>
@@ -236,7 +238,7 @@
             </div>
           </div>
 
-          <div class="tab-content" data-tab-content="expenses">
+          <div class="tab-content admin-only" data-tab-content="expenses">
             <div class="two-column">
               <section>
                 <h2>Masraf Ekle</h2>
@@ -272,7 +274,7 @@
             </div>
           </div>
 
-          <div class="tab-content" data-tab-content="cashbook">
+          <div class="tab-content admin-staff-only" data-tab-content="cashbook">
             <div class="two-column">
               <section>
                 <h2>Kasa Hareketi</h2>
@@ -308,7 +310,7 @@
             </div>
           </div>
 
-          <div class="tab-content active" data-tab-content="quotes">
+          <div class="tab-content active admin-staff-only" data-tab-content="quotes">
             <div class="pos-layout">
               <section class="pos-catalog">
                 <div class="section-head">
@@ -358,6 +360,65 @@
             </section>
           </div>
 
+          <div class="tab-content" data-tab-content="orders">
+            <div class="admin-staff-only">
+              <section>
+                <h2>Siparis Takibi</h2>
+                <p class="muted section-tip">Musteri siparisleri burada toplanir. Personel ve admin durum guncelleyebilir.</p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tarih</th>
+                        <th>Musteri</th>
+                        <th>Kalemler</th>
+                        <th>Durum</th>
+                        <th>Islem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ordersTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+
+            <div class="customer-only">
+              <div class="pos-layout">
+                <section class="pos-catalog">
+                  <div class="section-head">
+                    <div>
+                      <h2>Stoktaki Urunler</h2>
+                      <p class="muted">Sadece stokta olan urunler gosterilir. Fiyat gormezsiniz; sadece adet ve urun bilgisi vardir.</p>
+                    </div>
+                  </div>
+                  <div id="customerCatalogGrid" class="pos-catalog-grid"></div>
+                </section>
+
+                <section class="pos-cart">
+                  <div class="section-head">
+                    <div>
+                      <h2>Siparis Sepeti</h2>
+                      <p class="muted">Istediginiz urunleri secip siparis talebi gonderebilirsiniz.</p>
+                    </div>
+                  </div>
+                  <form id="customerOrderForm" class="form-grid compact-form">
+                    <label>Tarih<input name="date" type="date" required></label>
+                    <label class="form-span-2">Siparis Notu<input name="note" type="text" placeholder="Teslim tarihi, aciklama veya ozel not"></label>
+                  </form>
+                  <div id="customerOrderBody" class="cart-list"></div>
+                  <p id="customerOrderSummary" class="muted"></p>
+                  <div class="action-row pos-actions">
+                    <button id="submitCustomerOrderButton" class="primary-button" type="button">Siparis Gonder</button>
+                  </div>
+                </section>
+              </div>
+              <section class="recent-quotes">
+                <h2>Siparis Gecmisi</h2>
+                <div id="customerOrdersList" class="activity-feed"></div>
+              </section>
+            </div>
+          </div>
+
           <div class="tab-content admin-only" data-tab-content="users">
             <div class="two-column">
               <section>
@@ -366,7 +427,7 @@
                   <label>Ad Soyad<input name="name" type="text" required></label>
                   <label>Kullanici Adi<input name="username" type="text" required></label>
                   <label>Sifre<input name="password" type="password" required></label>
-                  <label>Rol<select name="role" required><option value="operator">Operator</option><option value="admin">Admin</option></select></label>
+                  <label>Rol<select name="role" required><option value="staff">Personel</option><option value="customer">Musteri</option><option value="admin">Admin</option></select></label>
                   <button class="primary-button" type="submit">Kullanici Ekle</button>
                 </form>
               </section>

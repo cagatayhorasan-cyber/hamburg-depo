@@ -543,11 +543,24 @@ label {
 }
 
 .tab-button {
+  display: grid;
+  gap: 4px;
   justify-content: flex-start;
   text-align: left;
   background: transparent;
   border: 1px solid transparent;
   color: var(--muted);
+}
+
+.tab-title {
+  font-weight: 700;
+}
+
+.tab-button small {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: inherit;
+  opacity: 0.82;
 }
 
 .tab-button:hover {
@@ -911,9 +924,19 @@ tbody tr:hover td:last-child {
   color: var(--accent-strong);
 }
 
-.status-critical {
-  background: linear-gradient(135deg, var(--warm-soft), #fff8ea);
+.status-pending {
+  background: linear-gradient(135deg, var(--sales-soft), #f4f7ff);
+  color: var(--sales);
+}
+
+.status-progress {
+  background: linear-gradient(135deg, var(--warm-soft), #fff5e9);
   color: var(--warm);
+}
+
+.status-critical {
+  background: linear-gradient(135deg, var(--danger-soft), #fff1f5);
+  color: var(--danger);
 }
 
 .mini-button {

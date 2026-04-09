@@ -23,12 +23,14 @@ const state = {
   expenses: [],
   cashbook: [],
   users: [],
+  orders: [],
   filters: {
     search: "",
     brand: "all",
     category: "all",
   },
   quoteDraft: [],
+  customerOrderDraft: [],
   quoteFilters: {
     search: "",
     brand: "all",
@@ -65,6 +67,7 @@ const refs = {
   expensesTableBody: document.getElementById("expensesTableBody"),
   cashbookTableBody: document.getElementById("cashbookTableBody"),
   usersTableBody: document.getElementById("usersTableBody"),
+  ordersTableBody: document.getElementById("ordersTableBody"),
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
   barcodeImage: document.getElementById("barcodeImage"),
   logoutButton: document.getElementById("logoutButton"),
@@ -86,6 +89,12 @@ const refs = {
   saveQuoteButton: document.getElementById("saveQuoteButton"),
   checkoutSaleButton: document.getElementById("checkoutSaleButton"),
   quotesList: document.getElementById("quotesList"),
+  customerCatalogGrid: document.getElementById("customerCatalogGrid"),
+  customerOrderForm: document.getElementById("customerOrderForm"),
+  customerOrderBody: document.getElementById("customerOrderBody"),
+  customerOrderSummary: document.getElementById("customerOrderSummary"),
+  customerOrdersList: document.getElementById("customerOrdersList"),
+  submitCustomerOrderButton: document.getElementById("submitCustomerOrderButton"),
   quoteItemSearch: document.getElementById("quoteItemSearch"),
   quoteBrandFilter: document.getElementById("quoteBrandFilter"),
   quoteCategoryFilter: document.getElementById("quoteCategoryFilter"),
@@ -98,6 +107,32 @@ const refs = {
   assistantForm: document.getElementById("assistantForm"),
   assistantInput: document.getElementById("assistantInput"),
 };
+
+function effectiveRole() {
+  return state.user?.role === "operator" ? "staff" : state.user?.role;
+}
+
+function isAdminUser() {
+  return effectiveRole() === "admin";
+}
+
+function isStaffUser() {
+  return effectiveRole() === "staff";
+}
+
+function isCustomerUser() {
+  return effectiveRole() === "customer";
+}
+
+function roleLabel() {
+  if (isAdminUser()) {
+    return "admin";
+  }
+  if (isCustomerUser()) {
+    return "musteri";
+  }
+  return "personel";
+}
 
 bindEvents();
 initialize();
@@ -113,6 +148,7 @@ function bindEvents() {
   refs.itemCancelEdit.addEventListener("click", resetItemForm);
   refs.saveQuoteButton.addEventListener("click", handleQuoteSave);
   refs.checkoutSaleButton.addEventListener("click", handleDirectSale);
+  refs.submitCustomerOrderButton?.addEventListener("click", handleCustomerOrderSubmit);
 
   if (refs.userForm) {
     refs.userForm.addEventListener("submit", (event) => handleSubmit(event, "/api/users"));
@@ -149,7 +185,7 @@ function bindEvents() {
     button.addEventListener("click", () => activateTab(button.dataset.tab));
   });
 
-  [refs.movementForm, refs.stockIntakeForm, refs.expenseForm, refs.cashForm].filter(Boolean).forEach((form) => {
+  [refs.movementForm, refs.stockIntakeForm, refs.expenseForm, refs.cashForm, refs.customerOrderForm].filter(Boolean).forEach((form) => {
     form.elements.date.value = today;
   });
   refs.quoteForm.elements.date.value = today;
@@ -310,19 +346,26 @@ function showLogin() {
 function showApp() {
   refs.loginScreen.classList.add("hidden");
   refs.appScreen.classList.remove("hidden");
-  refs.assistantWidget.classList.remove("hidden");
-  refs.welcomeText.textContent = `${state.user.name} olarak giris yaptiniz. Rol: ${state.user.role}`;
+  refs.assistantWidget.classList.toggle("hidden", isCustomerUser());
+  refs.welcomeText.textContent = `${state.user.name} olarak giris yaptiniz. Rol: ${roleLabel()}`;
   document.querySelectorAll(".admin-only").forEach((node) => {
-    node.classList.toggle("hidden", state.user.role !== "admin");
+    node.classList.toggle("hidden", !isAdminUser());
+  });
+  document.querySelectorAll(".admin-staff-only").forEach((node) => {
+    node.classList.toggle("hidden", isCustomerUser());
+  });
+  document.querySelectorAll(".customer-only").forEach((node) => {
+    node.classList.toggle("hidden", !isCustomerUser());
   });
 
-  if (state.assistantMessages.length === 0) {
+  if (!isCustomerUser() && state.assistantMessages.length === 0) {
     seedAssistantMessages();
   }
 }
 
 function renderAll() {
-  activateTab(state.activeTab || "quotes");
+  const preferredTab = isCustomerUser() ? "orders" : "quotes";
+  activateTab(state.activeTab || preferredTab);
   renderStats();
   renderFilters();
   renderItems();
@@ -331,10 +374,13 @@ function renderAll() {
   renderExpenses();
   renderCashbook();
   renderQuotes();
+  renderOrders();
   renderUsers();
   renderItemSelects();
   updateBarcodePreview();
-  renderAssistantMessages();
+  if (!isCustomerUser()) {
+    renderAssistantMessages();
+  }
 }
 
 function renderFilters() {
@@ -349,13 +395,25 @@ function renderFilters() {
 
 function renderStats() {
   refs.statsGrid.innerHTML = "";
-  const cards = [
-    ["Malzeme Cesidi", state.summary.totalItems, "Kayitli aktif kart"],
-    ["Stok Degeri", currency.format(state.summary.stockValue), "Toplam maliyet etkisi"],
-    ["Kritik Urun", state.summary.criticalCount, "Esik altinda kalanlar"],
-    ["Toplam Masraf", currency.format(state.summary.expenseTotal), "Tum giderler"],
-    ["Kasa Bakiyesi", currency.format(state.summary.cashBalance), "Net nakit durum"],
-  ];
+  const cards = isCustomerUser()
+    ? [
+        ["Stoktaki Urun", state.summary.totalItems, "Siparise acik aktif urunler"],
+        ["Kritik Urun", state.summary.criticalCount, "Stogu azalan urunler"],
+      ]
+    : isAdminUser()
+      ? [
+          ["Malzeme Cesidi", state.summary.totalItems, "Kayitli aktif kart"],
+          ["Stok Degeri", currency.format(state.summary.stockValue), "Toplam maliyet etkisi"],
+          ["Kritik Urun", state.summary.criticalCount, "Esik altinda kalanlar"],
+          ["Toplam Masraf", currency.format(state.summary.expenseTotal), "Tum giderler"],
+          ["Kasa Bakiyesi", currency.format(state.summary.cashBalance), "Net nakit durum"],
+        ]
+      : [
+          ["Malzeme Cesidi", state.summary.totalItems, "Kayitli aktif kart"],
+          ["Stok Degeri", currency.format(state.summary.stockValue), "Toplam maliyet etkisi"],
+          ["Kritik Urun", state.summary.criticalCount, "Esik altinda kalanlar"],
+          ["Kasa Bakiyesi", currency.format(state.summary.cashBalance), "Net nakit durum"],
+        ];
 
   cards.forEach(([label, value, subtitle]) => {
     const card = document.createElement("article");
@@ -377,6 +435,15 @@ function renderItems() {
     const tr = document.createElement("tr");
     const critical = Number(item.currentStock) <= Number(item.minStock);
     const purchasePrice = item.lastPurchasePrice || item.defaultPrice || 0;
+    const actionMarkup = isAdminUser()
+      ? `
+        <div class="action-row">
+          <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}">Duzenle</button>
+          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}">Arsivle</button>
+          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}">Sil</button>
+        </div>
+      `
+      : `<span class="muted">Goruntuleme</span>`;
     tr.innerHTML = `
       <td>${item.name}</td>
       <td>${item.brand || "-"}</td>
@@ -386,26 +453,22 @@ function renderItems() {
       <td>${item.salePrice ? currency.format(item.salePrice) : "-"}</td>
       <td><span class="status-pill ${critical ? "status-critical" : "status-ok"}">${numberFormat.format(item.minStock)} ${item.unit}</span></td>
       <td>${item.barcode}</td>
-      <td>
-        <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}">Duzenle</button>
-          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}">Arsivle</button>
-          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}">Sil</button>
-        </div>
-      </td>
+      <td>${actionMarkup}</td>
     `;
     refs.itemsTableBody.append(tr);
   });
 
-  refs.itemsTableBody.querySelectorAll("[data-action='edit-item']").forEach((button) => {
-    button.addEventListener("click", () => startItemEdit(Number(button.dataset.id)));
-  });
-  refs.itemsTableBody.querySelectorAll("[data-action='delete-item']").forEach((button) => {
-    button.addEventListener("click", () => deleteItem(Number(button.dataset.id)));
-  });
-  refs.itemsTableBody.querySelectorAll("[data-action='archive-item']").forEach((button) => {
-    button.addEventListener("click", () => archiveItem(Number(button.dataset.id)));
-  });
+  if (isAdminUser()) {
+    refs.itemsTableBody.querySelectorAll("[data-action='edit-item']").forEach((button) => {
+      button.addEventListener("click", () => startItemEdit(Number(button.dataset.id)));
+    });
+    refs.itemsTableBody.querySelectorAll("[data-action='delete-item']").forEach((button) => {
+      button.addEventListener("click", () => deleteItem(Number(button.dataset.id)));
+    });
+    refs.itemsTableBody.querySelectorAll("[data-action='archive-item']").forEach((button) => {
+      button.addEventListener("click", () => archiveItem(Number(button.dataset.id)));
+    });
+  }
 }
 
 function renderStockedItems(filteredItems) {
@@ -545,12 +608,17 @@ function renderUsers() {
   refs.usersTableBody.innerHTML = "";
   state.users.forEach((user) => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.role}</td>`;
+    const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? "Musteri" : "Personel";
+    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${roleText}</td>`;
     refs.usersTableBody.append(tr);
   });
 }
 
 function renderQuotes() {
+  if (isCustomerUser()) {
+    return;
+  }
+
   renderPosCatalog();
 
   refs.quotesList.innerHTML = "";
@@ -630,7 +698,7 @@ function renderQuotes() {
 }
 
 function renderPosCatalog() {
-  if (!refs.posCatalogGrid) {
+  if (!refs.posCatalogGrid || isCustomerUser()) {
     return;
   }
 
@@ -663,6 +731,164 @@ function renderPosCatalog() {
 
   refs.posCatalogGrid.querySelectorAll("[data-add-quote-item]").forEach((button) => {
     button.addEventListener("click", () => addItemToQuote(Number(button.dataset.addQuoteItem)));
+  });
+}
+
+function renderOrders() {
+  renderAdminOrders();
+  renderCustomerCatalog();
+  renderCustomerOrderDraft();
+  renderCustomerOrders();
+}
+
+function renderAdminOrders() {
+  if (!refs.ordersTableBody || isCustomerUser()) {
+    return;
+  }
+
+  refs.ordersTableBody.innerHTML = "";
+  if (!state.orders || state.orders.length === 0) {
+    refs.ordersTableBody.innerHTML = `<tr><td colspan="5"><div class="empty-state">Henuz musteri siparisi yok.</div></td></tr>`;
+    return;
+  }
+
+  state.orders.forEach((order) => {
+    const tr = document.createElement("tr");
+    const statusClass = order.status === "completed" || order.status === "approved"
+      ? "status-ok"
+      : order.status === "cancelled"
+        ? "status-critical"
+        : order.status === "preparing"
+          ? "status-progress"
+          : "status-pending";
+    tr.innerHTML = `
+      <td>${order.date}</td>
+      <td>${order.customerName}</td>
+      <td>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</td>
+      <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span></td>
+      <td class="table-action-cell">
+        <div class="action-row">
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved">Onayla</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing">Hazirla</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed">Tamamla</button>
+          <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled">Iptal</button>
+        </div>
+      </td>
+    `;
+    refs.ordersTableBody.append(tr);
+  });
+
+  refs.ordersTableBody.querySelectorAll("[data-order-status]").forEach((button) => {
+    button.addEventListener("click", () => updateOrderStatus(Number(button.dataset.orderStatus), button.dataset.status));
+  });
+}
+
+function renderCustomerCatalog() {
+  if (!refs.customerCatalogGrid || !isCustomerUser()) {
+    return;
+  }
+
+  const items = state.items.filter((item) => Number(item.currentStock) > 0).slice(0, 80);
+  refs.customerCatalogGrid.innerHTML = "";
+
+  if (items.length === 0) {
+    refs.customerCatalogGrid.innerHTML = `<div class="empty-state">Siparise acik stoklu urun bulunamadi.</div>`;
+    return;
+  }
+
+  items.forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "pos-card";
+    card.innerHTML = `
+      <div class="pos-card-head">
+        <strong>${item.name}</strong>
+        <span>${item.brand || "-"}</span>
+      </div>
+      <div class="pos-card-meta">
+        <span>${item.category}</span>
+        <span>Stok: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+        <span>Stok Kodu: ${item.barcode || "-"}</span>
+      </div>
+      <button class="primary-button" type="button" data-add-order-item="${item.id}">Siparise Ekle</button>
+    `;
+    refs.customerCatalogGrid.append(card);
+  });
+
+  refs.customerCatalogGrid.querySelectorAll("[data-add-order-item]").forEach((button) => {
+    button.addEventListener("click", () => addItemToCustomerOrder(Number(button.dataset.addOrderItem)));
+  });
+}
+
+function renderCustomerOrderDraft() {
+  if (!refs.customerOrderBody || !refs.customerOrderSummary || !isCustomerUser()) {
+    return;
+  }
+
+  refs.customerOrderBody.innerHTML = "";
+  if (state.customerOrderDraft.length === 0) {
+    refs.customerOrderBody.innerHTML = `<div class="empty-state">Sepetiniz bos. Soldan stoktaki urunleri ekleyebilirsiniz.</div>`;
+    refs.customerOrderSummary.textContent = "Henuz siparis kalemi yok.";
+    return;
+  }
+
+  state.customerOrderDraft.forEach((entry, index) => {
+    const row = document.createElement("article");
+    row.className = "cart-item";
+    row.innerHTML = `
+      <div class="cart-item-main">
+        <strong>${entry.itemName}</strong>
+        <span>${entry.unit} | Stok: ${numberFormat.format(entry.maxQuantity)} ${entry.unit}</span>
+      </div>
+      <div class="cart-item-controls">
+        <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="-1">-</button>
+        <span>${numberFormat.format(entry.quantity)}</span>
+        <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="1">+</button>
+      </div>
+      <div class="cart-item-total">
+        <strong>${numberFormat.format(entry.quantity)} ${entry.unit}</strong>
+        <button class="mini-button danger-button" type="button" data-remove-order-line="${index}">Sil</button>
+      </div>
+    `;
+    refs.customerOrderBody.append(row);
+  });
+
+  refs.customerOrderBody.querySelectorAll("[data-remove-order-line]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.customerOrderDraft.splice(Number(button.dataset.removeOrderLine), 1);
+      renderOrders();
+    });
+  });
+
+  refs.customerOrderBody.querySelectorAll("[data-order-qty]").forEach((button) => {
+    button.addEventListener("click", () => changeCustomerOrderQuantity(Number(button.dataset.orderQty), Number(button.dataset.delta)));
+  });
+
+  const totalLines = state.customerOrderDraft.length;
+  const totalUnits = state.customerOrderDraft.reduce((sum, entry) => sum + Number(entry.quantity), 0);
+  refs.customerOrderSummary.textContent = `${totalLines} kalem | Toplam talep: ${numberFormat.format(totalUnits)} adet/birim`;
+}
+
+function renderCustomerOrders() {
+  if (!refs.customerOrdersList || !isCustomerUser()) {
+    return;
+  }
+
+  refs.customerOrdersList.innerHTML = "";
+  if (!state.orders || state.orders.length === 0) {
+    refs.customerOrdersList.innerHTML = `<div class="empty-state">Daha once gonderilmis siparisiniz yok.</div>`;
+    return;
+  }
+
+  state.orders.forEach((order) => {
+    const div = document.createElement("div");
+    div.className = "feed-item";
+    div.innerHTML = `
+      <strong>Siparis #${order.id}</strong>
+      <span>${order.date} | Durum: ${getOrderStatusLabel(order.status)}</span>
+      <span>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
+      <span>${order.note || "-"}</span>
+    `;
+    refs.customerOrdersList.append(div);
   });
 }
 
@@ -704,12 +930,15 @@ function syncMovementPrice() {
 }
 
 function activateTab(tab) {
-  state.activeTab = tab;
+  const visibleButtons = [...document.querySelectorAll("[data-tab]")].filter((button) => !button.classList.contains("hidden"));
+  const requestedVisible = visibleButtons.some((button) => button.dataset.tab === tab);
+  const nextTab = requestedVisible ? tab : (visibleButtons[0]?.dataset.tab || tab);
+  state.activeTab = nextTab;
   document.querySelectorAll("[data-tab]").forEach((button) => {
-    button.classList.toggle("active", button.dataset.tab === tab);
+    button.classList.toggle("active", !button.classList.contains("hidden") && button.dataset.tab === nextTab);
   });
   document.querySelectorAll("[data-tab-content]").forEach((panel) => {
-    panel.classList.toggle("active", panel.dataset.tabContent === tab);
+    panel.classList.toggle("active", !panel.classList.contains("hidden") && panel.dataset.tabContent === nextTab);
   });
 }
 
@@ -1058,6 +1287,28 @@ function addItemToQuote(itemId) {
   renderQuotes();
 }
 
+function addItemToCustomerOrder(itemId) {
+  const item = state.items.find((entry) => Number(entry.id) === Number(itemId));
+  if (!item) {
+    return;
+  }
+
+  const existing = state.customerOrderDraft.find((entry) => Number(entry.itemId) === Number(item.id));
+  if (existing) {
+    existing.quantity = Math.min(Number(existing.quantity) + 1, Number(existing.maxQuantity));
+  } else {
+    state.customerOrderDraft.push({
+      itemId: Number(item.id),
+      itemName: item.name,
+      quantity: 1,
+      unit: item.unit,
+      maxQuantity: Number(item.currentStock),
+    });
+  }
+
+  renderOrders();
+}
+
 function changeQuoteQuantity(index, delta) {
   const line = state.quoteDraft[index];
   if (!line) {
@@ -1066,6 +1317,80 @@ function changeQuoteQuantity(index, delta) {
 
   line.quantity = Math.max(1, Number(line.quantity) + delta);
   renderQuotes();
+}
+
+function changeCustomerOrderQuantity(index, delta) {
+  const line = state.customerOrderDraft[index];
+  if (!line) {
+    return;
+  }
+
+  const nextValue = Math.max(1, Number(line.quantity) + delta);
+  line.quantity = Math.min(nextValue, Number(line.maxQuantity) || nextValue);
+  renderOrders();
+}
+
+async function handleCustomerOrderSubmit() {
+  if (!isCustomerUser()) {
+    return;
+  }
+
+  if (state.customerOrderDraft.length === 0) {
+    window.alert("Siparis gondermeden once sepete en az bir urun ekleyin.");
+    return;
+  }
+
+  const payload = formToObject(refs.customerOrderForm);
+  payload.items = state.customerOrderDraft.map((entry) => ({
+    itemId: entry.itemId,
+    quantity: entry.quantity,
+    unit: entry.unit,
+  }));
+
+  const result = await request("/api/orders", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  state.customerOrderDraft = [];
+  refs.customerOrderForm.reset();
+  refs.customerOrderForm.elements.date.value = today;
+  await refreshData();
+  window.alert("Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.");
+}
+
+async function updateOrderStatus(orderId, status) {
+  const result = await request(`/api/orders/${orderId}/status`, {
+    method: "POST",
+    body: JSON.stringify({ status }),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  await refreshData();
+}
+
+function getOrderStatusLabel(status) {
+  switch (status) {
+    case "approved":
+      return "Onaylandi";
+    case "preparing":
+      return "Hazirlaniyor";
+    case "completed":
+      return "Tamamlandi";
+    case "cancelled":
+      return "Iptal";
+    default:
+      return "Beklemede";
+  }
 }
 
 async function handleQuoteSave() {
