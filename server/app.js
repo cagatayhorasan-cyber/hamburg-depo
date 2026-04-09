@@ -107,21 +107,26 @@ function createApp() {
   app.post("/api/auth/forgot-password", async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
     const user = await findUserByLoginIdentifier(identifier);
-    let mailResult = { sent: false, reason: "account_not_found" };
-
-    if (user && user.email) {
+    if (user && user.phone) {
       const token = await issueAuthToken(Number(user.id), "reset_password", 2);
       const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
-      mailResult = await sendPasswordResetEmail(user, resetUrl);
+      const whatsappUrl = buildWhatsAppUrl(user.phone, [
+        `Merhaba ${user.name || ""},`,
+        "DRC sifre yenileme baglantiniz hazir:",
+        resetUrl,
+        "Baglanti 2 saat gecerlidir.",
+      ].join("\n"));
+
+      return res.json({
+        ok: true,
+        whatsappUrl,
+        message: "Sifre yenileme baglantisi WhatsApp uzerinden acilmaya hazir.",
+      });
     }
 
     return res.json({
       ok: true,
-      message: mailResult.sent
-        ? "Sifre yenileme baglantisi e-posta adresine gonderildi."
-        : "Mail sistemi henuz tam ayarlanmadigi icin sifre yenileme maili gonderilemedi.",
-      mailSent: Boolean(mailResult.sent),
-      mailReason: mailResult.reason || "",
+      message: "Bu hesap icin kayitli WhatsApp numarasi bulunamadi.",
     });
   });
 
@@ -1231,6 +1236,14 @@ function getAppBaseUrl(req) {
   const protocol = req.get("x-forwarded-proto") || req.protocol || "https";
   const host = req.get("x-forwarded-host") || req.get("host");
   return `${protocol}://${host}`;
+}
+
+function buildWhatsAppUrl(phone, message) {
+  const normalizedPhone = String(phone || "").replace(/\D/g, "");
+  if (!normalizedPhone) {
+    return "";
+  }
+  return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(message)}`;
 }
 
 function getMailSenderAddress(provider = "default") {

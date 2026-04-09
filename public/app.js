@@ -279,6 +279,9 @@ async function handleForgotPassword(event) {
   }
 
   refs.forgotPasswordSuccess.textContent = result.message || "Islem tamamlandi.";
+  if (result.whatsappUrl) {
+    window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
+  }
   event.currentTarget.reset();
 }
 
