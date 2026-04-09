@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- deploy-marker: 2026-04-09-manual-login -->
+  <!-- deploy-marker: 2026-04-09-login-autofill-cleanup -->
   <title>Hamburg Depo Yonetim Merkezi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260409-manual-login-1">
+  <link rel="stylesheet" href="/styles.css?v=20260409-login-autofill-2">
 </head>
 <body>
   <div class="page-shell">
@@ -26,11 +26,11 @@
           <input class="autofill-trap" type="password" name="fake-password" autocomplete="current-password" tabindex="-1" aria-hidden="true">
           <label>
             Kullanici Adi
-            <input name="username" type="text" required placeholder="admin" autocomplete="off" autocapitalize="off" spellcheck="false">
+            <input data-login-field name="username" type="text" required autocomplete="off" autocapitalize="off" spellcheck="false" readonly>
           </label>
           <label>
             Sifre
-            <input name="password" type="password" required placeholder="admin123" autocomplete="new-password" autocapitalize="off" spellcheck="false">
+            <input data-login-field name="password" type="password" required autocomplete="new-password" autocapitalize="off" spellcheck="false" readonly>
           </label>
           <button class="primary-button" type="submit">Giris Yap</button>
           <p id="loginError" class="error-text"></p>
@@ -482,6 +482,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260409-manual-login-1"></script>
+  <script src="/app.js?v=20260409-login-autofill-2"></script>
 </body>
 </html>

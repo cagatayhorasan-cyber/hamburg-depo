@@ -275,6 +275,9 @@ input:-webkit-autofill::first-line {
   box-shadow: none;
   color: var(--text);
   text-shadow: none;
+  -webkit-text-fill-color: var(--text);
+  background-image: none !important;
+  filter: none !important;
 }
 
 .auth-card input::placeholder {
@@ -295,6 +298,19 @@ input:-webkit-autofill::first-line {
   box-shadow: 0 0 0 1000px #ffffff inset !important;
   text-shadow: none !important;
   border-color: rgba(18, 44, 83, 0.14) !important;
+}
+
+.auth-card input[readonly] {
+  cursor: text;
+}
+
+.auth-card input::-webkit-credentials-auto-fill-button,
+.auth-card input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
 }
 
 .autofill-trap {

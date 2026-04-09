@@ -138,6 +138,8 @@ bindEvents();
 initialize();
 
 function bindEvents() {
+  refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
+  refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("submit", handleLogin);
   refs.itemForm.addEventListener("submit", handleItemSubmit);
   refs.movementForm.addEventListener("submit", (event) => handleSubmit(event, "/api/movements"));
@@ -336,6 +338,7 @@ function showLogin() {
   refs.assistantWidget.classList.add("hidden");
   refs.loginError.textContent = "";
   refs.loginForm.reset();
+  lockLoginInputs();
   closeAssistantPanel();
 }
 
@@ -357,6 +360,18 @@ function showApp() {
   if (!isCustomerUser() && state.assistantMessages.length === 0) {
     seedAssistantMessages();
   }
+}
+
+function lockLoginInputs() {
+  refs.loginForm.querySelectorAll("[data-login-field]").forEach((input) => {
+    input.setAttribute("readonly", "readonly");
+  });
+}
+
+function unlockLoginInputs() {
+  refs.loginForm.querySelectorAll("[data-login-field]").forEach((input) => {
+    input.removeAttribute("readonly");
+  });
 }
 
 function renderAll() {
