@@ -1013,7 +1013,7 @@ function createApp() {
     res.type("application/pdf");
     doc.pipe(res);
 
-    doc.fontSize(20).text("Hamburg Depo Ozet Raporu");
+    doc.fontSize(20).text("Durmusbaba Ozet Raporu");
     doc.moveDown();
     doc.fontSize(11).text(`Toplam malzeme: ${summary.totalItems}`);
     doc.text(`Stok degeri: ${summary.stockValue.toFixed(2)} EUR`);
@@ -1042,7 +1042,7 @@ async function startServer(port = process.env.PORT || 3000, host = process.env.H
   await initDatabase();
   const app = createApp();
   return app.listen(port, host, () => {
-    console.log(`Hamburg depo sunucusu calisiyor: http://${host}:${port}`);
+    console.log(`Durmusbaba sunucusu calisiyor: http://${host}:${port}`);
   });
 }
 
