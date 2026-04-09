@@ -24,11 +24,11 @@
         <form id="loginForm" class="stack-form">
           <label>
             Kullanici Adi
-            <input name="username" type="text" required placeholder="admin">
+            <input name="username" type="text" required placeholder="admin" autocomplete="username" autocapitalize="off" spellcheck="false">
           </label>
           <label>
             Sifre
-            <input name="password" type="password" required placeholder="admin123">
+            <input name="password" type="password" required placeholder="admin123" autocomplete="current-password" autocapitalize="off" spellcheck="false">
           </label>
           <button class="primary-button" type="submit">Giris Yap</button>
           <p id="loginError" class="error-text"></p>

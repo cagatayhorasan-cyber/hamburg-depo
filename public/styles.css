@@ -82,6 +82,7 @@ select {
 
 input::placeholder {
   color: #92a09d;
+  opacity: 1;
 }
 
 input:hover,
@@ -106,6 +107,13 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.92) inset;
   transition: background-color 9999s ease-in-out 0s;
   text-shadow: none;
+  caret-color: var(--text);
+}
+
+input:-webkit-autofill::first-line {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1rem;
+  color: var(--text);
 }
 
 .page-shell {
@@ -259,6 +267,34 @@ input:-webkit-autofill:active {
   padding: 36px;
   position: relative;
   overflow: hidden;
+}
+
+.auth-card input {
+  background: #ffffff;
+  border-color: rgba(18, 44, 83, 0.14);
+  box-shadow: none;
+  color: var(--text);
+  text-shadow: none;
+}
+
+.auth-card input::placeholder {
+  color: #a7b1bd;
+}
+
+.auth-card input:focus::placeholder,
+.auth-card input:not(:placeholder-shown)::placeholder {
+  color: transparent;
+}
+
+.auth-card input:-webkit-autofill,
+.auth-card input:-webkit-autofill:hover,
+.auth-card input:-webkit-autofill:focus,
+.auth-card input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--text) !important;
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  text-shadow: none !important;
+  border-color: rgba(18, 44, 83, 0.14) !important;
 }
 
 .auth-card::before,
