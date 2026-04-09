@@ -102,16 +102,21 @@ function createApp() {
   app.post("/api/auth/forgot-password", async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
     const user = await findUserByLoginIdentifier(identifier);
+    let mailResult = { sent: false, reason: "account_not_found" };
 
     if (user && user.email) {
       const token = await issueAuthToken(Number(user.id), "reset_password", 2);
       const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
-      await sendPasswordResetEmail(user, resetUrl);
+      mailResult = await sendPasswordResetEmail(user, resetUrl);
     }
 
     return res.json({
       ok: true,
-      message: "Eger hesap bulunduysa sifre yenileme baglantisi e-posta adresine gonderildi.",
+      message: mailResult.sent
+        ? "Sifre yenileme baglantisi e-posta adresine gonderildi."
+        : "Mail sistemi henuz tam ayarlanmadigi icin sifre yenileme maili gonderilemedi.",
+      mailSent: Boolean(mailResult.sent),
+      mailReason: mailResult.reason || "",
     });
   });
 
@@ -163,9 +168,16 @@ function createApp() {
 
     const token = await issueAuthToken(Number(user.id), "verify_email", 24);
     const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
-    await sendVerificationEmail(user, verifyUrl);
+    const mailResult = await sendVerificationEmail(user, verifyUrl);
 
-    return res.json({ ok: true, message: "Dogrulama e-postasi tekrar gonderildi." });
+    return res.json({
+      ok: true,
+      message: mailResult.sent
+        ? "Dogrulama e-postasi tekrar gonderildi."
+        : "Mail sistemi henuz tam ayarlanmadigi icin dogrulama maili gonderilemedi.",
+      mailSent: Boolean(mailResult.sent),
+      mailReason: mailResult.reason || "",
+    });
   });
 
   app.post("/api/customers/register", async (req, res) => {
@@ -217,8 +229,12 @@ function createApp() {
       req.session.user = insertedUser;
       const token = await issueAuthToken(insertedUser.id, "verify_email", 24);
       const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
-      await sendVerificationEmail(insertedUser, verifyUrl);
-      return res.json({ user: insertedUser });
+      const mailResult = await sendVerificationEmail(insertedUser, verifyUrl);
+      return res.json({
+        user: insertedUser,
+        mailSent: Boolean(mailResult.sent),
+        mailReason: mailResult.reason || "",
+      });
     } catch (_error) {
       return res.status(400).json({ error: "Musteri hesabi olusturulamadi. Bilgileri kontrol edin." });
     }

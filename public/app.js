@@ -254,7 +254,9 @@ async function handleCustomerRegister(event) {
     return;
   }
 
-  refs.customerRegisterSuccess.textContent = "Hesabiniz olusturuldu. Simdi kendi musteri panelinizdesiniz.";
+  refs.customerRegisterSuccess.textContent = result.mailSent
+    ? "Hesabiniz olusturuldu. Dogrulama maili gonderildi ve kendi musteri panelinizdesiniz."
+    : "Hesabiniz olusturuldu, ancak mail sistemi ayarli olmadigi icin dogrulama maili gonderilemedi.";
   state.user = result.user;
   event.currentTarget.reset();
   await refreshData();
@@ -276,7 +278,7 @@ async function handleForgotPassword(event) {
     return;
   }
 
-  refs.forgotPasswordSuccess.textContent = result.message || "Baglanti gonderildiyse e-posta kutunuza dusmus olacaktir.";
+  refs.forgotPasswordSuccess.textContent = result.message || "Islem tamamlandi.";
   event.currentTarget.reset();
 }
 
@@ -1503,8 +1505,8 @@ async function handleResendVerification() {
   }
 
   refs.resendVerificationMessage.classList.remove("error-text");
-  refs.resendVerificationMessage.classList.add("success-text");
-  refs.resendVerificationMessage.textContent = result.message || "Dogrulama maili tekrar gonderildi.";
+  refs.resendVerificationMessage.classList.add(result.mailSent ? "success-text" : "error-text");
+  refs.resendVerificationMessage.textContent = result.message || "Islem tamamlandi.";
 }
 
 async function updateOrderStatus(orderId, status) {
