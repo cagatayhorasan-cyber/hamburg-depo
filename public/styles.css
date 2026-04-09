@@ -297,6 +297,16 @@ input:-webkit-autofill::first-line {
   border-color: rgba(18, 44, 83, 0.14) !important;
 }
 
+.autofill-trap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .auth-card::before,
 .hero::before {
   content: "";

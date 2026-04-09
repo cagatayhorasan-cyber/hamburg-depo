@@ -194,14 +194,8 @@ function bindEvents() {
 }
 
 async function initialize() {
-  const me = await request("/api/me");
-  if (!me.user) {
-    showLogin();
-    return;
-  }
-
-  state.user = me.user;
-  await refreshData();
+  state.user = null;
+  showLogin();
 }
 
 async function handleLogin(event) {
@@ -340,6 +334,8 @@ function showLogin() {
   refs.loginScreen.classList.remove("hidden");
   refs.appScreen.classList.add("hidden");
   refs.assistantWidget.classList.add("hidden");
+  refs.loginError.textContent = "";
+  refs.loginForm.reset();
   closeAssistantPanel();
 }
 
