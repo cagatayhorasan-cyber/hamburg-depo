@@ -310,6 +310,9 @@ const state = {
   users: [],
   orders: [],
   agentTraining: [],
+  agentTrainingLoaded: false,
+  inventoryLoadedAll: false,
+  inventoryLoadPromise: null,
   retrofitChecklist: null,
   filters: {
     search: "",
@@ -328,6 +331,10 @@ const state = {
   assistantUserId: null,
   assistantLanguage: "tr",
   assistantMessages: [],
+  filterOptionsSignature: "",
+  filterOptions: { brand: [], category: [] },
+  itemSelectSignature: "",
+  itemSearchSuggestionSignature: "",
 };
 
 let filterDebounceTimer = null;
@@ -1328,6 +1335,8 @@ async function handleStockIntakeSubmit(event) {
   await refreshData();
 
   if (result.id && refs.movementForm?.elements?.itemId) {
+    await loadInventory(true);
+    renderTabData("movements");
     refs.movementForm.elements.itemId.value = String(result.id);
     syncMovementPrice();
   }
@@ -1368,8 +1377,8 @@ async function handleAssistantTrainingSubmit(event) {
   }
 
   resetAssistantTrainingForm();
-  await refreshData();
   activateTab("training");
+  await loadAssistantTraining(true);
 }
 
 async function deleteAssistantTraining(trainingId) {
@@ -1390,8 +1399,8 @@ async function deleteAssistantTraining(trainingId) {
     resetAssistantTrainingForm();
   }
 
-  await refreshData();
   activateTab("training");
+  await loadAssistantTraining(true);
 }
 
 function resetItemForm() {
@@ -1416,6 +1425,12 @@ async function refreshData() {
   }
 
   Object.assign(state, data);
+  state.agentTrainingLoaded = false;
+  state.inventoryLoadedAll = false;
+  state.inventoryLoadPromise = null;
+  state.filterOptionsSignature = "";
+  state.itemSelectSignature = "";
+  state.itemSearchSuggestionSignature = "";
   if (previousUserId !== Number(state.user?.id || 0)) {
     state.assistantMessages = [];
     state.assistantLanguage = "tr";
@@ -1508,33 +1523,23 @@ function unlockLoginInputs() {
 function renderAll() {
   applyUiTranslations();
   const preferredTab = isCustomerUser() ? "orders" : "quotes";
-  activateTab(state.activeTab || preferredTab);
   renderStats();
   renderFilters();
-  renderItems();
-  renderArchive();
-  renderMovements();
-  renderExpenses();
-  renderCashbook();
-  renderQuotes();
-  renderOrders();
-  renderUsers();
-  renderAssistantTraining();
-  renderRetrofitChecklist();
-  renderItemSelects();
-  updateBarcodePreview();
+  activateTab(state.activeTab || preferredTab);
   if (!isCustomerUser()) {
     renderAssistantMessages();
   }
 }
 
 function renderFilters() {
-  populateSelect(refs.brandFilter, uniqueValues("brand"), langText("Tum Markalar", "Alle Marken"), state.filters.brand);
-  populateSelect(refs.categoryFilter, uniqueValues("category"), langText("Tum Kategoriler", "Alle Kategorien"), state.filters.category);
-  populateSelect(refs.bulkBrandFilter, uniqueValues("brand"), langText("Tum Markalar", "Alle Marken"), refs.bulkBrandFilter.value || "all");
-  populateSelect(refs.bulkCategoryFilter, uniqueValues("category"), langText("Tum Kategoriler", "Alle Kategorien"), refs.bulkCategoryFilter.value || "all");
-  populateSelect(refs.quoteBrandFilter, uniqueValues("brand"), langText("Tum Markalar", "Alle Marken"), state.quoteFilters.brand);
-  populateSelect(refs.quoteCategoryFilter, uniqueValues("category"), langText("Tum Kategoriler", "Alle Kategorien"), state.quoteFilters.category);
+  const brands = uniqueValues("brand");
+  const categories = uniqueValues("category");
+  populateSelect(refs.brandFilter, brands, langText("Tum Markalar", "Alle Marken"), state.filters.brand);
+  populateSelect(refs.categoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), state.filters.category);
+  populateSelect(refs.bulkBrandFilter, brands, langText("Tum Markalar", "Alle Marken"), refs.bulkBrandFilter.value || "all");
+  populateSelect(refs.bulkCategoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), refs.bulkCategoryFilter.value || "all");
+  populateSelect(refs.quoteBrandFilter, brands, langText("Tum Markalar", "Alle Marken"), state.quoteFilters.brand);
+  populateSelect(refs.quoteCategoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), state.quoteFilters.category);
   renderItemSearchSuggestions();
 }
 
@@ -1570,6 +1575,11 @@ function renderStats() {
 }
 
 function renderItems() {
+  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+    renderInventoryLoading("items");
+    return;
+  }
+
   refs.itemsTableBody.innerHTML = "";
   const filteredItems = getFilteredItems();
   const visibleItems = filteredItems.slice(0, MAX_ITEMS_TABLE_ROWS);
@@ -1655,6 +1665,10 @@ function renderArchive() {
   if (!refs.archiveTableBody || !refs.archiveSummary) {
     return;
   }
+  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+    renderInventoryLoading("archive");
+    return;
+  }
 
   refs.archiveTableBody.innerHTML = "";
   refs.archiveSummary.textContent = t("messages.archiveSummary", state.archivedItems.length);
@@ -1687,6 +1701,11 @@ function renderArchive() {
 }
 
 function renderMovements() {
+  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+    renderInventoryLoading("movements");
+    return;
+  }
+
   refs.movementsTableBody.innerHTML = "";
   state.movements.slice(0, 20).forEach((movement) => {
     const tr = document.createElement("tr");
@@ -1797,6 +1816,12 @@ function renderAssistantTraining() {
   }
 
   refs.assistantTrainingTableBody.innerHTML = "";
+  if (!state.agentTrainingLoaded) {
+    refs.assistantTrainingSummary.textContent = langText("Egitim kayitlari yukleniyor...", "Trainingseintraege werden geladen...");
+    refs.assistantTrainingTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${langText("Yukleniyor...", "Wird geladen...")}</div></td></tr>`;
+    return;
+  }
+
   const entries = state.agentTraining || [];
   refs.assistantTrainingSummary.textContent = t("messages.trainingSummary", entries.length);
 
@@ -1831,6 +1856,24 @@ function renderAssistantTraining() {
   refs.assistantTrainingTableBody.querySelectorAll("[data-delete-training]").forEach((button) => {
     button.addEventListener("click", () => deleteAssistantTraining(Number(button.dataset.deleteTraining)));
   });
+}
+
+async function loadAssistantTraining(force = false) {
+  if (!isAdminUser() || (!force && state.agentTrainingLoaded)) {
+    renderAssistantTraining();
+    return;
+  }
+
+  renderAssistantTraining();
+  const result = await request("/api/assistant/trainings");
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  state.agentTraining = Array.isArray(result.entries) ? result.entries : [];
+  state.agentTrainingLoaded = true;
+  renderAssistantTraining();
 }
 
 function populateAssistantTrainingForm(trainingId) {
@@ -2385,18 +2428,101 @@ function renderCustomerOrders() {
 }
 
 function renderItemSelects() {
-  const generalSelects = [refs.movementForm.elements.itemId, refs.barcodeItemSelect];
+  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+    return;
+  }
+
+  const signature = buildItemSelectSignature();
+  if (state.itemSelectSignature === signature) {
+    return;
+  }
+  state.itemSelectSignature = signature;
+
+  const generalSelects = [
+    refs.movementForm.elements.itemId,
+    ...(isAdminUser() ? [refs.barcodeItemSelect] : []),
+  ].filter(Boolean);
   generalSelects.forEach((select) => {
+    const previous = select.value;
+    const fragment = document.createDocumentFragment();
     select.innerHTML = "";
     getFilteredItems(false).forEach((item) => {
       const option = document.createElement("option");
       option.value = item.id;
       option.textContent = `${item.name}${item.brand ? ` / ${item.brand}` : ""} (${item.currentStock} ${item.unit})`;
-      select.append(option);
+      fragment.append(option);
     });
+    select.append(fragment);
+    if ([...select.options].some((option) => option.value === previous)) {
+      select.value = previous;
+    }
   });
 
   syncMovementPrice();
+}
+
+function renderInventoryLoading(target) {
+  const message = langText("Tum urun listesi yukleniyor...", "Gesamte Artikelliste wird geladen...");
+  if (target === "items") {
+    refs.itemsSummary.textContent = message;
+    refs.stockedItemsSummary.textContent = "";
+    refs.stockedItemsList.innerHTML = `<div class="empty-state">${message}</div>`;
+    refs.itemsTableBody.innerHTML = `<tr><td colspan="10"><div class="empty-state">${message}</div></td></tr>`;
+    return;
+  }
+  if (target === "archive") {
+    refs.archiveSummary.textContent = message;
+    refs.archiveTableBody.innerHTML = `<tr><td colspan="8"><div class="empty-state">${message}</div></td></tr>`;
+    return;
+  }
+  if (target === "movements") {
+    refs.movementsTableBody.innerHTML = `<tr><td colspan="6"><div class="empty-state">${message}</div></td></tr>`;
+  }
+}
+
+async function loadInventory(force = false) {
+  if (isCustomerUser()) {
+    return;
+  }
+  if (!force && state.inventoryLoadedAll) {
+    return;
+  }
+  if (!force && state.inventoryLoadPromise) {
+    await state.inventoryLoadPromise;
+    return;
+  }
+
+  state.inventoryLoadPromise = request("/api/inventory")
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      state.items = Array.isArray(result.items) ? result.items : [];
+      state.archivedItems = Array.isArray(result.archivedItems) ? result.archivedItems : [];
+      state.inventoryLoadedAll = true;
+      state.filterOptionsSignature = "";
+      state.itemSelectSignature = "";
+      state.itemSearchSuggestionSignature = "";
+      renderFilters();
+    })
+    .catch((error) => {
+      window.alert(error.message || langText("Urun listesi yuklenemedi.", "Artikelliste konnte nicht geladen werden."));
+    })
+    .finally(() => {
+      state.inventoryLoadPromise = null;
+    });
+
+  await state.inventoryLoadPromise;
+}
+
+function buildItemSelectSignature() {
+  return [
+    isAdminUser() ? "admin" : "staff",
+    state.items.length,
+    state.items.reduce((sum, item) => (
+      sum + Number(item.id || 0) * 31 + Number(item.currentStock || 0) * 17 + hashText(`${item.name}|${item.brand}|${item.unit}`)
+    ), 0),
+  ].join(":");
 }
 
 function updateBarcodePreview() {
@@ -2440,10 +2566,78 @@ function activateTab(tab) {
   document.querySelectorAll("[data-tab-content]").forEach((panel) => {
     panel.classList.toggle("active", !panel.classList.contains("hidden") && panel.dataset.tabContent === nextTab);
   });
+  renderTabData(nextTab);
 }
 
 function isTabButtonVisible(button) {
   return Boolean(button) && !button.classList.contains("hidden") && !button.closest(".hidden");
+}
+
+function renderTabData(tab) {
+  if (tab === "items") {
+    if (!state.inventoryLoadedAll && !isCustomerUser()) {
+      renderItems();
+      loadInventory().then(() => {
+        if (state.inventoryLoadedAll) {
+          renderTabData("items");
+        }
+      });
+      return;
+    }
+    renderItems();
+    renderItemSelects();
+    updateBarcodePreview();
+    return;
+  }
+  if (tab === "archive") {
+    if (!state.inventoryLoadedAll && !isCustomerUser()) {
+      renderArchive();
+      loadInventory().then(() => {
+        if (state.inventoryLoadedAll) {
+          renderTabData("archive");
+        }
+      });
+      return;
+    }
+    renderArchive();
+    return;
+  }
+  if (tab === "movements") {
+    if (!state.inventoryLoadedAll && !isCustomerUser()) {
+      renderMovements();
+      loadInventory().then(() => {
+        if (state.inventoryLoadedAll) {
+          renderTabData("movements");
+        }
+      });
+      return;
+    }
+    renderItemSelects();
+    renderMovements();
+    return;
+  }
+  if (tab === "expenses") {
+    renderExpenses();
+    return;
+  }
+  if (tab === "cashbook") {
+    renderCashbook();
+    return;
+  }
+  if (tab === "orders") {
+    renderOrders();
+    return;
+  }
+  if (tab === "users") {
+    renderUsers();
+    return;
+  }
+  if (tab === "training") {
+    loadAssistantTraining();
+    renderRetrofitChecklist();
+    return;
+  }
+  renderQuotes();
 }
 
 function handleFilterChange() {
@@ -2651,19 +2845,49 @@ function getFilteredItems(applySearch = true) {
 }
 
 function uniqueValues(field) {
-  return [...new Set(state.items.map((item) => item[field]).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr"));
+  const signature = buildFilterOptionsSignature();
+  if (state.filterOptionsSignature !== signature) {
+    state.filterOptionsSignature = signature;
+    state.filterOptions = {
+      brand: [...new Set(state.items.map((item) => item.brand).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr")),
+      category: [...new Set(state.items.map((item) => item.category).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr")),
+    };
+  }
+  return state.filterOptions[field] || [];
+}
+
+function buildFilterOptionsSignature() {
+  return [
+    state.uiLanguage,
+    state.items.length,
+    state.items.reduce((sum, item) => (
+      sum + Number(item.id || 0) * 13 + hashText(item.brand) * 17 + hashText(item.category) * 19
+    ), 0),
+  ].join(":");
 }
 
 function populateSelect(select, values, placeholder, selectedValue) {
   const previous = selectedValue || "all";
-  select.innerHTML = `<option value="all">${placeholder}</option>`;
+  const signature = `${placeholder}|${previous}|${values.join("\u001f")}`;
+  if (select.dataset.optionsSignature === signature) {
+    return;
+  }
+  select.dataset.optionsSignature = signature;
+  const fragment = document.createDocumentFragment();
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "all";
+  defaultOption.textContent = placeholder;
+  fragment.append(defaultOption);
   values.forEach((value) => {
     const option = document.createElement("option");
     option.value = value;
     option.textContent = value;
-    select.append(option);
+    fragment.append(option);
   });
+  select.innerHTML = "";
+  select.append(fragment);
   select.value = values.includes(previous) || previous === "all" ? previous : "all";
 }
 
@@ -2671,6 +2895,17 @@ function renderItemSearchSuggestions() {
   if (!refs.itemSearchSuggestions) {
     return;
   }
+  const signature = [
+    state.uiLanguage,
+    state.items.length,
+    state.items.reduce((sum, item) => (
+      sum + Number(item.id || 0) * 11 + hashText(`${item.name}|${item.brand}|${item.barcode}|${item.category}|${item.notes}`) * 23
+    ), 0),
+  ].join(":");
+  if (state.itemSearchSuggestionSignature === signature) {
+    return;
+  }
+  state.itemSearchSuggestionSignature = signature;
 
   const suggestions = new Set();
   state.items.forEach((item) => {
@@ -2683,14 +2918,25 @@ function renderItemSearchSuggestions() {
   });
 
   refs.itemSearchSuggestions.innerHTML = "";
+  const fragment = document.createDocumentFragment();
   [...suggestions]
     .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr"))
     .slice(0, 250)
     .forEach((value) => {
       const option = document.createElement("option");
       option.value = value;
-      refs.itemSearchSuggestions.append(option);
+      fragment.append(option);
     });
+  refs.itemSearchSuggestions.append(fragment);
+}
+
+function hashText(value) {
+  const text = String(value || "");
+  let hash = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    hash = ((hash * 31) + text.charCodeAt(index)) >>> 0;
+  }
+  return hash;
 }
 
 function renderSearchDropdown() {

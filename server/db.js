@@ -505,6 +505,15 @@ function ensureMovementColumnsSqlite() {
 
 function ensureMovementIndexesSqlite() {
   sqliteDb.exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements(reversal_of)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_movements_item_id ON movements(item_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_movements_item_type_date ON movements(item_id, type, movement_date DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_movements_created ON movements(created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_quote_items_quote_id ON quote_items(quote_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items(order_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_quotes_created ON quotes(created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_orders_customer_created ON orders(customer_user_id, created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_cashbook_created ON cashbook(created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_expenses_created ON expenses(created_at DESC, id DESC)");
 }
 
 function ensureQuoteColumnsSqlite() {
@@ -644,6 +653,15 @@ async function ensureMovementColumnsPostgres() {
 
 async function ensureMovementIndexesPostgres() {
   await pgPool.query("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_movements_item_id ON movements (item_id)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_movements_item_type_date ON movements (item_id, type, movement_date DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_movements_created ON movements (created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_quote_items_quote_id ON quote_items (quote_id)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items (order_id)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_quotes_created ON quotes (created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_orders_customer_created ON orders (customer_user_id, created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_cashbook_created ON cashbook (created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_expenses_created ON expenses (created_at DESC, id DESC)");
 }
 
 async function ensureAgentTrainingIndexesPostgres() {

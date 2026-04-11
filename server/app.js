@@ -265,6 +265,19 @@ function createApp() {
     res.json(await buildBootstrap(_req.session.user));
   });
 
+  app.get("/api/inventory", requireStaffOrAdmin, async (req, res) => {
+    const includeArchive = isAdminRole(req.session.user?.role);
+    const [items, archivedItems] = await Promise.all([
+      queryItems(),
+      includeArchive ? queryItems(false) : Promise.resolve([]),
+    ]);
+
+    return res.json({
+      items: sanitizeItemsForRole(items, req.session.user),
+      archivedItems: sanitizeItemsForRole(archivedItems, req.session.user),
+    });
+  });
+
   app.post("/api/assistant/query", requireAuth, async (req, res) => {
     const message = cleanOptional(req.body?.message);
     const language = req.body?.language === "de" ? "de" : "tr";
@@ -301,6 +314,11 @@ function createApp() {
       suggestions: answer.suggestions || [],
       provider: "built_in",
     });
+  });
+
+  app.get("/api/assistant/trainings", requireAdmin, async (_req, res) => {
+    const entries = await queryAgentTrainingEntries(false);
+    return res.json({ entries });
   });
 
   app.post("/api/assistant/trainings", requireAdmin, async (req, res) => {
@@ -1951,33 +1969,79 @@ async function queryItems(isActive = true) {
   const activeValue = dbClient === "postgres" ? Boolean(isActive) : (isActive ? 1 : 0);
   const rows = await query(
     `
+      WITH movement_summary AS (
+        SELECT
+          item_id,
+          SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock,
+          SUM(CASE WHEN type = 'entry' THEN quantity * unit_price ELSE 0 END) / NULLIF(SUM(CASE WHEN type = 'entry' THEN quantity ELSE 0 END), 0) AS average_purchase_price
+        FROM movements
+        GROUP BY item_id
+      ),
+      last_entry AS (
+        SELECT item_id, unit_price
+        FROM (
+          SELECT
+            item_id,
+            unit_price,
+            ROW_NUMBER() OVER (PARTITION BY item_id ORDER BY movement_date DESC, id DESC) AS row_number
+          FROM movements
+          WHERE type = 'entry'
+        ) ranked_entries
+        WHERE row_number = 1
+      )
       SELECT
         items.*,
-        COALESCE((
-          SELECT SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END)
-          FROM movements
-          WHERE item_id = items.id
-        ), 0) AS current_stock,
-        COALESCE((
-          SELECT unit_price
-          FROM movements
-          WHERE item_id = items.id AND type = 'entry'
-          ORDER BY movement_date DESC, id DESC
-          LIMIT 1
-        ), 0) AS last_purchase_price,
-        COALESCE((
-          SELECT SUM(quantity * unit_price) / NULLIF(SUM(quantity), 0)
-          FROM movements
-          WHERE item_id = items.id AND type = 'entry'
-        ), 0) AS average_purchase_price
+        COALESCE(movement_summary.current_stock, 0) AS current_stock,
+        COALESCE(last_entry.unit_price, 0) AS last_purchase_price,
+        COALESCE(movement_summary.average_purchase_price, 0) AS average_purchase_price
       FROM items
+      LEFT JOIN movement_summary ON movement_summary.item_id = items.id
+      LEFT JOIN last_entry ON last_entry.item_id = items.id
       WHERE COALESCE(items.is_active, TRUE) = ?
       ORDER BY created_at DESC, id DESC
     `,
     [activeValue]
   );
 
-  return rows.map((row) => ({
+  return rows.map(mapItemRow);
+}
+
+async function queryCustomerItems() {
+  const activeValue = dbClient === "postgres" ? true : 1;
+  const rows = await query(
+    `
+      WITH movement_summary AS (
+        SELECT
+          item_id,
+          SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock
+        FROM movements
+        GROUP BY item_id
+      )
+      SELECT
+        items.id,
+        items.name,
+        items.brand,
+        items.category,
+        items.unit,
+        items.min_stock,
+        items.barcode,
+        items.notes,
+        COALESCE(movement_summary.current_stock, 0) AS current_stock
+      FROM items
+      LEFT JOIN movement_summary ON movement_summary.item_id = items.id
+      WHERE COALESCE(items.is_active, TRUE) = ?
+        AND COALESCE(movement_summary.current_stock, 0) > 0
+      ORDER BY items.name ASC, items.id ASC
+    `,
+    [activeValue]
+  );
+
+  return rows.map((row) => mapItemRow(row, { includePrices: false }));
+}
+
+function mapItemRow(row, options = {}) {
+  const includePrices = options.includePrices !== false;
+  return {
     id: Number(row.id),
     name: row.name,
     brand: row.brand || deriveBrand(row),
@@ -1987,12 +2051,12 @@ async function queryItems(isActive = true) {
     barcode: row.barcode || `ITEM-${String(row.id).padStart(5, "0")}`,
     notes: row.notes,
     currentStock: Number(row.current_stock || 0),
-    defaultPrice: Number(row.default_price || 0),
-    listPrice: Number(row.list_price || 0),
-    salePrice: Number(row.sale_price || 0),
-    lastPurchasePrice: Number(row.last_purchase_price || 0),
-    averagePurchasePrice: Number(row.average_purchase_price || 0),
-  }));
+    defaultPrice: includePrices ? Number(row.default_price || 0) : 0,
+    listPrice: includePrices ? Number(row.list_price || 0) : 0,
+    salePrice: includePrices ? Number(row.sale_price || 0) : 0,
+    lastPurchasePrice: includePrices ? Number(row.last_purchase_price || 0) : 0,
+    averagePurchasePrice: includePrices ? Number(row.average_purchase_price || 0) : 0,
+  };
 }
 
 async function queryMovements() {
@@ -2113,20 +2177,56 @@ async function queryAgentTrainingEntries(activeOnly = true) {
 }
 
 async function computeSummary() {
-  const [items, expenses, cashbook] = await Promise.all([queryItems(), queryExpenses(), queryCashbook()]);
-  const stockCostValue = items.reduce((sum, item) => sum + Number(item.currentStock) * Number(item.lastPurchasePrice || item.defaultPrice || 0), 0);
-  const stockSaleValue = items.reduce((sum, item) => sum + Number(item.currentStock) * Number(item.salePrice || 0), 0);
-  const expenseTotal = expenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
-  const cashBalance = cashbook.reduce((sum, entry) => sum + (entry.type === "in" ? Number(entry.amount) : -Number(entry.amount)), 0);
+  const activeValue = dbClient === "postgres" ? true : 1;
+  const [summaryRow, expenseRow, cashRow] = await Promise.all([
+    get(
+      `
+        WITH movement_summary AS (
+          SELECT
+            item_id,
+            SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock
+          FROM movements
+          GROUP BY item_id
+        ),
+        last_entry AS (
+          SELECT item_id, unit_price
+          FROM (
+            SELECT
+              item_id,
+              unit_price,
+              ROW_NUMBER() OVER (PARTITION BY item_id ORDER BY movement_date DESC, id DESC) AS row_number
+            FROM movements
+            WHERE type = 'entry'
+          ) ranked_entries
+          WHERE row_number = 1
+        )
+        SELECT
+          COUNT(items.id) AS total_items,
+          COALESCE(SUM(COALESCE(movement_summary.current_stock, 0) * COALESCE(NULLIF(last_entry.unit_price, 0), items.default_price, 0)), 0) AS stock_cost_value,
+          COALESCE(SUM(COALESCE(movement_summary.current_stock, 0) * COALESCE(items.sale_price, 0)), 0) AS stock_sale_value,
+          COALESCE(SUM(CASE WHEN COALESCE(movement_summary.current_stock, 0) <= COALESCE(items.min_stock, 0) THEN 1 ELSE 0 END), 0) AS critical_count
+        FROM items
+        LEFT JOIN movement_summary ON movement_summary.item_id = items.id
+        LEFT JOIN last_entry ON last_entry.item_id = items.id
+        WHERE COALESCE(items.is_active, TRUE) = ?
+      `,
+      [activeValue]
+    ),
+    get("SELECT COALESCE(SUM(amount), 0) AS expense_total FROM expenses"),
+    get("SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook"),
+  ]);
+
+  const stockCostValue = Number(summaryRow?.stock_cost_value || summaryRow?.stockCostValue || 0);
+  const stockSaleValue = Number(summaryRow?.stock_sale_value || summaryRow?.stockSaleValue || 0);
 
   return {
-    totalItems: items.length,
+    totalItems: Number(summaryRow?.total_items || summaryRow?.totalItems || 0),
     stockValue: stockCostValue,
     stockCostValue,
     stockSaleValue,
-    criticalCount: items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).length,
-    expenseTotal,
-    cashBalance,
+    criticalCount: Number(summaryRow?.critical_count || summaryRow?.criticalCount || 0),
+    expenseTotal: Number(expenseRow?.expense_total || expenseRow?.expenseTotal || 0),
+    cashBalance: Number(cashRow?.cash_balance || cashRow?.cashBalance || 0),
   };
 }
 
@@ -2173,23 +2273,11 @@ async function buildBootstrap(user) {
 
   if (normalizedRole === "customer") {
     const [items, orders] = await Promise.all([
-      queryItems(),
+      queryCustomerItems(),
       queryOrders(user),
     ]);
 
-    const customerItems = items
-      .filter((item) => Number(item.currentStock) > 0)
-      .map((item) => ({
-        id: item.id,
-        name: item.name,
-        brand: item.brand,
-        category: item.category,
-        unit: item.unit,
-        minStock: item.minStock,
-        barcode: item.barcode,
-        notes: item.notes,
-        currentStock: item.currentStock,
-      }));
+    const customerItems = items;
 
     return {
       summary: {
@@ -2216,32 +2304,28 @@ async function buildBootstrap(user) {
 
   const includeExpenses = normalizedRole === "admin";
   const includeUsers = normalizedRole === "admin";
-  const includeArchive = normalizedRole === "admin";
-  const includeAgentTraining = normalizedRole === "admin";
-  const [summary, items, archivedItems, movements, expenses, cashbook, users, quotes, orders, agentTraining] = await Promise.all([
+  const [summary, items, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
     computeSummary(),
-    queryItems(),
-    includeArchive ? queryItems(false) : Promise.resolve([]),
+    queryCustomerItems(),
     queryMovements(),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
     queryCashbook(),
     includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(),
     queryOrders(user),
-    includeAgentTraining ? queryAgentTrainingEntries(false) : Promise.resolve([]),
   ]);
 
   return {
     summary: sanitizeSummaryForRole(summary, user?.role),
     items: sanitizeItemsForRole(items, user),
-    archivedItems: sanitizeItemsForRole(archivedItems, user),
+    archivedItems: [],
     movements: sanitizeMovementsForRole(movements, user?.role),
     expenses,
     cashbook,
     users,
     quotes,
     orders,
-    agentTraining,
+    agentTraining: [],
     assistantStatus,
   };
 }
