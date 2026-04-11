@@ -154,7 +154,7 @@ const UI_TEXT = {
       quoteSaved: (id) => `Teklif kaydedildi. Son Teklifler alaninda #${id} olarak durur. Stok ve kasa degismez.`,
       orderSent: "Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.",
       directSaleDone: (id, paid, remaining, hasCash) => `Direkt satis tamamlandi. Stok dusuldu, kayit Son Teklifler ve Stok Hareketleri alanina yazildi${hasCash ? ", tahsilat da Kasa Defteri'ne islendi" : ""}. No: #${id} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
-      unbilledDone: (id, total, paid, remaining, hasCash) => `Faturasiz satis kaydedildi. Stok dusuldu${hasCash ? ", tahsilat Kasa Defteri'ne islendi" : ""}. No: #${id} | Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      unbilledDone: (total, paid, remaining, hasCash, cashEntryId) => `Faturasiz satis kaydedildi. Stok dusuldu${hasCash ? `, tahsilat Kasa Defteri'ne islendi${cashEntryId ? ` (#${cashEntryId})` : ""}` : ""}. Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
       noOrderPhone: "Bu siparis icin kayitli telefon numarasi yok.",
       invalidWhatsappPhone: "Telefon numarasi WhatsApp icin uygun formatta degil.",
       addQuoteFirst: "Once teklif kalemi ekleyin.",
@@ -300,7 +300,7 @@ const UI_TEXT = {
       quoteSaved: (id) => `Angebot gespeichert. Es steht unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unveraendert.`,
       orderSent: "Ihre Bestellung wurde aufgenommen. Den Status sehen Sie im Bestellverlauf.",
       directSaleDone: (id, paid, remaining, hasCash) => `Direktverkauf abgeschlossen. Bestand wurde reduziert und der Eintrag unter Letzte Angebote sowie Lagerbewegungen gespeichert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Bezahlt: ${paid} | Offen: ${remaining}`,
-      unbilledDone: (id, total, paid, remaining, hasCash) => `Verkauf ohne Rechnung gespeichert. Bestand wurde reduziert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
+      unbilledDone: (total, paid, remaining, hasCash, cashEntryId) => `Verkauf ohne Rechnung gespeichert. Bestand wurde reduziert${hasCash ? `; die Zahlung steht auch im Kassenbuch${cashEntryId ? ` (#${cashEntryId})` : ""}` : ""}. Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
       noOrderPhone: "Fuer diese Bestellung ist keine Telefonnummer hinterlegt.",
       invalidWhatsappPhone: "Die Telefonnummer ist fuer WhatsApp nicht gueltig.",
       addQuoteFirst: "Bitte zuerst mindestens eine Angebotsposition hinzufuegen.",
@@ -3450,7 +3450,7 @@ async function handleUnbilledSale() {
   refs.quoteForm.elements.paymentType.value = "cash";
   state.quoteDraft = [];
   await refreshData();
-  window.alert(t("messages.unbilledDone", result.id || 0, currency.format(result.total || 0), currency.format(result.paid || 0), currency.format(result.remaining || 0), Number(result.paid || 0) > 0));
+  window.alert(t("messages.unbilledDone", currency.format(result.total || 0), currency.format(result.paid || 0), currency.format(result.remaining || 0), Number(result.paid || 0) > 0, result.cashEntryId || 0));
 }
 
 async function downloadQuotePdf(quoteId, lang) {
