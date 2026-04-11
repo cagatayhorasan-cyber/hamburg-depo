@@ -19,7 +19,7 @@ const COMPANY_PROFILE = {
   warehouse: "Lauenburger Landstraße 3b, 21039 Börnsen, Deutschland",
   phone: "+49 1522 1581762",
   email: "info@durmusbaba.com",
-  web: "hamburg-depo-3bgu.vercel.app",
+  web: "drckaltetechnik.vercel.app",
   register: "HRB 11217 - Amtsgericht Hamm",
   bankName: "Bankverbindung auf Anfrage / Talep uzerine banka bilgisi",
   iban: "DE00 0000 0000 0000 0000 00",
@@ -1660,7 +1660,7 @@ function getAppBaseUrl(req) {
     return APP_BASE_URL.replace(/\/$/, "");
   }
 
-  return "https://hamburg-depo-3bgu.vercel.app";
+  return "https://drckaltetechnik.vercel.app";
 }
 
 function buildWhatsAppUrl(phone, message) {

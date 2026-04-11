@@ -547,7 +547,7 @@ function applyUiTranslations() {
   setText("#loginScreen .ui-language-label", t("uiLanguage"));
   setText("#appScreen .ui-language-label", t("uiLanguage"));
   setHtml("#loginScreen .muted p:first-child", `${langText("Depo:", "Lager:")}<br>21039 Borsen`);
-  setHtml("#loginScreen .muted p:last-child", `${t("appLabel")}<br>hamburg-depo-3bgu.vercel.app`);
+  setHtml("#loginScreen .muted p:last-child", `${t("appLabel")}<br>drckaltetechnik.vercel.app`);
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
   setFormFieldLabel(refs.loginForm, "password", t("password"));

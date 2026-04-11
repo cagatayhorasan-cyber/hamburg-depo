@@ -69,7 +69,7 @@ Uygulama mail gonderimi icin iki yol destekler:
 Gmail ile gondermek icin `.env` veya Vercel ortam degiskenlerine su alanlari ekleyin:
 
 ```env
-APP_BASE_URL=https://hamburg-depo-3bgu.vercel.app
+APP_BASE_URL=https://drckaltetechnik.vercel.app
 MAIL_FROM=mailadresiniz@gmail.com
 GMAIL_USER=mailadresiniz@gmail.com
 GMAIL_APP_PASSWORD=google-uygulama-sifresi
