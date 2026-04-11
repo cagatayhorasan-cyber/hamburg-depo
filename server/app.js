@@ -290,6 +290,17 @@ function createApp() {
       return res.status(400).json({ error: "Soru bos olamaz." });
     }
 
+    if (isCustomerRole(req.session.user?.role) && isRestrictedCustomerPriceQuestion(message)) {
+      return res.json({
+        answer: customerRestrictedPriceAnswer(language),
+        suggestions: language === "de"
+          ? ["Welche Artikel sind auf Lager?", "Wie sende ich eine Bestellung?"]
+          : ["Stokta hangi urunler var?", "Siparis nasil gonderilir?"],
+        provider: "built_in",
+        sourceSummary: language === "de" ? "Kunden-Preisberechtigung" : "Musteri fiyat yetkisi",
+      });
+    }
+
     const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
     if (trainingMatch?.answer) {
       const answer = sanitizeAssistantAnswerForRole(
@@ -1451,6 +1462,9 @@ function serveAdminTool(req, res) {
 
   const root = path.resolve(ADMIN_TOOLS_DIR, tool);
   const requestedPath = req.params[0] || "index.html";
+  if (path.isAbsolute(requestedPath) || requestedPath.split(/[\\/]+/).includes("..")) {
+    return res.status(403).send("Gecersiz arac yolu.");
+  }
   const safePath = path.normalize(requestedPath).replace(/^(\.\.[/\\])+/, "");
   let filePath = path.resolve(root, safePath || "index.html");
 
@@ -2625,6 +2639,19 @@ function sanitizeAssistantAnswerForRole(answer, language = "tr", user = null) {
     return text;
   }
 
+  return language === "de"
+    ? "Kundenansicht: Betragsdaten werden hier nicht angezeigt. Sie koennen verfuegbare Artikel sehen und eine Bestellung absenden; DRC bestaetigt Betrag und Lieferstatus danach."
+    : "Musteri ekrani: tutar bilgisi burada gosterilmez. Stokta gorunen urunleri secip siparis talebi gonderebilirsiniz; DRC tutar ve teslim durumunu sonra teyit eder.";
+}
+
+function isRestrictedCustomerPriceQuestion(message) {
+  const text = cleanOptional(message);
+  const normalized = normalizeAssistantText(text);
+  return /€|\beur\b/i.test(text)
+    || /(fiyat|ucret|ücret|tutar|satis|satış|liste|net fiyat|alis|alış|maliyet|preis|kosten|einkauf|verkauf|verkaufspreis|listenpreis)/.test(normalized);
+}
+
+function customerRestrictedPriceAnswer(language = "tr") {
   return language === "de"
     ? "Kundenansicht: Betragsdaten werden hier nicht angezeigt. Sie koennen verfuegbare Artikel sehen und eine Bestellung absenden; DRC bestaetigt Betrag und Lieferstatus danach."
     : "Musteri ekrani: tutar bilgisi burada gosterilmez. Stokta gorunen urunleri secip siparis talebi gonderebilirsiniz; DRC tutar ve teslim durumunu sonra teyit eder.";

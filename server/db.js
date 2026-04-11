@@ -341,6 +341,8 @@ async function initDatabase() {
   sqliteDb.exec("PRAGMA journal_mode = WAL;");
   sqliteDb.exec(sqliteSchema);
   ensureUserColumnsSqlite();
+  ensureUserRoleConstraintSqlite();
+  ensureUserColumnsSqlite();
   ensureItemColumnsSqlite();
   ensureItemIndexesSqlite();
   ensureMovementColumnsSqlite();
@@ -489,6 +491,47 @@ function ensureUserColumnsSqlite() {
     WHERE email IS NOT NULL AND TRIM(email) <> ''
   `);
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_auth_tokens_lookup ON auth_tokens(token_type, token_hash)");
+}
+
+function ensureUserRoleConstraintSqlite() {
+  const table = sqliteDb.prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'users'").get();
+  const createSql = String(table?.sql || "");
+  if (createSql.includes("'staff'") && createSql.includes("'customer'")) {
+    return;
+  }
+
+  sqliteDb.exec(`
+    PRAGMA foreign_keys = OFF;
+    BEGIN;
+    CREATE TABLE users_new (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      username TEXT NOT NULL UNIQUE,
+      email TEXT,
+      phone TEXT,
+      email_verified INTEGER NOT NULL DEFAULT 1,
+      password_hash TEXT NOT NULL,
+      role TEXT NOT NULL CHECK(role IN ('admin', 'operator', 'staff', 'customer'))
+    );
+    INSERT INTO users_new (id, name, username, email, phone, email_verified, password_hash, role)
+    SELECT
+      id,
+      name,
+      username,
+      email,
+      phone,
+      COALESCE(email_verified, 1),
+      password_hash,
+      CASE
+        WHEN role IN ('admin', 'operator', 'staff', 'customer') THEN role
+        ELSE 'operator'
+      END
+    FROM users;
+    DROP TABLE users;
+    ALTER TABLE users_new RENAME TO users;
+    COMMIT;
+    PRAGMA foreign_keys = ON;
+  `);
 }
 
 function ensureItemIndexesSqlite() {
