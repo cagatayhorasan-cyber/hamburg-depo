@@ -151,10 +151,10 @@ const UI_TEXT = {
       noTraining: "Henuz egitim kaydi yok. Ilk soru-cevap ciftinizi soldan ekleyin.",
       trainingSaved: "Egitim Kaydet",
       trainingUpdated: "Egitimi Guncelle",
-      quoteSaved: "Teklif kaydedildi.",
+      quoteSaved: (id) => `Teklif kaydedildi. Son Teklifler alaninda #${id} olarak durur. Stok ve kasa degismez.`,
       orderSent: "Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.",
-      directSaleDone: (paid, remaining) => `Direkt satis tamamlandi. Tahsil edilen: ${paid} | Kalan: ${remaining}`,
-      unbilledDone: (total, paid, remaining) => `Faturasiz satis kaydedildi. Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      directSaleDone: (id, paid, remaining, hasCash) => `Direkt satis tamamlandi. Stok dusuldu, kayit Son Teklifler ve Stok Hareketleri alanina yazildi${hasCash ? ", tahsilat da Kasa Defteri'ne islendi" : ""}. No: #${id} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      unbilledDone: (id, total, paid, remaining, hasCash) => `Faturasiz satis kaydedildi. Stok dusuldu${hasCash ? ", tahsilat Kasa Defteri'ne islendi" : ""}. No: #${id} | Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
       noOrderPhone: "Bu siparis icin kayitli telefon numarasi yok.",
       invalidWhatsappPhone: "Telefon numarasi WhatsApp icin uygun formatta degil.",
       addQuoteFirst: "Once teklif kalemi ekleyin.",
@@ -297,10 +297,10 @@ const UI_TEXT = {
       noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
       trainingSaved: "Training speichern",
       trainingUpdated: "Training aktualisieren",
-      quoteSaved: "Angebot gespeichert.",
+      quoteSaved: (id) => `Angebot gespeichert. Es steht unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unveraendert.`,
       orderSent: "Ihre Bestellung wurde aufgenommen. Den Status sehen Sie im Bestellverlauf.",
-      directSaleDone: (paid, remaining) => `Direktverkauf abgeschlossen. Bezahlt: ${paid} | Offen: ${remaining}`,
-      unbilledDone: (total, paid, remaining) => `Verkauf ohne Rechnung gespeichert. Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
+      directSaleDone: (id, paid, remaining, hasCash) => `Direktverkauf abgeschlossen. Bestand wurde reduziert und der Eintrag unter Letzte Angebote sowie Lagerbewegungen gespeichert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Bezahlt: ${paid} | Offen: ${remaining}`,
+      unbilledDone: (id, total, paid, remaining, hasCash) => `Verkauf ohne Rechnung gespeichert. Bestand wurde reduziert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
       noOrderPhone: "Fuer diese Bestellung ist keine Telefonnummer hinterlegt.",
       invalidWhatsappPhone: "Die Telefonnummer ist fuer WhatsApp nicht gueltig.",
       addQuoteFirst: "Bitte zuerst mindestens eine Angebotsposition hinzufuegen.",
@@ -792,10 +792,10 @@ function applyUiTranslations() {
     bank: langText("Banka", "Bank"),
     card: langText("Kart", "Karte"),
   });
-  setText("[data-tab-content='quotes'] .section-tip", langText("Faturasiz satis butonunda sepette gorunen tutar son satis tutari kabul edilir; ekstra KDV eklenmez.", "Beim Verkauf ohne Rechnung wird der sichtbare Warenkorbwert als Endsumme verwendet; es wird keine zusaetzliche MwSt hinzugefuegt."));
+  setText("[data-tab-content='quotes'] .section-tip", langText("Direkt Satis stok dusurur; tahsilat yazdiysaniz Kasa Defteri'ne de isler. Teklif Olarak Kaydet sadece Son Teklifler listesine kaydeder, stok ve kasa degismez. Faturasiz satis butonunda sepette gorunen tutar son satis tutaridir; ekstra KDV eklenmez.", "Direktverkauf reduziert den Bestand; bei eingetragener Zahlung wird auch das Kassenbuch aktualisiert. Als Angebot speichern legt nur einen Eintrag unter Letzte Angebote an, Bestand und Kasse bleiben unveraendert. Beim Verkauf ohne Rechnung gilt der sichtbare Warenkorbwert als Endsumme; es wird keine zusaetzliche MwSt hinzugefuegt."));
   setText(refs.checkoutSaleButton, langText("Direkt Satis Yap", "Direktverkauf"));
   setText(refs.checkoutUnbilledSaleButton, langText("Faturasiz Satis", "Ohne Rechnung"));
-  setText(refs.saveQuoteButton, langText("Teklifi Kaydet", "Angebot speichern"));
+  setText(refs.saveQuoteButton, langText("Teklif Olarak Kaydet", "Als Angebot speichern"));
   setText("[data-tab-content='quotes'] .recent-quotes h2", langText("Son Teklifler", "Letzte Angebote"));
 
   const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-only section");
@@ -3386,6 +3386,7 @@ async function handleQuoteSave() {
   refs.quoteForm.elements.collectedAmount.value = 0;
   state.quoteDraft = [];
   await refreshData();
+  window.alert(t("messages.quoteSaved", result.id || 0));
 }
 
 async function handleDirectSale() {
@@ -3408,7 +3409,6 @@ async function handleDirectSale() {
     return;
   }
 
-  window.alert(t("messages.directSaleDone", currency.format(result.paid || 0), currency.format(result.remaining || 0)));
   refs.quoteForm.reset();
   refs.quoteForm.elements.date.value = today;
   refs.quoteForm.elements.discount.value = 0;
@@ -3418,6 +3418,7 @@ async function handleDirectSale() {
   refs.quoteForm.elements.paymentType.value = "cash";
   state.quoteDraft = [];
   await refreshData();
+  window.alert(t("messages.directSaleDone", result.id || 0, currency.format(result.paid || 0), currency.format(result.remaining || 0), Number(result.paid || 0) > 0));
 }
 
 async function handleUnbilledSale() {
@@ -3440,7 +3441,6 @@ async function handleUnbilledSale() {
     return;
   }
 
-  window.alert(t("messages.unbilledDone", currency.format(result.total || 0), currency.format(result.paid || 0), currency.format(result.remaining || 0)));
   refs.quoteForm.reset();
   refs.quoteForm.elements.date.value = today;
   refs.quoteForm.elements.discount.value = 0;
@@ -3450,6 +3450,7 @@ async function handleUnbilledSale() {
   refs.quoteForm.elements.paymentType.value = "cash";
   state.quoteDraft = [];
   await refreshData();
+  window.alert(t("messages.unbilledDone", result.id || 0, currency.format(result.total || 0), currency.format(result.paid || 0), currency.format(result.remaining || 0), Number(result.paid || 0) > 0));
 }
 
 async function downloadQuotePdf(quoteId, lang) {
