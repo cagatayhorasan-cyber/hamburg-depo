@@ -292,14 +292,14 @@ function createApp() {
       return res.status(400).json({ error: "Soru bos olamaz." });
     }
 
-    if (isCustomerRole(req.session.user?.role) && isRestrictedCustomerPriceQuestion(message)) {
+    if (isCustomerRole(req.session.user?.role) && isRestrictedCustomerPurchaseQuestion(message)) {
       return res.json({
-        answer: customerRestrictedPriceAnswer(language),
+        answer: customerRestrictedPurchaseAnswer(language),
         suggestions: language === "de"
-          ? ["Welche Artikel sind auf Lager?", "Wie sende ich eine Bestellung?"]
-          : ["Stokta hangi urunler var?", "Siparis nasil gonderilir?"],
+          ? ["Welche Artikel sind auf Lager?", "Verkaufspreis anzeigen"]
+          : ["Stokta hangi urunler var?", "Satis fiyati goster"],
         provider: "built_in",
-        sourceSummary: language === "de" ? "Kunden-Preisberechtigung" : "Musteri fiyat yetkisi",
+        sourceSummary: language === "de" ? "Kunden-Einkaufspreis-Schutz" : "Musteri alis fiyati korumasi",
       });
     }
 
@@ -329,7 +329,7 @@ function createApp() {
     }
 
     const items = isCustomerRole(req.session.user?.role)
-      ? await queryCustomerItems()
+      ? await queryCustomerItems({ includePrices: true })
       : sanitizeItemsForRole(await queryItems(), req.session.user);
     const answer = answerAssistantQuestion(message, items, language, req.session.user);
     return res.json({
@@ -2372,7 +2372,7 @@ async function buildBootstrap(user) {
 
   if (normalizedRole === "customer") {
     const [items, orders] = await Promise.all([
-      queryCustomerItems(),
+      queryCustomerItems({ includePrices: true }),
       queryOrders(user),
     ]);
 
@@ -2639,28 +2639,24 @@ function sanitizeAssistantAnswerForRole(answer, language = "tr", user = null) {
   }
 
   const normalized = normalizeAssistantText(text);
-  const hasRestrictedPriceInfo = /(\beur\b|€|fiyat|ücret|ucret|satis|satış|liste|alis|alış|maliyet|einkauf|verkauf|verkaufspreis|listenpreis|preis)/i.test(text)
-    || /(fiyat|ucret|satis|liste|alis|maliyet|einkauf|verkauf|verkaufspreis|listenpreis|preis)/.test(normalized);
-  if (!hasRestrictedPriceInfo) {
+  const hasRestrictedPurchaseInfo = /(alis|alış|maliyet|maliyetim|kar marji|kâr marji|einkauf|einkaufspreis|kosten|cost|purchase)/.test(normalized);
+  if (!hasRestrictedPurchaseInfo) {
     return text;
   }
 
-  return language === "de"
-    ? "Kundenansicht: Betragsdaten werden hier nicht angezeigt. Sie koennen verfuegbare Artikel sehen und eine Bestellung absenden; DRC bestaetigt Betrag und Lieferstatus danach."
-    : "Musteri ekrani: tutar bilgisi burada gosterilmez. Stokta gorunen urunleri secip siparis talebi gonderebilirsiniz; DRC tutar ve teslim durumunu sonra teyit eder.";
+  return customerRestrictedPurchaseAnswer(language);
 }
 
-function isRestrictedCustomerPriceQuestion(message) {
+function isRestrictedCustomerPurchaseQuestion(message) {
   const text = cleanOptional(message);
   const normalized = normalizeAssistantText(text);
-  return /€|\beur\b/i.test(text)
-    || /(fiyat|ucret|ücret|tutar|satis|satış|liste|net fiyat|alis|alış|maliyet|preis|kosten|einkauf|verkauf|verkaufspreis|listenpreis)/.test(normalized);
+  return /(alis|alış|maliyet|maliyetim|kar marji|kâr marji|einkauf|einkaufspreis|kosten|cost|purchase)/.test(normalized);
 }
 
-function customerRestrictedPriceAnswer(language = "tr") {
+function customerRestrictedPurchaseAnswer(language = "tr") {
   return language === "de"
-    ? "Kundenansicht: Betragsdaten werden hier nicht angezeigt. Sie koennen verfuegbare Artikel sehen und eine Bestellung absenden; DRC bestaetigt Betrag und Lieferstatus danach."
-    : "Musteri ekrani: tutar bilgisi burada gosterilmez. Stokta gorunen urunleri secip siparis talebi gonderebilirsiniz; DRC tutar ve teslim durumunu sonra teyit eder.";
+    ? "Kundenansicht: Verkaufspreise sind sichtbar, Einkaufspreise und Kosten bleiben nur fuer Admins sichtbar."
+    : "Musteri ekrani: satis fiyatlari gorunur, alis fiyati ve maliyet bilgisi sadece admin icin sakli kalir.";
 }
 
 function answerAssistantQuestion(message, items, language = "tr", user = null) {
@@ -2669,7 +2665,7 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
   const candidates = findAssistantCandidates(normalized, items);
   const role = normalizeRole(user?.role);
   const canViewPurchase = role === "admin";
-  const canViewSale = role !== "customer";
+  const canViewSale = true;
 
   if (/(kritik|az stok|stok dusuk|minimum|kritisch|wenig bestand|mindestbestand)/.test(normalized)) {
     const critical = items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).slice(0, 8);
@@ -2785,7 +2781,7 @@ function createAssistantDictionary(language) {
       expensiveList: "Artikel mit dem hoechsten Preis",
       matchList: "Diese Artikel passen dazu",
       salesHelp: "Im Tab Schnellverkauf koennen Sie links Produkte in den Warenkorb legen. Rechts geben Sie Kundendaten, bezahlten Betrag und Referenz ein und nutzen Direktverkauf oder Angebot speichern.",
-      priceHidden: "Preise werden in der Kundenansicht nicht angezeigt. Bitte senden Sie eine Bestellung, DRC bestaetigt Preis und Lieferstatus.",
+      priceHidden: "Verkaufspreise sind sichtbar. Einkaufspreise und Kosten bleiben nur fuer Admins sichtbar.",
       help: "Sie koennen nach Preis, Bestand, Lagercode, Kategorie, kritischen Artikeln oder den teuersten Artikeln fragen.",
       defaultSuggestions: ["kritischer bestand", "teuerste artikel", "GNA 1.500-1 preis"],
       customerSuggestions: ["verfuegbare artikel", "bestellung senden", "bestand fragen"],
@@ -2802,7 +2798,7 @@ function createAssistantDictionary(language) {
     expensiveList: "En yuksek fiyatli urunler",
     matchList: "Su urunler eslesti",
     salesHelp: "Hizli Satis sekmesinde soldan urunleri sepete ekleyin. Saga musteri bilgisi, tahsil edilen tutar ve referansi yazip Direkt Satis Yap veya Teklifi Kaydet kullanin.",
-    priceHidden: "Musteri ekraninda fiyat gosterilmez. Siparis talebi gonderin; DRC fiyat ve teslim durumunu teyit eder.",
+    priceHidden: "Satis fiyatlari gorunur. Alis fiyati ve maliyet bilgisi sadece admin icin sakli kalir.",
     help: "Sunu sorabilirsiniz: urun fiyati, stok durumu, stok kodu, kategori, kritik stoktaki urunler veya en pahali urunler.",
     defaultSuggestions: ["kritik stok", "en pahali urun", "GNA 1.500-1 fiyat"],
     customerSuggestions: ["stoklu urunler", "siparis ver", "stok sor"],

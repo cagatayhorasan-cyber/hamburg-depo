@@ -145,7 +145,7 @@ const UI_TEXT = {
       noCustomerCatalog: "Siparise acik stoklu urun bulunamadi.",
       emptyCustomerCart: "Sepetiniz bos. Soldan stoktaki urunleri ekleyebilirsiniz.",
       noCustomerOrderLines: "Henuz siparis kalemi yok.",
-      customerOrderSummary: (lines, units) => `${lines} kalem | Toplam talep: ${units} adet/birim`,
+      customerOrderSummary: (lines, units, total) => `${lines} kalem | Toplam talep: ${units} adet/birim${total ? ` | Tahmini toplam: ${total}` : ""}`,
       noCustomerOrders: "Daha once gonderilmis siparisiniz yok.",
       trainingSummary: (count) => `${count} egitim kaydi var. DRC MAN bu kayitlari once kontrol eder.`,
       noTraining: "Henuz egitim kaydi yok. Ilk soru-cevap ciftinizi soldan ekleyin.",
@@ -291,7 +291,7 @@ const UI_TEXT = {
       noCustomerCatalog: "Keine bestellbaren Artikel mit Bestand vorhanden.",
       emptyCustomerCart: "Ihr Warenkorb ist leer. Links koennen lagernde Artikel hinzugefuegt werden.",
       noCustomerOrderLines: "Noch keine Bestellpositionen vorhanden.",
-      customerOrderSummary: (lines, units) => `${lines} Positionen | Gesamtmenge: ${units}`,
+      customerOrderSummary: (lines, units, total) => `${lines} Positionen | Gesamtmenge: ${units}${total ? ` | Voraussichtlich: ${total}` : ""}`,
       noCustomerOrders: "Es gibt noch keinen gesendeten Bestellverlauf.",
       trainingSummary: (count) => `${count} Trainingseintraege vorhanden. DRC MAN prueft diese zuerst.`,
       noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
@@ -805,7 +805,7 @@ function applyUiTranslations() {
   setText("#customerVerificationBanner p.muted", langText("Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
   setText(refs.resendVerificationButton, langText("Dogrulama Mailini Tekrar Gonder", "Bestaetigungs-E-Mail erneut senden"));
   setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Urunler", "Verfuegbare Artikel"));
-  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Sadece stokta olan urunler gosterilir. Fiyat gormezsiniz; sadece adet ve urun bilgisi vardir. Siparis gecmisi yalnizca size ozeldir.", "Es werden nur lagernde Artikel gezeigt. Preise sind nicht sichtbar; nur Bestand und Artikeldaten. Der Bestellverlauf ist nur fuer Sie sichtbar."));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Sadece stokta olan urunler, stok adedi ve satis fiyatlari gosterilir. Siparis gecmisi yalnizca size ozeldir.", "Es werden nur lagernde Artikel, Bestand und Verkaufspreise angezeigt. Der Bestellverlauf ist nur fuer Sie sichtbar."));
   setText("[data-tab-content='orders'] .customer-only .pos-cart h2", langText("Siparis Sepeti", "Bestellkorb"));
   setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz urunleri secip siparis talebi gonderebilirsiniz.", "Waehlen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
   setFormFieldLabel(refs.customerOrderForm, "date", langText("Tarih", "Datum"));
@@ -2382,6 +2382,8 @@ function renderCustomerCatalog() {
   items.forEach((item) => {
     const card = document.createElement("article");
     card.className = "pos-card";
+    const listPrice = visibleListPrice(item);
+    const netPrice = visibleSalePrice(item);
     card.innerHTML = `
       <div class="pos-card-head">
         <strong>${item.name}</strong>
@@ -2392,6 +2394,8 @@ function renderCustomerCatalog() {
         <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
         <span>${langText("Stok Kodu", "Lagercode")}: ${item.barcode || "-"}</span>
       </div>
+      <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : langText("Fiyat sorunuz", "Preis auf Anfrage")}</div>
+      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "1 Stueck Liste")}: ${currency.format(listPrice)}</span></div>` : ""}
       <button class="primary-button" type="button" data-add-order-item="${item.id}" data-help="TR: Urunu musteri siparis sepetine ekler. DE: Fuegt den Artikel dem Kundenwarenkorb hinzu.">${t("common.addToOrder")}</button>
     `;
     refs.customerCatalogGrid.append(card);
@@ -2420,7 +2424,7 @@ function renderCustomerOrderDraft() {
     row.innerHTML = `
         <div class="cart-item-main">
           <strong>${entry.itemName}</strong>
-          <span>${entry.unit} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${entry.unit}</span>
+          <span>${entry.unit} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${entry.unit} | ${langText("Birim", "Einzel")}: ${currency.format(entry.unitPrice || 0)}</span>
         </div>
       <div class="cart-item-controls">
         <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="-1">-</button>
@@ -2428,7 +2432,7 @@ function renderCustomerOrderDraft() {
         <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="1">+</button>
       </div>
         <div class="cart-item-total">
-          <strong>${numberFormat.format(entry.quantity)} ${entry.unit}</strong>
+          <strong>${currency.format(Number(entry.quantity) * Number(entry.unitPrice || 0))}</strong>
           <button class="mini-button danger-button" type="button" data-remove-order-line="${index}">${t("common.delete")}</button>
         </div>
     `;
@@ -2448,7 +2452,8 @@ function renderCustomerOrderDraft() {
 
   const totalLines = state.customerOrderDraft.length;
   const totalUnits = state.customerOrderDraft.reduce((sum, entry) => sum + Number(entry.quantity), 0);
-  refs.customerOrderSummary.textContent = t("messages.customerOrderSummary", totalLines, numberFormat.format(totalUnits));
+  const totalPrice = state.customerOrderDraft.reduce((sum, entry) => sum + (Number(entry.quantity) * Number(entry.unitPrice || 0)), 0);
+  refs.customerOrderSummary.textContent = t("messages.customerOrderSummary", totalLines, numberFormat.format(totalUnits), currency.format(totalPrice));
 }
 
 function renderCustomerOrders() {
@@ -3191,14 +3196,19 @@ function addItemToCustomerOrder(itemId) {
     return;
   }
 
+  const price = cartSalePrice(item, 1);
   const existing = state.customerOrderDraft.find((entry) => Number(entry.itemId) === Number(item.id));
   if (existing) {
     existing.quantity = Math.min(Number(existing.quantity) + 1, Number(existing.maxQuantity));
+    existing.unitPrice = cartSalePrice(item, existing.quantity);
   } else {
     state.customerOrderDraft.push({
       itemId: Number(item.id),
       itemName: item.name,
       quantity: 1,
+      unitPrice: price,
+      listPrice: Number(item.listPrice || 0),
+      salePrice: Number(item.salePrice || 0),
       unit: item.unit,
       maxQuantity: Number(item.currentStock),
     });
@@ -3227,6 +3237,10 @@ function changeCustomerOrderQuantity(index, delta) {
 
   const nextValue = Math.max(1, Number(line.quantity) + delta);
   line.quantity = Math.min(nextValue, Number(line.maxQuantity) || nextValue);
+  const item = state.items.find((entry) => Number(entry.id) === Number(line.itemId));
+  if (item) {
+    line.unitPrice = cartSalePrice(item, line.quantity);
+  }
   renderOrders();
 }
 
