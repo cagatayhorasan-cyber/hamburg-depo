@@ -1,17 +1,302 @@
-const currency = new Intl.NumberFormat("tr-TR", {
-  style: "currency",
-  currency: "EUR",
-  minimumFractionDigits: 2,
-});
-
-const numberFormat = new Intl.NumberFormat("tr-TR", {
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 2,
-});
-
 const today = new Date().toISOString().split("T")[0];
 const MAX_ITEMS_TABLE_ROWS = 250;
 const SEARCH_DEBOUNCE_MS = 180;
+const UI_LANGUAGE_STORAGE_KEY = "hamburg-ui-language";
+
+function createCurrencyFormatter(language) {
+  return new Intl.NumberFormat(language === "de" ? "de-DE" : "tr-TR", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+  });
+}
+
+function createNumberFormatter(language) {
+  return new Intl.NumberFormat(language === "de" ? "de-DE" : "tr-TR", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+}
+
+let currency = createCurrencyFormatter("tr");
+let numberFormat = createNumberFormatter("tr");
+
+const UI_TEXT = {
+  tr: {
+    title: "Durmusbaba Yonetim Merkezi",
+    uiLanguage: "Arayuz Dili",
+    loginIdentifier: "Kullanici Adi veya E-Posta",
+    password: "Sifre",
+    loginButton: "Giris Yap",
+    forgotTitle: "Sifremi Unuttum",
+    forgotDesc: "Kullanici adi veya e-postayi girin. Sistemde kayitli WhatsApp numarasi varsa sifre yenileme linki icin WhatsApp penceresi acilir.",
+    forgotButton: "Yenileme Baglantisi Gonder",
+    noCustomerAccount: "Musteri hesabi yok mu?",
+    registerTitle: "Musteri Kaydi",
+    registerDesc: "Musteriler kendi hesaplarini burada acabilir. Her hesap sadece kendi siparis gecmisini gorur.",
+    fullName: "Ad Soyad",
+    email: "E-Posta",
+    phone: "Telefon / WhatsApp",
+    optionalUsername: "Kullanici Adi (Istege Bagli)",
+    optionalUsernamePlaceholder: "Bos birakirsaniz sistem uretir",
+    registerButton: "Musteri Hesabi Ac",
+    resetTitle: "Yeni Sifre Belirle",
+    resetDesc: "E-postadaki baglanti ile geldiyseniz yeni sifrenizi burada belirleyin.",
+    resetButton: "Sifreyi Guncelle",
+    appLabel: "Uygulama:",
+    heroTitle: "Satis ve stok ekrani",
+    heroSubtitle: "En sik kullanilan alanlar one alindi. Hedef: urun bul, fiyat ver, teklif hazirla.",
+    downloadXlsx: "Excel Rapor",
+    downloadPdf: "PDF Ozet",
+    logout: "Cikis Yap",
+    tabQuotes: "Hizli Satis",
+    tabQuotesDesc: "Teklif, sepet ve direkt satis islemleri",
+    tabItems: "Malzemeler",
+    tabItemsDesc: "Urun kartlari, filtreleme ve stoklu urun listesi",
+    tabArchive: "Arsiv",
+    tabArchiveDesc: "Pasif urunleri sakla ve geri al",
+    tabMovements: "Stok",
+    tabMovementsDesc: "Giris, cikis ve yeni urun kaydi",
+    tabExpenses: "Masraf",
+    tabExpensesDesc: "Firma giderlerini ve harcamalari yonet",
+    tabCashbook: "Kasa",
+    tabCashbookDesc: "Tahsilat ve kasa hareketlerini takip et",
+    tabOrders: "Siparisler",
+    tabOrdersDesc: "Musteri siparislerini gor ve durum guncelle",
+    tabCustomerOrders: "Siparis Ver",
+    tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
+    tabUsers: "Kullanicilar",
+    tabUsersDesc: "Admin, personel ve musteri hesaplari",
+    tabTraining: "DRC MAN Egitim",
+    tabTrainingDesc: "Soru-cevap, gaz egitimi ve retrofit kontrol araclari",
+    roles: { admin: "admin", staff: "personel", customer: "musteri" },
+    stats: {
+      customerItems: "Stoktaki Urun",
+      customerItemsDesc: "Siparise acik aktif urunler",
+      critical: "Kritik Urun",
+      criticalDesc: "Stogu azalan urunler",
+      totalItems: "Malzeme Cesidi",
+      totalItemsDesc: "Kayitli aktif kart",
+      stockValue: "Stok Maliyeti",
+      stockValueDesc: "Alis fiyatina gore toplam",
+      stockCostValue: "Stok Maliyeti",
+      stockCostValueDesc: "Alis fiyatina gore toplam",
+      stockSaleValue: "Satis Stok Degeri",
+      stockSaleValueDesc: "Satis fiyatina gore toplam",
+      expenseTotal: "Toplam Masraf",
+      expenseTotalDesc: "Tum giderler",
+      cashBalance: "Kasa Bakiyesi",
+      cashBalanceDesc: "Net nakit durum",
+    },
+    common: {
+      edit: "Duzenle",
+      delete: "Sil",
+      cancelEdit: "Duzenlemeyi Iptal Et",
+      save: "Kaydet",
+      addToCart: "Sepete Ekle",
+      addToOrder: "Siparise Ekle",
+      viewOnly: "Goruntuleme",
+      restore: "Geri Al",
+      archive: "Arsivle",
+      reverse: "Iptal Et",
+      reversed: "Iptal edildi",
+      reverseRecord: "Iptal kaydi",
+      active: "Aktif",
+      passive: "Pasif",
+      in: "Giris",
+      out: "Cikis",
+      unbilledSale: "Faturasiz Satis",
+      approved: "Onaylandi",
+      preparing: "Hazirlaniyor",
+      completed: "Tamamlandi",
+      cancelled: "Iptal",
+      pending: "Beklemede",
+      export: "Yurt Disi",
+      inland: "Yurt Ici",
+    },
+    messages: {
+      welcome: (name, role, needsVerify) => `${name} olarak giris yaptiniz. Rol: ${role}${needsVerify ? " | E-posta henuz dogrulanmadi" : ""}`,
+      customerRegisterMailSent: "Hesabiniz olusturuldu. Dogrulama maili gonderildi ve kendi musteri panelinizdesiniz.",
+      customerRegisterNoMail: "Hesabiniz olusturuldu, ancak mail sistemi ayarli olmadigi icin dogrulama maili gonderilemedi.",
+      operationDone: "Islem tamamlandi.",
+      passwordUpdated: "Sifreniz guncellendi.",
+      stockIntakeSaved: "Yeni urun karti ve ilk stok girisi basariyla kaydedildi.",
+      bulkUpdated: (count) => `${count} kaydin satis fiyati guncellendi.`,
+      itemsSummaryShort: (count, total) => `${count} / ${total} malzeme goruntuleniyor`,
+      itemsSummaryLong: (count, total, max) => `${count} / ${total} malzeme bulundu. Performans icin ilk ${max} kayit gosteriliyor.`,
+      stockedSummary: (count) => `${count} urun stokta var. Stok 0 olanlar bu bolume dahil edilmez.`,
+      noStockedItems: "Stokta urun bulunamadi.",
+      archiveSummary: (count) => `${count} pasif urun arsivde tutuluyor`,
+      noArchive: "Pasif urun yok.",
+      noQuotes: "Henuz teklif yok.",
+      emptyQuoteDraft: "Sepet bos. Soldan urun secip ekleyin.",
+      quoteSummary: (subtotal, discount, netTotal, vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Ara toplam: ${subtotal} | Iskonto: ${discount} | Net: ${netTotal} | KDV: ${vatAmount} | Brut: ${grossTotal} | Tahsil: ${collectedAmount} | Kalan: ${remaining} | Faturasiz Toplam: ${unbilledTotal} | Faturasiz Kalan: ${unbilledRemaining}`,
+      noPosItems: "Aramaya uygun urun bulunamadi.",
+      noAdminOrders: "Henuz musteri siparisi yok.",
+      noCustomerCatalog: "Siparise acik stoklu urun bulunamadi.",
+      emptyCustomerCart: "Sepetiniz bos. Soldan stoktaki urunleri ekleyebilirsiniz.",
+      noCustomerOrderLines: "Henuz siparis kalemi yok.",
+      customerOrderSummary: (lines, units) => `${lines} kalem | Toplam talep: ${units} adet/birim`,
+      noCustomerOrders: "Daha once gonderilmis siparisiniz yok.",
+      trainingSummary: (count) => `${count} egitim kaydi var. DRC MAN bu kayitlari once kontrol eder.`,
+      noTraining: "Henuz egitim kaydi yok. Ilk soru-cevap ciftinizi soldan ekleyin.",
+      trainingSaved: "Egitim Kaydet",
+      trainingUpdated: "Egitimi Guncelle",
+      quoteSaved: "Teklif kaydedildi.",
+      orderSent: "Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.",
+      directSaleDone: (paid, remaining) => `Direkt satis tamamlandi. Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      unbilledDone: (total, paid, remaining) => `Faturasiz satis kaydedildi. Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      noOrderPhone: "Bu siparis icin kayitli telefon numarasi yok.",
+      invalidWhatsappPhone: "Telefon numarasi WhatsApp icin uygun formatta degil.",
+      addQuoteFirst: "Once teklif kalemi ekleyin.",
+      addCartFirst: "Once sepete urun ekleyin.",
+      addOrderFirst: "Siparis gondermeden once sepete en az bir urun ekleyin.",
+      deleteTrainingConfirm: "Bu egitim kaydini silmek istediginize emin misiniz?",
+      deleteItemConfirm: "Bu malzeme kartini silmek istiyor musunuz?",
+      archiveItemConfirm: "Bu malzeme aktif listeden kaldirilip arsive tasinsin mi?",
+      deleteExpenseConfirm: "Bu masraf kaydini silmek istiyor musunuz?",
+      deleteCashConfirm: "Bu kasa hareketini silmek istiyor musunuz?",
+      reverseMovementConfirm: "Bu stok hareketi ters kayit olusturularak iptal edilsin mi?",
+    },
+  },
+  de: {
+    title: "Durmusbaba Verwaltungszentrum",
+    uiLanguage: "Sprache",
+    loginIdentifier: "Benutzername oder E-Mail",
+    password: "Passwort",
+    loginButton: "Anmelden",
+    forgotTitle: "Passwort vergessen",
+    forgotDesc: "Benutzername oder E-Mail eingeben. Wenn eine WhatsApp-Nummer hinterlegt ist, wird ein WhatsApp-Link zum Zuruecksetzen geoeffnet.",
+    forgotButton: "Reset-Link senden",
+    noCustomerAccount: "Noch kein Kundenkonto?",
+    registerTitle: "Kundenregistrierung",
+    registerDesc: "Kunden koennen hier ihr eigenes Konto anlegen. Jedes Konto sieht nur den eigenen Bestellverlauf.",
+    fullName: "Vor- und Nachname",
+    email: "E-Mail",
+    phone: "Telefon / WhatsApp",
+    optionalUsername: "Benutzername (optional)",
+    optionalUsernamePlaceholder: "Leer lassen, dann wird automatisch einer erzeugt",
+    registerButton: "Kundenkonto anlegen",
+    resetTitle: "Neues Passwort festlegen",
+    resetDesc: "Wenn Sie ueber einen Link gekommen sind, koennen Sie hier ein neues Passwort setzen.",
+    resetButton: "Passwort speichern",
+    appLabel: "Anwendung:",
+    heroTitle: "Verkaufs- und Lagerbildschirm",
+    heroSubtitle: "Die wichtigsten Bereiche stehen vorne. Ziel: Artikel finden, Preis geben, Angebot vorbereiten.",
+    downloadXlsx: "Excel Export",
+    downloadPdf: "PDF Uebersicht",
+    logout: "Abmelden",
+    tabQuotes: "Schnellverkauf",
+    tabQuotesDesc: "Angebot, Warenkorb und Direktverkauf",
+    tabItems: "Artikel",
+    tabItemsDesc: "Artikelkarten, Filter und Liste mit Lagerbestand",
+    tabArchive: "Archiv",
+    tabArchiveDesc: "Passive Artikel verwalten und zurueckholen",
+    tabMovements: "Lager",
+    tabMovementsDesc: "Eingang, Ausgang und neuer Artikel",
+    tabExpenses: "Ausgaben",
+    tabExpensesDesc: "Betriebsausgaben verwalten",
+    tabCashbook: "Kasse",
+    tabCashbookDesc: "Zahlungen und Kassenbewegungen verfolgen",
+    tabOrders: "Bestellungen",
+    tabOrdersDesc: "Kundenbestellungen sehen und Status aendern",
+    tabCustomerOrders: "Bestellen",
+    tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
+    tabUsers: "Benutzer",
+    tabUsersDesc: "Admin-, Personal- und Kundenkonten",
+    tabTraining: "DRC MAN Training",
+    tabTrainingDesc: "Frage-Antwort, Kaeltemitteltraining und Retrofit-Werkzeuge",
+    roles: { admin: "admin", staff: "personal", customer: "kunde" },
+    stats: {
+      customerItems: "Artikel auf Lager",
+      customerItemsDesc: "Aktive Artikel fuer Bestellungen",
+      critical: "Kritische Artikel",
+      criticalDesc: "Artikel mit niedrigem Bestand",
+      totalItems: "Artikelanzahl",
+      totalItemsDesc: "Aktive Karten im System",
+      stockValue: "Bestandskosten",
+      stockValueDesc: "Gesamtwert nach Einkaufspreis",
+      stockCostValue: "Bestandskosten",
+      stockCostValueDesc: "Gesamtwert nach Einkaufspreis",
+      stockSaleValue: "Verkaufswert Bestand",
+      stockSaleValueDesc: "Gesamtwert nach Verkaufspreis",
+      expenseTotal: "Gesamtausgaben",
+      expenseTotalDesc: "Alle erfassten Ausgaben",
+      cashBalance: "Kassenbestand",
+      cashBalanceDesc: "Netto-Kassenstand",
+    },
+    common: {
+      edit: "Bearbeiten",
+      delete: "Loeschen",
+      cancelEdit: "Bearbeitung abbrechen",
+      save: "Speichern",
+      addToCart: "In den Warenkorb",
+      addToOrder: "Zur Bestellung",
+      viewOnly: "Nur Ansicht",
+      restore: "Zurueckholen",
+      archive: "Archivieren",
+      reverse: "Stornieren",
+      reversed: "Storniert",
+      reverseRecord: "Stornodatensatz",
+      active: "Aktiv",
+      passive: "Passiv",
+      in: "Eingang",
+      out: "Ausgang",
+      unbilledSale: "Verkauf ohne Rechnung",
+      approved: "Bestaetigt",
+      preparing: "In Vorbereitung",
+      completed: "Abgeschlossen",
+      cancelled: "Storniert",
+      pending: "Offen",
+      export: "Export",
+      inland: "Inland",
+    },
+    messages: {
+      welcome: (name, role, needsVerify) => `Angemeldet als ${name}. Rolle: ${role}${needsVerify ? " | E-Mail noch nicht bestaetigt" : ""}`,
+      customerRegisterMailSent: "Ihr Konto wurde erstellt. Die Bestaetigungs-E-Mail wurde versendet und Sie befinden sich jetzt im Kundenbereich.",
+      customerRegisterNoMail: "Ihr Konto wurde erstellt, aber das Mail-System ist noch nicht aktiv. Deshalb konnte keine Bestaetigung versendet werden.",
+      operationDone: "Vorgang abgeschlossen.",
+      passwordUpdated: "Ihr Passwort wurde aktualisiert.",
+      stockIntakeSaved: "Neuer Artikel und erster Lagerbestand wurden erfolgreich gespeichert.",
+      bulkUpdated: (count) => `Die Verkaufspreise von ${count} Datensaetzen wurden aktualisiert.`,
+      itemsSummaryShort: (count, total) => `${count} / ${total} Artikel werden angezeigt`,
+      itemsSummaryLong: (count, total, max) => `${count} / ${total} Artikel gefunden. Aus Performancegruenden werden nur die ersten ${max} angezeigt.`,
+      stockedSummary: (count) => `${count} Artikel sind auf Lager. Positionen mit Bestand 0 erscheinen hier nicht.`,
+      noStockedItems: "Keine lagernden Artikel gefunden.",
+      archiveSummary: (count) => `${count} passive Artikel befinden sich im Archiv.`,
+      noArchive: "Keine archivierten Artikel vorhanden.",
+      noQuotes: "Noch keine Angebote vorhanden.",
+      emptyQuoteDraft: "Der Warenkorb ist leer. Links koennen Artikel hinzugefuegt werden.",
+      quoteSummary: (subtotal, discount, netTotal, vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Zwischensumme: ${subtotal} | Rabatt: ${discount} | Netto: ${netTotal} | MwSt: ${vatAmount} | Brutto: ${grossTotal} | Bezahlt: ${collectedAmount} | Offen: ${remaining} | Ohne Rechnung Gesamt: ${unbilledTotal} | Ohne Rechnung offen: ${unbilledRemaining}`,
+      noPosItems: "Keine passenden Artikel fuer die Suche gefunden.",
+      noAdminOrders: "Noch keine Kundenbestellungen vorhanden.",
+      noCustomerCatalog: "Keine bestellbaren Artikel mit Bestand vorhanden.",
+      emptyCustomerCart: "Ihr Warenkorb ist leer. Links koennen lagernde Artikel hinzugefuegt werden.",
+      noCustomerOrderLines: "Noch keine Bestellpositionen vorhanden.",
+      customerOrderSummary: (lines, units) => `${lines} Positionen | Gesamtmenge: ${units}`,
+      noCustomerOrders: "Es gibt noch keinen gesendeten Bestellverlauf.",
+      trainingSummary: (count) => `${count} Trainingseintraege vorhanden. DRC MAN prueft diese zuerst.`,
+      noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
+      trainingSaved: "Training speichern",
+      trainingUpdated: "Training aktualisieren",
+      quoteSaved: "Angebot gespeichert.",
+      orderSent: "Ihre Bestellung wurde aufgenommen. Den Status sehen Sie im Bestellverlauf.",
+      directSaleDone: (paid, remaining) => `Direktverkauf abgeschlossen. Bezahlt: ${paid} | Offen: ${remaining}`,
+      unbilledDone: (total, paid, remaining) => `Verkauf ohne Rechnung gespeichert. Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
+      noOrderPhone: "Fuer diese Bestellung ist keine Telefonnummer hinterlegt.",
+      invalidWhatsappPhone: "Die Telefonnummer ist fuer WhatsApp nicht gueltig.",
+      addQuoteFirst: "Bitte zuerst mindestens eine Angebotsposition hinzufuegen.",
+      addCartFirst: "Bitte zuerst Artikel in den Warenkorb legen.",
+      addOrderFirst: "Bitte vor dem Senden mindestens einen Artikel in den Warenkorb legen.",
+      deleteTrainingConfirm: "Soll dieser Trainingseintrag wirklich geloescht werden?",
+      deleteItemConfirm: "Soll diese Artikelkarte wirklich geloescht werden?",
+      archiveItemConfirm: "Soll dieser Artikel aus der aktiven Liste ins Archiv verschoben werden?",
+      deleteExpenseConfirm: "Soll dieser Ausgabeneintrag wirklich geloescht werden?",
+      deleteCashConfirm: "Soll diese Kassenbewegung wirklich geloescht werden?",
+      reverseMovementConfirm: "Soll diese Lagerbewegung mit einer Gegenbuchung storniert werden?",
+    },
+  },
+};
 
 const state = {
   user: null,
@@ -24,6 +309,8 @@ const state = {
   cashbook: [],
   users: [],
   orders: [],
+  agentTraining: [],
+  retrofitChecklist: null,
   filters: {
     search: "",
     brand: "all",
@@ -36,6 +323,9 @@ const state = {
     brand: "all",
     category: "all",
   },
+  uiLanguage: localStorage.getItem(UI_LANGUAGE_STORAGE_KEY) === "de" ? "de" : "tr",
+  assistantStatus: null,
+  assistantUserId: null,
   assistantLanguage: "tr",
   assistantMessages: [],
 };
@@ -62,10 +352,13 @@ const refs = {
   statsGrid: document.getElementById("statsGrid"),
   itemForm: document.getElementById("itemForm"),
   movementForm: document.getElementById("movementForm"),
+  movementAutoCostHint: document.getElementById("movementAutoCostHint"),
   stockIntakeForm: document.getElementById("stockIntakeForm"),
   expenseForm: document.getElementById("expenseForm"),
   cashForm: document.getElementById("cashForm"),
   userForm: document.getElementById("userForm"),
+  assistantTrainingForm: document.getElementById("assistantTrainingForm"),
+  retrofitChecklistForm: document.getElementById("retrofitChecklistForm"),
   bulkPricingForm: document.getElementById("bulkPricingForm"),
   itemsTableBody: document.getElementById("itemsTableBody"),
   itemsSummary: document.getElementById("itemsSummary"),
@@ -78,6 +371,8 @@ const refs = {
   cashbookTableBody: document.getElementById("cashbookTableBody"),
   usersTableBody: document.getElementById("usersTableBody"),
   ordersTableBody: document.getElementById("ordersTableBody"),
+  assistantTrainingTableBody: document.getElementById("assistantTrainingTableBody"),
+  assistantTrainingSummary: document.getElementById("assistantTrainingSummary"),
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
   barcodeImage: document.getElementById("barcodeImage"),
   logoutButton: document.getElementById("logoutButton"),
@@ -92,12 +387,20 @@ const refs = {
   bulkCategoryFilter: document.getElementById("bulkCategoryFilter"),
   itemSubmitButton: document.getElementById("itemSubmitButton"),
   itemCancelEdit: document.getElementById("itemCancelEdit"),
+  assistantTrainingSubmitButton: document.getElementById("assistantTrainingSubmitButton"),
+  assistantTrainingCancelButton: document.getElementById("assistantTrainingCancelButton"),
+  retrofitChecklistGenerateButton: document.getElementById("retrofitChecklistGenerateButton"),
+  retrofitChecklistCopyButton: document.getElementById("retrofitChecklistCopyButton"),
+  retrofitChecklistTitle: document.getElementById("retrofitChecklistTitle"),
+  retrofitChecklistHint: document.getElementById("retrofitChecklistHint"),
+  retrofitChecklistOutput: document.getElementById("retrofitChecklistOutput"),
   quoteForm: document.getElementById("quoteForm"),
   posCatalogGrid: document.getElementById("posCatalogGrid"),
   quoteDraftBody: document.getElementById("quoteDraftBody"),
   quoteDraftSummary: document.getElementById("quoteDraftSummary"),
   saveQuoteButton: document.getElementById("saveQuoteButton"),
   checkoutSaleButton: document.getElementById("checkoutSaleButton"),
+  checkoutUnbilledSaleButton: document.getElementById("checkoutUnbilledSaleButton"),
   quotesList: document.getElementById("quotesList"),
   customerCatalogGrid: document.getElementById("customerCatalogGrid"),
   customerOrderForm: document.getElementById("customerOrderForm"),
@@ -116,10 +419,562 @@ const refs = {
   assistantPanel: document.getElementById("assistantPanel"),
   assistantClose: document.getElementById("assistantClose"),
   assistantLanguage: document.getElementById("assistantLanguage"),
+  assistantStatus: document.getElementById("assistantStatus"),
   assistantMessages: document.getElementById("assistantMessages"),
   assistantForm: document.getElementById("assistantForm"),
   assistantInput: document.getElementById("assistantInput"),
+  uiLanguageSelects: document.querySelectorAll(".ui-language-select"),
 };
+
+function currentUiText() {
+  return UI_TEXT[state.uiLanguage] || UI_TEXT.tr;
+}
+
+function t(path, ...args) {
+  const value = path.split(".").reduce((result, part) => result?.[part], currentUiText());
+  if (typeof value === "function") {
+    return value(...args);
+  }
+  return value ?? path;
+}
+
+function langText(trText, deText) {
+  return state.uiLanguage === "de" ? deText : trText;
+}
+
+function setText(selector, value) {
+  const node = typeof selector === "string" ? document.querySelector(selector) : selector;
+  if (!node || typeof value !== "string") {
+    return;
+  }
+  node.textContent = value;
+}
+
+function setHtml(selector, value) {
+  const node = typeof selector === "string" ? document.querySelector(selector) : selector;
+  if (!node || typeof value !== "string") {
+    return;
+  }
+  node.innerHTML = value;
+}
+
+function replaceLabelText(label, text) {
+  if (!label || typeof text !== "string") {
+    return;
+  }
+
+  const textNode = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE);
+  if (textNode) {
+    textNode.textContent = `${text} `;
+    return;
+  }
+
+  label.prepend(document.createTextNode(`${text} `));
+}
+
+function setFormFieldLabel(form, fieldName, text) {
+  const field = form?.elements?.[fieldName];
+  const label = field?.closest("label");
+  replaceLabelText(label, text);
+}
+
+function setFieldPlaceholder(form, fieldName, text) {
+  const field = form?.elements?.[fieldName];
+  if (!field || typeof text !== "string") {
+    return;
+  }
+  field.placeholder = text;
+}
+
+function setSelectOptionTexts(select, texts) {
+  if (!select || !texts) {
+    return;
+  }
+  Array.from(select.options).forEach((option) => {
+    if (texts[option.value]) {
+      option.textContent = texts[option.value];
+    }
+  });
+}
+
+function setTableHeaders(tableBody, labels) {
+  const headers = tableBody?.closest("table")?.querySelectorAll("thead th");
+  if (!headers?.length) {
+    return;
+  }
+  labels.forEach((label, index) => {
+    if (headers[index]) {
+      headers[index].textContent = label;
+    }
+  });
+}
+
+function syncUiLanguageControls() {
+  refs.uiLanguageSelects?.forEach((select) => {
+    select.value = state.uiLanguage;
+    select.setAttribute("aria-label", t("uiLanguage"));
+  });
+}
+
+function setUiLanguage(language) {
+  const nextLanguage = language === "de" ? "de" : "tr";
+  state.uiLanguage = nextLanguage;
+  localStorage.setItem(UI_LANGUAGE_STORAGE_KEY, nextLanguage);
+  currency = createCurrencyFormatter(nextLanguage);
+  numberFormat = createNumberFormatter(nextLanguage);
+  if (refs.quoteForm?.elements?.language) {
+    refs.quoteForm.elements.language.value = nextLanguage;
+  }
+  applyUiTranslations();
+  if (state.user) {
+    renderAll();
+  }
+}
+
+function applyUiTranslations() {
+  document.documentElement.lang = state.uiLanguage;
+  document.title = t("title");
+  syncUiLanguageControls();
+
+  setText("#loginScreen .ui-language-label", t("uiLanguage"));
+  setText("#appScreen .ui-language-label", t("uiLanguage"));
+  setHtml("#loginScreen .muted p:first-child", `${langText("Depo:", "Lager:")}<br>21039 Borsen`);
+  setHtml("#loginScreen .muted p:last-child", `${t("appLabel")}<br>hamburg-depo-3bgu.vercel.app`);
+
+  setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
+  setFormFieldLabel(refs.loginForm, "password", t("password"));
+  setText("#loginForm button[type='submit']", t("loginButton"));
+
+  const authPanels = document.querySelectorAll("#loginScreen .auth-subpanel");
+  const forgotPanel = authPanels[0];
+  const registerPanel = authPanels[1];
+
+  setText(forgotPanel?.querySelector("h3"), t("forgotTitle"));
+  setText(forgotPanel?.querySelector("p.muted"), t("forgotDesc"));
+  setFormFieldLabel(refs.forgotPasswordForm, "identifier", t("loginIdentifier"));
+  setText("#forgotPasswordForm button[type='submit']", t("forgotButton"));
+
+  setText(".auth-divider span", t("noCustomerAccount"));
+  setText(registerPanel?.querySelector("h3"), t("registerTitle"));
+  setText(registerPanel?.querySelector("p.muted"), t("registerDesc"));
+  setFormFieldLabel(refs.customerRegisterForm, "name", t("fullName"));
+  setFormFieldLabel(refs.customerRegisterForm, "email", t("email"));
+  setFormFieldLabel(refs.customerRegisterForm, "phone", t("phone"));
+  setFormFieldLabel(refs.customerRegisterForm, "username", t("optionalUsername"));
+  setFormFieldLabel(refs.customerRegisterForm, "password", t("password"));
+  setFieldPlaceholder(refs.customerRegisterForm, "phone", "+49...");
+  setFieldPlaceholder(refs.customerRegisterForm, "username", t("optionalUsernamePlaceholder"));
+  setText("#customerRegisterForm button[type='submit']", t("registerButton"));
+
+  setText("#resetPasswordPanel h3", t("resetTitle"));
+  setText("#resetPasswordPanel p.muted", t("resetDesc"));
+  setFormFieldLabel(refs.resetPasswordForm, "password", langText("Yeni Sifre", "Neues Passwort"));
+  setText("#resetPasswordForm button[type='submit']", t("resetButton"));
+
+  setText(".hero h1", t("heroTitle"));
+  setText(".hero .hero-subtitle", t("heroSubtitle"));
+  setText(refs.downloadXlsx, t("downloadXlsx"));
+  setText(refs.downloadPdf, t("downloadPdf"));
+  setText(refs.logoutButton, t("logout"));
+
+  [
+    ["quotes", t("tabQuotes"), t("tabQuotesDesc")],
+    ["items", t("tabItems"), t("tabItemsDesc")],
+    ["archive", t("tabArchive"), t("tabArchiveDesc")],
+    ["movements", t("tabMovements"), t("tabMovementsDesc")],
+    ["expenses", t("tabExpenses"), t("tabExpensesDesc")],
+    ["cashbook", t("tabCashbook"), t("tabCashbookDesc")],
+    ["orders", isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"), isCustomerUser() ? t("tabCustomerOrdersDesc") : t("tabOrdersDesc")],
+    ["users", t("tabUsers"), t("tabUsersDesc")],
+    ["training", t("tabTraining"), t("tabTrainingDesc")],
+  ].forEach(([tab, title, desc]) => {
+    document.querySelectorAll(`[data-tab="${tab}"]`).forEach((button) => {
+      setText(button.querySelector(".tab-title"), title);
+      setText(button.querySelector("small"), desc);
+    });
+  });
+
+  setText("[data-tab-content='items'] .sales-search-panel h2", langText("Malzeme Arama", "Artikelsuche"));
+  setText("[data-tab-content='items'] .sales-search-panel .section-head .muted", langText("Listeyi daraltin, uygun urunu bulun, sonra satis sekmesinden teklife ekleyin.", "Liste eingrenzen, passenden Artikel finden und dann im Schnellverkauf verwenden."));
+  replaceLabelText(refs.itemSearch?.closest("label"), langText("Arama", "Suche"));
+  replaceLabelText(refs.brandFilter?.closest("label"), langText("Marka", "Marke"));
+  replaceLabelText(refs.categoryFilter?.closest("label"), langText("Kategori", "Kategorie"));
+  refs.itemSearch.placeholder = langText("Urun, marka veya stok kodu ara", "Artikel, Marke oder Lagercode suchen");
+  setText(".stocked-panel h3", langText("Stokta Olan Urunler", "Artikel auf Lager"));
+  setText(".management-drawer summary", langText("Yonetim Araclari", "Verwaltungswerkzeuge"));
+
+  const itemFormSection = refs.itemForm?.closest("section");
+  setText(itemFormSection?.querySelector("h2"), langText("Malzeme Karti", "Artikelkarte"));
+  setFormFieldLabel(refs.itemForm, "name", langText("Malzeme Adi", "Artikelname"));
+  setFormFieldLabel(refs.itemForm, "brand", langText("Marka", "Marke"));
+  setFormFieldLabel(refs.itemForm, "category", langText("Kategori", "Kategorie"));
+  setFormFieldLabel(refs.itemForm, "unit", langText("Birim", "Einheit"));
+  setFormFieldLabel(refs.itemForm, "minStock", langText("Kritik Stok", "Mindestbestand"));
+  setFormFieldLabel(refs.itemForm, "defaultPrice", langText("Alis Fiyati", "Einkaufspreis"));
+  setFormFieldLabel(refs.itemForm, "listPrice", langText("Liste Fiyati", "Listenpreis"));
+  setFormFieldLabel(refs.itemForm, "salePrice", langText("Net/Satis Fiyati", "Netto-/Verkaufspreis"));
+  setFormFieldLabel(refs.itemForm, "barcode", langText("Stok Kodu", "Lagercode"));
+  setFormFieldLabel(refs.itemForm, "notes", langText("Not", "Notiz"));
+  setFieldPlaceholder(refs.itemForm, "brand", langText("Orn. Embraco, Hisense", "z. B. Embraco, Hisense"));
+  setFieldPlaceholder(refs.itemForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
+  setFieldPlaceholder(refs.itemForm, "notes", langText("Raf veya tedarik notu", "Regal- oder Lieferantennotiz"));
+  refs.itemSubmitButton.textContent = refs.itemForm?.elements?.id?.value
+    ? langText("Malzemeyi Guncelle", "Artikel aktualisieren")
+    : langText("Malzeme Ekle", "Artikel anlegen");
+  refs.itemCancelEdit.textContent = t("common.cancelEdit");
+
+  setText(".panel-lite h3", langText("Toplu Fiyat Guncelleme", "Preisaktualisierung in Serie"));
+  setFormFieldLabel(refs.bulkPricingForm, "brand", langText("Marka", "Marke"));
+  setFormFieldLabel(refs.bulkPricingForm, "category", langText("Kategori", "Kategorie"));
+  setFormFieldLabel(refs.bulkPricingForm, "pricingMode", langText("Hesaplama", "Berechnung"));
+  setFormFieldLabel(refs.bulkPricingForm, "baseField", langText("Baz Alan", "Basisfeld"));
+  setFormFieldLabel(refs.bulkPricingForm, "increasePercent", langText("Artis Yuzdesi", "Erhoehung in %"));
+  setSelectOptionTexts(refs.bulkPricingForm?.elements?.pricingMode, {
+    margin: langText("Alisa Gore Marj", "Marge auf Einkauf"),
+    increase: langText("Mevcut Satisa Artis", "Aufschlag auf Verkauf"),
+  });
+  setSelectOptionTexts(refs.bulkPricingForm?.elements?.baseField, {
+    purchase: langText("Alis Fiyati", "Einkaufspreis"),
+    sale: langText("Satis Fiyati", "Verkaufspreis"),
+  });
+  setText("#bulkPricingForm button[type='submit']", langText("Satis Fiyatlarini Guncelle", "Verkaufspreise aktualisieren"));
+  setText(".barcode-section h2", langText("Stok Kodu Onizleme", "Lagercode-Vorschau"));
+
+  const movementsSections = document.querySelectorAll("[data-tab-content='movements'] .two-column > section");
+  setText(movementsSections[0]?.querySelector("h2"), langText("Stok Giris / Cikis", "Lager Eingang / Ausgang"));
+  setText(movementsSections[0]?.querySelector(".section-tip"), langText("Mevcut urunler icin bu formu kullanin. Yeni urun karti acma ve ilk alis girisi yalnizca admin alanindadir.", "Dieses Formular ist fuer vorhandene Artikel. Neue Artikel und der erste Einkauf werden nur im Admin-Bereich angelegt."));
+  setFormFieldLabel(refs.movementForm, "itemId", langText("Malzeme", "Artikel"));
+  setFormFieldLabel(refs.movementForm, "type", langText("Islem", "Vorgang"));
+  setFormFieldLabel(refs.movementForm, "quantity", langText("Miktar", "Menge"));
+  setFormFieldLabel(refs.movementForm, "unitPrice", langText("Birim Maliyet", "Stueckpreis"));
+  setFormFieldLabel(refs.movementForm, "date", langText("Tarih", "Datum"));
+  setFormFieldLabel(refs.movementForm, "note", langText("Aciklama", "Beschreibung"));
+  setSelectOptionTexts(refs.movementForm?.elements?.type, {
+    entry: langText("Giris", "Eingang"),
+    exit: langText("Cikis", "Ausgang"),
+  });
+  setText("#movementForm button[type='submit']", langText("Hareket Kaydet", "Bewegung speichern"));
+  setText(refs.movementAutoCostHint, langText("Alis maliyeti personel ekraninda gizlidir. Sistem mevcut maliyeti otomatik uygular.", "Der Einkaufspreis ist im Personalbereich verborgen. Das System verwendet automatisch den vorhandenen Kostenwert."));
+
+  const stockIntakePanel = document.querySelector("[data-tab-content='movements'] .panel-lite");
+  setText(stockIntakePanel?.querySelector("h3"), langText("Yeni Urun + Ilk Stok Girisi", "Neuer Artikel + Erstbestand"));
+  setText(stockIntakePanel?.querySelector(".section-tip"), langText("Yeni marka, kategori veya urun karti burada acilir. Kaydedince urun otomatik olusur ve ilk stok girisi ayni anda islenir.", "Hier werden neue Marken, Kategorien oder Artikel angelegt. Beim Speichern wird gleichzeitig der Erstbestand gebucht."));
+  setFormFieldLabel(refs.stockIntakeForm, "name", langText("Malzeme Adi", "Artikelname"));
+  setFormFieldLabel(refs.stockIntakeForm, "brand", langText("Marka", "Marke"));
+  setFormFieldLabel(refs.stockIntakeForm, "category", langText("Kategori", "Kategorie"));
+  setFormFieldLabel(refs.stockIntakeForm, "unit", langText("Birim", "Einheit"));
+  setFormFieldLabel(refs.stockIntakeForm, "quantity", langText("Ilk Miktar", "Erstmenge"));
+  setFormFieldLabel(refs.stockIntakeForm, "unitPrice", langText("Birim Alis", "Einkauf pro Einheit"));
+  setFormFieldLabel(refs.stockIntakeForm, "listPrice", langText("Liste Fiyati", "Listenpreis"));
+  setFormFieldLabel(refs.stockIntakeForm, "salePrice", langText("Net/Satis Fiyati", "Netto-/Verkaufspreis"));
+  setFormFieldLabel(refs.stockIntakeForm, "minStock", langText("Kritik Stok", "Mindestbestand"));
+  setFormFieldLabel(refs.stockIntakeForm, "date", langText("Tarih", "Datum"));
+  setFormFieldLabel(refs.stockIntakeForm, "barcode", langText("Stok Kodu", "Lagercode"));
+  setFormFieldLabel(refs.stockIntakeForm, "notes", langText("Malzeme Notu", "Artikelnote"));
+  setFormFieldLabel(refs.stockIntakeForm, "movementNote", langText("Hareket Notu", "Bewegungsnotiz"));
+  setFieldPlaceholder(refs.stockIntakeForm, "name", langText("Orn. Embraco NJ 6220 Z", "z. B. Embraco NJ 6220 Z"));
+  setFieldPlaceholder(refs.stockIntakeForm, "brand", langText("Orn. Embraco", "z. B. Embraco"));
+  setFieldPlaceholder(refs.stockIntakeForm, "category", langText("Orn. Kompresor", "z. B. Kompressor"));
+  setFieldPlaceholder(refs.stockIntakeForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
+  setFieldPlaceholder(refs.stockIntakeForm, "notes", langText("Raf, seri veya tedarik notu", "Regal-, Serien- oder Lieferantennotiz"));
+  setFieldPlaceholder(refs.stockIntakeForm, "movementNote", langText("Ilk alis bilgisi", "Erste Einkaufsinfo"));
+  setText("#stockIntakeForm button[type='submit']", langText("Yeni Urun ve Stok Girisi Kaydet", "Neuen Artikel mit Erstbestand speichern"));
+  setText(movementsSections[1]?.querySelector("h2"), langText("Son Hareketler", "Letzte Bewegungen"));
+
+  const expenseSections = document.querySelectorAll("[data-tab-content='expenses'] .two-column > section");
+  setText(expenseSections[0]?.querySelector("h2"), langText("Masraf Ekle", "Ausgabe erfassen"));
+  setFormFieldLabel(refs.expenseForm, "title", langText("Baslik", "Titel"));
+  setFormFieldLabel(refs.expenseForm, "category", langText("Kategori", "Kategorie"));
+  setFormFieldLabel(refs.expenseForm, "amount", langText("Tutar", "Betrag"));
+  setFormFieldLabel(refs.expenseForm, "date", langText("Tarih", "Datum"));
+  setFormFieldLabel(refs.expenseForm, "paymentType", langText("Odeme Tipi", "Zahlungsart"));
+  setFormFieldLabel(refs.expenseForm, "note", langText("Aciklama", "Beschreibung"));
+  setSelectOptionTexts(refs.expenseForm?.elements?.paymentType, {
+    cash: langText("Nakit", "Bar"),
+    bank: langText("Banka", "Bank"),
+    card: langText("Kart", "Karte"),
+  });
+  setText("#expenseForm button[type='submit']", langText("Masraf Kaydet", "Ausgabe speichern"));
+  setText(expenseSections[1]?.querySelector("h2"), langText("Masraf Listesi", "Ausgabenliste"));
+  setText(expenseSections[1]?.querySelector(".section-tip"), langText("Her kaydi satirin sagindaki sil butonundan kaldirabilirsiniz.", "Jeden Eintrag koennen Sie ueber die rechte Loeschen-Schaltflaeche entfernen."));
+
+  const cashSections = document.querySelectorAll("[data-tab-content='cashbook'] .two-column > section");
+  setText(cashSections[0]?.querySelector("h2"), langText("Kasa Hareketi", "Kassenbewegung"));
+  setFormFieldLabel(refs.cashForm, "type", langText("Islem", "Vorgang"));
+  setFormFieldLabel(refs.cashForm, "title", langText("Baslik", "Titel"));
+  setFormFieldLabel(refs.cashForm, "amount", langText("Tutar", "Betrag"));
+  setFormFieldLabel(refs.cashForm, "date", langText("Tarih", "Datum"));
+  setFormFieldLabel(refs.cashForm, "reference", langText("Referans", "Referenz"));
+  setFormFieldLabel(refs.cashForm, "note", langText("Not", "Notiz"));
+  setFieldPlaceholder(refs.cashForm, "title", langText("Orn. Tezgah satisi", "z. B. Barverkauf"));
+  setSelectOptionTexts(refs.cashForm?.elements?.type, {
+    in: langText("Kasa Girisi", "Kasseneingang"),
+    out: langText("Kasa Cikisi", "Kassenausgang"),
+    unbilled_sale: langText("Faturasiz Satis", "Verkauf ohne Rechnung"),
+  });
+  setText("#cashForm button[type='submit']", langText("Kasa Kaydet", "Kasse speichern"));
+  setText(cashSections[1]?.querySelector("h2"), langText("Kasa Defteri", "Kassenbuch"));
+  setText(cashSections[1]?.querySelector(".section-tip"), langText("Yanlis girilen kasa hareketlerini satir bazinda silebilirsiniz.", "Falsch erfasste Kassenbewegungen koennen zeilenweise geloescht werden."));
+
+  setText("[data-tab-content='quotes'] .pos-catalog h2", langText("Urun Katalogu", "Produktkatalog"));
+  setText("[data-tab-content='quotes'] .pos-catalog .muted", langText("Arayin, filtreleyin ve tek tikla sepete ekleyin.", "Suchen, filtern und mit einem Klick in den Warenkorb legen."));
+  replaceLabelText(refs.quoteItemSearch?.closest("label"), langText("Arama", "Suche"));
+  replaceLabelText(refs.quoteBrandFilter?.closest("label"), langText("Marka", "Marke"));
+  replaceLabelText(refs.quoteCategoryFilter?.closest("label"), langText("Kategori", "Kategorie"));
+  refs.quoteItemSearch.placeholder = langText("Urun veya marka ara", "Artikel oder Marke suchen");
+  setText("[data-tab-content='quotes'] .pos-cart h2", langText("Sepet ve Musteri", "Warenkorb und Kunde"));
+  setText("[data-tab-content='quotes'] .pos-cart .muted", langText("Teklif olusturmadan once sepeti ve musteri bilgilerini tamamlayin.", "Vor dem Angebot bitte Warenkorb und Kundendaten vervollstaendigen."));
+  setFormFieldLabel(refs.quoteForm, "customerName", langText("Musteri", "Kunde"));
+  setFormFieldLabel(refs.quoteForm, "title", langText("Baslik", "Titel"));
+  setFormFieldLabel(refs.quoteForm, "date", langText("Tarih", "Datum"));
+  setFormFieldLabel(refs.quoteForm, "language", langText("Dil", "Sprache"));
+  setFormFieldLabel(refs.quoteForm, "isExport", langText("Satis Tipi", "Verkaufsart"));
+  setFormFieldLabel(refs.quoteForm, "discount", langText("Iskonto", "Rabatt"));
+  setFormFieldLabel(refs.quoteForm, "paymentType", langText("Tahsilat Tipi", "Zahlungsart"));
+  setFormFieldLabel(refs.quoteForm, "collectedAmount", langText("Tahsil Edilen", "Erhalten"));
+  setFormFieldLabel(refs.quoteForm, "reference", langText("Referans", "Referenz"));
+  setFormFieldLabel(refs.quoteForm, "note", langText("Not", "Notiz"));
+  setFieldPlaceholder(refs.quoteForm, "title", langText("Orn. Soguk Oda Teklifi", "z. B. Kuehlraum-Angebot"));
+  setFieldPlaceholder(refs.quoteForm, "reference", langText("Fis, havale, kart sonu", "Beleg, Ueberweisung, Kartenreferenz"));
+  setSelectOptionTexts(refs.quoteForm?.elements?.language, { de: "Deutsch", tr: langText("Turkce", "Tuerkisch") });
+  setSelectOptionTexts(refs.quoteForm?.elements?.isExport, {
+    true: langText("Yurt Disi - KDV Yok", "Export - ohne MwSt"),
+    false: langText("Yurt Ici - KDV Dahil", "Inland - inkl. MwSt"),
+  });
+  setSelectOptionTexts(refs.quoteForm?.elements?.paymentType, {
+    cash: langText("Nakit", "Bar"),
+    bank: langText("Banka", "Bank"),
+    card: langText("Kart", "Karte"),
+  });
+  setText("[data-tab-content='quotes'] .section-tip", langText("Faturasiz satis butonunda sepette gorunen tutar son satis tutari kabul edilir; ekstra KDV eklenmez.", "Beim Verkauf ohne Rechnung wird der sichtbare Warenkorbwert als Endsumme verwendet; es wird keine zusaetzliche MwSt hinzugefuegt."));
+  setText(refs.checkoutSaleButton, langText("Direkt Satis Yap", "Direktverkauf"));
+  setText(refs.checkoutUnbilledSaleButton, langText("Faturasiz Satis", "Ohne Rechnung"));
+  setText(refs.saveQuoteButton, langText("Teklifi Kaydet", "Angebot speichern"));
+  setText("[data-tab-content='quotes'] .recent-quotes h2", langText("Son Teklifler", "Letzte Angebote"));
+
+  const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-staff-only section");
+  setText(ordersSection?.querySelector("h2"), langText("Siparis Takibi", "Bestellverfolgung"));
+  setText(ordersSection?.querySelector(".section-tip"), langText("Musteri siparisleri burada toplanir. Personel ve admin durum guncelleyebilir.", "Kundenbestellungen werden hier gesammelt. Personal und Admin koennen den Status aendern."));
+  setText("#customerVerificationBanner h3", langText("E-Posta Dogrulamasi Bekleniyor", "E-Mail-Bestaetigung ausstehend"));
+  setText("#customerVerificationBanner p.muted", langText("Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
+  setText(refs.resendVerificationButton, langText("Dogrulama Mailini Tekrar Gonder", "Bestaetigungs-E-Mail erneut senden"));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Urunler", "Verfuegbare Artikel"));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Sadece stokta olan urunler gosterilir. Fiyat gormezsiniz; sadece adet ve urun bilgisi vardir. Siparis gecmisi yalnizca size ozeldir.", "Es werden nur lagernde Artikel gezeigt. Preise sind nicht sichtbar; nur Bestand und Artikeldaten. Der Bestellverlauf ist nur fuer Sie sichtbar."));
+  setText("[data-tab-content='orders'] .customer-only .pos-cart h2", langText("Siparis Sepeti", "Bestellkorb"));
+  setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz urunleri secip siparis talebi gonderebilirsiniz.", "Waehlen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
+  setFormFieldLabel(refs.customerOrderForm, "date", langText("Tarih", "Datum"));
+  setFormFieldLabel(refs.customerOrderForm, "note", langText("Siparis Notu", "Bestellnotiz"));
+  setFieldPlaceholder(refs.customerOrderForm, "note", langText("Teslim tarihi, aciklama veya ozel not", "Lieferdatum, Beschreibung oder Sondernotiz"));
+  setText(refs.submitCustomerOrderButton, langText("Siparis Gonder", "Bestellung senden"));
+  setText("[data-tab-content='orders'] .customer-only .recent-quotes h2", langText("Siparis Gecmisi", "Bestellverlauf"));
+
+  const userSections = document.querySelectorAll("[data-tab-content='users'] .two-column > section");
+  setText(userSections[0]?.querySelector("h2"), langText("Kullanici Ekle", "Benutzer anlegen"));
+  setFormFieldLabel(refs.userForm, "name", t("fullName"));
+  setFormFieldLabel(refs.userForm, "username", langText("Kullanici Adi", "Benutzername"));
+  setFormFieldLabel(refs.userForm, "email", t("email"));
+  setFormFieldLabel(refs.userForm, "phone", t("phone"));
+  setFormFieldLabel(refs.userForm, "password", t("password"));
+  setFormFieldLabel(refs.userForm, "role", langText("Rol", "Rolle"));
+  setFieldPlaceholder(refs.userForm, "phone", "+49...");
+  setSelectOptionTexts(refs.userForm?.elements?.role, {
+    staff: langText("Personel", "Personal"),
+    customer: langText("Musteri", "Kunde"),
+    admin: "Admin",
+  });
+  setText("#userForm button[type='submit']", langText("Kullanici Ekle", "Benutzer anlegen"));
+  setText(userSections[1]?.querySelector("h2"), langText("Kullanicilar", "Benutzer"));
+
+  const trainingSections = document.querySelectorAll("[data-tab-content='training'] .two-column > section");
+  setText(trainingSections[0]?.querySelector("h2"), langText("DRC MAN Egitim Kaydi", "DRC MAN Trainingseintrag"));
+  setText(trainingSections[0]?.querySelector("p.muted"), langText("Buraya eklenen soru-cevaplar once DRC MAN tarafinda denenir. Egitim kayitlari admin tarafindan duzenlenir ve tum yerel kullanicilar ayni bilgiyi alir.", "Hier hinterlegte Fragen und Antworten werden zuerst von DRC MAN verwendet. Trainings werden vom Admin gepflegt und fuer alle lokalen Benutzer genutzt."));
+  setFormFieldLabel(refs.assistantTrainingForm, "topic", langText("Konu", "Thema"));
+  setFormFieldLabel(refs.assistantTrainingForm, "audience", langText("Hedef Kullanici", "Zielgruppe"));
+  setFormFieldLabel(refs.assistantTrainingForm, "keywords", langText("Anahtar Kelimeler", "Schluesselwoerter"));
+  setFormFieldLabel(refs.assistantTrainingForm, "trQuestion", langText("TR Soru", "TR Frage"));
+  setFormFieldLabel(refs.assistantTrainingForm, "trAnswer", langText("TR Cevap", "TR Antwort"));
+  setFormFieldLabel(refs.assistantTrainingForm, "deQuestion", langText("DE Soru", "DE Frage"));
+  setFormFieldLabel(refs.assistantTrainingForm, "deAnswer", langText("DE Cevap", "DE Antwort"));
+  setFormFieldLabel(refs.assistantTrainingForm, "suggestions", langText("Onerilen Sonraki Sorular", "Empfohlene Folgefragen"));
+  setFormFieldLabel(refs.assistantTrainingForm, "isActive", langText("Durum", "Status"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "topic", langText("Orn. Faturasiz satis akisi", "z. B. Ablauf Verkauf ohne Rechnung"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "keywords", langText("stok girisi, malzeme girisi, wareneingang", "wareneingang, lagerzugang, materialeingang"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "trQuestion", langText("Orn. stok girisi nasil yapilir", "z. B. wie buche ich wareneingang"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "trAnswer", langText("Bu soruya verilecek net operasyon cevabi", "Klare operative Antwort fuer diese Frage"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "deQuestion", langText("Orn. wie buche ich wareneingang", "z. B. wie buche ich wareneingang"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "deAnswer", langText("Almanca cevap opsiyoneldir, bos kalirsa Turkce cevap kullanilir", "Deutsche Antwort ist optional; leer bedeutet, dass die tuerkische Antwort genutzt wird."));
+  setFieldPlaceholder(refs.assistantTrainingForm, "suggestions", langText("virgulle ayirin: stok cikisi nasil yapilir, hareket iptali nasil olur", "mit Komma trennen: wie buche ich lagerausgang, wie storniere ich eine bewegung"));
+  setSelectOptionTexts(refs.assistantTrainingForm?.elements?.audience, {
+    all: langText("Tum Kullanicilar", "Alle Benutzer"),
+    admin: langText("Sadece Admin", "Nur Admin"),
+    staff: langText("Admin + Personel", "Admin + Personal"),
+    customer: langText("Sadece Musteri", "Nur Kunde"),
+  });
+  setSelectOptionTexts(refs.assistantTrainingForm?.elements?.isActive, {
+    true: langText("Aktif", "Aktiv"),
+    false: langText("Pasif", "Passiv"),
+  });
+  refs.assistantTrainingSubmitButton.textContent = refs.assistantTrainingForm?.elements?.id?.value
+    ? t("messages.trainingUpdated")
+    : t("messages.trainingSaved");
+  refs.assistantTrainingCancelButton.textContent = t("common.cancelEdit");
+  setText(trainingSections[1]?.querySelector("h2"), langText("Egitim Listesi", "Trainingsliste"));
+
+  const retrofitPanel = document.querySelector(".retrofit-checklist-panel");
+  setText(retrofitPanel?.querySelector(".section-head h2"), langText("Retrofit Checklist", "Retrofit-Checkliste"));
+  setText(
+    retrofitPanel?.querySelector(".section-head .muted"),
+    langText(
+      "Mevcut gazdan yeni gaza gecis dusunulurken sahada atlanmamasi gereken adimlari bu arac hizli toparlar.",
+      "Dieses Werkzeug fasst die wichtigen Schritte zusammen, die bei einer Umruestung auf ein anderes Kaeltemittel im Feld nicht uebersehen werden sollten."
+    )
+  );
+  setFormFieldLabel(refs.retrofitChecklistForm, "currentGas", langText("Mevcut Gaz", "Bestandskaeltemittel"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "targetGas", langText("Planlanan Gaz", "Geplantes Kaeltemittel"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "applicationType", langText("Uygulama", "Anwendung"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "systemType", langText("Sistem Tipi", "Anlagentyp"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "oilType", langText("Yag Durumu", "Oelzustand"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "compressorApproval", langText("Kompresor Onayi", "Verdichterfreigabe"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "valveState", langText("Valf ve Orifis", "Ventil und Duesen"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "controlsState", langText("Kontrol ve Emniyet", "Regelung und Sicherheit"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "labelState", langText("Etiket ve Evrak", "Kennzeichnung und Unterlagen"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "notes", langText("Saha Notu", "Feldnotiz"));
+  setFieldPlaceholder(
+    refs.retrofitChecklistForm,
+    "notes",
+    langText(
+      "Kompresor modeli, olculer, valf tipi, musteri istegi gibi notlari yazin",
+      "Notieren Sie z. B. Verdichtermodell, Messwerte, Ventiltyp oder Kundenwunsch"
+    )
+  );
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.targetGas, {
+    "": langText("Henuz Net Degil", "Noch offen"),
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.applicationType, {
+    positive: langText("Arti Muhafaza", "Pluskuehlung"),
+    negative: langText("Negatif Depo", "Tiefkuehlung"),
+    shock: langText("Sok Oda", "Schockraum"),
+    compact: langText("Kompakt Sistem", "Kompakte Anlage"),
+    industrial: langText("Endustriyel Tesis", "Industrieanlage"),
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.systemType, {
+    legacy: langText("Eski Sistem / Legacy", "Bestandsanlage / Legacy"),
+    retrofit: langText("Mevcut Sistem Retrofit", "Retrofit im Bestand"),
+    new: langText("Yeni Proje", "Neuprojekt"),
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.oilType, {
+    unknown: langText("Bilinmiyor", "Unbekannt"),
+    mineral: langText("Mineral", "Mineral"),
+    ab: langText("AB / Alkylbenzene", "AB / Alkylbenzene"),
+    poe: "POE",
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.compressorApproval, {
+    unknown: langText("Henuz Kontrol Edilmedi", "Noch nicht geprueft"),
+    approved: langText("Onayli", "Freigegeben"),
+    not_approved: langText("Uyumsuz / Onaysiz", "Nicht freigegeben / kritisch"),
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.valveState, {
+    unchecked: langText("Henuz Kontrol Edilmedi", "Noch nicht geprueft"),
+    checked: langText("Kontrol Edildi", "Geprueft"),
+    replace: langText("Degisim Gerekebilir", "Tausch moeglich"),
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.controlsState, {
+    unchecked: langText("Henuz Kontrol Edilmedi", "Noch nicht geprueft"),
+    checked: langText("Kontrol Edildi", "Geprueft"),
+    update_required: langText("Ayar / Guncelleme Gerekli", "Anpassung erforderlich"),
+  });
+  setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.labelState, {
+    pending: langText("Bekliyor", "Offen"),
+    updated: langText("Guncellendi", "Aktualisiert"),
+  });
+  setText(refs.retrofitChecklistTitle, langText("Saha Kontrol Ciktisi", "Ausgabe fuer den Feldeinsatz"));
+  setText(
+    refs.retrofitChecklistHint,
+    langText(
+      "Formu doldurup checklist urettiginizde burada saha sirasina gore duzenlenmis bir yol haritasi goreceksiniz.",
+      "Nach dem Erstellen sehen Sie hier eine nach Feldeinsatz sortierte Retrofit-Checkliste."
+    )
+  );
+  setText(refs.retrofitChecklistGenerateButton, langText("Checklist Uret", "Checkliste erzeugen"));
+  setText(refs.retrofitChecklistCopyButton, langText("Checklist Kopyala", "Checkliste kopieren"));
+
+  setText(".assistant-head .eyebrow", langText("Soru Cevap", "Fragen und Antworten"));
+  replaceLabelText(refs.assistantLanguage?.closest("label"), langText("Dil", "Sprache"));
+  setText(refs.assistantClose, langText("Kapat", "Schliessen"));
+  refs.assistantClose.setAttribute("aria-label", langText("DRC MAN panelini kapat", "DRC MAN Panel schliessen"));
+  refs.assistantInput.placeholder = langText("Orn. En pahali urun hangisi?", "z. B. Welcher Artikel ist am teuersten?");
+  setText("#assistantForm button[type='submit']", langText("Sor", "Fragen"));
+
+  setTableHeaders(refs.itemsTableBody, [
+    langText("Malzeme", "Artikel"),
+    langText("Marka", "Marke"),
+    langText("Kategori", "Kategorie"),
+    langText("Stok", "Bestand"),
+    ...(canViewPurchasePrices() ? [langText("Alis", "Einkauf")] : []),
+    langText("Liste", "Liste"),
+    langText("Net/Satis", "Netto/Verkauf"),
+    langText("Kritik", "Minimum"),
+    langText("Stok Kodu", "Lagercode"),
+    langText("Islem", "Aktion"),
+  ]);
+  setTableHeaders(refs.archiveTableBody, [
+    langText("Malzeme", "Artikel"),
+    langText("Marka", "Marke"),
+    langText("Kategori", "Kategorie"),
+    ...(canViewPurchasePrices() ? [langText("Alis", "Einkauf")] : []),
+    langText("Liste", "Liste"),
+    langText("Net/Satis", "Netto/Verkauf"),
+    langText("Stok Kodu", "Lagercode"),
+    langText("Islem", "Aktion"),
+  ]);
+  setTableHeaders(refs.movementsTableBody, [
+    langText("Tarih", "Datum"),
+    langText("Malzeme", "Artikel"),
+    langText("Tip", "Typ"),
+    langText("Miktar", "Menge"),
+    langText("Kullanici", "Benutzer"),
+    langText("Islem", "Aktion"),
+  ]);
+  setTableHeaders(refs.expensesTableBody, [
+    langText("Tarih", "Datum"),
+    langText("Baslik", "Titel"),
+    langText("Kategori", "Kategorie"),
+    langText("Tutar", "Betrag"),
+    langText("Kullanici", "Benutzer"),
+    langText("Islem", "Aktion"),
+  ]);
+  setTableHeaders(refs.cashbookTableBody, [
+    langText("Tarih", "Datum"),
+    langText("Tip", "Typ"),
+    langText("Baslik", "Titel"),
+    langText("Tutar", "Betrag"),
+    langText("Kullanici", "Benutzer"),
+    langText("Islem", "Aktion"),
+  ]);
+  setTableHeaders(refs.ordersTableBody, [
+    langText("Tarih", "Datum"),
+    langText("Musteri", "Kunde"),
+    langText("Kalemler", "Positionen"),
+    langText("Durum", "Status"),
+    langText("Islem", "Aktion"),
+  ]);
+  setTableHeaders(refs.usersTableBody, [
+    langText("Ad Soyad", "Name"),
+    langText("Kullanici Adi", "Benutzername"),
+    t("email"),
+    langText("Telefon", "Telefon"),
+    langText("Rol", "Rolle"),
+  ]);
+  setTableHeaders(refs.assistantTrainingTableBody, [
+    langText("Konu", "Thema"),
+    langText("Hedef", "Ziel"),
+    langText("TR Soru", "TR Frage"),
+    langText("DE Soru", "DE Frage"),
+    langText("Durum", "Status"),
+    langText("Guncelleyen", "Aktualisiert von"),
+    langText("Islem", "Aktion"),
+  ]);
+}
 
 function effectiveRole() {
   return state.user?.role === "operator" ? "staff" : state.user?.role;
@@ -137,14 +992,72 @@ function isCustomerUser() {
   return effectiveRole() === "customer";
 }
 
+function canViewPurchasePrices() {
+  return isAdminUser();
+}
+
+function visibleSalePrice(item) {
+  if (canViewPurchasePrices()) {
+    return Number(item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0);
+  }
+  return Number(item.salePrice || 0);
+}
+
+function visibleListPrice(item) {
+  return Number(item.listPrice || 0);
+}
+
+function cartSalePrice(item, quantity = 2) {
+  const listPrice = Number(item.listPrice || 0);
+  const netPrice = Number(item.salePrice || 0);
+  if (Number(quantity) <= 1 && listPrice > 0) {
+    return listPrice;
+  }
+  return netPrice > 0 ? netPrice : listPrice;
+}
+
+function updateQuoteLinePrice(line) {
+  line.unitPrice = cartSalePrice(
+    {
+      listPrice: line.listPrice,
+      salePrice: line.salePrice,
+    },
+    line.quantity
+  );
+}
+
+function syncRoleSensitiveFields() {
+  const canViewPurchase = canViewPurchasePrices();
+  const movementUnitPriceField = refs.movementForm?.elements?.unitPrice;
+  if (movementUnitPriceField) {
+    movementUnitPriceField.disabled = !canViewPurchase;
+    movementUnitPriceField.required = canViewPurchase;
+    if (!canViewPurchase) {
+      movementUnitPriceField.value = "";
+    }
+  }
+
+  if (refs.movementAutoCostHint) {
+    refs.movementAutoCostHint.classList.toggle("hidden", canViewPurchase || isCustomerUser());
+  }
+
+  [refs.stockIntakeForm?.elements?.unitPrice, refs.stockIntakeForm?.elements?.listPrice, refs.stockIntakeForm?.elements?.salePrice].filter(Boolean).forEach((field) => {
+    field.disabled = !canViewPurchase;
+    field.required = canViewPurchase && field.name === "unitPrice";
+    if (!canViewPurchase) {
+      field.value = "";
+    }
+  });
+}
+
 function roleLabel() {
   if (isAdminUser()) {
-    return "admin";
+    return t("roles.admin");
   }
   if (isCustomerUser()) {
-    return "musteri";
+    return t("roles.customer");
   }
-  return "personel";
+  return t("roles.staff");
 }
 
 bindEvents();
@@ -161,17 +1074,24 @@ function bindEvents() {
   refs.movementForm.addEventListener("submit", (event) => handleSubmit(event, "/api/movements"));
   refs.stockIntakeForm?.addEventListener("submit", handleStockIntakeSubmit);
   refs.expenseForm.addEventListener("submit", (event) => handleSubmit(event, "/api/expenses"));
-  refs.cashForm.addEventListener("submit", (event) => handleSubmit(event, "/api/cashbook"));
+  refs.cashForm.addEventListener("submit", handleCashSubmit);
   refs.bulkPricingForm.addEventListener("submit", handleBulkPricingSubmit);
   refs.itemCancelEdit.addEventListener("click", resetItemForm);
   refs.saveQuoteButton.addEventListener("click", handleQuoteSave);
   refs.checkoutSaleButton.addEventListener("click", handleDirectSale);
+  refs.checkoutUnbilledSaleButton?.addEventListener("click", handleUnbilledSale);
   refs.submitCustomerOrderButton?.addEventListener("click", handleCustomerOrderSubmit);
   refs.resendVerificationButton?.addEventListener("click", handleResendVerification);
 
   if (refs.userForm) {
     refs.userForm.addEventListener("submit", (event) => handleSubmit(event, "/api/users"));
   }
+  if (refs.assistantTrainingForm) {
+    refs.assistantTrainingForm.addEventListener("submit", handleAssistantTrainingSubmit);
+  }
+  refs.assistantTrainingCancelButton?.addEventListener("click", resetAssistantTrainingForm);
+  refs.retrofitChecklistForm?.addEventListener("submit", handleRetrofitChecklistGenerate);
+  refs.retrofitChecklistCopyButton?.addEventListener("click", copyRetrofitChecklist);
 
   refs.logoutButton.addEventListener("click", logout);
   refs.downloadXlsx.addEventListener("click", () => {
@@ -199,6 +1119,11 @@ function bindEvents() {
   refs.assistantClose.addEventListener("click", closeAssistantPanel);
   refs.assistantLanguage.addEventListener("change", handleAssistantLanguageChange);
   refs.assistantForm.addEventListener("submit", handleAssistantSubmit);
+  refs.uiLanguageSelects?.forEach((select) => {
+    select.addEventListener("change", (event) => {
+      setUiLanguage(event.currentTarget.value);
+    });
+  });
 
   document.querySelectorAll("[data-tab]").forEach((button) => {
     button.addEventListener("click", () => activateTab(button.dataset.tab));
@@ -208,12 +1133,13 @@ function bindEvents() {
     form.elements.date.value = today;
   });
   refs.quoteForm.elements.date.value = today;
-  refs.quoteForm.elements.language.value = "de";
+  refs.quoteForm.elements.language.value = state.uiLanguage;
   refs.quoteForm.elements.isExport.value = "true";
 }
 
 async function initialize() {
   state.user = null;
+  applyUiTranslations();
   showLogin();
   await handleAuthUrlActions();
 }
@@ -244,6 +1170,7 @@ async function handleCustomerRegister(event) {
   refs.customerRegisterSuccess.textContent = "";
 
   const payload = formToObject(event.currentTarget);
+  payload.language = state.uiLanguage;
   const result = await request("/api/customers/register", {
     method: "POST",
     body: JSON.stringify(payload),
@@ -255,8 +1182,8 @@ async function handleCustomerRegister(event) {
   }
 
   refs.customerRegisterSuccess.textContent = result.mailSent
-    ? "Hesabiniz olusturuldu. Dogrulama maili gonderildi ve kendi musteri panelinizdesiniz."
-    : "Hesabiniz olusturuldu, ancak mail sistemi ayarli olmadigi icin dogrulama maili gonderilemedi.";
+    ? t("messages.customerRegisterMailSent")
+    : t("messages.customerRegisterNoMail");
   state.user = result.user;
   event.currentTarget.reset();
   await refreshData();
@@ -268,6 +1195,7 @@ async function handleForgotPassword(event) {
   refs.forgotPasswordSuccess.textContent = "";
 
   const payload = formToObject(event.currentTarget);
+  payload.language = state.uiLanguage;
   const result = await request("/api/auth/forgot-password", {
     method: "POST",
     body: JSON.stringify(payload),
@@ -278,7 +1206,7 @@ async function handleForgotPassword(event) {
     return;
   }
 
-  refs.forgotPasswordSuccess.textContent = result.message || "Islem tamamlandi.";
+  refs.forgotPasswordSuccess.textContent = result.message || t("messages.operationDone");
   if (result.whatsappUrl) {
     window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
   }
@@ -301,7 +1229,7 @@ async function handleResetPassword(event) {
     return;
   }
 
-  refs.resetPasswordSuccess.textContent = result.message || "Sifreniz guncellendi.";
+  refs.resetPasswordSuccess.textContent = result.message || t("messages.passwordUpdated");
   event.currentTarget.reset();
   clearAuthQueryParams(["resetToken"]);
 }
@@ -321,6 +1249,28 @@ async function handleSubmit(event, url) {
   }
 
   form.reset();
+  if (form.elements.date) {
+    form.elements.date.value = today;
+  }
+  await refreshData();
+}
+
+async function handleCashSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const payload = formToObject(form);
+  const result = await request("/api/cashbook", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  form.reset();
+  form.elements.type.value = "in";
   if (form.elements.date) {
     form.elements.date.value = today;
   }
@@ -375,7 +1325,7 @@ async function handleStockIntakeSubmit(event) {
     syncMovementPrice();
   }
 
-  window.alert("Yeni urun karti ve ilk stok girisi basariyla kaydedildi.");
+  window.alert(t("messages.stockIntakeSaved"));
 }
 
 async function handleBulkPricingSubmit(event) {
@@ -389,14 +1339,58 @@ async function handleBulkPricingSubmit(event) {
     window.alert(result.error);
     return;
   }
-  window.alert(`${result.updated} kaydin satis fiyati guncellendi.`);
+  window.alert(t("messages.bulkUpdated", result.updated));
   await refreshData();
+}
+
+async function handleAssistantTrainingSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const payload = formToObject(form);
+  const trainingId = Number(payload.id || 0);
+  delete payload.id;
+
+  const result = await request(trainingId ? `/api/assistant/trainings/${trainingId}` : "/api/assistant/trainings", {
+    method: trainingId ? "PUT" : "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  resetAssistantTrainingForm();
+  await refreshData();
+  activateTab("training");
+}
+
+async function deleteAssistantTraining(trainingId) {
+  if (!trainingId || !window.confirm(t("messages.deleteTrainingConfirm"))) {
+    return;
+  }
+
+  const result = await request(`/api/assistant/trainings/${trainingId}`, {
+    method: "DELETE",
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  if (Number(refs.assistantTrainingForm?.elements?.id?.value || 0) === Number(trainingId)) {
+    resetAssistantTrainingForm();
+  }
+
+  await refreshData();
+  activateTab("training");
 }
 
 function resetItemForm() {
   refs.itemForm.reset();
   refs.itemForm.elements.id.value = "";
-  refs.itemSubmitButton.textContent = "Malzeme Ekle";
+  refs.itemSubmitButton.textContent = langText("Malzeme Ekle", "Artikel anlegen");
   refs.itemCancelEdit.classList.add("hidden");
 }
 
@@ -407,6 +1401,7 @@ async function logout() {
 }
 
 async function refreshData() {
+  const previousUserId = Number(state.user?.id || 0);
   const data = await request("/api/bootstrap");
   if (data.error) {
     showLogin();
@@ -414,6 +1409,14 @@ async function refreshData() {
   }
 
   Object.assign(state, data);
+  if (previousUserId !== Number(state.user?.id || 0)) {
+    state.assistantMessages = [];
+    state.assistantLanguage = "tr";
+    state.assistantUserId = Number(state.user?.id || 0);
+    if (refs.assistantLanguage) {
+      refs.assistantLanguage.value = "tr";
+    }
+  }
   showApp();
   renderAll();
 }
@@ -422,6 +1425,9 @@ function showLogin() {
   refs.loginScreen.classList.remove("hidden");
   refs.appScreen.classList.add("hidden");
   refs.assistantWidget.classList.add("hidden");
+  state.assistantMessages = [];
+  state.assistantStatus = null;
+  state.assistantUserId = null;
   refs.loginError.textContent = "";
   refs.loginForm.reset();
   if (refs.customerRegisterForm) {
@@ -450,13 +1456,14 @@ function showLogin() {
   }
   lockLoginInputs();
   closeAssistantPanel();
+  applyUiTranslations();
 }
 
 function showApp() {
   refs.loginScreen.classList.add("hidden");
   refs.appScreen.classList.remove("hidden");
-  refs.assistantWidget.classList.toggle("hidden", isCustomerUser());
-  refs.welcomeText.textContent = `${state.user.name} olarak giris yaptiniz. Rol: ${roleLabel()}${isCustomerUser() && !state.user?.emailVerified ? " | E-posta henuz dogrulanmadi" : ""}`;
+  refs.assistantWidget.classList.remove("hidden");
+  refs.welcomeText.textContent = t("messages.welcome", state.user.name, roleLabel(), isCustomerUser() && !state.user?.emailVerified);
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", !isAdminUser());
   });
@@ -466,14 +1473,17 @@ function showApp() {
   document.querySelectorAll(".customer-only").forEach((node) => {
     node.classList.toggle("hidden", !isCustomerUser());
   });
+  syncRoleSensitiveFields();
   refs.customerVerificationBanner?.classList.toggle("hidden", !isCustomerUser() || Boolean(state.user?.emailVerified));
   if (refs.resendVerificationMessage) {
     refs.resendVerificationMessage.textContent = "";
   }
 
-  if (!isCustomerUser() && state.assistantMessages.length === 0) {
+  if (state.assistantMessages.length === 0) {
     seedAssistantMessages();
   }
+  applyUiTranslations();
+  renderAssistantStatus();
 }
 
 function lockLoginInputs() {
@@ -489,6 +1499,7 @@ function unlockLoginInputs() {
 }
 
 function renderAll() {
+  applyUiTranslations();
   const preferredTab = isCustomerUser() ? "orders" : "quotes";
   activateTab(state.activeTab || preferredTab);
   renderStats();
@@ -501,6 +1512,8 @@ function renderAll() {
   renderQuotes();
   renderOrders();
   renderUsers();
+  renderAssistantTraining();
+  renderRetrofitChecklist();
   renderItemSelects();
   updateBarcodePreview();
   if (!isCustomerUser()) {
@@ -509,12 +1522,12 @@ function renderAll() {
 }
 
 function renderFilters() {
-  populateSelect(refs.brandFilter, uniqueValues("brand"), "Tum Markalar", state.filters.brand);
-  populateSelect(refs.categoryFilter, uniqueValues("category"), "Tum Kategoriler", state.filters.category);
-  populateSelect(refs.bulkBrandFilter, uniqueValues("brand"), "Tum Markalar", refs.bulkBrandFilter.value || "all");
-  populateSelect(refs.bulkCategoryFilter, uniqueValues("category"), "Tum Kategoriler", refs.bulkCategoryFilter.value || "all");
-  populateSelect(refs.quoteBrandFilter, uniqueValues("brand"), "Tum Markalar", state.quoteFilters.brand);
-  populateSelect(refs.quoteCategoryFilter, uniqueValues("category"), "Tum Kategoriler", state.quoteFilters.category);
+  populateSelect(refs.brandFilter, uniqueValues("brand"), langText("Tum Markalar", "Alle Marken"), state.filters.brand);
+  populateSelect(refs.categoryFilter, uniqueValues("category"), langText("Tum Kategoriler", "Alle Kategorien"), state.filters.category);
+  populateSelect(refs.bulkBrandFilter, uniqueValues("brand"), langText("Tum Markalar", "Alle Marken"), refs.bulkBrandFilter.value || "all");
+  populateSelect(refs.bulkCategoryFilter, uniqueValues("category"), langText("Tum Kategoriler", "Alle Kategorien"), refs.bulkCategoryFilter.value || "all");
+  populateSelect(refs.quoteBrandFilter, uniqueValues("brand"), langText("Tum Markalar", "Alle Marken"), state.quoteFilters.brand);
+  populateSelect(refs.quoteCategoryFilter, uniqueValues("category"), langText("Tum Kategoriler", "Alle Kategorien"), state.quoteFilters.category);
   renderItemSearchSuggestions();
 }
 
@@ -522,22 +1535,23 @@ function renderStats() {
   refs.statsGrid.innerHTML = "";
   const cards = isCustomerUser()
     ? [
-        ["Stoktaki Urun", state.summary.totalItems, "Siparise acik aktif urunler"],
-        ["Kritik Urun", state.summary.criticalCount, "Stogu azalan urunler"],
+        [t("stats.customerItems"), state.summary.totalItems, t("stats.customerItemsDesc")],
+        [t("stats.critical"), state.summary.criticalCount, t("stats.criticalDesc")],
       ]
     : isAdminUser()
       ? [
-          ["Malzeme Cesidi", state.summary.totalItems, "Kayitli aktif kart"],
-          ["Stok Degeri", currency.format(state.summary.stockValue), "Toplam maliyet etkisi"],
-          ["Kritik Urun", state.summary.criticalCount, "Esik altinda kalanlar"],
-          ["Toplam Masraf", currency.format(state.summary.expenseTotal), "Tum giderler"],
-          ["Kasa Bakiyesi", currency.format(state.summary.cashBalance), "Net nakit durum"],
+          [t("stats.totalItems"), state.summary.totalItems, t("stats.totalItemsDesc")],
+          [t("stats.stockCostValue"), currency.format(state.summary.stockCostValue ?? state.summary.stockValue ?? 0), t("stats.stockCostValueDesc")],
+          [t("stats.stockSaleValue"), currency.format(state.summary.stockSaleValue || 0), t("stats.stockSaleValueDesc")],
+          [t("stats.critical"), state.summary.criticalCount, t("stats.criticalDesc")],
+          [t("stats.expenseTotal"), currency.format(state.summary.expenseTotal), t("stats.expenseTotalDesc")],
+          [t("stats.cashBalance"), currency.format(state.summary.cashBalance), t("stats.cashBalanceDesc")],
         ]
       : [
-          ["Malzeme Cesidi", state.summary.totalItems, "Kayitli aktif kart"],
-          ["Stok Degeri", currency.format(state.summary.stockValue), "Toplam maliyet etkisi"],
-          ["Kritik Urun", state.summary.criticalCount, "Esik altinda kalanlar"],
-          ["Kasa Bakiyesi", currency.format(state.summary.cashBalance), "Net nakit durum"],
+          [t("stats.totalItems"), state.summary.totalItems, t("stats.totalItemsDesc")],
+          [t("stats.stockSaleValue"), currency.format(state.summary.stockSaleValue || 0), t("stats.stockSaleValueDesc")],
+          [t("stats.critical"), state.summary.criticalCount, t("stats.criticalDesc")],
+          [t("stats.cashBalance"), currency.format(state.summary.cashBalance), t("stats.cashBalanceDesc")],
         ];
 
   cards.forEach(([label, value, subtitle]) => {
@@ -553,29 +1567,32 @@ function renderItems() {
   const filteredItems = getFilteredItems();
   const visibleItems = filteredItems.slice(0, MAX_ITEMS_TABLE_ROWS);
   refs.itemsSummary.textContent = filteredItems.length > MAX_ITEMS_TABLE_ROWS
-    ? `${filteredItems.length} / ${state.items.length} malzeme bulundu. Performans icin ilk ${MAX_ITEMS_TABLE_ROWS} kayit gosteriliyor.`
-    : `${filteredItems.length} / ${state.items.length} malzeme goruntuleniyor`;
+    ? t("messages.itemsSummaryLong", filteredItems.length, state.items.length, MAX_ITEMS_TABLE_ROWS)
+    : t("messages.itemsSummaryShort", filteredItems.length, state.items.length);
   renderStockedItems(filteredItems);
   visibleItems.forEach((item) => {
     const tr = document.createElement("tr");
     const critical = Number(item.currentStock) <= Number(item.minStock);
     const purchasePrice = item.lastPurchasePrice || item.defaultPrice || 0;
+    const listPrice = visibleListPrice(item);
+    const salePrice = visibleSalePrice(item);
     const actionMarkup = isAdminUser()
       ? `
         <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}">Duzenle</button>
-          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}">Arsivle</button>
-          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}">Sil</button>
+          <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}" data-help="TR: Malzeme kartini duzenler. DE: Bearbeitet die Artikelkarte.">${t("common.edit")}</button>
+          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}" data-help="TR: Urunu aktif listeden arsive alir. DE: Verschiebt den Artikel ins Archiv.">${t("common.archive")}</button>
+          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}" data-help="TR: Hareketsiz urunu kalici siler. DE: Loescht einen Artikel ohne Bewegungen dauerhaft.">${t("common.delete")}</button>
         </div>
       `
-      : `<span class="muted">Goruntuleme</span>`;
+      : `<span class="muted">${t("common.viewOnly")}</span>`;
     tr.innerHTML = `
       <td>${item.name}</td>
       <td>${item.brand || "-"}</td>
       <td>${item.category}</td>
       <td>${numberFormat.format(item.currentStock)} ${item.unit}</td>
-      <td>${purchasePrice ? currency.format(purchasePrice) : "-"}</td>
-      <td>${item.salePrice ? currency.format(item.salePrice) : "-"}</td>
+      ${canViewPurchasePrices() ? `<td>${purchasePrice ? currency.format(purchasePrice) : "-"}</td>` : ""}
+      <td>${listPrice ? currency.format(listPrice) : "-"}</td>
+      <td>${salePrice ? currency.format(salePrice) : "-"}</td>
       <td><span class="status-pill ${critical ? "status-critical" : "status-ok"}">${numberFormat.format(item.minStock)} ${item.unit}</span></td>
       <td>${item.barcode}</td>
       <td>${actionMarkup}</td>
@@ -602,24 +1619,26 @@ function renderStockedItems(filteredItems) {
   }
 
   const stockedItems = filteredItems.filter((item) => Number(item.currentStock) > 0);
-  refs.stockedItemsSummary.textContent = `${stockedItems.length} urun stokta var. Stok 0 olanlar bu bolume dahil edilmez.`;
+  refs.stockedItemsSummary.textContent = t("messages.stockedSummary", stockedItems.length);
   refs.stockedItemsList.innerHTML = "";
 
   if (stockedItems.length === 0) {
-    refs.stockedItemsList.innerHTML = `<div class="empty-state">Stokta urun bulunamadi.</div>`;
+    refs.stockedItemsList.innerHTML = `<div class="empty-state">${t("messages.noStockedItems")}</div>`;
     return;
   }
 
   stockedItems.slice(0, 80).forEach((item) => {
-    const price = item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0;
+    const listPrice = visibleListPrice(item);
+    const price = cartSalePrice(item);
     const card = document.createElement("article");
     card.className = "stocked-card";
     card.innerHTML = `
       <strong>${item.name}</strong>
       <span>${item.brand || "-"} | ${item.category}</span>
-      <span>Stok: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+      <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
       <span>${item.barcode || "-"}</span>
-      <b>${price ? currency.format(price) : "-"}</b>
+      <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
+      ${listPrice ? `<span>${langText("1 adet", "1 Stueck")}: ${currency.format(listPrice)}</span>` : ""}
     `;
     refs.stockedItemsList.append(card);
   });
@@ -631,23 +1650,26 @@ function renderArchive() {
   }
 
   refs.archiveTableBody.innerHTML = "";
-  refs.archiveSummary.textContent = `${state.archivedItems.length} pasif urun arsivde tutuluyor`;
+  refs.archiveSummary.textContent = t("messages.archiveSummary", state.archivedItems.length);
 
   if (state.archivedItems.length === 0) {
-    refs.archiveTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">Pasif urun yok.</div></td></tr>`;
+    refs.archiveTableBody.innerHTML = `<tr><td colspan="8"><div class="empty-state">${t("messages.noArchive")}</div></td></tr>`;
     return;
   }
 
   state.archivedItems.forEach((item) => {
+    const listPrice = visibleListPrice(item);
+    const salePrice = visibleSalePrice(item);
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${item.name}</td>
       <td>${item.brand || "-"}</td>
       <td>${item.category}</td>
-      <td>${item.defaultPrice ? currency.format(item.defaultPrice) : "-"}</td>
-      <td>${item.salePrice ? currency.format(item.salePrice) : "-"}</td>
+      ${canViewPurchasePrices() ? `<td>${item.defaultPrice ? currency.format(item.defaultPrice) : "-"}</td>` : ""}
+      <td>${listPrice ? currency.format(listPrice) : "-"}</td>
+      <td>${salePrice ? currency.format(salePrice) : "-"}</td>
       <td>${item.barcode}</td>
-      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}">Geri Al</button></td>
+      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}" data-help="TR: Arsivdeki urunu tekrar aktif listeye alir. DE: Holt den archivierten Artikel in die aktive Liste zurueck.">${t("common.restore")}</button></td>
     `;
     refs.archiveTableBody.append(tr);
   });
@@ -661,20 +1683,24 @@ function renderMovements() {
   refs.movementsTableBody.innerHTML = "";
   state.movements.slice(0, 20).forEach((movement) => {
     const tr = document.createElement("tr");
-    const movementTypeLabel = movement.type === "entry" ? "Giris" : "Cikis";
-    let actionMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}">Iptal Et</button>`;
+    const movementTypeLabel = movement.type === "entry" ? t("common.in") : t("common.out");
+    let actionMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}" data-help="TR: Hareketi ters kayitla geri alir. DE: Storniert die Bewegung mit einer Gegenbuchung.">${t("common.reverse")}</button>`;
 
     if (movement.reversalOf) {
-      actionMarkup = `<span class="muted">Iptal kaydi</span>`;
+      actionMarkup = `<span class="muted">${t("common.reverseRecord")}</span>`;
     } else if (movement.reversedById) {
-      actionMarkup = `<span class="muted">Iptal edildi</span>`;
+      actionMarkup = `<span class="muted">${t("common.reversed")}</span>`;
     }
+
+    const quantityMarkup = canViewPurchasePrices()
+      ? `${numberFormat.format(movement.quantity)} / ${currency.format(movement.unitPrice)}`
+      : numberFormat.format(movement.quantity);
 
     tr.innerHTML = `
       <td>${movement.date}</td>
       <td>${movement.itemName}</td>
       <td>${movementTypeLabel}</td>
-      <td>${numberFormat.format(movement.quantity)} / ${currency.format(movement.unitPrice)}</td>
+      <td>${quantityMarkup}</td>
       <td>${movement.userName || "-"}</td>
       <td class="table-action-cell">${actionMarkup}</td>
     `;
@@ -696,7 +1722,7 @@ function renderExpenses() {
       <td>${expense.category}</td>
       <td>${currency.format(expense.amount)}</td>
       <td>${expense.userName || "-"}</td>
-      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}">Masraf Sil</button></td>
+      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydini siler. DE: Loescht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe loeschen")}</button></td>
     `;
     refs.expensesTableBody.append(tr);
   });
@@ -709,14 +1735,15 @@ function renderExpenses() {
 function renderCashbook() {
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
+    const isUnbilledSale = /faturasiz satis/i.test(String(entry.note || "")) || /faturasiz satis/i.test(String(entry.title || ""));
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${entry.date}</td>
-      <td>${entry.type === "in" ? "Giris" : "Cikis"}</td>
+      <td>${isUnbilledSale ? t("common.unbilledSale") : entry.type === "in" ? t("common.in") : t("common.out")}</td>
       <td>${entry.title}</td>
       <td>${currency.format(entry.amount)}</td>
       <td>${entry.userName || "-"}</td>
-      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}">Kaydi Sil</button></td>
+      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button></td>
     `;
     refs.cashbookTableBody.append(tr);
   });
@@ -733,10 +1760,312 @@ function renderUsers() {
   refs.usersTableBody.innerHTML = "";
   state.users.forEach((user) => {
     const tr = document.createElement("tr");
-    const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? "Musteri" : "Personel";
+    const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? langText("Musteri", "Kunde") : langText("Personel", "Personal");
     tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.email || "-"}</td><td>${user.phone || "-"}</td><td>${roleText}</td>`;
     refs.usersTableBody.append(tr);
   });
+}
+
+function trainingAudienceLabel(audience) {
+  if (audience === "admin") {
+    return langText("Sadece Admin", "Nur Admin");
+  }
+  if (audience === "staff") {
+    return langText("Admin + Personel", "Admin + Personal");
+  }
+  if (audience === "customer") {
+    return langText("Sadece Musteri", "Nur Kunde");
+  }
+  return langText("Tum Kullanicilar", "Alle Benutzer");
+}
+
+function renderAssistantTraining() {
+  if (!refs.assistantTrainingTableBody || !isAdminUser()) {
+    return;
+  }
+
+  refs.assistantTrainingTableBody.innerHTML = "";
+  const entries = state.agentTraining || [];
+  refs.assistantTrainingSummary.textContent = t("messages.trainingSummary", entries.length);
+
+  if (entries.length === 0) {
+    refs.assistantTrainingTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${t("messages.noTraining")}</div></td></tr>`;
+    return;
+  }
+
+  entries.forEach((entry) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${escapeHtml(entry.topic || "-")}</td>
+      <td>${trainingAudienceLabel(entry.audience)}</td>
+      <td>${escapeHtml(entry.trQuestion)}</td>
+      <td>${escapeHtml(entry.deQuestion || "-")}</td>
+      <td><span class="status-pill ${entry.isActive ? "status-ok" : "status-pending"}">${entry.isActive ? t("common.active") : t("common.passive")}</span></td>
+      <td>${escapeHtml(entry.createdByName || "-")}</td>
+      <td class="table-action-cell">
+        <div class="action-row">
+          <button class="mini-button secondary-button" type="button" data-edit-training="${entry.id}" data-help="TR: Egitim kaydini duzenler. DE: Bearbeitet den Trainingseintrag.">${t("common.edit")}</button>
+          <button class="mini-button danger-button" type="button" data-delete-training="${entry.id}" data-help="TR: Egitim kaydini siler. DE: Loescht den Trainingseintrag.">${t("common.delete")}</button>
+        </div>
+      </td>
+    `;
+    refs.assistantTrainingTableBody.append(tr);
+  });
+
+  refs.assistantTrainingTableBody.querySelectorAll("[data-edit-training]").forEach((button) => {
+    button.addEventListener("click", () => populateAssistantTrainingForm(Number(button.dataset.editTraining)));
+  });
+
+  refs.assistantTrainingTableBody.querySelectorAll("[data-delete-training]").forEach((button) => {
+    button.addEventListener("click", () => deleteAssistantTraining(Number(button.dataset.deleteTraining)));
+  });
+}
+
+function populateAssistantTrainingForm(trainingId) {
+  const entry = state.agentTraining.find((item) => Number(item.id) === trainingId);
+  if (!entry || !refs.assistantTrainingForm) {
+    return;
+  }
+
+  refs.assistantTrainingForm.elements.id.value = entry.id;
+  refs.assistantTrainingForm.elements.topic.value = entry.topic || "";
+  refs.assistantTrainingForm.elements.audience.value = entry.audience || "all";
+  refs.assistantTrainingForm.elements.keywords.value = entry.keywords || "";
+  refs.assistantTrainingForm.elements.trQuestion.value = entry.trQuestion || "";
+  refs.assistantTrainingForm.elements.trAnswer.value = entry.trAnswer || "";
+  refs.assistantTrainingForm.elements.deQuestion.value = entry.deQuestion || "";
+  refs.assistantTrainingForm.elements.deAnswer.value = entry.deAnswer || "";
+  refs.assistantTrainingForm.elements.suggestions.value = Array.isArray(entry.suggestions) ? entry.suggestions.join(", ") : "";
+  refs.assistantTrainingForm.elements.isActive.value = entry.isActive ? "true" : "false";
+  refs.assistantTrainingSubmitButton.textContent = t("messages.trainingUpdated");
+  refs.assistantTrainingCancelButton.classList.remove("hidden");
+  activateTab("training");
+  refs.assistantTrainingForm.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function resetAssistantTrainingForm() {
+  if (!refs.assistantTrainingForm) {
+    return;
+  }
+
+  refs.assistantTrainingForm.reset();
+  refs.assistantTrainingForm.elements.id.value = "";
+  refs.assistantTrainingForm.elements.audience.value = "all";
+  refs.assistantTrainingForm.elements.isActive.value = "true";
+  refs.assistantTrainingSubmitButton.textContent = t("messages.trainingSaved");
+  refs.assistantTrainingCancelButton.classList.add("hidden");
+}
+
+function retrofitGasLabel(value) {
+  const map = {
+    r404a: "R404A",
+    r134a: "R134a",
+    r448a: "R448A",
+    r449a: "R449A",
+    r452a: "R452A",
+    r290: "R290",
+    r744: "R744 / CO2",
+    r717: "R717 / NH3",
+  };
+  return map[value] || value || langText("Belirtilmedi", "Nicht angegeben");
+}
+
+function retrofitSelectLabel(fieldName, value) {
+  const option = refs.retrofitChecklistForm?.elements?.[fieldName]?.querySelector(`option[value="${value}"]`);
+  return option?.textContent || value || "-";
+}
+
+function buildRetrofitChecklist(input) {
+  const currentGas = retrofitGasLabel(input.currentGas);
+  const targetGas = input.targetGas ? retrofitGasLabel(input.targetGas) : langText("henuz net degil", "noch offen");
+  const summaryBits = [
+    langText(`Kaynak gaz: ${currentGas}`, `Bestandskaeltemittel: ${currentGas}`),
+    langText(`Planlanan gaz: ${targetGas}`, `Zielkaeltemittel: ${targetGas}`),
+    langText(`Uygulama: ${retrofitSelectLabel("applicationType", input.applicationType)}`, `Anwendung: ${retrofitSelectLabel("applicationType", input.applicationType)}`),
+    langText(`Sistem tipi: ${retrofitSelectLabel("systemType", input.systemType)}`, `Anlagentyp: ${retrofitSelectLabel("systemType", input.systemType)}`),
+  ];
+
+  const decisionLines = [
+    langText(
+      "1. Once bunun gercekten drop-in mi yoksa kismi redesign mi olduguna karar ver.",
+      "1. Zuerst klaeren, ob das ein echtes Drop-in oder bereits ein Teil-Redesign ist."
+    ),
+    langText(
+      `2. ${currentGas} -> ${targetGas} gecisinde kompresor ve yag tarafini katalog onayi olmadan kesinlestirme.`,
+      `2. Den Schritt ${currentGas} -> ${targetGas} nicht ohne Verdichter- und Oelfreigabe festlegen.`
+    ),
+  ];
+
+  if (input.currentGas === "r404a") {
+    decisionLines.push(
+      langText(
+        "3. R404A tarafinda valf, glide ve etiket guncellemesi neredeyse her zaman ayri kontrol ister.",
+        "3. Bei R404A-Retrofit muessen Ventil, Glide-Logik und Kennzeichnung fast immer separat geprueft werden."
+      )
+    );
+  }
+  if (["r290", "r744", "r717"].includes(input.targetGas || input.currentGas)) {
+    decisionLines.push(
+      langText(
+        "4. Yanicilik / yuksek basinc / toksisite tarafini normal gaz degisimi gibi degil, proje guvenligi gibi ele al.",
+        "4. Brennbarkeit / Hochdruck / Toxizitaet nicht wie einen normalen Kaeltemittelwechsel, sondern wie ein Sicherheitsprojekt behandeln."
+      )
+    );
+  }
+
+  const mechanicalLines = [
+    langText(
+      `Kompresor onayi: ${retrofitSelectLabel("compressorApproval", input.compressorApproval)}. Datasheet ve servis bulteni gorulmeden nihai gecis yapma.`,
+      `Verdichterfreigabe: ${retrofitSelectLabel("compressorApproval", input.compressorApproval)}. Ohne Datenblatt und Servicebulletin keine finale Freigabe.`
+    ),
+    langText(
+      `Yag durumu: ${retrofitSelectLabel("oilType", input.oilType)}. Gerekirse flushing, kademeli yag degisimi ve geri donus kontrolu planla.`,
+      `Oelzustand: ${retrofitSelectLabel("oilType", input.oilType)}. Falls noetig Spuelung, stufenweisen Oelwechsel und Ruecklaufkontrolle einplanen.`
+    ),
+    langText(
+      `Valf/orifis durumu: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, nozzle ve equalizer tarafi yeni gaza gore yeniden kontrol edilmeli.`,
+      `Ventil/Duese: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, Duesen und Equalizer auf das neue Kaeltemittel abstimmen.`
+    ),
+    langText(
+      "Filtre drier, sight glass, servis vanalari ve likit hattinda daralma ihtimalini mekanik kontrolde ayri not et.",
+      "Filtertrockner, Schauglas, Serviceventile und moegliche Verengungen in der Fluessigkeitsleitung separat pruefen."
+    ),
+  ];
+
+  const controlsLines = [
+    langText(
+      `Kontrol ve emniyet: ${retrofitSelectLabel("controlsState", input.controlsState)}. Presostat, termostat, alarm ve defrost mantigi yeni basinc tablosuna gore bakilmali.`,
+      `Regelung und Sicherheit: ${retrofitSelectLabel("controlsState", input.controlsState)}. Druckschalter, Regler, Alarm und Abtauung auf die neue Drucklogik anpassen.`
+    ),
+    langText(
+      `Etiket ve evrak: ${retrofitSelectLabel("labelState", input.labelState)}. Gaz etiketi, sarj miktari, servis kaydi ve musteri bilgilendirmesi guncellenmeli.`,
+      `Kennzeichnung und Unterlagen: ${retrofitSelectLabel("labelState", input.labelState)}. Kaeltemitteletikett, Fuellmenge, Serviceprotokoll und Kundeninfo aktualisieren.`
+    ),
+  ];
+
+  if (input.applicationType === "negative" || input.applicationType === "shock") {
+    controlsLines.push(
+      langText(
+        "Negatif / sok odada defrost sirasi, likit geri donusu ve basma sicakligi ekstra yakindan takip edilmeli.",
+        "Bei Tiefkuehl- oder Schockanwendungen muessen Abtaulogik, Fluessigkeitsrueckkehr und Druckgastemperatur besonders eng beobachtet werden."
+      )
+    );
+  }
+
+  const commissioningLines = [
+    langText(
+      "Vakum, sizdirmazlik, dogru sarj sirasi ve ilk devreye alma olculeri yazili kayda alinmali.",
+      "Vakuum, Dichtheit, Fuellreihenfolge und die ersten Inbetriebnahme-Messwerte schriftlich festhalten."
+    ),
+    langText(
+      "Ilk calismada PT tablo, superheat ve subcool birlikte okunmali; sadece manometreye bakip karar verilmemeli.",
+      "Bei der Erstinbetriebnahme muessen PT-Logik, Superheat und Subcooling gemeinsam gelesen werden; ein Blick auf den Druck allein reicht nicht."
+    ),
+    langText(
+      "Yuk altinda ikinci kontrol yapilmali: bos calisma ve yuklu calisma ayni tabloyu vermez.",
+      "Eine zweite Kontrolle unter Last ist Pflicht; Leerlauf und Lastbetrieb zeigen oft unterschiedliche Bilder."
+    ),
+  ];
+
+  if (input.notes) {
+    commissioningLines.push(
+      langText(`Saha notu: ${input.notes}`, `Feldnotiz: ${input.notes}`)
+    );
+  }
+
+  return {
+    summary: summaryBits.join(" | "),
+    sections: [
+      { title: langText("Karar Mantigi", "Entscheidungslogik"), items: decisionLines },
+      { title: langText("Mekanik ve Yag Tarafi", "Mechanik und Oelseite"), items: mechanicalLines },
+      { title: langText("Kontrol ve Emniyet", "Regelung und Sicherheit"), items: controlsLines },
+      { title: langText("Devreye Alma ve Son Kontrol", "Inbetriebnahme und Endkontrolle"), items: commissioningLines },
+    ],
+  };
+}
+
+function renderRetrofitChecklist() {
+  if (!refs.retrofitChecklistOutput) {
+    return;
+  }
+
+  if (!state.retrofitChecklist) {
+    refs.retrofitChecklistOutput.innerHTML = `<div class="empty-state">${langText("Henuz checklist uretilmedi.", "Es wurde noch keine Checkliste erzeugt.")}</div>`;
+    return;
+  }
+
+  const checklist = buildRetrofitChecklist(state.retrofitChecklist);
+  refs.retrofitChecklistOutput.innerHTML = `
+    <article class="retrofit-checklist-summary">
+      <strong>${langText("Ozet", "Zusammenfassung")}</strong>
+      <p>${escapeHtml(checklist.summary)}</p>
+    </article>
+    ${checklist.sections
+      .map(
+        (section) => `
+          <section class="retrofit-checklist-section">
+            <h4>${escapeHtml(section.title)}</h4>
+            <ul>
+              ${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+            </ul>
+          </section>
+        `
+      )
+      .join("")}
+  `;
+}
+
+function readRetrofitChecklistForm() {
+  if (!refs.retrofitChecklistForm) {
+    return null;
+  }
+  const formData = new FormData(refs.retrofitChecklistForm);
+  return {
+    currentGas: String(formData.get("currentGas") || ""),
+    targetGas: String(formData.get("targetGas") || ""),
+    applicationType: String(formData.get("applicationType") || ""),
+    systemType: String(formData.get("systemType") || ""),
+    oilType: String(formData.get("oilType") || ""),
+    compressorApproval: String(formData.get("compressorApproval") || ""),
+    valveState: String(formData.get("valveState") || ""),
+    controlsState: String(formData.get("controlsState") || ""),
+    labelState: String(formData.get("labelState") || ""),
+    notes: String(formData.get("notes") || "").trim(),
+  };
+}
+
+function handleRetrofitChecklistGenerate(event) {
+  event.preventDefault();
+  state.retrofitChecklist = readRetrofitChecklistForm();
+  renderRetrofitChecklist();
+}
+
+async function copyRetrofitChecklist() {
+  if (!state.retrofitChecklist) {
+    alert(langText("Once checklist uretin.", "Bitte zuerst eine Checkliste erzeugen."));
+    return;
+  }
+
+  const checklist = buildRetrofitChecklist(state.retrofitChecklist);
+  const text = [
+    langText("Retrofit Checklist", "Retrofit-Checkliste"),
+    checklist.summary,
+    ...checklist.sections.flatMap((section) => [
+      "",
+      section.title,
+      ...section.items.map((item, index) => `${index + 1}. ${item}`),
+    ]),
+  ].join("\n");
+
+  try {
+    await navigator.clipboard.writeText(text);
+    refs.retrofitChecklistCopyButton.textContent = langText("Kopyalandi", "Kopiert");
+    window.setTimeout(() => {
+      refs.retrofitChecklistCopyButton.textContent = langText("Checklist Kopyala", "Checkliste kopieren");
+    }, 1500);
+  } catch (_error) {
+    alert(langText("Checklist kopyalanamadi.", "Die Checkliste konnte nicht kopiert werden."));
+  }
 }
 
 function renderQuotes() {
@@ -748,19 +2077,18 @@ function renderQuotes() {
 
   refs.quotesList.innerHTML = "";
   if (!state.quotes || state.quotes.length === 0) {
-    refs.quotesList.innerHTML = `<div class="empty-state">Henuz teklif yok.</div>`;
+    refs.quotesList.innerHTML = `<div class="empty-state">${t("messages.noQuotes")}</div>`;
   } else {
     state.quotes.forEach((quote) => {
       const div = document.createElement("div");
       div.className = "feed-item";
       div.innerHTML = `
         <strong>${quote.title} - ${quote.customerName}</strong>
-        <span>${quote.quoteNo || `#${quote.id}`} | ${quote.date} | Net ${currency.format(quote.netTotal || quote.total)} | Brut ${currency.format(quote.grossTotal || quote.total)}</span>
-        <span>${quote.userName || "-"} | ${quote.language === "tr" ? "TR" : "DE"} | ${quote.isExport ? "Export" : "Inland"}</span>
+        <span>${quote.quoteNo || `#${quote.id}`} | ${quote.date} | ${langText("Net", "Netto")} ${currency.format(quote.netTotal || quote.total)} | ${langText("Brut", "Brutto")} ${currency.format(quote.grossTotal || quote.total)}</span>
+        <span>${quote.userName || "-"} | ${quote.language === "tr" ? "TR" : "DE"} | ${quote.isExport ? t("common.export") : t("common.inland")}</span>
         <span>${quote.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
         <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-quote-pdf="${quote.id}" data-lang="de">PDF DE</button>
-          <button class="mini-button secondary-button" type="button" data-quote-pdf="${quote.id}" data-lang="tr">PDF TR</button>
+          <button class="mini-button secondary-button" type="button" data-quote-pdf="${quote.id}" data-lang="auto" data-help="TR: Teklifi panel dilinde PDF olarak indirir. DE: Laedt das Angebot in der aktuellen Oberflaechensprache als PDF herunter.">PDF ${state.uiLanguage.toUpperCase()}</button>
         </div>
       `;
       refs.quotesList.append(div);
@@ -777,15 +2105,18 @@ function renderQuotes() {
 
   refs.quoteDraftBody.innerHTML = "";
   if (state.quoteDraft.length === 0) {
-    refs.quoteDraftBody.innerHTML = `<div class="empty-state">Sepet bos. Soldan urun secip ekleyin.</div>`;
+    refs.quoteDraftBody.innerHTML = `<div class="empty-state">${t("messages.emptyQuoteDraft")}</div>`;
   } else {
     state.quoteDraft.forEach((entry, index) => {
       const row = document.createElement("article");
       row.className = "cart-item";
+      const priceLabel = entry.quantity <= 1 && Number(entry.listPrice || 0) > 0
+        ? langText("liste", "Liste")
+        : langText("net", "netto");
       row.innerHTML = `
         <div class="cart-item-main">
           <strong>${entry.itemName}</strong>
-          <span>${entry.unit} | ${currency.format(entry.unitPrice)} / birim</span>
+          <span>${entry.unit} | ${currency.format(entry.unitPrice)} / ${langText("birim", "Einheit")} (${priceLabel})</span>
         </div>
         <div class="cart-item-controls">
           <button class="mini-button secondary-button" type="button" data-quote-qty="${index}" data-delta="-1">-</button>
@@ -794,7 +2125,7 @@ function renderQuotes() {
         </div>
         <div class="cart-item-total">
           <strong>${currency.format(entry.quantity * entry.unitPrice)}</strong>
-          <button class="mini-button danger-button" type="button" data-remove-quote-line="${index}">Sil</button>
+          <button class="mini-button danger-button" type="button" data-remove-quote-line="${index}">${t("common.delete")}</button>
         </div>
       `;
       refs.quoteDraftBody.append(row);
@@ -819,7 +2150,20 @@ function renderQuotes() {
   const grossTotal = netTotal + vatAmount;
   const collectedAmount = Math.max(Number(refs.quoteForm.elements.collectedAmount?.value || 0), 0);
   const remaining = Math.max(grossTotal - collectedAmount, 0);
-  refs.quoteDraftSummary.textContent = `Ara toplam: ${currency.format(subtotal)} | Iskonto: ${currency.format(discount)} | Net: ${currency.format(netTotal)} | KDV: ${currency.format(vatAmount)} | Brut: ${currency.format(grossTotal)} | Tahsil: ${currency.format(collectedAmount)} | Kalan: ${currency.format(remaining)}`;
+  const unbilledTotal = netTotal;
+  const unbilledRemaining = Math.max(unbilledTotal - collectedAmount, 0);
+  refs.quoteDraftSummary.textContent = t(
+    "messages.quoteSummary",
+    currency.format(subtotal),
+    currency.format(discount),
+    currency.format(netTotal),
+    currency.format(vatAmount),
+    currency.format(grossTotal),
+    currency.format(collectedAmount),
+    currency.format(remaining),
+    currency.format(unbilledTotal),
+    currency.format(unbilledRemaining)
+  );
 }
 
 function renderPosCatalog() {
@@ -827,18 +2171,23 @@ function renderPosCatalog() {
     return;
   }
 
-  const items = getFilteredQuoteItems();
+  const items = getFilteredQuoteItems().filter((item) => Number(item.currentStock) > 0);
   refs.posCatalogGrid.innerHTML = "";
 
   if (items.length === 0) {
-    refs.posCatalogGrid.innerHTML = `<div class="empty-state">Aramaya uygun urun bulunamadi.</div>`;
+    refs.posCatalogGrid.innerHTML = `<div class="empty-state">${t("messages.noPosItems")}</div>`;
     return;
   }
 
   items.slice(0, 60).forEach((item) => {
     const card = document.createElement("article");
     card.className = "pos-card";
-    const price = item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0;
+    const listPrice = visibleListPrice(item);
+    const netPrice = visibleSalePrice(item);
+    const canSell = cartSalePrice(item, 1) > 0;
+    if (!canSell) {
+      card.classList.add("is-disabled");
+    }
     card.innerHTML = `
       <div class="pos-card-head">
         <strong>${item.name}</strong>
@@ -846,10 +2195,11 @@ function renderPosCatalog() {
       </div>
       <div class="pos-card-meta">
         <span>${item.category}</span>
-        <span>Stok: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+        <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
       </div>
-      <div class="pos-card-price">${price ? currency.format(price) : "-"}</div>
-      <button class="primary-button" type="button" data-add-quote-item="${item.id}">Sepete Ekle</button>
+      <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : "-"}</div>
+      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "1 Stueck Liste")}: ${currency.format(listPrice)}</span></div>` : ""}
+      <button class="primary-button" type="button" data-add-quote-item="${item.id}" ${canSell ? "" : "disabled"} data-help="TR: Urunu satis sepetine ekler. DE: Legt den Artikel in den Verkaufswarenkorb.">${canSell ? t("common.addToCart") : langText("Fiyat Eksik", "Preis fehlt")}</button>
     `;
     refs.posCatalogGrid.append(card);
   });
@@ -873,7 +2223,7 @@ function renderAdminOrders() {
 
   refs.ordersTableBody.innerHTML = "";
   if (!state.orders || state.orders.length === 0) {
-    refs.ordersTableBody.innerHTML = `<tr><td colspan="5"><div class="empty-state">Henuz musteri siparisi yok.</div></td></tr>`;
+    refs.ordersTableBody.innerHTML = `<tr><td colspan="5"><div class="empty-state">${t("messages.noAdminOrders")}</div></td></tr>`;
     return;
   }
 
@@ -893,11 +2243,11 @@ function renderAdminOrders() {
       <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span></td>
       <td class="table-action-cell">
         <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved">Onayla</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing">Hazirla</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed">Tamamla</button>
-          <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled">Iptal</button>
-          ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}">WhatsApp</button>` : ""}
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparisi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing" data-help="TR: Siparisi hazirlaniyor durumuna alir. DE: Setzt die Bestellung auf in Vorbereitung.">${langText("Hazirla", "Vorbereiten")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparisi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschliessen")}</button>
+          <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled" data-help="TR: Siparisi iptal eder. DE: Storniert die Bestellung.">${t("common.cancelled")}</button>
+          ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}" data-help="TR: Musteriye hazir WhatsApp mesaji acar. DE: Oeffnet eine vorbereitete WhatsApp-Nachricht.">WhatsApp</button>` : ""}
         </div>
       </td>
     `;
@@ -922,7 +2272,7 @@ function renderCustomerCatalog() {
   refs.customerCatalogGrid.innerHTML = "";
 
   if (items.length === 0) {
-    refs.customerCatalogGrid.innerHTML = `<div class="empty-state">Siparise acik stoklu urun bulunamadi.</div>`;
+    refs.customerCatalogGrid.innerHTML = `<div class="empty-state">${t("messages.noCustomerCatalog")}</div>`;
     return;
   }
 
@@ -936,10 +2286,10 @@ function renderCustomerCatalog() {
       </div>
       <div class="pos-card-meta">
         <span>${item.category}</span>
-        <span>Stok: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
-        <span>Stok Kodu: ${item.barcode || "-"}</span>
+        <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+        <span>${langText("Stok Kodu", "Lagercode")}: ${item.barcode || "-"}</span>
       </div>
-      <button class="primary-button" type="button" data-add-order-item="${item.id}">Siparise Ekle</button>
+      <button class="primary-button" type="button" data-add-order-item="${item.id}" data-help="TR: Urunu musteri siparis sepetine ekler. DE: Fuegt den Artikel dem Kundenwarenkorb hinzu.">${t("common.addToOrder")}</button>
     `;
     refs.customerCatalogGrid.append(card);
   });
@@ -956,8 +2306,8 @@ function renderCustomerOrderDraft() {
 
   refs.customerOrderBody.innerHTML = "";
   if (state.customerOrderDraft.length === 0) {
-    refs.customerOrderBody.innerHTML = `<div class="empty-state">Sepetiniz bos. Soldan stoktaki urunleri ekleyebilirsiniz.</div>`;
-    refs.customerOrderSummary.textContent = "Henuz siparis kalemi yok.";
+    refs.customerOrderBody.innerHTML = `<div class="empty-state">${t("messages.emptyCustomerCart")}</div>`;
+    refs.customerOrderSummary.textContent = t("messages.noCustomerOrderLines");
     return;
   }
 
@@ -965,19 +2315,19 @@ function renderCustomerOrderDraft() {
     const row = document.createElement("article");
     row.className = "cart-item";
     row.innerHTML = `
-      <div class="cart-item-main">
-        <strong>${entry.itemName}</strong>
-        <span>${entry.unit} | Stok: ${numberFormat.format(entry.maxQuantity)} ${entry.unit}</span>
-      </div>
+        <div class="cart-item-main">
+          <strong>${entry.itemName}</strong>
+          <span>${entry.unit} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${entry.unit}</span>
+        </div>
       <div class="cart-item-controls">
         <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="-1">-</button>
         <span>${numberFormat.format(entry.quantity)}</span>
         <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="1">+</button>
       </div>
-      <div class="cart-item-total">
-        <strong>${numberFormat.format(entry.quantity)} ${entry.unit}</strong>
-        <button class="mini-button danger-button" type="button" data-remove-order-line="${index}">Sil</button>
-      </div>
+        <div class="cart-item-total">
+          <strong>${numberFormat.format(entry.quantity)} ${entry.unit}</strong>
+          <button class="mini-button danger-button" type="button" data-remove-order-line="${index}">${t("common.delete")}</button>
+        </div>
     `;
     refs.customerOrderBody.append(row);
   });
@@ -995,7 +2345,7 @@ function renderCustomerOrderDraft() {
 
   const totalLines = state.customerOrderDraft.length;
   const totalUnits = state.customerOrderDraft.reduce((sum, entry) => sum + Number(entry.quantity), 0);
-  refs.customerOrderSummary.textContent = `${totalLines} kalem | Toplam talep: ${numberFormat.format(totalUnits)} adet/birim`;
+  refs.customerOrderSummary.textContent = t("messages.customerOrderSummary", totalLines, numberFormat.format(totalUnits));
 }
 
 function renderCustomerOrders() {
@@ -1005,7 +2355,7 @@ function renderCustomerOrders() {
 
   refs.customerOrdersList.innerHTML = "";
   if (!state.orders || state.orders.length === 0) {
-    refs.customerOrdersList.innerHTML = `<div class="empty-state">Daha once gonderilmis siparisiniz yok.</div>`;
+    refs.customerOrdersList.innerHTML = `<div class="empty-state">${t("messages.noCustomerOrders")}</div>`;
     return;
   }
 
@@ -1013,8 +2363,8 @@ function renderCustomerOrders() {
     const div = document.createElement("div");
     div.className = "feed-item";
     div.innerHTML = `
-      <strong>Siparis #${order.id}</strong>
-      <span>${order.date} | Durum: ${getOrderStatusLabel(order.status)}</span>
+      <strong>${langText("Siparis", "Bestellung")} #${order.id}</strong>
+      <span>${order.date} | ${langText("Durum", "Status")}: ${getOrderStatusLabel(order.status)}</span>
       <span>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
       <span>${order.note || "-"}</span>
     `;
@@ -1047,6 +2397,9 @@ function updateBarcodePreview() {
 }
 
 function syncMovementPrice() {
+  if (!canViewPurchasePrices()) {
+    return;
+  }
   const itemId = Number(refs.movementForm.elements.itemId.value);
   const item = state.items.find((entry) => Number(entry.id) === itemId);
   if (!item) {
@@ -1116,6 +2469,23 @@ function seedAssistantMessages() {
   ];
 }
 
+function renderAssistantStatus() {
+  if (!refs.assistantStatus) {
+    return;
+  }
+
+  if (state.assistantLanguage === "de") {
+    refs.assistantStatus.textContent = state.assistantStatus?.mode === "local_drc_man"
+      ? "DRC MAN ist lokal verbunden"
+      : "DRC MAN Fallback-Modus aktiv";
+    return;
+  }
+
+  refs.assistantStatus.textContent = state.assistantStatus?.mode === "local_drc_man"
+    ? "DRC MAN yerel ajan bagli"
+    : "DRC MAN yedek mod aktif";
+}
+
 function renderAssistantMessages() {
   if (!refs.assistantMessages) {
     return;
@@ -1139,6 +2509,7 @@ function handleAssistantLanguageChange() {
   if (state.assistantMessages.length <= 1) {
     seedAssistantMessages();
   }
+  renderAssistantStatus();
   renderAssistantMessages();
 }
 
@@ -1155,28 +2526,90 @@ async function handleAssistantSubmit(event) {
 
   const result = await request("/api/assistant/query", {
     method: "POST",
-    body: JSON.stringify({ message, language: state.assistantLanguage }),
+    body: JSON.stringify({
+      message,
+      language: state.assistantLanguage,
+      history: state.assistantMessages.slice(-8),
+    }),
   });
 
   state.assistantMessages.push({
     role: "assistant",
-    text: result.error || result.answer || "Bu soru icin net bir sonuc bulamadim.",
+    text: result.error || result.answer || langText("Bu soru icin net bir sonuc bulamadim.", "Ich konnte fuer diese Frage kein klares Ergebnis finden."),
   });
   renderAssistantMessages();
 }
 
 function assistantLabel(role) {
   if (state.assistantLanguage === "de") {
-    return role === "assistant" ? "Assistent" : "Sie";
+    return role === "assistant" ? "DRC MAN" : "Sie";
   }
-  return role === "assistant" ? "Asistan" : "Siz";
+  return role === "assistant" ? "DRC MAN" : "Siz";
 }
 
 function getAssistantWelcomeMessage() {
+  const hasLocalAgent = state.assistantStatus?.mode === "local_drc_man";
   if (state.assistantLanguage === "de") {
-    return "Der Lagerassistent ist bereit. Sie koennen nach Bestand, Preis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
+    return hasLocalAgent
+      ? "DRC MAN ist lokal verbunden. Sie koennen jetzt detaillierte Fragen zu Material, Projekt, Hamburg-Bestand und Kaltetechnik stellen."
+      : "DRC MAN laeuft im Fallback-Modus. Sie koennen nach Bestand, Preis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
   }
-  return "Depo Asistani hazir. Stok, fiyat, kategori, kritik urun veya satis akisi ile ilgili soru sorabilirsiniz.";
+  return hasLocalAgent
+    ? "DRC MAN yerel ajan baglandi. Artik malzeme, proje, Hamburg stok ve soguk oda teknik sorularini daha detayli sorabilirsiniz."
+    : "DRC MAN yedek modda hazir. Stok, fiyat, kategori, kritik urun veya satis akisi ile ilgili soru sorabilirsiniz.";
+}
+
+function normalizeSearchText(value) {
+  return String(value || "")
+    .toLocaleLowerCase("tr-TR")
+    .replace(/ı/g, "i")
+    .replace(/İ/g, "i")
+    .replace(/ğ/g, "g")
+    .replace(/ü/g, "u")
+    .replace(/ş/g, "s")
+    .replace(/ö/g, "o")
+    .replace(/ç/g, "c")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getItemSearchIndex(item) {
+  const source = [
+    item.name,
+    item.brand,
+    item.category,
+    item.barcode,
+    item.notes,
+  ].filter(Boolean).join(" ");
+  const extras = [];
+  const raw = [item.name, item.category, item.notes].filter(Boolean).join(" ");
+  const refrigerantCodes = raw.match(/\br[\s-]?\d{2,4}[a-z]?\b/gi) || [];
+  refrigerantCodes.forEach((code) => {
+    const compact = code.replace(/[\s-]+/g, "").toLowerCase();
+    extras.push(compact);
+  });
+
+  if (/r290/i.test(raw)) {
+    extras.push("propan", "propane", "gaz", "gazi", "sogutucu gaz", "refrigerant gas");
+  }
+
+  if (/soğutucu akışkan|sogutucu akiskan|gaz|gas|refrigerant/i.test(raw)) {
+    extras.push("gaz", "gazi", "gas", "refrigerant", "sogutucu akiskan");
+  }
+
+  return normalizeSearchText([source, ...extras].join(" "));
+}
+
+function itemMatchesSearch(item, query) {
+  const normalizedQuery = normalizeSearchText(query);
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  const haystack = getItemSearchIndex(item);
+  const tokens = normalizedQuery.split(" ").filter(Boolean);
+  return tokens.every((token) => haystack.includes(token));
 }
 
 function getFilteredItems(applySearch = true) {
@@ -1192,24 +2625,13 @@ function getFilteredItems(applySearch = true) {
     if (!applySearch || !state.filters.search) {
       return true;
     }
-
-    const haystack = [
-      item.name,
-      item.brand,
-      item.category,
-      item.barcode,
-      item.notes,
-    ]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
-
-    return haystack.includes(state.filters.search);
+    return itemMatchesSearch(item, state.filters.search);
   });
 }
 
 function uniqueValues(field) {
-  return [...new Set(state.items.map((item) => item[field]).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr"));
+  return [...new Set(state.items.map((item) => item[field]).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr"));
 }
 
 function populateSelect(select, values, placeholder, selectedValue) {
@@ -1232,11 +2654,16 @@ function renderItemSearchSuggestions() {
   const suggestions = new Set();
   state.items.forEach((item) => {
     [item.name, item.brand, item.barcode, item.category].filter(Boolean).forEach((value) => suggestions.add(value));
+    const codes = String([item.name, item.notes].filter(Boolean).join(" ").match(/\br[\s-]?\d{2,4}[a-z]?\b/gi) || "")
+      .split(",")
+      .map((value) => value.replace(/[\s-]+/g, "").trim().toUpperCase())
+      .filter(Boolean);
+    codes.forEach((value) => suggestions.add(value));
   });
 
   refs.itemSearchSuggestions.innerHTML = "";
   [...suggestions]
-    .sort((a, b) => a.localeCompare(b, "tr"))
+    .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr"))
     .slice(0, 250)
     .forEach((value) => {
       const option = document.createElement("option");
@@ -1250,7 +2677,7 @@ function renderSearchDropdown() {
     return;
   }
 
-  const term = refs.itemSearch.value.trim().toLowerCase();
+  const term = refs.itemSearch.value.trim();
   if (!term) {
     refs.itemSearchDropdown.classList.add("hidden");
     refs.itemSearchDropdown.innerHTML = "";
@@ -1258,7 +2685,7 @@ function renderSearchDropdown() {
   }
 
   const matches = state.items
-    .filter((item) => [item.name, item.brand, item.category, item.barcode, item.notes].filter(Boolean).join(" ").toLowerCase().includes(term))
+    .filter((item) => itemMatchesSearch(item, term))
     .slice(0, 10);
 
   if (matches.length === 0) {
@@ -1294,8 +2721,7 @@ function getFilteredQuoteItems() {
     if (!state.quoteFilters.search) {
       return true;
     }
-    const haystack = [item.name, item.brand, item.category, item.notes].filter(Boolean).join(" ").toLowerCase();
-    return haystack.includes(state.quoteFilters.search);
+    return itemMatchesSearch(item, state.quoteFilters.search);
   });
 }
 
@@ -1311,16 +2737,17 @@ function startItemEdit(itemId) {
   refs.itemForm.elements.unit.value = item.unit;
   refs.itemForm.elements.minStock.value = item.minStock;
   refs.itemForm.elements.defaultPrice.value = item.defaultPrice || item.lastPurchasePrice || "";
+  refs.itemForm.elements.listPrice.value = item.listPrice || "";
   refs.itemForm.elements.salePrice.value = item.salePrice || "";
   refs.itemForm.elements.barcode.value = item.barcode.startsWith("ITEM-") ? "" : item.barcode;
   refs.itemForm.elements.notes.value = item.notes || "";
-  refs.itemSubmitButton.textContent = "Malzemeyi Guncelle";
+  refs.itemSubmitButton.textContent = langText("Malzemeyi Guncelle", "Artikel aktualisieren");
   refs.itemCancelEdit.classList.remove("hidden");
   activateTab("items");
 }
 
 async function deleteItem(itemId) {
-  const approved = window.confirm("Bu malzeme kartini silmek istiyor musunuz?");
+  const approved = window.confirm(t("messages.deleteItemConfirm"));
   if (!approved) {
     return;
   }
@@ -1333,7 +2760,7 @@ async function deleteItem(itemId) {
 }
 
 async function archiveItem(itemId) {
-  const approved = window.confirm("Bu malzeme aktif listeden kaldirilip arsive tasinsin mi?");
+  const approved = window.confirm(t("messages.archiveItemConfirm"));
   if (!approved) {
     return;
   }
@@ -1355,7 +2782,7 @@ async function restoreItem(itemId) {
 }
 
 async function deleteExpense(expenseId) {
-  const approved = window.confirm("Bu masraf kaydini silmek istiyor musunuz?");
+  const approved = window.confirm(t("messages.deleteExpenseConfirm"));
   if (!approved) {
     return;
   }
@@ -1369,7 +2796,7 @@ async function deleteExpense(expenseId) {
 }
 
 async function deleteCashEntry(entryId) {
-  const approved = window.confirm("Bu kasa hareketini silmek istiyor musunuz?");
+  const approved = window.confirm(t("messages.deleteCashConfirm"));
   if (!approved) {
     return;
   }
@@ -1383,7 +2810,7 @@ async function deleteCashEntry(entryId) {
 }
 
 async function reverseMovement(movementId) {
-  const approved = window.confirm("Bu stok hareketi ters kayit olusturularak iptal edilsin mi?");
+  const approved = window.confirm(t("messages.reverseMovementConfirm"));
   if (!approved) {
     return;
   }
@@ -1401,17 +2828,35 @@ function addItemToQuote(itemId) {
   if (!item) {
     return;
   }
+  if (Number(item.currentStock) <= 0) {
+    window.alert(langText("Bu urun stokta yok, sepete eklenemez.", "Dieser Artikel ist nicht auf Lager und kann nicht in den Warenkorb gelegt werden."));
+    return;
+  }
+
+  const price = cartSalePrice(item, 1);
+  if (price <= 0) {
+    window.alert(langText("Bu urunun satis fiyati yok. Once admin fiyat girmeli.", "Dieser Artikel hat keinen Verkaufspreis. Bitte zuerst durch Admin eintragen."));
+    return;
+  }
 
   const existing = state.quoteDraft.find((entry) => Number(entry.itemId) === Number(item.id));
   if (existing) {
+    if (Number(existing.quantity) >= Number(item.currentStock)) {
+      window.alert(langText("Sepetteki miktar mevcut stogu gecemez.", "Die Warenkorbmenge darf den aktuellen Bestand nicht ueberschreiten."));
+      return;
+    }
     existing.quantity += 1;
+    updateQuoteLinePrice(existing);
   } else {
     state.quoteDraft.push({
       itemId: Number(item.id),
       itemName: item.name,
       quantity: 1,
-      unitPrice: Number(item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0),
+      unitPrice: price,
+      listPrice: Number(item.listPrice || 0),
+      salePrice: Number(item.salePrice || 0),
       unit: item.unit,
+      maxQuantity: Number(item.currentStock),
     });
   }
   renderQuotes();
@@ -1445,7 +2890,9 @@ function changeQuoteQuantity(index, delta) {
     return;
   }
 
-  line.quantity = Math.max(1, Number(line.quantity) + delta);
+  const nextValue = Math.max(1, Number(line.quantity) + delta);
+  line.quantity = Math.min(nextValue, Number(line.maxQuantity) || nextValue);
+  updateQuoteLinePrice(line);
   renderQuotes();
 }
 
@@ -1466,7 +2913,7 @@ async function handleCustomerOrderSubmit() {
   }
 
   if (state.customerOrderDraft.length === 0) {
-    window.alert("Siparis gondermeden once sepete en az bir urun ekleyin.");
+    window.alert(t("messages.addOrderFirst"));
     return;
   }
 
@@ -1491,7 +2938,7 @@ async function handleCustomerOrderSubmit() {
   refs.customerOrderForm.reset();
   refs.customerOrderForm.elements.date.value = today;
   await refreshData();
-  window.alert("Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.");
+  window.alert(t("messages.orderSent"));
 }
 
 async function handleResendVerification() {
@@ -1514,13 +2961,13 @@ async function handleResendVerification() {
 
   refs.resendVerificationMessage.classList.remove("error-text");
   refs.resendVerificationMessage.classList.add(result.mailSent ? "success-text" : "error-text");
-  refs.resendVerificationMessage.textContent = result.message || "Islem tamamlandi.";
+  refs.resendVerificationMessage.textContent = result.message || t("messages.operationDone");
 }
 
 async function updateOrderStatus(orderId, status) {
   const result = await request(`/api/orders/${orderId}/status`, {
     method: "POST",
-    body: JSON.stringify({ status }),
+    body: JSON.stringify({ status, language: state.uiLanguage }),
   });
 
   if (result.error) {
@@ -1534,28 +2981,28 @@ async function updateOrderStatus(orderId, status) {
 function getOrderStatusLabel(status) {
   switch (status) {
     case "approved":
-      return "Onaylandi";
+      return t("common.approved");
     case "preparing":
-      return "Hazirlaniyor";
+      return t("common.preparing");
     case "completed":
-      return "Tamamlandi";
+      return t("common.completed");
     case "cancelled":
-      return "Iptal";
+      return t("common.cancelled");
     default:
-      return "Beklemede";
+      return t("common.pending");
   }
 }
 
 function openOrderWhatsapp(orderId) {
   const order = state.orders.find((entry) => Number(entry.id) === Number(orderId));
   if (!order?.phone) {
-    window.alert("Bu siparis icin kayitli telefon numarasi yok.");
+    window.alert(t("messages.noOrderPhone"));
     return;
   }
 
   const phone = formatWhatsappNumber(order.phone);
   if (!phone) {
-    window.alert("Telefon numarasi WhatsApp icin uygun formatta degil.");
+    window.alert(t("messages.invalidWhatsappPhone"));
     return;
   }
 
@@ -1563,10 +3010,10 @@ function openOrderWhatsapp(orderId) {
   const itemSummary = order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ");
   const message = [
     `Merhaba ${order.customerName},`,
-    `DRC siparis bilgilendirmesi: #${order.id}`,
-    `Durum: ${statusText}`,
-    `Tarih: ${order.date}`,
-    itemSummary ? `Kalemler: ${itemSummary}` : "",
+    langText(`DRC siparis bilgilendirmesi: #${order.id}`, `DRC Bestellinformation: #${order.id}`),
+    `${langText("Durum", "Status")}: ${statusText}`,
+    `${langText("Tarih", "Datum")}: ${order.date}`,
+    itemSummary ? `${langText("Kalemler", "Positionen")}: ${itemSummary}` : "",
   ].filter(Boolean).join("\n");
 
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
@@ -1579,7 +3026,7 @@ function formatWhatsappNumber(value) {
 
 async function handleQuoteSave() {
   if (state.quoteDraft.length === 0) {
-    window.alert("Once teklif kalemi ekleyin.");
+    window.alert(t("messages.addQuoteFirst"));
     return;
   }
   const payload = {
@@ -1597,7 +3044,7 @@ async function handleQuoteSave() {
   refs.quoteForm.reset();
   refs.quoteForm.elements.date.value = today;
   refs.quoteForm.elements.discount.value = 0;
-  refs.quoteForm.elements.language.value = "de";
+  refs.quoteForm.elements.language.value = state.uiLanguage;
   refs.quoteForm.elements.isExport.value = "true";
   refs.quoteForm.elements.collectedAmount.value = 0;
   state.quoteDraft = [];
@@ -1606,7 +3053,7 @@ async function handleQuoteSave() {
 
 async function handleDirectSale() {
   if (state.quoteDraft.length === 0) {
-    window.alert("Once sepete urun ekleyin.");
+    window.alert(t("messages.addCartFirst"));
     return;
   }
 
@@ -1624,11 +3071,43 @@ async function handleDirectSale() {
     return;
   }
 
-  window.alert(`Direkt satis tamamlandi. Tahsil edilen: ${currency.format(result.paid || 0)} | Kalan: ${currency.format(result.remaining || 0)}`);
+  window.alert(t("messages.directSaleDone", currency.format(result.paid || 0), currency.format(result.remaining || 0)));
   refs.quoteForm.reset();
   refs.quoteForm.elements.date.value = today;
   refs.quoteForm.elements.discount.value = 0;
-  refs.quoteForm.elements.language.value = "de";
+  refs.quoteForm.elements.language.value = state.uiLanguage;
+  refs.quoteForm.elements.isExport.value = "true";
+  refs.quoteForm.elements.collectedAmount.value = 0;
+  refs.quoteForm.elements.paymentType.value = "cash";
+  state.quoteDraft = [];
+  await refreshData();
+}
+
+async function handleUnbilledSale() {
+  if (state.quoteDraft.length === 0) {
+    window.alert(t("messages.addCartFirst"));
+    return;
+  }
+
+  const payload = {
+    ...formToObject(refs.quoteForm),
+    items: state.quoteDraft,
+  };
+  const result = await request("/api/sales/unbilled-checkout", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+
+  window.alert(t("messages.unbilledDone", currency.format(result.total || 0), currency.format(result.paid || 0), currency.format(result.remaining || 0)));
+  refs.quoteForm.reset();
+  refs.quoteForm.elements.date.value = today;
+  refs.quoteForm.elements.discount.value = 0;
+  refs.quoteForm.elements.language.value = state.uiLanguage;
   refs.quoteForm.elements.isExport.value = "true";
   refs.quoteForm.elements.collectedAmount.value = 0;
   refs.quoteForm.elements.paymentType.value = "cash";
@@ -1637,13 +3116,14 @@ async function handleDirectSale() {
 }
 
 async function downloadQuotePdf(quoteId, lang) {
-  const response = await fetch(`/api/quotes/${quoteId}/pdf?lang=${lang}`, {
+  const resolvedLang = lang === "auto" ? state.uiLanguage : (lang === "de" ? "de" : "tr");
+  const response = await fetch(`/api/quotes/${quoteId}/pdf?lang=${resolvedLang}`, {
     credentials: "include",
   });
 
   const contentType = response.headers.get("content-type") || "";
   if (!response.ok || contentType.includes("application/json")) {
-    let errorMessage = "PDF indirilemedi.";
+    let errorMessage = langText("PDF indirilemedi.", "PDF konnte nicht heruntergeladen werden.");
     try {
       const errorPayload = await response.json();
       errorMessage = errorPayload.error || errorMessage;
@@ -1660,7 +3140,7 @@ async function downloadQuotePdf(quoteId, lang) {
   anchor.href = url;
   const disposition = response.headers.get("content-disposition") || "";
   const filenameMatch = disposition.match(/filename="([^"]+)"/i);
-  anchor.download = filenameMatch?.[1] || `${lang === "tr" ? "teklif" : "angebot"}-${quoteId}.pdf`;
+  anchor.download = filenameMatch?.[1] || `${resolvedLang === "tr" ? "teklif" : "angebot"}-${quoteId}.pdf`;
   document.body.append(anchor);
   anchor.click();
   anchor.remove();
@@ -1704,7 +3184,7 @@ async function handleAuthUrlActions() {
     if (result.error) {
       refs.loginError.textContent = result.error;
     } else {
-      refs.customerRegisterSuccess.textContent = result.message || "E-posta adresiniz dogrulandi.";
+      refs.customerRegisterSuccess.textContent = result.message || langText("E-posta adresiniz dogrulandi.", "Ihre E-Mail-Adresse wurde bestaetigt.");
       state.user = result.user || null;
       if (state.user) {
         await refreshData();

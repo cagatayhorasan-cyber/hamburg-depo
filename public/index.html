@@ -3,23 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- deploy-marker: 2026-04-09-durmusbaba-brand -->
+  <!-- deploy-marker: 2026-04-09-vercel-app-domain -->
   <title>Durmusbaba Yonetim Merkezi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260409-durmusbaba-brand-1">
+  <link rel="stylesheet" href="/styles.css?v=20260410-stock-values-1">
 </head>
 <body>
   <div class="page-shell">
     <section id="loginScreen" class="auth-screen">
       <div class="auth-card">
+        <div class="ui-language-switch auth-language-switch">
+          <span class="ui-language-label">Arayuz Dili</span>
+          <select class="ui-language-select" aria-label="Arayuz dili">
+            <option value="tr">TR</option>
+            <option value="de">DE</option>
+          </select>
+        </div>
         <p class="eyebrow">D-R-C Kaltetechnik GmbH</p>
         <h1>Schildkamp 1<br>59063 Hamm</h1>
         <div class="muted">
           <p>Lager:<br>21039 Borsen</p>
           <p>Tel: +49 1522 1581762</p>
-          <p>E-Mail: info@durmusbaba.com</p>
+          <p>Uygulama:<br>hamburg-depo-3bgu.vercel.app</p>
         </div>
         <form id="loginForm" class="stack-form" autocomplete="off">
           <input class="autofill-trap" type="text" name="fake-username" autocomplete="username" tabindex="-1" aria-hidden="true">
@@ -32,7 +39,7 @@
             Sifre
             <input data-login-field name="password" type="password" required autocomplete="new-password" autocapitalize="off" spellcheck="false" readonly>
           </label>
-          <button class="primary-button" type="submit">Giris Yap</button>
+          <button class="primary-button" type="submit" data-help="TR: Hesabiniza giris yapar. DE: Meldet Sie in Ihr Konto ein.">Giris Yap</button>
           <p id="loginError" class="error-text"></p>
         </form>
         <section class="auth-subpanel">
@@ -44,7 +51,7 @@
           </div>
           <form id="forgotPasswordForm" class="form-grid" autocomplete="off">
             <label>Kullanici Adi veya E-Posta<input name="identifier" type="text" required autocapitalize="off" spellcheck="false"></label>
-            <button class="secondary-button auth-register-button" type="submit">Yenileme Baglantisi Gonder</button>
+            <button class="secondary-button auth-register-button" type="submit" data-help="TR: WhatsApp sifre yenileme baglantisi olusturur. DE: Erstellt einen WhatsApp-Link zum Zuruecksetzen des Passworts.">Yenileme Baglantisi Gonder</button>
             <p id="forgotPasswordError" class="error-text auth-message"></p>
             <p id="forgotPasswordSuccess" class="success-text auth-message"></p>
           </form>
@@ -63,7 +70,7 @@
             <label>Telefon / WhatsApp<input name="phone" type="tel" required placeholder="+49..."></label>
             <label>Kullanici Adi (Istege Bagli)<input name="username" type="text" placeholder="Bos birakirsaniz sistem uretir" autocapitalize="off" spellcheck="false"></label>
             <label>Sifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
-            <button class="secondary-button auth-register-button" type="submit">Musteri Hesabi Ac</button>
+            <button class="secondary-button auth-register-button" type="submit" data-help="TR: Yeni musteri hesabi olusturur. DE: Legt ein neues Kundenkonto an.">Musteri Hesabi Ac</button>
             <p id="customerRegisterError" class="error-text auth-message"></p>
             <p id="customerRegisterSuccess" class="success-text auth-message"></p>
           </form>
@@ -78,7 +85,7 @@
           <form id="resetPasswordForm" class="form-grid" autocomplete="off">
             <input type="hidden" name="token">
             <label>Yeni Sifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
-            <button class="primary-button auth-register-button" type="submit">Sifreyi Guncelle</button>
+            <button class="primary-button auth-register-button" type="submit" data-help="TR: Yeni sifreyi kaydeder. DE: Speichert das neue Passwort.">Sifreyi Guncelle</button>
             <p id="resetPasswordError" class="error-text auth-message"></p>
             <p id="resetPasswordSuccess" class="success-text auth-message"></p>
           </form>
@@ -95,9 +102,16 @@
           <p class="muted" id="welcomeText"></p>
         </div>
         <div class="hero-actions">
-          <button id="downloadXlsx" class="secondary-button admin-staff-only" type="button">Excel Rapor</button>
-          <button id="downloadPdf" class="secondary-button admin-staff-only" type="button">PDF Ozet</button>
-          <button id="logoutButton" class="danger-button" type="button">Cikis Yap</button>
+          <div class="ui-language-switch app-language-switch">
+            <span class="ui-language-label">Arayuz Dili</span>
+            <select class="ui-language-select" aria-label="Arayuz dili">
+              <option value="tr">TR</option>
+              <option value="de">DE</option>
+            </select>
+          </div>
+          <button id="downloadXlsx" class="secondary-button admin-only" type="button" data-help="TR: Tum ana verileri Excel olarak indirir. DE: Exportiert die Hauptdaten als Excel.">Excel Rapor</button>
+          <button id="downloadPdf" class="secondary-button admin-only" type="button" data-help="TR: Ozet raporu PDF olarak indirir. DE: Laedt die Zusammenfassung als PDF herunter.">PDF Ozet</button>
+          <button id="logoutButton" class="danger-button" type="button" data-help="TR: Oturumu guvenli sekilde kapatir. DE: Meldet Sie sicher vom System ab.">Cikis Yap</button>
         </div>
       </header>
 
@@ -106,15 +120,16 @@
 
         <section class="panel tabs-panel">
           <div class="tab-buttons">
-            <button class="tab-button admin-staff-only active" data-tab="quotes" type="button"><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
-            <button class="tab-button admin-staff-only" data-tab="items" type="button"><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
-            <button class="tab-button admin-only" data-tab="archive" type="button"><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
-            <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
-            <button class="tab-button admin-only" data-tab="expenses" type="button"><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
-            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button"><span class="tab-title">Kasa</span><small>Tahsilat ve kasa hareketlerini takip et</small></button>
-            <button class="tab-button admin-staff-only" data-tab="orders" type="button"><span class="tab-title">Siparisler</span><small>Musteri siparislerini gor ve durum guncelle</small></button>
-            <button class="tab-button customer-only" data-tab="orders" type="button"><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
-            <button class="tab-button admin-only" data-tab="users" type="button"><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
+            <button class="tab-button admin-staff-only active" data-tab="quotes" type="button" data-help="TR: Sepet, teklif, direkt satis ve faturasiz satis burada. DE: Hier finden Sie Warenkorb, Angebot, Direktverkauf und Verkauf ohne Rechnung."><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
+            <button class="tab-button admin-staff-only" data-tab="items" type="button" data-help="TR: Urunleri arar, filtreler ve kart bilgilerini gorursunuz. DE: Hier suchen und filtern Sie Artikel und sehen die Kartendaten."><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
+            <button class="tab-button admin-only" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
+            <button class="tab-button admin-staff-only" data-tab="movements" type="button" data-help="TR: Stok giris, cikis ve yeni urun ilk stok kaydi burada. DE: Lagerzugang, Lagerausgang und neuer Erstbestand werden hier erfasst."><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
+            <button class="tab-button admin-only" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
+            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Tahsilat, kasa cikisi ve faturasiz kasa kayitlari burada. DE: Kasseneingaenge, Ausgaenge und unberechnete Verkaeufe werden hier verwaltet."><span class="tab-title">Kasa</span><small>Tahsilat ve kasa hareketlerini takip et</small></button>
+            <button class="tab-button admin-staff-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini gorur ve durum guncellersiniz. DE: Hier sehen Sie Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Musteri siparislerini gor ve durum guncelle</small></button>
+            <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
+            <button class="tab-button admin-only" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
+            <button class="tab-button admin-only" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
           </div>
 
           <div class="tab-content admin-staff-only" data-tab-content="items">
@@ -151,7 +166,8 @@
                       <th>Kategori</th>
                       <th>Stok</th>
                       <th>Alis</th>
-                      <th>Satis</th>
+                      <th>Liste</th>
+                      <th>Net/Satis</th>
                       <th>Kritik</th>
                       <th>Stok Kodu</th>
                       <th>Islem</th>
@@ -175,10 +191,11 @@
                     <label>Birim<input name="unit" type="text" required></label>
                     <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" required></label>
                     <label>Alis Fiyati<input name="defaultPrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
-                    <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                    <label>Liste Fiyati<input name="listPrice" type="number" min="0" step="0.01" placeholder="1 adet fiyat"></label>
+                    <label>Net/Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="Normal musteri net"></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
                     <label>Not<input name="notes" type="text" placeholder="Raf veya tedarik notu"></label>
-                    <button id="itemSubmitButton" class="primary-button" type="submit">Malzeme Ekle</button>
+                    <button id="itemSubmitButton" class="primary-button" type="submit" data-help="TR: Yeni malzeme karti olusturur veya duzenlemeyi kaydeder. DE: Legt eine neue Artikelkarte an oder speichert die Bearbeitung.">Malzeme Ekle</button>
                     <button id="itemCancelEdit" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
                   </form>
                 </section>
@@ -191,7 +208,7 @@
                       <label>Hesaplama<select name="pricingMode"><option value="margin">Alisa Gore Marj</option><option value="increase">Mevcut Satisa Artis</option></select></label>
                       <label>Baz Alan<select name="baseField"><option value="purchase">Alis Fiyati</option><option value="sale">Satis Fiyati</option></select></label>
                       <label>Artis Yuzdesi<input name="increasePercent" type="number" step="0.01" value="22"></label>
-                      <button class="secondary-button" type="submit">Satis Fiyatlarini Guncelle</button>
+                      <button class="secondary-button" type="submit" data-help="TR: Secilen marka ve kategori icin satis fiyatlarini toplu gunceller. DE: Aktualisiert Verkaufspreise gesammelt fuer die ausgewaehlte Marke und Kategorie.">Satis Fiyatlarini Guncelle</button>
                     </form>
                   </div>
                   <div class="barcode-section compact-barcode">
@@ -222,7 +239,8 @@
                       <th>Marka</th>
                       <th>Kategori</th>
                       <th>Alis</th>
-                      <th>Satis</th>
+                      <th>Liste</th>
+                      <th>Net/Satis</th>
                       <th>Stok Kodu</th>
                       <th>Islem</th>
                     </tr>
@@ -237,17 +255,18 @@
             <div class="two-column">
               <section>
                 <h2>Stok Giris / Cikis</h2>
-                <p class="muted section-tip">Mevcut urunler icin bu formu kullanin. Listede olmayan yeni urunleri hemen alttaki hizli kayit alanindan ekleyebilirsiniz.</p>
+                <p class="muted section-tip">Mevcut urunler icin bu formu kullanin. Yeni urun karti acma ve ilk alis girisi yalnizca admin alanindadir.</p>
                 <form id="movementForm" class="form-grid">
                   <label>Malzeme<select name="itemId" required></select></label>
                   <label>Islem<select name="type" required><option value="entry">Giris</option><option value="exit">Cikis</option></select></label>
                   <label>Miktar<input name="quantity" type="number" min="0.01" step="0.01" required></label>
-                  <label>Birim Maliyet<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
+                  <label class="admin-only">Birim Maliyet<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
                   <label>Tarih<input name="date" type="date" required></label>
                   <label>Aciklama<input name="note" type="text"></label>
-                  <button class="primary-button" type="submit">Hareket Kaydet</button>
+                  <button class="primary-button" type="submit" data-help="TR: Secilen urun icin stok giris veya cikis hareketi olusturur. DE: Erstellt eine Lagerbewegung fuer den ausgewaehlten Artikel.">Hareket Kaydet</button>
                 </form>
-                <div class="panel-lite">
+                <p id="movementAutoCostHint" class="muted section-tip hidden">Alis maliyeti personel ekraninda gizlidir. Sistem mevcut maliyeti otomatik uygular.</p>
+                <div class="panel-lite admin-only">
                   <h3>Yeni Urun + Ilk Stok Girisi</h3>
                   <p class="muted section-tip">Yeni marka, kategori veya urun karti burada acilir. Kaydedince urun otomatik olusur ve ilk stok girisi ayni anda islenir.</p>
                   <form id="stockIntakeForm" class="form-grid">
@@ -257,13 +276,14 @@
                     <label>Birim<input name="unit" type="text" required value="adet"></label>
                     <label>Ilk Miktar<input name="quantity" type="number" min="0.01" step="0.01" required></label>
                     <label>Birim Alis<input name="unitPrice" type="number" min="0.01" step="0.01" required></label>
-                    <label>Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="0.00"></label>
+                    <label>Liste Fiyati<input name="listPrice" type="number" min="0" step="0.01" placeholder="1 adet fiyat"></label>
+                    <label>Net/Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="Normal musteri net"></label>
                     <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" value="0"></label>
                     <label>Tarih<input name="date" type="date" required></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
                     <label>Malzeme Notu<input name="notes" type="text" placeholder="Raf, seri veya tedarik notu"></label>
                     <label>Hareket Notu<input name="movementNote" type="text" placeholder="Ilk alis bilgisi"></label>
-                    <button class="primary-button" type="submit">Yeni Urun ve Stok Girisi Kaydet</button>
+                    <button class="primary-button" type="submit" data-help="TR: Yeni urun karti acip ilk stok girisini ayni anda kaydeder. DE: Legt einen neuen Artikel an und bucht gleichzeitig den Erstbestand.">Yeni Urun ve Stok Girisi Kaydet</button>
                   </form>
                 </div>
               </section>
@@ -299,7 +319,7 @@
                   <label>Tarih<input name="date" type="date" required></label>
                   <label>Odeme Tipi<select name="paymentType" required><option value="cash">Nakit</option><option value="bank">Banka</option><option value="card">Kart</option></select></label>
                   <label>Aciklama<input name="note" type="text"></label>
-                  <button class="primary-button" type="submit">Masraf Kaydet</button>
+                  <button class="primary-button" type="submit" data-help="TR: Gider kaydini sisteme ekler. DE: Speichert die Ausgabe im System.">Masraf Kaydet</button>
                 </form>
               </section>
               <section>
@@ -329,13 +349,13 @@
               <section>
                 <h2>Kasa Hareketi</h2>
                 <form id="cashForm" class="form-grid">
-                  <label>Islem<select name="type" required><option value="in">Kasa Girisi</option><option value="out">Kasa Cikisi</option></select></label>
-                  <label>Baslik<input name="title" type="text" required></label>
+                  <label>Islem<select name="type" required><option value="in">Kasa Girisi</option><option value="out">Kasa Cikisi</option><option value="unbilled_sale">Faturasiz Satis</option></select></label>
+                  <label>Baslik<input name="title" type="text" required placeholder="Orn. Tezgah satisi"></label>
                   <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
                   <label>Tarih<input name="date" type="date" required></label>
                   <label>Referans<input name="reference" type="text"></label>
                   <label>Not<input name="note" type="text"></label>
-                  <button class="primary-button" type="submit">Kasa Kaydet</button>
+                  <button class="primary-button" type="submit" data-help="TR: Kasa girisi, cikisi veya faturasiz satis kaydini olusturur. DE: Speichert einen Kassen-Eingang, Ausgang oder Verkauf ohne Rechnung.">Kasa Kaydet</button>
                 </form>
               </section>
               <section>
@@ -398,9 +418,11 @@
                 </form>
                 <div id="quoteDraftBody" class="cart-list"></div>
                 <p id="quoteDraftSummary" class="muted"></p>
+                <p class="muted section-tip">Faturasiz satis butonunda sepette gorunen tutar son satis tutari kabul edilir; ekstra KDV eklenmez.</p>
                 <div class="action-row pos-actions">
-                  <button id="checkoutSaleButton" class="primary-button" type="button">Direkt Satis Yap</button>
-                  <button id="saveQuoteButton" class="secondary-button" type="button">Teklifi Kaydet</button>
+                  <button id="checkoutSaleButton" class="primary-button" type="button" data-help="TR: Sepeti stoktan dusurur, satisi kaydeder ve tahsilati kasaya yazar. DE: Reduziert den Bestand, speichert den Verkauf und schreibt die Zahlung in die Kasse.">Direkt Satis Yap</button>
+                  <button id="checkoutUnbilledSaleButton" class="secondary-button" type="button" data-help="TR: Perakende/faturasiz satis yapar. DE: Fuehrt einen Barverkauf ohne Rechnung aus.">Faturasiz Satis</button>
+                  <button id="saveQuoteButton" class="secondary-button" type="button" data-help="TR: Sepeti teklif olarak kaydeder. DE: Speichert den Warenkorb als Angebot.">Teklifi Kaydet</button>
                 </div>
               </section>
             </div>
@@ -466,7 +488,7 @@
                   <div id="customerOrderBody" class="cart-list"></div>
                   <p id="customerOrderSummary" class="muted"></p>
                   <div class="action-row pos-actions">
-                    <button id="submitCustomerOrderButton" class="primary-button" type="button">Siparis Gonder</button>
+                  <button id="submitCustomerOrderButton" class="primary-button" type="button" data-help="TR: Musteri siparis talebini gonderir. DE: Sendet die Kundenbestellung an das System.">Siparis Gonder</button>
                   </div>
                 </section>
               </div>
@@ -488,7 +510,7 @@
                   <label>Telefon / WhatsApp<input name="phone" type="tel" placeholder="+49..."></label>
                   <label>Sifre<input name="password" type="password" required></label>
                   <label>Rol<select name="role" required><option value="staff">Personel</option><option value="customer">Musteri</option><option value="admin">Admin</option></select></label>
-                  <button class="primary-button" type="submit">Kullanici Ekle</button>
+                  <button class="primary-button" type="submit" data-help="TR: Yeni admin, personel veya musteri hesabi acilir. DE: Legt ein neues Admin-, Personal- oder Kundenkonto an.">Kullanici Ekle</button>
                 </form>
               </section>
               <section>
@@ -510,19 +532,182 @@
               </section>
             </div>
           </div>
+
+          <div class="tab-content admin-only" data-tab-content="training">
+            <div class="two-column">
+              <section>
+                <h2>DRC MAN Egitim Kaydi</h2>
+                <p class="muted">Buraya eklenen soru-cevaplar once DRC MAN tarafinda denenir. Egitim kayitlari admin tarafindan duzenlenir ve tum yerel kullanicilar ayni bilgiyi alir.</p>
+                <form id="assistantTrainingForm" class="form-grid">
+                  <input name="id" type="hidden">
+                  <label>Konu<input name="topic" type="text" placeholder="Orn. Faturasiz satis akisi"></label>
+                  <label>Hedef Kullanici
+                    <select name="audience">
+                      <option value="all">Tum Kullanicilar</option>
+                      <option value="admin">Sadece Admin</option>
+                      <option value="staff">Admin + Personel</option>
+                      <option value="customer">Sadece Musteri</option>
+                    </select>
+                  </label>
+                  <label class="form-span-2">Anahtar Kelimeler<input name="keywords" type="text" placeholder="stok girisi, malzeme girisi, wareneingang"></label>
+                  <label class="form-span-2">TR Soru<input name="trQuestion" type="text" required placeholder="Orn. stok girisi nasil yapilir"></label>
+                  <label class="form-span-2">TR Cevap<textarea name="trAnswer" rows="4" required placeholder="Bu soruya verilecek net operasyon cevabi"></textarea></label>
+                  <label class="form-span-2">DE Soru<input name="deQuestion" type="text" placeholder="Orn. wie buche ich wareneingang"></label>
+                  <label class="form-span-2">DE Cevap<textarea name="deAnswer" rows="4" placeholder="Almanca cevap opsiyoneldir, bos kalirsa Turkce cevap kullanilir"></textarea></label>
+                  <label class="form-span-2">Onerilen Sonraki Sorular<input name="suggestions" type="text" placeholder="virgulle ayirin: stok cikisi nasil yapilir, hareket iptali nasil olur"></label>
+                  <label>Durum
+                    <select name="isActive">
+                      <option value="true">Aktif</option>
+                      <option value="false">Pasif</option>
+                    </select>
+                  </label>
+                  <div class="action-row form-span-2">
+                    <button id="assistantTrainingSubmitButton" class="primary-button" type="submit" data-help="TR: DRC MAN icin bu soru-cevap kaydini kaydeder. DE: Speichert dieses Frage-Antwort-Training fuer DRC MAN.">Egitim Kaydet</button>
+                    <button id="assistantTrainingCancelButton" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
+                  </div>
+                </form>
+              </section>
+              <section>
+                <div class="section-head">
+                  <div>
+                    <h2>Egitim Listesi</h2>
+                    <p id="assistantTrainingSummary" class="muted"></p>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Konu</th>
+                        <th>Hedef</th>
+                        <th>TR Soru</th>
+                        <th>DE Soru</th>
+                        <th>Durum</th>
+                        <th>Guncelleyen</th>
+                        <th>Islem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="assistantTrainingTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+            <section class="retrofit-checklist-panel">
+              <div class="section-head">
+                <div>
+                  <h2>Retrofit Checklist</h2>
+                  <p class="muted">Mevcut gazdan yeni gaza gecis dusunulurken sahada atlanmamasi gereken adimlari bu arac hizli toparlar.</p>
+                </div>
+              </div>
+              <div class="two-column">
+                <section class="panel-lite">
+                  <form id="retrofitChecklistForm" class="form-grid">
+                    <label>Mevcut Gaz
+                      <select name="currentGas">
+                        <option value="r404a">R404A</option>
+                        <option value="r134a">R134a</option>
+                        <option value="r448a">R448A</option>
+                        <option value="r449a">R449A</option>
+                        <option value="r452a">R452A</option>
+                        <option value="r290">R290</option>
+                        <option value="r744">R744 / CO2</option>
+                        <option value="r717">R717 / NH3</option>
+                      </select>
+                    </label>
+                    <label>Planlanan Gaz
+                      <select name="targetGas">
+                        <option value="">Henuz Net Degil</option>
+                        <option value="r448a">R448A</option>
+                        <option value="r449a">R449A</option>
+                        <option value="r452a">R452A</option>
+                        <option value="r290">R290</option>
+                        <option value="r744">R744 / CO2</option>
+                        <option value="r717">R717 / NH3</option>
+                        <option value="r134a">R134a</option>
+                      </select>
+                    </label>
+                    <label>Uygulama
+                      <select name="applicationType">
+                        <option value="positive">Arti Muhafaza</option>
+                        <option value="negative">Negatif Depo</option>
+                        <option value="shock">Sok Oda</option>
+                        <option value="compact">Kompakt Sistem</option>
+                        <option value="industrial">Endustriyel Tesis</option>
+                      </select>
+                    </label>
+                    <label>Sistem Tipi
+                      <select name="systemType">
+                        <option value="legacy">Eski Sistem / Legacy</option>
+                        <option value="retrofit">Mevcut Sistem Retrofit</option>
+                        <option value="new">Yeni Proje</option>
+                      </select>
+                    </label>
+                    <label>Yag Durumu
+                      <select name="oilType">
+                        <option value="unknown">Bilinmiyor</option>
+                        <option value="mineral">Mineral</option>
+                        <option value="ab">AB / Alkylbenzene</option>
+                        <option value="poe">POE</option>
+                      </select>
+                    </label>
+                    <label>Kompresor Onayi
+                      <select name="compressorApproval">
+                        <option value="unknown">Henuz Kontrol Edilmedi</option>
+                        <option value="approved">Onayli</option>
+                        <option value="not_approved">Uyumsuz / Onaysiz</option>
+                      </select>
+                    </label>
+                    <label>Valf ve Orifis
+                      <select name="valveState">
+                        <option value="unchecked">Henuz Kontrol Edilmedi</option>
+                        <option value="checked">Kontrol Edildi</option>
+                        <option value="replace">Degisim Gerekebilir</option>
+                      </select>
+                    </label>
+                    <label>Kontrol ve Emniyet
+                      <select name="controlsState">
+                        <option value="unchecked">Henuz Kontrol Edilmedi</option>
+                        <option value="checked">Kontrol Edildi</option>
+                        <option value="update_required">Ayar / Guncelleme Gerekli</option>
+                      </select>
+                    </label>
+                    <label>Etiket ve Evrak
+                      <select name="labelState">
+                        <option value="pending">Bekliyor</option>
+                        <option value="updated">Guncellendi</option>
+                      </select>
+                    </label>
+                    <label class="form-span-2">Saha Notu<textarea name="notes" rows="3" placeholder="Kompresor modeli, olculer, valf tipi, musteri istegi gibi notlari yazin"></textarea></label>
+                    <div class="action-row form-span-2">
+                      <button id="retrofitChecklistGenerateButton" class="primary-button" type="submit" data-help="TR: Retrofit kontrol listesini olusturur. DE: Erstellt die Retrofit-Checkliste.">Checklist Uret</button>
+                      <button id="retrofitChecklistCopyButton" class="secondary-button" type="button" data-help="TR: Olusan listeyi metin olarak kopyalar. DE: Kopiert die erstellte Liste als Text.">Checklist Kopyala</button>
+                    </div>
+                  </form>
+                </section>
+                <section class="panel-lite retrofit-checklist-output-wrap">
+                  <h3 id="retrofitChecklistTitle">Saha Kontrol Ciktisi</h3>
+                  <p id="retrofitChecklistHint" class="muted">Formu doldurup checklist urettiginizde burada saha sirasina gore duzenlenmis bir yol haritasi goreceksiniz.</p>
+                  <div id="retrofitChecklistOutput" class="retrofit-checklist-output">
+                    <div class="empty-state">Henuz checklist uretilmedi.</div>
+                  </div>
+                </section>
+              </div>
+            </section>
+          </div>
         </section>
       </main>
     </section>
   </div>
   <aside id="assistantWidget" class="assistant-widget hidden" aria-live="polite">
     <button id="assistantToggle" class="assistant-toggle" type="button" aria-expanded="false" aria-controls="assistantPanel">
-      Depo Asistani
+      DRC MAN
     </button>
     <section id="assistantPanel" class="assistant-panel hidden">
       <div class="assistant-head">
         <div>
           <p class="eyebrow">Soru Cevap</p>
-          <h3>Depo Asistani</h3>
+          <h3>DRC MAN</h3>
+          <p id="assistantStatus" class="muted">DRC MAN yedek mod aktif</p>
         </div>
         <div class="assistant-head-actions">
           <label class="assistant-language-label">
@@ -532,7 +717,7 @@
               <option value="de">DE</option>
             </select>
           </label>
-          <button id="assistantClose" class="assistant-close" type="button" aria-label="Asistani kapat">Kapat</button>
+          <button id="assistantClose" class="assistant-close" type="button" aria-label="DRC MAN panelini kapat">Kapat</button>
         </div>
       </div>
       <div id="assistantMessages" class="assistant-messages"></div>
@@ -542,6 +727,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260409-durmusbaba-brand-1"></script>
+  <script src="/app.js?v=20260410-stock-values-1"></script>
 </body>
 </html>

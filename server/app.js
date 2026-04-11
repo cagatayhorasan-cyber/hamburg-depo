@@ -2,6 +2,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const crypto = require("crypto");
+const { spawnSync } = require("child_process");
 const express = require("express");
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");
@@ -18,8 +19,7 @@ const COMPANY_PROFILE = {
   warehouse: "Lauenburger Landstraße 3b, 21039 Börnsen, Deutschland",
   phone: "+49 1522 1581762",
   email: "info@durmusbaba.com",
-  email2: "info@durmusbaba.de",
-  web: "www.durmusbaba.com",
+  web: "hamburg-depo-3bgu.vercel.app",
   register: "HRB 11217 - Amtsgericht Hamm",
   bankName: "Bankverbindung auf Anfrage / Talep uzerine banka bilgisi",
   iban: "DE00 0000 0000 0000 0000 00",
@@ -43,6 +43,9 @@ const MAIL_FROM = process.env.MAIL_FROM || COMPANY_PROFILE.email;
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 const GMAIL_USER = process.env.GMAIL_USER || "";
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || "";
+const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir(), "Desktop", "DRC_MAN"));
+const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
+const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
 
 let gmailTransporter = null;
 
@@ -106,27 +109,30 @@ function createApp() {
 
   app.post("/api/auth/forgot-password", async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
+    const language = req.body?.language === "de" ? "de" : "tr";
     const user = await findUserByLoginIdentifier(identifier);
     if (user && user.phone) {
       const token = await issueAuthToken(Number(user.id), "reset_password", 2);
       const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
-      const whatsappUrl = buildWhatsAppUrl(user.phone, [
-        `Merhaba ${user.name || ""},`,
-        "DRC sifre yenileme baglantiniz hazir:",
-        resetUrl,
-        "Baglanti 2 saat gecerlidir.",
-      ].join("\n"));
+      const whatsappUrl = buildWhatsAppUrl(
+        user.phone,
+        createPasswordResetWhatsappText({ name: user.name || "", resetUrl, language })
+      );
 
       return res.json({
         ok: true,
         whatsappUrl,
-        message: "Sifre yenileme baglantisi WhatsApp uzerinden acilmaya hazir.",
+        message: language === "de"
+          ? "Der WhatsApp-Link zum Zuruecksetzen des Passworts ist bereit."
+          : "Sifre yenileme baglantisi WhatsApp uzerinden acilmaya hazir.",
       });
     }
 
     return res.json({
       ok: true,
-      message: "Bu hesap icin kayitli WhatsApp numarasi bulunamadi.",
+      message: language === "de"
+        ? "Fuer dieses Konto wurde keine WhatsApp-Nummer gefunden."
+        : "Bu hesap icin kayitli WhatsApp numarasi bulunamadi.",
     });
   });
 
@@ -262,16 +268,122 @@ function createApp() {
   app.post("/api/assistant/query", requireAuth, async (req, res) => {
     const message = cleanOptional(req.body?.message);
     const language = req.body?.language === "de" ? "de" : "tr";
+    const history = Array.isArray(req.body?.history) ? req.body.history : [];
+    const answerLevel = resolveAssistantAnswerLevel(message, req.session.user);
     if (!message) {
       return res.status(400).json({ error: "Soru bos olamaz." });
     }
 
-    const items = await queryItems();
-    const answer = answerAssistantQuestion(message, items, language);
+    const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
+    if (trainingMatch?.answer) {
+      return res.json({
+        answer: adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
+        suggestions: trainingMatch.suggestions || [],
+        provider: "drc_man",
+        sourceSummary: trainingMatch.sourceSummary || "DRC MAN yonetici egitimi",
+      });
+    }
+
+    const drcManResult = queryDrcManAssistant(message, language, req.session.user, answerLevel, history);
+    if (drcManResult?.answer) {
+      return res.json({
+        answer: drcManResult.answer,
+        suggestions: drcManResult.suggestions || [],
+        provider: "drc_man",
+        sourceSummary: drcManResult.sourceSummary || "",
+      });
+    }
+
+    const items = sanitizeItemsForRole(await queryItems(), req.session.user);
+    const answer = answerAssistantQuestion(message, items, language, req.session.user);
     return res.json({
       answer: answer.reply,
       suggestions: answer.suggestions || [],
+      provider: "built_in",
     });
+  });
+
+  app.post("/api/assistant/trainings", requireAdmin, async (req, res) => {
+    const payload = normalizeTrainingPayload(req.body, req.session.user);
+    if (payload.error) {
+      return res.status(400).json({ error: payload.error });
+    }
+
+    const result = await execute(
+      `
+        INSERT INTO agent_training (
+          topic, audience, keywords, tr_question, tr_answer, de_question, de_answer, suggestions, is_active, created_by_user_id, updated_at
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        RETURNING id
+      `,
+      [
+        payload.topic,
+        payload.audience,
+        payload.keywords,
+        payload.trQuestion,
+        payload.trAnswer,
+        payload.deQuestion,
+        payload.deAnswer,
+        JSON.stringify(payload.suggestions),
+        payload.isActive ? 1 : 0,
+        Number(req.session.user.id),
+      ]
+    );
+
+    return res.json({ ok: true, id: Number(result.rows[0]?.id || result.lastInsertId || 0) });
+  });
+
+  app.put("/api/assistant/trainings/:id", requireAdmin, async (req, res) => {
+    const trainingId = Number(req.params.id);
+    if (!Number.isFinite(trainingId) || trainingId <= 0) {
+      return res.status(400).json({ error: "Gecersiz egitim kaydi." });
+    }
+
+    const payload = normalizeTrainingPayload(req.body, req.session.user);
+    if (payload.error) {
+      return res.status(400).json({ error: payload.error });
+    }
+
+    const result = await execute(
+      `
+        UPDATE agent_training
+        SET topic = ?, audience = ?, keywords = ?, tr_question = ?, tr_answer = ?, de_question = ?, de_answer = ?, suggestions = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?
+      `,
+      [
+        payload.topic,
+        payload.audience,
+        payload.keywords,
+        payload.trQuestion,
+        payload.trAnswer,
+        payload.deQuestion,
+        payload.deAnswer,
+        JSON.stringify(payload.suggestions),
+        payload.isActive ? 1 : 0,
+        trainingId,
+      ]
+    );
+
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Egitim kaydi bulunamadi." });
+    }
+
+    return res.json({ ok: true });
+  });
+
+  app.delete("/api/assistant/trainings/:id", requireAdmin, async (req, res) => {
+    const trainingId = Number(req.params.id);
+    if (!Number.isFinite(trainingId) || trainingId <= 0) {
+      return res.status(400).json({ error: "Gecersiz egitim kaydi." });
+    }
+
+    const result = await execute("DELETE FROM agent_training WHERE id = ?", [trainingId]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Egitim kaydi bulunamadi." });
+    }
+
+    return res.json({ ok: true });
   });
 
   app.post("/api/users", requireAdmin, async (req, res) => {
@@ -313,7 +425,7 @@ function createApp() {
   });
 
   app.post("/api/items", requireAdmin, async (req, res) => {
-    const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, salePrice } = req.body || {};
+    const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
@@ -321,8 +433,8 @@ function createApp() {
     try {
       const result = await execute(
         `
-          INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, sale_price)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, list_price, sale_price)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
           RETURNING id
         `,
         [
@@ -334,6 +446,7 @@ function createApp() {
           cleanOptional(barcode) || null,
           cleanOptional(notes),
           Number(defaultPrice || 0),
+          Number(listPrice || 0),
           Number(salePrice || 0),
         ]
       );
@@ -345,7 +458,7 @@ function createApp() {
   });
 
   app.put("/api/items/:id", requireAdmin, async (req, res) => {
-    const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, salePrice } = req.body || {};
+    const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
@@ -354,7 +467,7 @@ function createApp() {
       const result = await execute(
         `
           UPDATE items
-          SET name = ?, brand = ?, category = ?, unit = ?, min_stock = ?, barcode = ?, notes = ?, default_price = ?, sale_price = ?
+          SET name = ?, brand = ?, category = ?, unit = ?, min_stock = ?, barcode = ?, notes = ?, default_price = ?, list_price = ?, sale_price = ?
           WHERE id = ?
         `,
         [
@@ -366,6 +479,7 @@ function createApp() {
           cleanOptional(barcode) || null,
           cleanOptional(notes),
           Number(defaultPrice || 0),
+          Number(listPrice || 0),
           Number(salePrice || 0),
           Number(req.params.id),
         ]
@@ -401,7 +515,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/items/intake", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/items/intake", requireAdmin, async (req, res) => {
     const {
       name,
       brand,
@@ -410,6 +524,7 @@ function createApp() {
       minStock,
       barcode,
       notes,
+      listPrice,
       salePrice,
       quantity,
       unitPrice,
@@ -448,8 +563,8 @@ function createApp() {
 
         const itemResult = await tx.execute(
           `
-            INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, sale_price)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, list_price, sale_price)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             RETURNING id
           `,
           [
@@ -461,6 +576,7 @@ function createApp() {
             cleanOptional(barcode) || null,
             cleanOptional(notes),
             unitPriceValue,
+            Number(listPrice || 0),
             Number(salePrice || 0),
           ]
         );
@@ -493,7 +609,7 @@ function createApp() {
 
   app.post("/api/movements", requireStaffOrAdmin, async (req, res) => {
     const { itemId, type, quantity, unitPrice, date, note } = req.body || {};
-    if (!itemId || !type || !quantity || !unitPrice || !date) {
+    if (!itemId || !type || !quantity || !date) {
       return res.status(400).json({ error: "Stok hareketi icin tum alanlar gereklidir." });
     }
 
@@ -502,8 +618,29 @@ function createApp() {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
     }
 
+    const quantityValue = Number(quantity);
+    if (quantityValue <= 0) {
+      return res.status(400).json({ error: "Miktar sifirdan buyuk olmali." });
+    }
+
+    const normalizedRole = normalizeRole(req.session.user?.role);
+    const effectiveUnitPrice = await resolveMovementUnitPrice({
+      itemId: Number(itemId),
+      requestedUnitPrice: unitPrice,
+      defaultPrice: Number(item.default_price || 0),
+      role: normalizedRole,
+    });
+
+    if (type === "entry" && effectiveUnitPrice <= 0) {
+      return res.status(400).json({
+        error: normalizedRole === "admin"
+          ? "Giris hareketi icin gecerli bir alis maliyeti girin."
+          : "Bu urun icin alis maliyetini admin belirlemeli.",
+      });
+    }
+
     const stock = await getItemStock(itemId);
-    if (type === "exit" && Number(quantity) > stock) {
+    if (type === "exit" && quantityValue > stock) {
       return res.status(400).json({ error: "Cikis miktari mevcut stogu gecemez." });
     }
 
@@ -512,7 +649,7 @@ function createApp() {
         INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
         VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
-      [itemId, type, Number(quantity), Number(unitPrice), date, cleanOptional(note), req.session.user.id]
+      [itemId, type, quantityValue, effectiveUnitPrice, date, cleanOptional(note), req.session.user.id]
     );
 
     return res.json({ ok: true });
@@ -599,15 +736,24 @@ function createApp() {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
     }
 
+    const entryType = type === "unbilled_sale" ? "in" : type;
+    if (!["in", "out"].includes(entryType)) {
+      return res.status(400).json({ error: "Gecersiz kasa hareket tipi." });
+    }
+
+    const entryNote = type === "unbilled_sale"
+      ? ["Faturasiz satis", cleanOptional(note)].filter(Boolean).join(" | ")
+      : cleanOptional(note);
+
     await execute(
       `
         INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
         VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
-      [type, title.trim(), Number(amount), date, cleanOptional(reference), cleanOptional(note), req.session.user.id]
+      [entryType, title.trim(), Number(amount), date, cleanOptional(reference), entryNote, req.session.user.id]
     );
 
-    return res.json({ ok: true });
+    return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType });
   });
 
   app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {
@@ -672,7 +818,14 @@ function createApp() {
       return res.status(400).json({ error: "Teklif bilgileri eksik." });
     }
 
-    const subtotal = items.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
+    let pricedItems;
+    try {
+      pricedItems = await resolveSaleLineItems(items);
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Teklif satirlari gecersiz." });
+    }
+
+    const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
     const netTotal = Math.max(subtotal - Number(discount || 0), 0);
     const exportSale = isTruthy(isExport);
     const vatRate = exportSale ? 0 : 19;
@@ -711,7 +864,7 @@ function createApp() {
         );
 
         const insertedQuoteId = Number(quoteResult.rows[0]?.id || quoteResult.lastInsertId);
-        for (const entry of items) {
+        for (const entry of pricedItems) {
           await tx.execute(
             `
               INSERT INTO quote_items (quote_id, item_id, item_name, quantity, unit, unit_price, total)
@@ -743,7 +896,14 @@ function createApp() {
       return res.status(400).json({ error: "Direkt satis bilgileri eksik." });
     }
 
-    const subtotal = items.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
+    let pricedItems;
+    try {
+      pricedItems = await resolveSaleLineItems(items);
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Direkt satis satirlari gecersiz." });
+    }
+
+    const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
     const netTotal = Math.max(subtotal - Number(discount || 0), 0);
     const exportSale = isTruthy(isExport);
     const vatRate = exportSale ? 0 : 19;
@@ -754,7 +914,7 @@ function createApp() {
 
     try {
       const saleResult = await withTransaction(async (tx) => {
-        for (const entry of items) {
+        for (const entry of pricedItems) {
           const itemId = Number(entry.itemId);
           const item = await tx.get("SELECT * FROM items WHERE id = ?", [itemId]);
           if (!item) {
@@ -795,7 +955,7 @@ function createApp() {
         );
 
         const insertedQuoteId = Number(quoteResult.rows[0]?.id || quoteResult.lastInsertId);
-        for (const entry of items) {
+        for (const entry of pricedItems) {
           await tx.execute(
             `
               INSERT INTO quote_items (quote_id, item_id, item_name, quantity, unit, unit_price, total)
@@ -851,6 +1011,96 @@ function createApp() {
       return res.json({ ok: true, id: saleResult.id, paid: saleResult.paid, remaining: Number((grossTotal - paid).toFixed(2)) });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Direkt satis olusturulamadi." });
+    }
+  });
+
+  app.post("/api/sales/unbilled-checkout", requireStaffOrAdmin, async (req, res) => {
+    const { customerName, title, date, discount, note, items, paymentType, collectedAmount, reference } = req.body || {};
+    if (!date || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: "Faturasiz satis bilgileri eksik." });
+    }
+
+    const resolvedCustomer = cleanOptional(customerName) || "Perakende Musteri";
+    const resolvedTitle = cleanOptional(title) || "Perakende Satis";
+    let pricedItems;
+    try {
+      pricedItems = await resolveSaleLineItems(items);
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Faturasiz satis satirlari gecersiz." });
+    }
+
+    const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
+    const saleTotal = Math.max(subtotal - Number(discount || 0), 0);
+    const paid = Math.max(Number(collectedAmount || 0), 0);
+
+    try {
+      const saleResult = await withTransaction(async (tx) => {
+        for (const entry of pricedItems) {
+          const itemId = Number(entry.itemId);
+          const item = await tx.get("SELECT * FROM items WHERE id = ?", [itemId]);
+          if (!item) {
+            throw new Error("Malzeme bulunamadi.");
+          }
+          const stock = await getItemStock(itemId, tx);
+          if (Number(entry.quantity) > stock) {
+            throw new Error(`${entry.itemName} icin yeterli stok yok.`);
+          }
+        }
+
+        for (const entry of pricedItems) {
+          await tx.execute(
+            `
+              INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
+              VALUES (?, 'exit', ?, ?, ?, ?, ?)
+            `,
+            [
+              Number(entry.itemId),
+              Number(entry.quantity),
+              Number(entry.unitPrice),
+              date,
+              `Faturasiz satis - ${resolvedCustomer}${resolvedTitle ? ` | ${resolvedTitle}` : ""}`,
+              req.session.user.id,
+            ]
+          );
+        }
+
+        let cashEntryId = null;
+        if (paid > 0) {
+          const cashResult = await tx.execute(
+            `
+              INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
+              VALUES ('in', ?, ?, ?, ?, ?, ?)
+              RETURNING id
+            `,
+            [
+              `Faturasiz satis tahsilati - ${resolvedCustomer}`,
+              paid,
+              date,
+              cleanOptional(reference),
+              [
+                "Faturasiz satis",
+                resolvedTitle,
+                cleanOptional(paymentType) || "cash",
+                cleanOptional(note),
+              ].filter(Boolean).join(" | "),
+              req.session.user.id,
+            ]
+          );
+          cashEntryId = Number(cashResult.rows[0]?.id || cashResult.lastInsertId);
+        }
+
+        return { paid, cashEntryId };
+      });
+
+      return res.json({
+        ok: true,
+        total: Number(saleTotal.toFixed(2)),
+        paid: saleResult.paid,
+        remaining: Number((saleTotal - paid).toFixed(2)),
+        cashEntryId: saleResult.cashEntryId,
+      });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Faturasiz satis olusturulamadi." });
     }
   });
 
@@ -912,6 +1162,7 @@ function createApp() {
 
   app.post("/api/orders/:id/status", requireStaffOrAdmin, async (req, res) => {
     const status = cleanOptional(req.body?.status).toLowerCase();
+    const language = req.body?.language === "de" ? "de" : "tr";
     if (!["pending", "approved", "preparing", "completed", "cancelled"].includes(status)) {
       return res.status(400).json({ error: "Gecersiz siparis durumu." });
     }
@@ -938,6 +1189,7 @@ function createApp() {
           customerName: order.customer_name,
           date: order.order_date,
           status,
+          language,
         }
       );
     }
@@ -990,7 +1242,7 @@ function createApp() {
       });
   });
 
-  app.get("/api/reports/xlsx", requireStaffOrAdmin, async (req, res) => {
+  app.get("/api/reports/xlsx", requireAdmin, async (req, res) => {
     const bootstrap = await buildBootstrap(req.session.user);
     const workbook = XLSX.utils.book_new();
 
@@ -1004,9 +1256,9 @@ function createApp() {
     res.type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet").send(buffer);
   });
 
-  app.get("/api/reports/pdf", requireStaffOrAdmin, async (_req, res) => {
-    const summary = await computeSummary();
-    const items = await queryItems();
+  app.get("/api/reports/pdf", requireAdmin, async (req, res) => {
+    const summary = sanitizeSummaryForRole(await computeSummary(), req.session.user?.role);
+    const items = sanitizeItemsForRole(await queryItems(), req.session.user);
     const doc = new PDFDocument({ margin: 40, size: "A4" });
 
     res.setHeader("Content-Disposition", 'attachment; filename="hamburg-depo-ozet.pdf"');
@@ -1016,7 +1268,8 @@ function createApp() {
     doc.fontSize(20).text("Durmusbaba Ozet Raporu");
     doc.moveDown();
     doc.fontSize(11).text(`Toplam malzeme: ${summary.totalItems}`);
-    doc.text(`Stok degeri: ${summary.stockValue.toFixed(2)} EUR`);
+    doc.text(`Stok maliyeti: ${summary.stockCostValue.toFixed(2)} EUR`);
+    doc.text(`Satis stok degeri: ${summary.stockSaleValue.toFixed(2)} EUR`);
     doc.text(`Kritik urun: ${summary.criticalCount}`);
     doc.text(`Toplam masraf: ${summary.expenseTotal.toFixed(2)} EUR`);
     doc.text(`Kasa bakiyesi: ${summary.cashBalance.toFixed(2)} EUR`);
@@ -1142,6 +1395,58 @@ function normalizeUsername(value) {
     .slice(0, 28);
 }
 
+function normalizeTrainingAudience(value) {
+  return ["all", "admin", "staff", "customer"].includes(value) ? value : "all";
+}
+
+function parseTrainingSuggestions(value) {
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => cleanOptional(item)).filter(Boolean).slice(0, 6);
+  }
+
+  try {
+    const parsed = JSON.parse(String(value));
+    if (Array.isArray(parsed)) {
+      return parsed.map((item) => cleanOptional(item)).filter(Boolean).slice(0, 6);
+    }
+  } catch (_error) {
+    // Fall back to plain text parsing.
+  }
+
+  return String(value)
+    .split(/\r?\n|,/)
+    .map((item) => cleanOptional(item))
+    .filter(Boolean)
+    .slice(0, 6);
+}
+
+function normalizeTrainingPayload(body) {
+  const trQuestion = cleanOptional(body?.trQuestion);
+  const trAnswer = cleanOptional(body?.trAnswer);
+  const deQuestion = cleanOptional(body?.deQuestion);
+  const deAnswer = cleanOptional(body?.deAnswer);
+
+  if (!trQuestion || !trAnswer) {
+    return { error: "Turkce soru ve cevap zorunlu." };
+  }
+
+  return {
+    topic: cleanOptional(body?.topic),
+    audience: normalizeTrainingAudience(cleanOptional(body?.audience)),
+    keywords: cleanOptional(body?.keywords),
+    trQuestion,
+    trAnswer,
+    deQuestion,
+    deAnswer,
+    suggestions: parseTrainingSuggestions(body?.suggestions),
+    isActive: body?.isActive !== "false" && body?.isActive !== false && body?.isActive !== "0",
+  };
+}
+
 function sessionUserFromRow(user) {
   return {
     id: Number(user.id),
@@ -1229,13 +1534,17 @@ async function consumeAuthToken(token, tokenType) {
 }
 
 function getAppBaseUrl(req) {
+  const protocol = req?.get("x-forwarded-proto") || req?.protocol || "https";
+  const host = req?.get("x-forwarded-host") || req?.get("host");
+  if (host) {
+    return `${protocol}://${host}`;
+  }
+
   if (APP_BASE_URL) {
     return APP_BASE_URL.replace(/\/$/, "");
   }
 
-  const protocol = req.get("x-forwarded-proto") || req.protocol || "https";
-  const host = req.get("x-forwarded-host") || req.get("host");
-  return `${protocol}://${host}`;
+  return "https://hamburg-depo-3bgu.vercel.app";
 }
 
 function buildWhatsAppUrl(phone, message) {
@@ -1244,6 +1553,62 @@ function buildWhatsAppUrl(phone, message) {
     return "";
   }
   return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(message)}`;
+}
+
+function createPasswordResetWhatsappText({ name, resetUrl, language = "tr" }) {
+  if (language === "de") {
+    return [
+      `Hallo ${name || ""},`,
+      "Ihr Link zum Zuruecksetzen des Passworts ist bereit:",
+      resetUrl,
+      "Der Link ist 2 Stunden gueltig.",
+    ].join("\n");
+  }
+
+  return [
+    `Merhaba ${name || ""},`,
+    "DRC sifre yenileme baglantiniz hazir:",
+    resetUrl,
+    "Baglanti 2 saat gecerlidir.",
+  ].join("\n");
+}
+
+function getOrderStatusTranslations(language = "tr") {
+  if (language === "de") {
+    return {
+      subject: "DRC Bestellstatus",
+      heading: "DRC Bestellinformation",
+      greeting: "Hallo",
+      orderLabel: "Bestellung",
+      statusPrefix: "Der Status Ihrer Bestellung wurde aktualisiert",
+      newStatus: "Neuer Status",
+      orderDate: "Bestelldatum",
+      labels: {
+        pending: "Offen",
+        approved: "Bestaetigt",
+        preparing: "In Vorbereitung",
+        completed: "Abgeschlossen",
+        cancelled: "Storniert",
+      },
+    };
+  }
+
+  return {
+    subject: "DRC Siparis Durumu",
+    heading: "DRC Siparis Bilgilendirmesi",
+    greeting: "Merhaba",
+    orderLabel: "Siparis",
+    statusPrefix: "numarali siparisinizin durumu guncellendi",
+    newStatus: "Yeni durum",
+    orderDate: "Siparis tarihi",
+    labels: {
+      pending: "Beklemede",
+      approved: "Onaylandi",
+      preparing: "Hazirlaniyor",
+      completed: "Tamamlandi",
+      cancelled: "Iptal Edildi",
+    },
+  };
 }
 
 function getMailSenderAddress(provider = "default") {
@@ -1363,25 +1728,21 @@ async function sendOrderStatusEmail(user, order) {
     return { sent: false, reason: "missing_email" };
   }
 
-  const statusLabels = {
-    pending: "Beklemede",
-    approved: "Onaylandi",
-    preparing: "Hazirlaniyor",
-    completed: "Tamamlandi",
-    cancelled: "Iptal Edildi",
-  };
+  const language = order?.language === "de" ? "de" : "tr";
+  const text = getOrderStatusTranslations(language);
+  const statusLabel = text.labels[order.status] || order.status;
 
   return sendEmail({
     to: user.email,
-    subject: `DRC Siparis Durumu - Siparis #${order.id}`,
-    text: `Merhaba ${user.name || ""},\n\n${order.id} numarali siparisinizin durumu guncellendi: ${statusLabels[order.status] || order.status}.\nSiparis tarihi: ${order.date}\n`,
+    subject: `${text.subject} - ${text.orderLabel} #${order.id}`,
+    text: `${text.greeting} ${user.name || ""},\n\n#${order.id} ${text.statusPrefix}: ${statusLabel}.\n${text.orderDate}: ${order.date}\n`,
     html: `
       <div style="font-family:Arial,sans-serif;line-height:1.6;color:#1f2937">
-        <h2>DRC Siparis Bilgilendirmesi</h2>
-        <p>Merhaba ${escapeHtml(user.name || "")},</p>
-        <p><strong>#${order.id}</strong> numarali siparisinizin durumu guncellendi.</p>
-        <p>Yeni durum: <strong>${escapeHtml(statusLabels[order.status] || order.status)}</strong></p>
-        <p>Siparis tarihi: ${escapeHtml(order.date || "")}</p>
+        <h2>${text.heading}</h2>
+        <p>${text.greeting} ${escapeHtml(user.name || "")},</p>
+        <p><strong>#${order.id}</strong> ${text.statusPrefix}.</p>
+        <p>${text.newStatus}: <strong>${escapeHtml(statusLabel)}</strong></p>
+        <p>${text.orderDate}: ${escapeHtml(order.date || "")}</p>
       </div>
     `,
   });
@@ -1401,7 +1762,83 @@ async function getItemStock(itemId, executor = null) {
   return Number(row?.stock || 0);
 }
 
+async function getLastEntryUnitPrice(itemId, fallbackPrice = 0, executor = null) {
+  const getter = executor?.get ? executor.get.bind(executor) : get;
+  const row = await getter(
+    `
+      SELECT COALESCE((
+        SELECT unit_price
+        FROM movements
+        WHERE item_id = ? AND type = 'entry'
+        ORDER BY movement_date DESC, id DESC
+        LIMIT 1
+      ), ?) AS unit_price
+    `,
+    [itemId, Number(fallbackPrice || 0)]
+  );
+
+  return Number(row?.unit_price || 0);
+}
+
+async function resolveMovementUnitPrice({ itemId, requestedUnitPrice, defaultPrice = 0, role, executor = null }) {
+  const requestedValue = Number(requestedUnitPrice || 0);
+  if (isAdminRole(role) && requestedValue > 0) {
+    return requestedValue;
+  }
+
+  return getLastEntryUnitPrice(itemId, defaultPrice, executor);
+}
+
+async function resolveSaleLineItems(items, executor = null) {
+  const getter = executor?.get ? executor.get.bind(executor) : get;
+  const activeValue = dbClient === "postgres" ? true : 1;
+  const resolved = [];
+
+  for (const entry of items) {
+    const itemId = Number(entry.itemId);
+    const quantity = Number(entry.quantity);
+    if (!itemId || quantity <= 0) {
+      throw new Error("Satis satirinda urun veya miktar gecersiz.");
+    }
+
+    const item = await getter(
+      "SELECT id, name, unit, list_price, sale_price FROM items WHERE id = ? AND COALESCE(is_active, TRUE) = ?",
+      [itemId, activeValue]
+    );
+    if (!item) {
+      throw new Error("Satis satirindaki urun bulunamadi veya arsivde.");
+    }
+
+    const unitPrice = resolveCustomerUnitPrice(item, quantity);
+    if (unitPrice <= 0) {
+      throw new Error(`${item.name} icin satis fiyati girilmemis.`);
+    }
+
+    resolved.push({
+      itemId,
+      itemName: item.name,
+      quantity,
+      unit: item.unit || entry.unit || "adet",
+      unitPrice,
+      total: quantity * unitPrice,
+    });
+  }
+
+  return resolved;
+}
+
+function resolveCustomerUnitPrice(item, quantity) {
+  const listPrice = Number(item.list_price || item.listPrice || 0);
+  const netPrice = Number(item.sale_price || item.salePrice || 0);
+  if (Number(quantity) <= 1 && listPrice > 0) {
+    return listPrice;
+  }
+
+  return netPrice > 0 ? netPrice : listPrice;
+}
+
 async function queryItems(isActive = true) {
+  const activeValue = dbClient === "postgres" ? Boolean(isActive) : (isActive ? 1 : 0);
   const rows = await query(
     `
       SELECT
@@ -1427,7 +1864,7 @@ async function queryItems(isActive = true) {
       WHERE COALESCE(items.is_active, TRUE) = ?
       ORDER BY created_at DESC, id DESC
     `,
-    [isActive]
+    [activeValue]
   );
 
   return rows.map((row) => ({
@@ -1441,6 +1878,7 @@ async function queryItems(isActive = true) {
     notes: row.notes,
     currentStock: Number(row.current_stock || 0),
     defaultPrice: Number(row.default_price || 0),
+    listPrice: Number(row.list_price || 0),
     salePrice: Number(row.sale_price || 0),
     lastPurchasePrice: Number(row.last_purchase_price || 0),
     averagePurchasePrice: Number(row.average_purchase_price || 0),
@@ -1522,23 +1960,106 @@ async function queryUsers() {
   return rows.map((row) => ({ ...row, id: Number(row.id), role: normalizeRole(row.role) }));
 }
 
+async function queryAgentTrainingEntries(activeOnly = true) {
+  const rows = await query(
+    `
+      SELECT
+        agent_training.id,
+        agent_training.topic,
+        agent_training.audience,
+        agent_training.keywords,
+        agent_training.tr_question AS "trQuestion",
+        agent_training.tr_answer AS "trAnswer",
+        agent_training.de_question AS "deQuestion",
+        agent_training.de_answer AS "deAnswer",
+        agent_training.suggestions,
+        agent_training.is_active AS "isActive",
+        agent_training.created_at AS "createdAt",
+        agent_training.updated_at AS "updatedAt",
+        users.name AS "createdByName"
+      FROM agent_training
+      LEFT JOIN users ON users.id = agent_training.created_by_user_id
+      ${activeOnly ? "WHERE agent_training.is_active = ?" : ""}
+      ORDER BY agent_training.updated_at DESC, agent_training.id DESC
+    `,
+    activeOnly ? [1] : []
+  );
+
+  return rows.map((row) => ({
+    id: Number(row.id),
+    topic: row.topic || "",
+    audience: row.audience || "all",
+    keywords: row.keywords || "",
+    trQuestion: row.trQuestion || "",
+    trAnswer: row.trAnswer || "",
+    deQuestion: row.deQuestion || "",
+    deAnswer: row.deAnswer || "",
+    suggestions: parseTrainingSuggestions(row.suggestions),
+    isActive: toBoolean(row.isActive),
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
+    createdByName: row.createdByName || "-",
+  }));
+}
+
 async function computeSummary() {
   const [items, expenses, cashbook] = await Promise.all([queryItems(), queryExpenses(), queryCashbook()]);
-  const stockValue = items.reduce((sum, item) => sum + Number(item.currentStock) * Number(item.lastPurchasePrice || item.defaultPrice || 0), 0);
+  const stockCostValue = items.reduce((sum, item) => sum + Number(item.currentStock) * Number(item.lastPurchasePrice || item.defaultPrice || 0), 0);
+  const stockSaleValue = items.reduce((sum, item) => sum + Number(item.currentStock) * Number(item.salePrice || 0), 0);
   const expenseTotal = expenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
   const cashBalance = cashbook.reduce((sum, entry) => sum + (entry.type === "in" ? Number(entry.amount) : -Number(entry.amount)), 0);
 
   return {
     totalItems: items.length,
-    stockValue,
+    stockValue: stockCostValue,
+    stockCostValue,
+    stockSaleValue,
     criticalCount: items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).length,
     expenseTotal,
     cashBalance,
   };
 }
 
+function sanitizeSummaryForRole(summary, role) {
+  if (normalizeRole(role) === "admin") {
+    return summary;
+  }
+
+  return {
+    ...summary,
+    stockValue: 0,
+    stockCostValue: 0,
+  };
+}
+
+function sanitizeItemsForRole(items, user) {
+  const role = normalizeRole(user?.role);
+  if (role === "admin") {
+    return items;
+  }
+
+  return items.map((item) => ({
+    ...item,
+    defaultPrice: 0,
+    lastPurchasePrice: 0,
+    averagePurchasePrice: 0,
+  }));
+}
+
+function sanitizeMovementsForRole(movements, role) {
+  if (normalizeRole(role) === "admin") {
+    return movements;
+  }
+
+  return movements.map((movement) => ({
+    ...movement,
+    unitPrice: 0,
+  }));
+}
+
 async function buildBootstrap(user) {
   const normalizedRole = normalizeRole(user?.role);
+  const assistantStatus = getAssistantStatus();
 
   if (normalizedRole === "customer") {
     const [items, orders] = await Promise.all([
@@ -1564,6 +2085,8 @@ async function buildBootstrap(user) {
       summary: {
         totalItems: customerItems.length,
         stockValue: 0,
+        stockCostValue: 0,
+        stockSaleValue: 0,
         criticalCount: customerItems.filter((item) => Number(item.currentStock) <= Number(item.minStock)).length,
         expenseTotal: 0,
         cashBalance: 0,
@@ -1576,13 +2099,16 @@ async function buildBootstrap(user) {
       users: [],
       quotes: [],
       orders,
+      agentTraining: [],
+      assistantStatus,
     };
   }
 
   const includeExpenses = normalizedRole === "admin";
   const includeUsers = normalizedRole === "admin";
   const includeArchive = normalizedRole === "admin";
-  const [summary, items, archivedItems, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
+  const includeAgentTraining = normalizedRole === "admin";
+  const [summary, items, archivedItems, movements, expenses, cashbook, users, quotes, orders, agentTraining] = await Promise.all([
     computeSummary(),
     queryItems(),
     includeArchive ? queryItems(false) : Promise.resolve([]),
@@ -1592,18 +2118,21 @@ async function buildBootstrap(user) {
     includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(),
     queryOrders(user),
+    includeAgentTraining ? queryAgentTrainingEntries(false) : Promise.resolve([]),
   ]);
 
   return {
-    summary,
-    items,
-    archivedItems,
-    movements,
+    summary: sanitizeSummaryForRole(summary, user?.role),
+    items: sanitizeItemsForRole(items, user),
+    archivedItems: sanitizeItemsForRole(archivedItems, user),
+    movements: sanitizeMovementsForRole(movements, user?.role),
     expenses,
     cashbook,
     users,
     quotes,
     orders,
+    agentTraining,
+    assistantStatus,
   };
 }
 
@@ -1621,10 +2150,198 @@ function deriveBrand(row) {
   return "";
 }
 
-function answerAssistantQuestion(message, items, language = "tr") {
+function getAssistantStatus() {
+  if (isLocalDrcManAvailable()) {
+    return {
+      mode: "local_drc_man",
+      label: "DRC MAN yerel ajan bagli",
+    };
+  }
+
+  return {
+    mode: "built_in",
+    label: "DRC MAN yedek mod",
+  };
+}
+
+function audienceAllowsRole(audience, role) {
+  const normalizedRole = normalizeRole(role);
+  if (audience === "all") {
+    return true;
+  }
+  if (audience === "admin") {
+    return normalizedRole === "admin";
+  }
+  if (audience === "staff") {
+    return normalizedRole === "staff" || normalizedRole === "admin";
+  }
+  if (audience === "customer") {
+    return normalizedRole === "customer";
+  }
+  return false;
+}
+
+async function matchAssistantTraining(message, language, user) {
+  const normalizedMessage = normalizeAssistantText(message);
+  if (!normalizedMessage) {
+    return null;
+  }
+
+  const tokens = tokenizeAssistantText(normalizedMessage);
+  const entries = await queryAgentTrainingEntries(true);
+  let bestEntry = null;
+  let bestScore = 0;
+
+  for (const entry of entries) {
+    if (!audienceAllowsRole(entry.audience, user?.role)) {
+      continue;
+    }
+
+    const prompts = [
+      language === "de" ? entry.deQuestion || entry.trQuestion : entry.trQuestion || entry.deQuestion,
+      language === "de" ? entry.trQuestion : entry.deQuestion,
+      entry.topic,
+    ]
+      .filter(Boolean)
+      .map((value) => normalizeAssistantText(value));
+
+    const keywords = normalizeAssistantText(entry.keywords).split(/\s+/).filter(Boolean);
+    let score = 0;
+
+    prompts.forEach((prompt) => {
+      if (!prompt) {
+        return;
+      }
+
+      if (normalizedMessage === prompt) {
+        score += 160;
+      } else if (prompt.includes(normalizedMessage) || normalizedMessage.includes(prompt)) {
+        score += 95;
+      }
+
+      const promptTokens = tokenizeAssistantText(prompt);
+      tokens.forEach((token) => {
+        if (promptTokens.includes(token)) {
+          score += token.length >= 4 ? 22 : 12;
+        } else if (prompt.includes(token)) {
+          score += 6;
+        }
+      });
+    });
+
+    keywords.forEach((keyword) => {
+      if (keyword.length >= 2 && normalizedMessage.includes(keyword)) {
+        score += 18;
+      }
+    });
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestEntry = entry;
+    }
+  }
+
+  if (!bestEntry || bestScore < 48) {
+    return null;
+  }
+
+  const answer = language === "de"
+    ? cleanOptional(bestEntry.deAnswer) || cleanOptional(bestEntry.trAnswer)
+    : cleanOptional(bestEntry.trAnswer) || cleanOptional(bestEntry.deAnswer);
+
+  if (!answer) {
+    return null;
+  }
+
+  return {
+    answer,
+    suggestions: bestEntry.suggestions || [],
+    sourceSummary: "DRC MAN yonetici egitimi",
+  };
+}
+
+function isLocalDrcManAvailable() {
+  return !process.env.VERCEL
+    && fs.existsSync(DRC_MAN_DIR)
+    && fs.existsSync(DRC_MAN_BRIDGE);
+}
+
+function resolveDrcManPython() {
+  if (DRC_MAN_PYTHON && fs.existsSync(DRC_MAN_PYTHON)) {
+    return DRC_MAN_PYTHON;
+  }
+
+  return "python3";
+}
+
+function queryDrcManAssistant(message, language = "tr", user = null, answerLevel = "master", history = []) {
+  if (!isLocalDrcManAvailable()) {
+    return null;
+  }
+
+  try {
+    const result = spawnSync(
+      resolveDrcManPython(),
+      [DRC_MAN_BRIDGE],
+      {
+        cwd: path.join(__dirname, ".."),
+        input: JSON.stringify({
+          question: message,
+          language,
+          role: normalizeRole(user?.role),
+          answerLevel,
+          history: Array.isArray(history) ? history.slice(-8) : [],
+          drcManDir: DRC_MAN_DIR,
+        }),
+        encoding: "utf8",
+        timeout: 15000,
+        env: {
+          ...process.env,
+          DRC_MAN_DIR,
+        },
+      }
+    );
+
+    if (result.error || result.status !== 0 || !result.stdout) {
+      return null;
+    }
+
+    const parsed = JSON.parse(result.stdout.trim());
+    return parsed?.ok ? parsed : null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function resolveAssistantAnswerLevel(message, user) {
+  const normalizedMessage = normalizeAssistantText(message || "");
+  if (/(usta gibi|detayli|detaylı|adim adim|adım adım|teknik anlat|sebebiyle anlat|meister|detailliert|schritt fuer schritt|schritt fur schritt|technisch)/.test(normalizedMessage)) {
+    return "master";
+  }
+  if (/(kisa anlat|kısa anlat|basit anlat|musteriye anlat|müşteriye anlat|kolay anlat|einfach erklaer|kurz erklaer|fuer kunden|fur kunden)/.test(normalizedMessage)) {
+    return "customer";
+  }
+  return isCustomerRole(user?.role) ? "customer" : "master";
+}
+
+function adaptAssistantTrainingAnswer(answer, language = "tr", answerLevel = "master") {
+  const text = cleanOptional(answer);
+  if (!text || answerLevel !== "customer") {
+    return text;
+  }
+
+  const parts = text.match(/[^.!?]+[.!?]?/g) || [text];
+  const shortened = parts.slice(0, 3).join(" ").trim();
+  return language === "de"
+    ? `Kurz und einfach: ${shortened} Wenn noetig, kann DRC MAN das im Meister-Niveau weiter ausfuehren.`
+    : `Kisa ve sade anlatim: ${shortened} Gerekirse DRC MAN bunu usta seviyesinde daha detayli aciklar.`;
+}
+
+function answerAssistantQuestion(message, items, language = "tr", user = null) {
   const normalized = normalizeAssistantText(message);
   const t = createAssistantDictionary(language);
   const candidates = findAssistantCandidates(normalized, items);
+  const canViewPurchase = normalizeRole(user?.role) === "admin";
 
   if (/(kritik|az stok|stok dusuk|minimum|kritisch|wenig bestand|mindestbestand)/.test(normalized)) {
     const critical = items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).slice(0, 8);
@@ -1638,9 +2355,11 @@ function answerAssistantQuestion(message, items, language = "tr") {
   }
 
   if (/(en pahali|en yuksek fiyat|en yuksek satis|teuerste|hochste preis|verkaufspreis)/.test(normalized)) {
-    const sorted = [...items].sort((a, b) => Number(b.salePrice || b.defaultPrice || 0) - Number(a.salePrice || a.defaultPrice || 0)).slice(0, 5);
+    const sorted = [...items]
+      .sort((a, b) => visibleSalePriceForRole(b, canViewPurchase) - visibleSalePriceForRole(a, canViewPurchase))
+      .slice(0, 5);
     return {
-      reply: `${t.expensiveList}: ${sorted.map((item) => `${item.name} (${formatEur(item.salePrice || item.defaultPrice)})`).join(", ")}`,
+      reply: `${t.expensiveList}: ${sorted.map((item) => `${item.name} (${formatEur(visibleSalePriceForRole(item, canViewPurchase))})`).join(", ")}`,
       suggestions: sorted.map((item) => item.name),
     };
   }
@@ -1678,9 +2397,13 @@ function answerAssistantQuestion(message, items, language = "tr") {
   if (/(fiyat|satis|alis|ucret|preis|verkauf|einkauf)/.test(normalized) && candidates[0]) {
     const item = candidates[0];
     return {
-      reply: language === "de"
-        ? `Fuer ${item.name} betraegt der Einkauf ${formatEur(item.defaultPrice || item.lastPurchasePrice)} und der Verkauf ${formatEur(item.salePrice || item.defaultPrice)}.`
-        : `${item.name} icin alis ${formatEur(item.defaultPrice || item.lastPurchasePrice)} ve satis ${formatEur(item.salePrice || item.defaultPrice)}.`,
+      reply: canViewPurchase
+        ? (language === "de"
+          ? `Fuer ${item.name} betraegt der Einkauf ${formatEur(item.defaultPrice || item.lastPurchasePrice)} und der Verkauf ${formatEur(visibleSalePriceForRole(item, true))}.`
+          : `${item.name} icin alis ${formatEur(item.defaultPrice || item.lastPurchasePrice)} ve satis ${formatEur(visibleSalePriceForRole(item, true))}.`)
+        : (language === "de"
+          ? `Fuer ${item.name} betraegt der Verkauf ${formatEur(visibleSalePriceForRole(item, false))}.`
+          : `${item.name} icin satis fiyati ${formatEur(visibleSalePriceForRole(item, false))}.`),
       suggestions: [`${item.name} ${t.stockWord}`, `${item.name} ${t.categoryWord}`],
     };
   }
@@ -1688,7 +2411,7 @@ function answerAssistantQuestion(message, items, language = "tr") {
   if (candidates.length > 0) {
     const top = candidates.slice(0, 5);
     return {
-      reply: `${t.matchList}: ${top.map((item) => `${item.name} (${formatEur(item.salePrice || item.defaultPrice)})`).join(", ")}`,
+      reply: `${t.matchList}: ${top.map((item) => `${item.name} (${formatEur(visibleSalePriceForRole(item, canViewPurchase))})`).join(", ")}`,
       suggestions: top.map((item) => `${item.name} ${t.priceWord}`).slice(0, 3),
     };
   }
@@ -1704,6 +2427,13 @@ function answerAssistantQuestion(message, items, language = "tr") {
     reply: t.help,
     suggestions: t.defaultSuggestions,
   };
+}
+
+function visibleSalePriceForRole(item, canViewPurchase) {
+  if (canViewPurchase) {
+    return Number(item.salePrice || item.defaultPrice || item.lastPurchasePrice || 0);
+  }
+  return Number(item.salePrice || 0);
 }
 
 function createAssistantDictionary(language) {
@@ -2048,7 +2778,7 @@ function renderQuotePdf(doc, quote, lang) {
   doc.fillColor("#153243");
   doc.font("AppBold").fontSize(20).text(quote.title, 42, 312);
   doc.font("AppRegular").fontSize(10).fillColor("#64748b").text(`${COMPANY_PROFILE.manager} | ${COMPANY_PROFILE.phone} | ${COMPANY_PROFILE.email}`, 42, 339);
-  doc.text(`${COMPANY_PROFILE.email2} | ${COMPANY_PROFILE.web} | ${COMPANY_PROFILE.register}`, 42, 354);
+  doc.text(`${COMPANY_PROFILE.web} | ${COMPANY_PROFILE.register}`, 42, 354);
 
   let y = 392;
   const cols = [42, 262, 336, 416, 500];

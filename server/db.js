@@ -45,6 +45,7 @@ const sqliteSchema = `
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
     is_active INTEGER NOT NULL DEFAULT 1,
+    list_price REAL NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
@@ -148,6 +149,23 @@ const sqliteSchema = `
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS agent_training (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    topic TEXT DEFAULT '',
+    audience TEXT NOT NULL DEFAULT 'all',
+    keywords TEXT DEFAULT '',
+    tr_question TEXT NOT NULL,
+    tr_answer TEXT NOT NULL,
+    de_question TEXT DEFAULT '',
+    de_answer TEXT DEFAULT '',
+    suggestions TEXT DEFAULT '[]',
+    is_active INTEGER NOT NULL DEFAULT 1,
+    created_by_user_id INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(created_by_user_id) REFERENCES users(id)
+  );
 `;
 
 const postgresSchema = `
@@ -174,6 +192,7 @@ const postgresSchema = `
     notes TEXT DEFAULT '',
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     default_price NUMERIC NOT NULL DEFAULT 0,
+    list_price NUMERIC NOT NULL DEFAULT 0,
     sale_price NUMERIC NOT NULL DEFAULT 0,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
@@ -274,6 +293,22 @@ const postgresSchema = `
     consumed_at TIMESTAMPTZ NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
+
+  CREATE TABLE IF NOT EXISTS agent_training (
+    id BIGSERIAL PRIMARY KEY,
+    topic TEXT DEFAULT '',
+    audience TEXT NOT NULL DEFAULT 'all',
+    keywords TEXT DEFAULT '',
+    tr_question TEXT NOT NULL,
+    tr_answer TEXT NOT NULL,
+    de_question TEXT DEFAULT '',
+    de_answer TEXT DEFAULT '',
+    suggestions TEXT DEFAULT '[]',
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_by_user_id BIGINT REFERENCES users(id),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
 `;
 
 async function initDatabase() {
@@ -290,6 +325,7 @@ async function initDatabase() {
     await ensureItemIndexesPostgres();
     await ensureMovementColumnsPostgres();
     await ensureMovementIndexesPostgres();
+    await ensureAgentTrainingIndexesPostgres();
     await seedUsers({
         get: async (sql, params) => firstRow(await query(sql, params)),
         run: async (sql, params) => query(sql, params),
@@ -310,6 +346,7 @@ async function initDatabase() {
   ensureMovementColumnsSqlite();
   ensureMovementIndexesSqlite();
   ensureQuoteColumnsSqlite();
+  ensureAgentTrainingIndexesSqlite();
   await seedUsers({
     get: async (sql, params) => sqlitePrepare(sql).get(...params),
     run: async (sql, params) => sqlitePrepare(sql).run(...params),
@@ -424,6 +461,9 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("default_price")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN default_price REAL NOT NULL DEFAULT 0");
   }
+  if (!columns.includes("list_price")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN list_price REAL NOT NULL DEFAULT 0");
+  }
   if (!columns.includes("sale_price")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN sale_price REAL NOT NULL DEFAULT 0");
   }
@@ -490,6 +530,10 @@ function ensureQuoteColumnsSqlite() {
   if (columns.length && !columns.includes("is_export")) {
     sqliteDb.exec("ALTER TABLE quotes ADD COLUMN is_export INTEGER NOT NULL DEFAULT 1");
   }
+}
+
+function ensureAgentTrainingIndexesSqlite() {
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training(is_active, created_at DESC)");
 }
 
 async function seedUsers(adapter) {
@@ -570,6 +614,9 @@ async function ensureItemColumnsPostgres() {
   if (!names.has("default_price")) {
     await pgPool.query("ALTER TABLE items ADD COLUMN default_price NUMERIC NOT NULL DEFAULT 0");
   }
+  if (!names.has("list_price")) {
+    await pgPool.query("ALTER TABLE items ADD COLUMN list_price NUMERIC NOT NULL DEFAULT 0");
+  }
   if (!names.has("sale_price")) {
     await pgPool.query("ALTER TABLE items ADD COLUMN sale_price NUMERIC NOT NULL DEFAULT 0");
   }
@@ -597,6 +644,10 @@ async function ensureMovementColumnsPostgres() {
 
 async function ensureMovementIndexesPostgres() {
   await pgPool.query("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
+}
+
+async function ensureAgentTrainingIndexesPostgres() {
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training (is_active, created_at DESC)");
 }
 
 async function ensureUserColumnsPostgres() {
