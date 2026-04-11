@@ -23,7 +23,12 @@ let numberFormat = createNumberFormatter("tr");
 
 const UI_TEXT = {
   tr: {
-    title: "Durmusbaba Yonetim Merkezi",
+    title: "D-R-C Kältetechnik GmbH Portal",
+    companyName: "D-R-C Kältetechnik GmbH",
+    authShowcaseTitle: "Soğuk oda, servis ve yedek parça gücü",
+    authShowcaseCopy: "Hamburg bölgesindeki depomuzdan soğutma grubu, evaporatör, kontrol panosu, gaz ve montaj sarf ürünleriyle hızlı satış ve saha desteği.",
+    authLoginTitle: "Giriş ve müşteri hesabı",
+    authLoginDesc: "Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.",
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -162,7 +167,12 @@ const UI_TEXT = {
     },
   },
   de: {
-    title: "Durmusbaba Verwaltungszentrum",
+    title: "D-R-C Kältetechnik GmbH Portal",
+    companyName: "D-R-C Kältetechnik GmbH",
+    authShowcaseTitle: "Kühlraum-, Service- und Ersatzteilpower",
+    authShowcaseCopy: "Aus unserem Lager im Raum Hamburg liefern wir Kälteaggregate, Verdampfer, Steuerungen, Kältemittel und Montagematerial mit schnellem Verkauf und Service-Support.",
+    authLoginTitle: "Anmeldung und Kundenkonto",
+    authLoginDesc: "Berechtigte Benutzer öffnen Verkauf, Lager und Projektwerkzeuge. Kunden legen ihr eigenes Konto an und verfolgen ihren Bestellverlauf.",
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -550,8 +560,20 @@ function applyUiTranslations() {
 
   setText("#loginScreen .ui-language-label", t("uiLanguage"));
   setText("#appScreen .ui-language-label", t("uiLanguage"));
-  setHtml("#loginScreen .muted p:first-child", `${langText("Depo:", "Lager:")}<br>21039 Borsen`);
-  setHtml("#loginScreen .muted p:last-child", `${t("appLabel")}<br>drckaltetechnik.vercel.app`);
+  setText(".auth-brand-eyebrow", t("companyName"));
+  setText(".auth-showcase-title", t("authShowcaseTitle"));
+  setText(".auth-showcase-copy", t("authShowcaseCopy"));
+  setText(".auth-login-heading h2", t("authLoginTitle"));
+  setText(".auth-login-heading .muted", t("authLoginDesc"));
+  const companyCards = document.querySelectorAll(".company-info-card");
+  setText(companyCards[0]?.querySelector("span"), langText("Merkez", "Hauptsitz"));
+  setHtml(companyCards[0]?.querySelector("strong"), "Schildkamp 1<br>59063 Hamm");
+  setText(companyCards[1]?.querySelector("span"), langText("Hamburg Depo", "Lager Hamburg"));
+  setHtml(companyCards[1]?.querySelector("strong"), "Lauenburger Landstraße 3b<br>21039 Börnsen");
+  setText(companyCards[2]?.querySelector("span"), langText("İletişim", "Kontakt"));
+  setText(companyCards[3]?.querySelector("span"), langText("Ticaret Sicili", "Register"));
+  setText(".badge-primary", langText("DRC Soğuk Odalar", "DRC Kühlräume"));
+  setText(".badge-secondary", langText("Servis & Yedek Parça", "Service & Parts"));
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
   setFormFieldLabel(refs.loginForm, "password", t("password"));

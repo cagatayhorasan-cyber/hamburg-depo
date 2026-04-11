@@ -4,16 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- deploy-marker: 2026-04-09-vercel-app-domain -->
-  <title>Durmusbaba Yonetim Merkezi</title>
+  <title>D-R-C Kältetechnik GmbH Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260410-stock-values-1">
+  <link rel="stylesheet" href="/styles.css?v=20260412-drc-showcase-1">
 </head>
 <body>
   <div class="page-shell">
     <section id="loginScreen" class="auth-screen">
-      <div class="auth-card">
+      <div class="auth-layout">
+        <aside class="auth-showcase" aria-label="D-R-C Kältetechnik firma bilgileri">
+          <div class="auth-showcase-head">
+            <img class="drc-logo-image" src="/assets/drc-logo.svg" alt="D-R-C Kältetechnik GmbH">
+            <div>
+              <p class="eyebrow auth-brand-eyebrow">D-R-C Kältetechnik GmbH</p>
+              <h1 class="auth-showcase-title">Soğuk oda, servis ve yedek parça gücü</h1>
+              <p class="auth-showcase-copy">Hamburg bölgesindeki depomuzdan soğutma grubu, evaporatör, kontrol panosu, gaz ve montaj sarf ürünleriyle hızlı satış ve saha desteği.</p>
+            </div>
+          </div>
+
+          <div class="auth-product-visual">
+            <img src="/assets/drc-product-showcase.svg" alt="DRC soğuk oda, kondenser, evaporatör ve kontrol ürünleri">
+            <div class="showcase-badge badge-primary">DRC Cold Rooms</div>
+            <div class="showcase-badge badge-secondary">Service & Parts</div>
+          </div>
+
+          <div class="company-info-grid">
+            <article class="company-info-card">
+              <span>Hauptsitz</span>
+              <strong>Schildkamp 1<br>59063 Hamm</strong>
+              <small>Deutschland</small>
+            </article>
+            <article class="company-info-card">
+              <span>Lager Hamburg</span>
+              <strong>Lauenburger Landstraße 3b<br>21039 Börnsen</strong>
+              <small>Deutschland</small>
+            </article>
+            <article class="company-info-card">
+              <span>Kontakt</span>
+              <strong>+49 1522 1581762</strong>
+              <small>info@durmusbaba.com</small>
+            </article>
+            <article class="company-info-card">
+              <span>Register</span>
+              <strong>Hamm HRB 11217</strong>
+              <small>Amtsgericht Hamm</small>
+            </article>
+          </div>
+
+          <div class="official-info-strip">
+            <span>Steuernummer: 322/577/1909</span>
+            <span>USt-IdNr.: ATU73555618</span>
+          </div>
+        </aside>
+
+        <div class="auth-card">
         <div class="ui-language-switch auth-language-switch">
           <span class="ui-language-label">Arayuz Dili</span>
           <select class="ui-language-select" aria-label="Arayuz dili">
@@ -21,12 +67,10 @@
             <option value="de">DE</option>
           </select>
         </div>
-        <p class="eyebrow">D-R-C Kaltetechnik GmbH</p>
-        <h1>Schildkamp 1<br>59063 Hamm</h1>
-        <div class="muted">
-          <p>Lager:<br>21039 Borsen</p>
-          <p>Tel: +49 1522 1581762</p>
-          <p>Uygulama:<br>drckaltetechnik.vercel.app</p>
+        <div class="auth-login-heading">
+          <p class="eyebrow">DRC Portal</p>
+          <h2>Giriş ve müşteri hesabı</h2>
+          <p class="muted">Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.</p>
         </div>
         <form id="loginForm" class="stack-form" autocomplete="off">
           <input class="autofill-trap" type="text" name="fake-username" autocomplete="username" tabindex="-1" aria-hidden="true">
@@ -90,6 +134,7 @@
             <p id="resetPasswordSuccess" class="success-text auth-message"></p>
           </form>
         </section>
+      </div>
       </div>
     </section>
 

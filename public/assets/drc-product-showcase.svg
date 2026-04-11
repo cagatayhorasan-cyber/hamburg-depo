@@ -1,0 +1,57 @@
+<svg width="820" height="480" viewBox="0 0 820 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DRC cold room product showcase</title>
+  <desc id="desc">Cold room, condenser unit, evaporator, controls and service parts illustration</desc>
+  <rect width="820" height="480" rx="44" fill="url(#bg)"/>
+  <circle cx="123" cy="82" r="110" fill="#00C2A8" opacity=".18"/>
+  <circle cx="742" cy="120" r="125" fill="#FF8A00" opacity=".20"/>
+  <circle cx="570" cy="430" r="150" fill="#2D6CFF" opacity=".17"/>
+  <g filter="url(#shadow)">
+    <rect x="78" y="110" width="275" height="245" rx="24" fill="#F6FBFF"/>
+    <path d="M105 138h221v189H105V138Z" fill="#DCEBFA"/>
+    <path d="M105 138h111v189H105V138Z" fill="#EEF6FF"/>
+    <path d="M216 138v189M105 201h221M105 264h221" stroke="#9FB7D0" stroke-width="5"/>
+    <rect x="141" y="175" width="38" height="91" rx="10" fill="#0C3768"/>
+    <circle cx="160" cy="220" r="8" fill="#00C2A8"/>
+    <path d="M119 334h196" stroke="#FF8A00" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="393" y="92" width="270" height="148" rx="28" fill="#FFFFFF"/>
+    <rect x="421" y="122" width="214" height="88" rx="18" fill="#EAF3F7"/>
+    <circle cx="487" cy="166" r="37" fill="#0C3768"/>
+    <circle cx="487" cy="166" r="22" fill="#00C2A8"/>
+    <path d="M487 129v74M450 166h74M461 140l52 52M513 140l-52 52" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M559 135h52M559 158h52M559 181h52" stroke="#8AA5BB" stroke-width="8" stroke-linecap="round"/>
+    <rect x="435" y="222" width="176" height="24" rx="12" fill="#FF8A00"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="428" y="276" width="124" height="126" rx="22" fill="#FFFFFF"/>
+    <rect x="454" y="302" width="72" height="44" rx="11" fill="#0C3768"/>
+    <path d="M468 326h44" stroke="#9FF9EF" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="468" cy="371" r="10" fill="#00C2A8"/>
+    <circle cx="490" cy="371" r="10" fill="#FF8A00"/>
+    <circle cx="512" cy="371" r="10" fill="#2D6CFF"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="593" y="283" width="147" height="105" rx="22" fill="#FFFFFF"/>
+    <path d="M622 338c24-32 62-32 88 0" stroke="#0C3768" stroke-width="11" stroke-linecap="round"/>
+    <path d="M622 338c24 32 62 32 88 0" stroke="#00C2A8" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="666" cy="338" r="17" fill="#FF8A00"/>
+    <path d="M618 304h96" stroke="#A9BCCE" stroke-width="6" stroke-linecap="round"/>
+    <path d="M618 374h96" stroke="#A9BCCE" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="95" y="382" width="244" height="54" rx="27" fill="#072C57"/>
+    <text x="122" y="416" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="700">DRC</text>
+    <text x="188" y="416" fill="#9FF9EF" font-family="Arial, sans-serif" font-size="20" font-weight="700">Kältetechnik</text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="820" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ECF8FF"/>
+      <stop offset=".5" stop-color="#F5FFFB"/>
+      <stop offset="1" stop-color="#FFF0D8"/>
+    </linearGradient>
+    <filter id="shadow" x="35" y="55" width="750" height="400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0C3768" flood-opacity=".22"/>
+    </filter>
+  </defs>
+</svg>
