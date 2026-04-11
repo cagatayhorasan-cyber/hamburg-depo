@@ -303,6 +303,18 @@ function createApp() {
       });
     }
 
+    if (isDirectPriceQuestion(message)) {
+      const items = isCustomerRole(req.session.user?.role)
+        ? await queryCustomerItems({ includePrices: true })
+        : sanitizeItemsForRole(await queryItems(), req.session.user);
+      const answer = answerAssistantQuestion(message, items, language, req.session.user);
+      return res.json({
+        answer: answer.reply,
+        suggestions: answer.suggestions || [],
+        provider: "built_in",
+      });
+    }
+
     const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
     if (trainingMatch?.answer) {
       const answer = sanitizeAssistantAnswerForRole(
@@ -2651,6 +2663,13 @@ function isRestrictedCustomerPurchaseQuestion(message) {
   const text = cleanOptional(message);
   const normalized = normalizeAssistantText(text);
   return /(alis|alış|maliyet|maliyetim|kar marji|kâr marji|einkauf|einkaufspreis|kosten|cost|purchase)/.test(normalized);
+}
+
+function isDirectPriceQuestion(message) {
+  const text = cleanOptional(message);
+  const normalized = normalizeAssistantText(text);
+  return /€|\beur\b/i.test(text)
+    || /(fiyat|ucret|ücret|tutar|satis fiyati|satış fiyatı|liste fiyati|liste fiyatı|net fiyat|preis|verkaufspreis|listenpreis)/.test(normalized);
 }
 
 function customerRestrictedPurchaseAnswer(language = "tr") {
