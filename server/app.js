@@ -781,7 +781,7 @@ function createApp() {
     return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType });
   });
 
-  app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {
+  app.delete("/api/cashbook/:id", requireAdmin, async (req, res) => {
     const result = await execute("DELETE FROM cashbook WHERE id = ?", [Number(req.params.id)]);
     if (!result.rowCount) {
       return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
@@ -959,22 +959,15 @@ function createApp() {
     const vatRate = exportSale ? 0 : 19;
     const vatAmount = Number((netTotal * (vatRate / 100)).toFixed(2));
     const grossTotal = Number((netTotal + vatAmount).toFixed(2));
+    if (collectedAmountValue > grossTotal) {
+      return res.status(400).json({ error: "Tahsil edilen tutar satis toplamindan buyuk olamaz." });
+    }
     const paid = collectedAmountValue;
     const quoteNo = await generateQuoteNo(date);
 
     try {
       const saleResult = await withTransaction(async (tx) => {
-        for (const entry of pricedItems) {
-          const itemId = Number(entry.itemId);
-          const item = await tx.get("SELECT * FROM items WHERE id = ?", [itemId]);
-          if (!item) {
-            throw new Error("Malzeme bulunamadi.");
-          }
-          const stock = await getItemStock(itemId, tx);
-          if (Number(entry.quantity) > stock) {
-            throw new Error(`${entry.itemName} icin yeterli stok yok.`);
-          }
-        }
+        await assertSaleStockAvailability(pricedItems, tx);
 
         const quoteResult = await tx.execute(
           `
@@ -1092,21 +1085,14 @@ function createApp() {
       return res.status(400).json({ error: "Iskonto ara toplamdan buyuk olamaz." });
     }
     const saleTotal = Math.max(subtotal - discountValue, 0);
+    if (collectedAmountValue > saleTotal) {
+      return res.status(400).json({ error: "Tahsil edilen tutar satis toplamindan buyuk olamaz." });
+    }
     const paid = collectedAmountValue;
 
     try {
       const saleResult = await withTransaction(async (tx) => {
-        for (const entry of pricedItems) {
-          const itemId = Number(entry.itemId);
-          const item = await tx.get("SELECT * FROM items WHERE id = ?", [itemId]);
-          if (!item) {
-            throw new Error("Malzeme bulunamadi.");
-          }
-          const stock = await getItemStock(itemId, tx);
-          if (Number(entry.quantity) > stock) {
-            throw new Error(`${entry.itemName} icin yeterli stok yok.`);
-          }
-        }
+        await assertSaleStockAvailability(pricedItems, tx);
 
         for (const entry of pricedItems) {
           await tx.execute(
@@ -1173,6 +1159,43 @@ function createApp() {
 
     try {
       const orderId = await withTransaction(async (tx) => {
+        const orderLines = [];
+
+        for (const entry of items) {
+          const quantity = Number(entry.quantity);
+          if (!Number.isFinite(quantity) || quantity <= 0) {
+            throw new Error("Siparis miktari sifirdan buyuk olmali.");
+          }
+
+          const item = await tx.get("SELECT id, name, unit, is_active FROM items WHERE id = ?", [Number(entry.itemId)]);
+          if (!item) {
+            throw new Error("Siparis icindeki bir urun bulunamadi.");
+          }
+          if (item.is_active === false || item.is_active === 0) {
+            throw new Error("Siparis icindeki bir urun aktif degil.");
+          }
+
+          orderLines.push({
+            itemId: Number(item.id),
+            itemName: item.name,
+            quantity,
+            unit: entry.unit || item.unit || "adet",
+          });
+        }
+
+        const orderTotals = new Map();
+        for (const line of orderLines) {
+          orderTotals.set(line.itemId, (orderTotals.get(line.itemId) || 0) + line.quantity);
+        }
+
+        for (const [itemId, totalQuantity] of orderTotals.entries()) {
+          const currentStock = await getItemStock(itemId, tx);
+          if (totalQuantity > currentStock) {
+            const line = orderLines.find((entry) => entry.itemId === itemId);
+            throw new Error(`${line?.itemName || "Urun"} icin stok yetersiz.`);
+          }
+        }
+
         const orderResult = await tx.execute(
           `
             INSERT INTO orders (customer_user_id, customer_name, order_date, status, note)
@@ -1184,23 +1207,7 @@ function createApp() {
 
         const insertedOrderId = Number(orderResult.rows[0]?.id || orderResult.lastInsertId);
 
-        for (const entry of items) {
-          const quantity = Number(entry.quantity);
-          if (!Number.isFinite(quantity) || quantity <= 0) {
-            throw new Error("Siparis miktari sifirdan buyuk olmali.");
-          }
-          const item = await tx.get("SELECT id, name, unit, is_active FROM items WHERE id = ?", [Number(entry.itemId)]);
-          if (!item) {
-            throw new Error("Siparis icindeki bir urun bulunamadi.");
-          }
-          if (item.is_active === false || item.is_active === 0) {
-            throw new Error("Siparis icindeki bir urun aktif degil.");
-          }
-          const currentStock = await getItemStock(Number(item.id), tx);
-          if (quantity > currentStock) {
-            throw new Error(`${item.name} icin stok yetersiz.`);
-          }
-
+        for (const entry of orderLines) {
           await tx.execute(
             `
               INSERT INTO order_items (order_id, item_id, item_name, quantity, unit)
@@ -1208,10 +1215,10 @@ function createApp() {
             `,
             [
               insertedOrderId,
-              Number(item.id),
-              item.name,
-              quantity,
-              entry.unit || item.unit || "adet",
+              entry.itemId,
+              entry.itemName,
+              entry.quantity,
+              entry.unit,
             ]
           );
         }
@@ -1905,6 +1912,29 @@ async function resolveSaleLineItems(items, executor = null) {
   }
 
   return resolved;
+}
+
+async function assertSaleStockAvailability(items, executor) {
+  const totalsByItemId = new Map();
+
+  for (const entry of items) {
+    const itemId = Number(entry.itemId);
+    const quantity = Number(entry.quantity);
+    totalsByItemId.set(itemId, (totalsByItemId.get(itemId) || 0) + quantity);
+  }
+
+  for (const [itemId, totalQuantity] of totalsByItemId.entries()) {
+    const item = await executor.get("SELECT id, name FROM items WHERE id = ?", [itemId]);
+    if (!item) {
+      throw new Error("Malzeme bulunamadi.");
+    }
+
+    const stock = await getItemStock(itemId, executor);
+    if (totalQuantity > stock) {
+      const line = items.find((entry) => Number(entry.itemId) === itemId);
+      throw new Error(`${line?.itemName || item.name} icin yeterli stok yok.`);
+    }
+  }
 }
 
 function resolveCustomerUnitPrice(item, quantity) {

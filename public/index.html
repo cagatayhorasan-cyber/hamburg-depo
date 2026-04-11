@@ -120,16 +120,20 @@
 
         <section class="panel tabs-panel">
           <div class="tab-buttons">
+            <p class="tab-group-label tab-main-label">Gunluk Islemler</p>
             <button class="tab-button admin-staff-only active" data-tab="quotes" type="button" data-help="TR: Sepet, teklif, direkt satis ve faturasiz satis burada. DE: Hier finden Sie Warenkorb, Angebot, Direktverkauf und Verkauf ohne Rechnung."><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
             <button class="tab-button admin-staff-only" data-tab="items" type="button" data-help="TR: Urunleri arar, filtreler ve kart bilgilerini gorursunuz. DE: Hier suchen und filtern Sie Artikel und sehen die Kartendaten."><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
-            <button class="tab-button admin-only" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
             <button class="tab-button admin-staff-only" data-tab="movements" type="button" data-help="TR: Stok giris, cikis ve yeni urun ilk stok kaydi burada. DE: Lagerzugang, Lagerausgang und neuer Erstbestand werden hier erfasst."><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
-            <button class="tab-button admin-only" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
             <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Tahsilat, kasa cikisi ve faturasiz kasa kayitlari burada. DE: Kasseneingaenge, Ausgaenge und unberechnete Verkaeufe werden hier verwaltet."><span class="tab-title">Kasa</span><small>Tahsilat ve kasa hareketlerini takip et</small></button>
             <button class="tab-button admin-staff-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini gorur ve durum guncellersiniz. DE: Hier sehen Sie Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Musteri siparislerini gor ve durum guncelle</small></button>
             <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
-            <button class="tab-button admin-only" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
-            <button class="tab-button admin-only" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
+            <details class="tab-more admin-only">
+              <summary class="tab-admin-summary">Yonetim ve Ayarlar</summary>
+              <button class="tab-button" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
+              <button class="tab-button" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
+              <button class="tab-button" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
+              <button class="tab-button" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
+            </details>
           </div>
 
           <div class="tab-content admin-staff-only" data-tab-content="items">
@@ -147,7 +151,6 @@
               </div>
               <datalist id="itemSearchSuggestions"></datalist>
               <div id="itemSearchDropdown" class="search-dropdown hidden"></div>
-              <p id="itemsSummary" class="muted"></p>
               <section class="stocked-panel">
                 <div class="section-head">
                   <div>
@@ -157,25 +160,29 @@
                 </div>
                 <div id="stockedItemsList" class="stocked-grid"></div>
               </section>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Malzeme</th>
-                      <th>Marka</th>
-                      <th>Kategori</th>
-                      <th>Stok</th>
-                      <th>Alis</th>
-                      <th>Liste</th>
-                      <th>Net/Satis</th>
-                      <th>Kritik</th>
-                      <th>Stok Kodu</th>
-                      <th>Islem</th>
-                    </tr>
-                  </thead>
-                  <tbody id="itemsTableBody"></tbody>
-                </table>
-              </div>
+              <details class="secondary-drawer items-list-drawer">
+                <summary>Tum Malzeme Listesi</summary>
+                <p id="itemsSummary" class="muted"></p>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Malzeme</th>
+                        <th>Marka</th>
+                        <th>Kategori</th>
+                        <th>Stok</th>
+                        <th data-purchase-column>Alis</th>
+                        <th>Liste</th>
+                        <th>Net/Satis</th>
+                        <th>Kritik</th>
+                        <th>Stok Kodu</th>
+                        <th>Islem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="itemsTableBody"></tbody>
+                  </table>
+                </div>
+              </details>
             </section>
 
             <details class="management-drawer admin-only">
@@ -238,7 +245,7 @@
                       <th>Malzeme</th>
                       <th>Marka</th>
                       <th>Kategori</th>
-                      <th>Alis</th>
+                      <th data-purchase-column>Alis</th>
                       <th>Liste</th>
                       <th>Net/Satis</th>
                       <th>Stok Kodu</th>

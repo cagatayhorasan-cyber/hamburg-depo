@@ -130,7 +130,7 @@ const UI_TEXT = {
       noArchive: "Pasif urun yok.",
       noQuotes: "Henuz teklif yok.",
       emptyQuoteDraft: "Sepet bos. Soldan urun secip ekleyin.",
-      quoteSummary: (subtotal, discount, netTotal, vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Ara toplam: ${subtotal} | Iskonto: ${discount} | Net: ${netTotal} | KDV: ${vatAmount} | Brut: ${grossTotal} | Tahsil: ${collectedAmount} | Kalan: ${remaining} | Faturasiz Toplam: ${unbilledTotal} | Faturasiz Kalan: ${unbilledRemaining}`,
+      quoteSummary: (_subtotal, _discount, _netTotal, _vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Faturali: ${grossTotal} | Faturasiz: ${unbilledTotal} | Tahsil: ${collectedAmount} | Kalan: ${remaining} | Faturasiz kalan: ${unbilledRemaining}`,
       noPosItems: "Aramaya uygun urun bulunamadi.",
       noAdminOrders: "Henuz musteri siparisi yok.",
       noCustomerCatalog: "Siparise acik stoklu urun bulunamadi.",
@@ -267,7 +267,7 @@ const UI_TEXT = {
       noArchive: "Keine archivierten Artikel vorhanden.",
       noQuotes: "Noch keine Angebote vorhanden.",
       emptyQuoteDraft: "Der Warenkorb ist leer. Links koennen Artikel hinzugefuegt werden.",
-      quoteSummary: (subtotal, discount, netTotal, vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Zwischensumme: ${subtotal} | Rabatt: ${discount} | Netto: ${netTotal} | MwSt: ${vatAmount} | Brutto: ${grossTotal} | Bezahlt: ${collectedAmount} | Offen: ${remaining} | Ohne Rechnung Gesamt: ${unbilledTotal} | Ohne Rechnung offen: ${unbilledRemaining}`,
+      quoteSummary: (_subtotal, _discount, _netTotal, _vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Mit Rechnung: ${grossTotal} | Ohne Rechnung: ${unbilledTotal} | Bezahlt: ${collectedAmount} | Offen: ${remaining} | Ohne Rechnung offen: ${unbilledRemaining}`,
       noPosItems: "Keine passenden Artikel fuer die Suche gefunden.",
       noAdminOrders: "Noch keine Kundenbestellungen vorhanden.",
       noCustomerCatalog: "Keine bestellbaren Artikel mit Bestand vorhanden.",
@@ -593,6 +593,8 @@ function applyUiTranslations() {
       setText(button.querySelector("small"), desc);
     });
   });
+  setText(".tab-main-label", langText("Gunluk Islemler", "Taegliche Arbeit"));
+  setText(".tab-admin-summary", langText("Yonetim ve Ayarlar", "Verwaltung und Einstellungen"));
 
   setText("[data-tab-content='items'] .sales-search-panel h2", langText("Malzeme Arama", "Artikelsuche"));
   setText("[data-tab-content='items'] .sales-search-panel .section-head .muted", langText("Listeyi daraltin, uygun urunu bulun, sonra satis sekmesinden teklife ekleyin.", "Liste eingrenzen, passenden Artikel finden und dann im Schnellverkauf verwenden."));
@@ -601,6 +603,7 @@ function applyUiTranslations() {
   replaceLabelText(refs.categoryFilter?.closest("label"), langText("Kategori", "Kategorie"));
   refs.itemSearch.placeholder = langText("Urun, marka veya stok kodu ara", "Artikel, Marke oder Lagercode suchen");
   setText(".stocked-panel h3", langText("Stokta Olan Urunler", "Artikel auf Lager"));
+  setText(".items-list-drawer summary", langText("Tum Malzeme Listesi", "Gesamte Artikelliste"));
   setText(".management-drawer summary", langText("Yonetim Araclari", "Verwaltungswerkzeuge"));
 
   const itemFormSection = refs.itemForm?.closest("section");
@@ -910,7 +913,7 @@ function applyUiTranslations() {
     langText("Marka", "Marke"),
     langText("Kategori", "Kategorie"),
     langText("Stok", "Bestand"),
-    ...(canViewPurchasePrices() ? [langText("Alis", "Einkauf")] : []),
+    langText("Alis", "Einkauf"),
     langText("Liste", "Liste"),
     langText("Net/Satis", "Netto/Verkauf"),
     langText("Kritik", "Minimum"),
@@ -921,7 +924,7 @@ function applyUiTranslations() {
     langText("Malzeme", "Artikel"),
     langText("Marka", "Marke"),
     langText("Kategori", "Kategorie"),
-    ...(canViewPurchasePrices() ? [langText("Alis", "Einkauf")] : []),
+    langText("Alis", "Einkauf"),
     langText("Liste", "Liste"),
     langText("Net/Satis", "Netto/Verkauf"),
     langText("Stok Kodu", "Lagercode"),
@@ -1028,6 +1031,10 @@ function updateQuoteLinePrice(line) {
 
 function syncRoleSensitiveFields() {
   const canViewPurchase = canViewPurchasePrices();
+  document.querySelectorAll("[data-purchase-column]").forEach((node) => {
+    node.classList.toggle("hidden", !canViewPurchase);
+  });
+
   const movementUnitPriceField = refs.movementForm?.elements?.unitPrice;
   if (movementUnitPriceField) {
     movementUnitPriceField.disabled = !canViewPurchase;
@@ -1736,6 +1743,9 @@ function renderCashbook() {
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
     const isUnbilledSale = /faturasiz satis/i.test(String(entry.note || "")) || /faturasiz satis/i.test(String(entry.title || ""));
+    const actionMarkup = isAdminUser()
+      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button>`
+      : `<span class="muted">${langText("Admin silebilir", "Admin kann loeschen")}</span>`;
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${entry.date}</td>
@@ -1743,14 +1753,16 @@ function renderCashbook() {
       <td>${entry.title}</td>
       <td>${currency.format(entry.amount)}</td>
       <td>${entry.userName || "-"}</td>
-      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button></td>
+      <td class="table-action-cell">${actionMarkup}</td>
     `;
     refs.cashbookTableBody.append(tr);
   });
 
-  refs.cashbookTableBody.querySelectorAll("[data-delete-cash]").forEach((button) => {
-    button.addEventListener("click", () => deleteCashEntry(Number(button.dataset.deleteCash)));
-  });
+  if (isAdminUser()) {
+    refs.cashbookTableBody.querySelectorAll("[data-delete-cash]").forEach((button) => {
+      button.addEventListener("click", () => deleteCashEntry(Number(button.dataset.deleteCash)));
+    });
+  }
 }
 
 function renderUsers() {
@@ -2413,16 +2425,25 @@ function syncMovementPrice() {
 }
 
 function activateTab(tab) {
-  const visibleButtons = [...document.querySelectorAll("[data-tab]")].filter((button) => !button.classList.contains("hidden"));
+  const visibleButtons = [...document.querySelectorAll("[data-tab]")].filter(isTabButtonVisible);
   const requestedVisible = visibleButtons.some((button) => button.dataset.tab === tab);
   const nextTab = requestedVisible ? tab : (visibleButtons[0]?.dataset.tab || tab);
   state.activeTab = nextTab;
   document.querySelectorAll("[data-tab]").forEach((button) => {
-    button.classList.toggle("active", !button.classList.contains("hidden") && button.dataset.tab === nextTab);
+    button.classList.toggle("active", isTabButtonVisible(button) && button.dataset.tab === nextTab);
+  });
+  document.querySelectorAll(".tab-more").forEach((details) => {
+    if (details.querySelector(`[data-tab="${nextTab}"]`)) {
+      details.open = true;
+    }
   });
   document.querySelectorAll("[data-tab-content]").forEach((panel) => {
     panel.classList.toggle("active", !panel.classList.contains("hidden") && panel.dataset.tabContent === nextTab);
   });
+}
+
+function isTabButtonVisible(button) {
+  return Boolean(button) && !button.classList.contains("hidden") && !button.closest(".hidden");
 }
 
 function handleFilterChange() {
