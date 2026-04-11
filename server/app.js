@@ -429,6 +429,10 @@ function createApp() {
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
+    const numericFields = parseItemNumericFields({ minStock, defaultPrice, listPrice, salePrice });
+    if (!numericFields) {
+      return res.status(400).json({ error: "Malzeme fiyat ve stok alanlari sifir veya pozitif sayi olmali." });
+    }
 
     try {
       const result = await execute(
@@ -442,12 +446,12 @@ function createApp() {
           cleanOptional(brand),
           category.trim(),
           unit.trim(),
-          Number(minStock || 0),
+          numericFields.minStock,
           cleanOptional(barcode) || null,
           cleanOptional(notes),
-          Number(defaultPrice || 0),
-          Number(listPrice || 0),
-          Number(salePrice || 0),
+          numericFields.defaultPrice,
+          numericFields.listPrice,
+          numericFields.salePrice,
         ]
       );
 
@@ -462,6 +466,10 @@ function createApp() {
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
+    const numericFields = parseItemNumericFields({ minStock, defaultPrice, listPrice, salePrice });
+    if (!numericFields) {
+      return res.status(400).json({ error: "Malzeme fiyat ve stok alanlari sifir veya pozitif sayi olmali." });
+    }
 
     try {
       const result = await execute(
@@ -475,12 +483,12 @@ function createApp() {
           cleanOptional(brand),
           category.trim(),
           unit.trim(),
-          Number(minStock || 0),
+          numericFields.minStock,
           cleanOptional(barcode) || null,
           cleanOptional(notes),
-          Number(defaultPrice || 0),
-          Number(listPrice || 0),
-          Number(salePrice || 0),
+          numericFields.defaultPrice,
+          numericFields.listPrice,
+          numericFields.salePrice,
           Number(req.params.id),
         ]
       );
@@ -540,9 +548,15 @@ function createApp() {
     const trimmedBrand = cleanOptional(brand);
     const quantityValue = Number(quantity);
     const unitPriceValue = Number(unitPrice);
+    const listPriceValue = Number(listPrice || 0);
+    const salePriceValue = Number(salePrice || 0);
+    const minStockValue = Number(minStock || 0);
 
-    if (quantityValue <= 0 || unitPriceValue <= 0) {
+    if (!Number.isFinite(quantityValue) || !Number.isFinite(unitPriceValue) || quantityValue <= 0 || unitPriceValue <= 0) {
       return res.status(400).json({ error: "Miktar ve birim alis sifirdan buyuk olmali." });
+    }
+    if (!isNonNegativeFinite(listPriceValue) || !isNonNegativeFinite(salePriceValue) || !isNonNegativeFinite(minStockValue)) {
+      return res.status(400).json({ error: "Fiyat ve kritik stok alanlari sifir veya pozitif sayi olmali." });
     }
 
     try {
@@ -572,12 +586,12 @@ function createApp() {
             trimmedBrand,
             category.trim(),
             unit.trim(),
-            Number(minStock || 0),
+            minStockValue,
             cleanOptional(barcode) || null,
             cleanOptional(notes),
             unitPriceValue,
-            Number(listPrice || 0),
-            Number(salePrice || 0),
+            listPriceValue,
+            salePriceValue,
           ]
         );
 
@@ -612,6 +626,9 @@ function createApp() {
     if (!itemId || !type || !quantity || !date) {
       return res.status(400).json({ error: "Stok hareketi icin tum alanlar gereklidir." });
     }
+    if (!["entry", "exit"].includes(type)) {
+      return res.status(400).json({ error: "Gecersiz stok hareket tipi." });
+    }
 
     const item = await get("SELECT * FROM items WHERE id = ?", [itemId]);
     if (!item) {
@@ -619,7 +636,7 @@ function createApp() {
     }
 
     const quantityValue = Number(quantity);
-    if (quantityValue <= 0) {
+    if (!Number.isFinite(quantityValue) || quantityValue <= 0) {
       return res.status(400).json({ error: "Miktar sifirdan buyuk olmali." });
     }
 
@@ -710,13 +727,17 @@ function createApp() {
     if (!title || !category || !amount || !date || !paymentType) {
       return res.status(400).json({ error: "Masraf bilgileri eksik." });
     }
+    const amountValue = Number(amount);
+    if (!Number.isFinite(amountValue) || amountValue <= 0) {
+      return res.status(400).json({ error: "Masraf tutari sifirdan buyuk olmali." });
+    }
 
     await execute(
       `
         INSERT INTO expenses (title, category, amount, expense_date, payment_type, note, user_id)
         VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
-      [title.trim(), category.trim(), Number(amount), date, paymentType, cleanOptional(note), req.session.user.id]
+      [title.trim(), category.trim(), amountValue, date, paymentType, cleanOptional(note), req.session.user.id]
     );
 
     return res.json({ ok: true });
@@ -735,6 +756,10 @@ function createApp() {
     if (!type || !title || !amount || !date) {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
     }
+    const amountValue = Number(amount);
+    if (!Number.isFinite(amountValue) || amountValue <= 0) {
+      return res.status(400).json({ error: "Kasa tutari sifirdan buyuk olmali." });
+    }
 
     const entryType = type === "unbilled_sale" ? "in" : type;
     if (!["in", "out"].includes(entryType)) {
@@ -750,7 +775,7 @@ function createApp() {
         INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
         VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
-      [entryType, title.trim(), Number(amount), date, cleanOptional(reference), entryNote, req.session.user.id]
+      [entryType, title.trim(), amountValue, date, cleanOptional(reference), entryNote, req.session.user.id]
     );
 
     return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType });
@@ -766,7 +791,14 @@ function createApp() {
 
   app.post("/api/pricing/bulk", requireAdmin, async (req, res) => {
     const { brand, category, increasePercent, pricingMode, baseField } = req.body || {};
-    const multiplier = 1 + Number(increasePercent || 0) / 100;
+    const increaseValue = Number(increasePercent || 0);
+    if (!Number.isFinite(increaseValue)) {
+      return res.status(400).json({ error: "Artis yuzdesi gecerli bir sayi olmali." });
+    }
+    const multiplier = 1 + increaseValue / 100;
+    if (multiplier < 0) {
+      return res.status(400).json({ error: "Artis yuzdesi fiyatlari eksiye dusuremez." });
+    }
     const clauses = [];
     const params = [multiplier];
 
@@ -817,6 +849,10 @@ function createApp() {
     if (!customerName || !title || !date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Teklif bilgileri eksik." });
     }
+    const discountValue = Number(discount || 0);
+    if (!Number.isFinite(discountValue) || discountValue < 0) {
+      return res.status(400).json({ error: "Iskonto sifir veya pozitif sayi olmali." });
+    }
 
     let pricedItems;
     try {
@@ -826,7 +862,10 @@ function createApp() {
     }
 
     const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
-    const netTotal = Math.max(subtotal - Number(discount || 0), 0);
+    if (discountValue > subtotal) {
+      return res.status(400).json({ error: "Iskonto ara toplamdan buyuk olamaz." });
+    }
+    const netTotal = Math.max(subtotal - discountValue, 0);
     const exportSale = isTruthy(isExport);
     const vatRate = exportSale ? 0 : 19;
     const vatAmount = Number((netTotal * (vatRate / 100)).toFixed(2));
@@ -848,7 +887,7 @@ function createApp() {
             customerName.trim(),
             title.trim(),
             date,
-            Number(discount || 0),
+            discountValue,
             subtotal,
             grossTotal,
             cleanOptional(note),
@@ -895,6 +934,14 @@ function createApp() {
     if (!customerName || !date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Direkt satis bilgileri eksik." });
     }
+    const discountValue = Number(discount || 0);
+    const collectedAmountValue = Number(collectedAmount || 0);
+    if (!Number.isFinite(discountValue) || discountValue < 0) {
+      return res.status(400).json({ error: "Iskonto sifir veya pozitif sayi olmali." });
+    }
+    if (!Number.isFinite(collectedAmountValue) || collectedAmountValue < 0) {
+      return res.status(400).json({ error: "Tahsil edilen tutar sifir veya pozitif sayi olmali." });
+    }
 
     let pricedItems;
     try {
@@ -904,12 +951,15 @@ function createApp() {
     }
 
     const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
-    const netTotal = Math.max(subtotal - Number(discount || 0), 0);
+    if (discountValue > subtotal) {
+      return res.status(400).json({ error: "Iskonto ara toplamdan buyuk olamaz." });
+    }
+    const netTotal = Math.max(subtotal - discountValue, 0);
     const exportSale = isTruthy(isExport);
     const vatRate = exportSale ? 0 : 19;
     const vatAmount = Number((netTotal * (vatRate / 100)).toFixed(2));
     const grossTotal = Number((netTotal + vatAmount).toFixed(2));
-    const paid = Math.max(Number(collectedAmount || 0), 0);
+    const paid = collectedAmountValue;
     const quoteNo = await generateQuoteNo(date);
 
     try {
@@ -920,7 +970,7 @@ function createApp() {
           if (!item) {
             throw new Error("Malzeme bulunamadi.");
           }
-          const stock = await getItemStock(itemId);
+          const stock = await getItemStock(itemId, tx);
           if (Number(entry.quantity) > stock) {
             throw new Error(`${entry.itemName} icin yeterli stok yok.`);
           }
@@ -939,7 +989,7 @@ function createApp() {
             customerName.trim(),
             cleanOptional(title) || "Direkt Satis",
             date,
-            Number(discount || 0),
+            discountValue,
             subtotal,
             grossTotal,
             cleanOptional(note),
@@ -1008,7 +1058,7 @@ function createApp() {
         return { id: insertedQuoteId, paid };
       });
 
-      return res.json({ ok: true, id: saleResult.id, paid: saleResult.paid, remaining: Number((grossTotal - paid).toFixed(2)) });
+      return res.json({ ok: true, id: saleResult.id, paid: saleResult.paid, remaining: Math.max(Number((grossTotal - paid).toFixed(2)), 0) });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Direkt satis olusturulamadi." });
     }
@@ -1018,6 +1068,14 @@ function createApp() {
     const { customerName, title, date, discount, note, items, paymentType, collectedAmount, reference } = req.body || {};
     if (!date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Faturasiz satis bilgileri eksik." });
+    }
+    const discountValue = Number(discount || 0);
+    const collectedAmountValue = Number(collectedAmount || 0);
+    if (!Number.isFinite(discountValue) || discountValue < 0) {
+      return res.status(400).json({ error: "Iskonto sifir veya pozitif sayi olmali." });
+    }
+    if (!Number.isFinite(collectedAmountValue) || collectedAmountValue < 0) {
+      return res.status(400).json({ error: "Tahsil edilen tutar sifir veya pozitif sayi olmali." });
     }
 
     const resolvedCustomer = cleanOptional(customerName) || "Perakende Musteri";
@@ -1030,8 +1088,11 @@ function createApp() {
     }
 
     const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
-    const saleTotal = Math.max(subtotal - Number(discount || 0), 0);
-    const paid = Math.max(Number(collectedAmount || 0), 0);
+    if (discountValue > subtotal) {
+      return res.status(400).json({ error: "Iskonto ara toplamdan buyuk olamaz." });
+    }
+    const saleTotal = Math.max(subtotal - discountValue, 0);
+    const paid = collectedAmountValue;
 
     try {
       const saleResult = await withTransaction(async (tx) => {
@@ -1096,7 +1157,7 @@ function createApp() {
         ok: true,
         total: Number(saleTotal.toFixed(2)),
         paid: saleResult.paid,
-        remaining: Number((saleTotal - paid).toFixed(2)),
+        remaining: Math.max(Number((saleTotal - paid).toFixed(2)), 0),
         cashEntryId: saleResult.cashEntryId,
       });
     } catch (error) {
@@ -1124,6 +1185,10 @@ function createApp() {
         const insertedOrderId = Number(orderResult.rows[0]?.id || orderResult.lastInsertId);
 
         for (const entry of items) {
+          const quantity = Number(entry.quantity);
+          if (!Number.isFinite(quantity) || quantity <= 0) {
+            throw new Error("Siparis miktari sifirdan buyuk olmali.");
+          }
           const item = await tx.get("SELECT id, name, unit, is_active FROM items WHERE id = ?", [Number(entry.itemId)]);
           if (!item) {
             throw new Error("Siparis icindeki bir urun bulunamadi.");
@@ -1132,7 +1197,7 @@ function createApp() {
             throw new Error("Siparis icindeki bir urun aktif degil.");
           }
           const currentStock = await getItemStock(Number(item.id), tx);
-          if (Number(entry.quantity) > currentStock) {
+          if (quantity > currentStock) {
             throw new Error(`${item.name} icin stok yetersiz.`);
           }
 
@@ -1145,7 +1210,7 @@ function createApp() {
               insertedOrderId,
               Number(item.id),
               item.name,
-              Number(entry.quantity),
+              quantity,
               entry.unit || item.unit || "adet",
             ]
           );
@@ -1354,6 +1419,21 @@ function isCustomerRole(role) {
 
 function cleanOptional(value) {
   return value ? String(value).trim() : "";
+}
+
+function isNonNegativeFinite(value) {
+  return Number.isFinite(Number(value)) && Number(value) >= 0;
+}
+
+function parseItemNumericFields({ minStock, defaultPrice, listPrice, salePrice }) {
+  const fields = {
+    minStock: Number(minStock || 0),
+    defaultPrice: Number(defaultPrice || 0),
+    listPrice: Number(listPrice || 0),
+    salePrice: Number(salePrice || 0),
+  };
+
+  return Object.values(fields).every(isNonNegativeFinite) ? fields : null;
 }
 
 function escapeHtml(value) {
@@ -1797,7 +1877,7 @@ async function resolveSaleLineItems(items, executor = null) {
   for (const entry of items) {
     const itemId = Number(entry.itemId);
     const quantity = Number(entry.quantity);
-    if (!itemId || quantity <= 0) {
+    if (!Number.isFinite(itemId) || itemId <= 0 || !Number.isFinite(quantity) || quantity <= 0) {
       throw new Error("Satis satirinda urun veya miktar gecersiz.");
     }
 
