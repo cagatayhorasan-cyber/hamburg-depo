@@ -69,7 +69,6 @@ function loadCatalogModule(filePath) {
 }
 
 async function loadDbItems() {
-  const activeValue = process.env.DATABASE_URL?.includes("postgres") ? true : 1;
   return query(
     `
       SELECT
@@ -82,11 +81,11 @@ async function loadDbItems() {
         default_price AS "defaultPrice",
         list_price AS "listPrice",
         sale_price AS "salePrice",
+        is_active AS "isActive",
         notes
       FROM items
-      WHERE COALESCE(is_active, TRUE) = ?
     `,
-    [activeValue]
+    []
   );
 }
 
@@ -130,6 +129,8 @@ function extractNoteCodes(notes) {
     /Tedarik kodu:\s*([^|]+)/gi,
     /BOM\.?:\s*([^|]+)/gi,
     /Kod:\s*([^|]+)/gi,
+    /model:\s*([^|\n]+)/gi,
+    /Model:\s*([^|\n]+)/gi,
   ];
 
   for (const pattern of patterns) {
@@ -151,6 +152,7 @@ function syncCatalogPrices(materials, lookup) {
   let matched = 0;
   let unmatched = 0;
   let matchedByNameOnly = 0;
+  let matchedUsingInactive = 0;
   const samples = [];
   const unmatchedSamples = [];
   const bundleUpdates = [];
@@ -172,6 +174,9 @@ function syncCatalogPrices(materials, lookup) {
     matched += 1;
     if (matchResult.matchedByNameOnly) {
       matchedByNameOnly += 1;
+    }
+    if (!isActiveItem(matchResult.item)) {
+      matchedUsingInactive += 1;
     }
 
     const dbItem = matchResult.item;
@@ -211,6 +216,7 @@ function syncCatalogPrices(materials, lookup) {
     totalCatalogItems: materials.length,
     matched,
     matchedByNameOnly,
+    matchedUsingInactive,
     unmatched,
     updated,
     unchanged,
@@ -359,6 +365,9 @@ function candidateScore(candidate, normalizedName, normalizedBrand) {
   if (normalizedBrand && normalizeName(candidate.brand) === normalizedBrand) {
     score += 200;
   }
+  if (isActiveItem(candidate)) {
+    score += 80;
+  }
   if (Number(candidate.salePrice || 0) > 0) {
     score += 50;
   }
@@ -431,6 +440,10 @@ function roundMoney(value) {
 
 function escapeRegExp(value) {
   return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function isActiveItem(item) {
+  return item?.isActive === true || item?.isActive === 1 || item?.isActive === "1";
 }
 
 main().catch((error) => {
