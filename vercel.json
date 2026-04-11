@@ -41,7 +41,12 @@
   "builds": [
     {
       "src": "api/[...path].js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "admin-tools/**"
+        ]
+      }
     },
     {
       "src": "public/**",
@@ -51,6 +56,10 @@
   "routes": [
     {
       "src": "/api/(.*)",
+      "dest": "api/[...path].js"
+    },
+    {
+      "src": "/admin-tools/(.*)",
       "dest": "api/[...path].js"
     },
     {

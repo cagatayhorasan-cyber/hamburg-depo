@@ -132,6 +132,7 @@
               <button class="tab-button" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
               <button class="tab-button" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
               <button class="tab-button" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
+              <button class="tab-button" data-tab="tools" type="button" data-help="TR: Soguk oda cizim, hesaplama ve proje araclarini yalnizca admin acar. DE: Nur Admins oeffnen Planungs-, Zeichen- und Kalkulationswerkzeuge."><span class="tab-title">Proje Araclari</span><small>Soguk oda cizim ve hesaplama araclari</small></button>
               <button class="tab-button" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
             </details>
           </div>
@@ -540,6 +541,37 @@
             </div>
           </div>
 
+          <div class="tab-content admin-only" data-tab-content="tools">
+            <section class="tools-panel">
+              <div class="section-head">
+                <div>
+                  <h2>Admin Proje Araclari</h2>
+                  <p class="muted">Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan yerel araclar burada toplandi. Bu bolum sadece adminlere aciktir.</p>
+                </div>
+              </div>
+              <div class="tool-grid">
+                <article class="tool-card">
+                  <span class="eyebrow">ColdRoomPro</span>
+                  <h3>Soguk Oda Proje Hesaplayici</h3>
+                  <p class="muted">Kapasite, malzeme, teklif ve proje akisi icin kullandiginiz ana ColdRoomPro uygulamasi.</p>
+                  <div class="action-row">
+                    <a class="primary-button tool-link" href="/admin-tools/coldroompro/" target="_blank" rel="noopener">Yeni Sekmede Ac</a>
+                  </div>
+                  <iframe class="admin-tool-frame" src="/admin-tools/coldroompro/" title="ColdRoomPro"></iframe>
+                </article>
+                <article class="tool-card">
+                  <span class="eyebrow">3D Cizim</span>
+                  <h3>Soguk Oda Cizim Pro</h3>
+                  <p class="muted">Yan yana oda, ortak duvar, borulama, 3D gorunum ve PDF/PNG ciktilari icin tam cizim araci.</p>
+                  <div class="action-row">
+                    <a class="primary-button tool-link" href="/admin-tools/soguk-oda-cizim/" target="_blank" rel="noopener">Yeni Sekmede Ac</a>
+                  </div>
+                  <iframe class="admin-tool-frame large" src="/admin-tools/soguk-oda-cizim/" title="Soguk Oda Cizim Pro"></iframe>
+                </article>
+              </div>
+            </section>
+          </div>
+
           <div class="tab-content admin-only" data-tab-content="training">
             <div class="two-column">
               <section>
@@ -734,6 +766,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260410-stock-values-1"></script>
+  <script src="/app.js?v=20260411-admin-tools-1"></script>
 </body>
 </html>

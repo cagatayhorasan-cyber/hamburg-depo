@@ -46,6 +46,8 @@ const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || "";
 const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir(), "Desktop", "DRC_MAN"));
 const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
 const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
+const ADMIN_TOOLS_DIR = path.join(__dirname, "..", "admin-tools");
+const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
 
 let gmailTransporter = null;
 
@@ -1385,6 +1387,10 @@ function createApp() {
     doc.end();
   });
 
+  app.get("/admin-tools/:tool", requireAdmin, serveAdminTool);
+  app.get("/admin-tools/:tool/", requireAdmin, serveAdminTool);
+  app.get("/admin-tools/:tool/*", requireAdmin, serveAdminTool);
+
   app.get("*", (_req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
   });
@@ -1435,6 +1441,28 @@ function requireCustomer(req, res, next) {
     return res.status(403).json({ error: "Bu islem sadece musteri kullanicilari icindir." });
   }
   return next();
+}
+
+function serveAdminTool(req, res) {
+  const tool = req.params.tool;
+  if (!ADMIN_TOOLS.has(tool)) {
+    return res.status(404).send("Arac bulunamadi.");
+  }
+
+  const root = path.resolve(ADMIN_TOOLS_DIR, tool);
+  const requestedPath = req.params[0] || "index.html";
+  const safePath = path.normalize(requestedPath).replace(/^(\.\.[/\\])+/, "");
+  let filePath = path.resolve(root, safePath || "index.html");
+
+  if (filePath !== root && !filePath.startsWith(`${root}${path.sep}`)) {
+    return res.status(403).send("Gecersiz arac yolu.");
+  }
+
+  if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+    filePath = path.join(root, "index.html");
+  }
+
+  return res.sendFile(filePath);
 }
 
 function normalizeRole(role) {

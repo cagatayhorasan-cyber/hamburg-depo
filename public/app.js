@@ -67,6 +67,8 @@ const UI_TEXT = {
     tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
     tabUsers: "Kullanicilar",
     tabUsersDesc: "Admin, personel ve musteri hesaplari",
+    tabTools: "Proje Araclari",
+    tabToolsDesc: "Soguk oda cizim ve hesaplama araclari",
     tabTraining: "DRC MAN Egitim",
     tabTrainingDesc: "Soru-cevap, gaz egitimi ve retrofit kontrol araclari",
     roles: { admin: "admin", staff: "personel", customer: "musteri" },
@@ -204,6 +206,8 @@ const UI_TEXT = {
     tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
     tabUsers: "Benutzer",
     tabUsersDesc: "Admin-, Personal- und Kundenkonten",
+    tabTools: "Projektwerkzeuge",
+    tabToolsDesc: "Zeichnung und Berechnung fuer Kuehlraeume",
     tabTraining: "DRC MAN Training",
     tabTrainingDesc: "Frage-Antwort, Kaeltemitteltraining und Retrofit-Werkzeuge",
     roles: { admin: "admin", staff: "personal", customer: "kunde" },
@@ -594,6 +598,7 @@ function applyUiTranslations() {
     ["cashbook", t("tabCashbook"), t("tabCashbookDesc")],
     ["orders", isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"), isCustomerUser() ? t("tabCustomerOrdersDesc") : t("tabOrdersDesc")],
     ["users", t("tabUsers"), t("tabUsersDesc")],
+    ["tools", t("tabTools"), t("tabToolsDesc")],
     ["training", t("tabTraining"), t("tabTrainingDesc")],
   ].forEach(([tab, title, desc]) => {
     document.querySelectorAll(`[data-tab="${tab}"]`).forEach((button) => {
@@ -795,6 +800,17 @@ function applyUiTranslations() {
   });
   setText("#userForm button[type='submit']", langText("Kullanici Ekle", "Benutzer anlegen"));
   setText(userSections[1]?.querySelector("h2"), langText("Kullanicilar", "Benutzer"));
+
+  const toolsPanel = document.querySelector("[data-tab-content='tools'] .tools-panel");
+  setText(toolsPanel?.querySelector(".section-head h2"), langText("Admin Proje Araclari", "Admin-Projektwerkzeuge"));
+  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan yerel araclar burada toplandi. Bu bolum sadece adminlere aciktir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist nur fuer Admins."));
+  const toolCards = toolsPanel?.querySelectorAll(".tool-card") || [];
+  setText(toolCards[0]?.querySelector("h3"), langText("Soguk Oda Proje Hesaplayici", "Kuehlraum-Projektrechner"));
+  setText(toolCards[0]?.querySelector(".muted"), langText("Kapasite, malzeme, teklif ve proje akisi icin kullandiginiz ana ColdRoomPro uygulamasi.", "Die ColdRoomPro-Anwendung fuer Kapazitaet, Material, Angebot und Projektablauf."));
+  setText(toolCards[0]?.querySelector(".tool-link"), langText("Yeni Sekmede Ac", "In neuem Tab oeffnen"));
+  setText(toolCards[1]?.querySelector("h3"), langText("Soguk Oda Cizim Pro", "Kuehlraum-Zeichnung Pro"));
+  setText(toolCards[1]?.querySelector(".muted"), langText("Yan yana oda, ortak duvar, borulama, 3D gorunum ve PDF/PNG ciktilari icin tam cizim araci.", "Zeichenwerkzeug fuer nebeneinanderliegende Raeume, gemeinsame Waende, Rohrfuehrung, 3D-Ansicht und PDF/PNG-Ausgaben."));
+  setText(toolCards[1]?.querySelector(".tool-link"), langText("Yeni Sekmede Ac", "In neuem Tab oeffnen"));
 
   const trainingSections = document.querySelectorAll("[data-tab-content='training'] .two-column > section");
   setText(trainingSections[0]?.querySelector("h2"), langText("DRC MAN Egitim Kaydi", "DRC MAN Trainingseintrag"));
@@ -2637,6 +2653,9 @@ function renderTabData(tab) {
   }
   if (tab === "users") {
     renderUsers();
+    return;
+  }
+  if (tab === "tools") {
     return;
   }
   if (tab === "training") {
