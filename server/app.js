@@ -2061,7 +2061,8 @@ async function queryItems(isActive = true) {
   return rows.map(mapItemRow);
 }
 
-async function queryCustomerItems() {
+async function queryCustomerItems(options = {}) {
+  const includePrices = options.includePrices === true;
   const activeValue = dbClient === "postgres" ? true : 1;
   const rows = await query(
     `
@@ -2081,6 +2082,9 @@ async function queryCustomerItems() {
         items.min_stock,
         items.barcode,
         items.notes,
+        items.default_price,
+        items.list_price,
+        items.sale_price,
         COALESCE(movement_summary.current_stock, 0) AS current_stock
       FROM items
       LEFT JOIN movement_summary ON movement_summary.item_id = items.id
@@ -2091,7 +2095,7 @@ async function queryCustomerItems() {
     [activeValue]
   );
 
-  return rows.map((row) => mapItemRow(row, { includePrices: false }));
+  return rows.map((row) => mapItemRow(row, { includePrices }));
 }
 
 function mapItemRow(row, options = {}) {
@@ -2402,7 +2406,7 @@ async function buildBootstrap(user) {
   const includeUsers = normalizedRole === "admin";
   const [summary, items, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
     computeSummary(user),
-    queryCustomerItems(),
+    queryCustomerItems({ includePrices: true }),
     queryMovements(user),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
     includeCashbook ? queryCashbook(user) : Promise.resolve([]),
