@@ -725,7 +725,7 @@ function applyUiTranslations() {
   });
   setText("#cashForm button[type='submit']", langText("Kasa Kaydet", "Kasse speichern"));
   setText(cashSections[1]?.querySelector("h2"), langText("Kasa Defteri", "Kassenbuch"));
-  setText(cashSections[1]?.querySelector(".section-tip"), langText("Yanlis girilen kasa hareketlerini satir bazinda silebilirsiniz.", "Falsch erfasste Kassenbewegungen koennen zeilenweise geloescht werden."));
+  setText(cashSections[1]?.querySelector(".section-tip"), langText("Admin tum Hamburg kasasini gorur; personel sadece kendi girdigi kasa hareketlerini gorur. Silme yetkisi admindedir.", "Admins sehen die gesamte Hamburg-Kasse; Personal sieht nur eigene Eintraege. Loeschen ist Admins vorbehalten."));
 
   setText("[data-tab-content='quotes'] .pos-catalog h2", langText("Urun Katalogu", "Produktkatalog"));
   setText("[data-tab-content='quotes'] .pos-catalog .muted", langText("Arayin, filtreleyin ve tek tikla sepete ekleyin.", "Suchen, filtern und mit einem Klick in den Warenkorb legen."));
@@ -1565,6 +1565,7 @@ function renderStats() {
           [t("stats.totalItems"), state.summary.totalItems, t("stats.totalItemsDesc")],
           [t("stats.stockSaleValue"), currency.format(state.summary.stockSaleValue || 0), t("stats.stockSaleValueDesc")],
           [t("stats.critical"), state.summary.criticalCount, t("stats.criticalDesc")],
+          [t("stats.cashBalance"), currency.format(state.summary.cashBalance || 0), t("stats.cashBalanceDesc")],
         ];
 
   cards.forEach(([label, value, subtitle]) => {

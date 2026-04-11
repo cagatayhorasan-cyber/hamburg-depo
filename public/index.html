@@ -124,7 +124,7 @@
             <button class="tab-button admin-staff-only active" data-tab="quotes" type="button" data-help="TR: Sepet, teklif, direkt satis ve faturasiz satis burada. DE: Hier finden Sie Warenkorb, Angebot, Direktverkauf und Verkauf ohne Rechnung."><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
             <button class="tab-button admin-staff-only" data-tab="items" type="button" data-help="TR: Urunleri arar, filtreler ve kart bilgilerini gorursunuz. DE: Hier suchen und filtern Sie Artikel und sehen die Kartendaten."><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
             <button class="tab-button admin-staff-only" data-tab="movements" type="button" data-help="TR: Stok giris, cikis ve yeni urun ilk stok kaydi burada. DE: Lagerzugang, Lagerausgang und neuer Erstbestand werden hier erfasst."><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
-            <button class="tab-button admin-only" data-tab="cashbook" type="button" data-help="TR: Kasa defteri sadece admin tarafindan gorulur ve yonetilir. DE: Das Kassenbuch ist nur fuer Admins sichtbar und verwaltbar."><span class="tab-title">Kasa</span><small>Sadece admin kasa hareketlerini takip eder</small></button>
+            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Admin tum Hamburg kasasini gorur; personel sadece kendi kasa kayitlarini gorur. DE: Admins sehen die gesamte Hamburg-Kasse; Personal sieht nur eigene Eintraege."><span class="tab-title">Kasa</span><small>Personel kendi kasa girisini takip eder</small></button>
             <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini sadece admin gorur ve durum gunceller. DE: Nur Admins sehen Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Admin musteri siparislerini yonetir</small></button>
             <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
             <details class="tab-more admin-only">
@@ -351,7 +351,7 @@
             </div>
           </div>
 
-          <div class="tab-content admin-only" data-tab-content="cashbook">
+          <div class="tab-content admin-staff-only" data-tab-content="cashbook">
             <div class="two-column">
               <section>
                 <h2>Kasa Hareketi</h2>
@@ -367,7 +367,7 @@
               </section>
               <section>
                 <h2>Kasa Defteri</h2>
-                <p class="muted section-tip">Yanlis girilen kasa hareketlerini satir bazinda silebilirsiniz.</p>
+                <p class="muted section-tip">Admin tum Hamburg kasasini gorur; personel sadece kendi girdigi kasa hareketlerini gorur. Silme yetkisi admindedir.</p>
                 <div class="table-wrap">
                   <table>
                     <thead>

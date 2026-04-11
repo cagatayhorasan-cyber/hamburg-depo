@@ -290,8 +290,13 @@ function createApp() {
 
     const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
     if (trainingMatch?.answer) {
+      const answer = sanitizeAssistantAnswerForRole(
+        adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
+        language,
+        req.session.user
+      );
       return res.json({
-        answer: adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
+        answer,
         suggestions: trainingMatch.suggestions || [],
         provider: "drc_man",
         sourceSummary: trainingMatch.sourceSummary || "DRC MAN yonetici egitimi",
@@ -301,14 +306,16 @@ function createApp() {
     const drcManResult = queryDrcManAssistant(message, language, req.session.user, answerLevel, history);
     if (drcManResult?.answer) {
       return res.json({
-        answer: drcManResult.answer,
+        answer: sanitizeAssistantAnswerForRole(drcManResult.answer, language, req.session.user),
         suggestions: drcManResult.suggestions || [],
         provider: "drc_man",
         sourceSummary: drcManResult.sourceSummary || "",
       });
     }
 
-    const items = sanitizeItemsForRole(await queryItems(), req.session.user);
+    const items = isCustomerRole(req.session.user?.role)
+      ? await queryCustomerItems()
+      : sanitizeItemsForRole(await queryItems(), req.session.user);
     const answer = answerAssistantQuestion(message, items, language, req.session.user);
     return res.json({
       answer: answer.reply,
@@ -773,7 +780,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/cashbook", requireAdmin, async (req, res) => {
+  app.post("/api/cashbook", requireStaffOrAdmin, async (req, res) => {
     const { type, title, amount, date, reference, note } = req.body || {};
     if (!type || !title || !amount || !date) {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
@@ -2121,7 +2128,15 @@ async function queryExpenses() {
   return rows.map(numberizeRow);
 }
 
-async function queryCashbook() {
+async function queryCashbook(user = null) {
+  const normalizedRole = normalizeRole(user?.role);
+  const clauses = [];
+  const params = [];
+  if (normalizedRole === "staff") {
+    clauses.push("cashbook.user_id = ?");
+    params.push(Number(user.id));
+  }
+  const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const rows = await query(
     `
       SELECT
@@ -2136,8 +2151,10 @@ async function queryCashbook() {
         users.name AS "userName"
       FROM cashbook
       LEFT JOIN users ON users.id = cashbook.user_id
+      ${whereClause}
       ORDER BY cashbook.created_at DESC, cashbook.id DESC
-    `
+    `,
+    params
   );
 
   return rows.map(numberizeRow);
@@ -2190,8 +2207,15 @@ async function queryAgentTrainingEntries(activeOnly = true) {
   }));
 }
 
-async function computeSummary() {
+async function computeSummary(user = null) {
+  const normalizedRole = normalizeRole(user?.role);
   const activeValue = dbClient === "postgres" ? true : 1;
+  const cashParams = [];
+  let cashWhereClause = "";
+  if (normalizedRole === "staff") {
+    cashWhereClause = "WHERE user_id = ?";
+    cashParams.push(Number(user.id));
+  }
   const [summaryRow, expenseRow, cashRow] = await Promise.all([
     get(
       `
@@ -2227,7 +2251,10 @@ async function computeSummary() {
       [activeValue]
     ),
     get("SELECT COALESCE(SUM(amount), 0) AS expense_total FROM expenses"),
-    get("SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook"),
+    get(
+      `SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook ${cashWhereClause}`,
+      cashParams
+    ),
   ]);
 
   const stockCostValue = Number(summaryRow?.stock_cost_value || summaryRow?.stockCostValue || 0);
@@ -2247,6 +2274,14 @@ async function computeSummary() {
 function sanitizeSummaryForRole(summary, role) {
   if (normalizeRole(role) === "admin") {
     return summary;
+  }
+  if (normalizeRole(role) === "staff") {
+    return {
+      ...summary,
+      stockValue: 0,
+      stockCostValue: 0,
+      expenseTotal: 0,
+    };
   }
 
   return {
@@ -2319,14 +2354,14 @@ async function buildBootstrap(user) {
   }
 
   const includeExpenses = normalizedRole === "admin";
-  const includeCashbook = normalizedRole === "admin";
+  const includeCashbook = normalizedRole === "admin" || normalizedRole === "staff";
   const includeUsers = normalizedRole === "admin";
   const [summary, items, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
-    computeSummary(),
+    computeSummary(user),
     queryCustomerItems(),
     queryMovements(user),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
-    includeCashbook ? queryCashbook() : Promise.resolve([]),
+    includeCashbook ? queryCashbook(user) : Promise.resolve([]),
     includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(user),
     queryOrders(user),
@@ -2548,11 +2583,32 @@ function adaptAssistantTrainingAnswer(answer, language = "tr", answerLevel = "ma
     : `Kisa ve sade anlatim: ${shortened} Gerekirse DRC MAN bunu usta seviyesinde daha detayli aciklar.`;
 }
 
+function sanitizeAssistantAnswerForRole(answer, language = "tr", user = null) {
+  const role = normalizeRole(user?.role);
+  const text = cleanOptional(answer);
+  if (!text || role !== "customer") {
+    return text;
+  }
+
+  const normalized = normalizeAssistantText(text);
+  const hasRestrictedPriceInfo = /(\beur\b|€|fiyat|ücret|ucret|satis|satış|liste|alis|alış|maliyet|einkauf|verkauf|verkaufspreis|listenpreis|preis)/i.test(text)
+    || /(fiyat|ucret|satis|liste|alis|maliyet|einkauf|verkauf|verkaufspreis|listenpreis|preis)/.test(normalized);
+  if (!hasRestrictedPriceInfo) {
+    return text;
+  }
+
+  return language === "de"
+    ? "Kundenansicht: Betragsdaten werden hier nicht angezeigt. Sie koennen verfuegbare Artikel sehen und eine Bestellung absenden; DRC bestaetigt Betrag und Lieferstatus danach."
+    : "Musteri ekrani: tutar bilgisi burada gosterilmez. Stokta gorunen urunleri secip siparis talebi gonderebilirsiniz; DRC tutar ve teslim durumunu sonra teyit eder.";
+}
+
 function answerAssistantQuestion(message, items, language = "tr", user = null) {
   const normalized = normalizeAssistantText(message);
   const t = createAssistantDictionary(language);
   const candidates = findAssistantCandidates(normalized, items);
-  const canViewPurchase = normalizeRole(user?.role) === "admin";
+  const role = normalizeRole(user?.role);
+  const canViewPurchase = role === "admin";
+  const canViewSale = role !== "customer";
 
   if (/(kritik|az stok|stok dusuk|minimum|kritisch|wenig bestand|mindestbestand)/.test(normalized)) {
     const critical = items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).slice(0, 8);
@@ -2566,6 +2622,9 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
   }
 
   if (/(en pahali|en yuksek fiyat|en yuksek satis|teuerste|hochste preis|verkaufspreis)/.test(normalized)) {
+    if (!canViewSale) {
+      return { reply: t.priceHidden, suggestions: t.customerSuggestions };
+    }
     const sorted = [...items]
       .sort((a, b) => visibleSalePriceForRole(b, canViewPurchase) - visibleSalePriceForRole(a, canViewPurchase))
       .slice(0, 5);
@@ -2607,6 +2666,14 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
 
   if (/(fiyat|satis|alis|ucret|preis|verkauf|einkauf)/.test(normalized) && candidates[0]) {
     const item = candidates[0];
+    if (!canViewSale) {
+      return {
+        reply: language === "de"
+          ? `${item.name} ist verfuegbar mit ${item.currentStock} ${item.unit}. Preise werden in der Kundenansicht nicht angezeigt; bitte senden Sie eine Bestellung zur Bestaetigung.`
+          : `${item.name} stokta ${item.currentStock} ${item.unit} gorunuyor. Musteri ekraninda fiyat gosterilmez; teyit icin siparis talebi gonderin.`,
+        suggestions: [`${item.name} ${t.stockWord}`, t.customerOrderSuggestion],
+      };
+    }
     return {
       reply: canViewPurchase
         ? (language === "de"
@@ -2622,8 +2689,10 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
   if (candidates.length > 0) {
     const top = candidates.slice(0, 5);
     return {
-      reply: `${t.matchList}: ${top.map((item) => `${item.name} (${formatEur(visibleSalePriceForRole(item, canViewPurchase))})`).join(", ")}`,
-      suggestions: top.map((item) => `${item.name} ${t.priceWord}`).slice(0, 3),
+      reply: `${t.matchList}: ${top.map((item) => canViewSale
+        ? `${item.name} (${formatEur(visibleSalePriceForRole(item, canViewPurchase))})`
+        : `${item.name} (${item.currentStock} ${item.unit})`).join(", ")}`,
+      suggestions: top.map((item) => `${item.name} ${canViewSale ? t.priceWord : t.stockWord}`).slice(0, 3),
     };
   }
 
@@ -2655,8 +2724,11 @@ function createAssistantDictionary(language) {
       expensiveList: "Artikel mit dem hoechsten Preis",
       matchList: "Diese Artikel passen dazu",
       salesHelp: "Im Tab Schnellverkauf koennen Sie links Produkte in den Warenkorb legen. Rechts geben Sie Kundendaten, bezahlten Betrag und Referenz ein und nutzen Direktverkauf oder Angebot speichern.",
+      priceHidden: "Preise werden in der Kundenansicht nicht angezeigt. Bitte senden Sie eine Bestellung, DRC bestaetigt Preis und Lieferstatus.",
       help: "Sie koennen nach Preis, Bestand, Lagercode, Kategorie, kritischen Artikeln oder den teuersten Artikeln fragen.",
       defaultSuggestions: ["kritischer bestand", "teuerste artikel", "GNA 1.500-1 preis"],
+      customerSuggestions: ["verfuegbare artikel", "bestellung senden", "bestand fragen"],
+      customerOrderSuggestion: "bestellung senden",
       priceWord: "preis",
       stockWord: "bestand",
       categoryWord: "kategorie",
@@ -2669,8 +2741,11 @@ function createAssistantDictionary(language) {
     expensiveList: "En yuksek fiyatli urunler",
     matchList: "Su urunler eslesti",
     salesHelp: "Hizli Satis sekmesinde soldan urunleri sepete ekleyin. Saga musteri bilgisi, tahsil edilen tutar ve referansi yazip Direkt Satis Yap veya Teklifi Kaydet kullanin.",
+    priceHidden: "Musteri ekraninda fiyat gosterilmez. Siparis talebi gonderin; DRC fiyat ve teslim durumunu teyit eder.",
     help: "Sunu sorabilirsiniz: urun fiyati, stok durumu, stok kodu, kategori, kritik stoktaki urunler veya en pahali urunler.",
     defaultSuggestions: ["kritik stok", "en pahali urun", "GNA 1.500-1 fiyat"],
+    customerSuggestions: ["stoklu urunler", "siparis ver", "stok sor"],
+    customerOrderSuggestion: "siparis ver",
     priceWord: "fiyat",
     stockWord: "stok",
     categoryWord: "kategori",
