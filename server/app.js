@@ -697,6 +697,9 @@ function createApp() {
     if (!movement) {
       return res.status(404).json({ error: "Hareket bulunamadi." });
     }
+    if (!isAdminRole(req.session.user?.role) && Number(movement.user_id || 0) !== Number(req.session.user.id)) {
+      return res.status(403).json({ error: "Personel sadece kendi girdigi stok hareketini iptal edebilir." });
+    }
     if (movement.reversal_of) {
       return res.status(400).json({ error: "Iptal kaydi tekrar iptal edilemez." });
     }
@@ -1251,7 +1254,7 @@ function createApp() {
     }
   });
 
-  app.post("/api/orders/:id/status", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/orders/:id/status", requireAdmin, async (req, res) => {
     const status = cleanOptional(req.body?.status).toLowerCase();
     const language = req.body?.language === "de" ? "de" : "tr";
     if (!["pending", "approved", "preparing", "completed", "cancelled"].includes(status)) {
@@ -1288,7 +1291,7 @@ function createApp() {
   });
 
   app.get("/api/quotes/:id/pdf", requireStaffOrAdmin, async (req, res) => {
-    const quote = await getQuoteById(Number(req.params.id));
+    const quote = await getQuoteById(Number(req.params.id), req.session.user);
     if (!quote) {
       return res.status(404).json({ error: "Teklif bulunamadi." });
     }
@@ -2060,7 +2063,15 @@ function mapItemRow(row, options = {}) {
   };
 }
 
-async function queryMovements() {
+async function queryMovements(user) {
+  const normalizedRole = normalizeRole(user?.role);
+  const clauses = [];
+  const params = [];
+  if (normalizedRole === "staff") {
+    clauses.push("movements.user_id = ?");
+    params.push(Number(user.id));
+  }
+  const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const rows = await query(
     `
       SELECT
@@ -2079,8 +2090,10 @@ async function queryMovements() {
       JOIN items ON items.id = movements.item_id
       LEFT JOIN users ON users.id = movements.user_id
       LEFT JOIN movements reverse_entry ON reverse_entry.reversal_of = movements.id
+      ${whereClause}
       ORDER BY movements.created_at DESC, movements.id DESC
-    `
+    `,
+    params
   );
 
   return rows.map(numberizeRow);
@@ -2311,11 +2324,11 @@ async function buildBootstrap(user) {
   const [summary, items, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
     computeSummary(),
     queryCustomerItems(),
-    queryMovements(),
+    queryMovements(user),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
     includeCashbook ? queryCashbook() : Promise.resolve([]),
     includeUsers ? queryUsers() : Promise.resolve([]),
-    queryQuotes(),
+    queryQuotes(user),
     queryOrders(user),
   ]);
 
@@ -2760,7 +2773,15 @@ function formatEur(value) {
   }).format(Number(value || 0));
 }
 
-async function queryQuotes() {
+async function queryQuotes(user) {
+  const normalizedRole = normalizeRole(user?.role);
+  const clauses = [];
+  const params = [];
+  if (normalizedRole === "staff") {
+    clauses.push("quotes.user_id = ?");
+    params.push(Number(user.id));
+  }
+  const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const quotes = await query(
     `
       SELECT
@@ -2783,9 +2804,11 @@ async function queryQuotes() {
         users.name AS "userName"
       FROM quotes
       LEFT JOIN users ON users.id = quotes.user_id
+      ${whereClause}
       ORDER BY quotes.created_at DESC, quotes.id DESC
       LIMIT 20
-    `
+    `,
+    params
   );
 
   const result = [];
@@ -2815,6 +2838,8 @@ async function queryOrders(user) {
   if (normalizedRole === "customer") {
     clauses.push("orders.customer_user_id = ?");
     params.push(Number(user.id));
+  } else if (normalizedRole === "staff") {
+    return [];
   }
 
   const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
@@ -2859,7 +2884,14 @@ async function queryOrders(user) {
   return result;
 }
 
-async function getQuoteById(id) {
+async function getQuoteById(id, user = null) {
+  const normalizedRole = normalizeRole(user?.role);
+  const clauses = ["quotes.id = ?"];
+  const params = [id];
+  if (normalizedRole === "staff") {
+    clauses.push("quotes.user_id = ?");
+    params.push(Number(user.id));
+  }
   const quote = await get(
     `
       SELECT
@@ -2881,9 +2913,9 @@ async function getQuoteById(id) {
         users.name AS "userName"
       FROM quotes
       LEFT JOIN users ON users.id = quotes.user_id
-      WHERE quotes.id = ?
+      WHERE ${clauses.join(" AND ")}
     `,
-    [id]
+    params
   );
 
   if (!quote) {

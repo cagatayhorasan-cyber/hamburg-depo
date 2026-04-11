@@ -763,9 +763,9 @@ function applyUiTranslations() {
   setText(refs.saveQuoteButton, langText("Teklifi Kaydet", "Angebot speichern"));
   setText("[data-tab-content='quotes'] .recent-quotes h2", langText("Son Teklifler", "Letzte Angebote"));
 
-  const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-staff-only section");
+  const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-only section");
   setText(ordersSection?.querySelector("h2"), langText("Siparis Takibi", "Bestellverfolgung"));
-  setText(ordersSection?.querySelector(".section-tip"), langText("Musteri siparisleri burada toplanir. Personel ve admin durum guncelleyebilir.", "Kundenbestellungen werden hier gesammelt. Personal und Admin koennen den Status aendern."));
+  setText(ordersSection?.querySelector(".section-tip"), langText("Musteri siparisleri burada toplanir. Siparis durumunu sadece admin gunceller.", "Kundenbestellungen werden hier gesammelt. Nur Admins koennen den Status aendern."));
   setText("#customerVerificationBanner h3", langText("E-Posta Dogrulamasi Bekleniyor", "E-Mail-Bestaetigung ausstehend"));
   setText("#customerVerificationBanner p.muted", langText("Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
   setText(refs.resendVerificationButton, langText("Dogrulama Mailini Tekrar Gonder", "Bestaetigungs-E-Mail erneut senden"));
