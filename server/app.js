@@ -770,7 +770,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/cashbook", requireStaffOrAdmin, async (req, res) => {
+  app.post("/api/cashbook", requireAdmin, async (req, res) => {
     const { type, title, amount, date, reference, note } = req.body || {};
     if (!type || !title || !amount || !date) {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
@@ -2240,6 +2240,8 @@ function sanitizeSummaryForRole(summary, role) {
     ...summary,
     stockValue: 0,
     stockCostValue: 0,
+    expenseTotal: 0,
+    cashBalance: 0,
   };
 }
 
@@ -2304,13 +2306,14 @@ async function buildBootstrap(user) {
   }
 
   const includeExpenses = normalizedRole === "admin";
+  const includeCashbook = normalizedRole === "admin";
   const includeUsers = normalizedRole === "admin";
   const [summary, items, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
     computeSummary(),
     queryCustomerItems(),
     queryMovements(),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
-    queryCashbook(),
+    includeCashbook ? queryCashbook() : Promise.resolve([]),
     includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(),
     queryOrders(user),

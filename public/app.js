@@ -1565,7 +1565,6 @@ function renderStats() {
           [t("stats.totalItems"), state.summary.totalItems, t("stats.totalItemsDesc")],
           [t("stats.stockSaleValue"), currency.format(state.summary.stockSaleValue || 0), t("stats.stockSaleValueDesc")],
           [t("stats.critical"), state.summary.criticalCount, t("stats.criticalDesc")],
-          [t("stats.cashBalance"), currency.format(state.summary.cashBalance), t("stats.cashBalanceDesc")],
         ];
 
   cards.forEach(([label, value, subtitle]) => {
