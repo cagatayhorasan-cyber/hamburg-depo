@@ -21,6 +21,8 @@ const COMPANY_PROFILE = {
   email: "info@durmusbaba.com",
   web: "drckaltetechnik.vercel.app",
   register: "HRB 11217 - Amtsgericht Hamm",
+  taxNo: "322/577/1909",
+  vatId: "ATU73555618",
   bankName: "Bankverbindung auf Anfrage / Talep uzerine banka bilgisi",
   iban: "DE00 0000 0000 0000 0000 00",
   bic: "XXXXDEXX",
@@ -2943,15 +2945,25 @@ async function queryQuotes(user) {
 
   const result = [];
   for (const quote of quotes) {
-    const items = await query(
-      `
-        SELECT item_name AS "itemName", quantity, unit, unit_price AS "unitPrice", total
-        FROM quote_items
-        WHERE quote_id = ?
-        ORDER BY id ASC
-      `,
-      [quote.id]
-    );
+  const items = await query(
+    `
+      SELECT
+        quote_items.item_id AS "itemId",
+        quote_items.item_name AS "itemName",
+        quote_items.quantity,
+        quote_items.unit,
+        quote_items.unit_price AS "unitPrice",
+        quote_items.total,
+        items.brand,
+        items.category,
+        COALESCE(NULLIF(items.barcode, ''), NULLIF(items.product_code, '')) AS "itemCode"
+      FROM quote_items
+      LEFT JOIN items ON items.id = quote_items.item_id
+      WHERE quote_id = ?
+      ORDER BY quote_items.id ASC
+    `,
+    [quote.id]
+  );
     result.push({
       ...numberizeRow(quote),
       items: items.map(numberizeRow),
@@ -3054,10 +3066,20 @@ async function getQuoteById(id, user = null) {
 
   const items = await query(
     `
-      SELECT item_name AS "itemName", quantity, unit, unit_price AS "unitPrice", total
+      SELECT
+        quote_items.item_id AS "itemId",
+        quote_items.item_name AS "itemName",
+        quote_items.quantity,
+        quote_items.unit,
+        quote_items.unit_price AS "unitPrice",
+        quote_items.total,
+        items.brand,
+        items.category,
+        COALESCE(NULLIF(items.barcode, ''), NULLIF(items.product_code, '')) AS "itemCode"
       FROM quote_items
+      LEFT JOIN items ON items.id = quote_items.item_id
       WHERE quote_id = ?
-      ORDER BY id ASC
+      ORDER BY quote_items.id ASC
     `,
     [id]
   );
@@ -3104,102 +3126,220 @@ function renderQuotePdf(doc, quote, lang) {
     currency: "EUR",
   });
   const formattedDate = formatQuoteDate(quote.date, lang);
-  const totalsTop = Math.min(680, Math.max(470, 448 + quote.items.length * 28));
-  const footerTop = totalsTop + 134;
 
   configurePdfFonts(doc);
 
-  doc.rect(0, 0, doc.page.width, 158).fill("#0f766e");
-  doc.fillColor("#ffffff");
-  doc.roundedRect(42, 34, 68, 68, 16).fill("#ffffff");
-  doc.fillColor("#0f766e").font("AppBold").fontSize(28).text("DRC", 54, 56);
-  doc.fillColor("#ffffff").font("AppBold").fontSize(24).text(COMPANY_PROFILE.name, 126, 34);
-  doc.font("AppRegular").fontSize(11).text(t.logoSubline, 126, 64);
-  doc.fontSize(10).text(`${t.headOffice}: ${COMPANY_PROFILE.address}`, 126, 92);
-  doc.text(`${t.warehouse}: ${COMPANY_PROFILE.warehouse}`, 126, 108);
-  doc.text(`${COMPANY_PROFILE.phone}  |  ${COMPANY_PROFILE.email}  |  ${COMPANY_PROFILE.web}`, 126, 124);
+  drawQuoteHero(doc, quote, t, formattedDate, lang, currency);
+  let y = drawQuoteIntro(doc, quote, t, formattedDate, lang);
+  y = drawQuoteItems(doc, quote, t, currency, y);
+  y = ensureQuotePdfSpace(doc, y, 238, quote, t);
+  y = drawQuoteTotals(doc, quote, t, currency, y);
+  drawQuoteFooter(doc, quote, t, y);
+}
 
-  doc.fillColor("#153243");
-  doc.roundedRect(42, 165, 240, 116, 12).fill("#f1f5f9");
-  doc.fillColor("#153243");
-  doc.font("AppBold").fontSize(12).text(t.offerTo, 56, 182);
-  doc.fontSize(16).text(quote.customerName, 56, 205);
-  doc.font("AppRegular").fontSize(11).fillColor("#475569").text(quote.note || t.customerPlaceholder, 56, 230, { width: 210 });
+function drawQuoteHero(doc, quote, t, formattedDate, lang, currency) {
+  doc.rect(0, 0, doc.page.width, 132).fill("#082b4c");
+  doc.circle(520, 18, 96).fill("#00a98f");
+  doc.circle(596, 118, 76).fill("#ff8a00");
+  doc.rect(0, 118, doc.page.width, 14).fill("#00a98f");
+  doc.rect(420, 118, 175, 14).fill("#ff8a00");
 
-  doc.fillColor("#ffffff");
-  doc.roundedRect(320, 165, 233, 116, 12).fill("#153243");
-  doc.fillColor("#ffffff");
-  doc.font("AppBold").fontSize(18).text(t.offerTitle, 338, 182);
-  doc.font("AppRegular").fontSize(11).text(`${t.offerNo}: ${quote.quoteNo || `DRC-${quote.id}`}`, 338, 212);
-  doc.text(`${t.date}: ${formattedDate}`, 338, 230);
-  doc.text(`${t.language}: ${lang === "tr" ? "Türkçe" : "Deutsch"}`, 338, 248);
-  doc.text(`${t.vatLabel}: ${quote.isExport ? t.vatExportShort : `${numberOrZero(quote.vatRate)}%`}`, 338, 266);
+  doc.roundedRect(42, 28, 74, 74, 18).fill("#ffffff");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(30).text("DRC", 53, 52);
+  doc.fillColor("#ffffff").font("AppBold").fontSize(23).text(sanitizePdfText(COMPANY_PROFILE.name), 132, 31, { width: 282 });
+  doc.font("AppRegular").fontSize(10.5).text(sanitizePdfText(t.logoSubline), 132, 61, { width: 282 });
+  doc.fontSize(9.5).text(sanitizePdfText(`${t.headOffice}: ${COMPANY_PROFILE.address}`), 132, 82, { width: 385 });
+  doc.text(sanitizePdfText(`${t.warehouse}: ${COMPANY_PROFILE.warehouse}`), 132, 98, { width: 385 });
 
-  doc.fillColor("#153243");
-  doc.font("AppBold").fontSize(20).text(quote.title, 42, 312);
-  doc.font("AppRegular").fontSize(10).fillColor("#64748b").text(`${COMPANY_PROFILE.manager} | ${COMPANY_PROFILE.phone} | ${COMPANY_PROFILE.email}`, 42, 339);
-  doc.text(`${COMPANY_PROFILE.web} | ${COMPANY_PROFILE.register}`, 42, 354);
+  doc.roundedRect(424, 30, 129, 72, 18).fill("#ffffff");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(13).text(sanitizePdfText(t.payableAmount), 438, 43, { width: 100, align: "center" });
+  doc.fillColor("#ff6a3d").font("AppBold").fontSize(17).text(sanitizePdfText(currency.format(numberOrZero(quote.grossTotal || quote.total))), 438, 64, { width: 100, align: "center" });
+  doc.fillColor("#607489").font("AppRegular").fontSize(8.5).text(sanitizePdfText(`${t.date}: ${formattedDate}`), 438, 87, { width: 100, align: "center" });
 
-  let y = 392;
-  const cols = [42, 262, 336, 416, 500];
-  doc.roundedRect(42, y, 511, 28, 8).fill("#e2e8f0");
-  doc.fillColor("#153243").font("AppBold").fontSize(10);
-  doc.text(t.item, cols[0] + 8, y + 9);
-  doc.text(t.qty, cols[1] + 8, y + 9);
-  doc.text(t.unitPrice, cols[2] + 8, y + 9);
-  doc.text(t.unit, cols[3] + 8, y + 9);
-  doc.text(t.total, cols[4] + 8, y + 9);
-  y += 36;
+  doc.fillColor("#ffffff").font("AppBold").fontSize(9.5).text(sanitizePdfText(t.brandLineLabel), 42, 142);
+  drawPdfPills(doc, ["Danfoss", "DRC", "Dixell", "Embraco", "FrigoCraft", "Sanhua", "GVN"], 138, 138, {
+    fill: "#e9fff9",
+    color: "#082b4c",
+    border: "#b8f5e7",
+    fontSize: 8.5,
+  });
+  doc.fillColor("#607489").font("AppRegular").fontSize(8.5).text(sanitizePdfText(`${t.language}: ${lang === "tr" ? "TR" : "DE"}`), 510, 142);
+}
+
+function drawQuoteIntro(doc, quote, t, formattedDate, lang) {
+  doc.fillColor("#082b4c").font("AppBold").fontSize(27).text(sanitizePdfText(t.offerTitle), 42, 174);
+  doc.fillColor("#00a98f").font("AppBold").fontSize(12).text(sanitizePdfText(quote.quoteNo || `DRC-${quote.id}`), 42, 207);
+  doc.fillColor("#0f172a").font("AppBold").fontSize(18).text(sanitizePdfText(quote.title || t.materialSaleTitle), 42, 231, { width: 330 });
+
+  doc.roundedRect(382, 170, 171, 102, 16).fill("#f0fffb");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.offerTo), 397, 185);
+  doc.fillColor("#0f172a").font("AppBold").fontSize(14).text(sanitizePdfText(quote.customerName), 397, 207, { width: 136 });
+  doc.fillColor("#607489").font("AppRegular").fontSize(9.5).text(sanitizePdfText(quote.note || t.customerPlaceholder), 397, 232, { width: 136, height: 30 });
+
+  doc.roundedRect(42, 282, 511, 45, 16).fill("#fff7ed");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(10).text(sanitizePdfText(t.productScope), 58, 296);
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.2).text(
+    sanitizePdfText(`${COMPANY_PROFILE.phone} | ${COMPANY_PROFILE.email} | ${COMPANY_PROFILE.web}`),
+    58,
+    313,
+    { width: 360 }
+  );
+  doc.fillColor("#082b4c").font("AppBold").fontSize(9).text(
+    sanitizePdfText(`${t.offerNo}: ${quote.quoteNo || `DRC-${quote.id}`}  |  ${t.date}: ${formattedDate}  |  ${t.vatLabel}: ${quote.isExport ? t.vatExportShort : `${numberOrZero(quote.vatRate)}%`}`),
+    332,
+    296,
+    { width: 205, align: "right" }
+  );
+
+  return 350;
+}
+
+function drawQuoteItems(doc, quote, t, currency, startY) {
+  let y = drawQuoteTableHeader(doc, t, startY);
 
   quote.items.forEach((item, index) => {
-    const bg = index % 2 === 0 ? "#ffffff" : "#f8fafc";
-    doc.roundedRect(42, y - 4, 511, 30, 6).fill(bg);
-    doc.fillColor("#0f172a").font("AppRegular").fontSize(10);
-    doc.text(item.itemName, cols[0] + 8, y + 4, { width: 205 });
-    doc.text(String(item.quantity), cols[1] + 8, y + 4, { width: 60 });
-    doc.text(currency.format(item.unitPrice), cols[2] + 8, y + 4, { width: 72 });
-    doc.text(item.unit, cols[3] + 8, y + 4, { width: 60 });
-    doc.text(currency.format(item.total), cols[4] + 8, y + 4, { width: 60 });
-    y += 34;
-    if (y > 700) {
+    const nameHeight = doc.font("AppBold").fontSize(11.5).heightOfString(sanitizePdfText(item.itemName), { width: 248 });
+    const rowHeight = Math.max(56, Math.ceil(nameHeight) + 34);
+    if (y + rowHeight > 720) {
       doc.addPage();
       configurePdfFonts(doc);
-      y = 42;
+      drawQuoteContinuationHeader(doc, quote, t);
+      y = drawQuoteTableHeader(doc, t, 88);
     }
+
+    const bg = index % 2 === 0 ? "#ffffff" : "#f8fbff";
+    doc.roundedRect(42, y, 511, rowHeight - 6, 12).fill(bg);
+    doc.strokeColor("#e3edf7").lineWidth(1).roundedRect(42, y, 511, rowHeight - 6, 12).stroke();
+
+    doc.fillColor("#00a98f").font("AppBold").fontSize(11).text(String(index + 1).padStart(2, "0"), 55, y + 16, { width: 26 });
+    doc.fillColor("#0f172a").font("AppBold").fontSize(11.5).text(sanitizePdfText(item.itemName), 86, y + 12, { width: 248 });
+
+    const meta = [item.brand, item.category, item.itemCode ? `${t.code}: ${item.itemCode}` : ""].filter(Boolean).join("  |  ");
+    doc.fillColor("#607489").font("AppRegular").fontSize(8.8).text(sanitizePdfText(meta || t.productLine), 86, y + 33 + Math.max(0, nameHeight - 14), { width: 248 });
+
+    doc.fillColor("#082b4c").font("AppBold").fontSize(12).text(sanitizePdfText(formatPdfQuantity(item.quantity)), 350, y + 14, { width: 46, align: "right" });
+    doc.fillColor("#607489").font("AppRegular").fontSize(8.8).text(sanitizePdfText(item.unit || ""), 350, y + 31, { width: 46, align: "right" });
+    doc.fillColor("#0f172a").font("AppRegular").fontSize(10).text(sanitizePdfText(currency.format(item.unitPrice)), 410, y + 18, { width: 56, align: "right" });
+    doc.fillColor("#ff6a3d").font("AppBold").fontSize(11).text(sanitizePdfText(currency.format(item.total)), 480, y + 18, { width: 58, align: "right" });
+
+    y += rowHeight;
   });
 
-  doc.roundedRect(320, totalsTop, 233, 118, 12).fill("#f8fafc");
-  doc.fillColor("#153243").font("AppRegular").fontSize(11);
-  doc.text(`${t.subtotal}: ${currency.format(numberOrZero(quote.subtotal))}`, 338, totalsTop + 16);
-  doc.text(`${t.discount}: ${currency.format(numberOrZero(quote.discount))}`, 338, totalsTop + 36);
-  doc.text(`${t.netTotal}: ${currency.format(numberOrZero(quote.netTotal || quote.total))}`, 338, totalsTop + 56);
-  doc.text(
-    `${quote.isExport ? t.vatExport : `${t.vat} (${numberOrZero(quote.vatRate)}%)`}: ${currency.format(numberOrZero(quote.vatAmount))}`,
-    338,
-    totalsTop + 76,
-    { width: 196 }
+  return y + 4;
+}
+
+function drawQuoteTableHeader(doc, t, y) {
+  doc.roundedRect(42, y, 511, 30, 10).fill("#082b4c");
+  doc.fillColor("#ffffff").font("AppBold").fontSize(9.5);
+  doc.text("#", 55, y + 10, { width: 26 });
+  doc.text(sanitizePdfText(t.item), 86, y + 10, { width: 248 });
+  doc.text(sanitizePdfText(t.qty), 350, y + 10, { width: 46, align: "right" });
+  doc.text(sanitizePdfText(t.unitPrice), 410, y + 10, { width: 56, align: "right" });
+  doc.text(sanitizePdfText(t.total), 480, y + 10, { width: 58, align: "right" });
+  return y + 40;
+}
+
+function drawQuoteTotals(doc, quote, t, currency, y) {
+  doc.roundedRect(306, y, 247, 138, 18).fill("#082b4c");
+  doc.fillColor("#ffffff").font("AppBold").fontSize(12).text(sanitizePdfText(t.totalsTitle), 324, y + 16);
+  drawTotalLine(doc, t.subtotal, currency.format(numberOrZero(quote.subtotal)), 324, y + 42, false);
+  drawTotalLine(doc, t.discount, currency.format(numberOrZero(quote.discount)), 324, y + 62, false);
+  drawTotalLine(doc, t.netTotal, currency.format(numberOrZero(quote.netTotal || quote.total)), 324, y + 82, false);
+  drawTotalLine(
+    doc,
+    quote.isExport ? t.vatExport : `${t.vat} (${numberOrZero(quote.vatRate)}%)`,
+    currency.format(numberOrZero(quote.vatAmount)),
+    324,
+    y + 102,
+    false
   );
-  doc.font("AppBold").fontSize(15).text(`${t.grossTotal}: ${currency.format(numberOrZero(quote.grossTotal || quote.total))}`, 338, totalsTop + 94);
+  doc.roundedRect(324, y + 116, 211, 30, 12).fill("#ff8a00");
+  doc.fillColor("#ffffff").font("AppBold").fontSize(12).text(sanitizePdfText(`${t.grossTotal}: ${currency.format(numberOrZero(quote.grossTotal || quote.total))}`), 336, y + 125, { width: 187, align: "center" });
 
-  doc.roundedRect(42, footerTop, 244, 90, 12).fill("#f8fafc");
-  doc.fillColor("#153243").font("AppBold").fontSize(11).text(t.bankTitle, 56, footerTop + 14);
-  doc.font("AppRegular").fontSize(10);
-  doc.text(`${t.beneficiary}: ${COMPANY_PROFILE.beneficiary}`, 56, footerTop + 34, { width: 214 });
-  doc.text(`${t.bank}: ${COMPANY_PROFILE.bankName}`, 56, footerTop + 50, { width: 214 });
-  doc.text(`IBAN: ${COMPANY_PROFILE.iban}`, 56, footerTop + 66, { width: 214 });
-  doc.text(`BIC: ${COMPANY_PROFILE.bic}`, 56, footerTop + 82, { width: 214 });
-
-  doc.roundedRect(309, footerTop, 244, 90, 12).fill("#f8fafc");
-  doc.fillColor("#153243").font("AppBold").fontSize(11).text(t.signature, 323, footerTop + 14);
-  doc.moveTo(323, footerTop + 60).lineTo(523, footerTop + 60).strokeColor("#94a3b8").stroke();
-  doc.font("AppRegular").fillColor("#64748b").fontSize(10).text(COMPANY_PROFILE.manager, 323, footerTop + 66);
-
-  y = footerTop + 114;
-  doc.fillColor("#153243").font("AppBold").fontSize(12).text(t.conditionsTitle, 42, y);
-  doc.fillColor("#475569").font("AppRegular").fontSize(10);
-  t.conditions.forEach((line, index) => {
-    doc.text(`• ${line}`, 42, y + 22 + index * 16, { width: 511 });
+  doc.roundedRect(42, y, 240, 138, 18).fill("#f8fafc");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(12).text(sanitizePdfText(t.easyReadTitle), 58, y + 16);
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.7).text(sanitizePdfText(t.easyReadCopy), 58, y + 40, { width: 206, lineGap: 3 });
+  drawPdfPills(doc, t.productFamilies, 58, y + 92, {
+    fill: "#e9fff9",
+    color: "#082b4c",
+    border: "#b8f5e7",
+    fontSize: 8.2,
+    maxX: 270,
   });
+
+  return y + 164;
+}
+
+function drawQuoteFooter(doc, quote, t, y) {
+  y = ensureQuotePdfSpace(doc, y, 165, quote, t);
+
+  doc.roundedRect(42, y, 244, 96, 14).fill("#f8fafc");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.bankTitle), 56, y + 14);
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.3);
+  doc.text(sanitizePdfText(`${t.beneficiary}: ${COMPANY_PROFILE.beneficiary}`), 56, y + 34, { width: 214 });
+  doc.text(sanitizePdfText(`${t.bank}: ${COMPANY_PROFILE.bankName}`), 56, y + 50, { width: 214 });
+  doc.text(sanitizePdfText(`IBAN: ${COMPANY_PROFILE.iban}`), 56, y + 66, { width: 214 });
+  doc.text(sanitizePdfText(`BIC: ${COMPANY_PROFILE.bic}`), 56, y + 82, { width: 214 });
+
+  doc.roundedRect(309, y, 244, 96, 14).fill("#f8fafc");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.signature), 323, y + 14);
+  doc.moveTo(323, y + 61).lineTo(523, y + 61).strokeColor("#94a3b8").stroke();
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.5).text(sanitizePdfText(COMPANY_PROFILE.manager), 323, y + 70);
+  doc.text(sanitizePdfText(`${COMPANY_PROFILE.register} | USt-IdNr.: ${COMPANY_PROFILE.vatId}`), 323, y + 84, { width: 214 });
+
+  y += 118;
+  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.conditionsTitle), 42, y);
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.2);
+  t.conditions.forEach((line, index) => {
+    doc.text(sanitizePdfText(`- ${line}`), 42, y + 20 + index * 15, { width: 511 });
+  });
+}
+
+function drawTotalLine(doc, label, value, x, y, strong) {
+  doc.fillColor("#d9eef7").font(strong ? "AppBold" : "AppRegular").fontSize(9.7).text(sanitizePdfText(label), x, y, { width: 110 });
+  doc.fillColor("#ffffff").font(strong ? "AppBold" : "AppRegular").fontSize(9.7).text(sanitizePdfText(value), x + 118, y, { width: 93, align: "right" });
+}
+
+function drawQuoteContinuationHeader(doc, quote, t) {
+  doc.rect(0, 0, doc.page.width, 58).fill("#082b4c");
+  doc.roundedRect(42, 16, 42, 28, 8).fill("#ffffff");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(14).text("DRC", 50, 23);
+  doc.fillColor("#ffffff").font("AppBold").fontSize(12).text(sanitizePdfText(COMPANY_PROFILE.name), 100, 17, { width: 270 });
+  doc.font("AppRegular").fontSize(9).text(sanitizePdfText(`${t.offerNo}: ${quote.quoteNo || `DRC-${quote.id}`}`), 100, 34, { width: 270 });
+  doc.font("AppBold").fontSize(10).text(sanitizePdfText(t.pageContinue), 438, 26, { width: 115, align: "right" });
+}
+
+function ensureQuotePdfSpace(doc, y, needed, quote, t) {
+  if (y + needed <= 760) {
+    return y;
+  }
+  doc.addPage();
+  configurePdfFonts(doc);
+  drawQuoteContinuationHeader(doc, quote, t);
+  return 88;
+}
+
+function drawPdfPills(doc, labels, startX, startY, options = {}) {
+  let x = startX;
+  let y = startY;
+  const maxX = options.maxX || 552;
+  for (const label of labels) {
+    const text = sanitizePdfText(label);
+    const width = Math.min(Math.max(doc.widthOfString(text) + 18, 42), 132);
+    if (x + width > maxX) {
+      x = startX;
+      y += 22;
+    }
+    doc.roundedRect(x, y, width, 18, 9).fillAndStroke(options.fill || "#ffffff", options.border || "#dbeafe");
+    doc.fillColor(options.color || "#082b4c").font("AppBold").fontSize(options.fontSize || 8.5).text(text, x + 8, y + 5, { width: width - 16, align: "center" });
+    x += width + 7;
+  }
+}
+
+function formatPdfQuantity(value) {
+  const number = Number(value || 0);
+  if (!Number.isFinite(number)) return "0";
+  return Number.isInteger(number) ? String(number) : String(Math.round(number * 100) / 100);
 }
 
 function getQuoteTranslations(lang) {
@@ -3209,17 +3349,27 @@ function getQuoteTranslations(lang) {
       headOffice: "Merkez",
       warehouse: "Depo",
       offerTo: "Musteri",
-      offerTitle: "Fiyat Teklifi",
+      offerTitle: "Malzeme Satış Teklifi",
+      materialSaleTitle: "Malzeme Satis Teklifi",
       offerNo: "Teklif No",
       date: "Tarih",
       language: "Dil",
       vatLabel: "KDV",
       vatExportShort: "Yok",
+      payableAmount: "Odenecek",
+      brandLineLabel: "Satisini yaptigimiz markalar",
+      productScope: "Panel, soguk oda kapisi, kondenser, evaporator, gaz, boru, kontrol ve servis malzemeleri",
       item: "Malzeme",
+      code: "Kod",
+      productLine: "Urun / malzeme kalemi",
       qty: "Miktar",
       unitPrice: "Birim Fiyat",
       unit: "Birim",
       total: "Toplam",
+      totalsTitle: "Teklif Ozeti",
+      easyReadTitle: "Kolay okuma",
+      easyReadCopy: "Urun adi buyuk yazilir. Alt satirda marka, kategori ve stok kodu yer alir. Egitimsiz kullanici da hangi malzemenin teklif edildigini hizli anlar.",
+      productFamilies: ["Panel", "Soguk Oda Kapisi", "Kondenser", "Evaporator", "Termostat", "Gaz", "Bakir Boru", "Fan Motoru"],
       subtotal: "Ara Toplam",
       discount: "Iskonto",
       netTotal: "Net Toplam",
@@ -3232,6 +3382,7 @@ function getQuoteTranslations(lang) {
       bank: "Banka",
       signature: "Imza Alani",
       customerPlaceholder: "Musteri notu belirtilmedi.",
+      pageContinue: "Devam sayfasi",
       conditions: [
         "Teklif tarihinden itibaren 15 gun gecerlidir.",
         "Teslimat suresi stok ve uretim durumuna gore ayrica teyit edilir.",
@@ -3245,17 +3396,27 @@ function getQuoteTranslations(lang) {
     headOffice: "Zentrale",
     warehouse: "Lager",
     offerTo: "Kunde",
-    offerTitle: "Angebot",
+    offerTitle: "Materialverkaufsangebot",
+    materialSaleTitle: "Materialverkaufsangebot",
     offerNo: "Angebotsnr.",
     date: "Datum",
     language: "Sprache",
     vatLabel: "MwSt.",
     vatExportShort: "0%",
+    payableAmount: "Zu zahlen",
+    brandLineLabel: "Marken im Verkauf",
+    productScope: "Paneele, Kuehlraumtueren, Verfluessiger, Verdampfer, Kaeltemittel, Rohr, Steuerung und Serviceteile",
     item: "Artikel",
+    code: "Code",
+    productLine: "Produkt / Materialposition",
     qty: "Menge",
     unitPrice: "Einzelpreis",
     unit: "Einheit",
     total: "Gesamt",
+    totalsTitle: "Angebotsuebersicht",
+    easyReadTitle: "Einfach lesbar",
+    easyReadCopy: "Der Artikelname steht gross. Darunter stehen Marke, Kategorie und Lagercode. Auch nicht geschulte Nutzer erkennen schnell, welches Material angeboten wird.",
+    productFamilies: ["Paneel", "Kuehlraumtuer", "Verfluessiger", "Verdampfer", "Thermostat", "Gas", "Kupferrohr", "Ventilator"],
     subtotal: "Zwischensumme",
     discount: "Rabatt",
     netTotal: "Netto",
@@ -3268,6 +3429,7 @@ function getQuoteTranslations(lang) {
     bank: "Bank",
     signature: "Unterschrift",
     customerPlaceholder: "Keine zusaetzliche Kundennotiz.",
+    pageContinue: "Folgeseite",
     conditions: [
       "Dieses Angebot ist 15 Tage ab Angebotsdatum gueltig.",
       "Lieferzeiten werden je nach Lager- und Produktionsstatus bestaetigt.",
@@ -3278,6 +3440,19 @@ function getQuoteTranslations(lang) {
 
 function numberOrZero(value) {
   return Number(value || 0);
+}
+
+function sanitizePdfText(value) {
+  return String(value ?? "")
+    .replace(/\u00a0/g, " ")
+    .replace(/[ğĞ]/g, (char) => (char === "Ğ" ? "G" : "g"))
+    .replace(/[ıİ]/g, (char) => (char === "İ" ? "I" : "i"))
+    .replace(/[şŞ]/g, (char) => (char === "Ş" ? "S" : "s"))
+    .replace(/[–—]/g, "-")
+    .replace(/[“”]/g, "\"")
+    .replace(/[‘’]/g, "'")
+    .replace(/₺/g, "TL")
+    .replace(/[^\t\n\r\u0020-\u007e\u00a0-\u00ff\u20ac]/g, "");
 }
 
 function configurePdfFonts(doc) {

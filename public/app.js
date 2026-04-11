@@ -29,6 +29,8 @@ const UI_TEXT = {
     authShowcaseCopy: "Hamburg bölgesindeki depomuzdan soğutma grubu, evaporatör, kontrol panosu, gaz ve montaj sarf ürünleriyle hızlı satış ve saha desteği.",
     authLoginTitle: "Giriş ve müşteri hesabı",
     authLoginDesc: "Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.",
+    brandWallTitle: "Satışını yaptığımız büyük markalar",
+    productFamilies: ["Panel", "Soğuk Oda Kapısı", "Kondenser", "Evaporatör", "Kompresör", "Termostat", "Gazlar", "Bakır Boru", "Fan Motoru", "Servis Malzemesi"],
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -173,6 +175,8 @@ const UI_TEXT = {
     authShowcaseCopy: "Aus unserem Lager im Raum Hamburg liefern wir Kälteaggregate, Verdampfer, Steuerungen, Kältemittel und Montagematerial mit schnellem Verkauf und Service-Support.",
     authLoginTitle: "Anmeldung und Kundenkonto",
     authLoginDesc: "Berechtigte Benutzer öffnen Verkauf, Lager und Projektwerkzeuge. Kunden legen ihr eigenes Konto an und verfolgen ihren Bestellverlauf.",
+    brandWallTitle: "Grosse Marken in unserem Verkauf",
+    productFamilies: ["Paneel", "Kühlraumtür", "Verflüssiger", "Verdampfer", "Kompressor", "Thermostat", "Kältemittel", "Kupferrohr", "Ventilator", "Servicematerial"],
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -565,6 +569,10 @@ function applyUiTranslations() {
   setText(".auth-showcase-copy", t("authShowcaseCopy"));
   setText(".auth-login-heading h2", t("authLoginTitle"));
   setText(".auth-login-heading .muted", t("authLoginDesc"));
+  setText(".brand-wall-title", t("brandWallTitle"));
+  document.querySelectorAll(".product-family-wall span").forEach((node, index) => {
+    setText(node, t("productFamilies")[index] || node.textContent);
+  });
   const companyCards = document.querySelectorAll(".company-info-card");
   setText(companyCards[0]?.querySelector("span"), langText("Merkez", "Hauptsitz"));
   setHtml(companyCards[0]?.querySelector("strong"), "Schildkamp 1<br>59063 Hamm");
