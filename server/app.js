@@ -48,7 +48,6 @@ const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || "";
 const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir(), "Desktop", "DRC_MAN"));
 const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
 const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
-const ADMIN_TOOLS_DIR = path.join(__dirname, "..", "admin-tools");
 const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
 
 let gmailTransporter = null;
@@ -1468,13 +1467,32 @@ function requireCustomer(req, res, next) {
   return next();
 }
 
+function resolveAdminToolsDir() {
+  const candidates = [
+    path.resolve(process.cwd(), "admin-tools"),
+    path.resolve(__dirname, "..", "admin-tools"),
+    path.resolve(path.dirname(require.main?.filename || process.argv[1] || __filename), "..", "admin-tools"),
+  ];
+
+  return candidates.find((candidate) => {
+    try {
+      return fs.existsSync(candidate) && fs.statSync(candidate).isDirectory();
+    } catch (_error) {
+      return false;
+    }
+  }) || candidates[0];
+}
+
 function serveAdminTool(req, res) {
   const tool = req.params.tool;
   if (!ADMIN_TOOLS.has(tool)) {
     return res.status(404).send("Arac bulunamadi.");
   }
 
-  const root = path.resolve(ADMIN_TOOLS_DIR, tool);
+  const root = path.resolve(resolveAdminToolsDir(), tool);
+  if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
+    return res.status(404).send("Arac dosyalari bulunamadi.");
+  }
   const requestedPath = req.params[0] || "index.html";
   if (path.isAbsolute(requestedPath) || requestedPath.split(/[\\/]+/).includes("..")) {
     return res.status(403).send("Gecersiz arac yolu.");
@@ -1490,7 +1508,12 @@ function serveAdminTool(req, res) {
     filePath = path.join(root, "index.html");
   }
 
-  return res.sendFile(filePath);
+  if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+    return res.status(404).send("Arac giris dosyasi bulunamadi.");
+  }
+
+  res.type(path.extname(filePath));
+  return res.send(fs.readFileSync(filePath));
 }
 
 function normalizeRole(role) {
