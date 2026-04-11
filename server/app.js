@@ -266,7 +266,8 @@ function createApp() {
   });
 
   app.get("/api/inventory", requireStaffOrAdmin, async (req, res) => {
-    const includeArchive = isAdminRole(req.session.user?.role);
+    const includeArchive = isAdminRole(req.session.user?.role)
+      && (req.query?.includeArchive === "1" || req.query?.archive === "1");
     const [items, archivedItems] = await Promise.all([
       queryItems(),
       includeArchive ? queryItems(false) : Promise.resolve([]),

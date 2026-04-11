@@ -312,6 +312,7 @@ const state = {
   agentTraining: [],
   agentTrainingLoaded: false,
   inventoryLoadedAll: false,
+  archiveLoaded: false,
   inventoryLoadPromise: null,
   retrofitChecklist: null,
   filters: {
@@ -1427,6 +1428,7 @@ async function refreshData() {
   Object.assign(state, data);
   state.agentTrainingLoaded = false;
   state.inventoryLoadedAll = false;
+  state.archiveLoaded = false;
   state.inventoryLoadPromise = null;
   state.filterOptionsSignature = "";
   state.itemSelectSignature = "";
@@ -1665,7 +1667,7 @@ function renderArchive() {
   if (!refs.archiveTableBody || !refs.archiveSummary) {
     return;
   }
-  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+  if (!state.archiveLoaded && !isCustomerUser()) {
     renderInventoryLoading("archive");
     return;
   }
@@ -2480,25 +2482,30 @@ function renderInventoryLoading(target) {
   }
 }
 
-async function loadInventory(force = false) {
+async function loadInventory(force = false, includeArchive = false) {
   if (isCustomerUser()) {
-    return;
-  }
-  if (!force && state.inventoryLoadedAll) {
     return;
   }
   if (!force && state.inventoryLoadPromise) {
     await state.inventoryLoadPromise;
+  }
+  if (!force && state.inventoryLoadedAll && (!includeArchive || state.archiveLoaded)) {
     return;
   }
 
-  state.inventoryLoadPromise = request("/api/inventory")
+  const route = includeArchive ? "/api/inventory?includeArchive=1" : "/api/inventory";
+  state.inventoryLoadPromise = request(route)
     .then((result) => {
       if (result.error) {
         throw new Error(result.error);
       }
       state.items = Array.isArray(result.items) ? result.items : [];
-      state.archivedItems = Array.isArray(result.archivedItems) ? result.archivedItems : [];
+      if (includeArchive) {
+        state.archivedItems = Array.isArray(result.archivedItems) ? result.archivedItems : [];
+        state.archiveLoaded = true;
+      } else if (!state.archiveLoaded) {
+        state.archivedItems = [];
+      }
       state.inventoryLoadedAll = true;
       state.filterOptionsSignature = "";
       state.itemSelectSignature = "";
@@ -2590,10 +2597,10 @@ function renderTabData(tab) {
     return;
   }
   if (tab === "archive") {
-    if (!state.inventoryLoadedAll && !isCustomerUser()) {
+    if (!state.archiveLoaded && !isCustomerUser()) {
       renderArchive();
-      loadInventory().then(() => {
-        if (state.inventoryLoadedAll) {
+      loadInventory(false, true).then(() => {
+        if (state.archiveLoaded) {
           renderTabData("archive");
         }
       });
