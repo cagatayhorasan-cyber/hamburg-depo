@@ -3531,9 +3531,39 @@ async function matchAssistantTraining(message, language, user) {
 
   return {
     answer,
-    suggestions: bestEntry.suggestions || [],
+    suggestions: adaptTrainingSuggestions(bestEntry.suggestions || [], language, entries),
     sourceSummary: cleanOptional(bestEntry.topic) || "DRC MAN yonetici egitimi",
   };
+}
+
+function adaptTrainingSuggestions(suggestions, language, entries) {
+  if (!Array.isArray(suggestions) || !suggestions.length) {
+    return [];
+  }
+
+  if (language !== "de") {
+    return suggestions;
+  }
+
+  return suggestions.map((suggestion) => {
+    const normalizedSuggestion = normalizeAssistantText(suggestion);
+    if (!normalizedSuggestion) {
+      return suggestion;
+    }
+
+    const match = entries.find((entry) => {
+      const trQuestion = normalizeAssistantText(entry.trQuestion);
+      const deQuestion = normalizeAssistantText(entry.deQuestion);
+      const topic = normalizeAssistantText(entry.topic);
+      return trQuestion === normalizedSuggestion
+        || deQuestion === normalizedSuggestion
+        || topic === normalizedSuggestion
+        || (trQuestion && (trQuestion.includes(normalizedSuggestion) || normalizedSuggestion.includes(trQuestion)))
+        || (deQuestion && (deQuestion.includes(normalizedSuggestion) || normalizedSuggestion.includes(deQuestion)));
+    });
+
+    return cleanOptional(match?.deQuestion) || suggestion;
+  });
 }
 
 function isLocalDrcManAvailable() {
