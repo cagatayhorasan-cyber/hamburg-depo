@@ -63,6 +63,8 @@ const SECURITY_AUTH_BLOCK_MS = 30 * 60 * 1000;
 const SECURITY_ORIGIN_BLOCK_MS = 60 * 60 * 1000;
 const SECURITY_RATE_LIMIT_BLOCK_MS = 30 * 60 * 1000;
 const SECURITY_EVENT_DETAILS_LIMIT = 1600;
+const ADMIN_MESSAGE_SUBJECT_LIMIT = 160;
+const ADMIN_MESSAGE_BODY_LIMIT = 3000;
 
 let gmailTransporter = null;
 
@@ -581,6 +583,69 @@ function createApp() {
     } catch (_error) {
       return res.status(400).json({ error: "Kullanici olusturulamadi. Kullanici adi ve e-posta benzersiz olmali." });
     }
+  });
+
+  app.post("/api/admin-messages", requireAuth, async (req, res) => {
+    const category = normalizeAdminMessageCategory(req.body?.category);
+    const subject = cleanOptional(req.body?.subject).slice(0, ADMIN_MESSAGE_SUBJECT_LIMIT);
+    const message = cleanOptional(req.body?.message).slice(0, ADMIN_MESSAGE_BODY_LIMIT);
+
+    if (!subject || !message) {
+      return res.status(400).json({ error: "Baslik ve mesaj zorunlu." });
+    }
+
+    const senderName = cleanOptional(req.session.user?.name) || cleanOptional(req.session.user?.username) || "Kullanici";
+    const result = await execute(
+      `
+        INSERT INTO admin_messages (
+          sender_user_id, sender_name, sender_role, category, subject, message, status, created_at, updated_at
+        )
+        VALUES (?, ?, ?, ?, ?, ?, 'new', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        RETURNING id
+      `,
+      [
+        Number(req.session.user.id),
+        senderName,
+        normalizeRole(req.session.user.role),
+        category,
+        subject,
+        message,
+      ]
+    );
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "admin_message_created",
+      severity: "info",
+      details: { category, subject },
+    });
+
+    return res.json({ ok: true, id: Number(result.rows[0]?.id || result.lastInsertId || 0) });
+  });
+
+  app.post("/api/admin-messages/:id/status", requireAdmin, async (req, res) => {
+    const messageId = Number(req.params.id);
+    const status = normalizeAdminMessageStatus(req.body?.status);
+    if (!Number.isFinite(messageId) || messageId <= 0) {
+      return res.status(400).json({ error: "Gecersiz mesaj kaydi." });
+    }
+
+    const result = await execute(
+      "UPDATE admin_messages SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+      [status, messageId]
+    );
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Mesaj bulunamadi." });
+    }
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "admin_message_status_updated",
+      severity: "info",
+      details: { messageId, status },
+    });
+
+    return res.json({ ok: true });
   });
 
   app.post("/api/security/blocks/:id/release", requireAdmin, async (req, res) => {
@@ -2095,6 +2160,22 @@ function isFutureTimestamp(value) {
   return Number.isFinite(time) && time > Date.now();
 }
 
+function normalizeAdminMessageCategory(value) {
+  const normalized = String(value || "request").trim().toLowerCase();
+  if (["request", "complaint", "suggestion"].includes(normalized)) {
+    return normalized;
+  }
+  return "request";
+}
+
+function normalizeAdminMessageStatus(value) {
+  const normalized = String(value || "new").trim().toLowerCase();
+  if (["new", "read", "closed"].includes(normalized)) {
+    return normalized;
+  }
+  return "new";
+}
+
 function applySecurityHeaders(req, res, next) {
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.set("X-Content-Type-Options", "nosniff");
@@ -2994,6 +3075,53 @@ async function queryUsers() {
   return rows.map((row) => ({ ...row, id: Number(row.id), role: normalizeRole(row.role) }));
 }
 
+async function queryAdminMessages(user, limit = 80) {
+  const normalizedRole = normalizeRole(user?.role);
+  const safeLimit = Math.min(Math.max(Number(limit) || 80, 1), 200);
+  const params = [];
+  let whereClause = "";
+
+  if (normalizedRole !== "admin") {
+    whereClause = "WHERE admin_messages.sender_user_id = ?";
+    params.push(Number(user?.id || 0));
+  }
+
+  params.push(safeLimit);
+  const rows = await query(
+    `
+      SELECT
+        admin_messages.id,
+        admin_messages.sender_user_id AS "senderUserId",
+        admin_messages.sender_name AS "senderName",
+        admin_messages.sender_role AS "senderRole",
+        admin_messages.category,
+        admin_messages.subject,
+        admin_messages.message,
+        admin_messages.status,
+        admin_messages.created_at AS "createdAt",
+        admin_messages.updated_at AS "updatedAt",
+        users.username AS "senderUsername"
+      FROM admin_messages
+      LEFT JOIN users ON users.id = admin_messages.sender_user_id
+      ${whereClause}
+      ORDER BY
+        CASE admin_messages.status WHEN 'new' THEN 0 WHEN 'read' THEN 1 ELSE 2 END ASC,
+        admin_messages.created_at DESC,
+        admin_messages.id DESC
+      LIMIT ?
+    `,
+    params
+  );
+
+  return rows.map((row) => ({
+    ...numberizeRow(row),
+    senderRole: normalizeRole(row.senderRole),
+    category: normalizeAdminMessageCategory(row.category),
+    status: normalizeAdminMessageStatus(row.status),
+    senderUsername: row.senderUsername || "",
+  }));
+}
+
 async function querySecurityEvents(limit = 80) {
   const safeLimit = Math.min(Math.max(Number(limit) || 80, 1), 200);
   const rows = await query(
@@ -3214,9 +3342,10 @@ async function buildBootstrap(user) {
   const assistantStatus = getAssistantStatus();
 
   if (normalizedRole === "customer") {
-    const [items, orders] = await Promise.all([
+    const [items, orders, adminMessages] = await Promise.all([
       queryCustomerItems({ includePrices: true }),
       queryOrders(user),
+      queryAdminMessages(user),
     ]);
 
     const customerItems = items;
@@ -3239,6 +3368,7 @@ async function buildBootstrap(user) {
       users: [],
       quotes: [],
       orders,
+      adminMessages,
       securityEvents: [],
       securityBlocks: [],
       agentTraining: [],
@@ -3250,7 +3380,7 @@ async function buildBootstrap(user) {
   const includeCashbook = normalizedRole === "admin" || normalizedRole === "staff";
   const includeUsers = normalizedRole === "admin";
   const includeSecurity = normalizedRole === "admin";
-  const [summary, items, movements, expenses, cashbook, users, quotes, orders, securityEvents, securityBlocks] = await Promise.all([
+  const [summary, items, movements, expenses, cashbook, users, quotes, orders, adminMessages, securityEvents, securityBlocks] = await Promise.all([
     computeSummary(user),
     queryCustomerItems({ includePrices: true }),
     queryMovements(user),
@@ -3259,6 +3389,7 @@ async function buildBootstrap(user) {
     includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(user),
     queryOrders(user),
+    queryAdminMessages(user),
     includeSecurity ? querySecurityEvents() : Promise.resolve([]),
     includeSecurity ? querySecurityBlocks() : Promise.resolve([]),
   ]);
@@ -3273,6 +3404,7 @@ async function buildBootstrap(user) {
     users,
     quotes,
     orders,
+    adminMessages,
     securityEvents,
     securityBlocks,
     agentTraining: [],
@@ -3963,7 +4095,7 @@ async function generateQuoteNo(dateString) {
 
 function numberizeRow(row) {
   const output = { ...row };
-  ["id", "userId", "eventCount", "quantity", "unitPrice", "total", "discount", "subtotal", "vatRate", "vatAmount", "netTotal", "grossTotal", "amount"].forEach(
+  ["id", "userId", "senderUserId", "eventCount", "quantity", "unitPrice", "total", "discount", "subtotal", "vatRate", "vatAmount", "netTotal", "grossTotal", "amount"].forEach(
     (key) => {
       if (output[key] !== undefined && output[key] !== null && output[key] !== "") {
         output[key] = Number(output[key]);

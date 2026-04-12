@@ -199,6 +199,7 @@
             <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Admin tum Hamburg kasasini gorur; personel sadece kendi kasa kayitlarini gorur. DE: Admins sehen die gesamte Hamburg-Kasse; Personal sieht nur eigene Eintraege."><span class="tab-title">Kasa</span><small>Personel kendi kasa girisini takip eder</small></button>
             <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini sadece admin gorur ve durum gunceller. DE: Nur Admins sehen Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Admin musteri siparislerini yonetir</small></button>
             <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
+            <button class="tab-button" data-tab="messages" type="button" data-help="TR: Istek, sikayet veya notunuzu admin ekibine buradan iletirsiniz. DE: Hier senden Sie Wunsch, Beschwerde oder Notiz an das Admin-Team."><span class="tab-title">Admin'e Yaz</span><small>Istek, sikayet ve destek mesaji gonder</small></button>
             <button class="tab-button" data-tab="tools" type="button" data-help="TR: Soguk oda cizim ve hesaplama araclari tum kullanicilara aciktir. DE: Die Kuehlraum-Werkzeuge stehen allen angemeldeten Benutzern offen."><span class="tab-title">Proje Araclari</span><small>Soguk oda cizim ve hesaplama araclari</small></button>
             <details class="tab-more admin-only">
               <summary class="tab-admin-summary">Yonetim ve Ayarlar</summary>
@@ -580,6 +581,74 @@
             </div>
           </div>
 
+          <div class="tab-content" data-tab-content="messages">
+            <div class="admin-only">
+              <div class="two-column">
+                <section>
+                  <div class="section-head">
+                    <div>
+                      <h2>Admin Mesaj Kutusu</h2>
+                      <p id="adminMessagesSummary" class="muted">Yeni istekler, sikayetler ve destek mesajlari burada toplanir.</p>
+                    </div>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Tarih</th>
+                          <th>Gonderen</th>
+                          <th>Tur</th>
+                          <th>Baslik</th>
+                          <th>Mesaj</th>
+                          <th>Durum</th>
+                          <th>Islem</th>
+                        </tr>
+                      </thead>
+                      <tbody id="adminMessagesTableBody"></tbody>
+                    </table>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <div class="non-admin-only">
+              <div class="two-column">
+                <section>
+                  <div class="section-head">
+                    <div>
+                      <h2>Admin'e Mesaj Gonder</h2>
+                      <p class="muted">Sikayet, istek, destek talebi veya oneri mesajinizi admin ekibine yazin.</p>
+                    </div>
+                  </div>
+                  <form id="adminMessageForm" class="form-grid">
+                    <label>Tur
+                      <select name="category" required>
+                        <option value="request">Istek</option>
+                        <option value="complaint">Sikayet</option>
+                        <option value="suggestion">Oneri</option>
+                      </select>
+                    </label>
+                    <label>Baslik<input name="subject" type="text" maxlength="160" required></label>
+                    <label class="span-2">Mesaj<textarea name="message" rows="6" maxlength="3000" required></textarea></label>
+                    <p id="adminMessageError" class="error-text"></p>
+                    <p id="adminMessageSuccess" class="success-text"></p>
+                    <button id="adminMessageSubmitButton" class="primary-button" type="submit" data-help="TR: Mesaji admin ekibine yollar. DE: Sendet die Nachricht an das Admin-Team.">Mesaji Gonder</button>
+                  </form>
+                </section>
+
+                <section>
+                  <div class="section-head">
+                    <div>
+                      <h2>Mesaj Gecmisim</h2>
+                      <p id="adminMessageHistorySummary" class="muted">Burada size ait tum admin mesajlarinin durumunu gorebilirsiniz.</p>
+                    </div>
+                  </div>
+                  <div id="adminMessageList" class="activity-feed"></div>
+                </section>
+              </div>
+            </div>
+          </div>
+
           <div class="tab-content admin-only" data-tab-content="users">
             <div class="two-column">
               <section>
@@ -890,6 +959,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260412-security-audit-1"></script>
+  <script src="/app.js?v=20260412-admin-messages-1"></script>
 </body>
 </html>

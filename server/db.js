@@ -194,6 +194,20 @@ const sqliteSchema = `
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
+
+  CREATE TABLE IF NOT EXISTS admin_messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sender_user_id INTEGER NOT NULL,
+    sender_name TEXT NOT NULL,
+    sender_role TEXT NOT NULL DEFAULT '',
+    category TEXT NOT NULL DEFAULT 'request',
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'new',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(sender_user_id) REFERENCES users(id)
+  );
 `;
 
 const postgresSchema = `
@@ -364,6 +378,19 @@ const postgresSchema = `
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
+
+  CREATE TABLE IF NOT EXISTS admin_messages (
+    id BIGSERIAL PRIMARY KEY,
+    sender_user_id BIGINT NOT NULL REFERENCES users(id),
+    sender_name TEXT NOT NULL,
+    sender_role TEXT NOT NULL DEFAULT '',
+    category TEXT NOT NULL DEFAULT 'request',
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'new',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
 `;
 
 async function initDatabase() {
@@ -382,6 +409,7 @@ async function initDatabase() {
     await ensureMovementIndexesPostgres();
     await ensureAgentTrainingIndexesPostgres();
     await ensureSecurityIndexesPostgres();
+    await ensureAdminMessageIndexesPostgres();
     await seedUsers({
         get: async (sql, params) => firstRow(await query(sql, params)),
         run: async (sql, params) => query(sql, params),
@@ -406,6 +434,7 @@ async function initDatabase() {
   ensureQuoteColumnsSqlite();
   ensureAgentTrainingIndexesSqlite();
   ensureSecurityIndexesSqlite();
+  ensureAdminMessageIndexesSqlite();
   await seedUsers({
     get: async (sql, params) => sqlitePrepare(sql).get(...params),
     run: async (sql, params) => sqlitePrepare(sql).run(...params),
@@ -654,6 +683,11 @@ function ensureSecurityIndexesSqlite() {
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_blocks_released ON security_blocks(released_at)");
 }
 
+function ensureAdminMessageIndexesSqlite() {
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_admin_messages_sender_created ON admin_messages(sender_user_id, created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_admin_messages_status_created ON admin_messages(status, created_at DESC, id DESC)");
+}
+
 async function seedUsers(adapter) {
   await withOptionalTransaction(adapter, async (tx) => {
     for (const user of DEFAULT_USERS) {
@@ -784,6 +818,11 @@ async function ensureSecurityIndexesPostgres() {
   await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_type_created ON security_events (event_type, created_at DESC, id DESC)");
   await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_blocks_until ON security_blocks (block_until)");
   await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_blocks_released ON security_blocks (released_at)");
+}
+
+async function ensureAdminMessageIndexesPostgres() {
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_admin_messages_sender_created ON admin_messages (sender_user_id, created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_admin_messages_status_created ON admin_messages (status, created_at DESC, id DESC)");
 }
 
 async function ensureUserColumnsPostgres() {

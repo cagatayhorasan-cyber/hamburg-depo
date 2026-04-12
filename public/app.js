@@ -178,6 +178,8 @@ const UI_TEXT = {
     tabOrdersDesc: "Musteri siparislerini gor ve durum guncelle",
     tabCustomerOrders: "Siparis Ver",
     tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
+    tabMessages: "Admin'e Yaz",
+    tabMessagesDesc: "Istek, sikayet ve destek mesaji gonder",
     tabUsers: "Kullanicilar",
     tabUsersDesc: "Admin, personel ve musteri hesaplari",
     tabSecurity: "Guvenlik",
@@ -231,6 +233,8 @@ const UI_TEXT = {
       export: "Yurt Disi",
       inland: "Yurt Ici",
       release: "Bloku Kaldir",
+      markRead: "Okundu",
+      close: "Kapat",
     },
     messages: {
       welcome: (name, role, needsVerify) => `${name} olarak giris yaptiniz. Rol: ${role}${needsVerify ? " | E-posta henuz dogrulanmadi" : ""}`,
@@ -256,6 +260,11 @@ const UI_TEXT = {
       noCustomerOrderLines: "Henuz siparis kalemi yok.",
       customerOrderSummary: (lines, units, total) => `${lines} kalem | Toplam talep: ${units} adet/birim${total ? ` | Tahmini toplam: ${total}` : ""}`,
       noCustomerOrders: "Daha once gonderilmis siparisiniz yok.",
+      noAdminMessages: "Henuz admine gonderilmis mesaj yok.",
+      noOwnAdminMessages: "Henuz admin ekibine gonderilmis mesajiniz yok.",
+      adminMessagesSummary: (total, fresh) => `${total} mesaj | ${fresh} yeni`,
+      adminMessageHistorySummary: (total, fresh) => `${total} mesaj | ${fresh} acik takip`,
+      adminMessageSent: "Mesajiniz admin ekibine gonderildi.",
       noSecurityEvents: "Henuz kaydedilmis guvenlik olayi yok.",
       noSecurityBlocks: "Aktif veya gecmis IP blogu yok.",
       securitySummary: (events, blocks, activeBlocks) => `${events} olay | ${blocks} blok kaydi | ${activeBlocks} aktif blok`,
@@ -330,6 +339,8 @@ const UI_TEXT = {
     tabOrdersDesc: "Kundenbestellungen sehen und Status aendern",
     tabCustomerOrders: "Bestellen",
     tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
+    tabMessages: "An Admin",
+    tabMessagesDesc: "Wunsch, Beschwerde und Support senden",
     tabUsers: "Benutzer",
     tabUsersDesc: "Admin-, Personal- und Kundenkonten",
     tabSecurity: "Sicherheit",
@@ -383,6 +394,8 @@ const UI_TEXT = {
       export: "Export",
       inland: "Inland",
       release: "Freigeben",
+      markRead: "Gelesen",
+      close: "Schliessen",
     },
     messages: {
       welcome: (name, role, needsVerify) => `Angemeldet als ${name}. Rolle: ${role}${needsVerify ? " | E-Mail noch nicht bestaetigt" : ""}`,
@@ -408,6 +421,11 @@ const UI_TEXT = {
       noCustomerOrderLines: "Noch keine Bestellpositionen vorhanden.",
       customerOrderSummary: (lines, units, total) => `${lines} Positionen | Gesamtmenge: ${units}${total ? ` | Voraussichtlich: ${total}` : ""}`,
       noCustomerOrders: "Es gibt noch keinen gesendeten Bestellverlauf.",
+      noAdminMessages: "Es gibt noch keine an Admin gesendeten Nachrichten.",
+      noOwnAdminMessages: "Sie haben noch keine Nachricht an das Admin-Team gesendet.",
+      adminMessagesSummary: (total, fresh) => `${total} Nachrichten | ${fresh} neu`,
+      adminMessageHistorySummary: (total, fresh) => `${total} Nachrichten | ${fresh} offen`,
+      adminMessageSent: "Ihre Nachricht wurde an das Admin-Team gesendet.",
       noSecurityEvents: "Es gibt noch keine protokollierten Sicherheitsereignisse.",
       noSecurityBlocks: "Es gibt keine aktiven oder vergangenen IP-Sperren.",
       securitySummary: (events, blocks, activeBlocks) => `${events} Ereignisse | ${blocks} Sperreintraege | ${activeBlocks} aktiv`,
@@ -445,6 +463,7 @@ const state = {
   cashbook: [],
   users: [],
   orders: [],
+  adminMessages: [],
   securityEvents: [],
   securityBlocks: [],
   agentTraining: [],
@@ -504,6 +523,10 @@ const refs = {
   expenseForm: document.getElementById("expenseForm"),
   cashForm: document.getElementById("cashForm"),
   userForm: document.getElementById("userForm"),
+  adminMessageForm: document.getElementById("adminMessageForm"),
+  adminMessageError: document.getElementById("adminMessageError"),
+  adminMessageSuccess: document.getElementById("adminMessageSuccess"),
+  adminMessageSubmitButton: document.getElementById("adminMessageSubmitButton"),
   assistantTrainingForm: document.getElementById("assistantTrainingForm"),
   retrofitChecklistForm: document.getElementById("retrofitChecklistForm"),
   bulkPricingForm: document.getElementById("bulkPricingForm"),
@@ -518,6 +541,10 @@ const refs = {
   cashbookTableBody: document.getElementById("cashbookTableBody"),
   usersTableBody: document.getElementById("usersTableBody"),
   ordersTableBody: document.getElementById("ordersTableBody"),
+  adminMessagesTableBody: document.getElementById("adminMessagesTableBody"),
+  adminMessagesSummary: document.getElementById("adminMessagesSummary"),
+  adminMessageHistorySummary: document.getElementById("adminMessageHistorySummary"),
+  adminMessageList: document.getElementById("adminMessageList"),
   securityEventsTableBody: document.getElementById("securityEventsTableBody"),
   securityBlocksTableBody: document.getElementById("securityBlocksTableBody"),
   securitySummary: document.getElementById("securitySummary"),
@@ -751,6 +778,7 @@ function applyUiTranslations() {
     ["expenses", t("tabExpenses"), t("tabExpensesDesc")],
     ["cashbook", t("tabCashbook"), t("tabCashbookDesc")],
     ["orders", isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"), isCustomerUser() ? t("tabCustomerOrdersDesc") : t("tabOrdersDesc")],
+    ["messages", t("tabMessages"), t("tabMessagesDesc")],
     ["users", t("tabUsers"), t("tabUsersDesc")],
     ["security", t("tabSecurity"), t("tabSecurityDesc")],
     ["tools", t("tabTools"), t("tabToolsDesc")],
@@ -938,6 +966,26 @@ function applyUiTranslations() {
   setFieldPlaceholder(refs.customerOrderForm, "note", langText("Teslim tarihi, aciklama veya ozel not", "Lieferdatum, Beschreibung oder Sondernotiz"));
   setText(refs.submitCustomerOrderButton, langText("Siparis Gonder", "Bestellung senden"));
   setText("[data-tab-content='orders'] .customer-only .recent-quotes h2", langText("Siparis Gecmisi", "Bestellverlauf"));
+
+  setText("[data-tab-content='messages'] .admin-only h2", langText("Admin Mesaj Kutusu", "Admin-Nachrichten"));
+  setText(refs.adminMessagesSummary, langText("Yeni istekler, sikayetler ve destek mesajlari burada toplanir.", "Hier laufen neue Wuensche, Beschwerden und Support-Nachrichten zusammen."));
+  setText("[data-tab-content='messages'] .non-admin-only section:first-child h2", langText("Admin'e Mesaj Gonder", "Nachricht an Admin"));
+  setText("[data-tab-content='messages'] .non-admin-only section:first-child .muted", langText("Sikayet, istek, destek talebi veya oneri mesajinizi admin ekibine yazin.", "Schreiben Sie hier Wunsch, Beschwerde, Support-Anfrage oder Vorschlag an das Admin-Team."));
+  setText("[data-tab-content='messages'] .non-admin-only section:last-child h2", langText("Mesaj Gecmisim", "Mein Nachrichtenverlauf"));
+  setText("[data-tab-content='messages'] .non-admin-only section:last-child .muted", langText("Burada size ait tum admin mesajlarinin durumunu gorebilirsiniz.", "Hier sehen Sie den Status Ihrer Nachrichten an das Admin-Team."));
+  if (refs.adminMessageForm) {
+    setFormFieldLabel(refs.adminMessageForm, "category", langText("Tur", "Typ"));
+    setFormFieldLabel(refs.adminMessageForm, "subject", langText("Baslik", "Betreff"));
+    setFormFieldLabel(refs.adminMessageForm, "message", langText("Mesaj", "Nachricht"));
+    setFieldPlaceholder(refs.adminMessageForm, "subject", langText("Kisa konu basligi", "Kurzer Betreff"));
+    setFieldPlaceholder(refs.adminMessageForm, "message", langText("Admin ekibine iletmek istediginiz detaylari yazin", "Schreiben Sie hier Ihr Anliegen an das Admin-Team"));
+    setSelectOptionTexts(refs.adminMessageForm.elements.category, {
+      request: langText("Istek", "Wunsch"),
+      complaint: langText("Sikayet", "Beschwerde"),
+      suggestion: langText("Oneri", "Vorschlag"),
+    });
+  }
+  setText(refs.adminMessageSubmitButton, langText("Mesaji Gonder", "Nachricht senden"));
 
   const userSections = document.querySelectorAll("[data-tab-content='users'] .two-column > section");
   setText(userSections[0]?.querySelector("h2"), langText("Kullanici Ekle", "Benutzer anlegen"));
@@ -1140,6 +1188,15 @@ function applyUiTranslations() {
     langText("Durum", "Status"),
     langText("Islem", "Aktion"),
   ]);
+  setTableHeaders(refs.adminMessagesTableBody, [
+    langText("Tarih", "Datum"),
+    langText("Gonderen", "Absender"),
+    langText("Tur", "Typ"),
+    langText("Baslik", "Betreff"),
+    langText("Mesaj", "Nachricht"),
+    langText("Durum", "Status"),
+    langText("Islem", "Aktion"),
+  ]);
   setTableHeaders(refs.usersTableBody, [
     langText("Ad Soyad", "Name"),
     langText("Kullanici Adi", "Benutzername"),
@@ -1277,6 +1334,7 @@ function bindEvents() {
   refs.forgotPasswordForm?.addEventListener("submit", handleForgotPassword);
   refs.customerRegisterForm?.addEventListener("submit", handleCustomerRegister);
   refs.resetPasswordForm?.addEventListener("submit", handleResetPassword);
+  refs.adminMessageForm?.addEventListener("submit", handleAdminMessageSubmit);
   refs.itemForm.addEventListener("submit", handleItemSubmit);
   refs.movementForm.addEventListener("submit", (event) => handleSubmit(event, "/api/movements"));
   refs.stockIntakeForm?.addEventListener("submit", handleStockIntakeSubmit);
@@ -1652,6 +1710,15 @@ function showLogin() {
   if (refs.customerRegisterSuccess) {
     refs.customerRegisterSuccess.textContent = "";
   }
+  if (refs.adminMessageForm) {
+    refs.adminMessageForm.reset();
+  }
+  if (refs.adminMessageError) {
+    refs.adminMessageError.textContent = "";
+  }
+  if (refs.adminMessageSuccess) {
+    refs.adminMessageSuccess.textContent = "";
+  }
   if (refs.forgotPasswordForm) {
     refs.forgotPasswordForm.reset();
   }
@@ -1687,6 +1754,9 @@ function showApp() {
   });
   document.querySelectorAll(".customer-only").forEach((node) => {
     node.classList.toggle("hidden", !isCustomerUser());
+  });
+  document.querySelectorAll(".non-admin-only").forEach((node) => {
+    node.classList.toggle("hidden", isAdminUser());
   });
   syncRoleSensitiveFields();
   refs.customerVerificationBanner?.classList.toggle("hidden", !isCustomerUser() || Boolean(state.user?.emailVerified));
@@ -2001,6 +2071,112 @@ function renderUsers() {
   });
 }
 
+function adminMessageCategoryLabel(value) {
+  if (value === "complaint") {
+    return langText("Sikayet", "Beschwerde");
+  }
+  if (value === "suggestion") {
+    return langText("Oneri", "Vorschlag");
+  }
+  return langText("Istek", "Wunsch");
+}
+
+function adminMessageStatusLabel(value) {
+  if (value === "read") {
+    return langText("Okundu", "Gelesen");
+  }
+  if (value === "closed") {
+    return langText("Kapandi", "Geschlossen");
+  }
+  return langText("Yeni", "Neu");
+}
+
+function adminMessageStatusClass(value) {
+  if (value === "closed") {
+    return "status-ok";
+  }
+  if (value === "read") {
+    return "status-progress";
+  }
+  return "status-pending";
+}
+
+function renderAdminMessages() {
+  const messages = Array.isArray(state.adminMessages) ? state.adminMessages : [];
+  const newCount = messages.filter((entry) => entry.status === "new").length;
+  const openCount = messages.filter((entry) => entry.status !== "closed").length;
+
+  if (isAdminUser()) {
+    if (refs.adminMessagesSummary) {
+      refs.adminMessagesSummary.textContent = t("messages.adminMessagesSummary", messages.length, newCount);
+    }
+    if (!refs.adminMessagesTableBody) {
+      return;
+    }
+
+    refs.adminMessagesTableBody.innerHTML = "";
+    if (messages.length === 0) {
+      refs.adminMessagesTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${t("messages.noAdminMessages")}</div></td></tr>`;
+      return;
+    }
+
+    messages.forEach((entry) => {
+      const tr = document.createElement("tr");
+      const sender = entry.senderUsername
+        ? `${entry.senderName} (${entry.senderUsername})`
+        : entry.senderName || "-";
+      const actions = entry.status === "closed"
+        ? `<span class="muted">${langText("Kapali", "Geschlossen")}</span>`
+        : `
+            <div class="action-row">
+              ${entry.status === "new" ? `<button class="mini-button secondary-button" type="button" data-admin-message-status="${entry.id}" data-status="read">${t("common.markRead")}</button>` : ""}
+              <button class="mini-button danger-button" type="button" data-admin-message-status="${entry.id}" data-status="closed">${t("common.close")}</button>
+            </div>
+          `;
+      tr.innerHTML = `
+        <td>${escapeHtml(formatDateTime(entry.createdAt))}</td>
+        <td>${escapeHtml(sender)}</td>
+        <td>${escapeHtml(adminMessageCategoryLabel(entry.category))}</td>
+        <td>${escapeHtml(entry.subject || "-")}</td>
+        <td>${escapeHtml(entry.message || "-")}</td>
+        <td><span class="status-pill ${adminMessageStatusClass(entry.status)}">${escapeHtml(adminMessageStatusLabel(entry.status))}</span></td>
+        <td class="table-action-cell">${actions}</td>
+      `;
+      refs.adminMessagesTableBody.append(tr);
+    });
+
+    refs.adminMessagesTableBody.querySelectorAll("[data-admin-message-status]").forEach((button) => {
+      button.addEventListener("click", () => updateAdminMessageStatus(Number(button.dataset.adminMessageStatus), button.dataset.status));
+    });
+    return;
+  }
+
+  if (refs.adminMessageHistorySummary) {
+    refs.adminMessageHistorySummary.textContent = t("messages.adminMessageHistorySummary", messages.length, openCount);
+  }
+  if (!refs.adminMessageList) {
+    return;
+  }
+
+  refs.adminMessageList.innerHTML = "";
+  if (messages.length === 0) {
+    refs.adminMessageList.innerHTML = `<div class="empty-state">${t("messages.noOwnAdminMessages")}</div>`;
+    return;
+  }
+
+  messages.forEach((entry) => {
+    const card = document.createElement("div");
+    card.className = "feed-item";
+    card.innerHTML = `
+      <strong>${escapeHtml(entry.subject || "-")}</strong>
+      <span>${escapeHtml(formatDateTime(entry.createdAt))} | ${escapeHtml(adminMessageCategoryLabel(entry.category))}</span>
+      <span><span class="status-pill ${adminMessageStatusClass(entry.status)}">${escapeHtml(adminMessageStatusLabel(entry.status))}</span></span>
+      <span>${escapeHtml(entry.message || "-")}</span>
+    `;
+    refs.adminMessageList.append(card);
+  });
+}
+
 function securitySeverityLabel(value) {
   if (value === "critical") {
     return langText("Kritik", "Kritisch");
@@ -2041,6 +2217,8 @@ function securityEventLabel(eventType) {
     unbilled_sale_completed: langText("Faturasiz satis tamamlandi", "Verkauf ohne Rechnung abgeschlossen"),
     order_created: langText("Siparis olusturuldu", "Bestellung erstellt"),
     order_status_updated: langText("Siparis durumu guncellendi", "Bestellstatus aktualisiert"),
+    admin_message_created: langText("Admin mesaji gonderildi", "Admin-Nachricht gesendet"),
+    admin_message_status_updated: langText("Admin mesaji durumu guncellendi", "Admin-Nachricht aktualisiert"),
     user_created: langText("Kullanici olusturuldu", "Benutzer erstellt"),
     training_created: langText("DRC MAN egitimi eklendi", "DRC-MAN-Training erstellt"),
     training_updated: langText("DRC MAN egitimi guncellendi", "DRC-MAN-Training aktualisiert"),
@@ -2975,6 +3153,10 @@ function renderTabData(tab) {
     renderOrders();
     return;
   }
+  if (tab === "messages") {
+    renderAdminMessages();
+    return;
+  }
   if (tab === "users") {
     renderUsers();
     return;
@@ -3449,6 +3631,50 @@ async function releaseSecurityBlock(blockId) {
   }
   await refreshData();
   activateTab("security");
+}
+
+async function handleAdminMessageSubmit(event) {
+  event.preventDefault();
+  if (refs.adminMessageError) {
+    refs.adminMessageError.textContent = "";
+  }
+  if (refs.adminMessageSuccess) {
+    refs.adminMessageSuccess.textContent = "";
+  }
+
+  const payload = formToObject(refs.adminMessageForm);
+  const result = await request("/api/admin-messages", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  if (result.error) {
+    if (refs.adminMessageError) {
+      refs.adminMessageError.textContent = result.error;
+    }
+    return;
+  }
+
+  if (refs.adminMessageForm) {
+    refs.adminMessageForm.reset();
+  }
+  if (refs.adminMessageSuccess) {
+    refs.adminMessageSuccess.textContent = t("messages.adminMessageSent");
+  }
+  await refreshData();
+  activateTab("messages");
+}
+
+async function updateAdminMessageStatus(messageId, status) {
+  const result = await request(`/api/admin-messages/${messageId}/status`, {
+    method: "POST",
+    body: JSON.stringify({ status }),
+  });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+  activateTab("messages");
 }
 
 async function reverseMovement(movementId) {
