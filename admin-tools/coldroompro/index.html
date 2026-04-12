@@ -5,6 +5,87 @@
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>coldroompro</title>
+    <script>
+      (function () {
+        function readCookie(name) {
+          const match = document.cookie.match(new RegExp("(^|; )" + name + "=([^;]+)"));
+          return match ? decodeURIComponent(match[2]) : "";
+        }
+
+        if (!window.Storage || window.__hamburgToolStoragePatched) {
+          return;
+        }
+
+        const scope = readCookie("hamburg_tool_scope");
+        if (!scope) {
+          return;
+        }
+
+        const prefix = "hamburg_tool:" + scope + ":";
+        const proto = Storage.prototype;
+        const lengthDescriptor = Object.getOwnPropertyDescriptor(proto, "length");
+        const original = {
+          getItem: proto.getItem,
+          setItem: proto.setItem,
+          removeItem: proto.removeItem,
+          clear: proto.clear,
+          key: proto.key,
+          lengthGet: lengthDescriptor && lengthDescriptor.get,
+        };
+
+        function isScopedStorage(storage) {
+          return storage === window.localStorage;
+        }
+
+        function visibleKeys(storage) {
+          const keys = [];
+          const total = original.lengthGet ? original.lengthGet.call(storage) : 0;
+          for (let index = 0; index < total; index += 1) {
+            const key = original.key.call(storage, index);
+            if (key && key.indexOf(prefix) === 0) {
+              keys.push(key.slice(prefix.length));
+            }
+          }
+          return keys;
+        }
+
+        proto.getItem = function (key) {
+          return isScopedStorage(this) ? original.getItem.call(this, prefix + String(key)) : original.getItem.call(this, key);
+        };
+        proto.setItem = function (key, value) {
+          return isScopedStorage(this) ? original.setItem.call(this, prefix + String(key), value) : original.setItem.call(this, key, value);
+        };
+        proto.removeItem = function (key) {
+          return isScopedStorage(this) ? original.removeItem.call(this, prefix + String(key)) : original.removeItem.call(this, key);
+        };
+        proto.clear = function () {
+          if (!isScopedStorage(this)) {
+            return original.clear.call(this);
+          }
+          visibleKeys(this).forEach((key) => {
+            original.removeItem.call(this, prefix + key);
+          });
+        };
+        proto.key = function (index) {
+          if (!isScopedStorage(this)) {
+            return original.key.call(this, index);
+          }
+          return visibleKeys(this)[Number(index)] || null;
+        };
+        if (lengthDescriptor && lengthDescriptor.configurable) {
+          Object.defineProperty(proto, "length", {
+            configurable: true,
+            enumerable: false,
+            get() {
+              return isScopedStorage(this) ? visibleKeys(this).length : original.lengthGet.call(this);
+            },
+          });
+        }
+
+        window.__hamburgToolStoragePatched = true;
+        window.__hamburgToolStorageScope = scope;
+      })();
+    </script>
     <script type="module" crossorigin src="./assets/index-Ngg8ybLi.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-C8d_ZT3Y.css">
   </head>

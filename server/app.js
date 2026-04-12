@@ -114,28 +114,17 @@ function createApp() {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
     const language = req.body?.language === "de" ? "de" : "tr";
     const user = await findUserByLoginIdentifier(identifier);
-    if (user && user.phone) {
+    if (user?.email) {
       const token = await issueAuthToken(Number(user.id), "reset_password", 2);
       const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
-      const whatsappUrl = buildWhatsAppUrl(
-        user.phone,
-        createPasswordResetWhatsappText({ name: user.name || "", resetUrl, language })
-      );
-
-      return res.json({
-        ok: true,
-        whatsappUrl,
-        message: language === "de"
-          ? "Der WhatsApp-Link zum Zuruecksetzen des Passworts ist bereit."
-          : "Sifre yenileme baglantisi WhatsApp uzerinden acilmaya hazir.",
-      });
+      await sendPasswordResetEmail(user, resetUrl);
     }
 
     return res.json({
       ok: true,
       message: language === "de"
-        ? "Fuer dieses Konto wurde keine WhatsApp-Nummer gefunden."
-        : "Bu hesap icin kayitli WhatsApp numarasi bulunamadi.",
+        ? "Wenn ein passendes Konto gefunden wurde, wurden Anweisungen zum Zuruecksetzen gesendet."
+        : "Eslesen bir hesap bulunduysa sifre yenileme talimati gonderildi.",
     });
   });
 
@@ -1411,9 +1400,9 @@ function createApp() {
     doc.end();
   });
 
-  app.get("/admin-tools/:tool", requireAdmin, serveAdminTool);
-  app.get("/admin-tools/:tool/", requireAdmin, serveAdminTool);
-  app.get("/admin-tools/:tool/*", requireAdmin, serveAdminTool);
+  app.get("/admin-tools/:tool", requireAuth, serveAdminTool);
+  app.get("/admin-tools/:tool/", requireAuth, serveAdminTool);
+  app.get("/admin-tools/:tool/*", requireAuth, serveAdminTool);
 
   app.get("*", (_req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
@@ -2423,7 +2412,7 @@ async function buildBootstrap(user) {
         expenseTotal: 0,
         cashBalance: 0,
       },
-      items: customerItems,
+      items: sanitizeItemsForRole(customerItems, user),
       archivedItems: [],
       movements: [],
       expenses: [],

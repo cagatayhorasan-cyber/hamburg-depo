@@ -36,7 +36,7 @@ const UI_TEXT = {
     password: "Sifre",
     loginButton: "Giris Yap",
     forgotTitle: "Sifremi Unuttum",
-    forgotDesc: "Kullanici adi veya e-postayi girin. Sistemde kayitli WhatsApp numarasi varsa sifre yenileme linki icin WhatsApp penceresi acilir.",
+    forgotDesc: "Kullanici adi veya e-postayi girin. Eslesen hesap varsa sifre yenileme talimati guvenli kanaldan gonderilir.",
     forgotButton: "Yenileme Baglantisi Gonder",
     noCustomerAccount: "Musteri hesabi yok mu?",
     registerTitle: "Musteri Kaydi",
@@ -182,7 +182,7 @@ const UI_TEXT = {
     password: "Passwort",
     loginButton: "Anmelden",
     forgotTitle: "Passwort vergessen",
-    forgotDesc: "Benutzername oder E-Mail eingeben. Wenn eine WhatsApp-Nummer hinterlegt ist, wird ein WhatsApp-Link zum Zuruecksetzen geoeffnet.",
+    forgotDesc: "Benutzername oder E-Mail eingeben. Wenn ein passendes Konto vorhanden ist, werden Reset-Anweisungen sicher versendet.",
     forgotButton: "Reset-Link senden",
     noCustomerAccount: "Noch kein Kundenkonto?",
     registerTitle: "Kundenregistrierung",
@@ -358,6 +358,7 @@ const state = {
 
 let filterDebounceTimer = null;
 let quoteFilterDebounceTimer = null;
+const TOOL_SCOPE_COOKIE = "hamburg_tool_scope";
 
 const refs = {
   loginScreen: document.getElementById("loginScreen"),
@@ -832,8 +833,8 @@ function applyUiTranslations() {
   setText(userSections[1]?.querySelector("h2"), langText("Kullanicilar", "Benutzer"));
 
   const toolsPanel = document.querySelector("[data-tab-content='tools'] .tools-panel");
-  setText(toolsPanel?.querySelector(".section-head h2"), langText("Admin Proje Araclari", "Admin-Projektwerkzeuge"));
-  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan yerel araclar burada toplandi. Bu bolum sadece adminlere aciktir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist nur fuer Admins."));
+  setText(toolsPanel?.querySelector(".section-head h2"), langText("Proje Araclari", "Projektwerkzeuge"));
+  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan araclar burada toplandi. Bu bolume tum kullanicilar erisebilir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist fuer alle angemeldeten Benutzer offen."));
   const toolCards = toolsPanel?.querySelectorAll(".tool-card") || [];
   setText(toolCards[0]?.querySelector("h3"), langText("Soguk Oda Proje Hesaplayici", "Kuehlraum-Projektrechner"));
   setText(toolCards[0]?.querySelector(".muted"), langText("Kapasite, malzeme, teklif ve proje akisi icin kullandiginiz ana ColdRoomPro uygulamasi.", "Die ColdRoomPro-Anwendung fuer Kapazitaet, Material, Angebot und Projektablauf."));
@@ -1268,9 +1269,6 @@ async function handleForgotPassword(event) {
   }
 
   refs.forgotPasswordSuccess.textContent = result.message || t("messages.operationDone");
-  if (result.whatsappUrl) {
-    window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
-  }
   event.currentTarget.reset();
 }
 
@@ -1525,6 +1523,7 @@ function showLogin() {
     refs.resetPasswordSuccess.textContent = "";
   }
   lockLoginInputs();
+  clearToolScopeCookie();
   closeAssistantPanel();
   applyUiTranslations();
 }
@@ -1533,6 +1532,7 @@ function showApp() {
   refs.loginScreen.classList.add("hidden");
   refs.appScreen.classList.remove("hidden");
   refs.assistantWidget.classList.remove("hidden");
+  setToolScopeCookie();
   refs.welcomeText.textContent = t("messages.welcome", state.user.name, roleLabel(), isCustomerUser() && !state.user?.emailVerified);
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", !isAdminUser());
@@ -1554,6 +1554,17 @@ function showApp() {
   }
   applyUiTranslations();
   renderAssistantStatus();
+}
+
+function setToolScopeCookie() {
+  if (!state.user?.id) {
+    return;
+  }
+  document.cookie = `${TOOL_SCOPE_COOKIE}=${encodeURIComponent(String(state.user.id))}; Path=/; SameSite=Lax`;
+}
+
+function clearToolScopeCookie() {
+  document.cookie = `${TOOL_SCOPE_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
 }
 
 function lockLoginInputs() {

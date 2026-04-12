@@ -199,12 +199,12 @@
             <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Admin tum Hamburg kasasini gorur; personel sadece kendi kasa kayitlarini gorur. DE: Admins sehen die gesamte Hamburg-Kasse; Personal sieht nur eigene Eintraege."><span class="tab-title">Kasa</span><small>Personel kendi kasa girisini takip eder</small></button>
             <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini sadece admin gorur ve durum gunceller. DE: Nur Admins sehen Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Admin musteri siparislerini yonetir</small></button>
             <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
+            <button class="tab-button" data-tab="tools" type="button" data-help="TR: Soguk oda cizim ve hesaplama araclari tum kullanicilara aciktir. DE: Die Kuehlraum-Werkzeuge stehen allen angemeldeten Benutzern offen."><span class="tab-title">Proje Araclari</span><small>Soguk oda cizim ve hesaplama araclari</small></button>
             <details class="tab-more admin-only">
               <summary class="tab-admin-summary">Yonetim ve Ayarlar</summary>
               <button class="tab-button" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
               <button class="tab-button" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
               <button class="tab-button" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
-              <button class="tab-button" data-tab="tools" type="button" data-help="TR: Soguk oda cizim, hesaplama ve proje araclarini yalnizca admin acar. DE: Nur Admins oeffnen Planungs-, Zeichen- und Kalkulationswerkzeuge."><span class="tab-title">Proje Araclari</span><small>Soguk oda cizim ve hesaplama araclari</small></button>
               <button class="tab-button" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
             </details>
           </div>
@@ -613,12 +613,12 @@
             </div>
           </div>
 
-          <div class="tab-content admin-only" data-tab-content="tools">
+          <div class="tab-content" data-tab-content="tools">
             <section class="tools-panel">
               <div class="section-head">
                 <div>
-                  <h2>Admin Proje Araclari</h2>
-                  <p class="muted">Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan yerel araclar burada toplandi. Bu bolum sadece adminlere aciktir.</p>
+                  <h2>Proje Araclari</h2>
+                  <p class="muted">Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan araclar burada toplandi. Bu bolume tum kullanicilar erisebilir.</p>
                 </div>
               </div>
               <div class="tool-grid">
@@ -838,6 +838,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260412-customer-prices-1"></script>
+  <script src="/app.js?v=20260412-security-tools-1"></script>
 </body>
 </html>
