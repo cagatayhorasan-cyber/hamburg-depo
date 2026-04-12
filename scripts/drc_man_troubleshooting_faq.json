@@ -1,0 +1,2106 @@
+[
+  {
+    "id": "problem_room_not_cooling",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "oda yeterince sogutmuyor",
+    "de_subject": "der raum nicht ausreichend kuehlt",
+    "keywords": [
+      "sogutmuyor",
+      "oda sicak",
+      "room not cooling",
+      "kuehlt nicht"
+    ],
+    "tr_questions": [
+      "oda yeterince sogutmuyor neden olur",
+      "oda yeterince sogutmuyor olursa neye bakilir",
+      "oda yeterince sogutmuyor varsa sorun nerede olabilir",
+      "oda yeterince sogutmuyor durumunda usta once ne kontrol eder",
+      "oda yeterince sogutmuyor arizasinda nasil teshis yapilir",
+      "oda yeterince sogutmuyor sorunu nasil cozulur",
+      "oda yeterince sogutmuyor neden tekrar eder",
+      "oda yeterince sogutmuyor oldugunda hangi parcaya bakilir",
+      "oda yeterince sogutmuyor oldugunda montaj hatasi olabilir mi",
+      "oda yeterince sogutmuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der raum nicht ausreichend kuehlt auf",
+      "worauf schaut man wenn der raum nicht ausreichend kuehlt auftritt",
+      "wo kann der fehler liegen wenn der raum nicht ausreichend kuehlt da ist",
+      "was prueft ein meister zuerst wenn der raum nicht ausreichend kuehlt auftritt",
+      "wie diagnostiziert man der raum nicht ausreichend kuehlt",
+      "wie loest man der raum nicht ausreichend kuehlt",
+      "warum kommt der raum nicht ausreichend kuehlt immer wieder",
+      "welches bauteil prueft man bei der raum nicht ausreichend kuehlt",
+      "kann montagefehler der raum nicht ausreichend kuehlt verursachen",
+      "wie ist die service reihenfolge bei der raum nicht ausreichend kuehlt"
+    ],
+    "tr_answer": "oda yeterince sogutmuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis kapasite secimi, kirli kondenser, buzlu evaporator, gaz eksigi veya hava sirkulasyonunun bozulmasidir. Ilk kontrolde kapi kapanisi, oda yuk durumu, basma-emis degerleri, fan donusu ve serpantinlerin durumu sirayla incelenir. Bunun sebebi sogutma problemi cogu zaman tek parcadan degil, hava tarafi ve gaz devresinin birlikte bozulmasindan cikar. En sik hata ise hemen gaz basmak veya kontrolsuz parca degistirmek sorunu buyutebilir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der raum nicht ausreichend kuehlt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falsche Leistungswahl, verschmutzter Verfluessiger, vereister Verdampfer, Kaeltemittelmangel oder gestoerte Luftzirkulation. Bei der Erstpruefung werden Tuerzustand, Lastsituation, Hoch- und Niederdruck, Ventilatorlauf und Zustand der Register der Reihe nach geprueft. Der technische Hintergrund ist Kuehlprobleme meist nicht von einem einzigen Bauteil kommen, sondern aus einer Kombination von Luftseite und Kaeltekreis entstehen. Ein sehr haeufiger Fehler besteht darin, dass sofort Kaeltemittel nachzufuellen oder blind Teile zu tauschen das Problem vergroessern kann. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "evaporator neden buz tutar",
+      "kapasite secimi nasil yapilir"
+    ]
+  },
+  {
+    "id": "problem_room_cools_slow",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "oda gec soguyor",
+    "de_subject": "der raum spaet herunterkuehlt",
+    "keywords": [
+      "gec soguyor",
+      "slow cooling",
+      "langsam kuehlen"
+    ],
+    "tr_questions": [
+      "oda gec soguyor neden olur",
+      "oda gec soguyor olursa neye bakilir",
+      "oda gec soguyor varsa sorun nerede olabilir",
+      "oda gec soguyor durumunda usta once ne kontrol eder",
+      "oda gec soguyor arizasinda nasil teshis yapilir",
+      "oda gec soguyor sorunu nasil cozulur",
+      "oda gec soguyor neden tekrar eder",
+      "oda gec soguyor oldugunda hangi parcaya bakilir",
+      "oda gec soguyor oldugunda montaj hatasi olabilir mi",
+      "oda gec soguyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der raum spaet herunterkuehlt auf",
+      "worauf schaut man wenn der raum spaet herunterkuehlt auftritt",
+      "wo kann der fehler liegen wenn der raum spaet herunterkuehlt da ist",
+      "was prueft ein meister zuerst wenn der raum spaet herunterkuehlt auftritt",
+      "wie diagnostiziert man der raum spaet herunterkuehlt",
+      "wie loest man der raum spaet herunterkuehlt",
+      "warum kommt der raum spaet herunterkuehlt immer wieder",
+      "welches bauteil prueft man bei der raum spaet herunterkuehlt",
+      "kann montagefehler der raum spaet herunterkuehlt verursachen",
+      "wie ist die service reihenfolge bei der raum spaet herunterkuehlt"
+    ],
+    "tr_answer": "oda gec soguyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler urun yukunun fazla olmasi, kapinin sik acilmasi, hava devrinin yetersiz kalmasi veya cihazin sinirda secilmesidir. Ilk kontrolde urun giris sicakligi, gunluk mal yukleme miktari, fan hava atisi ve oda icindeki istif duzeni kontrol edilir. Bunun sebebi oda sicakligi sadece cihaz gucuyle degil, iceriye tasinan isiyle de belirlenir. En sik hata ise kapi trafigi ve yukleme aliskanligini hesaba katmadan arizayi cihaza baglamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der raum spaet herunterkuehlt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind zu hohe Warenlast, haeufige Tueroeffnungen, zu schwache Luftumwaelzung oder eine grenzwertige Geraeteauswahl. Bei der Erstpruefung werden Eintrittstemperatur der Ware, taeglicher Wareneintrag, Luftwurf der Ventilatoren und die Stapelung im Raum geprueft. Der technische Hintergrund ist die Raumabkuehlung nicht nur von der Geraeteleistung, sondern auch von der eingetragenen Waerme bestimmt wird. Ein sehr haeufiger Fehler besteht darin, dass man Tueroeffnungen und Beladegewohnheiten ignoriert und den Fehler nur beim Geraet sucht. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "soguk oda yuk hesabi nasil yapilir",
+      "hava sirkulasyonu neden onemli",
+      "muhafaza odasi ile sok oda farki nedir"
+    ]
+  },
+  {
+    "id": "problem_temperature_unstable",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "oda sicakligi sabit kalmiyor",
+    "de_subject": "die raumtemperatur instabil ist",
+    "keywords": [
+      "sicaklik dalgalaniyor",
+      "instabil",
+      "temperature unstable"
+    ],
+    "tr_questions": [
+      "oda sicakligi sabit kalmiyor neden olur",
+      "oda sicakligi sabit kalmiyor olursa neye bakilir",
+      "oda sicakligi sabit kalmiyor varsa sorun nerede olabilir",
+      "oda sicakligi sabit kalmiyor durumunda usta once ne kontrol eder",
+      "oda sicakligi sabit kalmiyor arizasinda nasil teshis yapilir",
+      "oda sicakligi sabit kalmiyor sorunu nasil cozulur",
+      "oda sicakligi sabit kalmiyor neden tekrar eder",
+      "oda sicakligi sabit kalmiyor oldugunda hangi parcaya bakilir",
+      "oda sicakligi sabit kalmiyor oldugunda montaj hatasi olabilir mi",
+      "oda sicakligi sabit kalmiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die raumtemperatur instabil ist auf",
+      "worauf schaut man wenn die raumtemperatur instabil ist auftritt",
+      "wo kann der fehler liegen wenn die raumtemperatur instabil ist da ist",
+      "was prueft ein meister zuerst wenn die raumtemperatur instabil ist auftritt",
+      "wie diagnostiziert man die raumtemperatur instabil ist",
+      "wie loest man die raumtemperatur instabil ist",
+      "warum kommt die raumtemperatur instabil ist immer wieder",
+      "welches bauteil prueft man bei die raumtemperatur instabil ist",
+      "kann montagefehler die raumtemperatur instabil ist verursachen",
+      "wie ist die service reihenfolge bei die raumtemperatur instabil ist"
+    ],
+    "tr_answer": "oda sicakligi sabit kalmiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler sensor yerinin yanlis olmasi, on-off farkinin kotu ayarlanmasi, kapi trafigi veya kisa devre calismanin olusmasidir. Ilk kontrolde sensor konumu, set ve diferans ayari, fanin urune vurusu ve kompresorun start-stop sayisi kontrol edilir. Bunun sebebi kontrol elemani yanlis bilgi gorurse sistem gercek oda ihtiyacina gore degil, yanlis referansa gore calisir. En sik hata ise hemen termostati degistirip sensor yerini ve kullanim senaryosunu atlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die raumtemperatur instabil ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falsch gesetzter Fuehler, schlecht eingestellte Regelhysterese, Tuerspiel oder Kurzzyklusverhalten. Bei der Erstpruefung werden Fuehlerposition, Sollwert und Differenz, Luftanblasung auf die Ware und Anzahl der Verdichterstarts geprueft. Der technische Hintergrund ist die Regelung bei falscher Messinformation nicht nach dem realen Raum, sondern nach einem falschen Bezugspunkt arbeitet. Ein sehr haeufiger Fehler besteht darin, dass man sofort den Regler tauscht und Fuehlerposition sowie Nutzungsszenario uebersieht. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sensor nereye konur",
+      "kisa devre calisma neden olur",
+      "oda neden dengesiz sogur"
+    ]
+  },
+  {
+    "id": "problem_compressor_not_starting",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kompresor calismiyor",
+    "de_subject": "der verdichter nicht startet",
+    "keywords": [
+      "kompresor calismiyor",
+      "compressor not starting",
+      "verdichter startet nicht"
+    ],
+    "tr_questions": [
+      "kompresor calismiyor neden olur",
+      "kompresor calismiyor olursa neye bakilir",
+      "kompresor calismiyor varsa sorun nerede olabilir",
+      "kompresor calismiyor durumunda usta once ne kontrol eder",
+      "kompresor calismiyor arizasinda nasil teshis yapilir",
+      "kompresor calismiyor sorunu nasil cozulur",
+      "kompresor calismiyor neden tekrar eder",
+      "kompresor calismiyor oldugunda hangi parcaya bakilir",
+      "kompresor calismiyor oldugunda montaj hatasi olabilir mi",
+      "kompresor calismiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verdichter nicht startet auf",
+      "worauf schaut man wenn der verdichter nicht startet auftritt",
+      "wo kann der fehler liegen wenn der verdichter nicht startet da ist",
+      "was prueft ein meister zuerst wenn der verdichter nicht startet auftritt",
+      "wie diagnostiziert man der verdichter nicht startet",
+      "wie loest man der verdichter nicht startet",
+      "warum kommt der verdichter nicht startet immer wieder",
+      "welches bauteil prueft man bei der verdichter nicht startet",
+      "kann montagefehler der verdichter nicht startet verursachen",
+      "wie ist die service reihenfolge bei der verdichter nicht startet"
+    ],
+    "tr_answer": "kompresor calismiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler enerji eksigi, kontaktor-termik problemi, basinç emniyeti, faz koruma veya kontrol emrinin gelmemesidir. Ilk kontrolde faz varligi, kontaktor cekmesi, termik atik mi, basinç switchleri acik mi ve kontrol karti cikisi var mi diye bakilir. Bunun sebebi kompresorun calismamasi mekanik ariza kadar elektriksel koruma kaynakli da olabilir. En sik hata ise kompresoru arizali sanip once motoru suclamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verdichter nicht startet auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Spannungsproblem, Schuetz- oder Motorschutzfehler, Drucksicherheit, Phasenueberwachung oder fehlende Regelanforderung. Bei der Erstpruefung werden Phasenversorgung, Schuetzfunktion, Motorschutzstatus, Druckschalter und Reglerausgang geprueft. Der technische Hintergrund ist ein stillstehender Verdichter genauso oft von elektrischer Schutzlogik wie von mechanischen Ursachen kommen kann. Ein sehr haeufiger Fehler besteht darin, dass man den Verdichter vorschnell als defekt einstuft und zuerst den Motor verdaechtigt. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "termik neden atar",
+      "basinc switch neden acilir"
+    ]
+  },
+  {
+    "id": "problem_compressor_trips_thermal",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kompresor termige dusuyor",
+    "de_subject": "der verdichter auf motorschutz geht",
+    "keywords": [
+      "termik atiyor",
+      "overload",
+      "motorschutz"
+    ],
+    "tr_questions": [
+      "kompresor termige dusuyor neden olur",
+      "kompresor termige dusuyor olursa neye bakilir",
+      "kompresor termige dusuyor varsa sorun nerede olabilir",
+      "kompresor termige dusuyor durumunda usta once ne kontrol eder",
+      "kompresor termige dusuyor arizasinda nasil teshis yapilir",
+      "kompresor termige dusuyor sorunu nasil cozulur",
+      "kompresor termige dusuyor neden tekrar eder",
+      "kompresor termige dusuyor oldugunda hangi parcaya bakilir",
+      "kompresor termige dusuyor oldugunda montaj hatasi olabilir mi",
+      "kompresor termige dusuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verdichter auf motorschutz geht auf",
+      "worauf schaut man wenn der verdichter auf motorschutz geht auftritt",
+      "wo kann der fehler liegen wenn der verdichter auf motorschutz geht da ist",
+      "was prueft ein meister zuerst wenn der verdichter auf motorschutz geht auftritt",
+      "wie diagnostiziert man der verdichter auf motorschutz geht",
+      "wie loest man der verdichter auf motorschutz geht",
+      "warum kommt der verdichter auf motorschutz geht immer wieder",
+      "welches bauteil prueft man bei der verdichter auf motorschutz geht",
+      "kann montagefehler der verdichter auf motorschutz geht verursachen",
+      "wie ist die service reihenfolge bei der verdichter auf motorschutz geht"
+    ],
+    "tr_answer": "kompresor termige dusuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yuksek akim, zayif sogutma, yuksek basinc, dusuk voltaj veya mekanik zorlanmadir. Ilk kontrolde akim olculur, fanlar ve kondenser temizligi bakilir, basinc degerleri okunur ve voltaj dusumu kontrol edilir. Bunun sebebi termik sadece elektrik sorunu degil, kompresorun zorlandigini gosteren koruma tepkisidir. En sik hata ise termigi buyutmek veya resetleyip sebebi aramadan tekrar calistirmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verdichter auf motorschutz geht auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind hohe Stromaufnahme, schlechte Kuehlung, Hochdruck, Unterspannung oder mechanische Ueberlastung. Bei der Erstpruefung werden Strom wird gemessen, Verfluessiger und Ventilatoren werden geprueft, Druckwerte gelesen und Spannungsabfall kontrolliert. Der technische Hintergrund ist der Motorschutz nicht nur ein Elektrikproblem, sondern ein Hinweis auf Ueberlastung des Verdichters ist. Ein sehr haeufiger Fehler besteht darin, dass den Schutz groesser auszulegen oder nur zu resetten, ohne die Ursache zu suchen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "voltaj dusuk olursa ne olur",
+      "kondenser temizligi neden onemli"
+    ]
+  },
+  {
+    "id": "problem_high_pressure",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "yuksek basinc arizasi olusuyor",
+    "de_subject": "eine hochdruck stoerung auftritt",
+    "keywords": [
+      "yuksek basinc",
+      "high pressure",
+      "hochdruck"
+    ],
+    "tr_questions": [
+      "yuksek basinc arizasi olusuyor neden olur",
+      "yuksek basinc arizasi olusuyor olursa neye bakilir",
+      "yuksek basinc arizasi olusuyor varsa sorun nerede olabilir",
+      "yuksek basinc arizasi olusuyor durumunda usta once ne kontrol eder",
+      "yuksek basinc arizasi olusuyor arizasinda nasil teshis yapilir",
+      "yuksek basinc arizasi olusuyor sorunu nasil cozulur",
+      "yuksek basinc arizasi olusuyor neden tekrar eder",
+      "yuksek basinc arizasi olusuyor oldugunda hangi parcaya bakilir",
+      "yuksek basinc arizasi olusuyor oldugunda montaj hatasi olabilir mi",
+      "yuksek basinc arizasi olusuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt eine hochdruck stoerung auftritt auf",
+      "worauf schaut man wenn eine hochdruck stoerung auftritt auftritt",
+      "wo kann der fehler liegen wenn eine hochdruck stoerung auftritt da ist",
+      "was prueft ein meister zuerst wenn eine hochdruck stoerung auftritt auftritt",
+      "wie diagnostiziert man eine hochdruck stoerung auftritt",
+      "wie loest man eine hochdruck stoerung auftritt",
+      "warum kommt eine hochdruck stoerung auftritt immer wieder",
+      "welches bauteil prueft man bei eine hochdruck stoerung auftritt",
+      "kann montagefehler eine hochdruck stoerung auftritt verursachen",
+      "wie ist die service reihenfolge bei eine hochdruck stoerung auftritt"
+    ],
+    "tr_answer": "yuksek basinc arizasi olusuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kirli kondenser, fan arizasi, hava sirkulasyonunun geri donmesi, fazla gaz veya cevre sicakliginin asiri yuksek olmasidir. Ilk kontrolde kondenser serpantini, fan yonu, cihaz etrafi bosluklari ve subcool-basinç birlikte kontrol edilir. Bunun sebebi kondenser isi disariya atamazsa tum sistem basma tarafinda zorlanir. En sik hata ise sadece gazdan suphelenip hava tarafini ihmal etmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn eine hochdruck stoerung auftritt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind verschmutzter Verfluessiger, Ventilatorstoerung, Rueckansaugung warmer Luft, Ueberfuellung oder sehr hohe Umgebungstemperatur. Bei der Erstpruefung werden Verfluessigerregister, Ventilatorlaufrichtung, Freiraeume um das Geraet sowie Subcooling und Druck gemeinsam geprueft. Der technische Hintergrund ist der gesamte Kaeltekreis auf der Hochdruckseite belastet wird, wenn der Verfluessiger die Waerme nicht abgeben kann. Ein sehr haeufiger Fehler besteht darin, dass man nur an Kaeltemittel denkt und die Luftseite vernachlaessigt. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kondenser nereye konur",
+      "subcool neden onemli",
+      "fan neden donmuyor"
+    ]
+  },
+  {
+    "id": "problem_low_pressure",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "dusuk basinc arizasi olusuyor",
+    "de_subject": "eine niederdruck stoerung auftritt",
+    "keywords": [
+      "dusuk basinc",
+      "low pressure",
+      "niederdruck"
+    ],
+    "tr_questions": [
+      "dusuk basinc arizasi olusuyor neden olur",
+      "dusuk basinc arizasi olusuyor olursa neye bakilir",
+      "dusuk basinc arizasi olusuyor varsa sorun nerede olabilir",
+      "dusuk basinc arizasi olusuyor durumunda usta once ne kontrol eder",
+      "dusuk basinc arizasi olusuyor arizasinda nasil teshis yapilir",
+      "dusuk basinc arizasi olusuyor sorunu nasil cozulur",
+      "dusuk basinc arizasi olusuyor neden tekrar eder",
+      "dusuk basinc arizasi olusuyor oldugunda hangi parcaya bakilir",
+      "dusuk basinc arizasi olusuyor oldugunda montaj hatasi olabilir mi",
+      "dusuk basinc arizasi olusuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt eine niederdruck stoerung auftritt auf",
+      "worauf schaut man wenn eine niederdruck stoerung auftritt auftritt",
+      "wo kann der fehler liegen wenn eine niederdruck stoerung auftritt da ist",
+      "was prueft ein meister zuerst wenn eine niederdruck stoerung auftritt auftritt",
+      "wie diagnostiziert man eine niederdruck stoerung auftritt",
+      "wie loest man eine niederdruck stoerung auftritt",
+      "warum kommt eine niederdruck stoerung auftritt immer wieder",
+      "welches bauteil prueft man bei eine niederdruck stoerung auftritt",
+      "kann montagefehler eine niederdruck stoerung auftritt verursachen",
+      "wie ist die service reihenfolge bei eine niederdruck stoerung auftritt"
+    ],
+    "tr_answer": "dusuk basinc arizasi olusuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler gaz eksigi, genlesme valfinin ac beslemesi, evaporatorun buzla kapanmasi veya hava akisinin dusmesidir. Ilk kontrolde superheat, sight glass, serpantin buzlanmasi, fanlar ve filtre-drier tikanikligi birlikte degerlendirilir. Bunun sebebi emiş tarafi yeterli beslenmezse kompresor sogutma yerine daha cok bos devre cekmeye baslar. En sik hata ise dusuk basinç gordu diye direkt gaz eklemektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn eine niederdruck stoerung auftritt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Kaeltemittelmangel, magere Einspritzung am Expansionsventil, vereister Verdampfer oder zu geringe Luftmenge. Bei der Erstpruefung werden Superheat, Schauglas, Vereisung des Verdampfers, Ventilatoren und ein moeglicher Filtertrocknerengpass gemeinsam bewertet werden. Der technische Hintergrund ist der Verdichter bei ungenuegender Versorgung auf der Saugseite eher leer laeuft als wirksam zu kuehlen. Ein sehr haeufiger Fehler besteht darin, dass bei Niederdruck sofort Kaeltemittel nachzufuellen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "genlesme valfi yanlis ayarlanirsa ne olur",
+      "evaporator neden buz tutar",
+      "gaz eksigi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "problem_evaporator_icing",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "evaporator buz tutuyor",
+    "de_subject": "der verdampfer vereist",
+    "keywords": [
+      "evaporator buz",
+      "icing",
+      "vereisung"
+    ],
+    "tr_questions": [
+      "evaporator buz tutuyor neden olur",
+      "evaporator buz tutuyor olursa neye bakilir",
+      "evaporator buz tutuyor varsa sorun nerede olabilir",
+      "evaporator buz tutuyor durumunda usta once ne kontrol eder",
+      "evaporator buz tutuyor arizasinda nasil teshis yapilir",
+      "evaporator buz tutuyor sorunu nasil cozulur",
+      "evaporator buz tutuyor neden tekrar eder",
+      "evaporator buz tutuyor oldugunda hangi parcaya bakilir",
+      "evaporator buz tutuyor oldugunda montaj hatasi olabilir mi",
+      "evaporator buz tutuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verdampfer vereist auf",
+      "worauf schaut man wenn der verdampfer vereist auftritt",
+      "wo kann der fehler liegen wenn der verdampfer vereist da ist",
+      "was prueft ein meister zuerst wenn der verdampfer vereist auftritt",
+      "wie diagnostiziert man der verdampfer vereist",
+      "wie loest man der verdampfer vereist",
+      "warum kommt der verdampfer vereist immer wieder",
+      "welches bauteil prueft man bei der verdampfer vereist",
+      "kann montagefehler der verdampfer vereist verursachen",
+      "wie ist die service reihenfolge bei der verdampfer vereist"
+    ],
+    "tr_answer": "evaporator buz tutuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler defrost yetersizligi, kapi kacaklari, dusuk hava debisi veya sensor ayar bozuklugudur. Ilk kontrolde defrost zamani, rezistans calismasi, drenaj, fan temizligi ve kapi contasi ayni anda incelenir. Bunun sebebi evaporator buzlandiginda hava gecisi daralir ve sogutma giderek daha da kotulesir. En sik hata ise sadece buzu eritip kok nedenini aramadan sistemi tekrar calistirmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verdampfer vereist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind unzureichende Abtauung, Luftleckagen an der Tuer, zu geringer Luftvolumenstrom oder fehlerhafte Fuehlerlogik. Bei der Erstpruefung werden Abtauzeiten, Heizfunktion, Ablauf, Ventilatorzustand und Tuerdichtung zusammen geprueft werden. Der technische Hintergrund ist eine Vereisung den Luftdurchsatz stark reduziert und die Kaelteleistung dadurch immer weiter sinkt. Ein sehr haeufiger Fehler besteht darin, dass nur das Eis abzutauen und die Grundursache nicht zu suchen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "defrost neden onemli",
+      "kapi sizdirmazligi neden onemli",
+      "fan hava akisi neden duser"
+    ]
+  },
+  {
+    "id": "problem_condenser_dirty",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kondenser cok kirleniyor",
+    "de_subject": "der verfluessiger stark verschmutzt",
+    "keywords": [
+      "kondenser kirli",
+      "dirty condenser",
+      "verschmutzter verfluessiger"
+    ],
+    "tr_questions": [
+      "kondenser cok kirleniyor neden olur",
+      "kondenser cok kirleniyor olursa neye bakilir",
+      "kondenser cok kirleniyor varsa sorun nerede olabilir",
+      "kondenser cok kirleniyor durumunda usta once ne kontrol eder",
+      "kondenser cok kirleniyor arizasinda nasil teshis yapilir",
+      "kondenser cok kirleniyor sorunu nasil cozulur",
+      "kondenser cok kirleniyor neden tekrar eder",
+      "kondenser cok kirleniyor oldugunda hangi parcaya bakilir",
+      "kondenser cok kirleniyor oldugunda montaj hatasi olabilir mi",
+      "kondenser cok kirleniyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verfluessiger stark verschmutzt auf",
+      "worauf schaut man wenn der verfluessiger stark verschmutzt auftritt",
+      "wo kann der fehler liegen wenn der verfluessiger stark verschmutzt da ist",
+      "was prueft ein meister zuerst wenn der verfluessiger stark verschmutzt auftritt",
+      "wie diagnostiziert man der verfluessiger stark verschmutzt",
+      "wie loest man der verfluessiger stark verschmutzt",
+      "warum kommt der verfluessiger stark verschmutzt immer wieder",
+      "welches bauteil prueft man bei der verfluessiger stark verschmutzt",
+      "kann montagefehler der verfluessiger stark verschmutzt verursachen",
+      "wie ist die service reihenfolge bei der verfluessiger stark verschmutzt"
+    ],
+    "tr_answer": "kondenser cok kirleniyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler tozlu ortam, yagli hava, yetersiz filtreleme veya yanlis cihaz yerlesimidir. Ilk kontrolde serpantin gozlemi, fan cekisi, cihaz cevresi ve temizlik periyodu sorgulanir. Bunun sebebi kirli kondenser isi atamaz ve yuksek basinç ile yuksek enerji tuketimi olusturur. En sik hata ise sadece su tutup temizlik yaptigini sanmak ama kanat aralarini acmamakdir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verfluessiger stark verschmutzt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind staubige Umgebung, fettige Luft, fehlende Vorfilterung oder eine unguenstige Aufstellung. Bei der Erstpruefung werden Registerzustand, Ventilatorwirkung, Geraeteumfeld und Wartungsintervall kontrolliert werden. Der technische Hintergrund ist ein verschmutzter Verfluessiger Waerme nicht abgeben kann und dadurch Hochdruck sowie hohen Stromverbrauch erzeugt. Ein sehr haeufiger Fehler besteht darin, dass nur oberflaechlich abzuspuelen, ohne die Lamellen wirklich zu reinigen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "periyodik bakimda ne kontrol edilir",
+      "kondenser nereye konur"
+    ]
+  },
+  {
+    "id": "problem_fan_not_running",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "fan donmuyor",
+    "de_subject": "der ventilator nicht laeuft",
+    "keywords": [
+      "fan calismiyor",
+      "fan donmuyor",
+      "ventilator steht"
+    ],
+    "tr_questions": [
+      "fan donmuyor neden olur",
+      "fan donmuyor olursa neye bakilir",
+      "fan donmuyor varsa sorun nerede olabilir",
+      "fan donmuyor durumunda usta once ne kontrol eder",
+      "fan donmuyor arizasinda nasil teshis yapilir",
+      "fan donmuyor sorunu nasil cozulur",
+      "fan donmuyor neden tekrar eder",
+      "fan donmuyor oldugunda hangi parcaya bakilir",
+      "fan donmuyor oldugunda montaj hatasi olabilir mi",
+      "fan donmuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der ventilator nicht laeuft auf",
+      "worauf schaut man wenn der ventilator nicht laeuft auftritt",
+      "wo kann der fehler liegen wenn der ventilator nicht laeuft da ist",
+      "was prueft ein meister zuerst wenn der ventilator nicht laeuft auftritt",
+      "wie diagnostiziert man der ventilator nicht laeuft",
+      "wie loest man der ventilator nicht laeuft",
+      "warum kommt der ventilator nicht laeuft immer wieder",
+      "welches bauteil prueft man bei der ventilator nicht laeuft",
+      "kann montagefehler der ventilator nicht laeuft verursachen",
+      "wie ist die service reihenfolge bei der ventilator nicht laeuft"
+    ],
+    "tr_answer": "fan donmuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler motor arizasi, kapasitör sorunu, elektrik beslemesi veya buz-sikismanin olmasidir. Ilk kontrolde besleme var mi, fan serbest donuyor mu, kapasitör degeri ve motor sargisi saglam mi diye bakilir. Bunun sebebi fan olmazsa serpantin isi transfer edemez ve butun sistem dengesi bozulur. En sik hata ise motora suclama yapip besleme veya buz kilidini atlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der ventilator nicht laeuft auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Motorschaden, Kondensatorproblem, Spannungsversorgung oder Blockierung durch Eis. Bei der Erstpruefung werden Spannung, freie Drehbarkeit, Kondensatorwert und Motorwicklung geprueft werden. Der technische Hintergrund ist ohne Ventilator der Waermeuebergang am Register zusammenbricht und die gesamte Anlage aus dem Gleichgewicht kommt. Ein sehr haeufiger Fehler besteht darin, dass vorschnell den Motor zu verurteilen und Versorgung oder Eisblockade zu uebersehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "evaporator neden buz tutar",
+      "yanlis fan yonu ne yapar",
+      "elektrik panosunda ne kontrol edilir"
+    ]
+  },
+  {
+    "id": "problem_wrong_fan_direction",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "fan yonu yanlis",
+    "de_subject": "die ventilatorlaufrichtung falsch ist",
+    "keywords": [
+      "fan yonu",
+      "airflow wrong",
+      "falsche laufrichtung"
+    ],
+    "tr_questions": [
+      "fan yonu yanlis neden olur",
+      "fan yonu yanlis olursa neye bakilir",
+      "fan yonu yanlis varsa sorun nerede olabilir",
+      "fan yonu yanlis durumunda usta once ne kontrol eder",
+      "fan yonu yanlis arizasinda nasil teshis yapilir",
+      "fan yonu yanlis sorunu nasil cozulur",
+      "fan yonu yanlis neden tekrar eder",
+      "fan yonu yanlis oldugunda hangi parcaya bakilir",
+      "fan yonu yanlis oldugunda montaj hatasi olabilir mi",
+      "fan yonu yanlis gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die ventilatorlaufrichtung falsch ist auf",
+      "worauf schaut man wenn die ventilatorlaufrichtung falsch ist auftritt",
+      "wo kann der fehler liegen wenn die ventilatorlaufrichtung falsch ist da ist",
+      "was prueft ein meister zuerst wenn die ventilatorlaufrichtung falsch ist auftritt",
+      "wie diagnostiziert man die ventilatorlaufrichtung falsch ist",
+      "wie loest man die ventilatorlaufrichtung falsch ist",
+      "warum kommt die ventilatorlaufrichtung falsch ist immer wieder",
+      "welches bauteil prueft man bei die ventilatorlaufrichtung falsch ist",
+      "kann montagefehler die ventilatorlaufrichtung falsch ist verursachen",
+      "wie ist die service reihenfolge bei die ventilatorlaufrichtung falsch ist"
+    ],
+    "tr_answer": "fan yonu yanlis durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis baglanti, uc faz yon hatasi veya montaj sonrasi kontrol eksikligidir. Ilk kontrolde hava atis yonu gozlenir, kanat cekis-atma karakteri ve faz sirasi kontrol edilir. Bunun sebebi yanlis yonlu fan sogutma yapmak yerine hava devrini ters etkileyebilir. En sik hata ise fan donuyor diye yon kontrolunu atlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die ventilatorlaufrichtung falsch ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Anschluss, Phasenfolgenfehler oder fehlende Endkontrolle nach der Montage. Bei der Erstpruefung werden Luftwurf, Saugrichtung der Schaufeln und die Phasenfolge geprueft werden. Der technische Hintergrund ist ein falsch laufender Ventilator statt zu kuehlen die Luftfuehrung massiv verschlechtern kann. Ein sehr haeufiger Fehler besteht darin, dass anzunehmen, dass alles richtig ist, nur weil der Ventilator dreht. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "evaporator nereye konur",
+      "faz sirasi neden onemli",
+      "hava sirkulasyonu neden onemli"
+    ]
+  },
+  {
+    "id": "problem_defrost_not_working",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "defrost calismiyor",
+    "de_subject": "die abtauung nicht funktioniert",
+    "keywords": [
+      "defrost calismiyor",
+      "abtauung",
+      "abtaufehler"
+    ],
+    "tr_questions": [
+      "defrost calismiyor neden olur",
+      "defrost calismiyor olursa neye bakilir",
+      "defrost calismiyor varsa sorun nerede olabilir",
+      "defrost calismiyor durumunda usta once ne kontrol eder",
+      "defrost calismiyor arizasinda nasil teshis yapilir",
+      "defrost calismiyor sorunu nasil cozulur",
+      "defrost calismiyor neden tekrar eder",
+      "defrost calismiyor oldugunda hangi parcaya bakilir",
+      "defrost calismiyor oldugunda montaj hatasi olabilir mi",
+      "defrost calismiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die abtauung nicht funktioniert auf",
+      "worauf schaut man wenn die abtauung nicht funktioniert auftritt",
+      "wo kann der fehler liegen wenn die abtauung nicht funktioniert da ist",
+      "was prueft ein meister zuerst wenn die abtauung nicht funktioniert auftritt",
+      "wie diagnostiziert man die abtauung nicht funktioniert",
+      "wie loest man die abtauung nicht funktioniert",
+      "warum kommt die abtauung nicht funktioniert immer wieder",
+      "welches bauteil prueft man bei die abtauung nicht funktioniert",
+      "kann montagefehler die abtauung nicht funktioniert verursachen",
+      "wie ist die service reihenfolge bei die abtauung nicht funktioniert"
+    ],
+    "tr_answer": "defrost calismiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler rezistans arizasi, zaman ayari bozuklugu, sensor hatasi veya kontrol karti cikis sorunudur. Ilk kontrolde defrostta enerji geliyor mu, rezistans cekiyor mu, sonlandirma sensoru dogru mu diye bakilir. Bunun sebebi defrost calismazsa serpantin dolarak hem hava akisini hem kapasiteyi oldurur. En sik hata ise sadece zaman arttirip rezistans ve sensoru dogrulamamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die abtauung nicht funktioniert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Heizungsdefekt, falsche Zeiteinstellung, Fuehlerfehler oder ein Problem am Reglerausgang. Bei der Erstpruefung werden waehrend der Abtauung Spannung anliegt, die Heizung Strom zieht und der Endfuehler plausibel arbeitet. Der technische Hintergrund ist ohne funktionierende Abtauung der Verdampfer zusetzt und dadurch Luftmenge wie Leistung zusammenbrechen. Ein sehr haeufiger Fehler besteht darin, dass nur die Abtauzeit zu verlaengern, ohne Heizung und Fuehler zu pruefen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "evaporator neden buz tutar",
+      "drenaj neden donar",
+      "defrost sensoru nereye konur"
+    ]
+  },
+  {
+    "id": "problem_drain_freezing",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "drenaj hatti donuyor",
+    "de_subject": "die kondensatleitung einfriert",
+    "keywords": [
+      "drenaj donuyor",
+      "drain freezing",
+      "ablauf friert ein"
+    ],
+    "tr_questions": [
+      "drenaj hatti donuyor neden olur",
+      "drenaj hatti donuyor olursa neye bakilir",
+      "drenaj hatti donuyor varsa sorun nerede olabilir",
+      "drenaj hatti donuyor durumunda usta once ne kontrol eder",
+      "drenaj hatti donuyor arizasinda nasil teshis yapilir",
+      "drenaj hatti donuyor sorunu nasil cozulur",
+      "drenaj hatti donuyor neden tekrar eder",
+      "drenaj hatti donuyor oldugunda hangi parcaya bakilir",
+      "drenaj hatti donuyor oldugunda montaj hatasi olabilir mi",
+      "drenaj hatti donuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die kondensatleitung einfriert auf",
+      "worauf schaut man wenn die kondensatleitung einfriert auftritt",
+      "wo kann der fehler liegen wenn die kondensatleitung einfriert da ist",
+      "was prueft ein meister zuerst wenn die kondensatleitung einfriert auftritt",
+      "wie diagnostiziert man die kondensatleitung einfriert",
+      "wie loest man die kondensatleitung einfriert",
+      "warum kommt die kondensatleitung einfriert immer wieder",
+      "welches bauteil prueft man bei die kondensatleitung einfriert",
+      "kann montagefehler die kondensatleitung einfriert verursachen",
+      "wie ist die service reihenfolge bei die kondensatleitung einfriert"
+    ],
+    "tr_answer": "drenaj hatti donuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler hatta egim eksikligi, boru rezistansi olmamasi, soguk bolgeden korumasiz gecis veya tikanikliktir. Ilk kontrolde hat guzergh, egim, rezistans devamligi ve suyun nerede bekledigi kontrol edilir. Bunun sebebi drenajdaki en kucuk su birikimi negatifte hizla buza doner ve sorunu buyutur. En sik hata ise yalniz tava rezistansina bakip hatin dis tarafini unutmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die kondensatleitung einfriert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind fehlendes Gefaelle, keine Begleitheizung, ungeschuetzte Fuehrung durch kalte Bereiche oder eine Verstopfung. Bei der Erstpruefung werden Leitungsweg, Gefaelle, Funktion der Begleitheizung und Wasserstaupunkte geprueft werden. Der technische Hintergrund ist schon kleine Wasseransammlungen im Ablauf bei Minusgraden schnell zu Eis werden und das Problem vergroessern. Ein sehr haeufiger Fehler besteht darin, dass nur die Wannenheizung zu pruefen und den weiteren Leitungsweg zu ignorieren. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "defrost neden onemli",
+      "negatif depo kurulumunda ne onemli",
+      "su neden fanlara tasar"
+    ]
+  },
+  {
+    "id": "problem_door_leak",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kapi hava kaciriyor",
+    "de_subject": "die tuer luft zieht",
+    "keywords": [
+      "kapi kaciriyor",
+      "door leak",
+      "tuer undicht"
+    ],
+    "tr_questions": [
+      "kapi hava kaciriyor neden olur",
+      "kapi hava kaciriyor olursa neye bakilir",
+      "kapi hava kaciriyor varsa sorun nerede olabilir",
+      "kapi hava kaciriyor durumunda usta once ne kontrol eder",
+      "kapi hava kaciriyor arizasinda nasil teshis yapilir",
+      "kapi hava kaciriyor sorunu nasil cozulur",
+      "kapi hava kaciriyor neden tekrar eder",
+      "kapi hava kaciriyor oldugunda hangi parcaya bakilir",
+      "kapi hava kaciriyor oldugunda montaj hatasi olabilir mi",
+      "kapi hava kaciriyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die tuer luft zieht auf",
+      "worauf schaut man wenn die tuer luft zieht auftritt",
+      "wo kann der fehler liegen wenn die tuer luft zieht da ist",
+      "was prueft ein meister zuerst wenn die tuer luft zieht auftritt",
+      "wie diagnostiziert man die tuer luft zieht",
+      "wie loest man die tuer luft zieht",
+      "warum kommt die tuer luft zieht immer wieder",
+      "welches bauteil prueft man bei die tuer luft zieht",
+      "kann montagefehler die tuer luft zieht verursachen",
+      "wie ist die service reihenfolge bei die tuer luft zieht"
+    ],
+    "tr_answer": "kapi hava kaciriyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler conta asinmasi, kasa ayarsizligi, esik bozuklugu veya kapinin sert kapanmamasidir. Ilk kontrolde conta basisi, kapi ayari, kasanin kareligi ve terleme izleri kontrol edilir. Bunun sebebi hava kacagi nem tasir ve bu nem buz, terleme ve enerji kaybi olarak geri doner. En sik hata ise yalniz contayi degistirip kasa ayarini ihmal etmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die tuer luft zieht auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind verschlissene Dichtung, verzogene Zarge, Schwellenproblem oder ungenuegende Schliessung. Bei der Erstpruefung werden Dichtungsdruck, Tuereinstellung, Rechtwinkligkeit der Zarge und Spuren von Schwitzwasser geprueft werden. Der technische Hintergrund ist Luftleckagen Feuchtigkeit eintragen, die dann als Eis, Kondensat und Energieverlust zurueckkommen. Ein sehr haeufiger Fehler besteht darin, dass nur die Dichtung zu tauschen und die Zargeneinstellung zu ignorieren. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kapi sizdirmazligi neden onemli",
+      "evaporator neden buz tutar",
+      "panel neden terler"
+    ]
+  },
+  {
+    "id": "problem_panel_sweating",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "panel terliyor",
+    "de_subject": "die paneele schwitzen",
+    "keywords": [
+      "panel terleme",
+      "sweating panel",
+      "paneel schwitzt"
+    ],
+    "tr_questions": [
+      "panel terliyor neden olur",
+      "panel terliyor olursa neye bakilir",
+      "panel terliyor varsa sorun nerede olabilir",
+      "panel terliyor durumunda usta once ne kontrol eder",
+      "panel terliyor arizasinda nasil teshis yapilir",
+      "panel terliyor sorunu nasil cozulur",
+      "panel terliyor neden tekrar eder",
+      "panel terliyor oldugunda hangi parcaya bakilir",
+      "panel terliyor oldugunda montaj hatasi olabilir mi",
+      "panel terliyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die paneele schwitzen auf",
+      "worauf schaut man wenn die paneele schwitzen auftritt",
+      "wo kann der fehler liegen wenn die paneele schwitzen da ist",
+      "was prueft ein meister zuerst wenn die paneele schwitzen auftritt",
+      "wie diagnostiziert man die paneele schwitzen",
+      "wie loest man die paneele schwitzen",
+      "warum kommt die paneele schwitzen immer wieder",
+      "welches bauteil prueft man bei die paneele schwitzen",
+      "kann montagefehler die paneele schwitzen verursachen",
+      "wie ist die service reihenfolge bei die paneele schwitzen"
+    ],
+    "tr_answer": "panel terliyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler izolasyon zayifligi, soguk koprusu, conta veya silikon eksigi ve ortam neminin yuksek olmasidir. Ilk kontrolde terleme noktasi lokal mi genel mi, birlesim yerleri ve metal kopruler var mi diye incelenir. Bunun sebebi yuzey sicakligi cayir noktasinin altina indiginde panel disinda yogusma baslar. En sik hata ise sadece cihaz ayarina bakip panel detayini atlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die paneele schwitzen auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind schwache Isolierung, Waermebruecken, fehlende Abdichtung oder hohe Raumluftfeuchte. Bei der Erstpruefung werden geprueft wird, ob das Schwitzen lokal oder flaechig ist und ob Fugen oder Metallbruecken beteiligt sind. Der technische Hintergrund ist Kondensation beginnt, sobald die Oberflaechentemperatur unter den Taupunkt faellt. Ein sehr haeufiger Fehler besteht darin, dass nur an der Geraeteeinstellung zu drehen und die baulichen Details zu uebersehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "panel kalinligi nasil secilir",
+      "soguk koprusu nasil onlenir",
+      "kapi hava kaciriyor neden olur"
+    ]
+  },
+  {
+    "id": "problem_floor_icing",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "zemin buz yapiyor",
+    "de_subject": "der boden vereist",
+    "keywords": [
+      "zemin buz",
+      "floor icing",
+      "boden vereist"
+    ],
+    "tr_questions": [
+      "zemin buz yapiyor neden olur",
+      "zemin buz yapiyor olursa neye bakilir",
+      "zemin buz yapiyor varsa sorun nerede olabilir",
+      "zemin buz yapiyor durumunda usta once ne kontrol eder",
+      "zemin buz yapiyor arizasinda nasil teshis yapilir",
+      "zemin buz yapiyor sorunu nasil cozulur",
+      "zemin buz yapiyor neden tekrar eder",
+      "zemin buz yapiyor oldugunda hangi parcaya bakilir",
+      "zemin buz yapiyor oldugunda montaj hatasi olabilir mi",
+      "zemin buz yapiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der boden vereist auf",
+      "worauf schaut man wenn der boden vereist auftritt",
+      "wo kann der fehler liegen wenn der boden vereist da ist",
+      "was prueft ein meister zuerst wenn der boden vereist auftritt",
+      "wie diagnostiziert man der boden vereist",
+      "wie loest man der boden vereist",
+      "warum kommt der boden vereist immer wieder",
+      "welches bauteil prueft man bei der boden vereist",
+      "kann montagefehler der boden vereist verursachen",
+      "wie ist die service reihenfolge bei der boden vereist"
+    ],
+    "tr_answer": "zemin buz yapiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler taban izolasyonunun zayifligi, drenaj problemi, kapi acikligi veya negatifte yerden soguk koprusu olusmasidir. Ilk kontrolde buzun nerede olustugu, su kaynagi, taban detayi ve esik bolgesi birlikte incelenir. Bunun sebebi zemindeki buz cogu zaman yalniz soguktan degil, suyun yanlis yerde donmasindan kaynaklanir. En sik hata ise buzu temizleyip suyun nereden geldigini bulmamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der boden vereist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind schwache Bodendaemmung, Ablaufproblem, Tuerspalt oder Waermebruecken im Minusbereich. Bei der Erstpruefung werden Ort der Vereisung, Wasserquelle, Bodendetail und Schwellenbereich gemeinsam betrachtet werden. Der technische Hintergrund ist Eis am Boden oft nicht nur durch Kaelte entsteht, sondern durch Wasser an der falschen Stelle einfriert. Ein sehr haeufiger Fehler besteht darin, dass nur das Eis zu entfernen und die Wasserquelle nicht zu suchen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "drenaj hatti donuyor",
+      "negatif depo kurulumunda ne onemli",
+      "kapi rezistansi ne zaman gerekir"
+    ]
+  },
+  {
+    "id": "problem_door_traffic",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kapi cok acilip kapaniyor diye oda bozuluyor",
+    "de_subject": "haeufige tueroeffnungen den raum stoeren",
+    "keywords": [
+      "kapi trafigi",
+      "door traffic",
+      "sik acilma"
+    ],
+    "tr_questions": [
+      "kapi cok acilip kapaniyor diye oda bozuluyor neden olur",
+      "kapi cok acilip kapaniyor diye oda bozuluyor olursa neye bakilir",
+      "kapi cok acilip kapaniyor diye oda bozuluyor varsa sorun nerede olabilir",
+      "kapi cok acilip kapaniyor diye oda bozuluyor durumunda usta once ne kontrol eder",
+      "kapi cok acilip kapaniyor diye oda bozuluyor arizasinda nasil teshis yapilir",
+      "kapi cok acilip kapaniyor diye oda bozuluyor sorunu nasil cozulur",
+      "kapi cok acilip kapaniyor diye oda bozuluyor neden tekrar eder",
+      "kapi cok acilip kapaniyor diye oda bozuluyor oldugunda hangi parcaya bakilir",
+      "kapi cok acilip kapaniyor diye oda bozuluyor oldugunda montaj hatasi olabilir mi",
+      "kapi cok acilip kapaniyor diye oda bozuluyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt haeufige tueroeffnungen den raum stoeren auf",
+      "worauf schaut man wenn haeufige tueroeffnungen den raum stoeren auftritt",
+      "wo kann der fehler liegen wenn haeufige tueroeffnungen den raum stoeren da ist",
+      "was prueft ein meister zuerst wenn haeufige tueroeffnungen den raum stoeren auftritt",
+      "wie diagnostiziert man haeufige tueroeffnungen den raum stoeren",
+      "wie loest man haeufige tueroeffnungen den raum stoeren",
+      "warum kommt haeufige tueroeffnungen den raum stoeren immer wieder",
+      "welches bauteil prueft man bei haeufige tueroeffnungen den raum stoeren",
+      "kann montagefehler haeufige tueroeffnungen den raum stoeren verursachen",
+      "wie ist die service reihenfolge bei haeufige tueroeffnungen den raum stoeren"
+    ],
+    "tr_answer": "kapi cok acilip kapaniyor diye oda bozuluyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler operasyon akisinin yanlisligi, hava perdesi olmamasi veya bekleme alaninin plansizligidir. Ilk kontrolde kapi kullanim aliskanligi, acik kalma suresi ve urun yukleme yolu analiz edilir. Bunun sebebi kapi acilisinda içeriye giren sicak ve nemli hava cihazin gorevinden daha buyuk yuk yaratabilir. En sik hata ise problemi sadece cihaz zayif diye yorumlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn haeufige tueroeffnungen den raum stoeren auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Betriebsablauf, fehlender Luftvorhang oder unklare Vorbereitungszone. Bei der Erstpruefung werden Tuernutzung, Offenhaltezeit und Warenfluss im Betrieb analysiert werden. Der technische Hintergrund ist bei jeder Tueroeffnung warme und feuchte Luft eindringt und oft mehr Last erzeugt als die Anlage abarbeiten kann. Ein sehr haeufiger Fehler besteht darin, dass das Problem nur als zu schwache Anlage zu deuten. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "oda gec soguyor neden olur",
+      "kapi sizdirmazligi neden onemli",
+      "yuk hesabi nasil yapilir"
+    ]
+  },
+  {
+    "id": "problem_airflow_blocked_by_loading",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "urun istifi hava akisini kapatiyor",
+    "de_subject": "die ware den luftstrom blockiert",
+    "keywords": [
+      "istif",
+      "airflow blocked",
+      "luftstrom blockiert"
+    ],
+    "tr_questions": [
+      "urun istifi hava akisini kapatiyor neden olur",
+      "urun istifi hava akisini kapatiyor olursa neye bakilir",
+      "urun istifi hava akisini kapatiyor varsa sorun nerede olabilir",
+      "urun istifi hava akisini kapatiyor durumunda usta once ne kontrol eder",
+      "urun istifi hava akisini kapatiyor arizasinda nasil teshis yapilir",
+      "urun istifi hava akisini kapatiyor sorunu nasil cozulur",
+      "urun istifi hava akisini kapatiyor neden tekrar eder",
+      "urun istifi hava akisini kapatiyor oldugunda hangi parcaya bakilir",
+      "urun istifi hava akisini kapatiyor oldugunda montaj hatasi olabilir mi",
+      "urun istifi hava akisini kapatiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die ware den luftstrom blockiert auf",
+      "worauf schaut man wenn die ware den luftstrom blockiert auftritt",
+      "wo kann der fehler liegen wenn die ware den luftstrom blockiert da ist",
+      "was prueft ein meister zuerst wenn die ware den luftstrom blockiert auftritt",
+      "wie diagnostiziert man die ware den luftstrom blockiert",
+      "wie loest man die ware den luftstrom blockiert",
+      "warum kommt die ware den luftstrom blockiert immer wieder",
+      "welches bauteil prueft man bei die ware den luftstrom blockiert",
+      "kann montagefehler die ware den luftstrom blockiert verursachen",
+      "wie ist die service reihenfolge bei die ware den luftstrom blockiert"
+    ],
+    "tr_answer": "urun istifi hava akisini kapatiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kasalarin evaporator altina dayanmasi, duvar diplerinin kapatilmasi veya raflar arasi bosluk birakilmamasidir. Ilk kontrolde urun dizilimi, fan onleri, hava donus yollari ve tavan altindaki bosluk gozlenir. Bunun sebebi hava donemezse oda bir yerde soguk, diger yerde sicak kalir. En sik hata ise cihaz calisiyor diye istif disiplinini onemsiz sanmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die ware den luftstrom blockiert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Kisten unter dem Verdampfer, zugestellte Wandbereiche oder fehlende Luftabstaende zwischen Regalen. Bei der Erstpruefung werden Warenanordnung, Bereiche vor den Ventilatoren, Rueckluftwege und Freiraeume unter der Decke geprueft werden. Der technische Hintergrund ist ohne freien Luftumlauf Temperaturtaschen entstehen und der Raum lokal ungleichmaessig kuehlt. Ein sehr haeufiger Fehler besteht darin, dass anzunehmen, dass Lagerdisziplin unwichtig ist, solange das Geraet laeuft. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "hava sirkulasyonu neden onemli",
+      "oda neden dengesiz sogur",
+      "musteri urunu nasil istiflemeli"
+    ]
+  },
+  {
+    "id": "problem_sensor_wrong_place",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "sensor yeri yanlis oldugu icin sistem sapitiyor",
+    "de_subject": "die falsche fuehler position die regelung stoert",
+    "keywords": [
+      "sensor yeri",
+      "wrong sensor place",
+      "fuehler falsch"
+    ],
+    "tr_questions": [
+      "sensor yeri yanlis oldugu icin sistem sapitiyor neden olur",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor olursa neye bakilir",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor varsa sorun nerede olabilir",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor durumunda usta once ne kontrol eder",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor arizasinda nasil teshis yapilir",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor sorunu nasil cozulur",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor neden tekrar eder",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor oldugunda hangi parcaya bakilir",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor oldugunda montaj hatasi olabilir mi",
+      "sensor yeri yanlis oldugu icin sistem sapitiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die falsche fuehler position die regelung stoert auf",
+      "worauf schaut man wenn die falsche fuehler position die regelung stoert auftritt",
+      "wo kann der fehler liegen wenn die falsche fuehler position die regelung stoert da ist",
+      "was prueft ein meister zuerst wenn die falsche fuehler position die regelung stoert auftritt",
+      "wie diagnostiziert man die falsche fuehler position die regelung stoert",
+      "wie loest man die falsche fuehler position die regelung stoert",
+      "warum kommt die falsche fuehler position die regelung stoert immer wieder",
+      "welches bauteil prueft man bei die falsche fuehler position die regelung stoert",
+      "kann montagefehler die falsche fuehler position die regelung stoert verursachen",
+      "wie ist die service reihenfolge bei die falsche fuehler position die regelung stoert"
+    ],
+    "tr_answer": "sensor yeri yanlis oldugu icin sistem sapitiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler sondanin hava vurulan noktaya, kapi bolgesine veya urunu temsil etmeyen yere konmasidir. Ilk kontrolde sensorun tam yeri, montaj sekli ve ekrandaki sicaklik ile gercek oda sicakligi karsilastirilir. Bunun sebebi yanlis yerdeki sensor duzgun sistemi bile dengesiz gosterebilir. En sik hata ise kontroloru degistirip sensor mantigini sorgulamamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die falsche fuehler position die regelung stoert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind der Fuehler im Luftstrahl, im Tuerbereich oder an einer nicht repraesentativen Stelle sitzt. Bei der Erstpruefung werden exakte Fuehlerposition, Montageart und Vergleich zwischen Anzeige und realer Raumtemperatur gemacht werden. Der technische Hintergrund ist ein falsch platzierter Fuehler selbst ein gesundes System unruhig regeln lassen kann. Ein sehr haeufiger Fehler besteht darin, dass den Regler zu tauschen, ohne die Messlogik zu hinterfragen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sensor nereye konur",
+      "sicaklik neden sabit kalmiyor",
+      "defrost sensoru neden onemli"
+    ]
+  },
+  {
+    "id": "problem_expansion_valve_wrong",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "genlesme valfi ayari bozuk",
+    "de_subject": "das expansionsventil falsch eingestellt ist",
+    "keywords": [
+      "txv",
+      "tev",
+      "genlesme valfi",
+      "expansionsventil"
+    ],
+    "tr_questions": [
+      "genlesme valfi ayari bozuk neden olur",
+      "genlesme valfi ayari bozuk olursa neye bakilir",
+      "genlesme valfi ayari bozuk varsa sorun nerede olabilir",
+      "genlesme valfi ayari bozuk durumunda usta once ne kontrol eder",
+      "genlesme valfi ayari bozuk arizasinda nasil teshis yapilir",
+      "genlesme valfi ayari bozuk sorunu nasil cozulur",
+      "genlesme valfi ayari bozuk neden tekrar eder",
+      "genlesme valfi ayari bozuk oldugunda hangi parcaya bakilir",
+      "genlesme valfi ayari bozuk oldugunda montaj hatasi olabilir mi",
+      "genlesme valfi ayari bozuk gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt das expansionsventil falsch eingestellt ist auf",
+      "worauf schaut man wenn das expansionsventil falsch eingestellt ist auftritt",
+      "wo kann der fehler liegen wenn das expansionsventil falsch eingestellt ist da ist",
+      "was prueft ein meister zuerst wenn das expansionsventil falsch eingestellt ist auftritt",
+      "wie diagnostiziert man das expansionsventil falsch eingestellt ist",
+      "wie loest man das expansionsventil falsch eingestellt ist",
+      "warum kommt das expansionsventil falsch eingestellt ist immer wieder",
+      "welches bauteil prueft man bei das expansionsventil falsch eingestellt ist",
+      "kann montagefehler das expansionsventil falsch eingestellt ist verursachen",
+      "wie ist die service reihenfolge bei das expansionsventil falsch eingestellt ist"
+    ],
+    "tr_answer": "genlesme valfi ayari bozuk durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis superheat, valf boyutunun uygun olmamasi veya ampul baglantisinin sagliksiz olmasidir. Ilk kontrolde superheat olculur, valf tipi dogrulanir, ampul yeri ve hat izolasyonu incelenir. Bunun sebebi evaporatorun dogru beslenmesi sogutmanin kalbi gibidir. En sik hata ise sistemde diger sorunlari elemeden valfe rastgele mudahale etmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn das expansionsventil falsch eingestellt ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Superheat, ungeeignete Ventilgroesse oder eine schlechte Fuehlerbefestigung. Bei der Erstpruefung werden Superheat gemessen, Ventiltyp verifiziert sowie Fuehlerposition und Leitungsdaemmung geprueft werden. Der technische Hintergrund ist die richtige Befuellung des Verdampfers das Herz der Kuehlleistung ist. Ein sehr haeufiger Fehler besteht darin, dass am Ventil blind zu drehen, ohne zuerst die restliche Anlage zu pruefen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "superheat nasil dusunulur",
+      "dusuk basinc neden olur",
+      "subcool neden onemli"
+    ]
+  },
+  {
+    "id": "problem_refrigerant_shortage",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "gaz eksikligi var",
+    "de_subject": "kaeltemittelmangel vorliegt",
+    "keywords": [
+      "gaz eksigi",
+      "refrigerant shortage",
+      "kaeltemittelmangel"
+    ],
+    "tr_questions": [
+      "gaz eksikligi var neden olur",
+      "gaz eksikligi var olursa neye bakilir",
+      "gaz eksikligi var varsa sorun nerede olabilir",
+      "gaz eksikligi var durumunda usta once ne kontrol eder",
+      "gaz eksikligi var arizasinda nasil teshis yapilir",
+      "gaz eksikligi var sorunu nasil cozulur",
+      "gaz eksikligi var neden tekrar eder",
+      "gaz eksikligi var oldugunda hangi parcaya bakilir",
+      "gaz eksikligi var oldugunda montaj hatasi olabilir mi",
+      "gaz eksikligi var gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt kaeltemittelmangel vorliegt auf",
+      "worauf schaut man wenn kaeltemittelmangel vorliegt auftritt",
+      "wo kann der fehler liegen wenn kaeltemittelmangel vorliegt da ist",
+      "was prueft ein meister zuerst wenn kaeltemittelmangel vorliegt auftritt",
+      "wie diagnostiziert man kaeltemittelmangel vorliegt",
+      "wie loest man kaeltemittelmangel vorliegt",
+      "warum kommt kaeltemittelmangel vorliegt immer wieder",
+      "welches bauteil prueft man bei kaeltemittelmangel vorliegt",
+      "kann montagefehler kaeltemittelmangel vorliegt verursachen",
+      "wie ist die service reihenfolge bei kaeltemittelmangel vorliegt"
+    ],
+    "tr_answer": "gaz eksikligi var durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kacak, servis sonrasi eksik sarj veya uzun vadeli sizdirma problemidir. Ilk kontrolde subcool, sight glass, basinc degerleri ve kacak ihtimali birlikte degerlendirilir. Bunun sebebi eksik gaz sadece kapasite dusurmez, kompresor sogutmasini ve yag dolasimini da etkileyebilir. En sik hata ise kacagi bulmadan gaz ekleyip isi bitmis sanmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn kaeltemittelmangel vorliegt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Leckage, unvollstaendige Fuellung nach Service oder schleichender Kaeltemittelverlust. Bei der Erstpruefung werden Subcooling, Schauglas, Druckwerte und die Moeglichkeit einer Leckage gemeinsam bewertet werden. Der technische Hintergrund ist Kaeltemittelmangel nicht nur Leistung kostet, sondern auch Verdichterkuehlung und Oelumlauf beeinflussen kann. Ein sehr haeufiger Fehler besteht darin, dass ohne Lecksuche einfach nachzufuellen und den Fall als erledigt zu sehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "vakum neden yapilir",
+      "dusuk basinc neden olur",
+      "sight glass kabarcigi ne anlatir"
+    ]
+  },
+  {
+    "id": "problem_refrigerant_overcharge",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "sistemde fazla gaz var",
+    "de_subject": "die anlage ueberfuellt ist",
+    "keywords": [
+      "fazla gaz",
+      "overcharge",
+      "ueberfuellung"
+    ],
+    "tr_questions": [
+      "sistemde fazla gaz var neden olur",
+      "sistemde fazla gaz var olursa neye bakilir",
+      "sistemde fazla gaz var varsa sorun nerede olabilir",
+      "sistemde fazla gaz var durumunda usta once ne kontrol eder",
+      "sistemde fazla gaz var arizasinda nasil teshis yapilir",
+      "sistemde fazla gaz var sorunu nasil cozulur",
+      "sistemde fazla gaz var neden tekrar eder",
+      "sistemde fazla gaz var oldugunda hangi parcaya bakilir",
+      "sistemde fazla gaz var oldugunda montaj hatasi olabilir mi",
+      "sistemde fazla gaz var gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die anlage ueberfuellt ist auf",
+      "worauf schaut man wenn die anlage ueberfuellt ist auftritt",
+      "wo kann der fehler liegen wenn die anlage ueberfuellt ist da ist",
+      "was prueft ein meister zuerst wenn die anlage ueberfuellt ist auftritt",
+      "wie diagnostiziert man die anlage ueberfuellt ist",
+      "wie loest man die anlage ueberfuellt ist",
+      "warum kommt die anlage ueberfuellt ist immer wieder",
+      "welches bauteil prueft man bei die anlage ueberfuellt ist",
+      "kann montagefehler die anlage ueberfuellt ist verursachen",
+      "wie ist die service reihenfolge bei die anlage ueberfuellt ist"
+    ],
+    "tr_answer": "sistemde fazla gaz var durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kontrolsuz sarj, manometreyi yanlis yorumlama veya kondenser problemi varken fazla gaz sanisidir. Ilk kontrolde subcool, basma basinci, kondenser hava tarafi ve sistem etiketi birlikte okunur. Bunun sebebi fazla gaz sistemin likit tarafta birikmesine ve basincin gereksiz yukselmesine neden olabilir. En sik hata ise yuksek basinci gorup otomatik olarak fazla gaz demektir diye dusunmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die anlage ueberfuellt ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind unkontrollierte Fuellung, falsche Interpretation der Messwerte oder eine Fehlannahme bei Luftseitenproblemen. Bei der Erstpruefung werden Subcooling, Hochdruck, Luftseite des Verfluessigers und die Sollfuellung gemeinsam betrachtet werden. Der technische Hintergrund ist eine Ueberfuellung zu Fluessigkeitsstau im System und unnoetig hohem Hochdruck fuehren kann. Ein sehr haeufiger Fehler besteht darin, dass bei Hochdruck sofort von Ueberfuellung auszugehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "subcool neden onemli",
+      "kondenser neden kirlenir"
+    ]
+  },
+  {
+    "id": "problem_filter_drier_blocked",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "filter drier tikali",
+    "de_subject": "der filtertrockner verstopft ist",
+    "keywords": [
+      "filter drier",
+      "tikanik",
+      "verstopfter filter"
+    ],
+    "tr_questions": [
+      "filter drier tikali neden olur",
+      "filter drier tikali olursa neye bakilir",
+      "filter drier tikali varsa sorun nerede olabilir",
+      "filter drier tikali durumunda usta once ne kontrol eder",
+      "filter drier tikali arizasinda nasil teshis yapilir",
+      "filter drier tikali sorunu nasil cozulur",
+      "filter drier tikali neden tekrar eder",
+      "filter drier tikali oldugunda hangi parcaya bakilir",
+      "filter drier tikali oldugunda montaj hatasi olabilir mi",
+      "filter drier tikali gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der filtertrockner verstopft ist auf",
+      "worauf schaut man wenn der filtertrockner verstopft ist auftritt",
+      "wo kann der fehler liegen wenn der filtertrockner verstopft ist da ist",
+      "was prueft ein meister zuerst wenn der filtertrockner verstopft ist auftritt",
+      "wie diagnostiziert man der filtertrockner verstopft ist",
+      "wie loest man der filtertrockner verstopft ist",
+      "warum kommt der filtertrockner verstopft ist immer wieder",
+      "welches bauteil prueft man bei der filtertrockner verstopft ist",
+      "kann montagefehler der filtertrockner verstopft ist verursachen",
+      "wie ist die service reihenfolge bei der filtertrockner verstopft ist"
+    ],
+    "tr_answer": "filter drier tikali durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler sistem ici pislik, lehimde azot kullanilmamasi veya nem tasinmasidir. Ilk kontrolde filter oncesi-sonrasi sicaklik farki, likit hattinda basinc davranisi ve sight glass izlenir. Bunun sebebi tikanik bir filter drier, sivi hattini bogarak genlesme valfine yeterli beslemeyi vermez. En sik hata ise valfi suclayip likit hattindaki daralmayi atlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der filtertrockner verstopft ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Schmutz im System, fehlender Stickstoff beim Loeten oder eingetragene Feuchtigkeit. Bei der Erstpruefung werden Temperaturdifferenz vor und nach dem Trockner, Verhalten der Fluessigkeitsleitung und Schauglas beobachtet werden. Der technische Hintergrund ist ein verstopfter Filtertrockner die Fluessigkeitsseite abbremst und das Expansionsventil nicht sauber versorgt. Ein sehr haeufiger Fehler besteht darin, dass das Ventil zu verdaechtigen und den Engpass in der Fluessigkeitsleitung zu uebersehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "vakum ve azot testi nasil yapilir",
+      "dusuk basinc neden olur",
+      "subcool neden onemli"
+    ]
+  },
+  {
+    "id": "problem_oil_return",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "yag donusu bozuk",
+    "de_subject": "der oelruecklauf schlecht ist",
+    "keywords": [
+      "yag donusu",
+      "oil return",
+      "oelruecklauf"
+    ],
+    "tr_questions": [
+      "yag donusu bozuk neden olur",
+      "yag donusu bozuk olursa neye bakilir",
+      "yag donusu bozuk varsa sorun nerede olabilir",
+      "yag donusu bozuk durumunda usta once ne kontrol eder",
+      "yag donusu bozuk arizasinda nasil teshis yapilir",
+      "yag donusu bozuk sorunu nasil cozulur",
+      "yag donusu bozuk neden tekrar eder",
+      "yag donusu bozuk oldugunda hangi parcaya bakilir",
+      "yag donusu bozuk oldugunda montaj hatasi olabilir mi",
+      "yag donusu bozuk gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der oelruecklauf schlecht ist auf",
+      "worauf schaut man wenn der oelruecklauf schlecht ist auftritt",
+      "wo kann der fehler liegen wenn der oelruecklauf schlecht ist da ist",
+      "was prueft ein meister zuerst wenn der oelruecklauf schlecht ist auftritt",
+      "wie diagnostiziert man der oelruecklauf schlecht ist",
+      "wie loest man der oelruecklauf schlecht ist",
+      "warum kommt der oelruecklauf schlecht ist immer wieder",
+      "welches bauteil prueft man bei der oelruecklauf schlecht ist",
+      "kann montagefehler der oelruecklauf schlecht ist verursachen",
+      "wie ist die service reihenfolge bei der oelruecklauf schlecht ist"
+    ],
+    "tr_answer": "yag donusu bozuk durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis boru capi, kot farki, yatay hat egimi veya dusuk gaz hizi olabilir. Ilk kontrolde emiş hattinin geometri si, kompresor calisma karakteri ve kompresor tarafindaki yag davranisi incelenir. Bunun sebebi kompresor yagi sistemde dolasir ama geri donmesi icin hat tasarimi dogru olmali. En sik hata ise yag sorununu sadece yag ekleyerek cozmeye calismaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der oelruecklauf schlecht ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Rohrdurchmesser, Hoehenunterschied, fehlendes Gefaelle oder zu geringe Gasgeschwindigkeit. Bei der Erstpruefung werden Geometrie der Saugleitung, Betriebsverhalten und Oelzustand am Verdichter untersucht werden. Der technische Hintergrund ist das Verdichteroel zwar umlaeuft, aber nur bei richtiger Leitungsfuehrung sicher zurueckkehrt. Ein sehr haeufiger Fehler besteht darin, dass ein Oelproblem nur durch Nachfuellen loesen zu wollen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "bakir borulama nasil yapilir",
+      "kompresor neden isiniyor",
+      "superheat neden onemli"
+    ]
+  },
+  {
+    "id": "problem_short_cycle",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kompresor kisa devre calisiyor",
+    "de_subject": "der verdichter im kurzzyklus laeuft",
+    "keywords": [
+      "kisa devre",
+      "short cycle",
+      "takten"
+    ],
+    "tr_questions": [
+      "kompresor kisa devre calisiyor neden olur",
+      "kompresor kisa devre calisiyor olursa neye bakilir",
+      "kompresor kisa devre calisiyor varsa sorun nerede olabilir",
+      "kompresor kisa devre calisiyor durumunda usta once ne kontrol eder",
+      "kompresor kisa devre calisiyor arizasinda nasil teshis yapilir",
+      "kompresor kisa devre calisiyor sorunu nasil cozulur",
+      "kompresor kisa devre calisiyor neden tekrar eder",
+      "kompresor kisa devre calisiyor oldugunda hangi parcaya bakilir",
+      "kompresor kisa devre calisiyor oldugunda montaj hatasi olabilir mi",
+      "kompresor kisa devre calisiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verdichter im kurzzyklus laeuft auf",
+      "worauf schaut man wenn der verdichter im kurzzyklus laeuft auftritt",
+      "wo kann der fehler liegen wenn der verdichter im kurzzyklus laeuft da ist",
+      "was prueft ein meister zuerst wenn der verdichter im kurzzyklus laeuft auftritt",
+      "wie diagnostiziert man der verdichter im kurzzyklus laeuft",
+      "wie loest man der verdichter im kurzzyklus laeuft",
+      "warum kommt der verdichter im kurzzyklus laeuft immer wieder",
+      "welches bauteil prueft man bei der verdichter im kurzzyklus laeuft",
+      "kann montagefehler der verdichter im kurzzyklus laeuft verursachen",
+      "wie ist die service reihenfolge bei der verdichter im kurzzyklus laeuft"
+    ],
+    "tr_answer": "kompresor kisa devre calisiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler fazla kapasite, hatali sensor yeri, dar diferans ayari veya dusuk yuk seviyesidir. Ilk kontrolde dur-kalk suresi, set-diferans, oda yuk durumu ve kapasite secimi birlikte okunur. Bunun sebebi sik start-stop hem enerji kaybina hem kompresor omrunun kisalmasina yol acar. En sik hata ise sik calismayi sogutma iyi diye yorumlamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verdichter im kurzzyklus laeuft auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind zu hohe Leistung, falscher Fuehlerplatz, zu kleine Hysterese oder sehr geringe Last. Bei der Erstpruefung werden Taktzeiten, Sollwert-Differenz, Lastsituation und Leistungswahl gemeinsam bewertet werden. Der technische Hintergrund ist haeufige Start-Stopp-Zyklen sowohl Energie kosten als auch die Lebensdauer des Verdichters verkuerzen. Ein sehr haeufiger Fehler besteht darin, dass haeufiges Takten als Zeichen guter Leistung zu missverstehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kapasite secimi nasil yapilir",
+      "sensor yeri neden onemli",
+      "sicaklik neden sabit kalmiyor"
+    ]
+  },
+  {
+    "id": "problem_compressor_noise",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kompresor sesli calisiyor",
+    "de_subject": "der verdichter laut laeuft",
+    "keywords": [
+      "kompresor sesli",
+      "noise",
+      "verdichter laut"
+    ],
+    "tr_questions": [
+      "kompresor sesli calisiyor neden olur",
+      "kompresor sesli calisiyor olursa neye bakilir",
+      "kompresor sesli calisiyor varsa sorun nerede olabilir",
+      "kompresor sesli calisiyor durumunda usta once ne kontrol eder",
+      "kompresor sesli calisiyor arizasinda nasil teshis yapilir",
+      "kompresor sesli calisiyor sorunu nasil cozulur",
+      "kompresor sesli calisiyor neden tekrar eder",
+      "kompresor sesli calisiyor oldugunda hangi parcaya bakilir",
+      "kompresor sesli calisiyor oldugunda montaj hatasi olabilir mi",
+      "kompresor sesli calisiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verdichter laut laeuft auf",
+      "worauf schaut man wenn der verdichter laut laeuft auftritt",
+      "wo kann der fehler liegen wenn der verdichter laut laeuft da ist",
+      "was prueft ein meister zuerst wenn der verdichter laut laeuft auftritt",
+      "wie diagnostiziert man der verdichter laut laeuft",
+      "wie loest man der verdichter laut laeuft",
+      "warum kommt der verdichter laut laeuft immer wieder",
+      "welches bauteil prueft man bei der verdichter laut laeuft",
+      "kann montagefehler der verdichter laut laeuft verursachen",
+      "wie ist die service reihenfolge bei der verdichter laut laeuft"
+    ],
+    "tr_answer": "kompresor sesli calisiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler sivi donusu, gevsek montaj, vibrasyon, yatak yorgunlugu veya yuksek basinç kaynakli zorlanmadir. Ilk kontrolde sesin tipi, boru vuruntusu, ayak takozlari ve basinc degerleri birlikte dinlenir ve olculur. Bunun sebebi ses cogu zaman kompresorun ne sekilde zorlandigini anlatan erken belirtidir. En sik hata ise normal olmayan sesi zamana birakmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verdichter laut laeuft auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Fluessigkeitsruecklauf, lockere Montage, Vibration, Lagerverschleiss oder Belastung durch hohe Druecke. Bei der Erstpruefung werden Geraeuschcharakter, Rohrschwingung, Gummilager und Druckwerte zusammen beurteilt werden. Der technische Hintergrund ist Geraeusche oft ein fruehes Zeichen dafuer sind, wie der Verdichter belastet wird. Ein sehr haeufiger Fehler besteht darin, dass ungewoehnliche Geraeusche einfach laufen zu lassen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sivi donusu neden olur",
+      "yuksek basinc neden olur",
+      "montaj titreşimi nasil kesilir"
+    ]
+  },
+  {
+    "id": "problem_liquid_slugging",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kompresore sivi donuyor",
+    "de_subject": "fluessigkeit zum verdichter zurueckkommt",
+    "keywords": [
+      "sivi donusu",
+      "slugging",
+      "fluessigkeitsruecklauf"
+    ],
+    "tr_questions": [
+      "kompresore sivi donuyor neden olur",
+      "kompresore sivi donuyor olursa neye bakilir",
+      "kompresore sivi donuyor varsa sorun nerede olabilir",
+      "kompresore sivi donuyor durumunda usta once ne kontrol eder",
+      "kompresore sivi donuyor arizasinda nasil teshis yapilir",
+      "kompresore sivi donuyor sorunu nasil cozulur",
+      "kompresore sivi donuyor neden tekrar eder",
+      "kompresore sivi donuyor oldugunda hangi parcaya bakilir",
+      "kompresore sivi donuyor oldugunda montaj hatasi olabilir mi",
+      "kompresore sivi donuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt fluessigkeit zum verdichter zurueckkommt auf",
+      "worauf schaut man wenn fluessigkeit zum verdichter zurueckkommt auftritt",
+      "wo kann der fehler liegen wenn fluessigkeit zum verdichter zurueckkommt da ist",
+      "was prueft ein meister zuerst wenn fluessigkeit zum verdichter zurueckkommt auftritt",
+      "wie diagnostiziert man fluessigkeit zum verdichter zurueckkommt",
+      "wie loest man fluessigkeit zum verdichter zurueckkommt",
+      "warum kommt fluessigkeit zum verdichter zurueckkommt immer wieder",
+      "welches bauteil prueft man bei fluessigkeit zum verdichter zurueckkommt",
+      "kann montagefehler fluessigkeit zum verdichter zurueckkommt verursachen",
+      "wie ist die service reihenfolge bei fluessigkeit zum verdichter zurueckkommt"
+    ],
+    "tr_answer": "kompresore sivi donuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler asiri dusuk superheat, yanlis valf ayari, yuksek yuk degisimi veya defrost sonrasi kontrolsuz geri donustur. Ilk kontrolde superheat, evaporator davranisi, kompresor sesi ve yag kopurmesi belirtileri incelenir. Bunun sebebi kompresor gaz cekmek icin tasarlanmistir; sivi vurmasi mekanik hasara gider. En sik hata ise kompresorun sesini gormezden gelip valfe bakmamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn fluessigkeit zum verdichter zurueckkommt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind zu niedriger Superheat, falsche Ventileinstellung, starke Lastspruenge oder unkontrollierter Ruecklauf nach der Abtauung. Bei der Erstpruefung werden Superheat, Verdampferverhalten, Verdichtergeraeusch und Schaumbildung im Oel beobachtet werden. Der technische Hintergrund ist ein Verdichter fuer Gas und nicht fuer Fluessigkeit gebaut ist, sodass Fluessigkeitsschlaege mechanische Schaeden verursachen. Ein sehr haeufiger Fehler besteht darin, dass das ungewoehnliche Verdichterverhalten zu ignorieren und das Einspritzverhalten nicht zu pruefen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "expansion valve ayari neden onemli",
+      "superheat nasil dusunulur",
+      "kompresor neden sesli calisir"
+    ]
+  },
+  {
+    "id": "problem_high_discharge_temp",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kompresor basma sicakligi cok yuksek",
+    "de_subject": "die druckgastemperatur zu hoch ist",
+    "keywords": [
+      "basma sicakligi",
+      "discharge temp",
+      "druckgastemperatur"
+    ],
+    "tr_questions": [
+      "kompresor basma sicakligi cok yuksek neden olur",
+      "kompresor basma sicakligi cok yuksek olursa neye bakilir",
+      "kompresor basma sicakligi cok yuksek varsa sorun nerede olabilir",
+      "kompresor basma sicakligi cok yuksek durumunda usta once ne kontrol eder",
+      "kompresor basma sicakligi cok yuksek arizasinda nasil teshis yapilir",
+      "kompresor basma sicakligi cok yuksek sorunu nasil cozulur",
+      "kompresor basma sicakligi cok yuksek neden tekrar eder",
+      "kompresor basma sicakligi cok yuksek oldugunda hangi parcaya bakilir",
+      "kompresor basma sicakligi cok yuksek oldugunda montaj hatasi olabilir mi",
+      "kompresor basma sicakligi cok yuksek gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die druckgastemperatur zu hoch ist auf",
+      "worauf schaut man wenn die druckgastemperatur zu hoch ist auftritt",
+      "wo kann der fehler liegen wenn die druckgastemperatur zu hoch ist da ist",
+      "was prueft ein meister zuerst wenn die druckgastemperatur zu hoch ist auftritt",
+      "wie diagnostiziert man die druckgastemperatur zu hoch ist",
+      "wie loest man die druckgastemperatur zu hoch ist",
+      "warum kommt die druckgastemperatur zu hoch ist immer wieder",
+      "welches bauteil prueft man bei die druckgastemperatur zu hoch ist",
+      "kann montagefehler die druckgastemperatur zu hoch ist verursachen",
+      "wie ist die service reihenfolge bei die druckgastemperatur zu hoch ist"
+    ],
+    "tr_answer": "kompresor basma sicakligi cok yuksek durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler dusuk emiş, yuksek superheat, zayif sogutma veya asiri yukten kaynaklanabilir. Ilk kontrolde superheat, kondenser sogutmasi, emiş hattinin izolasyonu ve kompresor akimi kontrol edilir. Bunun sebebi asiri basma sicakligi yag yapisini bozar ve motor omrunu kisaltir. En sik hata ise sicakligi normal sayip sadece odanin sogukluguna bakmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die druckgastemperatur zu hoch ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind niedrige Sauggasbedingungen, hoher Superheat, schlechte Kuehlung oder Ueberlastung. Bei der Erstpruefung werden Superheat, Verfluessigerkuehlung, Daemmung der Saugleitung und Verdichterstrom geprueft werden. Der technische Hintergrund ist zu hohe Druckgastemperaturen das Oel schaedigen und die Motorlebensdauer verkuerzen. Ein sehr haeufiger Fehler besteht darin, dass die Temperatur zu ignorieren, nur weil der Raum noch irgendwie kuehlt. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yag donusu neden onemli",
+      "superheat neden yukselir",
+      "kondenser neden kirlenir"
+    ]
+  },
+  {
+    "id": "problem_crankcase_heater",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "krankcase isiticisi calismiyor",
+    "de_subject": "die oelsumpfheizung nicht funktioniert",
+    "keywords": [
+      "crankcase heater",
+      "sump heater",
+      "oelsumpfheizung"
+    ],
+    "tr_questions": [
+      "krankcase isiticisi calismiyor neden olur",
+      "krankcase isiticisi calismiyor olursa neye bakilir",
+      "krankcase isiticisi calismiyor varsa sorun nerede olabilir",
+      "krankcase isiticisi calismiyor durumunda usta once ne kontrol eder",
+      "krankcase isiticisi calismiyor arizasinda nasil teshis yapilir",
+      "krankcase isiticisi calismiyor sorunu nasil cozulur",
+      "krankcase isiticisi calismiyor neden tekrar eder",
+      "krankcase isiticisi calismiyor oldugunda hangi parcaya bakilir",
+      "krankcase isiticisi calismiyor oldugunda montaj hatasi olabilir mi",
+      "krankcase isiticisi calismiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die oelsumpfheizung nicht funktioniert auf",
+      "worauf schaut man wenn die oelsumpfheizung nicht funktioniert auftritt",
+      "wo kann der fehler liegen wenn die oelsumpfheizung nicht funktioniert da ist",
+      "was prueft ein meister zuerst wenn die oelsumpfheizung nicht funktioniert auftritt",
+      "wie diagnostiziert man die oelsumpfheizung nicht funktioniert",
+      "wie loest man die oelsumpfheizung nicht funktioniert",
+      "warum kommt die oelsumpfheizung nicht funktioniert immer wieder",
+      "welches bauteil prueft man bei die oelsumpfheizung nicht funktioniert",
+      "kann montagefehler die oelsumpfheizung nicht funktioniert verursachen",
+      "wie ist die service reihenfolge bei die oelsumpfheizung nicht funktioniert"
+    ],
+    "tr_answer": "krankcase isiticisi calismiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler rezistans arizasi, besleme eksigi veya uzun stoplarda gaz migrasyonudur. Ilk kontrolde isitici direnci, enerji varligi ve uzun durus sonrasi kompresor davranisi izlenir. Bunun sebebi isitici olmazsa gaz kartere coker ve ilk kalkista yagi kopurtur. En sik hata ise sorunu sadece soguk havaya baglayip isitici devresini olcmemektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die oelsumpfheizung nicht funktioniert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind defekte Heizung, fehlende Versorgung oder Kaeltemittelmigration in Stillstandszeiten. Bei der Erstpruefung werden Widerstand der Heizung, Spannungsversorgung und Verdichterverhalten nach laengerem Stillstand geprueft werden. Der technische Hintergrund ist ohne Sumpfheizung Kaeltemittel in den Oelraum wandern und beim Start starke Schaumbildung verursachen kann. Ein sehr haeufiger Fehler besteht darin, dass das Problem nur dem kalten Wetter zuzuschreiben, ohne den Heizkreis zu messen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kompresore sivi donuyor neden olur",
+      "uzun stop sonrasi ariza neden baslar",
+      "elektrik panosunda ne kontrol edilir"
+    ]
+  },
+  {
+    "id": "problem_phase_sequence",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "faz sirasi yanlis",
+    "de_subject": "die phasenfolge falsch ist",
+    "keywords": [
+      "faz sirasi",
+      "phase sequence",
+      "phasenfolge"
+    ],
+    "tr_questions": [
+      "faz sirasi yanlis neden olur",
+      "faz sirasi yanlis olursa neye bakilir",
+      "faz sirasi yanlis varsa sorun nerede olabilir",
+      "faz sirasi yanlis durumunda usta once ne kontrol eder",
+      "faz sirasi yanlis arizasinda nasil teshis yapilir",
+      "faz sirasi yanlis sorunu nasil cozulur",
+      "faz sirasi yanlis neden tekrar eder",
+      "faz sirasi yanlis oldugunda hangi parcaya bakilir",
+      "faz sirasi yanlis oldugunda montaj hatasi olabilir mi",
+      "faz sirasi yanlis gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die phasenfolge falsch ist auf",
+      "worauf schaut man wenn die phasenfolge falsch ist auftritt",
+      "wo kann der fehler liegen wenn die phasenfolge falsch ist da ist",
+      "was prueft ein meister zuerst wenn die phasenfolge falsch ist auftritt",
+      "wie diagnostiziert man die phasenfolge falsch ist",
+      "wie loest man die phasenfolge falsch ist",
+      "warum kommt die phasenfolge falsch ist immer wieder",
+      "welches bauteil prueft man bei die phasenfolge falsch ist",
+      "kann montagefehler die phasenfolge falsch ist verursachen",
+      "wie ist die service reihenfolge bei die phasenfolge falsch ist"
+    ],
+    "tr_answer": "faz sirasi yanlis durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler uc faz baglantisinin ters gelmesi veya pano sonrasi saha baglantisinda fazlarin karismasidir. Ilk kontrolde faz koruma rolesi, kompresor sesi, akim davranisi ve donus yonu kontrol edilir. Bunun sebebi scroll ve bazi fan motorlari yanlis faz sirasinda saglikli calismaz. En sik hata ise enerji var diye faz kalitesini yeterli sanmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die phasenfolge falsch ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind vertauschte drei Phasen an der Einspeisung oder nachtraeglich vertauschte Feldverdrahtung. Bei der Erstpruefung werden Phasenwaechter, Verdichtergeraeusch, Stromverhalten und Drehrichtung geprueft werden. Der technische Hintergrund ist Scrollverdichter und bestimmte Motoren bei falscher Phasenfolge nicht korrekt arbeiten. Ein sehr haeufiger Fehler besteht darin, dass anzunehmen, dass vorhandene Spannung automatisch richtige Phasenfolge bedeutet. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "fan yonu neden onemli",
+      "faz koruma rolesi ne ise yarar"
+    ]
+  },
+  {
+    "id": "problem_voltage_drop",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "voltaj dusuk geliyor",
+    "de_subject": "unterspannung anliegt",
+    "keywords": [
+      "voltaj dusuk",
+      "under voltage",
+      "unterspannung"
+    ],
+    "tr_questions": [
+      "voltaj dusuk geliyor neden olur",
+      "voltaj dusuk geliyor olursa neye bakilir",
+      "voltaj dusuk geliyor varsa sorun nerede olabilir",
+      "voltaj dusuk geliyor durumunda usta once ne kontrol eder",
+      "voltaj dusuk geliyor arizasinda nasil teshis yapilir",
+      "voltaj dusuk geliyor sorunu nasil cozulur",
+      "voltaj dusuk geliyor neden tekrar eder",
+      "voltaj dusuk geliyor oldugunda hangi parcaya bakilir",
+      "voltaj dusuk geliyor oldugunda montaj hatasi olabilir mi",
+      "voltaj dusuk geliyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt unterspannung anliegt auf",
+      "worauf schaut man wenn unterspannung anliegt auftritt",
+      "wo kann der fehler liegen wenn unterspannung anliegt da ist",
+      "was prueft ein meister zuerst wenn unterspannung anliegt auftritt",
+      "wie diagnostiziert man unterspannung anliegt",
+      "wie loest man unterspannung anliegt",
+      "warum kommt unterspannung anliegt immer wieder",
+      "welches bauteil prueft man bei unterspannung anliegt",
+      "kann montagefehler unterspannung anliegt verursachen",
+      "wie ist die service reihenfolge bei unterspannung anliegt"
+    ],
+    "tr_answer": "voltaj dusuk geliyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler uzun hat, zayif kablo kesiti, gevsek klemens veya sebeke sorunu olabilir. Ilk kontrolde bos ve yuk altinda gerilim, kablo kesiti ve pano baglantilari olculur. Bunun sebebi dusuk voltaj kompresorun akimini arttirip zorlanmasina neden olabilir. En sik hata ise yalniz cihaz icini kontrol edip besleme hattini unutmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn unterspannung anliegt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind lange Leitung, zu kleiner Kabelquerschnitt, lose Klemmen oder Netzproblem. Bei der Erstpruefung werden Spannung im Leerlauf und unter Last, Kabelquerschnitt und Schaltschrankklemmen gemessen werden. Der technische Hintergrund ist Unterspannung den Verdichterstrom erhoehen und die Maschine belasten kann. Ein sehr haeufiger Fehler besteht darin, dass nur das Geraet selbst zu pruefen und die Zuleitung zu vergessen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kompresor termige neden duser",
+      "gevsek klemens ne yapar",
+      "faz sirasi neden onemli"
+    ]
+  },
+  {
+    "id": "problem_loose_terminal",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "gevsek klemens arizasi var",
+    "de_subject": "lose klemmen stoerungen verursachen",
+    "keywords": [
+      "gevsek klemens",
+      "loose terminal",
+      "lockere klemme"
+    ],
+    "tr_questions": [
+      "gevsek klemens arizasi var neden olur",
+      "gevsek klemens arizasi var olursa neye bakilir",
+      "gevsek klemens arizasi var varsa sorun nerede olabilir",
+      "gevsek klemens arizasi var durumunda usta once ne kontrol eder",
+      "gevsek klemens arizasi var arizasinda nasil teshis yapilir",
+      "gevsek klemens arizasi var sorunu nasil cozulur",
+      "gevsek klemens arizasi var neden tekrar eder",
+      "gevsek klemens arizasi var oldugunda hangi parcaya bakilir",
+      "gevsek klemens arizasi var oldugunda montaj hatasi olabilir mi",
+      "gevsek klemens arizasi var gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt lose klemmen stoerungen verursachen auf",
+      "worauf schaut man wenn lose klemmen stoerungen verursachen auftritt",
+      "wo kann der fehler liegen wenn lose klemmen stoerungen verursachen da ist",
+      "was prueft ein meister zuerst wenn lose klemmen stoerungen verursachen auftritt",
+      "wie diagnostiziert man lose klemmen stoerungen verursachen",
+      "wie loest man lose klemmen stoerungen verursachen",
+      "warum kommt lose klemmen stoerungen verursachen immer wieder",
+      "welches bauteil prueft man bei lose klemmen stoerungen verursachen",
+      "kann montagefehler lose klemmen stoerungen verursachen verursachen",
+      "wie ist die service reihenfolge bei lose klemmen stoerungen verursachen"
+    ],
+    "tr_answer": "gevsek klemens arizasi var durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler zamanla isinma, vibrasyon veya ilk montajda zayif sikma yapilmis olmasidir. Ilk kontrolde iz yanigi, renk degisimi, isitma izi ve klemens sikiligi gozden gecirilir. Bunun sebebi gevsek baglanti yuk altinda gerilim dusurur ve ariza yaratir. En sik hata ise baglantilar saglam gorunuyor diye tornavida kontrolunu ihmal etmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn lose klemmen stoerungen verursachen auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Waerme, Vibrationen oder unzureichend angezogene Anschluesse bei der Erstmontage. Bei der Erstpruefung werden Verfaerbung, Schmorstellen, Hitzezeichen und Klemmsitz kontrolliert werden. Der technische Hintergrund ist lose Verbindungen unter Last Spannungsabfall und Stoerungen verursachen. Ein sehr haeufiger Fehler besteht darin, dass die Schraubkontrolle zu ueberspringen, weil die Verdrahtung optisch gut aussieht. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "voltaj dusuk gelirse ne olur",
+      "kompresor neden durur",
+      "bakim listesinde neler olmali"
+    ]
+  },
+  {
+    "id": "problem_bad_condenser_location",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kondenser yeri yanlis secilmis",
+    "de_subject": "der verfluessiger falsch platziert ist",
+    "keywords": [
+      "kondenser yeri",
+      "bad condenser location",
+      "verfluessiger aufstellung"
+    ],
+    "tr_questions": [
+      "kondenser yeri yanlis secilmis neden olur",
+      "kondenser yeri yanlis secilmis olursa neye bakilir",
+      "kondenser yeri yanlis secilmis varsa sorun nerede olabilir",
+      "kondenser yeri yanlis secilmis durumunda usta once ne kontrol eder",
+      "kondenser yeri yanlis secilmis arizasinda nasil teshis yapilir",
+      "kondenser yeri yanlis secilmis sorunu nasil cozulur",
+      "kondenser yeri yanlis secilmis neden tekrar eder",
+      "kondenser yeri yanlis secilmis oldugunda hangi parcaya bakilir",
+      "kondenser yeri yanlis secilmis oldugunda montaj hatasi olabilir mi",
+      "kondenser yeri yanlis secilmis gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verfluessiger falsch platziert ist auf",
+      "worauf schaut man wenn der verfluessiger falsch platziert ist auftritt",
+      "wo kann der fehler liegen wenn der verfluessiger falsch platziert ist da ist",
+      "was prueft ein meister zuerst wenn der verfluessiger falsch platziert ist auftritt",
+      "wie diagnostiziert man der verfluessiger falsch platziert ist",
+      "wie loest man der verfluessiger falsch platziert ist",
+      "warum kommt der verfluessiger falsch platziert ist immer wieder",
+      "welches bauteil prueft man bei der verfluessiger falsch platziert ist",
+      "kann montagefehler der verfluessiger falsch platziert ist verursachen",
+      "wie ist die service reihenfolge bei der verfluessiger falsch platziert ist"
+    ],
+    "tr_answer": "kondenser yeri yanlis secilmis durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler sicak havanin geri emilmesi, dar alan, gunes yukunun fazla olmasi veya servis boslugunun olmamasidir. Ilk kontrolde hava cikis yonu, cihaz etrafi mesafe, gunes ve ruzgar etkisi birlikte incelenir. Bunun sebebi kotu yerlesim cihaz saglam olsa da yuksek basinç ve verimsizlik yaratir. En sik hata ise yalniz kapasiteye bakip cihazin nerede nefes alacagini dusunmemektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verfluessiger falsch platziert ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Rueckansaugung heisser Luft, enger Aufstellraum, starke Sonneneinstrahlung oder fehlender Wartungsfreiraum. Bei der Erstpruefung werden Luftausblasrichtung, Abstaende, Sonnenlage und Windeinfluss gemeinsam geprueft werden. Der technische Hintergrund ist eine schlechte Aufstellung selbst bei gesunder Technik Hochdruck und Ineffizienz erzeugen kann. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Leistung zu schauen und nicht darauf, wie das Geraet atmen kann. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "kondenser nereye konur",
+      "periyodik bakimda ne kontrol edilir"
+    ]
+  },
+  {
+    "id": "problem_bad_evaporator_location",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "evaporator yeri yanlis secilmis",
+    "de_subject": "der verdampfer falsch positioniert ist",
+    "keywords": [
+      "evaporator yeri",
+      "bad evaporator location",
+      "verdampfer position"
+    ],
+    "tr_questions": [
+      "evaporator yeri yanlis secilmis neden olur",
+      "evaporator yeri yanlis secilmis olursa neye bakilir",
+      "evaporator yeri yanlis secilmis varsa sorun nerede olabilir",
+      "evaporator yeri yanlis secilmis durumunda usta once ne kontrol eder",
+      "evaporator yeri yanlis secilmis arizasinda nasil teshis yapilir",
+      "evaporator yeri yanlis secilmis sorunu nasil cozulur",
+      "evaporator yeri yanlis secilmis neden tekrar eder",
+      "evaporator yeri yanlis secilmis oldugunda hangi parcaya bakilir",
+      "evaporator yeri yanlis secilmis oldugunda montaj hatasi olabilir mi",
+      "evaporator yeri yanlis secilmis gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der verdampfer falsch positioniert ist auf",
+      "worauf schaut man wenn der verdampfer falsch positioniert ist auftritt",
+      "wo kann der fehler liegen wenn der verdampfer falsch positioniert ist da ist",
+      "was prueft ein meister zuerst wenn der verdampfer falsch positioniert ist auftritt",
+      "wie diagnostiziert man der verdampfer falsch positioniert ist",
+      "wie loest man der verdampfer falsch positioniert ist",
+      "warum kommt der verdampfer falsch positioniert ist immer wieder",
+      "welches bauteil prueft man bei der verdampfer falsch positioniert ist",
+      "kann montagefehler der verdampfer falsch positioniert ist verursachen",
+      "wie ist die service reihenfolge bei der verdampfer falsch positioniert ist"
+    ],
+    "tr_answer": "evaporator yeri yanlis secilmis durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler hava atisinin urune direkt vurmasi, olu nokta birakmasi veya kapidan gelen sicak havayla catismasidir. Ilk kontrolde hava deseni, raf ustu-alti farki ve urunde kuruma belirtileri gozlenir. Bunun sebebi yanlis evaporator yeri kapasite var olsa bile odayi homojen sogutamaz. En sik hata ise sadece montaj kolayligina gore yer secmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der verdampfer falsch positioniert ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind direkte Anblasung auf die Ware, Totzonen im Raum oder Konflikt mit warmer Luft aus der Tuerzone. Bei der Erstpruefung werden Luftbild, Temperaturunterschiede im Regal und Trocknungsspuren an der Ware beobachtet werden. Der technische Hintergrund ist eine falsche Verdampferposition trotz ausreichender Leistung keine gleichmaessige Kuehlung erzeugen kann. Ein sehr haeufiger Fehler besteht darin, dass den Platz nur nach Montagebequemlichkeit zu waehlen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "evaporator nereye konur",
+      "hava sirkulasyonu neden onemli",
+      "urun neden kurur"
+    ]
+  },
+  {
+    "id": "problem_low_humidity_drying",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "urun kuruyor cunku nem dusuk",
+    "de_subject": "die ware austrocknet weil die feuchte zu niedrig ist",
+    "keywords": [
+      "kurutuyor",
+      "low humidity",
+      "austrocknung"
+    ],
+    "tr_questions": [
+      "urun kuruyor cunku nem dusuk neden olur",
+      "urun kuruyor cunku nem dusuk olursa neye bakilir",
+      "urun kuruyor cunku nem dusuk varsa sorun nerede olabilir",
+      "urun kuruyor cunku nem dusuk durumunda usta once ne kontrol eder",
+      "urun kuruyor cunku nem dusuk arizasinda nasil teshis yapilir",
+      "urun kuruyor cunku nem dusuk sorunu nasil cozulur",
+      "urun kuruyor cunku nem dusuk neden tekrar eder",
+      "urun kuruyor cunku nem dusuk oldugunda hangi parcaya bakilir",
+      "urun kuruyor cunku nem dusuk oldugunda montaj hatasi olabilir mi",
+      "urun kuruyor cunku nem dusuk gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die ware austrocknet weil die feuchte zu niedrig ist auf",
+      "worauf schaut man wenn die ware austrocknet weil die feuchte zu niedrig ist auftritt",
+      "wo kann der fehler liegen wenn die ware austrocknet weil die feuchte zu niedrig ist da ist",
+      "was prueft ein meister zuerst wenn die ware austrocknet weil die feuchte zu niedrig ist auftritt",
+      "wie diagnostiziert man die ware austrocknet weil die feuchte zu niedrig ist",
+      "wie loest man die ware austrocknet weil die feuchte zu niedrig ist",
+      "warum kommt die ware austrocknet weil die feuchte zu niedrig ist immer wieder",
+      "welches bauteil prueft man bei die ware austrocknet weil die feuchte zu niedrig ist",
+      "kann montagefehler die ware austrocknet weil die feuchte zu niedrig ist verursachen",
+      "wie ist die service reihenfolge bei die ware austrocknet weil die feuchte zu niedrig ist"
+    ],
+    "tr_answer": "urun kuruyor cunku nem dusuk durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler sert hava vurusu, dusuk evaporasyon karakteri, asiri fan etkisi veya urune uygun olmayan oda ayaridir. Ilk kontrolde hava hizi, urun ustu etki, evaporator secimi ve urun cinsi birlikte degerlendirilir. Bunun sebebi bazı urunlerde kalite kaybi sicakliktan once hava ve nem karakteriyle baslar. En sik hata ise urun kurumasini yalniz sogukluga baglamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die ware austrocknet weil die feuchte zu niedrig ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind harte Luftanblasung, unguenstige Verdampfung, zu starke Ventilatoren oder eine ungeeignete Raumeinstellung. Bei der Erstpruefung werden Luftgeschwindigkeit, Einfluss auf die Ware, Verdampferauswahl und Produkttyp gemeinsam betrachtet werden. Der technische Hintergrund ist bei manchen Produkten der Qualitaetsverlust frueher ueber Luftfuehrung und Feuchte als ueber Temperatur beginnt. Ein sehr haeufiger Fehler besteht darin, dass Austrocknung ausschliesslich als Temperaturproblem zu betrachten. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sebze meyve odasi nasil planlanir",
+      "evaporator nereye konur",
+      "hava hizi neden onemli"
+    ]
+  },
+  {
+    "id": "problem_high_humidity_condensation",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "oda icinde asiri nem ve yogusma var",
+    "de_subject": "zu viel feuchte und kondensat im raum sind",
+    "keywords": [
+      "yogusma",
+      "nem yuksek",
+      "condensation",
+      "kondensat"
+    ],
+    "tr_questions": [
+      "oda icinde asiri nem ve yogusma var neden olur",
+      "oda icinde asiri nem ve yogusma var olursa neye bakilir",
+      "oda icinde asiri nem ve yogusma var varsa sorun nerede olabilir",
+      "oda icinde asiri nem ve yogusma var durumunda usta once ne kontrol eder",
+      "oda icinde asiri nem ve yogusma var arizasinda nasil teshis yapilir",
+      "oda icinde asiri nem ve yogusma var sorunu nasil cozulur",
+      "oda icinde asiri nem ve yogusma var neden tekrar eder",
+      "oda icinde asiri nem ve yogusma var oldugunda hangi parcaya bakilir",
+      "oda icinde asiri nem ve yogusma var oldugunda montaj hatasi olabilir mi",
+      "oda icinde asiri nem ve yogusma var gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt zu viel feuchte und kondensat im raum sind auf",
+      "worauf schaut man wenn zu viel feuchte und kondensat im raum sind auftritt",
+      "wo kann der fehler liegen wenn zu viel feuchte und kondensat im raum sind da ist",
+      "was prueft ein meister zuerst wenn zu viel feuchte und kondensat im raum sind auftritt",
+      "wie diagnostiziert man zu viel feuchte und kondensat im raum sind",
+      "wie loest man zu viel feuchte und kondensat im raum sind",
+      "warum kommt zu viel feuchte und kondensat im raum sind immer wieder",
+      "welches bauteil prueft man bei zu viel feuchte und kondensat im raum sind",
+      "kann montagefehler zu viel feuchte und kondensat im raum sind verursachen",
+      "wie ist die service reihenfolge bei zu viel feuchte und kondensat im raum sind"
+    ],
+    "tr_answer": "oda icinde asiri nem ve yogusma var durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kapi kacagi, yogun yikama, urunun sicak girmesi veya zayif hava dagilimidir. Ilk kontrolde kapi, panel birlesimleri, urun giris duzeni ve fan karakteri birlikte bakilir. Bunun sebebi fazla nem hem buzlanma hem hijyen hem de enerji tuketim sorunlarini beraber getirir. En sik hata ise yalnizca suyu silip kaynagi durdurmamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn zu viel feuchte und kondensat im raum sind auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Tuerleckage, starke Nassreinigung, warm eingelagerte Ware oder schlechte Luftverteilung. Bei der Erstpruefung werden Tuer, Paneelfugen, Wareneintrag und Ventilatorcharakteristik zusammen bewertet werden. Der technische Hintergrund ist zu hohe Feuchte gleichzeitig Vereisung, Hygieneprobleme und Energieverlust erzeugt. Ein sehr haeufiger Fehler besteht darin, dass nur das Wasser zu entfernen, ohne die Quelle zu beseitigen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kapi hava kaciriyor neden olur",
+      "panel neden terler",
+      "defrost neden yetersiz kalir"
+    ]
+  },
+  {
+    "id": "problem_door_heater_failure",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kapi rezistansi calismiyor",
+    "de_subject": "die tuerheizung nicht funktioniert",
+    "keywords": [
+      "kapi rezistansi",
+      "door heater",
+      "tuerheizung"
+    ],
+    "tr_questions": [
+      "kapi rezistansi calismiyor neden olur",
+      "kapi rezistansi calismiyor olursa neye bakilir",
+      "kapi rezistansi calismiyor varsa sorun nerede olabilir",
+      "kapi rezistansi calismiyor durumunda usta once ne kontrol eder",
+      "kapi rezistansi calismiyor arizasinda nasil teshis yapilir",
+      "kapi rezistansi calismiyor sorunu nasil cozulur",
+      "kapi rezistansi calismiyor neden tekrar eder",
+      "kapi rezistansi calismiyor oldugunda hangi parcaya bakilir",
+      "kapi rezistansi calismiyor oldugunda montaj hatasi olabilir mi",
+      "kapi rezistansi calismiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die tuerheizung nicht funktioniert auf",
+      "worauf schaut man wenn die tuerheizung nicht funktioniert auftritt",
+      "wo kann der fehler liegen wenn die tuerheizung nicht funktioniert da ist",
+      "was prueft ein meister zuerst wenn die tuerheizung nicht funktioniert auftritt",
+      "wie diagnostiziert man die tuerheizung nicht funktioniert",
+      "wie loest man die tuerheizung nicht funktioniert",
+      "warum kommt die tuerheizung nicht funktioniert immer wieder",
+      "welches bauteil prueft man bei die tuerheizung nicht funktioniert",
+      "kann montagefehler die tuerheizung nicht funktioniert verursachen",
+      "wie ist die service reihenfolge bei die tuerheizung nicht funktioniert"
+    ],
+    "tr_answer": "kapi rezistansi calismiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler rezistans kopugu, besleme eksigi veya termik koruma devresidir. Ilk kontrolde rezistans devamligi, enerji gelisi ve esik-kasa bolgesindeki donma izleri kontrol edilir. Bunun sebebi negatif odada kapi cevresi isitilmezse buz, kapanma bozuklugu ve hava kacagi olusur. En sik hata ise kapinin sertlesmesini sadece contaya baglamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die tuerheizung nicht funktioniert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Heizungsunterbrechung, fehlende Versorgung oder eine Schutzabschaltung. Bei der Erstpruefung werden Heizungsdurchgang, Spannungsversorgung und Frostspuren an Zarge und Schwelle geprueft werden. Der technische Hintergrund ist im Tiefkuehlraum ohne Heizung an Tuer und Schwelle Eis, schlechte Schliessung und Luftleckagen entstehen. Ein sehr haeufiger Fehler besteht darin, dass die schwergängige Tuer nur der Dichtung anzulasten. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "negatif depo kurulumunda ne onemli",
+      "kapi sizdirmazligi neden onemli",
+      "zemin neden buz yapar"
+    ]
+  },
+  {
+    "id": "problem_defrost_heater_failure",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "defrost rezistansi bozuk",
+    "de_subject": "die abtauheizung defekt ist",
+    "keywords": [
+      "defrost rezistansi",
+      "abtauheizung",
+      "heater failure"
+    ],
+    "tr_questions": [
+      "defrost rezistansi bozuk neden olur",
+      "defrost rezistansi bozuk olursa neye bakilir",
+      "defrost rezistansi bozuk varsa sorun nerede olabilir",
+      "defrost rezistansi bozuk durumunda usta once ne kontrol eder",
+      "defrost rezistansi bozuk arizasinda nasil teshis yapilir",
+      "defrost rezistansi bozuk sorunu nasil cozulur",
+      "defrost rezistansi bozuk neden tekrar eder",
+      "defrost rezistansi bozuk oldugunda hangi parcaya bakilir",
+      "defrost rezistansi bozuk oldugunda montaj hatasi olabilir mi",
+      "defrost rezistansi bozuk gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die abtauheizung defekt ist auf",
+      "worauf schaut man wenn die abtauheizung defekt ist auftritt",
+      "wo kann der fehler liegen wenn die abtauheizung defekt ist da ist",
+      "was prueft ein meister zuerst wenn die abtauheizung defekt ist auftritt",
+      "wie diagnostiziert man die abtauheizung defekt ist",
+      "wie loest man die abtauheizung defekt ist",
+      "warum kommt die abtauheizung defekt ist immer wieder",
+      "welches bauteil prueft man bei die abtauheizung defekt ist",
+      "kann montagefehler die abtauheizung defekt ist verursachen",
+      "wie ist die service reihenfolge bei die abtauheizung defekt ist"
+    ],
+    "tr_answer": "defrost rezistansi bozuk durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler rezistans yanigi, klemens kopuklugu veya cikis rolesi problemidir. Ilk kontrolde rezistans direnci olculur, defrost aninda akim var mi bakilir ve sonlandirma sensoru dogrulanir. Bunun sebebi isitici acmazsa serpantin birikimli buzla giderek nefesini kaybeder. En sik hata ise defrost suresini buyuterek rezistans arizasini gizlemeye calismaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die abtauheizung defekt ist auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind defekte Heizung, Leitungsunterbrechung oder ein Problem am Schaltausgang. Bei der Erstpruefung werden Widerstand der Heizung, Stromaufnahme waehrend der Abtauung und der Endfuehler kontrolliert werden. Der technische Hintergrund ist ohne funktionierende Heizung der Verdampfer mit wachsendem Eis seine Luftleistung verliert. Ein sehr haeufiger Fehler besteht darin, dass durch laengere Abtauzeiten einen echten Heizungsfehler kaschieren zu wollen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "defrost neden calismiyor",
+      "evaporator neden buz tutar",
+      "sensor yeri neden onemli"
+    ]
+  },
+  {
+    "id": "problem_solenoid_valve",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "solenoid valf sorunlu",
+    "de_subject": "das magnetventil probleme macht",
+    "keywords": [
+      "solenoid",
+      "magnet valf",
+      "magnetventil"
+    ],
+    "tr_questions": [
+      "solenoid valf sorunlu neden olur",
+      "solenoid valf sorunlu olursa neye bakilir",
+      "solenoid valf sorunlu varsa sorun nerede olabilir",
+      "solenoid valf sorunlu durumunda usta once ne kontrol eder",
+      "solenoid valf sorunlu arizasinda nasil teshis yapilir",
+      "solenoid valf sorunlu sorunu nasil cozulur",
+      "solenoid valf sorunlu neden tekrar eder",
+      "solenoid valf sorunlu oldugunda hangi parcaya bakilir",
+      "solenoid valf sorunlu oldugunda montaj hatasi olabilir mi",
+      "solenoid valf sorunlu gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt das magnetventil probleme macht auf",
+      "worauf schaut man wenn das magnetventil probleme macht auftritt",
+      "wo kann der fehler liegen wenn das magnetventil probleme macht da ist",
+      "was prueft ein meister zuerst wenn das magnetventil probleme macht auftritt",
+      "wie diagnostiziert man das magnetventil probleme macht",
+      "wie loest man das magnetventil probleme macht",
+      "warum kommt das magnetventil probleme macht immer wieder",
+      "welches bauteil prueft man bei das magnetventil probleme macht",
+      "kann montagefehler das magnetventil probleme macht verursachen",
+      "wie ist die service reihenfolge bei das magnetventil probleme macht"
+    ],
+    "tr_answer": "solenoid valf sorunlu durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler bobin arizasi, kirlenme, mekanik takilma veya elektrik komutunun gelmemesidir. Ilk kontrolde bobin enerjisi, klik sesi, valf acma kapama davranisi ve hat basinci izlenir. Bunun sebebi solenoid valf akisin zamanlamasini bozar ve sistemin sekansini etkiler. En sik hata ise bobini degistirip govdeyi veya kirlenmeyi kontrol etmemektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn das magnetventil probleme macht auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Spulendefekt, Verschmutzung, mechanisches Klemmen oder fehlendes elektrisches Signal. Bei der Erstpruefung werden Spulenspannung, Schaltgeraeusch, Oeffnungs-/Schliessverhalten und Leitungsdruck beobachtet werden. Der technische Hintergrund ist das Magnetventil die zeitliche Freigabe des Kreislaufs steuert und damit den Ablauf der Anlage beeinflusst. Ein sehr haeufiger Fehler besteht darin, dass nur die Spule zu tauschen und die Mechanik bzw. Verschmutzung nicht zu pruefen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "dusuk basinc neden olur",
+      "kontrol panosunda ne kontrol edilir",
+      "filter drier neden tikanir"
+    ]
+  },
+  {
+    "id": "problem_sight_glass_bubbles",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "sight glass kabarcik gosteriyor",
+    "de_subject": "das schauglas blasen zeigt",
+    "keywords": [
+      "sight glass",
+      "kabarcik",
+      "schauglas blasen"
+    ],
+    "tr_questions": [
+      "sight glass kabarcik gosteriyor neden olur",
+      "sight glass kabarcik gosteriyor olursa neye bakilir",
+      "sight glass kabarcik gosteriyor varsa sorun nerede olabilir",
+      "sight glass kabarcik gosteriyor durumunda usta once ne kontrol eder",
+      "sight glass kabarcik gosteriyor arizasinda nasil teshis yapilir",
+      "sight glass kabarcik gosteriyor sorunu nasil cozulur",
+      "sight glass kabarcik gosteriyor neden tekrar eder",
+      "sight glass kabarcik gosteriyor oldugunda hangi parcaya bakilir",
+      "sight glass kabarcik gosteriyor oldugunda montaj hatasi olabilir mi",
+      "sight glass kabarcik gosteriyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt das schauglas blasen zeigt auf",
+      "worauf schaut man wenn das schauglas blasen zeigt auftritt",
+      "wo kann der fehler liegen wenn das schauglas blasen zeigt da ist",
+      "was prueft ein meister zuerst wenn das schauglas blasen zeigt auftritt",
+      "wie diagnostiziert man das schauglas blasen zeigt",
+      "wie loest man das schauglas blasen zeigt",
+      "warum kommt das schauglas blasen zeigt immer wieder",
+      "welches bauteil prueft man bei das schauglas blasen zeigt",
+      "kann montagefehler das schauglas blasen zeigt verursachen",
+      "wie ist die service reihenfolge bei das schauglas blasen zeigt"
+    ],
+    "tr_answer": "sight glass kabarcik gosteriyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler gaz eksigi, subcool yetersizligi veya likit hattinda daralma olabilir. Ilk kontrolde subcool, filter drier, kondenser hava tarafi ve toplam sarj mantigi birlikte degerlendirilir. Bunun sebebi sight glass tek basina karar verdirmez ama likit hattinin kararliligi hakkinda ipucu verir. En sik hata ise kabarcik gordu diye dogrudan gaz basmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn das schauglas blasen zeigt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Kaeltemittelmangel, unzureichendes Subcooling oder ein Engpass in der Fluessigkeitsleitung. Bei der Erstpruefung werden Subcooling, Filtertrockner, Luftseite des Verfluessigers und Gesamtsystemfuellung zusammen bewertet werden. Der technische Hintergrund ist das Schauglas allein keine Diagnose ersetzt, aber viel ueber die Stabilitaet der Fluessigkeitsseite verraet. Ein sehr haeufiger Fehler besteht darin, dass bei Blasen sofort Kaeltemittel nachzufuellen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "gaz eksikligi nasil anlasilir",
+      "subcool neden onemli",
+      "filter drier neden tikanir"
+    ]
+  },
+  {
+    "id": "problem_pressure_switch_trip",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "basinc switch sistemi durduruyor",
+    "de_subject": "der druckschalter die anlage abschaltet",
+    "keywords": [
+      "pressure switch",
+      "basinc switch",
+      "druckschalter"
+    ],
+    "tr_questions": [
+      "basinc switch sistemi durduruyor neden olur",
+      "basinc switch sistemi durduruyor olursa neye bakilir",
+      "basinc switch sistemi durduruyor varsa sorun nerede olabilir",
+      "basinc switch sistemi durduruyor durumunda usta once ne kontrol eder",
+      "basinc switch sistemi durduruyor arizasinda nasil teshis yapilir",
+      "basinc switch sistemi durduruyor sorunu nasil cozulur",
+      "basinc switch sistemi durduruyor neden tekrar eder",
+      "basinc switch sistemi durduruyor oldugunda hangi parcaya bakilir",
+      "basinc switch sistemi durduruyor oldugunda montaj hatasi olabilir mi",
+      "basinc switch sistemi durduruyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt der druckschalter die anlage abschaltet auf",
+      "worauf schaut man wenn der druckschalter die anlage abschaltet auftritt",
+      "wo kann der fehler liegen wenn der druckschalter die anlage abschaltet da ist",
+      "was prueft ein meister zuerst wenn der druckschalter die anlage abschaltet auftritt",
+      "wie diagnostiziert man der druckschalter die anlage abschaltet",
+      "wie loest man der druckschalter die anlage abschaltet",
+      "warum kommt der druckschalter die anlage abschaltet immer wieder",
+      "welches bauteil prueft man bei der druckschalter die anlage abschaltet",
+      "kann montagefehler der druckschalter die anlage abschaltet verursachen",
+      "wie ist die service reihenfolge bei der druckschalter die anlage abschaltet"
+    ],
+    "tr_answer": "basinc switch sistemi durduruyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler gercek yuksek/dusuk basinç, ayar bozuklugu veya switch arizasidir. Ilk kontrolde gercek manometre degeri ile switch davranisi karsilastirilir ve mekanik/elektrik taraf ayrilir. Bunun sebebi switch sonuc degil koruma tepkisidir; asil nedeni bulmak gerekir. En sik hata ise switch by-pass edip sistemi zorla calistirmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn der druckschalter die anlage abschaltet auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind tatsaechlich falscher Druck, schlechte Einstellung oder ein defekter Schalter. Bei der Erstpruefung werden reale Druckwerte mit dem Verhalten des Schalters verglichen und Mechanik wie Elektrik getrennt bewertet werden. Der technische Hintergrund ist der Druckschalter meist nicht die Ursache, sondern die Schutzreaktion auf ein anderes Problem ist. Ein sehr haeufiger Fehler besteht darin, dass den Schalter zu ueberbruecken und die Anlage zwangsweise weiterlaufen zu lassen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "dusuk basinc neden olur",
+      "gucuk koruma elemanlari ne ise yarar"
+    ]
+  },
+  {
+    "id": "problem_control_settings",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "kontrolor ayarlari yanlis",
+    "de_subject": "die regler parameter falsch sind",
+    "keywords": [
+      "kontrolor",
+      "ayar",
+      "parameter",
+      "controller settings"
+    ],
+    "tr_questions": [
+      "kontrolor ayarlari yanlis neden olur",
+      "kontrolor ayarlari yanlis olursa neye bakilir",
+      "kontrolor ayarlari yanlis varsa sorun nerede olabilir",
+      "kontrolor ayarlari yanlis durumunda usta once ne kontrol eder",
+      "kontrolor ayarlari yanlis arizasinda nasil teshis yapilir",
+      "kontrolor ayarlari yanlis sorunu nasil cozulur",
+      "kontrolor ayarlari yanlis neden tekrar eder",
+      "kontrolor ayarlari yanlis oldugunda hangi parcaya bakilir",
+      "kontrolor ayarlari yanlis oldugunda montaj hatasi olabilir mi",
+      "kontrolor ayarlari yanlis gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die regler parameter falsch sind auf",
+      "worauf schaut man wenn die regler parameter falsch sind auftritt",
+      "wo kann der fehler liegen wenn die regler parameter falsch sind da ist",
+      "was prueft ein meister zuerst wenn die regler parameter falsch sind auftritt",
+      "wie diagnostiziert man die regler parameter falsch sind",
+      "wie loest man die regler parameter falsch sind",
+      "warum kommt die regler parameter falsch sind immer wieder",
+      "welches bauteil prueft man bei die regler parameter falsch sind",
+      "kann montagefehler die regler parameter falsch sind verursachen",
+      "wie ist die service reihenfolge bei die regler parameter falsch sind"
+    ],
+    "tr_answer": "kontrolor ayarlari yanlis durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis set degeri, diferans, defrost zamani, fan gecikmesi veya sensor tipi secimidir. Ilk kontrolde tum temel parametreler uygulama tipine gore tekrar okunur ve kurulu saha ile karsilastirilir. Bunun sebebi iyi cihaz bile yanlis parametreyle kotu calisir. En sik hata ise fabrika ayariyla birakip uygulamaya gore optimize etmemektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die regler parameter falsch sind auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Sollwert, Hysterese, Abtauzeit, Ventilatorverzoegerung oder Sensortyp. Bei der Erstpruefung werden die Grundparameter mit dem realen Einsatzfall und der installierten Anlage abgeglichen werden. Der technische Hintergrund ist selbst gute Hardware mit falschen Parametern schlecht arbeitet. Ein sehr haeufiger Fehler besteht darin, dass die Werkseinstellung zu belassen, ohne auf den echten Einsatzfall anzupassen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sensor yeri neden onemli",
+      "defrost neden onemli",
+      "devreye alma sirasinda ne kontrol edilir"
+    ]
+  },
+  {
+    "id": "problem_ice_after_defrost",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "defrosttan sonra yine hizli buz yapiyor",
+    "de_subject": "nach der abtauung schnell wieder eis entsteht",
+    "keywords": [
+      "defrosttan sonra buz",
+      "ice after defrost",
+      "vereist schnell wieder"
+    ],
+    "tr_questions": [
+      "defrosttan sonra yine hizli buz yapiyor neden olur",
+      "defrosttan sonra yine hizli buz yapiyor olursa neye bakilir",
+      "defrosttan sonra yine hizli buz yapiyor varsa sorun nerede olabilir",
+      "defrosttan sonra yine hizli buz yapiyor durumunda usta once ne kontrol eder",
+      "defrosttan sonra yine hizli buz yapiyor arizasinda nasil teshis yapilir",
+      "defrosttan sonra yine hizli buz yapiyor sorunu nasil cozulur",
+      "defrosttan sonra yine hizli buz yapiyor neden tekrar eder",
+      "defrosttan sonra yine hizli buz yapiyor oldugunda hangi parcaya bakilir",
+      "defrosttan sonra yine hizli buz yapiyor oldugunda montaj hatasi olabilir mi",
+      "defrosttan sonra yine hizli buz yapiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt nach der abtauung schnell wieder eis entsteht auf",
+      "worauf schaut man wenn nach der abtauung schnell wieder eis entsteht auftritt",
+      "wo kann der fehler liegen wenn nach der abtauung schnell wieder eis entsteht da ist",
+      "was prueft ein meister zuerst wenn nach der abtauung schnell wieder eis entsteht auftritt",
+      "wie diagnostiziert man nach der abtauung schnell wieder eis entsteht",
+      "wie loest man nach der abtauung schnell wieder eis entsteht",
+      "warum kommt nach der abtauung schnell wieder eis entsteht immer wieder",
+      "welches bauteil prueft man bei nach der abtauung schnell wieder eis entsteht",
+      "kann montagefehler nach der abtauung schnell wieder eis entsteht verursachen",
+      "wie ist die service reihenfolge bei nach der abtauung schnell wieder eis entsteht"
+    ],
+    "tr_answer": "defrosttan sonra yine hizli buz yapiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kapi kacaklari, fan gecikmesi hatasi, suyun tam akmamasi veya yuksek nem yukudur. Ilk kontrolde defrost bitim sekli, fan gecikmesi, drenaj ve kapi kacagi ayni tabloda okunur. Bunun sebebi defrost tek basina buz sorununu cozmeyebilir; nem kaynagi devam ediyorsa buz geri gelir. En sik hata ise yalniz abtau sayisini artirmaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn nach der abtauung schnell wieder eis entsteht auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Tuerleckagen, falsche Ventilatorverzoegerung, unvollstaendiger Wasserablauf oder hohe Feuchtelast. Bei der Erstpruefung werden Abtauende, Ventilatorverzoegerung, Ablauf und Tuerleckagen als Gesamtbild bewertet werden. Der technische Hintergrund ist Abtauung allein das Eisproblem nicht loest, wenn die Feuchtequelle bestehen bleibt. Ein sehr haeufiger Fehler besteht darin, dass nur die Zahl der Abtauungen zu erhoehen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kapi hava kaciriyor neden olur",
+      "drenaj hatti neden donar",
+      "defrost neden onemli"
+    ]
+  },
+  {
+    "id": "problem_alarm_but_room_ok",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "alarm veriyor ama oda bazen normal gorunuyor",
+    "de_subject": "alarm ausloest obwohl der raum zeitweise normal wirkt",
+    "keywords": [
+      "alarm var",
+      "intermittent fault",
+      "alarm obwohl normal"
+    ],
+    "tr_questions": [
+      "alarm veriyor ama oda bazen normal gorunuyor neden olur",
+      "alarm veriyor ama oda bazen normal gorunuyor olursa neye bakilir",
+      "alarm veriyor ama oda bazen normal gorunuyor varsa sorun nerede olabilir",
+      "alarm veriyor ama oda bazen normal gorunuyor durumunda usta once ne kontrol eder",
+      "alarm veriyor ama oda bazen normal gorunuyor arizasinda nasil teshis yapilir",
+      "alarm veriyor ama oda bazen normal gorunuyor sorunu nasil cozulur",
+      "alarm veriyor ama oda bazen normal gorunuyor neden tekrar eder",
+      "alarm veriyor ama oda bazen normal gorunuyor oldugunda hangi parcaya bakilir",
+      "alarm veriyor ama oda bazen normal gorunuyor oldugunda montaj hatasi olabilir mi",
+      "alarm veriyor ama oda bazen normal gorunuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt alarm ausloest obwohl der raum zeitweise normal wirkt auf",
+      "worauf schaut man wenn alarm ausloest obwohl der raum zeitweise normal wirkt auftritt",
+      "wo kann der fehler liegen wenn alarm ausloest obwohl der raum zeitweise normal wirkt da ist",
+      "was prueft ein meister zuerst wenn alarm ausloest obwohl der raum zeitweise normal wirkt auftritt",
+      "wie diagnostiziert man alarm ausloest obwohl der raum zeitweise normal wirkt",
+      "wie loest man alarm ausloest obwohl der raum zeitweise normal wirkt",
+      "warum kommt alarm ausloest obwohl der raum zeitweise normal wirkt immer wieder",
+      "welches bauteil prueft man bei alarm ausloest obwohl der raum zeitweise normal wirkt",
+      "kann montagefehler alarm ausloest obwohl der raum zeitweise normal wirkt verursachen",
+      "wie ist die service reihenfolge bei alarm ausloest obwohl der raum zeitweise normal wirkt"
+    ],
+    "tr_answer": "alarm veriyor ama oda bazen normal gorunuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler kesik kesik sensor hatasi, gevsek baglanti, gecici basinç sorunu veya kullanima bagli yuk dalgalanmasidir. Ilk kontrolde alarm kayit saatiyle o andaki kullanim, kapi acilisi ve ekipman durumu karsilastirilir. Bunun sebebi ariza anlik olabilir; siz baktiginizda normale donmus olabilir. En sik hata ise alarm silip kayit saatini ve tekrar desenini incelememektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn alarm ausloest obwohl der raum zeitweise normal wirkt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind sporadischer Fuehlerfehler, lose Verbindung, kurzzeitiges Druckproblem oder nutzungsbedingte Lastspruenge. Bei der Erstpruefung werden Alarmzeit mit Nutzung, Tueroeffnung und Anlagenzustand abgeglichen wird. Der technische Hintergrund ist manche Stoerungen nur kurz auftreten und bei Ankunft schon wieder verschwunden sein koennen. Ein sehr haeufiger Fehler besteht darin, dass den Alarm nur zu quittieren, ohne Uhrzeit und Wiederholmuster auszuwerten. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sensor kalibrasyonu nasil bozulur",
+      "gevsek klemens ne yapar",
+      "ariza teshisine nereden baslanir"
+    ]
+  },
+  {
+    "id": "problem_pressure_equalization",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "sistem durup kalkarken zorlanıyor",
+    "de_subject": "die anlage beim stop und start schwer anlaeuft",
+    "keywords": [
+      "zor kalkiyor",
+      "hard start",
+      "schwerer start"
+    ],
+    "tr_questions": [
+      "sistem durup kalkarken zorlanıyor neden olur",
+      "sistem durup kalkarken zorlanıyor olursa neye bakilir",
+      "sistem durup kalkarken zorlanıyor varsa sorun nerede olabilir",
+      "sistem durup kalkarken zorlanıyor durumunda usta once ne kontrol eder",
+      "sistem durup kalkarken zorlanıyor arizasinda nasil teshis yapilir",
+      "sistem durup kalkarken zorlanıyor sorunu nasil cozulur",
+      "sistem durup kalkarken zorlanıyor neden tekrar eder",
+      "sistem durup kalkarken zorlanıyor oldugunda hangi parcaya bakilir",
+      "sistem durup kalkarken zorlanıyor oldugunda montaj hatasi olabilir mi",
+      "sistem durup kalkarken zorlanıyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die anlage beim stop und start schwer anlaeuft auf",
+      "worauf schaut man wenn die anlage beim stop und start schwer anlaeuft auftritt",
+      "wo kann der fehler liegen wenn die anlage beim stop und start schwer anlaeuft da ist",
+      "was prueft ein meister zuerst wenn die anlage beim stop und start schwer anlaeuft auftritt",
+      "wie diagnostiziert man die anlage beim stop und start schwer anlaeuft",
+      "wie loest man die anlage beim stop und start schwer anlaeuft",
+      "warum kommt die anlage beim stop und start schwer anlaeuft immer wieder",
+      "welches bauteil prueft man bei die anlage beim stop und start schwer anlaeuft",
+      "kann montagefehler die anlage beim stop und start schwer anlaeuft verursachen",
+      "wie ist die service reihenfolge bei die anlage beim stop und start schwer anlaeuft"
+    ],
+    "tr_answer": "sistem durup kalkarken zorlanıyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler basinc esitlenmemesi, kontaktor-kondansator sorunu veya kompresorun yuklu kalkmasidir. Ilk kontrolde durus sonrasi basinc dengesi, start komponentleri ve solenoid kapanma davranisi incelenir. Bunun sebebi kompresor basinc altinda kalkarsa normalden cok daha fazla zorlanir. En sik hata ise motoru suclayip devre sekansini okumamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die anlage beim stop und start schwer anlaeuft auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind fehlender Druckausgleich, Schuetz-/Kondensatorproblem oder ein belasteter Verdichterstart. Bei der Erstpruefung werden Druckausgleich nach dem Stopp, Startkomponenten und das Schliessverhalten des Magnetventils geprueft werden. Der technische Hintergrund ist ein Verdichter unter Drucklast deutlich schwerer anlaeuft als unter normalen Bedingungen. Ein sehr haeufiger Fehler besteht darin, dass den Motor zu beschuldigen, ohne die Startsequenz zu analysieren. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "solenoid valf sorunluysa ne olur",
+      "kompresor termige neden duser"
+    ]
+  },
+  {
+    "id": "problem_product_freezing_in_plus_room",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "arti odada urun donuyor",
+    "de_subject": "ware im plusraum einfriert",
+    "keywords": [
+      "arti odada donuyor",
+      "product freezing",
+      "ware friert ein"
+    ],
+    "tr_questions": [
+      "arti odada urun donuyor neden olur",
+      "arti odada urun donuyor olursa neye bakilir",
+      "arti odada urun donuyor varsa sorun nerede olabilir",
+      "arti odada urun donuyor durumunda usta once ne kontrol eder",
+      "arti odada urun donuyor arizasinda nasil teshis yapilir",
+      "arti odada urun donuyor sorunu nasil cozulur",
+      "arti odada urun donuyor neden tekrar eder",
+      "arti odada urun donuyor oldugunda hangi parcaya bakilir",
+      "arti odada urun donuyor oldugunda montaj hatasi olabilir mi",
+      "arti odada urun donuyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt ware im plusraum einfriert auf",
+      "worauf schaut man wenn ware im plusraum einfriert auftritt",
+      "wo kann der fehler liegen wenn ware im plusraum einfriert da ist",
+      "was prueft ein meister zuerst wenn ware im plusraum einfriert auftritt",
+      "wie diagnostiziert man ware im plusraum einfriert",
+      "wie loest man ware im plusraum einfriert",
+      "warum kommt ware im plusraum einfriert immer wieder",
+      "welches bauteil prueft man bei ware im plusraum einfriert",
+      "kann montagefehler ware im plusraum einfriert verursachen",
+      "wie ist die service reihenfolge bei ware im plusraum einfriert"
+    ],
+    "tr_answer": "arti odada urun donuyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler hava urune direkt vuruyor, sensor yeri yanlis veya cihaz kapasitesi oda karakterine gore sert calisiyordur. Ilk kontrolde urunun oldugu nokta, fan vurusu, sensor yeri ve gece-gunduz sicaklik farki kontrol edilir. Bunun sebebi oda ortalaması arti olsa bile lokal hava akisi urunu donma noktasina indirebilir. En sik hata ise ekrana bakip urunun neden dondugunu anlamaya calismaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn ware im plusraum einfriert auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind direkter Luftstrahl, falsche Fuehlerposition oder ein fuer den Plusraum zu aggressives Betriebsverhalten. Bei der Erstpruefung werden Position der Ware, Luftanblasung, Fuehlerplatz und Temperaturverlauf ueber Tag und Nacht geprueft werden. Der technische Hintergrund ist die Luft lokal deutlich kaelter sein kann als der durchschnittliche Raumwert. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Anzeige zu schauen und nicht auf die reale Position der Ware. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sensor nereye konur",
+      "evaporator yeri neden onemli",
+      "hava hizi urunu neden etkiler"
+    ]
+  },
+  {
+    "id": "problem_product_not_reaching_safe_temp",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "urun guvenli sicakliga inmiyor",
+    "de_subject": "die ware nicht auf sichere temperatur kommt",
+    "keywords": [
+      "guvenli sicaklik",
+      "safe temperature",
+      "zieltemperatur nicht erreicht"
+    ],
+    "tr_questions": [
+      "urun guvenli sicakliga inmiyor neden olur",
+      "urun guvenli sicakliga inmiyor olursa neye bakilir",
+      "urun guvenli sicakliga inmiyor varsa sorun nerede olabilir",
+      "urun guvenli sicakliga inmiyor durumunda usta once ne kontrol eder",
+      "urun guvenli sicakliga inmiyor arizasinda nasil teshis yapilir",
+      "urun guvenli sicakliga inmiyor sorunu nasil cozulur",
+      "urun guvenli sicakliga inmiyor neden tekrar eder",
+      "urun guvenli sicakliga inmiyor oldugunda hangi parcaya bakilir",
+      "urun guvenli sicakliga inmiyor oldugunda montaj hatasi olabilir mi",
+      "urun guvenli sicakliga inmiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die ware nicht auf sichere temperatur kommt auf",
+      "worauf schaut man wenn die ware nicht auf sichere temperatur kommt auftritt",
+      "wo kann der fehler liegen wenn die ware nicht auf sichere temperatur kommt da ist",
+      "was prueft ein meister zuerst wenn die ware nicht auf sichere temperatur kommt auftritt",
+      "wie diagnostiziert man die ware nicht auf sichere temperatur kommt",
+      "wie loest man die ware nicht auf sichere temperatur kommt",
+      "warum kommt die ware nicht auf sichere temperatur kommt immer wieder",
+      "welches bauteil prueft man bei die ware nicht auf sichere temperatur kommt",
+      "kann montagefehler die ware nicht auf sichere temperatur kommt verursachen",
+      "wie ist die service reihenfolge bei die ware nicht auf sichere temperatur kommt"
+    ],
+    "tr_answer": "urun guvenli sicakliga inmiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis oda tipi, yetersiz kapasite, fazla yuk veya urun merkezine uygun olmayan hava karakteridir. Ilk kontrolde urun merkez sicakligi, parti buyuklugu, sure beklentisi ve cihaz secimi birlikte degerlendirilir. Bunun sebebi merkez soguma ile oda hava sicakligi ayni sey degildir. En sik hata ise hava soguksa urun de soguktur diye varsaymaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die ware nicht auf sichere temperatur kommt auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Raumtyp, zu geringe Leistung, Ueberlast oder ungeeignete Luftcharakteristik fuer die Kernabkuehlung. Bei der Erstpruefung werden Kerntemperatur, Chargengroesse, Zeitvorgabe und Geraeteauslegung gemeinsam bewertet werden. Der technische Hintergrund ist Kernabkuehlung und Lufttemperatur im Raum nicht dasselbe sind. Ein sehr haeufiger Fehler besteht darin, dass davon auszugehen, dass kalte Raumluft automatisch kalte Produktkerne bedeutet. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "sok oda ile muhafaza odasi farki nedir",
+      "kapasite secimi nasil yapilir",
+      "hava sirkulasyonu neden onemli"
+    ]
+  },
+  {
+    "id": "problem_alarm_from_bad_defrost_end",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "defrost gec bitiyor veya erken bitiyor",
+    "de_subject": "die abtauung zu frueh oder zu spaet endet",
+    "keywords": [
+      "defrost erken",
+      "defrost gec",
+      "abtauung endet falsch"
+    ],
+    "tr_questions": [
+      "defrost gec bitiyor veya erken bitiyor neden olur",
+      "defrost gec bitiyor veya erken bitiyor olursa neye bakilir",
+      "defrost gec bitiyor veya erken bitiyor varsa sorun nerede olabilir",
+      "defrost gec bitiyor veya erken bitiyor durumunda usta once ne kontrol eder",
+      "defrost gec bitiyor veya erken bitiyor arizasinda nasil teshis yapilir",
+      "defrost gec bitiyor veya erken bitiyor sorunu nasil cozulur",
+      "defrost gec bitiyor veya erken bitiyor neden tekrar eder",
+      "defrost gec bitiyor veya erken bitiyor oldugunda hangi parcaya bakilir",
+      "defrost gec bitiyor veya erken bitiyor oldugunda montaj hatasi olabilir mi",
+      "defrost gec bitiyor veya erken bitiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die abtauung zu frueh oder zu spaet endet auf",
+      "worauf schaut man wenn die abtauung zu frueh oder zu spaet endet auftritt",
+      "wo kann der fehler liegen wenn die abtauung zu frueh oder zu spaet endet da ist",
+      "was prueft ein meister zuerst wenn die abtauung zu frueh oder zu spaet endet auftritt",
+      "wie diagnostiziert man die abtauung zu frueh oder zu spaet endet",
+      "wie loest man die abtauung zu frueh oder zu spaet endet",
+      "warum kommt die abtauung zu frueh oder zu spaet endet immer wieder",
+      "welches bauteil prueft man bei die abtauung zu frueh oder zu spaet endet",
+      "kann montagefehler die abtauung zu frueh oder zu spaet endet verursachen",
+      "wie ist die service reihenfolge bei die abtauung zu frueh oder zu spaet endet"
+    ],
+    "tr_answer": "defrost gec bitiyor veya erken bitiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler yanlis sonlandirma sensoru, parametre hatasi veya rezistans performans farkidir. Ilk kontrolde sensor yeri, sonlandirma sicakligi ve gercek serpantin cozulme durumu birlikte izlenir. Bunun sebebi yanlis biten defrost ya gereksiz isi verir ya da buzun yarida kalmasina yol acar. En sik hata ise yalniz saati degistirip sensor mantigini sorgulamamaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die abtauung zu frueh oder zu spaet endet auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind falscher Endfuehler, Parametrierfehler oder schwankende Heizleistung. Bei der Erstpruefung werden Fuehlerposition, Endtemperatur und realer Abtauzustand des Verdampfers gemeinsam beobachtet werden. Der technische Hintergrund ist eine falsch beendete Abtauung entweder unnoetig Waerme eintraegt oder Eisreste im Register laesst. Ein sehr haeufiger Fehler besteht darin, dass nur an der Zeit zu drehen und die Fuehlerlogik nicht zu pruefen. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "defrost neden onemli",
+      "sensor nereye konur",
+      "evaporator neden buz tutar"
+    ]
+  },
+  {
+    "id": "problem_alarm_after_power_cut",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "elektrik kesintisi sonrasi sistem dengesiz calisiyor",
+    "de_subject": "die anlage nach stromausfall instabil laeuft",
+    "keywords": [
+      "elektrik kesintisi",
+      "power cut",
+      "stromausfall"
+    ],
+    "tr_questions": [
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor neden olur",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor olursa neye bakilir",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor varsa sorun nerede olabilir",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor durumunda usta once ne kontrol eder",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor arizasinda nasil teshis yapilir",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor sorunu nasil cozulur",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor neden tekrar eder",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor oldugunda hangi parcaya bakilir",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor oldugunda montaj hatasi olabilir mi",
+      "elektrik kesintisi sonrasi sistem dengesiz calisiyor gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt die anlage nach stromausfall instabil laeuft auf",
+      "worauf schaut man wenn die anlage nach stromausfall instabil laeuft auftritt",
+      "wo kann der fehler liegen wenn die anlage nach stromausfall instabil laeuft da ist",
+      "was prueft ein meister zuerst wenn die anlage nach stromausfall instabil laeuft auftritt",
+      "wie diagnostiziert man die anlage nach stromausfall instabil laeuft",
+      "wie loest man die anlage nach stromausfall instabil laeuft",
+      "warum kommt die anlage nach stromausfall instabil laeuft immer wieder",
+      "welches bauteil prueft man bei die anlage nach stromausfall instabil laeuft",
+      "kann montagefehler die anlage nach stromausfall instabil laeuft verursachen",
+      "wie ist die service reihenfolge bei die anlage nach stromausfall instabil laeuft"
+    ],
+    "tr_answer": "elektrik kesintisi sonrasi sistem dengesiz calisiyor durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler parametre sifirlanmasi, faz sirasi degisimi, basinc dengesi bozulmasi veya ardarda restarttir. Ilk kontrolde kontrolor ayarlari, alarm hafizasi, faz sirasi ve yeniden start sekansi kontrol edilir. Bunun sebebi kesinti sonrasi sistem normalden farkli sarti tekrar kurmak zorunda kalir. En sik hata ise enerji geldi diye her seyin eski haline dondugunu varsaymaktir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn die anlage nach stromausfall instabil laeuft auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind verlorene Parameter, geaenderte Phasenfolge, fehlender Druckausgleich oder zu schnelle Wiederanlaeufe. Bei der Erstpruefung werden Reglerparameter, Alarmspeicher, Phasenfolge und Neustartsequenz geprueft werden. Der technische Hintergrund ist die Anlage nach einem Stromausfall ihre Betriebsbedingungen neu aufbauen muss. Ein sehr haeufiger Fehler besteht darin, dass anzunehmen, dass nach Spannungsrueckkehr automatisch wieder alles normal ist. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "kompresor neden zor kalkar",
+      "kontrolor ayarlari nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "problem_alarm_after_service",
+    "source_summary": "DRC MAN soguk oda ariza ustasi egitimi",
+    "tr_subject": "servis sonrasi yeni ariza basladi",
+    "de_subject": "nach dem service eine neue stoerung begann",
+    "keywords": [
+      "servis sonrasi",
+      "after service",
+      "nach service"
+    ],
+    "tr_questions": [
+      "servis sonrasi yeni ariza basladi neden olur",
+      "servis sonrasi yeni ariza basladi olursa neye bakilir",
+      "servis sonrasi yeni ariza basladi varsa sorun nerede olabilir",
+      "servis sonrasi yeni ariza basladi durumunda usta once ne kontrol eder",
+      "servis sonrasi yeni ariza basladi arizasinda nasil teshis yapilir",
+      "servis sonrasi yeni ariza basladi sorunu nasil cozulur",
+      "servis sonrasi yeni ariza basladi neden tekrar eder",
+      "servis sonrasi yeni ariza basladi oldugunda hangi parcaya bakilir",
+      "servis sonrasi yeni ariza basladi oldugunda montaj hatasi olabilir mi",
+      "servis sonrasi yeni ariza basladi gorulurse servis sirasi ne olur"
+    ],
+    "de_questions": [
+      "warum tritt nach dem service eine neue stoerung begann auf",
+      "worauf schaut man wenn nach dem service eine neue stoerung begann auftritt",
+      "wo kann der fehler liegen wenn nach dem service eine neue stoerung begann da ist",
+      "was prueft ein meister zuerst wenn nach dem service eine neue stoerung begann auftritt",
+      "wie diagnostiziert man nach dem service eine neue stoerung begann",
+      "wie loest man nach dem service eine neue stoerung begann",
+      "warum kommt nach dem service eine neue stoerung begann immer wieder",
+      "welches bauteil prueft man bei nach dem service eine neue stoerung begann",
+      "kann montagefehler nach dem service eine neue stoerung begann verursachen",
+      "wie ist die service reihenfolge bei nach dem service eine neue stoerung begann"
+    ],
+    "tr_answer": "servis sonrasi yeni ariza basladi durumunda usta once semptomu dogru okur, sonra sebebi daraltir. En yaygin nedenler vana pozisyonu, eksik sarj, soket unutulmasi, parametre degisimi veya hava alinmamis hat olabilir. Ilk kontrolde serviste dokunulan son noktalar geriye dogru adim adim kontrol edilir. Bunun sebebi ariza zamani cok sey anlatir; servis sonrasi basladiysa once son mudahaleye bakilir. En sik hata ise yeni arizayi eski arizayla karistirip son mudahaleyi goz ardi etmektir. Usta mantigi parca degistirmekten once olayi olcu, gozlem ve is akisiyla dogrulamaktir.",
+    "de_answer": "Wenn nach dem service eine neue stoerung begann auftritt, liest ein Meister zuerst das Symptom sauber und grenzt dann die Ursache ein. Die haeufigsten Gruende sind Ventilstellung, unvollstaendige Fuellung, vergessener Stecker, geaenderter Parameter oder nicht sauber evakuierte Leitung. Bei der Erstpruefung werden die zuletzt beruehrten Punkte der Wartung rueckwaerts Schritt fuer Schritt geprueft werden. Der technische Hintergrund ist der Zeitpunkt der Stoerung viel verrät; wenn sie nach Service begann, schaut man zuerst auf die letzte Arbeit. Ein sehr haeufiger Fehler besteht darin, dass neue Stoerung mit dem alten Fehlerbild zu verwechseln und die letzte Intervention zu ignorieren. Meisterliches Arbeiten bedeutet hier, nicht sofort Teile zu tauschen, sondern Messwerte, Beobachtung und Ablauf logisch zusammenzufuehren.",
+    "suggestions": [
+      "vakum neden onemli",
+      "servis vanasi nasil kontrol edilir",
+      "gaz eksigi nasil anlasilir"
+    ]
+  }
+]

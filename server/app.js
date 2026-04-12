@@ -3485,30 +3485,11 @@ async function matchAssistantTraining(message, language, user) {
     let score = 0;
 
     prompts.forEach((prompt) => {
-      if (!prompt) {
-        return;
-      }
-
-      if (normalizedMessage === prompt) {
-        score += 160;
-      } else if (prompt.includes(normalizedMessage) || normalizedMessage.includes(prompt)) {
-        score += 95;
-      }
-
-      const promptTokens = tokenizeAssistantText(prompt);
-      tokens.forEach((token) => {
-        if (promptTokens.includes(token)) {
-          score += token.length >= 4 ? 22 : 12;
-        } else if (prompt.includes(token)) {
-          score += 6;
-        }
-      });
+      score += scoreAssistantPromptMatch(normalizedMessage, tokens, prompt);
     });
 
     keywords.forEach((keyword) => {
-      if (keyword.length >= 2 && normalizedMessage.includes(keyword)) {
-        score += 18;
-      }
+      score += scoreAssistantKeywordMatch(normalizedMessage, tokens, keyword);
     });
 
     if (score > bestScore) {
@@ -3541,29 +3522,117 @@ function adaptTrainingSuggestions(suggestions, language, entries) {
     return [];
   }
 
-  if (language !== "de") {
-    return suggestions;
-  }
-
   return suggestions.map((suggestion) => {
-    const normalizedSuggestion = normalizeAssistantText(suggestion);
-    if (!normalizedSuggestion) {
+    const match = findBestTrainingEntryByText(suggestion, entries);
+    if (!match) {
       return suggestion;
     }
 
-    const match = entries.find((entry) => {
-      const trQuestion = normalizeAssistantText(entry.trQuestion);
-      const deQuestion = normalizeAssistantText(entry.deQuestion);
-      const topic = normalizeAssistantText(entry.topic);
-      return trQuestion === normalizedSuggestion
-        || deQuestion === normalizedSuggestion
-        || topic === normalizedSuggestion
-        || (trQuestion && (trQuestion.includes(normalizedSuggestion) || normalizedSuggestion.includes(trQuestion)))
-        || (deQuestion && (deQuestion.includes(normalizedSuggestion) || normalizedSuggestion.includes(deQuestion)));
+    if (language === "de") {
+      return cleanOptional(match.deQuestion) || cleanOptional(match.trQuestion) || suggestion;
+    }
+
+    return cleanOptional(match.trQuestion) || cleanOptional(match.deQuestion) || suggestion;
+  });
+}
+
+function findBestTrainingEntryByText(value, entries) {
+  const normalizedValue = normalizeAssistantText(value);
+  if (!normalizedValue) {
+    return null;
+  }
+
+  const tokens = tokenizeAssistantText(normalizedValue);
+  let bestEntry = null;
+  let bestScore = 0;
+
+  entries.forEach((entry) => {
+    const prompts = [
+      normalizeAssistantText(entry.trQuestion),
+      normalizeAssistantText(entry.deQuestion),
+      normalizeAssistantText(entry.topic),
+      normalizeAssistantText(entry.keywords),
+    ].filter(Boolean);
+
+    let score = 0;
+    prompts.forEach((prompt) => {
+      score += scoreAssistantPromptMatch(normalizedValue, tokens, prompt);
     });
 
-    return cleanOptional(match?.deQuestion) || suggestion;
+    if (score > bestScore) {
+      bestScore = score;
+      bestEntry = entry;
+    }
   });
+
+  if (!bestEntry || bestScore < 18) {
+    return null;
+  }
+
+  return bestEntry;
+}
+
+function scoreAssistantPromptMatch(normalizedMessage, tokens, prompt) {
+  if (!prompt) {
+    return 0;
+  }
+
+  let score = 0;
+  if (normalizedMessage === prompt) {
+    score += 160;
+  } else if (prompt.includes(normalizedMessage) || normalizedMessage.includes(prompt)) {
+    score += 95;
+  }
+
+  const promptTokens = tokenizeAssistantText(prompt);
+  tokens.forEach((token) => {
+    if (promptTokens.includes(token)) {
+      score += token.length >= 4 ? 22 : 12;
+    } else if (prompt.includes(token)) {
+      score += 6;
+    } else if (promptTokens.some((promptToken) => hasAssistantTokenStemMatch(token, promptToken))) {
+      score += token.length >= 4 ? 8 : 4;
+    }
+  });
+
+  return score;
+}
+
+function scoreAssistantKeywordMatch(normalizedMessage, tokens, keyword) {
+  if (!keyword) {
+    return 0;
+  }
+
+  let score = 0;
+  if (keyword.length >= 2 && normalizedMessage.includes(keyword)) {
+    score += 18;
+  }
+
+  tokenizeAssistantText(keyword).forEach((keywordToken) => {
+    if (tokens.includes(keywordToken)) {
+      score += keywordToken.length >= 4 ? 9 : 4;
+    } else if (tokens.some((token) => hasAssistantTokenStemMatch(token, keywordToken))) {
+      score += keywordToken.length >= 4 ? 5 : 2;
+    }
+  });
+
+  return score;
+}
+
+function hasAssistantTokenStemMatch(left, right) {
+  const leftToken = String(left || "");
+  const rightToken = String(right || "");
+  if (!leftToken || !rightToken || leftToken === rightToken) {
+    return false;
+  }
+
+  const shortest = Math.min(leftToken.length, rightToken.length);
+  if (shortest < 4) {
+    return false;
+  }
+
+  const prefixLength = shortest >= 6 ? 4 : 3;
+  return leftToken.slice(0, prefixLength) === rightToken.slice(0, prefixLength);
 }
 
 function isLocalDrcManAvailable() {
