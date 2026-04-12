@@ -114,7 +114,9 @@
       "config": {
         "includeFiles": [
           "admin-tools/**",
-          "admin-tools/**/*"
+          "admin-tools/**/*",
+          "public/**",
+          "public/**/*"
         ]
       }
     },
@@ -176,11 +178,11 @@
       "dest": "api/[...path].js"
     },
     {
-      "handle": "filesystem"
+      "src": "/",
+      "dest": "api/[...path].js"
     },
     {
-      "src": "/",
-      "dest": "/public/index.html"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
