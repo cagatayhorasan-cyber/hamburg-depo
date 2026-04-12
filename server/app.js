@@ -49,6 +49,13 @@ const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir
 const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
 const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
 const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
+const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || "256kb";
+const FORM_BODY_LIMIT = process.env.FORM_BODY_LIMIT || "64kb";
+const API_RATE_WINDOW_MS = 60 * 1000;
+const AUTH_RATE_WINDOW_MS = 10 * 60 * 1000;
+const GENERAL_API_RATE_LIMIT = Number(process.env.GENERAL_API_RATE_LIMIT || 240);
+const AUTH_API_RATE_LIMIT = Number(process.env.AUTH_API_RATE_LIMIT || 12);
+const RATE_LIMIT_BUCKETS = new Map();
 
 let gmailTransporter = null;
 
@@ -60,12 +67,20 @@ function createApp() {
     app.set("trust proxy", 1);
   }
 
+  if (IS_SECURE_PROXY && SESSION_SECRET === "hamburg-depo-secret") {
+    console.warn("SESSION_SECRET varsayilan degerde. Uretimde ozel bir gizli anahtar tanimlayin.");
+  }
+
+  app.use(applySecurityHeaders);
+
   app.use("/api", (_req, res, next) => {
     res.set("Cache-Control", "no-store, max-age=0");
+    res.set("Pragma", "no-cache");
     next();
   });
 
-  app.use(express.json());
+  app.use(express.json({ limit: JSON_BODY_LIMIT, strict: true, type: ["application/json", "application/*+json"] }));
+  app.use(express.urlencoded({ extended: false, limit: FORM_BODY_LIMIT }));
   app.use(
     cookieSession({
       name: "hamburg_session",
@@ -78,6 +93,25 @@ function createApp() {
     })
   );
 
+  app.use("/api", validateBrowserRequestOrigin);
+  app.use("/api", createRateLimiter({
+    name: "general-api",
+    windowMs: API_RATE_WINDOW_MS,
+    max: GENERAL_API_RATE_LIMIT,
+    message: "Cok fazla istek gonderildi. Lutfen biraz bekleyip tekrar deneyin.",
+  }));
+
+  const authRateLimiter = createRateLimiter({
+    name: "auth-api",
+    windowMs: AUTH_RATE_WINDOW_MS,
+    max: AUTH_API_RATE_LIMIT,
+    keyFn: (req) => {
+      const identifier = cleanOptional(req.body?.identifier || req.body?.username || req.body?.email || "");
+      return `${getClientIp(req)}:${req.path}:${identifier.toLowerCase()}`;
+    },
+    message: "Cok fazla giris veya sifre islemi denendi. Lutfen 10 dakika sonra tekrar deneyin.",
+  });
+
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   app.get("/api/health", (_req, res) => {
@@ -87,7 +121,7 @@ function createApp() {
     res.json({ ok: true, dbClient, dbTarget });
   });
 
-  app.post("/api/login", async (req, res) => {
+  app.post("/api/login", authRateLimiter, async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.username || req.body?.email);
     const password = req.body?.password;
     const user = await findUserByLoginIdentifier(identifier);
@@ -110,7 +144,7 @@ function createApp() {
     res.json({ user: req.session.user || null });
   });
 
-  app.post("/api/auth/forgot-password", async (req, res) => {
+  app.post("/api/auth/forgot-password", authRateLimiter, async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
     const language = req.body?.language === "de" ? "de" : "tr";
     const user = await findUserByLoginIdentifier(identifier);
@@ -128,7 +162,7 @@ function createApp() {
     });
   });
 
-  app.post("/api/auth/reset-password", async (req, res) => {
+  app.post("/api/auth/reset-password", authRateLimiter, async (req, res) => {
     const token = cleanOptional(req.body?.token);
     const password = String(req.body?.password || "");
 
@@ -188,7 +222,7 @@ function createApp() {
     });
   });
 
-  app.post("/api/customers/register", async (req, res) => {
+  app.post("/api/customers/register", authRateLimiter, async (req, res) => {
     const name = cleanOptional(req.body?.name);
     const email = normalizeEmail(req.body?.email);
     const phone = normalizePhone(req.body?.phone);
@@ -1404,6 +1438,16 @@ function createApp() {
   app.get("/admin-tools/:tool/", requireAuth, serveAdminTool);
   app.get("/admin-tools/:tool/*", requireAuth, serveAdminTool);
 
+  app.use((error, _req, res, next) => {
+    if (error?.type === "entity.too.large") {
+      return res.status(413).json({ error: "Istek boyutu izin verilen siniri asti." });
+    }
+    if (error instanceof SyntaxError && error.type === "entity.parse.failed") {
+      return res.status(400).json({ error: "Gecersiz JSON gonderildi." });
+    }
+    return next(error);
+  });
+
   app.get("*", (_req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
   });
@@ -1503,6 +1547,129 @@ function serveAdminTool(req, res) {
 
   res.type(path.extname(filePath));
   return res.send(fs.readFileSync(filePath));
+}
+
+function applySecurityHeaders(req, res, next) {
+  res.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("X-Frame-Options", "DENY");
+  res.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=()");
+  res.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.set("Cross-Origin-Resource-Policy", "same-origin");
+  if (IS_SECURE_PROXY) {
+    res.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  }
+  res.set("Content-Security-Policy", buildContentSecurityPolicy(req));
+  next();
+}
+
+function buildContentSecurityPolicy(req) {
+  const isAdminToolRequest = req.path.startsWith("/admin-tools");
+  const directives = {
+    "default-src": ["'self'"],
+    "base-uri": ["'self'"],
+    "frame-ancestors": ["'none'"],
+    "form-action": ["'self'"],
+    "object-src": ["'none'"],
+    "img-src": ["'self'", "data:", "blob:", "https:"],
+    "font-src": ["'self'", "data:", "https://fonts.gstatic.com"],
+    "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+    "connect-src": ["'self'"],
+    "script-src": isAdminToolRequest
+      ? ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"]
+      : ["'self'", "'unsafe-inline'"],
+  };
+
+  return Object.entries(directives)
+    .map(([directive, values]) => `${directive} ${values.join(" ")}`)
+    .join("; ");
+}
+
+function validateBrowserRequestOrigin(req, res, next) {
+  const method = String(req.method || "GET").toUpperCase();
+  if (!["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
+    return next();
+  }
+
+  const secFetchSite = String(req.get("sec-fetch-site") || "").toLowerCase();
+  if (secFetchSite && !["same-origin", "same-site", "none"].includes(secFetchSite)) {
+    return res.status(403).json({ error: "Gecersiz istek kaynagi." });
+  }
+
+  const origin = normalizeOrigin(req.get("origin"));
+  if (!origin) {
+    return next();
+  }
+
+  const allowedOrigins = new Set([getRequestOrigin(req)]);
+  const configuredOrigin = normalizeOrigin(APP_BASE_URL);
+  if (configuredOrigin) {
+    allowedOrigins.add(configuredOrigin);
+  }
+
+  if (!allowedOrigins.has(origin)) {
+    return res.status(403).json({ error: "Bu istek kaynagi engellendi." });
+  }
+
+  return next();
+}
+
+function createRateLimiter({ name, windowMs, max, keyFn, message }) {
+  return (req, res, next) => {
+    const now = Date.now();
+    const key = `${name}:${typeof keyFn === "function" ? keyFn(req) : getClientIp(req)}`;
+    const bucket = RATE_LIMIT_BUCKETS.get(key) || [];
+    const fresh = bucket.filter((timestamp) => now - timestamp < windowMs);
+
+    if (fresh.length >= max) {
+      const retryAfterSeconds = Math.max(1, Math.ceil((windowMs - (now - fresh[0])) / 1000));
+      res.set("Retry-After", String(retryAfterSeconds));
+      return res.status(429).json({ error: message || "Cok fazla istek gonderildi." });
+    }
+
+    fresh.push(now);
+    RATE_LIMIT_BUCKETS.set(key, fresh);
+
+    if (RATE_LIMIT_BUCKETS.size > 5000) {
+      pruneRateLimitBuckets(now);
+    }
+
+    return next();
+  };
+}
+
+function pruneRateLimitBuckets(now = Date.now()) {
+  for (const [key, timestamps] of RATE_LIMIT_BUCKETS.entries()) {
+    const fresh = timestamps.filter((timestamp) => now - timestamp < AUTH_RATE_WINDOW_MS);
+    if (fresh.length === 0) {
+      RATE_LIMIT_BUCKETS.delete(key);
+    } else {
+      RATE_LIMIT_BUCKETS.set(key, fresh);
+    }
+  }
+}
+
+function getClientIp(req) {
+  const forwardedFor = String(req.get("x-forwarded-for") || "").split(",")[0].trim();
+  return forwardedFor || req.ip || req.socket?.remoteAddress || "unknown";
+}
+
+function getRequestOrigin(req) {
+  const protocol = req.protocol || (IS_SECURE_PROXY ? "https" : "http");
+  return `${protocol}://${req.get("host")}`;
+}
+
+function normalizeOrigin(value) {
+  const input = cleanOptional(value);
+  if (!input) {
+    return "";
+  }
+
+  try {
+    return new URL(input).origin;
+  } catch (_error) {
+    return "";
+  }
 }
 
 function normalizeRole(role) {

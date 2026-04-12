@@ -2,6 +2,112 @@ const today = new Date().toISOString().split("T")[0];
 const MAX_ITEMS_TABLE_ROWS = 250;
 const SEARCH_DEBOUNCE_MS = 180;
 const UI_LANGUAGE_STORAGE_KEY = "hamburg-ui-language";
+const BLOCKED_HTML_TAGS = new Set(["script", "style", "iframe", "object", "embed", "meta", "base", "link"]);
+const URL_HTML_ATTRIBUTES = new Set(["href", "src", "xlink:href", "action", "formaction", "poster"]);
+const INNER_HTML_OWNER = [Element.prototype, HTMLElement.prototype]
+  .find((proto) => Object.getOwnPropertyDescriptor(proto, "innerHTML"));
+const INNER_HTML_DESCRIPTOR = INNER_HTML_OWNER
+  ? Object.getOwnPropertyDescriptor(INNER_HTML_OWNER, "innerHTML")
+  : null;
+
+function setRawInnerHtml(node, value) {
+  if (INNER_HTML_DESCRIPTOR?.set) {
+    INNER_HTML_DESCRIPTOR.set.call(node, String(value));
+  }
+}
+
+function getRawInnerHtml(node) {
+  if (INNER_HTML_DESCRIPTOR?.get) {
+    return INNER_HTML_DESCRIPTOR.get.call(node);
+  }
+  return "";
+}
+
+function isSafeHtmlUrl(value) {
+  const candidate = String(value || "").trim();
+  if (!candidate) {
+    return true;
+  }
+  if (candidate.startsWith("#") || candidate.startsWith("/") || candidate.startsWith("./") || candidate.startsWith("../")) {
+    return true;
+  }
+  if (/^(https?:|mailto:|tel:|blob:|data:image\/)/i.test(candidate)) {
+    return true;
+  }
+  return false;
+}
+
+function sanitizeHtmlTree(root) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+  const toRemove = [];
+
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    const tagName = String(node.tagName || "").toLowerCase();
+
+    if (BLOCKED_HTML_TAGS.has(tagName)) {
+      toRemove.push(node);
+      continue;
+    }
+
+    Array.from(node.attributes).forEach((attribute) => {
+      const name = String(attribute.name || "").toLowerCase();
+      const value = String(attribute.value || "");
+
+      if (name.startsWith("on") || name === "srcdoc") {
+        node.removeAttribute(attribute.name);
+        return;
+      }
+
+      if (name === "style" && /expression\s*\(|url\s*\(\s*['"]?\s*javascript:/i.test(value)) {
+        node.removeAttribute("style");
+        return;
+      }
+
+      if (URL_HTML_ATTRIBUTES.has(name) && !isSafeHtmlUrl(value)) {
+        node.removeAttribute(attribute.name);
+      }
+    });
+  }
+
+  toRemove.forEach((node) => node.remove());
+}
+
+function sanitizeHtmlMarkup(value) {
+  if (typeof value !== "string" || !value) {
+    return "";
+  }
+
+  if (!INNER_HTML_DESCRIPTOR?.set || !INNER_HTML_DESCRIPTOR?.get) {
+    return value;
+  }
+
+  const template = document.createElement("template");
+  setRawInnerHtml(template, value);
+  sanitizeHtmlTree(template.content);
+  return getRawInnerHtml(template);
+}
+
+function patchInnerHtmlSecurity() {
+  if (!INNER_HTML_OWNER || !INNER_HTML_DESCRIPTOR?.set || !INNER_HTML_DESCRIPTOR?.get || window.__hamburgInnerHtmlPatched) {
+    return;
+  }
+
+  Object.defineProperty(INNER_HTML_OWNER, "innerHTML", {
+    configurable: true,
+    enumerable: INNER_HTML_DESCRIPTOR.enumerable,
+    get() {
+      return INNER_HTML_DESCRIPTOR.get.call(this);
+    },
+    set(value) {
+      INNER_HTML_DESCRIPTOR.set.call(this, sanitizeHtmlMarkup(String(value ?? "")));
+    },
+  });
+
+  window.__hamburgInnerHtmlPatched = true;
+}
+
+patchInnerHtmlSecurity();
 
 function createCurrencyFormatter(language) {
   return new Intl.NumberFormat(language === "de" ? "de-DE" : "tr-TR", {
