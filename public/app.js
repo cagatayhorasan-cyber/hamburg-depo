@@ -133,16 +133,13 @@ const UI_TEXT = {
   tr: {
     title: "D-R-C Kältetechnik GmbH Portal",
     companyName: "D-R-C Kältetechnik GmbH",
-    authShowcaseTitle: "Soğuk oda, servis ve yedek parça gücü",
-    authShowcaseCopy: "Hamburg bölgesindeki depomuzdan soğutma grubu, evaporatör, kontrol panosu, gaz ve montaj sarf ürünleriyle hızlı satış ve saha desteği.",
-    showcaseCarbonTitle: "Karbon ayak izi odagi",
-    showcaseCarbonCopy: "Dusuk GWP gaz, retrofit ve enerji kacagi takibi ile daha kontrollu saha kurulumu.",
-    showcaseIotTitle: "Uzaktan izleme ekrani hazir",
-    showcaseIotCopy: "Oda sicakligi, kapi alarmi, defrost ve servis uyarilari tek panelde izlenir.",
+    authShowcaseTitle: "Hamm ve Börnsen, Deutschland",
+    authShowcaseCopy: "Kältetechnik, stok ve teklif yonetimi tek portalda.",
+    authRegionPills: ["Merkez: Hamm", "Depo: Börnsen bei Hamburg", "Deutschland"],
     authLoginTitle: "Giriş ve müşteri hesabı",
     authLoginDesc: "Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.",
-    brandWallTitle: "Satışını yaptığımız büyük markalar",
-    productFamilies: ["Panel", "Soğuk Oda Kapısı", "Kondenser", "Evaporatör", "Kompresör", "Termostat", "Gazlar", "Bakır Boru", "Fan Motoru", "Servis Malzemesi"],
+    brandWallTitle: "Portföy markalari",
+    productFamilies: ["Panel", "Oda Kapisi", "Kondenser", "Evaporator", "Kontrol", "Servis"],
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -300,16 +297,13 @@ const UI_TEXT = {
   de: {
     title: "D-R-C Kältetechnik GmbH Portal",
     companyName: "D-R-C Kältetechnik GmbH",
-    authShowcaseTitle: "Kühlraum-, Service- und Ersatzteilpower",
-    authShowcaseCopy: "Aus unserem Lager im Raum Hamburg liefern wir Kälteaggregate, Verdampfer, Steuerungen, Kältemittel und Montagematerial mit schnellem Verkauf und Service-Support.",
-    showcaseCarbonTitle: "Carbon-Footprint-Fokus",
-    showcaseCarbonCopy: "Niedriger GWP, Retrofit und Leckagefokus fuer kontrolliertere Feldprojekte.",
-    showcaseIotTitle: "Fernmonitoring-Bildschirm bereit",
-    showcaseIotCopy: "Raumtemperatur, Tueralarm, Abtauung und Servicehinweise stehen in einem Panel bereit.",
+    authShowcaseTitle: "Hamm und Börnsen, Deutschland",
+    authShowcaseCopy: "Kältetechnik, Lager und Angebotsverwaltung in einem Portal.",
+    authRegionPills: ["Hauptsitz: Hamm", "Lager: Börnsen bei Hamburg", "Deutschland"],
     authLoginTitle: "Anmeldung und Kundenkonto",
     authLoginDesc: "Berechtigte Benutzer öffnen Verkauf, Lager und Projektwerkzeuge. Kunden legen ihr eigenes Konto an und verfolgen ihren Bestellverlauf.",
-    brandWallTitle: "Grosse Marken in unserem Verkauf",
-    productFamilies: ["Paneel", "Kühlraumtür", "Verflüssiger", "Verdampfer", "Kompressor", "Thermostat", "Kältemittel", "Kupferrohr", "Ventilator", "Servicematerial"],
+    brandWallTitle: "Marken im Sortiment",
+    productFamilies: ["Paneel", "Kühlraumtür", "Verflüssiger", "Verdampfer", "Regelung", "Service"],
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -738,10 +732,9 @@ function applyUiTranslations() {
   setText(".auth-brand-eyebrow", t("companyName"));
   setText(".auth-showcase-title", t("authShowcaseTitle"));
   setText(".auth-showcase-copy", t("authShowcaseCopy"));
-  setText("#showcaseCarbonTitle", t("showcaseCarbonTitle"));
-  setText("#showcaseCarbonCopy", t("showcaseCarbonCopy"));
-  setText("#showcaseIotTitle", t("showcaseIotTitle"));
-  setText("#showcaseIotCopy", t("showcaseIotCopy"));
+  document.querySelectorAll("[data-region-pill]").forEach((node, index) => {
+    setText(node, t("authRegionPills")[index] || node.textContent);
+  });
   setText(".auth-login-heading h2", t("authLoginTitle"));
   setText(".auth-login-heading .muted", t("authLoginDesc"));
   setText(".brand-wall-title", t("brandWallTitle"));
@@ -754,9 +747,7 @@ function applyUiTranslations() {
   setText(companyCards[1]?.querySelector("span"), langText("Hamburg Depo", "Lager Hamburg"));
   setHtml(companyCards[1]?.querySelector("strong"), "Lauenburger Landstraße 3b<br>21039 Börnsen");
   setText(companyCards[2]?.querySelector("span"), langText("İletişim", "Kontakt"));
-  setText(companyCards[3]?.querySelector("span"), langText("Ticaret Sicili", "Register"));
-  setText(".badge-primary", langText("DRC Soğuk Odalar", "DRC Kühlräume"));
-  setText(".badge-secondary", langText("Servis & Yedek Parça", "Service & Parts"));
+  setText(".badge-primary", langText("Deutschland Lager", "Deutschland Lager"));
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
   setFormFieldLabel(refs.loginForm, "password", t("password"));
