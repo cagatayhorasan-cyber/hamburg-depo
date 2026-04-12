@@ -7,76 +7,121 @@
   <title>D-R-C Kältetechnik GmbH Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260412-drc-showcase-5">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=20260412-drc-showcase-6">
 </head>
 <body>
   <div class="page-shell">
     <section id="loginScreen" class="auth-screen">
       <div class="auth-layout">
         <aside class="auth-showcase" aria-label="D-R-C Kältetechnik firma bilgileri">
-          <div class="auth-showcase-head">
-            <img class="drc-logo-image" src="/assets/drc-logo.svg" alt="D-R-C Kältetechnik GmbH">
-            <div>
-              <p class="eyebrow auth-brand-eyebrow">D-R-C Kältetechnik GmbH</p>
-              <h1 class="auth-showcase-title">Hamm ve Börnsen, Deutschland</h1>
-              <p class="auth-showcase-copy">Kältetechnik, stok ve teklif yonetimi tek portalda.</p>
-              <div class="auth-region-strip" aria-label="Firma konumu">
-                <span data-region-pill="0">Hauptsitz: Hamm</span>
-                <span data-region-pill="1">Lager: Börnsen bei Hamburg</span>
-                <span data-region-pill="2">Deutschland</span>
+          <section class="auth-hero-panel">
+            <div class="auth-hero-copy">
+              <div class="auth-showcase-head">
+                <img class="drc-logo-image" src="/assets/drc-logo.svg" alt="D-R-C Kältetechnik GmbH">
+                <div>
+                  <p class="eyebrow auth-brand-eyebrow">D-R-C Kältetechnik GmbH</p>
+                  <p class="auth-location-line">Hamm &amp; Börnsen bei Hamburg, Deutschland</p>
+                </div>
+              </div>
+              <h1 class="auth-showcase-title">Kältetechnik, Lager &amp; Angebot – Alles in einem Portal</h1>
+              <p class="auth-showcase-copy">Soguk oda sistemlerinden kontrol ekipmanlarina kadar tum urun ve sureclerinizi tek merkezden yonetin.</p>
+              <div class="auth-hero-actions">
+                <a class="primary-button auth-hero-button" data-auth-cta="primary" href="#authSolutions">Produkte entdecken</a>
+                <a class="secondary-button auth-hero-button" data-auth-cta="secondary" href="#customerRegisterPanel">Angebot anfordern</a>
+              </div>
+              <div class="auth-location-grid" aria-label="Standorte">
+                <article class="auth-location-card">
+                  <span class="auth-location-kicker" data-location-label="0">Hauptsitz</span>
+                  <strong data-location-name="0">Hamm</strong>
+                  <small data-location-copy="0">Schildkamp 1 · 59063 Hamm</small>
+                </article>
+                <article class="auth-location-card">
+                  <span class="auth-location-kicker" data-location-label="1">Lager bei Hamburg</span>
+                  <strong data-location-name="1">Börnsen</strong>
+                  <small data-location-copy="1">Lauenburger Landstraße 3b · 21039 Börnsen</small>
+                </article>
               </div>
             </div>
-          </div>
 
-          <div class="auth-product-visual">
-            <img src="/assets/drc-product-showcase.svg" alt="DRC soğuk oda, kondenser, evaporatör ve kontrol ürünleri">
-            <div class="showcase-badge badge-primary">Deutschland Lager</div>
-          </div>
-
-          <div class="auth-showcase-footer">
-            <section class="brand-wall" aria-label="Satışını yaptığımız büyük markalar">
-              <p class="brand-wall-title">Marken im Sortiment</p>
-              <div class="brand-chip-grid">
-                <span>Danfoss</span>
-                <span>DRC</span>
-                <span>Dixell</span>
-                <span>Embraco</span>
-                <span>FrigoCraft</span>
-                <span>Sanhua</span>
-                <span>Carel</span>
-                <span>Systemair</span>
+            <div class="auth-hero-visual">
+              <div class="auth-visual-frame">
+                <img class="auth-product-visual" src="/assets/drc-product-showcase.svg" alt="DRC soğuk oda, kondenser, evaporatör ve kontrol ürünleri">
+                <div class="showcase-badge badge-primary">Deutschland Lager</div>
+                <div class="showcase-badge badge-secondary">Cold Rooms &amp; Controls</div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section class="product-family-wall" aria-label="Ana ürün aileleri">
-              <span>Panel</span>
-              <span>Oda Kapisi</span>
-              <span>Kondenser</span>
-              <span>Evaporatör</span>
-              <span>Kontrol</span>
-              <span>Servis</span>
+          <section id="authSolutions" class="auth-showcase-block auth-solutions-block" aria-label="Unsere Lösungen">
+            <div class="auth-section-headline">
+              <p class="eyebrow auth-section-eyebrow" id="solutionsEyebrow">Unsere Lösungen</p>
+              <h2 class="auth-section-title" id="solutionsTitle">Kühlräume, Kontrolle und Service im selben Ablauf</h2>
+            </div>
+            <div class="product-family-wall">
+              <article class="solution-card"><span class="solution-card-icon">KR</span><strong data-solution-name="0">Kühlräume</strong></article>
+              <article class="solution-card"><span class="solution-card-icon">EV</span><strong data-solution-name="1">Evaporatoren</strong></article>
+              <article class="solution-card"><span class="solution-card-icon">KO</span><strong data-solution-name="2">Kondensatoren</strong></article>
+              <article class="solution-card"><span class="solution-card-icon">ST</span><strong data-solution-name="3">Steuerungssysteme</strong></article>
+              <article class="solution-card"><span class="solution-card-icon">KT</span><strong data-solution-name="4">Kühlraumtüren</strong></article>
+              <article class="solution-card"><span class="solution-card-icon">PS</span><strong data-solution-name="5">Panel Systeme</strong></article>
+              <article class="solution-card"><span class="solution-card-icon">SV</span><strong data-solution-name="6">Service &amp; Support</strong></article>
+            </div>
+          </section>
+
+          <section class="auth-showcase-block brand-wall" aria-label="Portfolio Marken">
+            <div class="auth-section-headline">
+              <p class="eyebrow auth-section-eyebrow brand-wall-title">Portfolio Marken</p>
+              <p class="auth-section-copy" id="brandWallCopy">D-R-C portfoyunde sahada en cok kullanilan sogutma markalari.</p>
+            </div>
+            <div class="brand-logo-grid">
+              <article class="brand-logo-card"><span class="brand-logo-mark">DF</span><strong>Danfoss</strong></article>
+              <article class="brand-logo-card is-accent"><span class="brand-logo-mark">DR</span><strong>DRC</strong></article>
+              <article class="brand-logo-card"><span class="brand-logo-mark">DX</span><strong>Dixell</strong></article>
+              <article class="brand-logo-card"><span class="brand-logo-mark">EM</span><strong>Embraco</strong></article>
+              <article class="brand-logo-card"><span class="brand-logo-mark">SN</span><strong>Sanhua</strong></article>
+              <article class="brand-logo-card"><span class="brand-logo-mark">CR</span><strong>Carel</strong></article>
+              <article class="brand-logo-card"><span class="brand-logo-mark">SY</span><strong>Systemair</strong></article>
+              <article class="brand-logo-card"><span class="brand-logo-mark">FG</span><strong>FrigoCraft</strong></article>
+            </div>
+          </section>
+
+          <div class="auth-showcase-lower">
+            <section class="auth-showcase-block auth-about-block" aria-label="Über uns">
+              <p class="eyebrow auth-section-eyebrow" id="aboutEyebrow">Über uns</p>
+              <p class="auth-about-copy" id="aboutCopy">D-R-C Kältetechnik GmbH, endustriyel sogutma cozumlerinde uzmanlasmis; urun tedariği, stok yonetimi ve teklif sureclerini tek platformda birlestiren modern bir yapidir.</p>
             </section>
 
             <div class="auth-showcase-meta">
-              <div class="company-info-grid">
-                <article class="company-info-card">
-                  <span>Hauptsitz</span>
-                  <strong>Schildkamp 1<br>59063 Hamm</strong>
-                  <small>Deutschland</small>
-                </article>
-                <article class="company-info-card">
-                  <span>Lager Hamburg</span>
-                  <strong>Lauenburger Landstraße 3b<br>21039 Börnsen</strong>
-                  <small>Deutschland</small>
-                </article>
-                <article class="company-info-card">
-                  <span>Kontakt</span>
-                  <strong>+49 1522 1581762</strong>
-                  <small>info@durmusbaba.com</small>
-                </article>
-              </div>
-              <p class="germany-note">Deutschland · Hamm Hauptsitz · Börnsen Lager</p>
+              <section class="auth-showcase-block auth-address-block" aria-label="Standorte">
+                <p class="eyebrow auth-section-eyebrow" id="addressesEyebrow">Standorte</p>
+                <div class="company-info-grid">
+                  <article class="company-info-card">
+                    <span data-company-card-label="0">Hauptsitz</span>
+                    <strong data-company-card-title="0">Schildkamp 1<br>59063 Hamm</strong>
+                    <small data-company-card-country="0">Deutschland</small>
+                  </article>
+                  <article class="company-info-card">
+                    <span data-company-card-label="1">Lager Hamburg</span>
+                    <strong data-company-card-title="1">Lauenburger Landstraße 3b<br>21039 Börnsen</strong>
+                    <small data-company-card-country="1">Deutschland</small>
+                  </article>
+                </div>
+              </section>
+
+              <section class="auth-showcase-block auth-contact-block" aria-label="Kontakt">
+                <p class="eyebrow auth-section-eyebrow" id="contactEyebrow">Kontakt</p>
+                <div class="auth-contact-list">
+                  <a class="auth-contact-item" href="tel:+4915221581762">
+                    <span data-contact-label="0">Telefon</span>
+                    <strong>+49 1522 1581762</strong>
+                  </a>
+                  <a class="auth-contact-item" href="mailto:info@durmusbaba.com">
+                    <span data-contact-label="1">E-Mail</span>
+                    <strong>info@durmusbaba.com</strong>
+                  </a>
+                </div>
+              </section>
             </div>
           </div>
         </aside>
@@ -123,7 +168,7 @@
           </form>
         </section>
         <div class="auth-divider"><span>Musteri hesabi yok mu?</span></div>
-        <section class="auth-subpanel">
+        <section id="customerRegisterPanel" class="auth-subpanel">
           <div class="section-head auth-section-head">
             <div>
               <h3>Musteri Kaydi</h3>

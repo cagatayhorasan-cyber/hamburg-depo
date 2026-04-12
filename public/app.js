@@ -133,13 +133,33 @@ const UI_TEXT = {
   tr: {
     title: "D-R-C Kältetechnik GmbH Portal",
     companyName: "D-R-C Kältetechnik GmbH",
-    authShowcaseTitle: "Hamm ve Börnsen, Deutschland",
-    authShowcaseCopy: "Kältetechnik, stok ve teklif yonetimi tek portalda.",
-    authRegionPills: ["Merkez: Hamm", "Depo: Börnsen bei Hamburg", "Deutschland"],
+    authLocationLine: "Hamm & Börnsen bei Hamburg, Deutschland",
+    authShowcaseTitle: "Kältetechnik, Lager & Angebot – Alles in einem Portal",
+    authShowcaseCopy: "Soguk oda sistemlerinden kontrol ekipmanlarina kadar tum urun ve sureclerinizi tek merkezden yonetin.",
+    authHeroPrimary: "Produkte entdecken",
+    authHeroSecondary: "Angebot anfordern",
+    authLocationCards: [
+      { label: "Hauptsitz", name: "Hamm", copy: "Schildkamp 1 · 59063 Hamm" },
+      { label: "Lager bei Hamburg", name: "Börnsen", copy: "Lauenburger Landstraße 3b · 21039 Börnsen" },
+    ],
     authLoginTitle: "Giriş ve müşteri hesabı",
     authLoginDesc: "Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.",
-    brandWallTitle: "Portföy markalari",
-    productFamilies: ["Panel", "Oda Kapisi", "Kondenser", "Evaporator", "Kontrol", "Servis"],
+    solutionsEyebrow: "Unsere Lösungen",
+    solutionsTitle: "Kühlräume, kontrol ve servis ayni akista",
+    brandWallTitle: "Portfolio Marken",
+    brandWallCopy: "D-R-C portfoyunde sahada en cok kullanilan sogutma markalari.",
+    productFamilies: ["Kühlräume", "Evaporatoren", "Kondensatoren", "Steuerungssysteme", "Kühlraumtüren", "Panel Systeme", "Service & Support"],
+    aboutTitle: "Über uns",
+    aboutCopy: "D-R-C Kältetechnik GmbH, endustriyel sogutma cozumlerinde uzmanlasmis; urun tedariği, stok yonetimi ve teklif sureclerini tek platformda birlestiren modern bir yapidir.",
+    addressesTitle: "Standorte",
+    contactTitle: "Kontakt",
+    contactLabels: ["Telefon", "E-Mail"],
+    companyCards: [
+      { label: "Hauptsitz", title: "Schildkamp 1<br>59063 Hamm", country: "Deutschland" },
+      { label: "Lager Hamburg", title: "Lauenburger Landstraße 3b<br>21039 Börnsen", country: "Deutschland" },
+    ],
+    badgePrimary: "Deutschland Lager",
+    badgeSecondary: "Cold Rooms & Controls",
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -297,13 +317,33 @@ const UI_TEXT = {
   de: {
     title: "D-R-C Kältetechnik GmbH Portal",
     companyName: "D-R-C Kältetechnik GmbH",
-    authShowcaseTitle: "Hamm und Börnsen, Deutschland",
-    authShowcaseCopy: "Kältetechnik, Lager und Angebotsverwaltung in einem Portal.",
-    authRegionPills: ["Hauptsitz: Hamm", "Lager: Börnsen bei Hamburg", "Deutschland"],
+    authLocationLine: "Hamm & Börnsen bei Hamburg, Deutschland",
+    authShowcaseTitle: "Kältetechnik, Lager & Angebot – Alles in einem Portal",
+    authShowcaseCopy: "Von Kuehlraumsystemen bis zu Steuerungskomponenten verwalten Sie Produkte und Prozesse zentral in einem Portal.",
+    authHeroPrimary: "Produkte entdecken",
+    authHeroSecondary: "Angebot anfordern",
+    authLocationCards: [
+      { label: "Hauptsitz", name: "Hamm", copy: "Schildkamp 1 · 59063 Hamm" },
+      { label: "Lager bei Hamburg", name: "Börnsen", copy: "Lauenburger Landstraße 3b · 21039 Börnsen" },
+    ],
     authLoginTitle: "Anmeldung und Kundenkonto",
     authLoginDesc: "Berechtigte Benutzer öffnen Verkauf, Lager und Projektwerkzeuge. Kunden legen ihr eigenes Konto an und verfolgen ihren Bestellverlauf.",
-    brandWallTitle: "Marken im Sortiment",
-    productFamilies: ["Paneel", "Kühlraumtür", "Verflüssiger", "Verdampfer", "Regelung", "Service"],
+    solutionsEyebrow: "Unsere Lösungen",
+    solutionsTitle: "Kühlräume, Regelung und Service in einem Ablauf",
+    brandWallTitle: "Portfolio Marken",
+    brandWallCopy: "Kernmarken aus dem D-R-C Portfolio fuer Verkauf, Lager und Projekteinsatz.",
+    productFamilies: ["Kühlräume", "Evaporatoren", "Kondensatoren", "Steuerungssysteme", "Kühlraumtüren", "Panel Systeme", "Service & Support"],
+    aboutTitle: "Über uns",
+    aboutCopy: "D-R-C Kältetechnik GmbH ist auf industrielle Kältelösungen spezialisiert und vereint Materialversorgung, Lagerorganisation und Angebotsprozesse in einer modernen Plattform.",
+    addressesTitle: "Standorte",
+    contactTitle: "Kontakt",
+    contactLabels: ["Telefon", "E-Mail"],
+    companyCards: [
+      { label: "Hauptsitz", title: "Schildkamp 1<br>59063 Hamm", country: "Deutschland" },
+      { label: "Lager Hamburg", title: "Lauenburger Landstraße 3b<br>21039 Börnsen", country: "Deutschland" },
+    ],
+    badgePrimary: "Deutschland Lager",
+    badgeSecondary: "Cold Rooms & Controls",
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -730,24 +770,48 @@ function applyUiTranslations() {
   setText("#loginScreen .ui-language-label", t("uiLanguage"));
   setText("#appScreen .ui-language-label", t("uiLanguage"));
   setText(".auth-brand-eyebrow", t("companyName"));
+  setText(".auth-location-line", t("authLocationLine"));
   setText(".auth-showcase-title", t("authShowcaseTitle"));
   setText(".auth-showcase-copy", t("authShowcaseCopy"));
-  document.querySelectorAll("[data-region-pill]").forEach((node, index) => {
-    setText(node, t("authRegionPills")[index] || node.textContent);
+  document.querySelectorAll("[data-auth-cta]").forEach((node) => {
+    const key = node.getAttribute("data-auth-cta") === "primary" ? "authHeroPrimary" : "authHeroSecondary";
+    setText(node, t(key));
   });
+  const locationCards = t("authLocationCards");
+  document.querySelectorAll("[data-location-label]").forEach((node, index) => {
+    setText(node, locationCards[index]?.label || node.textContent);
+  });
+  document.querySelectorAll("[data-location-name]").forEach((node, index) => {
+    setText(node, locationCards[index]?.name || node.textContent);
+  });
+  document.querySelectorAll("[data-location-copy]").forEach((node, index) => {
+    setText(node, locationCards[index]?.copy || node.textContent);
+  });
+  setText("#solutionsEyebrow", t("solutionsEyebrow"));
+  setText("#solutionsTitle", t("solutionsTitle"));
   setText(".auth-login-heading h2", t("authLoginTitle"));
   setText(".auth-login-heading .muted", t("authLoginDesc"));
   setText(".brand-wall-title", t("brandWallTitle"));
-  document.querySelectorAll(".product-family-wall span").forEach((node, index) => {
+  setText("#brandWallCopy", t("brandWallCopy"));
+  document.querySelectorAll("[data-solution-name]").forEach((node, index) => {
     setText(node, t("productFamilies")[index] || node.textContent);
   });
+  setText("#aboutEyebrow", t("aboutTitle"));
+  setText("#aboutCopy", t("aboutCopy"));
+  setText("#addressesEyebrow", t("addressesTitle"));
+  setText("#contactEyebrow", t("contactTitle"));
   const companyCards = document.querySelectorAll(".company-info-card");
-  setText(companyCards[0]?.querySelector("span"), langText("Merkez", "Hauptsitz"));
-  setHtml(companyCards[0]?.querySelector("strong"), "Schildkamp 1<br>59063 Hamm");
-  setText(companyCards[1]?.querySelector("span"), langText("Hamburg Depo", "Lager Hamburg"));
-  setHtml(companyCards[1]?.querySelector("strong"), "Lauenburger Landstraße 3b<br>21039 Börnsen");
-  setText(companyCards[2]?.querySelector("span"), langText("İletişim", "Kontakt"));
-  setText(".badge-primary", langText("Deutschland Lager", "Deutschland Lager"));
+  const companyCardData = t("companyCards");
+  companyCards.forEach((card, index) => {
+    setText(card.querySelector("[data-company-card-label]"), companyCardData[index]?.label || "");
+    setHtml(card.querySelector("[data-company-card-title]"), companyCardData[index]?.title || "");
+    setText(card.querySelector("[data-company-card-country]"), companyCardData[index]?.country || "");
+  });
+  document.querySelectorAll("[data-contact-label]").forEach((node, index) => {
+    setText(node, t("contactLabels")[index] || node.textContent);
+  });
+  setText(".badge-primary", t("badgePrimary"));
+  setText(".badge-secondary", t("badgeSecondary"));
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
   setFormFieldLabel(refs.loginForm, "password", t("password"));
