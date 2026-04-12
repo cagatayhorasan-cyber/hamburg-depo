@@ -159,7 +159,11 @@ const UI_TEXT = {
       { label: "Lager Hamburg", title: "Lauenburger Landstraße 3b<br>21039 Börnsen", country: "Deutschland" },
     ],
     badgePrimary: "Deutschland Lager",
-    badgeSecondary: "Cold Rooms & Controls",
+    badgeSecondary: "DRC PEYK Remote Control",
+    peykEyebrow: "DRC PEYK",
+    peykTitle: "Uzaktan izleme ve kontrol sistemi",
+    peykCopy: "Oda sicakligi, alarm, defrost ve servis mudahalesini tek panelden yonetin.",
+    peykPoints: ["Canli izleme", "Alarm bildirimi", "Uzaktan mudahale"],
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -343,7 +347,11 @@ const UI_TEXT = {
       { label: "Lager Hamburg", title: "Lauenburger Landstraße 3b<br>21039 Börnsen", country: "Deutschland" },
     ],
     badgePrimary: "Deutschland Lager",
-    badgeSecondary: "Cold Rooms & Controls",
+    badgeSecondary: "DRC PEYK Remote Control",
+    peykEyebrow: "DRC PEYK",
+    peykTitle: "Fernmonitoring- und Steuerungssystem",
+    peykCopy: "Raumtemperatur, Alarm, Abtauung und Serviceeingriffe werden zentral ueber ein Panel verwaltet.",
+    peykPoints: ["Live Monitoring", "Alarmmeldungen", "Fernzugriff"],
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -812,6 +820,12 @@ function applyUiTranslations() {
   });
   setText(".badge-primary", t("badgePrimary"));
   setText(".badge-secondary", t("badgeSecondary"));
+  setText("#peykEyebrow", t("peykEyebrow"));
+  setText("#peykTitle", t("peykTitle"));
+  setText("#peykCopy", t("peykCopy"));
+  document.querySelectorAll("[data-peyk-point]").forEach((node, index) => {
+    setText(node, t("peykPoints")[index] || node.textContent);
+  });
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
   setFormFieldLabel(refs.loginForm, "password", t("password"));
