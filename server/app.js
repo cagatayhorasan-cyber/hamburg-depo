@@ -3532,7 +3532,7 @@ async function matchAssistantTraining(message, language, user) {
   return {
     answer,
     suggestions: bestEntry.suggestions || [],
-    sourceSummary: "DRC MAN yonetici egitimi",
+    sourceSummary: cleanOptional(bestEntry.topic) || "DRC MAN yonetici egitimi",
   };
 }
 
