@@ -253,7 +253,7 @@ const allTopics = [
     id: "problem_door_leak",
     trSubject: "kapi hava kaciriyor",
     deSubject: "die tuer luft zieht",
-    keywords: ["kapi kaciriyor", "door leak", "tuer undicht"],
+    keywords: ["kapi kaciriyor", "kapi kacak", "kacak yapiyor", "kapi sizdiriyor", "door leak", "tuer undicht"],
     causeTr: "conta asinmasi, kasa ayarsizligi, esik bozuklugu veya kapinin sert kapanmamasidir",
     causeDe: "verschlissene Dichtung, verzogene Zarge, Schwellenproblem oder ungenuegende Schliessung",
     checkTr: "conta basisi, kapi ayari, kasanin kareligi ve terleme izleri kontrol edilir",
