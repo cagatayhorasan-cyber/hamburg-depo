@@ -2,6 +2,8 @@ const today = new Date().toISOString().split("T")[0];
 const MAX_ITEMS_TABLE_ROWS = 250;
 const SEARCH_DEBOUNCE_MS = 180;
 const UI_LANGUAGE_STORAGE_KEY = "hamburg-ui-language";
+const LOW_GWP_KEYWORDS = ["r290", "r744", "co2", "propan", "low gwp", "eco", "inverter"];
+const MONITORING_KEYWORDS = ["iot", "gateway", "sensor", "termostat", "dcb", "kontrol", "alarm", "defrost", "monitor"];
 const BLOCKED_HTML_TAGS = new Set(["script", "style", "iframe", "object", "embed", "meta", "base", "link"]);
 const URL_HTML_ATTRIBUTES = new Set(["href", "src", "xlink:href", "action", "formaction", "poster"]);
 const INNER_HTML_OWNER = [Element.prototype, HTMLElement.prototype]
@@ -133,6 +135,10 @@ const UI_TEXT = {
     companyName: "D-R-C Kältetechnik GmbH",
     authShowcaseTitle: "Soğuk oda, servis ve yedek parça gücü",
     authShowcaseCopy: "Hamburg bölgesindeki depomuzdan soğutma grubu, evaporatör, kontrol panosu, gaz ve montaj sarf ürünleriyle hızlı satış ve saha desteği.",
+    showcaseCarbonTitle: "Karbon ayak izi odagi",
+    showcaseCarbonCopy: "Dusuk GWP gaz, retrofit ve enerji kacagi takibi ile daha kontrollu saha kurulumu.",
+    showcaseIotTitle: "Uzaktan izleme ekrani hazir",
+    showcaseIotCopy: "Oda sicakligi, kapi alarmi, defrost ve servis uyarilari tek panelde izlenir.",
     authLoginTitle: "Giriş ve müşteri hesabı",
     authLoginDesc: "Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.",
     brandWallTitle: "Satışını yaptığımız büyük markalar",
@@ -157,8 +163,8 @@ const UI_TEXT = {
     resetDesc: "E-postadaki baglanti ile geldiyseniz yeni sifrenizi burada belirleyin.",
     resetButton: "Sifreyi Guncelle",
     appLabel: "Uygulama:",
-    heroTitle: "Satis ve stok ekrani",
-    heroSubtitle: "En sik kullanilan alanlar one alindi. Hedef: urun bul, fiyat ver, teklif hazirla.",
+    heroTitle: "Operasyon ve satis kontrol merkezi",
+    heroSubtitle: "Tek ekranda stok, satis, teklif, karbon odağı ve DRC IoT gorunumu.",
     downloadXlsx: "Excel Rapor",
     downloadPdf: "PDF Ozet",
     logout: "Cikis Yap",
@@ -180,6 +186,8 @@ const UI_TEXT = {
     tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
     tabMessages: "Admin'e Yaz",
     tabMessagesDesc: "Istek, sikayet ve destek mesaji gonder",
+    tabIot: "DRC IoT",
+    tabIotDesc: "Uzaktan izleme, alarm ve enerji gorunumu",
     tabUsers: "Kullanicilar",
     tabUsersDesc: "Admin, personel ve musteri hesaplari",
     tabSecurity: "Guvenlik",
@@ -294,6 +302,10 @@ const UI_TEXT = {
     companyName: "D-R-C Kältetechnik GmbH",
     authShowcaseTitle: "Kühlraum-, Service- und Ersatzteilpower",
     authShowcaseCopy: "Aus unserem Lager im Raum Hamburg liefern wir Kälteaggregate, Verdampfer, Steuerungen, Kältemittel und Montagematerial mit schnellem Verkauf und Service-Support.",
+    showcaseCarbonTitle: "Carbon-Footprint-Fokus",
+    showcaseCarbonCopy: "Niedriger GWP, Retrofit und Leckagefokus fuer kontrolliertere Feldprojekte.",
+    showcaseIotTitle: "Fernmonitoring-Bildschirm bereit",
+    showcaseIotCopy: "Raumtemperatur, Tueralarm, Abtauung und Servicehinweise stehen in einem Panel bereit.",
     authLoginTitle: "Anmeldung und Kundenkonto",
     authLoginDesc: "Berechtigte Benutzer öffnen Verkauf, Lager und Projektwerkzeuge. Kunden legen ihr eigenes Konto an und verfolgen ihren Bestellverlauf.",
     brandWallTitle: "Grosse Marken in unserem Verkauf",
@@ -318,8 +330,8 @@ const UI_TEXT = {
     resetDesc: "Wenn Sie ueber einen Link gekommen sind, koennen Sie hier ein neues Passwort setzen.",
     resetButton: "Passwort speichern",
     appLabel: "Anwendung:",
-    heroTitle: "Verkaufs- und Lagerbildschirm",
-    heroSubtitle: "Die wichtigsten Bereiche stehen vorne. Ziel: Artikel finden, Preis geben, Angebot vorbereiten.",
+    heroTitle: "Operations- und Verkaufszentrale",
+    heroSubtitle: "Lager, Verkauf, Angebot, Carbon-Fokus und DRC-IoT in einer Ansicht.",
     downloadXlsx: "Excel Export",
     downloadPdf: "PDF Uebersicht",
     logout: "Abmelden",
@@ -341,6 +353,8 @@ const UI_TEXT = {
     tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
     tabMessages: "An Admin",
     tabMessagesDesc: "Wunsch, Beschwerde und Support senden",
+    tabIot: "DRC IoT",
+    tabIotDesc: "Fernmonitoring, Alarme und Energieblick",
     tabUsers: "Benutzer",
     tabUsersDesc: "Admin-, Personal- und Kundenkonten",
     tabSecurity: "Sicherheit",
@@ -515,6 +529,11 @@ const refs = {
   resetPasswordError: document.getElementById("resetPasswordError"),
   resetPasswordSuccess: document.getElementById("resetPasswordSuccess"),
   welcomeText: document.getElementById("welcomeText"),
+  heroFocusPill: document.getElementById("heroFocusPill"),
+  heroIotPill: document.getElementById("heroIotPill"),
+  opsOverview: document.getElementById("opsOverview"),
+  carbonOverview: document.getElementById("carbonOverview"),
+  iotOverview: document.getElementById("iotOverview"),
   statsGrid: document.getElementById("statsGrid"),
   itemForm: document.getElementById("itemForm"),
   movementForm: document.getElementById("movementForm"),
@@ -592,6 +611,7 @@ const refs = {
   quoteBrandFilter: document.getElementById("quoteBrandFilter"),
   quoteCategoryFilter: document.getElementById("quoteCategoryFilter"),
   assistantWidget: document.getElementById("assistantWidget"),
+  iotMonitorRoot: document.getElementById("iotMonitorRoot"),
   assistantToggle: document.getElementById("assistantToggle"),
   assistantPanel: document.getElementById("assistantPanel"),
   assistantClose: document.getElementById("assistantClose"),
@@ -718,6 +738,10 @@ function applyUiTranslations() {
   setText(".auth-brand-eyebrow", t("companyName"));
   setText(".auth-showcase-title", t("authShowcaseTitle"));
   setText(".auth-showcase-copy", t("authShowcaseCopy"));
+  setText("#showcaseCarbonTitle", t("showcaseCarbonTitle"));
+  setText("#showcaseCarbonCopy", t("showcaseCarbonCopy"));
+  setText("#showcaseIotTitle", t("showcaseIotTitle"));
+  setText("#showcaseIotCopy", t("showcaseIotCopy"));
   setText(".auth-login-heading h2", t("authLoginTitle"));
   setText(".auth-login-heading .muted", t("authLoginDesc"));
   setText(".brand-wall-title", t("brandWallTitle"));
@@ -779,6 +803,7 @@ function applyUiTranslations() {
     ["cashbook", t("tabCashbook"), t("tabCashbookDesc")],
     ["orders", isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"), isCustomerUser() ? t("tabCustomerOrdersDesc") : t("tabOrdersDesc")],
     ["messages", t("tabMessages"), t("tabMessagesDesc")],
+    ["iot", t("tabIot"), t("tabIotDesc")],
     ["users", t("tabUsers"), t("tabUsersDesc")],
     ["security", t("tabSecurity"), t("tabSecurityDesc")],
     ["tools", t("tabTools"), t("tabToolsDesc")],
@@ -1005,6 +1030,9 @@ function applyUiTranslations() {
   setText(userSections[1]?.querySelector("h2"), langText("Kullanicilar", "Benutzer"));
 
   const toolsPanel = document.querySelector("[data-tab-content='tools'] .tools-panel");
+  const iotPanel = document.querySelector("[data-tab-content='iot'] .iot-panel");
+  setText(iotPanel?.querySelector(".section-head h2"), langText("DRC IoT Pack", "DRC IoT Pack"));
+  setText(iotPanel?.querySelector(".section-head .muted"), langText("Uzaktan izleme ekraninda oda durumu, alarm akisi, karbon odagi ve saha karar notlari tek yerde toplanir.", "Im Fernmonitoring-Bildschirm laufen Raumstatus, Alarme, Carbon-Fokus und Feldnotizen an einem Ort zusammen."));
   setText(toolsPanel?.querySelector(".section-head h2"), langText("Proje Araclari", "Projektwerkzeuge"));
   setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan araclar burada toplandi. Bu bolume tum kullanicilar erisebilir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist fuer alle angemeldeten Benutzer offen."));
   const toolCards = toolsPanel?.querySelectorAll(".tool-card") || [];
@@ -1798,6 +1826,7 @@ function renderAll() {
   applyUiTranslations();
   const preferredTab = isCustomerUser() ? "orders" : "quotes";
   renderStats();
+  renderOverviewPanels();
   renderFilters();
   activateTab(state.activeTab || preferredTab);
   if (!isCustomerUser()) {
@@ -1846,6 +1875,445 @@ function renderStats() {
     card.innerHTML = `<p class="eyebrow">${label}</p><strong>${value}</strong><span class="muted">${subtitle}</span>`;
     refs.statsGrid.append(card);
   });
+}
+
+function clampNumber(value, min, max) {
+  return Math.min(max, Math.max(min, Number(value || 0)));
+}
+
+function normalizeInventoryText(...values) {
+  return values
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function statusMeta(level) {
+  if (level === "critical") {
+    return { className: "status-critical", label: langText("Alarm", "Alarm") };
+  }
+  if (level === "progress") {
+    return { className: "status-progress", label: langText("Takip", "Beobachtung") };
+  }
+  if (level === "pending") {
+    return { className: "status-pending", label: langText("Hazirlaniyor", "Vorbereitung") };
+  }
+  return { className: "status-ok", label: langText("Hazir", "Online") };
+}
+
+function collectDashboardSignals() {
+  const items = Array.isArray(state.items) ? state.items : [];
+  const totalItems = Number(state.summary?.totalItems || items.length || 0);
+  const criticalCount = Number(state.summary?.criticalCount || 0);
+  const stockSaleValue = Number(state.summary?.stockSaleValue || 0);
+  const cashBalance = Number(state.summary?.cashBalance || 0);
+  const expenseTotal = Number(state.summary?.expenseTotal || 0);
+  const pendingOrders = Array.isArray(state.orders)
+    ? state.orders.filter((order) => !["completed", "cancelled"].includes(String(order.status || ""))).length
+    : 0;
+
+  let lowGwpReady = 0;
+  let monitoringNodes = 0;
+  let stockedItems = 0;
+
+  items.forEach((item) => {
+    const haystack = normalizeInventoryText(item.name, item.brand, item.category, item.notes, item.barcode);
+    if (Number(item.currentStock || 0) > 0) {
+      stockedItems += 1;
+    }
+    if (haystack && LOW_GWP_KEYWORDS.some((keyword) => haystack.includes(keyword))) {
+      lowGwpReady += 1;
+    }
+    if (haystack && MONITORING_KEYWORDS.some((keyword) => haystack.includes(keyword))) {
+      monitoringNodes += 1;
+    }
+  });
+
+  const criticalRatio = totalItems > 0 ? criticalCount / totalItems : 0;
+  const lowGwpShare = totalItems > 0 ? Math.round((lowGwpReady / totalItems) * 100) : 0;
+  const carbonScore = clampNumber(
+    Math.round(48 + lowGwpShare * 0.42 + Math.min(monitoringNodes, 36) * 0.85 - criticalRatio * 38),
+    18,
+    96
+  );
+  const iotOnlineRooms = clampNumber(2 + Math.round(monitoringNodes / 8), 2, 8);
+  const iotAlarmCount = clampNumber(Math.round(criticalRatio * 10), 0, 6);
+  const iotStatusLevel = iotAlarmCount >= 3 ? "critical" : iotAlarmCount >= 1 ? "progress" : "ok";
+  const carbonLevel = carbonScore >= 74 ? "ok" : carbonScore >= 56 ? "progress" : "critical";
+
+  return {
+    totalItems,
+    criticalCount,
+    criticalRatio,
+    stockedItems,
+    stockSaleValue,
+    cashBalance,
+    expenseTotal,
+    pendingOrders,
+    lowGwpReady,
+    lowGwpShare,
+    monitoringNodes,
+    carbonScore,
+    carbonLevel,
+    iotOnlineRooms,
+    iotAlarmCount,
+    iotStatusLevel,
+  };
+}
+
+function buildOperationFocusLines(signals) {
+  const lines = [];
+  if (isCustomerUser()) {
+    lines.push(signals.stockedItems > 0
+      ? langText(`${numberFormat.format(signals.stockedItems)} stoklu urun siparise hazir.`, `${numberFormat.format(signals.stockedItems)} lagernde Artikel sind bestellbereit.`)
+      : langText("Su anda siparise acik stok gorunmuyor.", "Aktuell ist kein lagernder Artikel fuer Bestellungen sichtbar."));
+    lines.push(signals.pendingOrders > 0
+      ? langText(`${numberFormat.format(signals.pendingOrders)} siparisiniz takipte.`, `${numberFormat.format(signals.pendingOrders)} Ihrer Bestellungen sind in Bearbeitung.`)
+      : langText("Yeni siparis icin urunleri sepete ekleyebilirsiniz.", "Sie koennen jetzt neue Artikel in den Bestellkorb legen."));
+    lines.push(langText("DRC IoT ekranindan oda, alarm ve servis ozetini gorebilirsiniz.", "Im DRC-IoT-Bereich sehen Sie Raum-, Alarm- und Serviceuebersicht."));
+    return lines;
+  }
+
+  lines.push(signals.criticalCount > 0
+    ? langText(`${numberFormat.format(signals.criticalCount)} kritik kart ilk sevkiyat ve servis turunu etkiliyor.`, `${numberFormat.format(signals.criticalCount)} kritische Karten beeinflussen die erste Auslieferungs- und Servicerunde.`)
+    : langText("Kritik stok baskisi dusuk, sevkiyat ritmi dengeli.", "Der kritische Lagerdruck ist niedrig, die Auslieferung wirkt stabil."));
+  lines.push(signals.pendingOrders > 0
+    ? langText(`${numberFormat.format(signals.pendingOrders)} acik siparis hizli takip istiyor.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen brauchen einen kompakten Fokus.`)
+    : langText("Bekleyen siparis yok; bugun teklif ve saha planina odaklanabilirsiniz.", "Keine offenen Bestellungen; heute kann der Fokus auf Angebot und Feldplanung liegen."));
+  lines.push(signals.cashBalance <= 0
+    ? langText("Kasa girisleri sifirdan basliyor, tahsilatlari anlik yazmak iyi olur.", "Die Kasse startet bei null, Zahlungseintraege sollten direkt erfasst werden.")
+    : langText(`Hamburg kasasinda ${currency.format(signals.cashBalance)} gorunuyor.`, `In der Hamburg-Kasse stehen ${currency.format(signals.cashBalance)}.`));
+  return lines;
+}
+
+function buildIotSites(signals) {
+  const siteBlueprints = [
+    {
+      key: "bornsen-plus",
+      name: langText("Bornsen Pozitif Oda", "Plusraum Boernsen"),
+      zone: langText("Pozitif Depo", "Pluskuehlung"),
+      setpoint: 4,
+      humidity: 66,
+    },
+    {
+      key: "shock-demo",
+      name: langText("Demo Sok Oda", "Demo-Schockraum"),
+      zone: langText("Negatif Hat", "Tiefkuehlstrecke"),
+      setpoint: -20,
+      humidity: 58,
+    },
+    {
+      key: "service-rack",
+      name: langText("Servis Test Rack", "Service-Testrack"),
+      zone: langText("Kontrol ve DCB Hatti", "Regelungs- und DCB-Linie"),
+      setpoint: 2,
+      humidity: 49,
+    },
+  ];
+
+  return siteBlueprints.map((site, index) => {
+    const seed = hashText(`${site.key}:${signals.totalItems}:${signals.monitoringNodes}:${signals.criticalCount}`);
+    const offset = ((seed % 9) - 4) * 0.18 + (signals.criticalRatio * (index === 1 ? 1.1 : 0.45));
+    const actual = site.setpoint + offset;
+    const humidity = clampNumber(site.humidity + ((Math.floor(seed / 7) % 9) - 4), 38, 88);
+    const compressorLoad = clampNumber(52 + (seed % 26) + signals.iotAlarmCount * 5, 44, 98);
+    const delta = Math.abs(actual - site.setpoint);
+    const level = delta >= 1.2 ? "critical" : delta >= 0.55 ? "progress" : "ok";
+    const doorStatus = index === 0 && signals.iotAlarmCount > 0
+      ? langText("Kapi trafigi yogun", "Hohe Tuerfrequenz")
+      : langText("Kapi kapali", "Tuer geschlossen");
+
+    return {
+      ...site,
+      actual,
+      humidity,
+      compressorLoad,
+      level,
+      doorStatus,
+      note: level === "ok"
+        ? langText("Defrost ve fan akisi dengede.", "Abtauung und Luftbild laufen stabil.")
+        : level === "progress"
+          ? langText("Isi yukunde dalgalanma izleniyor.", "Die Last zeigt leichte Schwankungen.")
+          : langText("Set noktasindan sapma dikkat istiyor.", "Die Abweichung vom Sollwert braucht Aufmerksamkeit."),
+    };
+  });
+}
+
+function buildIotEvents(signals, sites) {
+  const hottestSite = [...sites].sort((left, right) => Math.abs(right.actual - right.setpoint) - Math.abs(left.actual - left.setpoint))[0];
+  return [
+    {
+      level: signals.iotStatusLevel,
+      title: signals.iotAlarmCount > 0
+        ? langText("Alarm akisinda izleme var", "Alarmstrom wird beobachtet")
+        : langText("Alarm akisinda kritik durum yok", "Kein kritischer Alarm im Strom"),
+      detail: signals.iotAlarmCount > 0
+        ? langText(`${numberFormat.format(signals.iotAlarmCount)} saha uyarisi gorunuyor; ilk bakis ${hottestSite.name} ustunde.`, `${numberFormat.format(signals.iotAlarmCount)} Feldhinweise sichtbar; erster Blick auf ${hottestSite.name}.`)
+        : langText("Kapilar, defrost ve kompresor yukleri dengeli akiyor.", "Tueren, Abtauung und Verdichterlasten wirken ruhig."),
+    },
+    {
+      level: signals.carbonLevel,
+      title: langText("Karbon odagi", "Carbon-Fokus"),
+      detail: signals.carbonScore >= 74
+        ? langText("Dusuk GWP ve izleme yogunlugu guclu; servis turleri daha kontrollu planlanabilir.", "Niedriger GWP und Monitoringdichte sind stark; Servicerouten koennen kontrollierter geplant werden.")
+        : langText("Retrofit, sensor ve alarm yogunlugu arttikca karbon paneli daha dengeli olur.", "Mit mehr Retrofit-, Sensor- und Alarmdichte stabilisiert sich das Carbon-Panel."),
+    },
+    {
+      level: signals.pendingOrders > 0 ? "pending" : "ok",
+      title: langText("Operasyon akisi", "Operationsfluss"),
+      detail: signals.pendingOrders > 0
+        ? langText(`${numberFormat.format(signals.pendingOrders)} acik siparis DRC IoT panelinde saha onceligi ile eslestirilebilir.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen koennen im DRC-IoT mit Feldprioritaeten gekoppelt werden.`)
+        : langText("Bugun saha ritmi daha cok stok, teklif ve uzaktan izleme kalitesine odaklanabilir.", "Heute kann der Fokus staerker auf Lager, Angebot und Monitoringqualitaet liegen."),
+    },
+  ];
+}
+
+function renderOverviewPanels() {
+  if (!refs.opsOverview || !refs.carbonOverview || !refs.iotOverview) {
+    return;
+  }
+
+  const signals = collectDashboardSignals();
+  const operationLines = buildOperationFocusLines(signals);
+  const carbonBadge = statusMeta(signals.carbonLevel);
+  const iotBadge = statusMeta(signals.iotStatusLevel);
+  const sites = buildIotSites(signals);
+  const lastSync = new Intl.DateTimeFormat(state.uiLanguage === "de" ? "de-DE" : "tr-TR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date());
+
+  refs.heroFocusPill.textContent = isCustomerUser()
+    ? langText(`Stokta ${numberFormat.format(signals.stockedItems)} urun acik`, `${numberFormat.format(signals.stockedItems)} Artikel auf Lager`)
+    : signals.criticalCount > 0
+      ? langText(`${numberFormat.format(signals.criticalCount)} kritik stok takibi`, `${numberFormat.format(signals.criticalCount)} kritische Bestandskarte(n)`)
+      : langText("Operasyon ritmi dengeli", "Stabiler Betriebsrhythmus");
+  refs.heroIotPill.textContent = signals.iotAlarmCount > 0
+    ? langText(`DRC IoT ${numberFormat.format(signals.iotAlarmCount)} alarm izliyor`, `DRC IoT beobachtet ${numberFormat.format(signals.iotAlarmCount)} Alarm(e)`)
+    : langText("DRC IoT tum odalarda online", "DRC IoT in allen Raeumen online");
+
+  refs.opsOverview.innerHTML = `
+    <div class="overview-head">
+      <div>
+        <p class="eyebrow">${escapeHtml(langText("Bugun Once", "Heute zuerst"))}</p>
+        <h2>${escapeHtml(langText("Sade operasyon akisi", "Klarer Operationsfluss"))}</h2>
+      </div>
+      <span class="status-pill ${signals.criticalCount > 0 ? "status-progress" : "status-ok"}">${escapeHtml(signals.criticalCount > 0 ? langText("Yakin takip", "Nahe dran") : langText("Akis temiz", "Sauber"))}</span>
+    </div>
+    <div class="overview-metric-row">
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Stokta", "Lagernd"))}</span>
+        <strong>${escapeHtml(numberFormat.format(signals.stockedItems))}</strong>
+      </div>
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Acik Siparis", "Offene Auftraege"))}</span>
+        <strong>${escapeHtml(numberFormat.format(signals.pendingOrders))}</strong>
+      </div>
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Satis Degeri", "Verkaufswert"))}</span>
+        <strong>${escapeHtml(currency.format(signals.stockSaleValue || 0))}</strong>
+      </div>
+    </div>
+    <ul class="overview-list">
+      ${operationLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+    </ul>
+  `;
+
+  refs.carbonOverview.innerHTML = `
+    <div class="overview-head">
+      <div>
+        <p class="eyebrow">${escapeHtml(langText("Karbon Ayak Izi", "Carbon Footprint"))}</p>
+        <h2>${escapeHtml(langText("Azaltim ve retrofit paneli", "Reduktion und Retrofit"))}</h2>
+      </div>
+      <span class="status-pill ${carbonBadge.className}">${escapeHtml(carbonBadge.label)}</span>
+    </div>
+    <div class="overview-metric-row">
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Azaltim Skoru", "Reduktionsscore"))}</span>
+        <strong>${escapeHtml(`${numberFormat.format(signals.carbonScore)}/100`)}</strong>
+      </div>
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Dusuk GWP Kart", "Low-GWP Karten"))}</span>
+        <strong>${escapeHtml(numberFormat.format(signals.lowGwpReady))}</strong>
+      </div>
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Izleme Dugumu", "Monitoring-Knoten"))}</span>
+        <strong>${escapeHtml(numberFormat.format(signals.monitoringNodes))}</strong>
+      </div>
+    </div>
+    <div class="carbon-meter" aria-hidden="true">
+      <span class="carbon-meter-fill" style="width: ${signals.carbonScore}%"></span>
+    </div>
+    <p class="overview-note">${escapeHtml(
+      signals.criticalCount > 0
+        ? langText(`${numberFormat.format(signals.criticalCount)} kritik kart enerji kacagi ve servis turunu buyutebilir.`, `${numberFormat.format(signals.criticalCount)} kritische Karten koennen Energieverlust und Servicerouten vergroessern.`)
+        : langText("Kritik stok baskisi dusuk; karbon paneli retrofit ve izleme yogunluguna odaklanabilir.", "Der kritische Lagerdruck ist niedrig; das Carbon-Panel kann sich auf Retrofit und Monitoringdichte konzentrieren.")
+    )}</p>
+    <div class="overview-tag-row">
+      <span>${escapeHtml(langText(`Dusuk GWP payi ${numberFormat.format(signals.lowGwpShare)}%`, `Low-GWP-Anteil ${numberFormat.format(signals.lowGwpShare)}%`))}</span>
+      <span>${escapeHtml(langText(`Toplam masraf ${currency.format(signals.expenseTotal || 0)}`, `Ausgaben gesamt ${currency.format(signals.expenseTotal || 0)}`))}</span>
+    </div>
+  `;
+
+  refs.iotOverview.innerHTML = `
+    <div class="overview-head">
+      <div>
+        <p class="eyebrow">DRC IoT Pack</p>
+        <h2>${escapeHtml(langText("Uzaktan izleme ozeti", "Fernmonitoring kompakt"))}</h2>
+      </div>
+      <span class="status-pill ${iotBadge.className}">${escapeHtml(iotBadge.label)}</span>
+    </div>
+    <div class="overview-metric-row">
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Online Oda", "Online-Raeume"))}</span>
+        <strong>${escapeHtml(numberFormat.format(signals.iotOnlineRooms))}</strong>
+      </div>
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Alarm", "Alarme"))}</span>
+        <strong>${escapeHtml(numberFormat.format(signals.iotAlarmCount))}</strong>
+      </div>
+      <div class="overview-metric">
+        <span>${escapeHtml(langText("Son Senkron", "Letzte Sync"))}</span>
+        <strong>${escapeHtml(lastSync)}</strong>
+      </div>
+    </div>
+    <div class="iot-mini-sites">
+      ${sites.map((site) => {
+        const badge = statusMeta(site.level);
+        return `
+          <div class="iot-mini-site">
+            <div>
+              <strong>${escapeHtml(site.name)}</strong>
+              <span>${escapeHtml(site.zone)}</span>
+            </div>
+            <div class="iot-mini-site-status">
+              <span class="status-pill ${badge.className}">${escapeHtml(`${site.actual.toFixed(1)}°C`)}</span>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+    <p class="overview-note">${escapeHtml(langText("Kapilar, defrost, sicaklik ve saha alarmlari DRC IoT sekmesinde detayli gorunur.", "Tueren, Abtauung, Temperaturen und Feldalarme erscheinen im DRC-IoT-Tab im Detail."))}</p>
+  `;
+
+  renderIotMonitor(signals, sites, lastSync);
+}
+
+function renderIotMonitor(signals, sites = buildIotSites(signals), lastSync = null) {
+  if (!refs.iotMonitorRoot) {
+    return;
+  }
+
+  const events = buildIotEvents(signals, sites);
+  const syncText = lastSync || new Intl.DateTimeFormat(state.uiLanguage === "de" ? "de-DE" : "tr-TR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date());
+  const carbonBadge = statusMeta(signals.carbonLevel);
+  const iotBadge = statusMeta(signals.iotStatusLevel);
+
+  refs.iotMonitorRoot.innerHTML = `
+    <div class="iot-hero-grid">
+      <article class="iot-hero-card">
+        <div class="overview-head">
+          <div>
+            <p class="eyebrow">DRC IoT Pack</p>
+            <h3>${escapeHtml(langText("Uzaktan izleme komuta ekrani", "Fernmonitoring-Kommandoansicht"))}</h3>
+          </div>
+          <span class="status-pill ${iotBadge.className}">${escapeHtml(iotBadge.label)}</span>
+        </div>
+        <div class="iot-kpi-grid">
+          <div class="overview-metric">
+            <span>${escapeHtml(langText("Online Oda", "Online-Raeume"))}</span>
+            <strong>${escapeHtml(numberFormat.format(signals.iotOnlineRooms))}</strong>
+          </div>
+          <div class="overview-metric">
+            <span>${escapeHtml(langText("Alarm Sayisi", "Alarmanzahl"))}</span>
+            <strong>${escapeHtml(numberFormat.format(signals.iotAlarmCount))}</strong>
+          </div>
+          <div class="overview-metric">
+            <span>${escapeHtml(langText("Senkron", "Sync"))}</span>
+            <strong>${escapeHtml(syncText)}</strong>
+          </div>
+        </div>
+        <div class="iot-event-list">
+          ${events.map((event) => {
+            const badge = statusMeta(event.level);
+            return `
+              <article class="iot-event">
+                <div class="iot-event-head">
+                  <strong>${escapeHtml(event.title)}</strong>
+                  <span class="status-pill ${badge.className}">${escapeHtml(badge.label)}</span>
+                </div>
+                <p>${escapeHtml(event.detail)}</p>
+              </article>
+            `;
+          }).join("")}
+        </div>
+      </article>
+      <article class="iot-carbon-card">
+        <div class="overview-head">
+          <div>
+            <p class="eyebrow">${escapeHtml(langText("Karbon Paneli", "Carbon-Panel"))}</p>
+            <h3>${escapeHtml(langText("Enerji ve retrofit odagi", "Energie- und Retrofitfokus"))}</h3>
+          </div>
+          <span class="status-pill ${carbonBadge.className}">${escapeHtml(`${numberFormat.format(signals.carbonScore)}/100`)}</span>
+        </div>
+        <p class="iot-card-copy">${escapeHtml(langText("Bu ekran, stok ve kontrol yogunlugundan uretilen hizli bir karbon azaltilim gorunumu sunar.", "Dieser Bildschirm zeigt eine schnelle Carbon-Reduktionssicht aus Lager- und Regelungsdichte."))}</p>
+        <div class="carbon-meter" aria-hidden="true">
+          <span class="carbon-meter-fill" style="width: ${signals.carbonScore}%"></span>
+        </div>
+        <div class="iot-carbon-points">
+          <div><span>${escapeHtml(langText("Dusuk GWP kart", "Low-GWP Karten"))}</span><strong>${escapeHtml(numberFormat.format(signals.lowGwpReady))}</strong></div>
+          <div><span>${escapeHtml(langText("Izleme dugumu", "Monitoring-Knoten"))}</span><strong>${escapeHtml(numberFormat.format(signals.monitoringNodes))}</strong></div>
+          <div><span>${escapeHtml(langText("Kritik risk", "Kritisches Risiko"))}</span><strong>${escapeHtml(numberFormat.format(signals.criticalCount))}</strong></div>
+        </div>
+      </article>
+    </div>
+    <div class="iot-site-grid">
+      ${sites.map((site) => {
+        const badge = statusMeta(site.level);
+        return `
+          <article class="iot-site-card">
+            <header>
+              <div>
+                <strong>${escapeHtml(site.name)}</strong>
+                <span>${escapeHtml(site.zone)}</span>
+              </div>
+              <span class="status-pill ${badge.className}">${escapeHtml(badge.label)}</span>
+            </header>
+            <div class="iot-site-stats">
+              <div class="iot-site-stat">
+                <span>${escapeHtml(langText("Anlik Sicaklik", "Ist-Temperatur"))}</span>
+                <strong>${escapeHtml(`${site.actual.toFixed(1)}°C`)}</strong>
+              </div>
+              <div class="iot-site-stat">
+                <span>${escapeHtml(langText("Set", "Soll"))}</span>
+                <strong>${escapeHtml(`${site.setpoint.toFixed(1)}°C`)}</strong>
+              </div>
+              <div class="iot-site-stat">
+                <span>${escapeHtml(langText("Nem", "Feuchte"))}</span>
+                <strong>${escapeHtml(`${numberFormat.format(site.humidity)}%`)}</strong>
+              </div>
+              <div class="iot-site-stat">
+                <span>${escapeHtml(langText("Kompresor Yuk", "Verdichterlast"))}</span>
+                <strong>${escapeHtml(`${numberFormat.format(site.compressorLoad)}%`)}</strong>
+              </div>
+            </div>
+            <p>${escapeHtml(site.note)}</p>
+            <div class="overview-tag-row">
+              <span>${escapeHtml(site.doorStatus)}</span>
+              <span>${escapeHtml(langText(`Son sync ${syncText}`, `Letzte Sync ${syncText}`))}</span>
+            </div>
+          </article>
+        `;
+      }).join("")}
+    </div>
+  `;
 }
 
 function renderItems() {
@@ -3099,6 +3567,10 @@ function isTabButtonVisible(button) {
 }
 
 function renderTabData(tab) {
+  if (tab === "iot") {
+    renderOverviewPanels();
+    return;
+  }
   if (tab === "items") {
     if (!state.inventoryLoadedAll && !isCustomerUser()) {
       renderItems();

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260412-drc-showcase-2">
+  <link rel="stylesheet" href="/styles.css?v=20260412-drc-showcase-3">
 </head>
 <body>
   <div class="page-shell">
@@ -29,6 +29,19 @@
             <div class="showcase-badge badge-primary">DRC Cold Rooms</div>
             <div class="showcase-badge badge-secondary">Service & Parts</div>
           </div>
+
+          <section class="showcase-insight-grid" aria-label="Karbon ve DRC IoT vurgulari">
+            <article class="showcase-insight-card">
+              <span class="showcase-insight-eyebrow">Carbon Focus</span>
+              <strong id="showcaseCarbonTitle">Karbon ayak izi odağı</strong>
+              <p id="showcaseCarbonCopy">Dusuk GWP gaz, retrofit ve enerji kacagi takibi ile daha kontrollu saha kurulumu.</p>
+            </article>
+            <article class="showcase-insight-card is-iot">
+              <span class="showcase-insight-eyebrow">DRC IoT Pack</span>
+              <strong id="showcaseIotTitle">Uzaktan izleme ekrani hazir</strong>
+              <p id="showcaseIotCopy">Oda sicakligi, kapi alarmi, defrost ve servis uyarilari tek panelde izlenir.</p>
+            </article>
+          </section>
 
           <section class="brand-wall" aria-label="Satışını yaptığımız büyük markalar">
             <p class="brand-wall-title">Satışını yaptığımız büyük markalar</p>
@@ -167,11 +180,15 @@
 
     <section id="appScreen" class="hidden">
       <header class="hero compact-hero">
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow">Durmusbaba</p>
           <h1>Satis ve stok ekrani</h1>
           <p class="muted hero-subtitle">En sik kullanilan alanlar one alindi. Hedef: urun bul, fiyat ver, teklif hazirla.</p>
-          <p class="muted" id="welcomeText"></p>
+          <div class="hero-status-row">
+            <span id="heroFocusPill" class="hero-pill"></span>
+            <span id="heroIotPill" class="hero-pill"></span>
+          </div>
+          <p class="muted hero-welcome" id="welcomeText"></p>
         </div>
         <div class="hero-actions">
           <div class="ui-language-switch app-language-switch">
@@ -188,6 +205,12 @@
       </header>
 
       <main class="dashboard">
+        <section class="overview-grid">
+          <article id="opsOverview" class="overview-card overview-card-ops"></article>
+          <article id="carbonOverview" class="overview-card overview-card-carbon"></article>
+          <article id="iotOverview" class="overview-card overview-card-iot"></article>
+        </section>
+
         <section class="stats-grid" id="statsGrid"></section>
 
         <section class="panel tabs-panel">
@@ -200,6 +223,7 @@
             <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini sadece admin gorur ve durum gunceller. DE: Nur Admins sehen Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Admin musteri siparislerini yonetir</small></button>
             <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
             <button class="tab-button" data-tab="messages" type="button" data-help="TR: Istek, sikayet veya notunuzu admin ekibine buradan iletirsiniz. DE: Hier senden Sie Wunsch, Beschwerde oder Notiz an das Admin-Team."><span class="tab-title">Admin'e Yaz</span><small>Istek, sikayet ve destek mesaji gonder</small></button>
+            <button class="tab-button" data-tab="iot" type="button" data-help="TR: DRC IoT Pack panelinde oda sicakligi, alarm ve saha gorunumu izlenir. DE: Im DRC-IoT-Pack sehen Sie Raumtemperaturen, Alarme und Fernstatus."><span class="tab-title">DRC IoT</span><small>Uzaktan izleme, alarm ve enerji gorunumu</small></button>
             <button class="tab-button" data-tab="tools" type="button" data-help="TR: Soguk oda cizim ve hesaplama araclari tum kullanicilara aciktir. DE: Die Kuehlraum-Werkzeuge stehen allen angemeldeten Benutzern offen."><span class="tab-title">Proje Araclari</span><small>Soguk oda cizim ve hesaplama araclari</small></button>
             <details class="tab-more admin-only">
               <summary class="tab-admin-summary">Yonetim ve Ayarlar</summary>
@@ -734,6 +758,18 @@
             </div>
           </div>
 
+          <div class="tab-content" data-tab-content="iot">
+            <section class="iot-panel">
+              <div class="section-head">
+                <div>
+                  <h2>DRC IoT Pack</h2>
+                  <p class="muted">Uzaktan izleme ekraninda oda durumu, alarm akisi, karbon odağı ve saha karar notlari tek yerde toplanir.</p>
+                </div>
+              </div>
+              <div id="iotMonitorRoot" class="iot-monitor-root"></div>
+            </section>
+          </div>
+
           <div class="tab-content" data-tab-content="tools">
             <section class="tools-panel">
               <div class="section-head">
@@ -959,6 +995,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260412-admin-messages-1"></script>
+  <script src="/app.js?v=20260412-iot-dashboard-1"></script>
 </body>
 </html>
