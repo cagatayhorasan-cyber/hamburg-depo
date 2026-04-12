@@ -166,6 +166,34 @@ const sqliteSchema = `
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(created_by_user_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS security_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    user_role TEXT DEFAULT '',
+    event_type TEXT NOT NULL,
+    severity TEXT NOT NULL DEFAULT 'info',
+    ip_address TEXT DEFAULT '',
+    identifier TEXT DEFAULT '',
+    request_path TEXT DEFAULT '',
+    request_method TEXT DEFAULT '',
+    user_agent TEXT DEFAULT '',
+    details TEXT DEFAULT '',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS security_blocks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ip_address TEXT NOT NULL UNIQUE,
+    reason TEXT NOT NULL,
+    event_type TEXT DEFAULT '',
+    event_count INTEGER NOT NULL DEFAULT 0,
+    block_until TEXT NOT NULL,
+    released_at TEXT DEFAULT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
 `;
 
 const postgresSchema = `
@@ -309,6 +337,33 @@ const postgresSchema = `
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
+
+  CREATE TABLE IF NOT EXISTS security_events (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id),
+    user_role TEXT DEFAULT '',
+    event_type TEXT NOT NULL,
+    severity TEXT NOT NULL DEFAULT 'info',
+    ip_address TEXT DEFAULT '',
+    identifier TEXT DEFAULT '',
+    request_path TEXT DEFAULT '',
+    request_method TEXT DEFAULT '',
+    user_agent TEXT DEFAULT '',
+    details TEXT DEFAULT '',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+
+  CREATE TABLE IF NOT EXISTS security_blocks (
+    id BIGSERIAL PRIMARY KEY,
+    ip_address TEXT NOT NULL UNIQUE,
+    reason TEXT NOT NULL,
+    event_type TEXT DEFAULT '',
+    event_count INTEGER NOT NULL DEFAULT 0,
+    block_until TIMESTAMPTZ NOT NULL,
+    released_at TIMESTAMPTZ NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
 `;
 
 async function initDatabase() {
@@ -326,6 +381,7 @@ async function initDatabase() {
     await ensureMovementColumnsPostgres();
     await ensureMovementIndexesPostgres();
     await ensureAgentTrainingIndexesPostgres();
+    await ensureSecurityIndexesPostgres();
     await seedUsers({
         get: async (sql, params) => firstRow(await query(sql, params)),
         run: async (sql, params) => query(sql, params),
@@ -349,6 +405,7 @@ async function initDatabase() {
   ensureMovementIndexesSqlite();
   ensureQuoteColumnsSqlite();
   ensureAgentTrainingIndexesSqlite();
+  ensureSecurityIndexesSqlite();
   await seedUsers({
     get: async (sql, params) => sqlitePrepare(sql).get(...params),
     run: async (sql, params) => sqlitePrepare(sql).run(...params),
@@ -588,6 +645,15 @@ function ensureAgentTrainingIndexesSqlite() {
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training(is_active, created_at DESC)");
 }
 
+function ensureSecurityIndexesSqlite() {
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_events_created ON security_events(created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_events_ip_created ON security_events(ip_address, created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_events_user_created ON security_events(user_id, created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_events_type_created ON security_events(event_type, created_at DESC, id DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_blocks_until ON security_blocks(block_until)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_security_blocks_released ON security_blocks(released_at)");
+}
+
 async function seedUsers(adapter) {
   await withOptionalTransaction(adapter, async (tx) => {
     for (const user of DEFAULT_USERS) {
@@ -709,6 +775,15 @@ async function ensureMovementIndexesPostgres() {
 
 async function ensureAgentTrainingIndexesPostgres() {
   await pgPool.query("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training (is_active, created_at DESC)");
+}
+
+async function ensureSecurityIndexesPostgres() {
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_created ON security_events (created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_ip_created ON security_events (ip_address, created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_user_created ON security_events (user_id, created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_type_created ON security_events (event_type, created_at DESC, id DESC)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_blocks_until ON security_blocks (block_until)");
+  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_blocks_released ON security_blocks (released_at)");
 }
 
 async function ensureUserColumnsPostgres() {

@@ -56,6 +56,13 @@ const AUTH_RATE_WINDOW_MS = 10 * 60 * 1000;
 const GENERAL_API_RATE_LIMIT = Number(process.env.GENERAL_API_RATE_LIMIT || 240);
 const AUTH_API_RATE_LIMIT = Number(process.env.AUTH_API_RATE_LIMIT || 12);
 const RATE_LIMIT_BUCKETS = new Map();
+const SECURITY_FAILURE_WINDOW_MS = 15 * 60 * 1000;
+const SECURITY_AUTH_FAILURE_THRESHOLD = Number(process.env.SECURITY_AUTH_FAILURE_THRESHOLD || 8);
+const SECURITY_ORIGIN_FAILURE_THRESHOLD = Number(process.env.SECURITY_ORIGIN_FAILURE_THRESHOLD || 4);
+const SECURITY_AUTH_BLOCK_MS = 30 * 60 * 1000;
+const SECURITY_ORIGIN_BLOCK_MS = 60 * 60 * 1000;
+const SECURITY_RATE_LIMIT_BLOCK_MS = 30 * 60 * 1000;
+const SECURITY_EVENT_DETAILS_LIMIT = 1600;
 
 let gmailTransporter = null;
 
@@ -93,6 +100,8 @@ function createApp() {
     })
   );
 
+  app.use(initializeSecurityAuditQueue);
+  app.use("/api", enforceIpSecurityBlock);
   app.use("/api", validateBrowserRequestOrigin);
   app.use("/api", createRateLimiter({
     name: "general-api",
@@ -127,15 +136,29 @@ function createApp() {
     const user = await findUserByLoginIdentifier(identifier);
 
     if (!user || !bcrypt.compareSync(password || "", user.password_hash)) {
+      await recordFailedAuthentication(req, identifier);
       return res.status(401).json({ error: "Kullanici adi/e-posta veya sifre hatali." });
     }
 
     req.session.user = sessionUserFromRow(user);
+    queueSecurityEvent(req, {
+      user,
+      eventType: "login_success",
+      severity: "info",
+      identifier,
+      details: { role: normalizeRole(user.role) },
+    });
 
     return res.json({ user: req.session.user });
   });
 
   app.post("/api/logout", requireAuth, (req, res) => {
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "logout",
+      severity: "info",
+      details: { role: normalizeRole(req.session.user?.role) },
+    });
     req.session = null;
     res.json({ ok: true });
   });
@@ -153,6 +176,14 @@ function createApp() {
       const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
       await sendPasswordResetEmail(user, resetUrl);
     }
+
+    queueSecurityEvent(req, {
+      user,
+      eventType: "password_reset_requested",
+      severity: "info",
+      identifier,
+      details: { matchedAccount: Boolean(user), mailTarget: Boolean(user?.email) },
+    });
 
     return res.json({
       ok: true,
@@ -176,6 +207,11 @@ function createApp() {
     }
 
     await execute("UPDATE users SET password_hash = ? WHERE id = ?", [bcrypt.hashSync(password, 10), Number(tokenRow.user_id)]);
+    queueSecurityEvent(req, {
+      user: { id: Number(tokenRow.user_id), role: "customer" },
+      eventType: "password_reset_completed",
+      severity: "info",
+    });
     return res.json({ ok: true, message: "Sifreniz guncellendi. Yeni sifrenizle giris yapabilirsiniz." });
   });
 
@@ -196,6 +232,12 @@ function createApp() {
     }
 
     req.session.user = sessionUserFromRow(user);
+    queueSecurityEvent(req, {
+      user,
+      eventType: "email_verified",
+      severity: "info",
+      details: { userId: Number(user.id) },
+    });
     return res.json({ ok: true, user: req.session.user, message: "E-posta adresiniz dogrulandi." });
   });
 
@@ -211,6 +253,13 @@ function createApp() {
     const token = await issueAuthToken(Number(user.id), "verify_email", 24);
     const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
     const mailResult = await sendVerificationEmail(user, verifyUrl);
+
+    queueSecurityEvent(req, {
+      user,
+      eventType: "email_verification_resent",
+      severity: mailResult.sent ? "info" : "warn",
+      details: { sent: Boolean(mailResult.sent), reason: mailResult.reason || "" },
+    });
 
     return res.json({
       ok: true,
@@ -277,6 +326,13 @@ function createApp() {
       const token = await issueAuthToken(insertedUser.id, "verify_email", 24);
       const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
       const mailResult = await sendVerificationEmail(insertedUser, verifyUrl);
+      queueSecurityEvent(req, {
+        user: insertedUser,
+        eventType: "customer_registered",
+        severity: "info",
+        identifier: email,
+        details: { username, phone, mailSent: Boolean(mailResult.sent) },
+      });
       return res.json({
         user: insertedUser,
         mailSent: Boolean(mailResult.sent),
@@ -406,6 +462,13 @@ function createApp() {
       ]
     );
 
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "training_created",
+      severity: "info",
+      details: { topic: payload.topic, audience: payload.audience },
+    });
+
     return res.json({ ok: true, id: Number(result.rows[0]?.id || result.lastInsertId || 0) });
   });
 
@@ -444,6 +507,13 @@ function createApp() {
       return res.status(404).json({ error: "Egitim kaydi bulunamadi." });
     }
 
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "training_updated",
+      severity: "info",
+      details: { id: trainingId, topic: payload.topic, audience: payload.audience },
+    });
+
     return res.json({ ok: true });
   });
 
@@ -457,6 +527,13 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Egitim kaydi bulunamadi." });
     }
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "training_deleted",
+      severity: "warn",
+      details: { id: trainingId },
+    });
 
     return res.json({ ok: true });
   });
@@ -486,6 +563,13 @@ function createApp() {
         [name.trim(), normalizedUsername, email || null, phone || null, bcrypt.hashSync(password, 10), role]
       );
 
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "user_created",
+        severity: "info",
+        details: { createdRole: normalizeRole(role), username: normalizedUsername, email },
+      });
+
       return res.json({
         id: Number(result.rows[0]?.id || result.lastInsertId),
         name,
@@ -497,6 +581,28 @@ function createApp() {
     } catch (_error) {
       return res.status(400).json({ error: "Kullanici olusturulamadi. Kullanici adi ve e-posta benzersiz olmali." });
     }
+  });
+
+  app.post("/api/security/blocks/:id/release", requireAdmin, async (req, res) => {
+    const blockId = Number(req.params.id);
+    if (!Number.isFinite(blockId) || blockId <= 0) {
+      return res.status(400).json({ error: "Gecersiz blok kaydi." });
+    }
+
+    const nowIso = new Date().toISOString();
+    const result = await execute("UPDATE security_blocks SET released_at = ?, updated_at = ? WHERE id = ?", [nowIso, nowIso, blockId]);
+    if (!result.rowCount) {
+      return res.status(404).json({ error: "Blok kaydi bulunamadi." });
+    }
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "ip_unblocked",
+      severity: "info",
+      details: { blockId },
+    });
+
+    return res.json({ ok: true });
   });
 
   app.post("/api/items", requireAdmin, async (req, res) => {
@@ -529,6 +635,13 @@ function createApp() {
           numericFields.salePrice,
         ]
       );
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "item_created",
+        severity: "info",
+        details: { name: name.trim(), brand: cleanOptional(brand), category: category.trim() },
+      });
 
       return res.json({ id: Number(result.rows[0]?.id || result.lastInsertId) });
     } catch (_error) {
@@ -572,6 +685,13 @@ function createApp() {
         return res.status(404).json({ error: "Malzeme bulunamadi." });
       }
 
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "item_updated",
+        severity: "info",
+        details: { id: Number(req.params.id), name: name.trim(), brand: cleanOptional(brand), category: category.trim() },
+      });
+
       return res.json({ ok: true });
     } catch (_error) {
       return res.status(400).json({ error: "Malzeme guncellenemedi. Barkod benzersiz olmali." });
@@ -594,6 +714,13 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
     }
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "item_deleted",
+      severity: "warn",
+      details: { itemId },
+    });
 
     return res.json({ ok: true });
   });
@@ -690,6 +817,13 @@ function createApp() {
         return insertedItemId;
       });
 
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "item_intake_created",
+        severity: "info",
+        details: { itemId, name: trimmedName, brand: trimmedBrand, quantity: quantityValue, unitPrice: unitPriceValue },
+      });
+
       return res.json({ ok: true, id: itemId });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Yeni urun kaydi olusturulamadi." });
@@ -744,6 +878,13 @@ function createApp() {
       [itemId, type, quantityValue, effectiveUnitPrice, date, cleanOptional(note), req.session.user.id]
     );
 
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: type === "entry" ? "movement_entry_created" : "movement_exit_created",
+      severity: "info",
+      details: { itemId: Number(itemId), quantity: quantityValue, unitPrice: effectiveUnitPrice, date },
+    });
+
     return res.json({ ok: true });
   });
 
@@ -794,6 +935,13 @@ function createApp() {
         );
       });
 
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "movement_reversed",
+        severity: "warn",
+        details: { movementId },
+      });
+
       return res.json({ ok: true });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Hareket iptal edilemedi." });
@@ -818,6 +966,13 @@ function createApp() {
       [title.trim(), category.trim(), amountValue, date, paymentType, cleanOptional(note), req.session.user.id]
     );
 
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "expense_created",
+      severity: "info",
+      details: { title: title.trim(), category: category.trim(), amount: amountValue, date },
+    });
+
     return res.json({ ok: true });
   });
 
@@ -826,6 +981,12 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Masraf bulunamadi." });
     }
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "expense_deleted",
+      severity: "warn",
+      details: { id: Number(req.params.id) },
+    });
     return res.json({ ok: true });
   });
 
@@ -856,6 +1017,13 @@ function createApp() {
       [entryType, title.trim(), amountValue, date, cleanOptional(reference), entryNote, req.session.user.id]
     );
 
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "cashbook_created",
+      severity: "info",
+      details: { type: entryType, title: title.trim(), amount: amountValue, date },
+    });
+
     return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType });
   });
 
@@ -864,6 +1032,12 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
     }
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "cashbook_deleted",
+      severity: "warn",
+      details: { id: Number(req.params.id) },
+    });
     return res.json({ ok: true });
   });
 
@@ -903,6 +1077,13 @@ function createApp() {
       params
     );
 
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "bulk_pricing_updated",
+      severity: "info",
+      details: { updated: Number(result.rowCount || 0), brand: brand || "all", category: category || "all", increasePercent: increaseValue },
+    });
+
     return res.json({ ok: true, updated: result.rowCount });
   });
 
@@ -911,6 +1092,12 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
     }
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "item_archived",
+      severity: "warn",
+      details: { id: Number(req.params.id) },
+    });
     return res.json({ ok: true });
   });
 
@@ -919,6 +1106,12 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Malzeme bulunamadi." });
     }
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "item_restored",
+      severity: "info",
+      details: { id: Number(req.params.id) },
+    });
     return res.json({ ok: true });
   });
 
@@ -999,6 +1192,13 @@ function createApp() {
           );
         }
         return insertedQuoteId;
+      });
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "quote_created",
+        severity: "info",
+        details: { quoteId, customerName: customerName.trim(), grossTotal, lineCount: pricedItems.length },
       });
 
       return res.json({ ok: true, id: quoteId });
@@ -1129,6 +1329,20 @@ function createApp() {
         return { id: insertedQuoteId, paid };
       });
 
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "sale_completed",
+        severity: "info",
+        details: {
+          saleId: saleResult.id,
+          customerName: customerName.trim(),
+          grossTotal,
+          paid: saleResult.paid,
+          remaining: Math.max(Number((grossTotal - paid).toFixed(2)), 0),
+          lineCount: pricedItems.length,
+        },
+      });
+
       return res.json({ ok: true, id: saleResult.id, paid: saleResult.paid, remaining: Math.max(Number((grossTotal - paid).toFixed(2)), 0) });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Direkt satis olusturulamadi." });
@@ -1215,6 +1429,20 @@ function createApp() {
         }
 
         return { paid, cashEntryId };
+      });
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "unbilled_sale_completed",
+        severity: "info",
+        details: {
+          customerName: resolvedCustomer,
+          total: Number(saleTotal.toFixed(2)),
+          paid: saleResult.paid,
+          remaining: Math.max(Number((saleTotal - paid).toFixed(2)), 0),
+          cashEntryId: saleResult.cashEntryId || 0,
+          lineCount: pricedItems.length,
+        },
       });
 
       return res.json({
@@ -1304,6 +1532,13 @@ function createApp() {
         return insertedOrderId;
       });
 
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "order_created",
+        severity: "info",
+        details: { orderId, lineCount: items.length, date },
+      });
+
       return res.json({ ok: true, id: orderId });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Siparis olusturulamadi." });
@@ -1342,6 +1577,14 @@ function createApp() {
           language,
         }
       );
+    }
+    if (result.rowCount) {
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "order_status_updated",
+        severity: "info",
+        details: { orderId: Number(req.params.id), status, language },
+      });
     }
     return res.json({ ok: true });
   });
@@ -1465,6 +1708,11 @@ async function startServer(port = process.env.PORT || 3000, host = process.env.H
 
 function requireAuth(req, res, next) {
   if (!req.session.user) {
+    queueSecurityEvent(req, {
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "auth" },
+    });
     return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
   }
   return next();
@@ -1472,9 +1720,20 @@ function requireAuth(req, res, next) {
 
 function requireAdmin(req, res, next) {
   if (!req.session.user) {
+    queueSecurityEvent(req, {
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "admin" },
+    });
     return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
   }
   if (!isAdminRole(req.session.user.role)) {
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "admin" },
+    });
     return res.status(403).json({ error: "Bu islem icin admin yetkisi gerekiyor." });
   }
   return next();
@@ -1482,9 +1741,20 @@ function requireAdmin(req, res, next) {
 
 function requireStaffOrAdmin(req, res, next) {
   if (!req.session.user) {
+    queueSecurityEvent(req, {
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "staff_or_admin" },
+    });
     return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
   }
   if (!isStaffRole(req.session.user.role) && !isAdminRole(req.session.user.role)) {
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "staff_or_admin" },
+    });
     return res.status(403).json({ error: "Bu islem icin personel veya admin yetkisi gerekiyor." });
   }
   return next();
@@ -1492,9 +1762,20 @@ function requireStaffOrAdmin(req, res, next) {
 
 function requireCustomer(req, res, next) {
   if (!req.session.user) {
+    queueSecurityEvent(req, {
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "customer" },
+    });
     return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
   }
   if (!isCustomerRole(req.session.user.role)) {
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "customer" },
+    });
     return res.status(403).json({ error: "Bu islem sadece musteri kullanicilari icindir." });
   }
   return next();
@@ -1549,6 +1830,271 @@ function serveAdminTool(req, res) {
   return res.send(fs.readFileSync(filePath));
 }
 
+function initializeSecurityAuditQueue(req, res, next) {
+  req.securityAuditQueue = [];
+  res.on("finish", () => {
+    flushQueuedSecurityEvents(req).catch((error) => {
+      console.error("Guvenlik olayi yazilamadi.", error);
+    });
+  });
+  next();
+}
+
+function queueSecurityEvent(req, event) {
+  if (!req) {
+    return;
+  }
+  req.securityAuditQueue = req.securityAuditQueue || [];
+  req.securityAuditQueue.push(normalizeSecurityEventPayload(req, event));
+}
+
+async function flushQueuedSecurityEvents(req) {
+  const queue = Array.isArray(req?.securityAuditQueue) ? req.securityAuditQueue.splice(0) : [];
+  for (const entry of queue) {
+    await insertSecurityEvent(entry);
+  }
+}
+
+async function enforceIpSecurityBlock(req, res, next) {
+  try {
+    const block = await findActiveSecurityBlock(getClientIp(req));
+    if (!block) {
+      return next();
+    }
+
+    return res.status(423).json({
+      error: "Bu IP adresi guvenlik nedeniyle gecici olarak engellendi.",
+      blockUntil: block.blockUntil,
+      reason: block.reason,
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function recordFailedAuthentication(req, identifier = "") {
+  const entry = normalizeSecurityEventPayload(req, {
+    eventType: "login_failed",
+    severity: "warn",
+    identifier,
+  });
+  await insertSecurityEvent(entry);
+  await autoBlockIfThresholdReached(req, "login_failed", {
+    threshold: SECURITY_AUTH_FAILURE_THRESHOLD,
+    windowMs: SECURITY_FAILURE_WINDOW_MS,
+    blockDurationMs: SECURITY_AUTH_BLOCK_MS,
+    reason: "Tekrarlayan hatali giris denemeleri",
+  });
+}
+
+async function autoBlockIfThresholdReached(req, eventType, options = {}) {
+  const threshold = Number(options.threshold || 0);
+  if (!threshold) {
+    return null;
+  }
+
+  const ipAddress = getClientIp(req);
+  const windowMs = Number(options.windowMs || SECURITY_FAILURE_WINDOW_MS);
+  const since = new Date(Date.now() - windowMs).toISOString();
+  const counter = await get(
+    `
+      SELECT COUNT(*) AS count
+      FROM security_events
+      WHERE ip_address = ? AND event_type = ? AND created_at >= ?
+    `,
+    [ipAddress, eventType, since]
+  );
+  const count = Number(counter?.count || 0);
+  if (count < threshold) {
+    return null;
+  }
+
+  return activateSecurityBlock(req, {
+    reason: options.reason || "Supheli deneme algilandi",
+    eventType,
+    blockDurationMs: Number(options.blockDurationMs || SECURITY_AUTH_BLOCK_MS),
+    eventCount: count,
+  });
+}
+
+async function activateSecurityBlock(req, options = {}) {
+  const ipAddress = options.ipAddress || getClientIp(req);
+  const existing = await findActiveSecurityBlock(ipAddress);
+  if (existing) {
+    return existing;
+  }
+
+  const nowIso = new Date().toISOString();
+  const blockUntil = new Date(Date.now() + Number(options.blockDurationMs || SECURITY_AUTH_BLOCK_MS)).toISOString();
+  const reason = cleanOptional(options.reason) || "Supheli deneme algilandi";
+  const eventType = cleanOptional(options.eventType);
+  const eventCount = Number(options.eventCount || 0);
+  const existingAny = await get("SELECT id FROM security_blocks WHERE ip_address = ?", [ipAddress]);
+
+  if (existingAny?.id) {
+    await execute(
+      `
+        UPDATE security_blocks
+        SET reason = ?, event_type = ?, event_count = ?, block_until = ?, released_at = NULL, created_at = ?, updated_at = ?
+        WHERE id = ?
+      `,
+      [reason, eventType, eventCount, blockUntil, nowIso, nowIso, Number(existingAny.id)]
+    );
+  } else {
+    await execute(
+      `
+        INSERT INTO security_blocks (ip_address, reason, event_type, event_count, block_until, released_at, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, NULL, ?, ?)
+      `,
+      [ipAddress, reason, eventType, eventCount, blockUntil, nowIso, nowIso]
+    );
+  }
+
+  await insertSecurityEvent(normalizeSecurityEventPayload(req, {
+    eventType: "ip_blocked",
+    severity: "critical",
+    details: { reason, blockedUntil: blockUntil, sourceEvent: eventType, eventCount },
+  }));
+
+  return {
+    ipAddress,
+    reason,
+    eventType,
+    eventCount,
+    blockUntil,
+    releasedAt: null,
+    createdAt: nowIso,
+    updatedAt: nowIso,
+    isActive: true,
+  };
+}
+
+async function findActiveSecurityBlock(ipAddress) {
+  const block = await get(
+    `
+      SELECT
+        id,
+        ip_address AS "ipAddress",
+        reason,
+        event_type AS "eventType",
+        event_count AS "eventCount",
+        block_until AS "blockUntil",
+        released_at AS "releasedAt",
+        created_at AS "createdAt",
+        updated_at AS "updatedAt"
+      FROM security_blocks
+      WHERE ip_address = ?
+      ORDER BY updated_at DESC, id DESC
+      LIMIT 1
+    `,
+    [ipAddress]
+  );
+
+  if (!block) {
+    return null;
+  }
+
+  const mapped = {
+    ...numberizeRow(block),
+    isActive: !block.releasedAt && isFutureTimestamp(block.blockUntil),
+  };
+
+  if (!mapped.isActive && !block.releasedAt) {
+    const nowIso = new Date().toISOString();
+    await execute("UPDATE security_blocks SET released_at = ?, updated_at = ? WHERE id = ?", [nowIso, nowIso, Number(block.id)]);
+    mapped.releasedAt = nowIso;
+  }
+
+  return mapped.isActive ? mapped : null;
+}
+
+function normalizeSecurityEventPayload(req, event = {}) {
+  const user = event.user || req?.session?.user || null;
+  return {
+    userId: user?.id ? Number(user.id) : null,
+    userRole: normalizeRole(event.userRole || user?.role || ""),
+    eventType: cleanOptional(event.eventType) || "system_event",
+    severity: normalizeSecuritySeverity(event.severity),
+    ipAddress: event.ipAddress || getClientIp(req),
+    identifier: cleanOptional(event.identifier),
+    requestPath: cleanOptional(event.requestPath || req?.path || req?.originalUrl || ""),
+    requestMethod: String(event.requestMethod || req?.method || "").toUpperCase(),
+    userAgent: cleanOptional(event.userAgent || req?.get?.("user-agent") || ""),
+    details: sanitizeSecurityDetails(event.details || {}),
+  };
+}
+
+async function insertSecurityEvent(entry) {
+  const createdAt = new Date().toISOString();
+  await execute(
+    `
+      INSERT INTO security_events (
+        user_id, user_role, event_type, severity, ip_address, identifier,
+        request_path, request_method, user_agent, details, created_at
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `,
+    [
+      entry.userId || null,
+      cleanOptional(entry.userRole),
+      entry.eventType,
+      entry.severity,
+      entry.ipAddress || "",
+      cleanOptional(entry.identifier),
+      cleanOptional(entry.requestPath),
+      cleanOptional(entry.requestMethod),
+      cleanOptional(entry.userAgent),
+      serializeSecurityDetails(entry.details),
+      createdAt,
+    ]
+  );
+}
+
+function sanitizeSecurityDetails(details) {
+  if (!details || typeof details !== "object") {
+    return {};
+  }
+
+  const output = {};
+  for (const [key, value] of Object.entries(details)) {
+    if (value === undefined) {
+      continue;
+    }
+    output[key] = typeof value === "string"
+      ? value.slice(0, SECURITY_EVENT_DETAILS_LIMIT)
+      : value;
+  }
+  return output;
+}
+
+function serializeSecurityDetails(details) {
+  const payload = JSON.stringify(details || {});
+  return payload.length > SECURITY_EVENT_DETAILS_LIMIT
+    ? payload.slice(0, SECURITY_EVENT_DETAILS_LIMIT)
+    : payload;
+}
+
+function parseSecurityDetails(value) {
+  try {
+    return JSON.parse(String(value || "{}"));
+  } catch (_error) {
+    return {};
+  }
+}
+
+function normalizeSecuritySeverity(value) {
+  const normalized = String(value || "info").toLowerCase();
+  if (["info", "warn", "critical"].includes(normalized)) {
+    return normalized;
+  }
+  return "info";
+}
+
+function isFutureTimestamp(value) {
+  const time = Date.parse(String(value || ""));
+  return Number.isFinite(time) && time > Date.now();
+}
+
 function applySecurityHeaders(req, res, next) {
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.set("X-Content-Type-Options", "nosniff");
@@ -1585,56 +2131,100 @@ function buildContentSecurityPolicy(req) {
     .join("; ");
 }
 
-function validateBrowserRequestOrigin(req, res, next) {
-  const method = String(req.method || "GET").toUpperCase();
-  if (!["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
+async function validateBrowserRequestOrigin(req, res, next) {
+  try {
+    const method = String(req.method || "GET").toUpperCase();
+    if (!["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
+      return next();
+    }
+
+    const secFetchSite = String(req.get("sec-fetch-site") || "").toLowerCase();
+    if (secFetchSite && !["same-origin", "same-site", "none"].includes(secFetchSite)) {
+      await insertSecurityEvent(normalizeSecurityEventPayload(req, {
+        eventType: "origin_blocked",
+        severity: "warn",
+        details: { secFetchSite },
+      }));
+      await autoBlockIfThresholdReached(req, "origin_blocked", {
+        threshold: SECURITY_ORIGIN_FAILURE_THRESHOLD,
+        windowMs: SECURITY_FAILURE_WINDOW_MS,
+        blockDurationMs: SECURITY_ORIGIN_BLOCK_MS,
+        reason: "Supheli cross-site istekler",
+      });
+      return res.status(403).json({ error: "Gecersiz istek kaynagi." });
+    }
+
+    const origin = normalizeOrigin(req.get("origin"));
+    if (!origin) {
+      return next();
+    }
+
+    const allowedOrigins = new Set([getRequestOrigin(req)]);
+    const configuredOrigin = normalizeOrigin(APP_BASE_URL);
+    if (configuredOrigin) {
+      allowedOrigins.add(configuredOrigin);
+    }
+
+    if (!allowedOrigins.has(origin)) {
+      await insertSecurityEvent(normalizeSecurityEventPayload(req, {
+        eventType: "origin_blocked",
+        severity: "warn",
+        details: { origin, allowedOrigins: [...allowedOrigins] },
+      }));
+      await autoBlockIfThresholdReached(req, "origin_blocked", {
+        threshold: SECURITY_ORIGIN_FAILURE_THRESHOLD,
+        windowMs: SECURITY_FAILURE_WINDOW_MS,
+        blockDurationMs: SECURITY_ORIGIN_BLOCK_MS,
+        reason: "Supheli cross-site istekler",
+      });
+      return res.status(403).json({ error: "Bu istek kaynagi engellendi." });
+    }
+
     return next();
+  } catch (error) {
+    return next(error);
   }
-
-  const secFetchSite = String(req.get("sec-fetch-site") || "").toLowerCase();
-  if (secFetchSite && !["same-origin", "same-site", "none"].includes(secFetchSite)) {
-    return res.status(403).json({ error: "Gecersiz istek kaynagi." });
-  }
-
-  const origin = normalizeOrigin(req.get("origin"));
-  if (!origin) {
-    return next();
-  }
-
-  const allowedOrigins = new Set([getRequestOrigin(req)]);
-  const configuredOrigin = normalizeOrigin(APP_BASE_URL);
-  if (configuredOrigin) {
-    allowedOrigins.add(configuredOrigin);
-  }
-
-  if (!allowedOrigins.has(origin)) {
-    return res.status(403).json({ error: "Bu istek kaynagi engellendi." });
-  }
-
-  return next();
 }
 
 function createRateLimiter({ name, windowMs, max, keyFn, message }) {
-  return (req, res, next) => {
-    const now = Date.now();
-    const key = `${name}:${typeof keyFn === "function" ? keyFn(req) : getClientIp(req)}`;
-    const bucket = RATE_LIMIT_BUCKETS.get(key) || [];
-    const fresh = bucket.filter((timestamp) => now - timestamp < windowMs);
+  return async (req, res, next) => {
+    try {
+      const now = Date.now();
+      const key = `${name}:${typeof keyFn === "function" ? keyFn(req) : getClientIp(req)}`;
+      const bucket = RATE_LIMIT_BUCKETS.get(key) || [];
+      const fresh = bucket.filter((timestamp) => now - timestamp < windowMs);
 
-    if (fresh.length >= max) {
-      const retryAfterSeconds = Math.max(1, Math.ceil((windowMs - (now - fresh[0])) / 1000));
-      res.set("Retry-After", String(retryAfterSeconds));
-      return res.status(429).json({ error: message || "Cok fazla istek gonderildi." });
+      if (fresh.length >= max) {
+        const retryAfterSeconds = Math.max(1, Math.ceil((windowMs - (now - fresh[0])) / 1000));
+        RATE_LIMIT_BUCKETS.set(key, fresh);
+        res.set("Retry-After", String(retryAfterSeconds));
+        await insertSecurityEvent(normalizeSecurityEventPayload(req, {
+          eventType: "rate_limit_hit",
+          severity: name === "auth-api" ? "critical" : "warn",
+          details: { limiter: name, retryAfterSeconds, hits: fresh.length },
+        }));
+        if (name === "auth-api") {
+          await activateSecurityBlock(req, {
+            reason: "Asiri kimlik dogrulama denemesi",
+            eventType: "rate_limit_hit",
+            blockDurationMs: SECURITY_RATE_LIMIT_BLOCK_MS,
+            eventCount: fresh.length,
+          });
+        }
+        return res.status(429).json({ error: message || "Cok fazla istek gonderildi." });
+      }
+
+      fresh.push(now);
+      RATE_LIMIT_BUCKETS.set(key, fresh);
+
+      if (RATE_LIMIT_BUCKETS.size > 5000) {
+        pruneRateLimitBuckets(now);
+      }
+
+      return next();
+    } catch (error) {
+      return next(error);
     }
-
-    fresh.push(now);
-    RATE_LIMIT_BUCKETS.set(key, fresh);
-
-    if (RATE_LIMIT_BUCKETS.size > 5000) {
-      pruneRateLimitBuckets(now);
-    }
-
-    return next();
   };
 }
 
@@ -2404,6 +2994,68 @@ async function queryUsers() {
   return rows.map((row) => ({ ...row, id: Number(row.id), role: normalizeRole(row.role) }));
 }
 
+async function querySecurityEvents(limit = 80) {
+  const safeLimit = Math.min(Math.max(Number(limit) || 80, 1), 200);
+  const rows = await query(
+    `
+      SELECT
+        security_events.id,
+        security_events.user_id AS "userId",
+        security_events.user_role AS "userRole",
+        security_events.event_type AS "eventType",
+        security_events.severity,
+        security_events.ip_address AS "ipAddress",
+        security_events.identifier,
+        security_events.request_path AS "requestPath",
+        security_events.request_method AS "requestMethod",
+        security_events.user_agent AS "userAgent",
+        security_events.details,
+        security_events.created_at AS "createdAt",
+        users.name AS "userName"
+      FROM security_events
+      LEFT JOIN users ON users.id = security_events.user_id
+      ORDER BY security_events.created_at DESC, security_events.id DESC
+      LIMIT ?
+    `,
+    [safeLimit]
+  );
+
+  return rows.map((row) => ({
+    ...numberizeRow(row),
+    userRole: normalizeRole(row.userRole),
+    details: parseSecurityDetails(row.details),
+    userName: row.userName || "-",
+  }));
+}
+
+async function querySecurityBlocks() {
+  const rows = await query(
+    `
+      SELECT
+        id,
+        ip_address AS "ipAddress",
+        reason,
+        event_type AS "eventType",
+        event_count AS "eventCount",
+        block_until AS "blockUntil",
+        released_at AS "releasedAt",
+        created_at AS "createdAt",
+        updated_at AS "updatedAt"
+      FROM security_blocks
+      ORDER BY
+        CASE WHEN released_at IS NULL THEN 0 ELSE 1 END ASC,
+        block_until DESC,
+        id DESC
+      LIMIT 80
+    `
+  );
+
+  return rows.map((row) => ({
+    ...numberizeRow(row),
+    isActive: !row.releasedAt && isFutureTimestamp(row.blockUntil),
+  }));
+}
+
 async function queryAgentTrainingEntries(activeOnly = true) {
   const rows = await query(
     `
@@ -2587,6 +3239,8 @@ async function buildBootstrap(user) {
       users: [],
       quotes: [],
       orders,
+      securityEvents: [],
+      securityBlocks: [],
       agentTraining: [],
       assistantStatus,
     };
@@ -2595,7 +3249,8 @@ async function buildBootstrap(user) {
   const includeExpenses = normalizedRole === "admin";
   const includeCashbook = normalizedRole === "admin" || normalizedRole === "staff";
   const includeUsers = normalizedRole === "admin";
-  const [summary, items, movements, expenses, cashbook, users, quotes, orders] = await Promise.all([
+  const includeSecurity = normalizedRole === "admin";
+  const [summary, items, movements, expenses, cashbook, users, quotes, orders, securityEvents, securityBlocks] = await Promise.all([
     computeSummary(user),
     queryCustomerItems({ includePrices: true }),
     queryMovements(user),
@@ -2604,6 +3259,8 @@ async function buildBootstrap(user) {
     includeUsers ? queryUsers() : Promise.resolve([]),
     queryQuotes(user),
     queryOrders(user),
+    includeSecurity ? querySecurityEvents() : Promise.resolve([]),
+    includeSecurity ? querySecurityBlocks() : Promise.resolve([]),
   ]);
 
   return {
@@ -2616,6 +3273,8 @@ async function buildBootstrap(user) {
     users,
     quotes,
     orders,
+    securityEvents,
+    securityBlocks,
     agentTraining: [],
     assistantStatus,
   };
@@ -3304,7 +3963,7 @@ async function generateQuoteNo(dateString) {
 
 function numberizeRow(row) {
   const output = { ...row };
-  ["id", "quantity", "unitPrice", "total", "discount", "subtotal", "vatRate", "vatAmount", "netTotal", "grossTotal", "amount"].forEach(
+  ["id", "userId", "eventCount", "quantity", "unitPrice", "total", "discount", "subtotal", "vatRate", "vatAmount", "netTotal", "grossTotal", "amount"].forEach(
     (key) => {
       if (output[key] !== undefined && output[key] !== null && output[key] !== "") {
         output[key] = Number(output[key]);

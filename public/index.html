@@ -205,6 +205,7 @@
               <button class="tab-button" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
               <button class="tab-button" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
               <button class="tab-button" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
+              <button class="tab-button admin-only" data-tab="security" type="button" data-help="TR: Son guvenlik olaylari, bloklanan IP'ler ve erisim denemeleri burada gorulur. DE: Hier sehen Sie Sicherheitsereignisse, blockierte IPs und Zugriffsversuche."><span class="tab-title">Guvenlik</span><small>Olay kaydi ve IP bloklari</small></button>
               <button class="tab-button" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
             </details>
           </div>
@@ -613,6 +614,57 @@
             </div>
           </div>
 
+          <div class="tab-content admin-only" data-tab-content="security">
+            <div class="two-column">
+              <section>
+                <div class="section-head">
+                  <div>
+                    <h2>Guvenlik Olaylari</h2>
+                    <p id="securitySummary" class="muted">Son girisler, engellenen denemeler ve kritik islemler burada listelenir.</p>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tarih</th>
+                        <th>Seviye</th>
+                        <th>Olay</th>
+                        <th>Kullanici</th>
+                        <th>Rol</th>
+                        <th>IP</th>
+                        <th>Detay</th>
+                      </tr>
+                    </thead>
+                    <tbody id="securityEventsTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+              <section>
+                <div class="section-head">
+                  <div>
+                    <h2>IP Blok Listesi</h2>
+                    <p class="muted">Supheli denemelerde sistem IP adresini gecici bloke eder. Gerekiyorsa buradan kaldirin.</p>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>IP</th>
+                        <th>Sebep</th>
+                        <th>Blok Bitisi</th>
+                        <th>Durum</th>
+                        <th>Islem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="securityBlocksTableBody"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+
           <div class="tab-content" data-tab-content="tools">
             <section class="tools-panel">
               <div class="section-head">
@@ -838,6 +890,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260412-security-hardening-1"></script>
+  <script src="/app.js?v=20260412-security-audit-1"></script>
 </body>
 </html>

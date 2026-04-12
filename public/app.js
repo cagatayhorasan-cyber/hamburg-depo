@@ -180,6 +180,8 @@ const UI_TEXT = {
     tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
     tabUsers: "Kullanicilar",
     tabUsersDesc: "Admin, personel ve musteri hesaplari",
+    tabSecurity: "Guvenlik",
+    tabSecurityDesc: "Olay kaydi, bloklanan IP ve erisim denemeleri",
     tabTools: "Proje Araclari",
     tabToolsDesc: "Soguk oda cizim ve hesaplama araclari",
     tabTraining: "DRC MAN Egitim",
@@ -228,6 +230,7 @@ const UI_TEXT = {
       pending: "Beklemede",
       export: "Yurt Disi",
       inland: "Yurt Ici",
+      release: "Bloku Kaldir",
     },
     messages: {
       welcome: (name, role, needsVerify) => `${name} olarak giris yaptiniz. Rol: ${role}${needsVerify ? " | E-posta henuz dogrulanmadi" : ""}`,
@@ -253,6 +256,9 @@ const UI_TEXT = {
       noCustomerOrderLines: "Henuz siparis kalemi yok.",
       customerOrderSummary: (lines, units, total) => `${lines} kalem | Toplam talep: ${units} adet/birim${total ? ` | Tahmini toplam: ${total}` : ""}`,
       noCustomerOrders: "Daha once gonderilmis siparisiniz yok.",
+      noSecurityEvents: "Henuz kaydedilmis guvenlik olayi yok.",
+      noSecurityBlocks: "Aktif veya gecmis IP blogu yok.",
+      securitySummary: (events, blocks, activeBlocks) => `${events} olay | ${blocks} blok kaydi | ${activeBlocks} aktif blok`,
       trainingSummary: (count) => `${count} egitim kaydi var. DRC MAN bu kayitlari once kontrol eder.`,
       noTraining: "Henuz egitim kaydi yok. Ilk soru-cevap ciftinizi soldan ekleyin.",
       trainingSaved: "Egitim Kaydet",
@@ -326,6 +332,8 @@ const UI_TEXT = {
     tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
     tabUsers: "Benutzer",
     tabUsersDesc: "Admin-, Personal- und Kundenkonten",
+    tabSecurity: "Sicherheit",
+    tabSecurityDesc: "Ereignisprotokoll, blockierte IPs und Zugriffsversuche",
     tabTools: "Projektwerkzeuge",
     tabToolsDesc: "Zeichnung und Berechnung fuer Kuehlraeume",
     tabTraining: "DRC MAN Training",
@@ -374,6 +382,7 @@ const UI_TEXT = {
       pending: "Offen",
       export: "Export",
       inland: "Inland",
+      release: "Freigeben",
     },
     messages: {
       welcome: (name, role, needsVerify) => `Angemeldet als ${name}. Rolle: ${role}${needsVerify ? " | E-Mail noch nicht bestaetigt" : ""}`,
@@ -399,6 +408,9 @@ const UI_TEXT = {
       noCustomerOrderLines: "Noch keine Bestellpositionen vorhanden.",
       customerOrderSummary: (lines, units, total) => `${lines} Positionen | Gesamtmenge: ${units}${total ? ` | Voraussichtlich: ${total}` : ""}`,
       noCustomerOrders: "Es gibt noch keinen gesendeten Bestellverlauf.",
+      noSecurityEvents: "Es gibt noch keine protokollierten Sicherheitsereignisse.",
+      noSecurityBlocks: "Es gibt keine aktiven oder vergangenen IP-Sperren.",
+      securitySummary: (events, blocks, activeBlocks) => `${events} Ereignisse | ${blocks} Sperreintraege | ${activeBlocks} aktiv`,
       trainingSummary: (count) => `${count} Trainingseintraege vorhanden. DRC MAN prueft diese zuerst.`,
       noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
       trainingSaved: "Training speichern",
@@ -433,6 +445,8 @@ const state = {
   cashbook: [],
   users: [],
   orders: [],
+  securityEvents: [],
+  securityBlocks: [],
   agentTraining: [],
   agentTrainingLoaded: false,
   inventoryLoadedAll: false,
@@ -504,6 +518,9 @@ const refs = {
   cashbookTableBody: document.getElementById("cashbookTableBody"),
   usersTableBody: document.getElementById("usersTableBody"),
   ordersTableBody: document.getElementById("ordersTableBody"),
+  securityEventsTableBody: document.getElementById("securityEventsTableBody"),
+  securityBlocksTableBody: document.getElementById("securityBlocksTableBody"),
+  securitySummary: document.getElementById("securitySummary"),
   assistantTrainingTableBody: document.getElementById("assistantTrainingTableBody"),
   assistantTrainingSummary: document.getElementById("assistantTrainingSummary"),
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
@@ -735,6 +752,7 @@ function applyUiTranslations() {
     ["cashbook", t("tabCashbook"), t("tabCashbookDesc")],
     ["orders", isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"), isCustomerUser() ? t("tabCustomerOrdersDesc") : t("tabOrdersDesc")],
     ["users", t("tabUsers"), t("tabUsersDesc")],
+    ["security", t("tabSecurity"), t("tabSecurityDesc")],
     ["tools", t("tabTools"), t("tabToolsDesc")],
     ["training", t("tabTraining"), t("tabTrainingDesc")],
   ].forEach(([tab, title, desc]) => {
@@ -1129,6 +1147,22 @@ function applyUiTranslations() {
     langText("Telefon", "Telefon"),
     langText("Rol", "Rolle"),
   ]);
+  setTableHeaders(refs.securityEventsTableBody, [
+    langText("Tarih", "Datum"),
+    langText("Seviye", "Stufe"),
+    langText("Olay", "Ereignis"),
+    langText("Kullanici", "Benutzer"),
+    langText("Rol", "Rolle"),
+    "IP",
+    langText("Detay", "Details"),
+  ]);
+  setTableHeaders(refs.securityBlocksTableBody, [
+    "IP",
+    langText("Sebep", "Grund"),
+    langText("Blok Bitisi", "Sperre bis"),
+    langText("Durum", "Status"),
+    langText("Islem", "Aktion"),
+  ]);
   setTableHeaders(refs.assistantTrainingTableBody, [
     langText("Konu", "Thema"),
     langText("Hedef", "Ziel"),
@@ -1138,6 +1172,11 @@ function applyUiTranslations() {
     langText("Guncelleyen", "Aktualisiert von"),
     langText("Islem", "Aktion"),
   ]);
+
+  const securitySections = document.querySelectorAll("[data-tab-content='security'] .two-column > section");
+  setText(securitySections[0]?.querySelector("h2"), langText("Guvenlik Olaylari", "Sicherheitsereignisse"));
+  setText(securitySections[1]?.querySelector("h2"), langText("IP Blok Listesi", "IP-Sperrliste"));
+  setText(securitySections[1]?.querySelector(".muted"), langText("Supheli denemelerde sistem IP adresini gecici bloke eder. Gerekiyorsa buradan kaldirin.", "Bei verdaechtigen Versuchen sperrt das System die IP temporaer. Bei Bedarf hier freigeben."));
 }
 
 function effectiveRole() {
@@ -1959,6 +1998,139 @@ function renderUsers() {
     const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? langText("Musteri", "Kunde") : langText("Personel", "Personal");
     tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.email || "-"}</td><td>${user.phone || "-"}</td><td>${roleText}</td>`;
     refs.usersTableBody.append(tr);
+  });
+}
+
+function securitySeverityLabel(value) {
+  if (value === "critical") {
+    return langText("Kritik", "Kritisch");
+  }
+  if (value === "warn") {
+    return langText("Uyari", "Warnung");
+  }
+  return langText("Bilgi", "Info");
+}
+
+function securityEventLabel(eventType) {
+  const labels = {
+    login_success: langText("Giris basarili", "Login erfolgreich"),
+    login_failed: langText("Hatali giris", "Fehlgeschlagener Login"),
+    logout: langText("Cikis yapildi", "Abmeldung"),
+    access_denied: langText("Yetki reddedildi", "Zugriff verweigert"),
+    password_reset_requested: langText("Sifre yenileme istendi", "Passwort-Reset angefordert"),
+    password_reset_completed: langText("Sifre yenilendi", "Passwort zurueckgesetzt"),
+    email_verified: langText("E-posta dogrulandi", "E-Mail bestaetigt"),
+    email_verification_resent: langText("Dogrulama maili tekrar gonderildi", "Bestaetigungs-E-Mail erneut gesendet"),
+    customer_registered: langText("Musteri kaydi", "Kundenregistrierung"),
+    item_created: langText("Urun olusturuldu", "Artikel erstellt"),
+    item_updated: langText("Urun guncellendi", "Artikel aktualisiert"),
+    item_deleted: langText("Urun silindi", "Artikel geloescht"),
+    item_archived: langText("Urun arsive alindi", "Artikel archiviert"),
+    item_restored: langText("Urun geri alindi", "Artikel wieder aktiviert"),
+    item_intake_created: langText("Yeni urun ve ilk stok", "Neuer Artikel mit Erstbestand"),
+    movement_entry_created: langText("Stok girisi", "Lagerzugang"),
+    movement_exit_created: langText("Stok cikisi", "Lagerausgang"),
+    movement_reversed: langText("Hareket iptal edildi", "Bewegung storniert"),
+    expense_created: langText("Masraf eklendi", "Ausgabe erfasst"),
+    expense_deleted: langText("Masraf silindi", "Ausgabe geloescht"),
+    cashbook_created: langText("Kasa kaydi eklendi", "Kasseneintrag erstellt"),
+    cashbook_deleted: langText("Kasa kaydi silindi", "Kasseneintrag geloescht"),
+    bulk_pricing_updated: langText("Toplu fiyat guncellendi", "Sammelpreise aktualisiert"),
+    quote_created: langText("Teklif kaydedildi", "Angebot gespeichert"),
+    sale_completed: langText("Direkt satis tamamlandi", "Direktverkauf abgeschlossen"),
+    unbilled_sale_completed: langText("Faturasiz satis tamamlandi", "Verkauf ohne Rechnung abgeschlossen"),
+    order_created: langText("Siparis olusturuldu", "Bestellung erstellt"),
+    order_status_updated: langText("Siparis durumu guncellendi", "Bestellstatus aktualisiert"),
+    user_created: langText("Kullanici olusturuldu", "Benutzer erstellt"),
+    training_created: langText("DRC MAN egitimi eklendi", "DRC-MAN-Training erstellt"),
+    training_updated: langText("DRC MAN egitimi guncellendi", "DRC-MAN-Training aktualisiert"),
+    training_deleted: langText("DRC MAN egitimi silindi", "DRC-MAN-Training geloescht"),
+    origin_blocked: langText("Cross-site istek engellendi", "Cross-Site-Anfrage blockiert"),
+    rate_limit_hit: langText("Istek limiti asildi", "Ratenlimit erreicht"),
+    ip_blocked: langText("IP bloke edildi", "IP blockiert"),
+    ip_unblocked: langText("IP blokesi kaldirildi", "IP freigegeben"),
+  };
+  return labels[eventType] || eventType;
+}
+
+function securityRoleLabel(role) {
+  if (role === "admin") {
+    return "Admin";
+  }
+  if (role === "staff") {
+    return langText("Personel", "Personal");
+  }
+  if (role === "customer") {
+    return langText("Musteri", "Kunde");
+  }
+  return role || "-";
+}
+
+function summarizeSecurityDetails(details) {
+  if (!details || typeof details !== "object") {
+    return "-";
+  }
+  return Object.entries(details)
+    .slice(0, 3)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join(" | ") || "-";
+}
+
+function renderSecurity() {
+  if (!refs.securityEventsTableBody || !isAdminUser()) {
+    return;
+  }
+
+  const events = Array.isArray(state.securityEvents) ? state.securityEvents : [];
+  const blocks = Array.isArray(state.securityBlocks) ? state.securityBlocks : [];
+  const activeBlocks = blocks.filter((entry) => entry.isActive).length;
+  if (refs.securitySummary) {
+    refs.securitySummary.textContent = t("messages.securitySummary", events.length, blocks.length, activeBlocks);
+  }
+
+  refs.securityEventsTableBody.innerHTML = "";
+  if (events.length === 0) {
+    refs.securityEventsTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${t("messages.noSecurityEvents")}</div></td></tr>`;
+  } else {
+    events.forEach((entry) => {
+      const tr = document.createElement("tr");
+      const severityClass = entry.severity === "critical" ? "status-critical" : entry.severity === "warn" ? "status-pending" : "status-ok";
+      tr.innerHTML = `
+        <td>${escapeHtml(formatDateTime(entry.createdAt))}</td>
+        <td><span class="status-pill ${severityClass}">${escapeHtml(securitySeverityLabel(entry.severity))}</span></td>
+        <td>${escapeHtml(securityEventLabel(entry.eventType))}</td>
+        <td>${escapeHtml(entry.userName || "-")}</td>
+        <td>${escapeHtml(securityRoleLabel(entry.userRole))}</td>
+        <td>${escapeHtml(entry.ipAddress || "-")}</td>
+        <td>${escapeHtml(summarizeSecurityDetails(entry.details))}</td>
+      `;
+      refs.securityEventsTableBody.append(tr);
+    });
+  }
+
+  refs.securityBlocksTableBody.innerHTML = "";
+  if (blocks.length === 0) {
+    refs.securityBlocksTableBody.innerHTML = `<tr><td colspan="5"><div class="empty-state">${t("messages.noSecurityBlocks")}</div></td></tr>`;
+    return;
+  }
+
+  blocks.forEach((entry) => {
+    const tr = document.createElement("tr");
+    const actionMarkup = entry.isActive
+      ? `<button class="mini-button danger-button" type="button" data-release-block="${entry.id}" data-help="TR: IP blogunu kaldirir. DE: Hebt die IP-Sperre auf.">${t("common.release")}</button>`
+      : `<span class="muted">${langText("Kapali", "Inaktiv")}</span>`;
+    tr.innerHTML = `
+      <td>${escapeHtml(entry.ipAddress || "-")}</td>
+      <td>${escapeHtml(entry.reason || "-")}</td>
+      <td>${escapeHtml(formatDateTime(entry.blockUntil))}</td>
+      <td><span class="status-pill ${entry.isActive ? "status-critical" : "status-ok"}">${entry.isActive ? langText("Aktif Blok", "Aktive Sperre") : langText("Sure Doldu", "Abgelaufen")}</span></td>
+      <td class="table-action-cell">${actionMarkup}</td>
+    `;
+    refs.securityBlocksTableBody.append(tr);
+  });
+
+  refs.securityBlocksTableBody.querySelectorAll("[data-release-block]").forEach((button) => {
+    button.addEventListener("click", () => releaseSecurityBlock(Number(button.dataset.releaseBlock)));
   });
 }
 
@@ -2807,6 +2979,10 @@ function renderTabData(tab) {
     renderUsers();
     return;
   }
+  if (tab === "security") {
+    renderSecurity();
+    return;
+  }
   if (tab === "tools") {
     return;
   }
@@ -3117,6 +3293,17 @@ function hashText(value) {
   return hash;
 }
 
+function formatDateTime(value) {
+  if (!value) {
+    return "-";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return String(value);
+  }
+  return date.toLocaleString(state.uiLanguage === "de" ? "de-DE" : "tr-TR");
+}
+
 function renderSearchDropdown() {
   if (!refs.itemSearchDropdown) {
     return;
@@ -3252,6 +3439,16 @@ async function deleteCashEntry(entryId) {
     return;
   }
   await refreshData();
+}
+
+async function releaseSecurityBlock(blockId) {
+  const result = await request(`/api/security/blocks/${blockId}/release`, { method: "POST" });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  await refreshData();
+  activateTab("security");
 }
 
 async function reverseMovement(movementId) {
