@@ -790,7 +790,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/items/intake", requireAdmin, async (req, res) => {
+  app.post("/api/items/intake", requireStaffOrAdmin, async (req, res) => {
     const {
       name,
       brand,
@@ -1092,7 +1092,7 @@ function createApp() {
     return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType });
   });
 
-  app.delete("/api/cashbook/:id", requireAdmin, async (req, res) => {
+  app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {
     const result = await execute("DELETE FROM cashbook WHERE id = ?", [Number(req.params.id)]);
     if (!result.rowCount) {
       return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
@@ -1610,7 +1610,7 @@ function createApp() {
     }
   });
 
-  app.post("/api/orders/:id/status", requireAdmin, async (req, res) => {
+  app.post("/api/orders/:id/status", requireStaffOrAdmin, async (req, res) => {
     const status = cleanOptional(req.body?.status).toLowerCase();
     const language = req.body?.language === "de" ? "de" : "tr";
     if (!["pending", "approved", "preparing", "completed", "cancelled"].includes(status)) {
