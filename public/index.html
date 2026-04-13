@@ -147,7 +147,7 @@
         <div class="auth-login-heading">
           <p class="eyebrow">DRC Portal</p>
           <h2>Giriş ve müşteri hesabı</h2>
-          <p class="muted">Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.</p>
+          <p class="muted">Satis, stok ve proje araclarina buradan girilir. Musteriler de kendi hesaplariyla siparislerini takip eder.</p>
         </div>
         <form id="loginForm" class="stack-form" autocomplete="off">
           <input class="autofill-trap" type="text" name="fake-username" autocomplete="username" tabindex="-1" aria-hidden="true">
@@ -167,12 +167,12 @@
           <div class="section-head auth-section-head">
             <div>
               <h3>Sifremi Unuttum</h3>
-              <p class="muted">Kullanici adi veya e-postayi girin. Sistemde kayitli WhatsApp numarasi varsa sifre yenileme linki icin WhatsApp penceresi acilir.</p>
+              <p class="muted">Kullanici adi veya e-postayi girin. Sistem sifre yenileme talimatini guvenli mail kanaliyla gonderir; mail servisi kapaliysa destek bilgisi gosterilir.</p>
             </div>
           </div>
           <form id="forgotPasswordForm" class="form-grid" autocomplete="off">
             <label>Kullanici Adi veya E-Posta<input name="identifier" type="text" required autocapitalize="off" spellcheck="false"></label>
-            <button class="secondary-button auth-register-button" type="submit" data-help="TR: WhatsApp sifre yenileme baglantisi olusturur. DE: Erstellt einen WhatsApp-Link zum Zuruecksetzen des Passworts.">Yenileme Baglantisi Gonder</button>
+            <button class="secondary-button auth-register-button" type="submit" data-help="TR: Guvenli sifre yenileme talimati gonderir. DE: Sendet sichere Anweisungen zum Zuruecksetzen des Passworts.">Yenileme Baglantisi Gonder</button>
             <p id="forgotPasswordError" class="error-text auth-message"></p>
             <p id="forgotPasswordSuccess" class="success-text auth-message"></p>
           </form>
@@ -182,7 +182,7 @@
           <div class="section-head auth-section-head">
             <div>
               <h3>Musteri Kaydi</h3>
-              <p class="muted">Musteriler kendi hesaplarini burada acabilir. Her hesap sadece kendi siparis gecmisini gorur.</p>
+              <p class="muted">Musteri hesabinizi buradan olusturabilirsiniz.</p>
             </div>
           </div>
           <form id="customerRegisterForm" class="form-grid" autocomplete="off">
@@ -256,8 +256,8 @@
             <button class="tab-button admin-staff-only active" data-tab="quotes" type="button" data-help="TR: Sepet, teklif, direkt satis ve faturasiz satis burada. DE: Hier finden Sie Warenkorb, Angebot, Direktverkauf und Verkauf ohne Rechnung."><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
             <button class="tab-button admin-staff-only" data-tab="items" type="button" data-help="TR: Urunleri arar, filtreler ve kart bilgilerini gorursunuz. DE: Hier suchen und filtern Sie Artikel und sehen die Kartendaten."><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
             <button class="tab-button admin-staff-only" data-tab="movements" type="button" data-help="TR: Stok giris, cikis ve yeni urun ilk stok kaydi burada. DE: Lagerzugang, Lagerausgang und neuer Erstbestand werden hier erfasst."><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
-            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Admin tum Hamburg kasasini gorur; personel sadece kendi kasa kayitlarini gorur. DE: Admins sehen die gesamte Hamburg-Kasse; Personal sieht nur eigene Eintraege."><span class="tab-title">Kasa</span><small>Personel kendi kasa girisini takip eder</small></button>
-            <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparislerini sadece admin gorur ve durum gunceller. DE: Nur Admins sehen Kundenbestellungen und aktualisieren den Status."><span class="tab-title">Siparisler</span><small>Admin musteri siparislerini yonetir</small></button>
+            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Kasa girisi, cikisi ve faturasiz satis kayitlari burada tutulur. DE: Hier werden Kassen-Eingaenge, Ausgaenge und Verkaeufe ohne Rechnung verwaltet."><span class="tab-title">Kasa</span><small>Tahsilat ve kasa hareketleri</small></button>
+            <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparisleri burada toplanir ve durumlari guncellenir. DE: Hier werden Kundenbestellungen gesammelt und im Status gepflegt."><span class="tab-title">Siparisler</span><small>Siparis takibi ve durum</small></button>
             <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
             <button class="tab-button" data-tab="messages" type="button" data-help="TR: Istek, sikayet veya notunuzu admin ekibine buradan iletirsiniz. DE: Hier senden Sie Wunsch, Beschwerde oder Notiz an das Admin-Team."><span class="tab-title">Admin'e Yaz</span><small>Istek, sikayet ve destek mesaji gonder</small></button>
             <button class="tab-button" data-tab="iot" type="button" data-help="TR: DRC IoT Pack panelinde oda sicakligi, alarm ve saha gorunumu izlenir. DE: Im DRC-IoT-Pack sehen Sie Raumtemperaturen, Alarme und Fernstatus."><span class="tab-title">DRC IoT</span><small>Uzaktan izleme, alarm ve enerji gorunumu</small></button>
@@ -398,7 +398,7 @@
             <div class="two-column">
               <section>
                 <h2>Stok Giris / Cikis</h2>
-                <p class="muted section-tip">Mevcut urunler icin bu formu kullanin. Yeni urun karti acma ve ilk alis girisi yalnizca admin alanindadir.</p>
+                <p class="muted section-tip">Bu form mevcut urunlerde stok giris ve cikis icin kullanilir.</p>
                 <form id="movementForm" class="form-grid">
                   <label>Malzeme<select name="itemId" required></select></label>
                   <label>Islem<select name="type" required><option value="entry">Giris</option><option value="exit">Cikis</option></select></label>
@@ -408,7 +408,7 @@
                   <label>Aciklama<input name="note" type="text"></label>
                   <button class="primary-button" type="submit" data-help="TR: Secilen urun icin stok giris veya cikis hareketi olusturur. DE: Erstellt eine Lagerbewegung fuer den ausgewaehlten Artikel.">Hareket Kaydet</button>
                 </form>
-                <p id="movementAutoCostHint" class="muted section-tip hidden">Alis maliyeti personel ekraninda gizlidir. Sistem mevcut maliyeti otomatik uygular.</p>
+                <p id="movementAutoCostHint" class="muted section-tip hidden">Maliyet bilgisi sistemde otomatik uygulanir.</p>
                 <div class="panel-lite admin-only">
                   <h3>Yeni Urun + Ilk Stok Girisi</h3>
                   <p class="muted section-tip">Yeni marka, kategori veya urun karti burada acilir. Kaydedince urun otomatik olusur ve ilk stok girisi ayni anda islenir.</p>
@@ -503,7 +503,7 @@
               </section>
               <section>
                 <h2>Kasa Defteri</h2>
-                <p class="muted section-tip">Admin tum Hamburg kasasini gorur; personel sadece kendi girdigi kasa hareketlerini gorur. Silme yetkisi admindedir.</p>
+                <p class="muted section-tip">Kasa girisleri, cikislari ve faturasiz satis hareketleri burada listelenir.</p>
                 <div class="table-wrap">
                   <table>
                     <thead>
@@ -579,7 +579,7 @@
             <div class="admin-only">
               <section>
                 <h2>Siparis Takibi</h2>
-                <p class="muted section-tip">Musteri siparisleri burada toplanir. Siparis durumunu sadece admin gunceller.</p>
+                <p class="muted section-tip">Musteri siparisleri burada toplanir ve durumlari takip edilir.</p>
                 <div class="table-wrap">
                   <table>
                     <thead>
@@ -611,7 +611,7 @@
                   <div class="section-head">
                     <div>
                       <h2>Stoktaki Urunler</h2>
-                      <p class="muted">Sadece stokta olan urunler gosterilir. Fiyat gormezsiniz; sadece adet ve urun bilgisi vardir. Siparis gecmisi yalnizca size ozeldir.</p>
+                      <p class="muted">Stoktaki urunler, stok adedi ve satis fiyatlari burada gosterilir.</p>
                     </div>
                   </div>
                   <div id="customerCatalogGrid" class="pos-catalog-grid"></div>

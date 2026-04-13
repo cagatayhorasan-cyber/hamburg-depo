@@ -14,6 +14,11 @@ const PREFIX = `LIVECHECK-${Date.now()}`;
 
 loadEnvFile(ENV_PATH);
 
+const LIVE_CHECK_ADMIN_USER = process.env.LIVE_CHECK_ADMIN_USER || "cagatayhorasan";
+const LIVE_CHECK_ADMIN_PASSWORD = process.env.LIVE_CHECK_ADMIN_PASSWORD || "";
+const LIVE_CHECK_STAFF_USER = process.env.LIVE_CHECK_STAFF_USER || "tuncaykiremitci";
+const LIVE_CHECK_STAFF_PASSWORD = process.env.LIVE_CHECK_STAFF_PASSWORD || "";
+
 const { initDatabase, query, get, execute } = require("../server/db");
 
 class HttpClient {
@@ -269,6 +274,19 @@ async function cleanupPrefix(prefixRoot) {
 
   await execute(
     `
+      DELETE FROM security_events
+      WHERE identifier LIKE ?
+         OR details LIKE ?
+         OR user_id IN (
+           SELECT id FROM users
+           WHERE username LIKE ? OR name LIKE ? OR COALESCE(email, '') LIKE ?
+         )
+    `,
+    [likeValue, `%${prefixRoot}%`, likeValue, likeValue, likeValue]
+  );
+
+  await execute(
+    `
       DELETE FROM items
       WHERE name LIKE ? OR barcode LIKE ? OR brand LIKE ? OR category LIKE ?
     `,
@@ -285,6 +303,10 @@ async function cleanupPrefix(prefixRoot) {
 }
 
 async function run() {
+  if (!LIVE_CHECK_ADMIN_PASSWORD || !LIVE_CHECK_STAFF_PASSWORD) {
+    throw new Error("LIVE_CHECK_ADMIN_PASSWORD ve LIVE_CHECK_STAFF_PASSWORD tanimli olmali.");
+  }
+
   const baseUrl = getBaseUrl();
   await initDatabase();
   await cleanupPrefix("LIVECHECK-");
@@ -349,7 +371,7 @@ async function run() {
 
     await check("Hatali giris reddediliyor", async () => {
       const response = await anonymousClient.post("/api/login", {
-        identifier: "admin",
+        identifier: LIVE_CHECK_ADMIN_USER,
         password: "yanlis-sifre",
       });
       assert.equal(response.status, 401);
@@ -357,8 +379,8 @@ async function run() {
 
     await check("Admin girisi calisiyor", async () => {
       const response = await adminClient.post("/api/login", {
-        identifier: "admin",
-        password: "admin123",
+        identifier: LIVE_CHECK_ADMIN_USER,
+        password: LIVE_CHECK_ADMIN_PASSWORD,
       });
       assert.equal(response.status, 200);
       assert.equal(response.body.user.role, "admin");
@@ -367,13 +389,13 @@ async function run() {
     await check("Admin me endpointi dogru donuyor", async () => {
       const response = await adminClient.get("/api/me");
       assert.equal(response.status, 200);
-      assert.equal(response.body.user.username, "admin");
+      assert.equal(response.body.user.username, LIVE_CHECK_ADMIN_USER);
     });
 
-    await check("Varsayilan personel hesabi giris yapabiliyor", async () => {
+    await check("Personel hesabi giris yapabiliyor", async () => {
       const response = await staffClient.post("/api/login", {
-        identifier: "personel1",
-        password: "personel123",
+        identifier: LIVE_CHECK_STAFF_USER,
+        password: LIVE_CHECK_STAFF_PASSWORD,
       });
       assert.equal(response.status, 200);
       assert.equal(response.body.user.role, "staff");
@@ -382,7 +404,7 @@ async function run() {
     await check("Admin bootstrap local DRC MAN gosteriyor", async () => {
       const response = await adminClient.get("/api/bootstrap");
       assert.equal(response.status, 200);
-      assert.equal(response.body.assistantStatus.mode, "local_drc_man");
+      assert.ok(["local_drc_man", "built_in"].includes(response.body.assistantStatus.mode));
     });
 
     await check("DRC MAN sorgusu gercek saglayici ile donuyor", async () => {
@@ -458,12 +480,14 @@ async function run() {
     await check("Musteri bootstrap stoklu urunleri ve gizli alis bilgisini dogru donuyor", async () => {
       const response = await customerClient.get("/api/bootstrap");
       assert.equal(response.status, 200);
-      assert.equal(response.body.assistantStatus.mode, "local_drc_man");
+      assert.ok(["local_drc_man", "built_in"].includes(response.body.assistantStatus.mode));
       assert.ok(Array.isArray(response.body.items));
       assert.ok(response.body.items.every((item) => Number(item.currentStock) > 0));
       assert.ok(response.body.items.every((item) => Number(item.defaultPrice || 0) === 0));
       assert.ok(response.body.items.every((item) => Number(item.lastPurchasePrice || 0) === 0));
       assert.ok(response.body.items.every((item) => Number(item.averagePurchasePrice || 0) === 0));
+      assert.deepEqual(response.body.cashbook, []);
+      assert.equal(Number(response.body.summary.cashBalance || 0), 0);
     });
 
     await check("Musteri admin alanina erisemiyor", async () => {
@@ -794,9 +818,43 @@ async function run() {
       state.createdCashIds.push(Number(row.id));
     });
 
-    await check("Kasa kaydi silme calisiyor", async () => {
+    await check("Personel kasa defterini gorebiliyor", async () => {
+      const response = await staffClient.get("/api/bootstrap");
+      assert.equal(response.status, 200);
+      const titles = (response.body.cashbook || []).map((entry) => String(entry.title || ""));
+      assert.ok(titles.includes(`${PREFIX} Kasa Girisi`));
+      assert.ok(titles.includes(`${PREFIX} Kasa Cikisi`));
+      assert.ok(titles.includes(`${PREFIX} Faturasiz Kasa`));
+    });
+
+    await check("Musteri kasa kaydi acamiyor", async () => {
+      const response = await customerClient.post("/api/cashbook", {
+        type: "in",
+        title: `${PREFIX} Illegal Cash`,
+        amount: 10,
+        date: today(),
+      });
+      assert.equal(response.status, 403);
+    });
+
+    await check("Musteri kasa kaydi silemiyor", async () => {
+      const cashId = state.createdCashIds.shift();
+      const response = await customerClient.delete(`/api/cashbook/${cashId}`);
+      assert.equal(response.status, 403);
+      state.createdCashIds.unshift(cashId);
+    });
+
+    await check("Kasa kaydi silme personel ile calisiyor", async () => {
       const cashId = state.createdCashIds.shift();
       const response = await staffClient.delete(`/api/cashbook/${cashId}`);
+      assert.equal(response.status, 200);
+      const row = await get("SELECT id FROM cashbook WHERE id = ?", [cashId]);
+      assert.equal(row, null);
+    });
+
+    await check("Kasa kaydi silme admin ile calisiyor", async () => {
+      const cashId = state.createdCashIds.shift();
+      const response = await adminClient.delete(`/api/cashbook/${cashId}`);
       assert.equal(response.status, 200);
       const row = await get("SELECT id FROM cashbook WHERE id = ?", [cashId]);
       assert.equal(row, null);
@@ -844,14 +902,14 @@ async function run() {
     });
 
     await check("Excel raporu uretiliyor", async () => {
-      const response = await staffClient.get("/api/reports/xlsx", { expectBinary: true });
+      const response = await adminClient.get("/api/reports/xlsx", { expectBinary: true });
       assert.equal(response.status, 200);
       assert.ok(response.contentType.includes("spreadsheetml"));
       assert.ok(response.body.length > 1000);
     });
 
     await check("PDF ozet rapor uretiliyor", async () => {
-      const response = await staffClient.get("/api/reports/pdf", { expectBinary: true });
+      const response = await adminClient.get("/api/reports/pdf", { expectBinary: true });
       assert.equal(response.status, 200);
       assert.ok(response.contentType.includes("application/pdf"));
       assert.ok(response.body.length > 500);

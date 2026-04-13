@@ -143,7 +143,7 @@ const UI_TEXT = {
       { label: "Lager bei Hamburg", name: "Börnsen", copy: "Lauenburger Landstraße 3b · 21039 Börnsen" },
     ],
     authLoginTitle: "Giriş ve müşteri hesabı",
-    authLoginDesc: "Yetkili kullanıcılar satış, stok ve proje araçlarına girer. Müşteriler kendi hesaplarını açıp sipariş geçmişini takip eder.",
+    authLoginDesc: "Satis, stok ve proje araclarina buradan girilir. Musteriler de kendi hesaplariyla siparislerini takip eder.",
     solutionsEyebrow: "Unsere Lösungen",
     solutionsTitle: "Kühlräume, kontrol ve servis ayni akista",
     brandWallTitle: "Portfolio Marken",
@@ -173,7 +173,7 @@ const UI_TEXT = {
     forgotButton: "Yenileme Baglantisi Gonder",
     noCustomerAccount: "Musteri hesabi yok mu?",
     registerTitle: "Musteri Kaydi",
-    registerDesc: "Musteriler kendi hesaplarini burada acabilir. Her hesap sadece kendi siparis gecmisini gorur.",
+    registerDesc: "Musteri hesabinizi buradan olusturabilirsiniz.",
     fullName: "Ad Soyad",
     email: "E-Posta",
     phone: "Telefon / WhatsApp",
@@ -200,9 +200,9 @@ const UI_TEXT = {
     tabExpenses: "Masraf",
     tabExpensesDesc: "Firma giderlerini ve harcamalari yonet",
     tabCashbook: "Kasa",
-    tabCashbookDesc: "Tahsilat ve kasa hareketlerini takip et",
+    tabCashbookDesc: "Tahsilat ve kasa hareketleri",
     tabOrders: "Siparisler",
-    tabOrdersDesc: "Musteri siparislerini gor ve durum guncelle",
+    tabOrdersDesc: "Siparis takibi ve durum guncelleme",
     tabCustomerOrders: "Siparis Ver",
     tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
     tabMessages: "Admin'e Yaz",
@@ -266,7 +266,7 @@ const UI_TEXT = {
       close: "Kapat",
     },
     messages: {
-      welcome: (name, role, needsVerify) => `${name} olarak giris yaptiniz. Rol: ${role}${needsVerify ? " | E-posta henuz dogrulanmadi" : ""}`,
+      welcome: (name, needsVerify) => `${name} olarak giris yaptiniz${needsVerify ? " | E-posta henuz dogrulanmadi" : ""}`,
       customerRegisterMailSent: "Hesabiniz olusturuldu. Dogrulama maili gonderildi ve kendi musteri panelinizdesiniz.",
       customerRegisterNoMail: "Hesabiniz olusturuldu, ancak mail sistemi ayarli olmadigi icin dogrulama maili gonderilemedi.",
       operationDone: "Islem tamamlandi.",
@@ -331,7 +331,7 @@ const UI_TEXT = {
       { label: "Lager bei Hamburg", name: "Börnsen", copy: "Lauenburger Landstraße 3b · 21039 Börnsen" },
     ],
     authLoginTitle: "Anmeldung und Kundenkonto",
-    authLoginDesc: "Berechtigte Benutzer öffnen Verkauf, Lager und Projektwerkzeuge. Kunden legen ihr eigenes Konto an und verfolgen ihren Bestellverlauf.",
+    authLoginDesc: "Von hier aus erreichen Sie Verkauf, Lager und Projektwerkzeuge. Kunden verfolgen ihre Bestellungen mit dem eigenen Konto.",
     solutionsEyebrow: "Unsere Lösungen",
     solutionsTitle: "Kühlräume, Regelung und Service in einem Ablauf",
     brandWallTitle: "Portfolio Marken",
@@ -361,7 +361,7 @@ const UI_TEXT = {
     forgotButton: "Reset-Link senden",
     noCustomerAccount: "Noch kein Kundenkonto?",
     registerTitle: "Kundenregistrierung",
-    registerDesc: "Kunden koennen hier ihr eigenes Konto anlegen. Jedes Konto sieht nur den eigenen Bestellverlauf.",
+    registerDesc: "Hier koennen Sie Ihr Kundenkonto anlegen.",
     fullName: "Vor- und Nachname",
     email: "E-Mail",
     phone: "Telefon / WhatsApp",
@@ -388,9 +388,9 @@ const UI_TEXT = {
     tabExpenses: "Ausgaben",
     tabExpensesDesc: "Betriebsausgaben verwalten",
     tabCashbook: "Kasse",
-    tabCashbookDesc: "Zahlungen und Kassenbewegungen verfolgen",
+    tabCashbookDesc: "Zahlungen und Kassenbewegungen",
     tabOrders: "Bestellungen",
-    tabOrdersDesc: "Kundenbestellungen sehen und Status aendern",
+    tabOrdersDesc: "Bestellungen und Statuspflege",
     tabCustomerOrders: "Bestellen",
     tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
     tabMessages: "An Admin",
@@ -454,7 +454,7 @@ const UI_TEXT = {
       close: "Schliessen",
     },
     messages: {
-      welcome: (name, role, needsVerify) => `Angemeldet als ${name}. Rolle: ${role}${needsVerify ? " | E-Mail noch nicht bestaetigt" : ""}`,
+      welcome: (name, needsVerify) => `Angemeldet als ${name}${needsVerify ? " | E-Mail noch nicht bestaetigt" : ""}`,
       customerRegisterMailSent: "Ihr Konto wurde erstellt. Die Bestaetigungs-E-Mail wurde versendet und Sie befinden sich jetzt im Kundenbereich.",
       customerRegisterNoMail: "Ihr Konto wurde erstellt, aber das Mail-System ist noch nicht aktiv. Deshalb konnte keine Bestaetigung versendet werden.",
       operationDone: "Vorgang abgeschlossen.",
@@ -935,7 +935,7 @@ function applyUiTranslations() {
 
   const movementsSections = document.querySelectorAll("[data-tab-content='movements'] .two-column > section");
   setText(movementsSections[0]?.querySelector("h2"), langText("Stok Giris / Cikis", "Lager Eingang / Ausgang"));
-  setText(movementsSections[0]?.querySelector(".section-tip"), langText("Mevcut urunler icin bu formu kullanin. Yeni urun karti acma ve ilk alis girisi yalnizca admin alanindadir.", "Dieses Formular ist fuer vorhandene Artikel. Neue Artikel und der erste Einkauf werden nur im Admin-Bereich angelegt."));
+  setText(movementsSections[0]?.querySelector(".section-tip"), langText("Bu form mevcut urunlerde stok giris ve cikis icin kullanilir.", "Dieses Formular wird fuer Lagerzugang und -ausgang bei vorhandenen Artikeln verwendet."));
   setFormFieldLabel(refs.movementForm, "itemId", langText("Malzeme", "Artikel"));
   setFormFieldLabel(refs.movementForm, "type", langText("Islem", "Vorgang"));
   setFormFieldLabel(refs.movementForm, "quantity", langText("Miktar", "Menge"));
@@ -947,7 +947,7 @@ function applyUiTranslations() {
     exit: langText("Cikis", "Ausgang"),
   });
   setText("#movementForm button[type='submit']", langText("Hareket Kaydet", "Bewegung speichern"));
-  setText(refs.movementAutoCostHint, langText("Alis maliyeti personel ekraninda gizlidir. Sistem mevcut maliyeti otomatik uygular.", "Der Einkaufspreis ist im Personalbereich verborgen. Das System verwendet automatisch den vorhandenen Kostenwert."));
+  setText(refs.movementAutoCostHint, langText("Maliyet bilgisi sistemde otomatik uygulanir.", "Der Kostenwert wird automatisch aus dem System uebernommen."));
 
   const stockIntakePanel = document.querySelector("[data-tab-content='movements'] .panel-lite");
   setText(stockIntakePanel?.querySelector("h3"), langText("Yeni Urun + Ilk Stok Girisi", "Neuer Artikel + Erstbestand"));
@@ -1007,7 +1007,7 @@ function applyUiTranslations() {
   });
   setText("#cashForm button[type='submit']", langText("Kasa Kaydet", "Kasse speichern"));
   setText(cashSections[1]?.querySelector("h2"), langText("Kasa Defteri", "Kassenbuch"));
-  setText(cashSections[1]?.querySelector(".section-tip"), langText("Admin tum Hamburg kasasini gorur; personel sadece kendi girdigi kasa hareketlerini gorur. Silme yetkisi admindedir.", "Admins sehen die gesamte Hamburg-Kasse; Personal sieht nur eigene Eintraege. Loeschen ist Admins vorbehalten."));
+  setText(cashSections[1]?.querySelector(".section-tip"), langText("Kasa girisleri, cikislari ve faturasiz satis hareketleri burada listelenir.", "Hier werden Kassen-Eingaenge, -Ausgaenge und Verkaeufe ohne Rechnung gelistet."));
 
   setText("[data-tab-content='quotes'] .pos-catalog h2", langText("Urun Katalogu", "Produktkatalog"));
   setText("[data-tab-content='quotes'] .pos-catalog .muted", langText("Arayin, filtreleyin ve tek tikla sepete ekleyin.", "Suchen, filtern und mit einem Klick in den Warenkorb legen."));
@@ -1047,12 +1047,12 @@ function applyUiTranslations() {
 
   const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-only section");
   setText(ordersSection?.querySelector("h2"), langText("Siparis Takibi", "Bestellverfolgung"));
-  setText(ordersSection?.querySelector(".section-tip"), langText("Musteri siparisleri burada toplanir. Siparis durumunu sadece admin gunceller.", "Kundenbestellungen werden hier gesammelt. Nur Admins koennen den Status aendern."));
+  setText(ordersSection?.querySelector(".section-tip"), langText("Musteri siparisleri burada toplanir ve durumlari takip edilir.", "Hier werden Kundenbestellungen gesammelt und im Status verfolgt."));
   setText("#customerVerificationBanner h3", langText("E-Posta Dogrulamasi Bekleniyor", "E-Mail-Bestaetigung ausstehend"));
   setText("#customerVerificationBanner p.muted", langText("Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
   setText(refs.resendVerificationButton, langText("Dogrulama Mailini Tekrar Gonder", "Bestaetigungs-E-Mail erneut senden"));
   setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Urunler", "Verfuegbare Artikel"));
-  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Sadece stokta olan urunler, stok adedi ve satis fiyatlari gosterilir. Siparis gecmisi yalnizca size ozeldir.", "Es werden nur lagernde Artikel, Bestand und Verkaufspreise angezeigt. Der Bestellverlauf ist nur fuer Sie sichtbar."));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Stoktaki urunler, stok adedi ve satis fiyatlari burada gosterilir.", "Hier sehen Sie lagernde Artikel, Bestandsmenge und Verkaufspreise."));
   setText("[data-tab-content='orders'] .customer-only .pos-cart h2", langText("Siparis Sepeti", "Bestellkorb"));
   setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz urunleri secip siparis talebi gonderebilirsiniz.", "Waehlen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
   setFormFieldLabel(refs.customerOrderForm, "date", langText("Tarih", "Datum"));
@@ -1345,6 +1345,10 @@ function isStaffUser() {
   return effectiveRole() === "staff";
 }
 
+function canManageCashbook() {
+  return isAdminUser() || isStaffUser();
+}
+
 function isCustomerUser() {
   return effectiveRole() === "customer";
 }
@@ -1353,11 +1357,43 @@ function canViewPurchasePrices() {
   return isAdminUser();
 }
 
-function visibleSalePrice(item) {
-  if (canViewPurchasePrices()) {
-    return Number(item.salePrice || item.lastPurchasePrice || item.defaultPrice || 0);
+function resolveBasePurchasePrice(item) {
+  return firstPositiveNumber(item?.defaultPrice, item?.lastPurchasePrice, item?.averagePurchasePrice);
+}
+
+function resolveEffectiveSalePrice(item) {
+  const explicitSalePrice = firstPositiveNumber(item?.salePrice);
+  if (explicitSalePrice > 0) {
+    return explicitSalePrice;
   }
-  return Number(item.salePrice || 0);
+
+  const explicitListPrice = firstPositiveNumber(item?.listPrice);
+  if (explicitListPrice > 0) {
+    return explicitListPrice;
+  }
+
+  const basePurchasePrice = resolveBasePurchasePrice(item);
+  return basePurchasePrice > 0 ? Number((basePurchasePrice * 1.22).toFixed(2)) : 0;
+}
+
+function isCriticalStockItem(item) {
+  const minStock = Number(item?.minStock || 0);
+  const currentStock = Number(item?.currentStock || 0);
+  return minStock > 0 && currentStock <= minStock;
+}
+
+function firstPositiveNumber(...values) {
+  for (const value of values) {
+    const numericValue = Number(value || 0);
+    if (numericValue > 0) {
+      return numericValue;
+    }
+  }
+  return 0;
+}
+
+function visibleSalePrice(item) {
+  return resolveEffectiveSalePrice(item);
 }
 
 function visibleListPrice(item) {
@@ -1409,16 +1445,6 @@ function syncRoleSensitiveFields() {
       field.value = "";
     }
   });
-}
-
-function roleLabel() {
-  if (isAdminUser()) {
-    return t("roles.admin");
-  }
-  if (isCustomerUser()) {
-    return t("roles.customer");
-  }
-  return t("roles.staff");
 }
 
 bindEvents();
@@ -1543,9 +1569,9 @@ async function handleCustomerRegister(event) {
     return;
   }
 
-  refs.customerRegisterSuccess.textContent = result.mailSent
+  refs.customerRegisterSuccess.textContent = result.message || (result.mailSent
     ? t("messages.customerRegisterMailSent")
-    : t("messages.customerRegisterNoMail");
+    : t("messages.customerRegisterNoMail"));
   state.user = result.user;
   event.currentTarget.reset();
   await refreshData();
@@ -1568,7 +1594,11 @@ async function handleForgotPassword(event) {
     return;
   }
 
-  refs.forgotPasswordSuccess.textContent = result.message || t("messages.operationDone");
+  if (result.deliveryAvailable === false) {
+    refs.forgotPasswordError.textContent = result.message || t("messages.customerRegisterNoMail");
+  } else {
+    refs.forgotPasswordSuccess.textContent = result.message || t("messages.operationDone");
+  }
   event.currentTarget.reset();
 }
 
@@ -1842,7 +1872,7 @@ function showApp() {
   refs.appScreen.classList.remove("hidden");
   refs.assistantWidget.classList.remove("hidden");
   setToolScopeCookie();
-  refs.welcomeText.textContent = t("messages.welcome", state.user.name, roleLabel(), isCustomerUser() && !state.user?.emailVerified);
+  refs.welcomeText.textContent = t("messages.welcome", state.user.name, isCustomerUser() && !state.user?.emailVerified);
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", !isAdminUser());
   });
@@ -2069,15 +2099,15 @@ function buildIotSites(signals) {
       humidity: 66,
     },
     {
-      key: "shock-demo",
-      name: langText("Demo Sok Oda", "Demo-Schockraum"),
+      key: "bornsen-shock",
+      name: langText("Bornsen Sok Oda", "Schockraum Boernsen"),
       zone: langText("Negatif Hat", "Tiefkuehlstrecke"),
       setpoint: -20,
       humidity: 58,
     },
     {
-      key: "service-rack",
-      name: langText("Servis Test Rack", "Service-Testrack"),
+      key: "hamm-control",
+      name: langText("Hamm Kontrol Merkezi", "Leitzentrale Hamm"),
       zone: langText("Kontrol ve DCB Hatti", "Regelungs- und DCB-Linie"),
       setpoint: 2,
       humidity: 49,
@@ -2400,7 +2430,7 @@ function renderItems() {
   renderStockedItems(filteredItems);
   visibleItems.forEach((item) => {
     const tr = document.createElement("tr");
-    const critical = Number(item.currentStock) <= Number(item.minStock);
+    const critical = isCriticalStockItem(item);
     const purchasePrice = item.lastPurchasePrice || item.defaultPrice || 0;
     const listPrice = visibleListPrice(item);
     const salePrice = visibleSalePrice(item);
@@ -2573,9 +2603,9 @@ function renderCashbook() {
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
     const isUnbilledSale = /faturasiz satis/i.test(String(entry.note || "")) || /faturasiz satis/i.test(String(entry.title || ""));
-    const actionMarkup = isAdminUser()
+    const actionMarkup = canManageCashbook()
       ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button>`
-      : `<span class="muted">${langText("Admin silebilir", "Admin kann loeschen")}</span>`;
+      : `<span class="muted">-</span>`;
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${entry.date}</td>
@@ -2588,7 +2618,7 @@ function renderCashbook() {
     refs.cashbookTableBody.append(tr);
   });
 
-  if (isAdminUser()) {
+  if (canManageCashbook()) {
     refs.cashbookTableBody.querySelectorAll("[data-delete-cash]").forEach((button) => {
       button.addEventListener("click", () => deleteCashEntry(Number(button.dataset.deleteCash)));
     });
