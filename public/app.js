@@ -956,12 +956,11 @@ function applyUiTranslations() {
   setText(".tab-admin-summary", langText("Yonetim ve Ayarlar", "Verwaltung und Einstellungen"));
 
   setText("[data-tab-content='items'] .sales-search-panel h2", langText("Malzeme Arama", "Artikelsuche"));
-  setText("[data-tab-content='items'] .sales-search-panel .section-head .muted", langText("Listeyi daraltin, uygun urunu bulun, sonra satis sekmesinden teklife ekleyin.", "Liste eingrenzen, passenden Artikel finden und dann im Schnellverkauf verwenden."));
   replaceLabelText(refs.itemSearch?.closest("label"), langText("Arama", "Suche"));
   replaceLabelText(refs.brandFilter?.closest("label"), langText("Marka", "Marke"));
   replaceLabelText(refs.categoryFilter?.closest("label"), langText("Kategori", "Kategorie"));
   refs.itemSearch.placeholder = langText("Urun, marka veya stok kodu ara", "Artikel, Marke oder Lagercode suchen");
-  setText(".stocked-panel h3", langText("Stokta Olan Urunler", "Artikel auf Lager"));
+  setText(".stocked-panel h3", langText("Stokta Olan Ürünler", "Artikel auf Lager"));
   setText(".items-list-drawer summary", langText("Tum Malzeme Listesi", "Gesamte Artikelliste"));
   setText(".management-drawer summary", langText("Yonetim Araclari", "Verwaltungswerkzeuge"));
 
