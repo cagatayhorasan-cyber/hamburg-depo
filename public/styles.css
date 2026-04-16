@@ -3223,6 +3223,10 @@ tbody tr:hover td:last-child {
 }
 
 /* Auth modal */
+html.auth-modal-open,
+html.auth-modal-open body {
+  overflow: hidden;
+}
 .auth-modal {
   position: fixed;
   inset: 0;

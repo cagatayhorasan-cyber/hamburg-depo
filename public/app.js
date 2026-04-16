@@ -2078,13 +2078,14 @@ function openAuthModal(view) {
   if (!modal) return;
   modal.removeAttribute("hidden");
   showAuthModalView(view || "login");
-  document.body.style.overflow = "hidden";
+  document.documentElement.classList.add("auth-modal-open");
 }
 
 function closeAuthModal() {
   const modal = document.getElementById("authModal");
   if (!modal) return;
   modal.setAttribute("hidden", "");
+  document.documentElement.classList.remove("auth-modal-open");
   document.body.style.overflow = "";
 }
 
@@ -2108,9 +2109,12 @@ function showAuthModalView(view) {
 }
 
 function showApp() {
+  closeAuthModal();
   refs.loginScreen.classList.add("hidden");
   refs.appScreen.classList.remove("hidden");
   refs.assistantWidget.classList.remove("hidden");
+  document.body.style.overflow = "";
+  document.documentElement.style.overflow = "";
   setToolScopeCookie();
   refs.welcomeText.textContent = t("messages.welcome", state.user.name, isCustomerUser() && !state.user?.emailVerified);
   document.querySelectorAll(".admin-only").forEach((node) => {
