@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260416-lean-landing-3">
+  <link rel="stylesheet" href="/styles.css?v=20260416-user-crud-1">
 </head>
 <body>
   <div class="page-shell">
@@ -677,15 +677,20 @@
           <div class="tab-content admin-only" data-tab-content="users">
             <div class="two-column">
               <section>
-                <h2>Kullanici Ekle</h2>
+                <h2 id="userFormTitle">Kullanici Ekle</h2>
                 <form id="userForm" class="form-grid">
+                  <input type="hidden" name="id">
                   <label>Ad Soyad<input name="name" type="text" required></label>
                   <label>Kullanici Adi<input name="username" type="text" required></label>
                   <label>E-Posta<input name="email" type="email" autocapitalize="off" spellcheck="false"></label>
                   <label>Telefon / WhatsApp<input name="phone" type="tel" placeholder="+49..."></label>
-                  <label>Sifre<input name="password" type="password" required></label>
-                  <label>Rol<select name="role" required><option value="staff">Personel</option><option value="customer">Musteri</option><option value="admin">Admin</option></select></label>
-                  <button class="primary-button" type="submit" data-help="TR: Yeni admin, personel veya musteri hesabi acilir. DE: Legt ein neues Admin-, Personal- oder Kundenkonto an.">Kullanici Ekle</button>
+                  <label id="userPasswordLabel">Sifre<input name="password" type="password" required></label>
+                  <label>Rol<select name="role" required><option value="staff">Personel</option><option value="customer">Musteri</option><option value="admin">Admin</option><option value="operator">Operator</option></select></label>
+                  <div class="action-row">
+                    <button id="userFormSubmit" class="primary-button" type="submit" data-help="TR: Yeni admin, personel veya musteri hesabi acilir. DE: Legt ein neues Admin-, Personal- oder Kundenkonto an.">Kullanici Ekle</button>
+                    <button id="userFormCancel" class="secondary-button hidden" type="button">Vazgec</button>
+                  </div>
+                  <p id="userFormHint" class="muted"></p>
                 </form>
               </section>
               <section>
@@ -699,6 +704,7 @@
                         <th>E-Posta</th>
                         <th>Telefon</th>
                         <th>Rol</th>
+                        <th>Islem</th>
                       </tr>
                     </thead>
                     <tbody id="usersTableBody"></tbody>

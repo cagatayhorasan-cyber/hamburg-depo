@@ -1569,7 +1569,9 @@ function bindEvents() {
   refs.resendVerificationButton?.addEventListener("click", handleResendVerification);
 
   if (refs.userForm) {
-    refs.userForm.addEventListener("submit", (event) => handleSubmit(event, "/api/users"));
+    refs.userForm.addEventListener("submit", handleUserFormSubmit);
+    const cancelBtn = document.getElementById("userFormCancel");
+    if (cancelBtn) cancelBtn.addEventListener("click", resetUserForm);
   }
   if (refs.assistantTrainingForm) {
     refs.assistantTrainingForm.addEventListener("submit", handleAssistantTrainingSubmit);
@@ -2900,12 +2902,123 @@ function renderUsers() {
     return;
   }
   refs.usersTableBody.innerHTML = "";
+  const currentId = Number(state.user?.id || 0);
   state.users.forEach((user) => {
     const tr = document.createElement("tr");
-    const roleText = user.role === "admin" ? "Admin" : user.role === "customer" ? langText("Musteri", "Kunde") : langText("Personel", "Personal");
-    tr.innerHTML = `<td>${user.name}</td><td>${user.username}</td><td>${user.email || "-"}</td><td>${user.phone || "-"}</td><td>${roleText}</td>`;
+    const roleText = user.role === "admin"
+      ? "Admin"
+      : user.role === "customer"
+        ? langText("Musteri", "Kunde")
+        : user.role === "operator"
+          ? "Operator"
+          : langText("Personel", "Personal");
+    const isSelf = Number(user.id) === currentId;
+    const delLabel = langText("Sil", "Löschen");
+    const editLabel = langText("Duzenle", "Bearbeiten");
+    const deleteBtn = isSelf
+      ? `<span class="muted" title="${langText("Kendinizi silemezsiniz", "Eigenes Konto nicht löschbar")}">—</span>`
+      : `<button class="secondary-button small-button" data-delete-user="${user.id}">${delLabel}</button>`;
+    tr.innerHTML = `
+      <td>${escapeHtml(user.name || "")}</td>
+      <td>${escapeHtml(user.username || "")}</td>
+      <td>${user.email ? escapeHtml(user.email) : "-"}</td>
+      <td>${user.phone ? escapeHtml(user.phone) : "-"}</td>
+      <td>${roleText}</td>
+      <td class="action-cell">
+        <button class="secondary-button small-button" data-edit-user="${user.id}">${editLabel}</button>
+        ${deleteBtn}
+      </td>
+    `;
     refs.usersTableBody.append(tr);
   });
+  // Bind edit/delete buttons
+  refs.usersTableBody.querySelectorAll("[data-edit-user]").forEach((btn) => {
+    btn.addEventListener("click", () => startEditUser(Number(btn.dataset.editUser)));
+  });
+  refs.usersTableBody.querySelectorAll("[data-delete-user]").forEach((btn) => {
+    btn.addEventListener("click", () => handleDeleteUser(Number(btn.dataset.deleteUser)));
+  });
+}
+
+function startEditUser(userId) {
+  const user = state.users.find((u) => Number(u.id) === Number(userId));
+  if (!user || !refs.userForm) return;
+  const form = refs.userForm;
+  form.elements.id.value = user.id;
+  form.elements.name.value = user.name || "";
+  form.elements.username.value = user.username || "";
+  form.elements.email.value = user.email || "";
+  form.elements.phone.value = user.phone || "";
+  form.elements.password.value = "";
+  form.elements.password.required = false;
+  form.elements.role.value = user.role || "staff";
+  const title = document.getElementById("userFormTitle");
+  if (title) title.textContent = langText(`Kullanici Duzenle: ${user.name || user.username}`, `Benutzer bearbeiten: ${user.name || user.username}`);
+  const submitBtn = document.getElementById("userFormSubmit");
+  if (submitBtn) submitBtn.textContent = langText("Kaydet", "Speichern");
+  const cancelBtn = document.getElementById("userFormCancel");
+  if (cancelBtn) cancelBtn.classList.remove("hidden");
+  const hint = document.getElementById("userFormHint");
+  if (hint) hint.textContent = langText(
+    "Sifre alani bos birakilirsa mevcut sifre korunur.",
+    "Leere Passwort: aktuelles Passwort bleibt erhalten."
+  );
+  const pwLabel = document.getElementById("userPasswordLabel");
+  if (pwLabel) pwLabel.firstChild.textContent = langText("Yeni Sifre (opsiyonel)", "Neues Passwort (optional)");
+  if (typeof form.scrollIntoView === "function") form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function resetUserForm() {
+  if (!refs.userForm) return;
+  refs.userForm.reset();
+  refs.userForm.elements.id.value = "";
+  refs.userForm.elements.password.required = true;
+  const title = document.getElementById("userFormTitle");
+  if (title) title.textContent = langText("Kullanici Ekle", "Benutzer anlegen");
+  const submitBtn = document.getElementById("userFormSubmit");
+  if (submitBtn) submitBtn.textContent = langText("Kullanici Ekle", "Benutzer anlegen");
+  const cancelBtn = document.getElementById("userFormCancel");
+  if (cancelBtn) cancelBtn.classList.add("hidden");
+  const hint = document.getElementById("userFormHint");
+  if (hint) hint.textContent = "";
+  const pwLabel = document.getElementById("userPasswordLabel");
+  if (pwLabel) pwLabel.firstChild.textContent = langText("Sifre", "Passwort");
+}
+
+async function handleDeleteUser(userId) {
+  const user = state.users.find((u) => Number(u.id) === Number(userId));
+  if (!user) return;
+  const confirmMsg = langText(
+    `"${user.name || user.username}" adli kullaniciyi silmek istediginizden emin misiniz?`,
+    `Benutzer "${user.name || user.username}" wirklich löschen?`
+  );
+  if (!window.confirm(confirmMsg)) return;
+  const res = await request(`/api/users/${userId}`, { method: "DELETE" });
+  if (res.error) {
+    window.alert(res.error);
+    return;
+  }
+  await refreshData();
+}
+
+async function handleUserFormSubmit(event) {
+  event.preventDefault();
+  const form = refs.userForm;
+  const payload = formToObject(form);
+  const editId = Number(payload.id || 0);
+  // Remove id from body
+  delete payload.id;
+  if (!payload.password) delete payload.password;
+
+  const endpoint = editId ? `/api/users/${editId}` : "/api/users";
+  const method = editId ? "PUT" : "POST";
+  const res = await request(endpoint, { method, body: JSON.stringify(payload) });
+  if (res.error) {
+    window.alert(res.error);
+    return;
+  }
+  resetUserForm();
+  await refreshData();
 }
 
 function adminMessageCategoryLabel(value) {

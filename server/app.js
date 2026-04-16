@@ -904,6 +904,136 @@ function createApp() {
     }
   });
 
+  app.put("/api/users/:id", requireAdmin, async (req, res) => {
+    const targetId = Number(req.params.id);
+    if (!Number.isFinite(targetId) || targetId <= 0) {
+      return res.status(400).json({ error: "Gecersiz kullanici id." });
+    }
+
+    const existing = await get("SELECT id, role FROM users WHERE id = ?", [targetId]);
+    if (!existing) {
+      return res.status(404).json({ error: "Kullanici bulunamadi." });
+    }
+
+    const { name, username, email, phone, role, password } = req.body || {};
+    const updates = [];
+    const values = [];
+
+    if (typeof name === "string" && name.trim()) {
+      updates.push("name = ?");
+      values.push(name.trim());
+    }
+    if (typeof username === "string" && username.trim()) {
+      const normalizedUsername = normalizeUsername(username);
+      if (normalizedUsername.length < 3) {
+        return res.status(400).json({ error: "Kullanici adi en az 3 karakter olmali." });
+      }
+      updates.push("username = ?");
+      values.push(normalizedUsername);
+    }
+    if (email !== undefined) {
+      const normEmail = normalizeEmail(email);
+      if (normEmail && !isValidEmail(normEmail)) {
+        return res.status(400).json({ error: "Gecerli bir e-posta adresi girin." });
+      }
+      updates.push("email = ?");
+      values.push(normEmail || null);
+    }
+    if (phone !== undefined) {
+      const normPhone = normalizePhone(phone);
+      updates.push("phone = ?");
+      values.push(normPhone || null);
+    }
+    if (role !== undefined) {
+      if (!["admin", "staff", "customer", "operator"].includes(role)) {
+        return res.status(400).json({ error: "Gecersiz kullanici rolu." });
+      }
+      // Prevent self-role-downgrade by admin (avoid locking out the only admin)
+      if (Number(req.session.user.id) === targetId && !isAdminRole(role)) {
+        return res.status(400).json({ error: "Kendi admin rolunuzu kaldiramazsiniz." });
+      }
+      updates.push("role = ?");
+      values.push(role);
+    }
+    if (typeof password === "string" && password.length > 0) {
+      if (password.length < 6) {
+        return res.status(400).json({ error: "Sifre en az 6 karakter olmali." });
+      }
+      updates.push("password_hash = ?");
+      values.push(bcrypt.hashSync(password, 10));
+    }
+
+    if (updates.length === 0) {
+      return res.status(400).json({ error: "Guncellenecek alan gonderilmedi." });
+    }
+
+    try {
+      values.push(targetId);
+      await execute(`UPDATE users SET ${updates.join(", ")} WHERE id = ?`, values);
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "user_updated",
+        severity: "info",
+        details: { targetUserId: targetId, changedFields: updates.map((u) => u.split(" ")[0]) },
+      });
+
+      const updated = await get(
+        "SELECT id, name, username, email, phone, role FROM users WHERE id = ?",
+        [targetId]
+      );
+      return res.json(updated);
+    } catch (_error) {
+      return res.status(400).json({ error: "Kullanici guncellenemedi. Kullanici adi ve e-posta benzersiz olmali." });
+    }
+  });
+
+  app.delete("/api/users/:id", requireAdmin, async (req, res) => {
+    const targetId = Number(req.params.id);
+    if (!Number.isFinite(targetId) || targetId <= 0) {
+      return res.status(400).json({ error: "Gecersiz kullanici id." });
+    }
+
+    if (Number(req.session.user.id) === targetId) {
+      return res.status(400).json({ error: "Kendinizi silemezsiniz." });
+    }
+
+    const existing = await get("SELECT id, username, role FROM users WHERE id = ?", [targetId]);
+    if (!existing) {
+      return res.status(404).json({ error: "Kullanici bulunamadi." });
+    }
+
+    // Guard: do not delete the last admin
+    if (isAdminRole(existing.role)) {
+      const adminCount = Number(
+        (await get("SELECT COUNT(*) AS count FROM users WHERE role = 'admin'"))?.count || 0
+      );
+      if (adminCount <= 1) {
+        return res.status(400).json({ error: "Son admin hesabini silemezsiniz." });
+      }
+    }
+
+    try {
+      // Null out references in related tables rather than cascade-delete sensitive history
+      await execute("UPDATE movements SET user_id = NULL WHERE user_id = ?", [targetId]);
+      await execute("UPDATE quotes SET user_id = NULL WHERE user_id = ?", [targetId]);
+      await execute("UPDATE cashbook SET user_id = NULL WHERE user_id = ?", [targetId]);
+      await execute("DELETE FROM auth_tokens WHERE user_id = ?", [targetId]);
+      await execute("DELETE FROM users WHERE id = ?", [targetId]);
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "user_deleted",
+        severity: "warn",
+        details: { targetUserId: targetId, targetUsername: existing.username, targetRole: existing.role },
+      });
+
+      return res.json({ ok: true });
+    } catch (error) {
+      return res.status(400).json({ error: "Kullanici silinemedi. Iliskili kayitlar varsa once onlari temizleyin." });
+    }
+  });
+
   app.get("/api/customers", requireStaffOrAdmin, async (_req, res) => {
     try {
       const rows = await query(
