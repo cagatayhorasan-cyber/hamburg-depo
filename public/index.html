@@ -8,132 +8,75 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260412-drc-showcase-6">
+  <link rel="stylesheet" href="/styles.css?v=20260416-lean-landing-1">
 </head>
 <body>
   <div class="page-shell">
     <section id="loginScreen" class="auth-screen">
       <div class="auth-layout">
-        <aside class="auth-showcase" aria-label="D-R-C Kältetechnik firma bilgileri">
-          <section class="auth-hero-panel">
-            <div class="auth-hero-copy">
-              <div class="auth-showcase-head">
-                <img class="drc-logo-image" src="/assets/drc-logo.svg" alt="D-R-C Kältetechnik GmbH">
-                <div>
-                  <p class="eyebrow auth-brand-eyebrow">D-R-C Kältetechnik GmbH</p>
-                  <p class="auth-location-line">Hamm &amp; Börnsen bei Hamburg, Deutschland</p>
-                </div>
-              </div>
-              <h1 class="auth-showcase-title">Kältetechnik, Lager &amp; Angebot – Alles in einem Portal</h1>
-              <p class="auth-showcase-copy">Soguk oda sistemlerinden kontrol ekipmanlarina kadar tum urun ve sureclerinizi tek merkezden yonetin.</p>
-              <div class="auth-hero-actions">
-                <a class="primary-button auth-hero-button" data-auth-cta="primary" href="#authSolutions">Produkte entdecken</a>
-                <a class="secondary-button auth-hero-button" data-auth-cta="secondary" href="#customerRegisterPanel">Angebot anfordern</a>
-              </div>
-              <div class="auth-location-grid" aria-label="Standorte">
-                <article class="auth-location-card">
-                  <span class="auth-location-kicker" data-location-label="0">Hauptsitz</span>
-                  <strong data-location-name="0">Hamm</strong>
-                  <small data-location-copy="0">Schildkamp 1 · 59063 Hamm</small>
-                </article>
-                <article class="auth-location-card">
-                  <span class="auth-location-kicker" data-location-label="1">Lager bei Hamburg</span>
-                  <strong data-location-name="1">Börnsen</strong>
-                  <small data-location-copy="1">Lauenburger Landstraße 3b · 21039 Börnsen</small>
-                </article>
+        <aside class="auth-showcase auth-showcase-lean" aria-label="D-R-C Kältetechnik portal tanıtım">
+          <section class="lean-hero">
+            <div class="lean-hero-head">
+              <img class="drc-logo-image" src="/assets/drc-logo.svg" alt="D-R-C Kältetechnik GmbH">
+              <div>
+                <p class="eyebrow" data-lean-eyebrow>B2B Portal · Hamm &amp; Hamburg</p>
+                <strong class="lean-brand-name">D-R-C Kältetechnik GmbH</strong>
               </div>
             </div>
-
-            <div class="auth-hero-visual">
-              <div class="auth-visual-frame">
-                <img class="auth-product-visual" src="/assets/drc-product-showcase.svg" alt="DRC soğuk oda, kondenser, evaporatör ve kontrol ürünleri">
-                <div class="showcase-badge badge-primary">Deutschland Lager</div>
-                <div class="showcase-badge badge-secondary">DRC PEYK Remote Control</div>
-              </div>
-              <article class="auth-peyk-card" aria-label="DRC PEYK uzaktan izleme ve kontrol sistemi">
-                <span class="auth-peyk-eyebrow" id="peykEyebrow">DRC PEYK</span>
-                <strong id="peykTitle">Uzaktan izleme ve kontrol sistemi</strong>
-                <p id="peykCopy">Oda sicakligi, alarm, defrost ve servis mudahalesini tek panelden yonetin.</p>
-                <div class="auth-peyk-points">
-                  <span data-peyk-point="0">Canli izleme</span>
-                  <span data-peyk-point="1">Alarm bildirimi</span>
-                  <span data-peyk-point="2">Uzaktan mudahale</span>
-                </div>
-              </article>
+            <h1 class="lean-hero-title" data-lean-title>Endüstriyel Soğutma — Tedarik, Servis, Proje</h1>
+            <p class="lean-hero-sub" data-lean-sub>Personel, bayi ve müşteri için tek portal: stok, sipariş, teklif, soğuk oda projesi ve fiyat yönetimi aynı ekranda.</p>
+            <div class="lean-hero-ctas">
+              <a class="primary-button" data-lean-cta-login href="#loginForm">Giriş Yap</a>
+              <a class="secondary-button" data-lean-cta-register href="#customerRegisterPanel">Müşteri Kaydı</a>
             </div>
           </section>
 
-          <section id="authSolutions" class="auth-showcase-block auth-solutions-block" aria-label="Unsere Lösungen">
-            <div class="auth-section-headline">
-              <p class="eyebrow auth-section-eyebrow" id="solutionsEyebrow">Unsere Lösungen</p>
-              <h2 class="auth-section-title" id="solutionsTitle">Kühlräume, Kontrolle und Service im selben Ablauf</h2>
-            </div>
-            <div class="product-family-wall">
-              <article class="solution-card"><span class="solution-card-icon">KR</span><strong data-solution-name="0">Kühlräume</strong></article>
-              <article class="solution-card"><span class="solution-card-icon">EV</span><strong data-solution-name="1">Evaporatoren</strong></article>
-              <article class="solution-card"><span class="solution-card-icon">KO</span><strong data-solution-name="2">Kondensatoren</strong></article>
-              <article class="solution-card"><span class="solution-card-icon">ST</span><strong data-solution-name="3">Steuerungssysteme</strong></article>
-              <article class="solution-card"><span class="solution-card-icon">KT</span><strong data-solution-name="4">Kühlraumtüren</strong></article>
-              <article class="solution-card"><span class="solution-card-icon">PS</span><strong data-solution-name="5">Panel Systeme</strong></article>
-              <article class="solution-card"><span class="solution-card-icon">SV</span><strong data-solution-name="6">Service &amp; Support</strong></article>
-            </div>
+          <section class="lean-value-props" aria-label="Öne çıkan değerler">
+            <article class="lean-value-card">
+              <span class="lean-value-icon" aria-hidden="true">01</span>
+              <strong data-lean-vp-title="0">Hamburg &amp; Hamm depodan hızlı tedarik</strong>
+              <p data-lean-vp-copy="0">Kompresör, kondenser, evaporatör, kontrol ve soğuk oda malzemeleri aynı gün sevkiyata hazır.</p>
+            </article>
+            <article class="lean-value-card">
+              <span class="lean-value-icon" aria-hidden="true">02</span>
+              <strong data-lean-vp-title="1">B2B portal ile stok &amp; sipariş</strong>
+              <p data-lean-vp-copy="1">Canlı stok, net/brüt fiyat, sepet ve sipariş takibini kendi hesabınızdan yönetin.</p>
+            </article>
+            <article class="lean-value-card">
+              <span class="lean-value-icon" aria-hidden="true">03</span>
+              <strong data-lean-vp-title="2">Proje destekli teklif</strong>
+              <p data-lean-vp-copy="2">ColdRoomPro destekli soğuk oda hesaplaması ile proje malzeme listesi ve teklif tek adımda.</p>
+            </article>
           </section>
 
-          <section class="auth-showcase-block brand-wall" aria-label="Portfolio Marken">
-            <div class="auth-section-headline">
-              <p class="eyebrow auth-section-eyebrow brand-wall-title">Portfolio Marken</p>
-              <p class="auth-section-copy" id="brandWallCopy">D-R-C portfoyunde sahada en cok kullanilan sogutma markalari.</p>
-            </div>
-            <div class="brand-logo-grid">
-              <article class="brand-logo-card"><span class="brand-logo-mark">DF</span><strong>Danfoss</strong></article>
-              <article class="brand-logo-card is-accent"><span class="brand-logo-mark">DR</span><strong>DRC</strong></article>
-              <article class="brand-logo-card"><span class="brand-logo-mark">DX</span><strong>Dixell</strong></article>
-              <article class="brand-logo-card"><span class="brand-logo-mark">EM</span><strong>Embraco</strong></article>
-              <article class="brand-logo-card"><span class="brand-logo-mark">SN</span><strong>Sanhua</strong></article>
-              <article class="brand-logo-card"><span class="brand-logo-mark">CR</span><strong>Carel</strong></article>
-              <article class="brand-logo-card"><span class="brand-logo-mark">SY</span><strong>Systemair</strong></article>
-              <article class="brand-logo-card"><span class="brand-logo-mark">FG</span><strong>FrigoCraft</strong></article>
-            </div>
+          <section class="lean-brand-strip" aria-label="Tedarikçi markalar">
+            <span class="lean-brand-chip">Danfoss</span>
+            <span class="lean-brand-chip is-accent">DRC</span>
+            <span class="lean-brand-chip">Dixell</span>
+            <span class="lean-brand-chip">Embraco</span>
+            <span class="lean-brand-chip">Sanhua</span>
+            <span class="lean-brand-chip">Carel</span>
+            <span class="lean-brand-chip">Systemair</span>
+            <span class="lean-brand-chip">FrigoCraft</span>
           </section>
 
-          <div class="auth-showcase-lower">
-            <section class="auth-showcase-block auth-about-block" aria-label="Über uns">
-              <p class="eyebrow auth-section-eyebrow" id="aboutEyebrow">Über uns</p>
-              <p class="auth-about-copy" id="aboutCopy">D-R-C Kältetechnik GmbH, endustriyel sogutma cozumlerinde uzmanlasmis; urun tedariği, stok yonetimi ve teklif sureclerini tek platformda birlestiren modern bir yapidir.</p>
-            </section>
-
-            <div class="auth-showcase-meta">
-              <section class="auth-showcase-block auth-address-block" aria-label="Standorte">
-                <p class="eyebrow auth-section-eyebrow" id="addressesEyebrow">Standorte</p>
-                <div class="company-info-grid">
-                  <article class="company-info-card">
-                    <span data-company-card-label="0">Hauptsitz</span>
-                    <strong data-company-card-title="0">Schildkamp 1<br>59063 Hamm</strong>
-                    <small data-company-card-country="0">Deutschland</small>
-                  </article>
-                  <article class="company-info-card">
-                    <span data-company-card-label="1">Lager Hamburg</span>
-                    <strong data-company-card-title="1">Lauenburger Landstraße 3b<br>21039 Börnsen</strong>
-                    <small data-company-card-country="1">Deutschland</small>
-                  </article>
-                </div>
-              </section>
-
-              <section class="auth-showcase-block auth-contact-block" aria-label="Kontakt">
-                <p class="eyebrow auth-section-eyebrow" id="contactEyebrow">Kontakt</p>
-                <div class="auth-contact-list">
-                  <a class="auth-contact-item" href="tel:+4915221581762">
-                    <span data-contact-label="0">Telefon</span>
-                    <strong>+49 1522 1581762</strong>
-                  </a>
-                  <a class="auth-contact-item" href="mailto:info@durmusbaba.com">
-                    <span data-contact-label="1">E-Mail</span>
-                    <strong>info@durmusbaba.com</strong>
-                  </a>
-                </div>
-              </section>
+          <footer class="lean-footer" aria-label="Adres ve iletişim">
+            <div class="lean-footer-row">
+              <div class="lean-footer-col">
+                <span class="lean-footer-kicker" data-lean-footer-label="0">Hauptsitz</span>
+                <strong>Schildkamp 1<br>59063 Hamm · Deutschland</strong>
+              </div>
+              <div class="lean-footer-col">
+                <span class="lean-footer-kicker" data-lean-footer-label="1">Lager Hamburg</span>
+                <strong>Lauenburger Landstraße 3b<br>21039 Börnsen · Deutschland</strong>
+              </div>
+              <div class="lean-footer-col">
+                <span class="lean-footer-kicker" data-lean-footer-label="2">İletişim</span>
+                <a href="tel:+4915221581762">+49 1522 1581762</a>
+                <a href="mailto:info@durmusbaba.com">info@durmusbaba.com</a>
+              </div>
             </div>
-          </div>
+          </footer>
         </aside>
 
         <div class="auth-card">
@@ -146,8 +89,8 @@
         </div>
         <div class="auth-login-heading">
           <p class="eyebrow">DRC Portal</p>
-          <h2>Giriş ve müşteri hesabı</h2>
-          <p class="muted">Satis, stok ve proje araclarina buradan girilir. Musteriler de kendi hesaplariyla siparislerini takip eder.</p>
+          <h2>Portal Girişi</h2>
+          <p class="muted">Yetkili personel, is ortaklari ve musteriler bu portal uzerinden stok yonetimi, satis, siparis takibi ve proje araclarina erisir.</p>
         </div>
         <form id="loginForm" class="stack-form" autocomplete="off">
           <input class="autofill-trap" type="text" name="fake-username" autocomplete="username" tabindex="-1" aria-hidden="true">
@@ -216,63 +159,66 @@
     </section>
 
     <section id="appScreen" class="hidden">
-      <header class="hero compact-hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Durmusbaba</p>
-          <h1>Satis ve stok ekrani</h1>
-          <p class="muted hero-subtitle">En sik kullanilan alanlar one alindi. Hedef: urun bul, fiyat ver, teklif hazirla.</p>
-          <div class="hero-status-row">
-            <span id="heroFocusPill" class="hero-pill"></span>
-            <span id="heroIotPill" class="hero-pill"></span>
+      <div class="erp-layout">
+        <aside class="erp-sidebar" id="erpSidebar">
+          <div class="erp-sidebar-brand">
+            <img src="/assets/drc-logo.svg" alt="DRC" class="erp-sidebar-logo">
+            <div class="erp-sidebar-brand-info">
+              <strong>D-R-C Kältetechnik</strong>
+              <small>Depo &amp; Stok Yönetimi</small>
+            </div>
           </div>
-          <p class="muted hero-welcome" id="welcomeText"></p>
-        </div>
-        <div class="hero-actions">
-          <div class="ui-language-switch app-language-switch">
-            <span class="ui-language-label">Arayuz Dili</span>
-            <select class="ui-language-select" aria-label="Arayuz dili">
-              <option value="tr">TR</option>
-              <option value="de">DE</option>
-            </select>
+          <nav class="erp-nav">
+            <div class="tab-buttons erp-nav-buttons">
+              <span class="erp-nav-label">Ana İşlemler</span>
+              <button class="tab-button admin-staff-only active" data-tab="items" type="button"><span class="erp-nav-icon">ST</span><span class="tab-title">Stok</span></button>
+              <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="erp-nav-icon">GÇ</span><span class="tab-title">Giriş / Çıkış</span></button>
+              <button class="tab-button admin-staff-only" data-tab="quotes" type="button"><span class="erp-nav-icon">SŞ</span><span class="tab-title">Satış</span></button>
+              <button class="tab-button admin-staff-only" type="button" onclick="document.getElementById('cashbookModal').classList.add('modal-open');if(typeof renderCashbook==='function')renderCashbook()"><span class="erp-nav-icon">KS</span><span class="tab-title">Kasa</span></button>
+              <span class="erp-nav-label">Sipariş Yönetimi</span>
+              <button class="tab-button admin-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Siparişler</span></button>
+              <button class="tab-button customer-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Sipariş Ver</span></button>
+              <span class="erp-nav-label">Araçlar</span>
+              <button class="tab-button" data-tab="tools" type="button"><span class="erp-nav-icon">AR</span><span class="tab-title">Proje Araçları</span></button>
+              <span class="erp-nav-label admin-only">Yönetim</span>
+              <button class="tab-button admin-only" data-tab="expenses" type="button"><span class="erp-nav-icon">MS</span><span class="tab-title">Masraf</span></button>
+              <button class="tab-button admin-only" data-tab="archive" type="button"><span class="erp-nav-icon">AŞ</span><span class="tab-title">Arşiv</span></button>
+              <button class="tab-button admin-only" data-tab="users" type="button"><span class="erp-nav-icon">KL</span><span class="tab-title">Kullanıcılar</span></button>
+              <button class="tab-button admin-only" data-tab="security" type="button"><span class="erp-nav-icon">GV</span><span class="tab-title">Güvenlik</span></button>
+              <button class="tab-button admin-only" data-tab="messages" type="button"><span class="erp-nav-icon">MJ</span><span class="tab-title">Mesajlar</span></button>
+              <button class="tab-button admin-only" data-tab="training" type="button"><span class="erp-nav-icon">DM</span><span class="tab-title">DRC MAN</span></button>
+            </div>
+          </nav>
+          <div class="erp-sidebar-footer">
+            <p class="erp-welcome-text muted" id="welcomeText"></p>
+            <div class="erp-sidebar-actions">
+              <div class="ui-language-switch app-language-switch">
+                <span class="ui-language-label">Dil</span>
+                <select class="ui-language-select" aria-label="Arayuz dili">
+                  <option value="tr">TR</option>
+                  <option value="de">DE</option>
+                </select>
+              </div>
+              <button id="downloadXlsx" class="erp-action-btn admin-only" type="button">Excel</button>
+              <button id="downloadPdf" class="erp-action-btn admin-only" type="button">PDF</button>
+              <button id="logoutButton" class="erp-logout-btn" type="button">Çıkış Yap</button>
+            </div>
           </div>
-          <button id="downloadXlsx" class="secondary-button admin-only" type="button" data-help="TR: Tum ana verileri Excel olarak indirir. DE: Exportiert die Hauptdaten als Excel.">Excel Rapor</button>
-          <button id="downloadPdf" class="secondary-button admin-only" type="button" data-help="TR: Ozet raporu PDF olarak indirir. DE: Laedt die Zusammenfassung als PDF herunter.">PDF Ozet</button>
-          <button id="logoutButton" class="danger-button" type="button" data-help="TR: Oturumu guvenli sekilde kapatir. DE: Meldet Sie sicher vom System ab.">Cikis Yap</button>
-        </div>
-      </header>
+        </aside>
+        <div class="erp-main">
 
       <main class="dashboard">
         <section class="overview-grid">
           <article id="opsOverview" class="overview-card overview-card-ops"></article>
           <article id="carbonOverview" class="overview-card overview-card-carbon"></article>
-          <article id="iotOverview" class="overview-card overview-card-iot"></article>
+          <article id="iotOverview" class="overview-card overview-card-iot" style="display:none"></article>
         </section>
 
         <section class="stats-grid" id="statsGrid"></section>
 
-        <section class="panel tabs-panel">
-          <div class="tab-buttons">
-            <p class="tab-group-label tab-main-label">Gunluk Islemler</p>
-            <button class="tab-button admin-staff-only active" data-tab="quotes" type="button" data-help="TR: Sepet, teklif, direkt satis ve faturasiz satis burada. DE: Hier finden Sie Warenkorb, Angebot, Direktverkauf und Verkauf ohne Rechnung."><span class="tab-title">Hizli Satis</span><small>Teklif, sepet ve direkt satis islemleri</small></button>
-            <button class="tab-button admin-staff-only" data-tab="items" type="button" data-help="TR: Urunleri arar, filtreler ve kart bilgilerini gorursunuz. DE: Hier suchen und filtern Sie Artikel und sehen die Kartendaten."><span class="tab-title">Malzemeler</span><small>Urun kartlari, filtreleme ve stoklu urun listesi</small></button>
-            <button class="tab-button admin-staff-only" data-tab="movements" type="button" data-help="TR: Stok giris, cikis ve yeni urun ilk stok kaydi burada. DE: Lagerzugang, Lagerausgang und neuer Erstbestand werden hier erfasst."><span class="tab-title">Stok</span><small>Giris, cikis ve yeni urun kaydi</small></button>
-            <button class="tab-button admin-staff-only" data-tab="cashbook" type="button" data-help="TR: Kasa girisi, cikisi ve faturasiz satis kayitlari burada tutulur. DE: Hier werden Kassen-Eingaenge, Ausgaenge und Verkaeufe ohne Rechnung verwaltet."><span class="tab-title">Kasa</span><small>Tahsilat ve kasa hareketleri</small></button>
-            <button class="tab-button admin-only" data-tab="orders" type="button" data-help="TR: Musteri siparisleri burada toplanir ve durumlari guncellenir. DE: Hier werden Kundenbestellungen gesammelt und im Status gepflegt."><span class="tab-title">Siparisler</span><small>Siparis takibi ve durum</small></button>
-            <button class="tab-button customer-only" data-tab="orders" type="button" data-help="TR: Stoktaki urunleri sepete ekleyip siparis gonderirsiniz. DE: Hier koennen Kunden verfuegbare Artikel bestellen."><span class="tab-title">Siparis Ver</span><small>Stoktaki urunleri gorup talep gonder</small></button>
-            <button class="tab-button" data-tab="messages" type="button" data-help="TR: Istek, sikayet veya notunuzu admin ekibine buradan iletirsiniz. DE: Hier senden Sie Wunsch, Beschwerde oder Notiz an das Admin-Team."><span class="tab-title">Admin'e Yaz</span><small>Istek, sikayet ve destek mesaji gonder</small></button>
-            <button class="tab-button" data-tab="iot" type="button" data-help="TR: DRC IoT Pack panelinde oda sicakligi, alarm ve saha gorunumu izlenir. DE: Im DRC-IoT-Pack sehen Sie Raumtemperaturen, Alarme und Fernstatus."><span class="tab-title">DRC IoT</span><small>Uzaktan izleme, alarm ve enerji gorunumu</small></button>
-            <button class="tab-button" data-tab="tools" type="button" data-help="TR: Soguk oda cizim ve hesaplama araclari tum kullanicilara aciktir. DE: Die Kuehlraum-Werkzeuge stehen allen angemeldeten Benutzern offen."><span class="tab-title">Proje Araclari</span><small>Soguk oda cizim ve hesaplama araclari</small></button>
-            <details class="tab-more admin-only">
-              <summary class="tab-admin-summary">Yonetim ve Ayarlar</summary>
-              <button class="tab-button" data-tab="expenses" type="button" data-help="TR: Firma giderlerini kaydeder ve silersiniz. DE: Hier erfassen und loeschen Sie Betriebsausgaben."><span class="tab-title">Masraf</span><small>Firma giderlerini ve harcamalari yonet</small></button>
-              <button class="tab-button" data-tab="archive" type="button" data-help="TR: Pasif urunleri saklar ve geri alirsiniz. DE: Archivierte Artikel werden hier verwaltet und wieder aktiviert."><span class="tab-title">Arsiv</span><small>Pasif urunleri sakla ve geri al</small></button>
-              <button class="tab-button" data-tab="users" type="button" data-help="TR: Admin, personel ve musteri hesaplarini yonetirsiniz. DE: Hier verwalten Sie Admin-, Personal- und Kundenkonten."><span class="tab-title">Kullanicilar</span><small>Admin, personel ve musteri hesaplari</small></button>
-              <button class="tab-button admin-only" data-tab="security" type="button" data-help="TR: Son guvenlik olaylari, bloklanan IP'ler ve erisim denemeleri burada gorulur. DE: Hier sehen Sie Sicherheitsereignisse, blockierte IPs und Zugriffsversuche."><span class="tab-title">Guvenlik</span><small>Olay kaydi ve IP bloklari</small></button>
-              <button class="tab-button" data-tab="training" type="button" data-help="TR: DRC MAN icin yeni soru-cevap egitimi eklersiniz. DE: Hier trainieren Sie DRC MAN mit neuen Frage-Antwort-Paaren."><span class="tab-title">DRC MAN Egitim</span><small>Soru-cevap ekle, duzenle ve ajani operasyon bilgisiyle besle</small></button>
-            </details>
-          </div>
+        <section class="panel tabs-panel erp-tabs-panel">
 
-          <div class="tab-content admin-staff-only" data-tab-content="items">
+          <div class="tab-content active admin-staff-only" data-tab-content="items">
             <section class="sales-search-panel">
               <div class="section-head">
                 <div>
@@ -400,6 +346,9 @@
                 <h2>Stok Giris / Cikis</h2>
                 <p class="muted section-tip">Bu form mevcut urunlerde stok giris ve cikis icin kullanilir.</p>
                 <form id="movementForm" class="form-grid">
+                  <label class="form-span-2">Urun Arama<input id="movementItemSearch" type="search" list="movementItemSuggestions" autocomplete="off" placeholder="Urun, marka veya stok kodu yazin"></label>
+                  <datalist id="movementItemSuggestions"></datalist>
+                  <div id="movementItemDropdown" class="search-dropdown movement-search-dropdown hidden form-span-2"></div>
                   <label>Malzeme<select name="itemId" required></select></label>
                   <label>Islem<select name="type" required><option value="entry">Giris</option><option value="exit">Cikis</option></select></label>
                   <label>Miktar<input name="quantity" type="number" min="0.01" step="0.01" required></label>
@@ -440,6 +389,7 @@
                         <th>Malzeme</th>
                         <th>Tip</th>
                         <th>Miktar</th>
+                        <th>Not</th>
                         <th>Kullanici</th>
                         <th>Islem</th>
                       </tr>
@@ -475,6 +425,8 @@
                         <th>Tarih</th>
                         <th>Baslik</th>
                         <th>Kategori</th>
+                        <th>Odeme Tipi</th>
+                        <th>Aciklama</th>
                         <th>Tutar</th>
                         <th>Kullanici</th>
                         <th>Islem</th>
@@ -487,43 +439,54 @@
             </div>
           </div>
 
-          <div class="tab-content admin-staff-only" data-tab-content="cashbook">
-            <div class="two-column">
-              <section>
-                <h2>Kasa Hareketi</h2>
-                <form id="cashForm" class="form-grid">
-                  <label>Islem<select name="type" required><option value="in">Kasa Girisi</option><option value="out">Kasa Cikisi</option><option value="unbilled_sale">Faturasiz Satis</option></select></label>
-                  <label>Baslik<input name="title" type="text" required placeholder="Orn. Tezgah satisi"></label>
-                  <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
-                  <label>Tarih<input name="date" type="date" required></label>
-                  <label>Referans<input name="reference" type="text"></label>
-                  <label>Not<input name="note" type="text"></label>
-                  <button class="primary-button" type="submit" data-help="TR: Kasa girisi, cikisi veya faturasiz satis kaydini olusturur. DE: Speichert einen Kassen-Eingang, Ausgang oder Verkauf ohne Rechnung.">Kasa Kaydet</button>
-                </form>
-              </section>
-              <section>
-                <h2>Kasa Defteri</h2>
-                <p class="muted section-tip">Kasa girisleri, cikislari ve faturasiz satis hareketleri burada listelenir.</p>
-                <div class="table-wrap">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Tarih</th>
-                        <th>Tip</th>
-                        <th>Baslik</th>
-                        <th>Tutar</th>
-                        <th>Kullanici</th>
-                        <th>Islem</th>
-                      </tr>
-                    </thead>
-                    <tbody id="cashbookTableBody"></tbody>
-                  </table>
-                </div>
-              </section>
+          <!-- Kasa Defteri artık tab-content olarak da kalıyor (app.js renderTabData uyumu için) ama görünmez -->
+          <div class="tab-content admin-staff-only" data-tab-content="cashbook" style="display:none !important"></div>
+
+          <!-- Kasa Modal -->
+          <div id="cashbookModal" class="fullscreen-modal">
+            <div class="fullscreen-modal-content">
+              <div class="fullscreen-modal-header">
+                <h2>💰 Kasa Defteri</h2>
+                <button class="fullscreen-modal-close" onclick="document.getElementById('cashbookModal').classList.remove('modal-open')">&times;</button>
+              </div>
+              <div class="fullscreen-modal-body">
+                <section style="margin-bottom:24px">
+                  <h3>Yeni Kasa Hareketi</h3>
+                  <form id="cashForm" class="form-grid">
+                    <label>Islem<select name="type" required><option value="in">Kasa Girisi</option><option value="out">Kasa Cikisi</option><option value="unbilled_sale">Faturasiz Satis</option></select></label>
+                    <label>Baslik<input name="title" type="text" required placeholder="Orn. Tezgah satisi"></label>
+                    <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
+                    <label>Tarih<input name="date" type="date" required></label>
+                    <label>Referans<input name="reference" type="text"></label>
+                    <label>Not<input name="note" type="text"></label>
+                    <button class="primary-button" type="submit">Kasa Kaydet</button>
+                  </form>
+                </section>
+                <section>
+                  <h3>Kayitlar</h3>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Tarih</th>
+                          <th>Tip</th>
+                          <th>Baslik</th>
+                          <th>Referans</th>
+                          <th>Not</th>
+                          <th>Tutar</th>
+                          <th>Kullanici</th>
+                          <th>Islem</th>
+                        </tr>
+                      </thead>
+                      <tbody id="cashbookTableBody"></tbody>
+                    </table>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
 
-          <div class="tab-content active admin-staff-only" data-tab-content="quotes">
+          <div class="tab-content admin-staff-only" data-tab-content="quotes">
             <div class="pos-layout">
               <section class="pos-catalog">
                 <div class="section-head">
@@ -548,7 +511,12 @@
                   </div>
                 </div>
                 <form id="quoteForm" class="form-grid compact-form">
-                  <label>Musteri<input name="customerName" type="text" required></label>
+                  <label>Musteri
+                    <input name="customerName" id="quoteCustomerNameInput" type="text" list="quoteCustomerDatalist" required autocomplete="off" placeholder="Kayitli musterilerden sec veya ad yaz">
+                    <datalist id="quoteCustomerDatalist"></datalist>
+                    <input name="customerUserId" id="quoteCustomerUserIdInput" type="hidden">
+                    <small id="quoteCustomerHint" class="muted"></small>
+                  </label>
                   <label>Baslik<input name="title" type="text" required placeholder="Orn. Soguk Oda Teklifi"></label>
                   <label>Tarih<input name="date" type="date" required></label>
                   <label>Dil<select name="language" required><option value="de">Deutsch</option><option value="tr">Turkce</option></select></label>
@@ -588,6 +556,7 @@
                         <th>Musteri</th>
                         <th>Kalemler</th>
                         <th>Durum</th>
+                        <th>Not</th>
                         <th>Islem</th>
                       </tr>
                     </thead>
@@ -795,17 +764,7 @@
             </div>
           </div>
 
-          <div class="tab-content" data-tab-content="iot">
-            <section class="iot-panel">
-              <div class="section-head">
-                <div>
-                  <h2>DRC IoT Pack</h2>
-                  <p class="muted">Uzaktan izleme ekraninda oda durumu, alarm akisi, karbon odağı ve saha karar notlari tek yerde toplanir.</p>
-                </div>
-              </div>
-              <div id="iotMonitorRoot" class="iot-monitor-root"></div>
-            </section>
-          </div>
+          <div class="tab-content" data-tab-content="iot" style="display:none"></div>
 
           <div class="tab-content" data-tab-content="tools">
             <section class="tools-panel">
@@ -1001,6 +960,8 @@
           </div>
         </section>
       </main>
+      </div>
+      </div>
     </section>
   </div>
   <aside id="assistantWidget" class="assistant-widget hidden" aria-live="polite">
@@ -1012,7 +973,7 @@
         <div>
           <p class="eyebrow">Soru Cevap</p>
           <h3>DRC MAN</h3>
-          <p id="assistantStatus" class="muted">DRC MAN yedek mod aktif</p>
+          <p id="assistantStatus" class="muted">DRC MAN bilgi tabani aktif</p>
         </div>
         <div class="assistant-head-actions">
           <label class="assistant-language-label">

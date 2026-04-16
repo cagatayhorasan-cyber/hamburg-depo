@@ -164,6 +164,17 @@ const UI_TEXT = {
     peykTitle: "Uzaktan izleme ve kontrol sistemi",
     peykCopy: "Oda sicakligi, alarm, defrost ve servis mudahalesini tek panelden yonetin.",
     peykPoints: ["Canli izleme", "Alarm bildirimi", "Uzaktan mudahale"],
+    leanEyebrow: "B2B Portal · Hamm & Hamburg",
+    leanHeroTitle: "Endüstriyel Soğutma — Tedarik, Servis, Proje",
+    leanHeroSub: "Personel, bayi ve müşteri için tek portal: stok, sipariş, teklif, soğuk oda projesi ve fiyat yönetimi aynı ekranda.",
+    leanCtaLogin: "Giriş Yap",
+    leanCtaRegister: "Müşteri Kaydı",
+    leanValueProps: [
+      { title: "Hamburg & Hamm depodan hızlı tedarik", copy: "Kompresör, kondenser, evaporatör, kontrol ve soğuk oda malzemeleri aynı gün sevkiyata hazır." },
+      { title: "B2B portal ile stok & sipariş", copy: "Canlı stok, net/brüt fiyat, sepet ve sipariş takibini kendi hesabınızdan yönetin." },
+      { title: "Proje destekli teklif", copy: "ColdRoomPro destekli soğuk oda hesaplaması ile proje malzeme listesi ve teklif tek adımda." }
+    ],
+    leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "İletişim"],
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -289,6 +300,8 @@ const UI_TEXT = {
       noCustomerOrderLines: "Henuz siparis kalemi yok.",
       customerOrderSummary: (lines, units, total) => `${lines} kalem | Toplam talep: ${units} adet/birim${total ? ` | Tahmini toplam: ${total}` : ""}`,
       noCustomerOrders: "Daha once gonderilmis siparisiniz yok.",
+      customerLinked: (name) => `Kayitli musteri: ${name}`,
+      customerFreeText: (name) => `Yeni/kayitsiz musteri adi olarak kaydedilecek: ${name}`,
       noAdminMessages: "Henuz admine gonderilmis mesaj yok.",
       noOwnAdminMessages: "Henuz admin ekibine gonderilmis mesajiniz yok.",
       adminMessagesSummary: (total, fresh) => `${total} mesaj | ${fresh} yeni`,
@@ -352,6 +365,17 @@ const UI_TEXT = {
     peykTitle: "Fernmonitoring- und Steuerungssystem",
     peykCopy: "Raumtemperatur, Alarm, Abtauung und Serviceeingriffe werden zentral ueber ein Panel verwaltet.",
     peykPoints: ["Live Monitoring", "Alarmmeldungen", "Fernzugriff"],
+    leanEyebrow: "B2B Portal · Hamm & Hamburg",
+    leanHeroTitle: "Industrielle Kältetechnik — Vertrieb, Service, Projekt",
+    leanHeroSub: "Ein Portal für Personal, Partner und Kunden: Bestand, Bestellung, Angebot, Kühlraumprojekt und Preispflege in einer Oberfläche.",
+    leanCtaLogin: "Anmelden",
+    leanCtaRegister: "Kundenkonto anlegen",
+    leanValueProps: [
+      { title: "Schneller Versand ab Hamburg & Hamm", copy: "Verdichter, Kondensatoren, Verdampfer, Regelung und Kühlraumartikel versandfertig am selben Tag." },
+      { title: "B2B-Portal: Bestand & Bestellung", copy: "Live-Bestand, Netto-/Bruttopreise, Warenkorb und Bestellverlauf in Ihrem eigenen Konto." },
+      { title: "Projektbasiertes Angebot", copy: "Kühlraumauslegung mit ColdRoomPro — Stückliste und Angebot in einem Schritt." }
+    ],
+    leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "Kontakt"],
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -373,14 +397,14 @@ const UI_TEXT = {
     resetButton: "Passwort speichern",
     appLabel: "Anwendung:",
     heroTitle: "Operations- und Verkaufszentrale",
-    heroSubtitle: "Lager, Verkauf, Angebot, Carbon-Fokus und DRC-IoT in einer Ansicht.",
+    heroSubtitle: "Lager, Verkauf, Angebote, Carbon-Fokus und DRC-IoT auf einen Blick.",
     downloadXlsx: "Excel Export",
     downloadPdf: "PDF Uebersicht",
     logout: "Abmelden",
     tabQuotes: "Schnellverkauf",
-    tabQuotesDesc: "Angebot, Warenkorb und Direktverkauf",
+    tabQuotesDesc: "Angebote, Warenkorb und Direktverkauf",
     tabItems: "Artikel",
-    tabItemsDesc: "Artikelkarten, Filter und Liste mit Lagerbestand",
+    tabItemsDesc: "Artikelkarten, Filter und Lagerliste",
     tabArchive: "Archiv",
     tabArchiveDesc: "Passive Artikel verwalten und zurueckholen",
     tabMovements: "Lager",
@@ -390,7 +414,7 @@ const UI_TEXT = {
     tabCashbook: "Kasse",
     tabCashbookDesc: "Zahlungen und Kassenbewegungen",
     tabOrders: "Bestellungen",
-    tabOrdersDesc: "Bestellungen und Statuspflege",
+    tabOrdersDesc: "Bestellungen pruefen und Status pflegen",
     tabCustomerOrders: "Bestellen",
     tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
     tabMessages: "An Admin",
@@ -404,7 +428,7 @@ const UI_TEXT = {
     tabTools: "Projektwerkzeuge",
     tabToolsDesc: "Zeichnung und Berechnung fuer Kuehlraeume",
     tabTraining: "DRC MAN Training",
-    tabTrainingDesc: "Frage-Antwort, Kaeltemitteltraining und Retrofit-Werkzeuge",
+    tabTrainingDesc: "Frage-Antwort, Kaeltemitteltraining und Retrofit-Hilfen",
     roles: { admin: "admin", staff: "personal", customer: "kunde" },
     stats: {
       customerItems: "Artikel auf Lager",
@@ -477,6 +501,8 @@ const UI_TEXT = {
       noCustomerOrderLines: "Noch keine Bestellpositionen vorhanden.",
       customerOrderSummary: (lines, units, total) => `${lines} Positionen | Gesamtmenge: ${units}${total ? ` | Voraussichtlich: ${total}` : ""}`,
       noCustomerOrders: "Es gibt noch keinen gesendeten Bestellverlauf.",
+      customerLinked: (name) => `Kunde hinterlegt: ${name}`,
+      customerFreeText: (name) => `Wird als freier Kundenname gespeichert: ${name}`,
       noAdminMessages: "Es gibt noch keine an Admin gesendeten Nachrichten.",
       noOwnAdminMessages: "Sie haben noch keine Nachricht an das Admin-Team gesendet.",
       adminMessagesSummary: (total, fresh) => `${total} Nachrichten | ${fresh} neu`,
@@ -489,7 +515,7 @@ const UI_TEXT = {
       noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
       trainingSaved: "Training speichern",
       trainingUpdated: "Training aktualisieren",
-      quoteSaved: (id) => `Angebot gespeichert. Es steht unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unveraendert.`,
+      quoteSaved: (id) => `Angebot gespeichert. Es erscheint unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unveraendert.`,
       orderSent: "Ihre Bestellung wurde aufgenommen. Den Status sehen Sie im Bestellverlauf.",
       directSaleDone: (id, paid, remaining, hasCash) => `Direktverkauf abgeschlossen. Bestand wurde reduziert und der Eintrag unter Letzte Angebote sowie Lagerbewegungen gespeichert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Bezahlt: ${paid} | Offen: ${remaining}`,
       unbilledDone: (total, paid, remaining, hasCash, cashEntryId) => `Verkauf ohne Rechnung gespeichert. Bestand wurde reduziert${hasCash ? `; die Zahlung steht auch im Kassenbuch${cashEntryId ? ` (#${cashEntryId})` : ""}` : ""}. Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
@@ -511,7 +537,8 @@ const UI_TEXT = {
 const state = {
   user: null,
   summary: null,
-  activeTab: "quotes",
+  activeTab: "items",
+  itemsVersion: 0,
   items: [],
   archivedItems: [],
   movements: [],
@@ -535,6 +562,8 @@ const state = {
   },
   quoteDraft: [],
   customerOrderDraft: [],
+  customers: [],
+  customersLoaded: false,
   quoteFilters: {
     search: "",
     brand: "all",
@@ -549,6 +578,8 @@ const state = {
   filterOptions: { brand: [], category: [] },
   itemSelectSignature: "",
   itemSearchSuggestionSignature: "",
+  movementSelectableItems: null,
+  inventoryWarmupScheduled: false,
 };
 
 let filterDebounceTimer = null;
@@ -579,6 +610,9 @@ const refs = {
   statsGrid: document.getElementById("statsGrid"),
   itemForm: document.getElementById("itemForm"),
   movementForm: document.getElementById("movementForm"),
+  movementItemSearch: document.getElementById("movementItemSearch"),
+  movementItemSuggestions: document.getElementById("movementItemSuggestions"),
+  movementItemDropdown: document.getElementById("movementItemDropdown"),
   movementAutoCostHint: document.getElementById("movementAutoCostHint"),
   stockIntakeForm: document.getElementById("stockIntakeForm"),
   expenseForm: document.getElementById("expenseForm"),
@@ -633,6 +667,10 @@ const refs = {
   retrofitChecklistHint: document.getElementById("retrofitChecklistHint"),
   retrofitChecklistOutput: document.getElementById("retrofitChecklistOutput"),
   quoteForm: document.getElementById("quoteForm"),
+  quoteCustomerDatalist: document.getElementById("quoteCustomerDatalist"),
+  quoteCustomerNameInput: document.getElementById("quoteCustomerNameInput"),
+  quoteCustomerUserIdInput: document.getElementById("quoteCustomerUserIdInput"),
+  quoteCustomerHint: document.getElementById("quoteCustomerHint"),
   posCatalogGrid: document.getElementById("posCatalogGrid"),
   quoteDraftBody: document.getElementById("quoteDraftBody"),
   quoteDraftSummary: document.getElementById("quoteDraftSummary"),
@@ -761,6 +799,7 @@ function setUiLanguage(language) {
   localStorage.setItem(UI_LANGUAGE_STORAGE_KEY, nextLanguage);
   currency = createCurrencyFormatter(nextLanguage);
   numberFormat = createNumberFormatter(nextLanguage);
+  invalidateInventoryUiCaches();
   if (refs.quoteForm?.elements?.language) {
     refs.quoteForm.elements.language.value = nextLanguage;
   }
@@ -825,6 +864,27 @@ function applyUiTranslations() {
   setText("#peykCopy", t("peykCopy"));
   document.querySelectorAll("[data-peyk-point]").forEach((node, index) => {
     setText(node, t("peykPoints")[index] || node.textContent);
+  });
+
+  // Lean landing (Faz 6)
+  document.querySelectorAll("[data-lean-eyebrow]").forEach((node) => setText(node, t("leanEyebrow")));
+  document.querySelectorAll("[data-lean-title]").forEach((node) => setText(node, t("leanHeroTitle")));
+  document.querySelectorAll("[data-lean-sub]").forEach((node) => setText(node, t("leanHeroSub")));
+  document.querySelectorAll("[data-lean-cta-login]").forEach((node) => setText(node, t("leanCtaLogin")));
+  document.querySelectorAll("[data-lean-cta-register]").forEach((node) => setText(node, t("leanCtaRegister")));
+  const leanVps = t("leanValueProps") || [];
+  document.querySelectorAll("[data-lean-vp-title]").forEach((node) => {
+    const idx = Number(node.getAttribute("data-lean-vp-title")) || 0;
+    setText(node, leanVps[idx]?.title || node.textContent);
+  });
+  document.querySelectorAll("[data-lean-vp-copy]").forEach((node) => {
+    const idx = Number(node.getAttribute("data-lean-vp-copy")) || 0;
+    setText(node, leanVps[idx]?.copy || node.textContent);
+  });
+  const leanFooterLabels = t("leanFooterLabels") || [];
+  document.querySelectorAll("[data-lean-footer-label]").forEach((node) => {
+    const idx = Number(node.getAttribute("data-lean-footer-label")) || 0;
+    setText(node, leanFooterLabels[idx] || node.textContent);
   });
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
@@ -935,7 +995,17 @@ function applyUiTranslations() {
 
   const movementsSections = document.querySelectorAll("[data-tab-content='movements'] .two-column > section");
   setText(movementsSections[0]?.querySelector("h2"), langText("Stok Giris / Cikis", "Lager Eingang / Ausgang"));
-  setText(movementsSections[0]?.querySelector(".section-tip"), langText("Bu form mevcut urunlerde stok giris ve cikis icin kullanilir.", "Dieses Formular wird fuer Lagerzugang und -ausgang bei vorhandenen Artikeln verwendet."));
+  setText(
+    movementsSections[0]?.querySelector(".section-tip"),
+    langText(
+      "Bu form mevcut urunlerde stok giris ve cikis icin kullanilir. Ustteki arama kutusuna harf yazdikca urun listesi otomatik daralir.",
+      "Dieses Formular wird fuer Lagerzugang und -ausgang bei vorhandenen Artikeln verwendet. Beim Tippen im Suchfeld wird die Artikelliste automatisch eingegrenzt."
+    )
+  );
+  replaceLabelText(refs.movementItemSearch?.closest("label"), langText("Urun Arama", "Artikelsuche"));
+  if (refs.movementItemSearch) {
+    refs.movementItemSearch.placeholder = langText("Urun, marka veya stok kodu yazin", "Artikel, Marke oder Lagercode eingeben");
+  }
   setFormFieldLabel(refs.movementForm, "itemId", langText("Malzeme", "Artikel"));
   setFormFieldLabel(refs.movementForm, "type", langText("Islem", "Vorgang"));
   setFormFieldLabel(refs.movementForm, "quantity", langText("Miktar", "Menge"));
@@ -1007,7 +1077,13 @@ function applyUiTranslations() {
   });
   setText("#cashForm button[type='submit']", langText("Kasa Kaydet", "Kasse speichern"));
   setText(cashSections[1]?.querySelector("h2"), langText("Kasa Defteri", "Kassenbuch"));
-  setText(cashSections[1]?.querySelector(".section-tip"), langText("Kasa girisleri, cikislari ve faturasiz satis hareketleri burada listelenir.", "Hier werden Kassen-Eingaenge, -Ausgaenge und Verkaeufe ohne Rechnung gelistet."));
+  setText(
+    cashSections[1]?.querySelector(".section-tip"),
+    langText(
+      "Kasa girisleri, cikislari ve faturasiz satis hareketleri burada listelenir. Referans alani fis, havale, kart slipi veya banka aciklamasi icin; Not alani ise serbest aciklama icindir.",
+      "Hier werden Kassen-Eingaenge, -Ausgaenge und Verkaeufe ohne Rechnung gelistet. Das Referenzfeld ist fuer Beleg, Ueberweisung, Kartenslip oder Bankreferenz; das Notizfeld fuer freie Ergaenzungen."
+    )
+  );
 
   setText("[data-tab-content='quotes'] .pos-catalog h2", langText("Urun Katalogu", "Produktkatalog"));
   setText("[data-tab-content='quotes'] .pos-catalog .muted", langText("Arayin, filtreleyin ve tek tikla sepete ekleyin.", "Suchen, filtern und mit einem Klick in den Warenkorb legen."));
@@ -1259,6 +1335,7 @@ function applyUiTranslations() {
     langText("Malzeme", "Artikel"),
     langText("Tip", "Typ"),
     langText("Miktar", "Menge"),
+    langText("Not", "Notiz"),
     langText("Kullanici", "Benutzer"),
     langText("Islem", "Aktion"),
   ]);
@@ -1266,6 +1343,8 @@ function applyUiTranslations() {
     langText("Tarih", "Datum"),
     langText("Baslik", "Titel"),
     langText("Kategori", "Kategorie"),
+    langText("Odeme Tipi", "Zahlungsart"),
+    langText("Aciklama", "Beschreibung"),
     langText("Tutar", "Betrag"),
     langText("Kullanici", "Benutzer"),
     langText("Islem", "Aktion"),
@@ -1274,6 +1353,8 @@ function applyUiTranslations() {
     langText("Tarih", "Datum"),
     langText("Tip", "Typ"),
     langText("Baslik", "Titel"),
+    langText("Referans", "Referenz"),
+    langText("Not", "Notiz"),
     langText("Tutar", "Betrag"),
     langText("Kullanici", "Benutzer"),
     langText("Islem", "Aktion"),
@@ -1283,6 +1364,7 @@ function applyUiTranslations() {
     langText("Musteri", "Kunde"),
     langText("Kalemler", "Positionen"),
     langText("Durum", "Status"),
+    langText("Not", "Notiz"),
     langText("Islem", "Aktion"),
   ]);
   setTableHeaders(refs.adminMessagesTableBody, [
@@ -1355,6 +1437,10 @@ function isCustomerUser() {
 
 function canViewPurchasePrices() {
   return isAdminUser();
+}
+
+function canManageStockIntake() {
+  return isAdminUser() || isStaffUser();
 }
 
 function resolveBasePurchasePrice(item) {
@@ -1438,10 +1524,11 @@ function syncRoleSensitiveFields() {
     refs.movementAutoCostHint.classList.toggle("hidden", canViewPurchase || isCustomerUser());
   }
 
+  const canUseStockIntake = canManageStockIntake();
   [refs.stockIntakeForm?.elements?.unitPrice, refs.stockIntakeForm?.elements?.listPrice, refs.stockIntakeForm?.elements?.salePrice].filter(Boolean).forEach((field) => {
-    field.disabled = !canViewPurchase;
-    field.required = canViewPurchase && field.name === "unitPrice";
-    if (!canViewPurchase) {
+    field.disabled = !canUseStockIntake;
+    field.required = canUseStockIntake && field.name === "unitPrice";
+    if (!canUseStockIntake) {
       field.value = "";
     }
   });
@@ -1489,7 +1576,15 @@ function bindEvents() {
     window.location.href = "/api/reports/pdf";
   });
   refs.barcodeItemSelect.addEventListener("change", updateBarcodePreview);
-  refs.movementForm.elements.itemId.addEventListener("change", syncMovementPrice);
+  refs.movementForm.elements.itemId.addEventListener("change", handleMovementItemSelectionChange);
+  refs.movementForm.elements.unitPrice?.addEventListener("input", () => {
+    refs.movementForm.elements.unitPrice.dataset.autoFilled = "false";
+  });
+  refs.movementItemSearch?.addEventListener("input", handleMovementItemSearchInput);
+  refs.movementItemSearch?.addEventListener("focus", renderMovementItemDropdown);
+  refs.movementItemSearch?.addEventListener("blur", () => {
+    window.setTimeout(() => refs.movementItemDropdown?.classList.add("hidden"), 120);
+  });
   refs.quoteItemSearch.addEventListener("input", handleQuoteFilterChange);
   refs.quoteBrandFilter.addEventListener("change", handleQuoteFilterChange);
   refs.quoteCategoryFilter.addEventListener("change", handleQuoteFilterChange);
@@ -1692,7 +1787,7 @@ async function handleStockIntakeSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const payload = formToObject(form);
-  const result = await request("/api/items/intake", {
+  const result = await request("/api/item-intake", {
     method: "POST",
     body: JSON.stringify(payload),
   });
@@ -1785,6 +1880,14 @@ function resetItemForm() {
   refs.itemCancelEdit.classList.add("hidden");
 }
 
+function invalidateInventoryUiCaches() {
+  state.itemsVersion += 1;
+  state.filterOptionsSignature = "";
+  state.itemSelectSignature = "";
+  state.itemSearchSuggestionSignature = "";
+  state.movementSelectableItems = null;
+}
+
 async function logout() {
   await request("/api/logout", { method: "POST" });
   state.user = null;
@@ -1804,9 +1907,8 @@ async function refreshData() {
   state.inventoryLoadedAll = false;
   state.archiveLoaded = false;
   state.inventoryLoadPromise = null;
-  state.filterOptionsSignature = "";
-  state.itemSelectSignature = "";
-  state.itemSearchSuggestionSignature = "";
+  state.inventoryWarmupScheduled = false;
+  invalidateInventoryUiCaches();
   if (previousUserId !== Number(state.user?.id || 0)) {
     state.assistantMessages = [];
     state.assistantLanguage = "tr";
@@ -1817,6 +1919,69 @@ async function refreshData() {
   }
   showApp();
   renderAll();
+  scheduleInventoryWarmup();
+  scheduleCustomerListLoad();
+}
+
+async function scheduleCustomerListLoad() {
+  const role = state.user?.role;
+  if (!role || !(isAdminUser() || isStaffUser())) return;
+  if (state.customersLoaded) return;
+  try {
+    const data = await request("/api/customers");
+    if (!data || data.error) return;
+    state.customers = Array.isArray(data.customers) ? data.customers : [];
+    state.customersLoaded = true;
+    renderCustomerDatalist();
+  } catch (_error) {
+    // silent fail; customer dropdown just stays empty
+  }
+}
+
+function renderCustomerDatalist() {
+  if (!refs.quoteCustomerDatalist) return;
+  refs.quoteCustomerDatalist.innerHTML = "";
+  state.customers.forEach((customer) => {
+    const option = document.createElement("option");
+    const label = customer.name || customer.username || customer.email || `#${customer.id}`;
+    const extras = [];
+    if (customer.username && customer.username !== label) extras.push(customer.username);
+    if (customer.email) extras.push(customer.email);
+    if (customer.phone) extras.push(customer.phone);
+    option.value = label;
+    option.dataset.customerId = String(customer.id);
+    if (extras.length) option.label = extras.join(" · ");
+    refs.quoteCustomerDatalist.append(option);
+  });
+  if (refs.quoteCustomerNameInput && !refs.quoteCustomerNameInput._drcDatalistBound) {
+    refs.quoteCustomerNameInput.addEventListener("input", syncQuoteCustomerSelection);
+    refs.quoteCustomerNameInput.addEventListener("change", syncQuoteCustomerSelection);
+    refs.quoteCustomerNameInput._drcDatalistBound = true;
+  }
+  syncQuoteCustomerSelection();
+}
+
+function syncQuoteCustomerSelection() {
+  if (!refs.quoteCustomerNameInput || !refs.quoteCustomerUserIdInput) return;
+  const value = (refs.quoteCustomerNameInput.value || "").trim();
+  let customerId = "";
+  let hint = "";
+  if (value) {
+    const match = state.customers.find((c) => (c.name || c.username || "").toLowerCase() === value.toLowerCase());
+    if (match) {
+      customerId = String(match.id);
+      const extras = [];
+      if (match.email) extras.push(match.email);
+      if (match.phone) extras.push(match.phone);
+      hint = extras.length ? `${t("messages.customerLinked", match.name || match.username)} · ${extras.join(" · ")}` : t("messages.customerLinked", match.name || match.username);
+    } else {
+      hint = t("messages.customerFreeText", value);
+    }
+  }
+  refs.quoteCustomerUserIdInput.value = customerId;
+  if (refs.quoteCustomerHint) {
+    refs.quoteCustomerHint.textContent = hint;
+  }
 }
 
 function showLogin() {
@@ -1931,6 +2096,25 @@ function renderAll() {
   if (!isCustomerUser()) {
     renderAssistantMessages();
   }
+}
+
+function scheduleInventoryWarmup() {
+  if (isCustomerUser() || state.inventoryLoadedAll || state.inventoryLoadPromise || state.inventoryWarmupScheduled) {
+    return;
+  }
+
+  state.inventoryWarmupScheduled = true;
+  window.setTimeout(() => {
+    loadInventory()
+      .then(() => {
+        if (state.inventoryLoadedAll && state.activeTab) {
+          renderTabData(state.activeTab);
+        }
+      })
+      .finally(() => {
+        state.inventoryWarmupScheduled = false;
+      });
+  }, 120);
 }
 
 function renderFilters() {
@@ -2446,12 +2630,12 @@ function renderItems() {
     tr.innerHTML = `
       <td>${item.name}</td>
       <td>${item.brand || "-"}</td>
-      <td>${item.category}</td>
-      <td>${numberFormat.format(item.currentStock)} ${item.unit}</td>
+      <td>${getDisplayCategory(item.category)}</td>
+      <td>${formatItemStock(item.currentStock, item.unit)}</td>
       ${canViewPurchasePrices() ? `<td>${purchasePrice ? currency.format(purchasePrice) : "-"}</td>` : ""}
       <td>${listPrice ? currency.format(listPrice) : "-"}</td>
       <td>${salePrice ? currency.format(salePrice) : "-"}</td>
-      <td><span class="status-pill ${critical ? "status-critical" : "status-ok"}">${numberFormat.format(item.minStock)} ${item.unit}</span></td>
+      <td><span class="status-pill ${critical ? "status-critical" : "status-ok"}">${numberFormat.format(item.minStock)} ${getDisplayUnit(item.unit)}</span></td>
       <td>${item.barcode}</td>
       <td>${actionMarkup}</td>
     `;
@@ -2488,15 +2672,17 @@ function renderStockedItems(filteredItems) {
   stockedItems.slice(0, 80).forEach((item) => {
     const listPrice = visibleListPrice(item);
     const price = cartSalePrice(item);
+    const itemDetail = getPublicItemDetail(item);
     const card = document.createElement("article");
     card.className = "stocked-card";
     card.innerHTML = `
       <strong>${item.name}</strong>
-      <span>${item.brand || "-"} | ${item.category}</span>
-      <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+      <span>${item.brand || "-"} | ${getDisplayCategory(item.category)}</span>
+      ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${itemDetail}</span>` : ""}
+      <span>${langText("Stok", "Bestand")}: ${formatItemStock(item.currentStock, item.unit)}</span>
       <span>${item.barcode || "-"}</span>
       <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
-      ${listPrice ? `<span>${langText("1 adet", "1 Stueck")}: ${currency.format(listPrice)}</span>` : ""}
+      ${listPrice ? `<span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span>` : ""}
     `;
     refs.stockedItemsList.append(card);
   });
@@ -2568,6 +2754,7 @@ function renderMovements() {
       <td>${movement.itemName}</td>
       <td>${movementTypeLabel}</td>
       <td>${quantityMarkup}</td>
+      <td>${movement.note || "-"}</td>
       <td>${movement.userName || "-"}</td>
       <td class="table-action-cell">${actionMarkup}</td>
     `;
@@ -2587,6 +2774,8 @@ function renderExpenses() {
       <td>${expense.date}</td>
       <td>${expense.title}</td>
       <td>${expense.category}</td>
+      <td>${getPaymentTypeLabel(expense.paymentType)}</td>
+      <td>${expense.note || "-"}</td>
       <td>${currency.format(expense.amount)}</td>
       <td>${expense.userName || "-"}</td>
       <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydini siler. DE: Loescht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe loeschen")}</button></td>
@@ -2611,6 +2800,8 @@ function renderCashbook() {
       <td>${entry.date}</td>
       <td>${isUnbilledSale ? t("common.unbilledSale") : entry.type === "in" ? t("common.in") : t("common.out")}</td>
       <td>${entry.title}</td>
+      <td>${entry.reference || "-"}</td>
+      <td>${entry.note || "-"}</td>
       <td>${currency.format(entry.amount)}</td>
       <td>${entry.userName || "-"}</td>
       <td class="table-action-cell">${actionMarkup}</td>
@@ -3224,13 +3415,23 @@ function renderQuotes() {
         <span>${quote.quoteNo || `#${quote.id}`} | ${quote.date} | ${langText("Net", "Netto")} ${currency.format(quote.netTotal || quote.total)} | ${langText("Brut", "Brutto")} ${currency.format(quote.grossTotal || quote.total)}</span>
         <span>${quote.userName || "-"} | ${quote.language === "tr" ? "TR" : "DE"} | ${quote.isExport ? t("common.export") : t("common.inland")}</span>
         <span>${quote.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
+        ${quote.note ? `<span>${quote.note}</span>` : ""}
         <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-quote-pdf="${quote.id}" data-lang="auto" data-help="TR: Teklifi panel dilinde PDF olarak indirir. DE: Laedt das Angebot in der aktuellen Oberflaechensprache als PDF herunter.">PDF ${state.uiLanguage.toUpperCase()}</button>
+          <button class="mini-button secondary-button" type="button" data-quote-preview="${quote.id}" data-lang="auto" data-help="TR: Teklif PDF onizlemesini yeni sekmede acar. DE: Oeffnet die PDF-Vorschau des Angebots in einem neuen Tab.">${langText("Onizle", "Vorschau")}</button>
+          <button class="mini-button secondary-button" type="button" data-quote-pdf="${quote.id}" data-lang="auto" data-help="TR: Teklifi panel dilinde PDF olarak indirir. DE: Laedt das Angebot in der aktuellen Oberflaechensprache als PDF herunter.">${langText("Indir", "Download")} PDF ${state.uiLanguage.toUpperCase()}</button>
         </div>
       `;
       refs.quotesList.append(div);
     });
   }
+
+  refs.quotesList.querySelectorAll("[data-quote-preview]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const quoteId = button.dataset.quotePreview;
+      const lang = button.dataset.lang;
+      openQuotePdfPreview(quoteId, lang);
+    });
+  });
 
   refs.quotesList.querySelectorAll("[data-quote-pdf]").forEach((button) => {
     button.addEventListener("click", async () => {
@@ -3321,6 +3522,7 @@ function renderPosCatalog() {
     card.className = "pos-card";
     const listPrice = visibleListPrice(item);
     const netPrice = visibleSalePrice(item);
+    const itemDetail = getPublicItemDetail(item);
     const canSell = cartSalePrice(item, 1) > 0;
     if (!canSell) {
       card.classList.add("is-disabled");
@@ -3331,11 +3533,12 @@ function renderPosCatalog() {
         <span>${item.brand || "-"}</span>
       </div>
       <div class="pos-card-meta">
-        <span>${item.category}</span>
-        <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+        <span>${getDisplayCategory(item.category)}</span>
+        <span>${langText("Stok", "Bestand")}: ${formatItemStock(item.currentStock, item.unit)}</span>
+        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${itemDetail}</span>` : ""}
       </div>
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : "-"}</div>
-      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "1 Stueck Liste")}: ${currency.format(listPrice)}</span></div>` : ""}
+      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span></div>` : ""}
       <button class="primary-button" type="button" data-add-quote-item="${item.id}" ${canSell ? "" : "disabled"} data-help="TR: Urunu satis sepetine ekler. DE: Legt den Artikel in den Verkaufswarenkorb.">${canSell ? t("common.addToCart") : langText("Fiyat Eksik", "Preis fehlt")}</button>
     `;
     refs.posCatalogGrid.append(card);
@@ -3360,7 +3563,7 @@ function renderAdminOrders() {
 
   refs.ordersTableBody.innerHTML = "";
   if (!state.orders || state.orders.length === 0) {
-    refs.ordersTableBody.innerHTML = `<tr><td colspan="5"><div class="empty-state">${t("messages.noAdminOrders")}</div></td></tr>`;
+    refs.ordersTableBody.innerHTML = `<tr><td colspan="6"><div class="empty-state">${t("messages.noAdminOrders")}</div></td></tr>`;
     return;
   }
 
@@ -3378,6 +3581,7 @@ function renderAdminOrders() {
       <td>${order.customerName}</td>
       <td>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</td>
       <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span></td>
+      <td>${order.note || "-"}</td>
       <td class="table-action-cell">
         <div class="action-row">
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparisi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
@@ -3418,18 +3622,20 @@ function renderCustomerCatalog() {
     card.className = "pos-card";
     const listPrice = visibleListPrice(item);
     const netPrice = visibleSalePrice(item);
+    const itemDetail = getPublicItemDetail(item);
     card.innerHTML = `
       <div class="pos-card-head">
         <strong>${item.name}</strong>
         <span>${item.brand || "-"}</span>
       </div>
       <div class="pos-card-meta">
-        <span>${item.category}</span>
-        <span>${langText("Stok", "Bestand")}: ${numberFormat.format(item.currentStock)} ${item.unit}</span>
+        <span>${getDisplayCategory(item.category)}</span>
+        <span>${langText("Stok", "Bestand")}: ${formatItemStock(item.currentStock, item.unit)}</span>
+        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${itemDetail}</span>` : ""}
         <span>${langText("Stok Kodu", "Lagercode")}: ${item.barcode || "-"}</span>
       </div>
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : langText("Fiyat sorunuz", "Preis auf Anfrage")}</div>
-      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "1 Stueck Liste")}: ${currency.format(listPrice)}</span></div>` : ""}
+      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span></div>` : ""}
       <button class="primary-button" type="button" data-add-order-item="${item.id}" data-help="TR: Urunu musteri siparis sepetine ekler. DE: Fuegt den Artikel dem Kundenwarenkorb hinzu.">${t("common.addToOrder")}</button>
     `;
     refs.customerCatalogGrid.append(card);
@@ -3521,31 +3727,30 @@ function renderItemSelects() {
 
   const signature = buildItemSelectSignature();
   if (state.itemSelectSignature === signature) {
+    populateMovementItemSelect();
+    renderMovementItemSuggestions();
     return;
   }
   state.itemSelectSignature = signature;
 
-  const generalSelects = [
-    refs.movementForm.elements.itemId,
-    ...(isAdminUser() ? [refs.barcodeItemSelect] : []),
-  ].filter(Boolean);
-  generalSelects.forEach((select) => {
-    const previous = select.value;
+  populateMovementItemSelect();
+  renderMovementItemSuggestions();
+
+  if (isAdminUser() && refs.barcodeItemSelect) {
+    const previous = refs.barcodeItemSelect.value;
     const fragment = document.createDocumentFragment();
-    select.innerHTML = "";
-    getFilteredItems(false).forEach((item) => {
+    refs.barcodeItemSelect.innerHTML = "";
+    getMovementSelectableItems().forEach((item) => {
       const option = document.createElement("option");
       option.value = item.id;
-      option.textContent = `${item.name}${item.brand ? ` / ${item.brand}` : ""} (${item.currentStock} ${item.unit})`;
+      option.textContent = getMovementOptionLabel(item);
       fragment.append(option);
     });
-    select.append(fragment);
-    if ([...select.options].some((option) => option.value === previous)) {
-      select.value = previous;
+    refs.barcodeItemSelect.append(fragment);
+    if ([...refs.barcodeItemSelect.options].some((option) => option.value === previous)) {
+      refs.barcodeItemSelect.value = previous;
     }
-  });
-
-  syncMovementPrice();
+  }
 }
 
 function renderInventoryLoading(target) {
@@ -3563,7 +3768,7 @@ function renderInventoryLoading(target) {
     return;
   }
   if (target === "movements") {
-    refs.movementsTableBody.innerHTML = `<tr><td colspan="6"><div class="empty-state">${message}</div></td></tr>`;
+    refs.movementsTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${message}</div></td></tr>`;
   }
 }
 
@@ -3592,9 +3797,7 @@ async function loadInventory(force = false, includeArchive = false) {
         state.archivedItems = [];
       }
       state.inventoryLoadedAll = true;
-      state.filterOptionsSignature = "";
-      state.itemSelectSignature = "";
-      state.itemSearchSuggestionSignature = "";
+      invalidateInventoryUiCaches();
       renderFilters();
     })
     .catch((error) => {
@@ -3609,11 +3812,9 @@ async function loadInventory(force = false, includeArchive = false) {
 
 function buildItemSelectSignature() {
   return [
+    state.uiLanguage,
+    state.itemsVersion,
     isAdminUser() ? "admin" : "staff",
-    state.items.length,
-    state.items.reduce((sum, item) => (
-      sum + Number(item.id || 0) * 31 + Number(item.currentStock || 0) * 17 + hashText(`${item.name}|${item.brand}|${item.unit}`)
-    ), 0),
   ].join(":");
 }
 
@@ -3630,15 +3831,32 @@ function syncMovementPrice() {
   if (!canViewPurchasePrices()) {
     return;
   }
+  const unitPriceField = refs.movementForm.elements.unitPrice;
   const itemId = Number(refs.movementForm.elements.itemId.value);
   const item = state.items.find((entry) => Number(entry.id) === itemId);
   if (!item) {
+    if (unitPriceField?.dataset.autoFilled === "true") {
+      unitPriceField.value = "";
+      unitPriceField.dataset.autoItemId = "";
+      unitPriceField.dataset.autoValue = "";
+    }
     return;
   }
 
   const price = item.lastPurchasePrice || item.defaultPrice || "";
-  if (price && !refs.movementForm.elements.unitPrice.value) {
-    refs.movementForm.elements.unitPrice.value = price;
+  const previousAutoItemId = Number(unitPriceField?.dataset.autoItemId || 0);
+  const previousAutoValue = String(unitPriceField?.dataset.autoValue || "");
+  const currentValue = String(unitPriceField?.value || "");
+  const shouldApplyAutoPrice = !currentValue
+    || unitPriceField?.dataset.autoFilled === "true"
+    || previousAutoItemId !== itemId
+    || currentValue === previousAutoValue;
+
+  if (price && shouldApplyAutoPrice && unitPriceField) {
+    unitPriceField.value = price;
+    unitPriceField.dataset.autoFilled = "true";
+    unitPriceField.dataset.autoItemId = String(itemId);
+    unitPriceField.dataset.autoValue = String(price);
   }
 }
 
@@ -3799,13 +4017,13 @@ function renderAssistantStatus() {
   if (state.assistantLanguage === "de") {
     refs.assistantStatus.textContent = state.assistantStatus?.mode === "local_drc_man"
       ? "DRC MAN ist lokal verbunden"
-      : "DRC MAN Fallback-Modus aktiv";
+      : "DRC MAN Wissensbasis aktiv";
     return;
   }
 
   refs.assistantStatus.textContent = state.assistantStatus?.mode === "local_drc_man"
     ? "DRC MAN yerel ajan bagli"
-    : "DRC MAN yedek mod aktif";
+    : "DRC MAN bilgi tabani aktif";
 }
 
 function renderAssistantMessages() {
@@ -3874,11 +4092,11 @@ function getAssistantWelcomeMessage() {
   if (state.assistantLanguage === "de") {
     return hasLocalAgent
       ? "DRC MAN ist lokal verbunden. Sie koennen jetzt detaillierte Fragen zu Material, Projekt, Hamburg-Bestand und Kaltetechnik stellen."
-      : "DRC MAN laeuft im Fallback-Modus. Sie koennen nach Bestand, Preis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
+      : "DRC MAN Wissensbasis ist aktiv. Sie koennen nach Lagerbestand, Verkaufspreis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
   }
   return hasLocalAgent
     ? "DRC MAN yerel ajan baglandi. Artik malzeme, proje, Hamburg stok ve soguk oda teknik sorularini daha detayli sorabilirsiniz."
-    : "DRC MAN yedek modda hazir. Stok, fiyat, kategori, kritik urun veya satis akisi ile ilgili soru sorabilirsiniz.";
+    : "DRC MAN bilgi tabani aktif. Stok, satis fiyati, kategori, kritik urun ve satis akisi ile ilgili soru sorabilirsiniz.";
 }
 
 function normalizeSearchText(value) {
@@ -3921,6 +4139,202 @@ function getItemSearchIndex(item) {
   }
 
   return normalizeSearchText([source, ...extras].join(" "));
+}
+
+function getDisplayCategory(category) {
+  if (state.uiLanguage !== "de") {
+    return category || "-";
+  }
+
+  const normalized = normalizeSearchText(category);
+  const categoryMap = {
+    "sogutma yaglari": "Kuehloele",
+    "kompresorler": "Verdichter",
+    "kondenserler": "Verfluessiger",
+    "vrf sistemleri": "VRF-Systeme",
+    "vrf ic uniteleri": "VRF-Innengeraete",
+    "kontrol panelleri": "Steuerungen",
+    "fan motorlari": "Ventilatormotoren",
+    "filtre drier": "Filtertrockner",
+    "filtreler kurutucular": "Filter & Trockner",
+    "servis valfi": "Serviceventile",
+    "genlesme valfleri": "Expansionsventile",
+    "izolasyon": "Isolierung",
+    "montaj sarf": "Montagebedarf",
+    "sogutucu akiskanlar": "Kaeltemittel",
+    "sogutucu gaz": "Kaeltemittel",
+    "dikey tip buzdolaplari": "Vertikale Kuehlschraenke",
+    "termostat": "Thermostate",
+    "sogutma malzemeleri": "Kuehltechnik-Zubehoer",
+    "valfler genlesme valfleri": "Ventile & Expansionsventile",
+    "drenaj pompasi": "Kondensatpumpen",
+  };
+
+  return categoryMap[normalized] || category || "-";
+}
+
+function getDisplayUnit(unit) {
+  if (state.uiLanguage !== "de") {
+    return unit || "";
+  }
+
+  const normalized = normalizeSearchText(unit);
+  const unitMap = {
+    "adet": "Stk.",
+    "koli": "Karton",
+    "top": "Rolle",
+    "metre": "m",
+    "mt": "m",
+    "paket": "Paket",
+    "set": "Set",
+    "takim": "Set",
+  };
+
+  return unitMap[normalized] || unit || "";
+}
+
+function getPaymentTypeLabel(type) {
+  switch (String(type || "").toLowerCase()) {
+    case "cash":
+      return langText("Nakit", "Bar");
+    case "bank":
+      return langText("Banka", "Bank");
+    case "card":
+      return langText("Kart", "Karte");
+    default:
+      return type || "-";
+  }
+}
+
+function localizeItemDetail(detail) {
+  let text = String(detail || "").trim();
+  if (!text) {
+    return "";
+  }
+
+  if (state.uiLanguage !== "de") {
+    return text;
+  }
+
+  const replacements = [
+    [/\b(\d+)\s*x\s*(\d+)\s*l\b/gi, "$1x$2 L"],
+    [/\b(\d+)\s*l(?:t)?\s*bidon\b/gi, "$1 L Gebinde"],
+    [/\b(\d+)\s*l(?:t)?\s*endustriyel bidon\b/gi, "$1 L Industriegebinde"],
+    [/\b(\d+)\s*x\s*(\d+)\s*l\s*koli adet\b/gi, "$1x$2 L Karton"],
+    [/\b(\d+)\s*x\s*(\d+)\s*l\s*koli\b/gi, "$1x$2 L Karton"],
+    [/\b(\d+)\s*l(?:t)?\s*teneke\b/gi, "$1 L Kanister"],
+    [/\b(\d+)\s*l(?:t)?\b/gi, "$1 L"],
+    [/\bendustriyel yag bidonu\b/gi, "Industrieoel-Gebinde"],
+    [/\bmotorsuz\b/gi, "Ohne Motor"],
+    [/\bdikey tip\b/gi, "Vertikal"],
+    [/\byatay tip\b/gi, "Horizontal"],
+    [/\bizoleli bakir boru\b/gi, "Isoliertes Kupferrohr"],
+    [/\bhazir kumanda panosu\b/gi, "Fertiger Schaltschrank"],
+  ];
+
+  replacements.forEach(([pattern, value]) => {
+    text = text.replace(pattern, value);
+  });
+
+  return text;
+}
+
+function extractPackagingDetail(item) {
+  const raw = [item?.name, item?.notes].filter(Boolean).join(" ");
+  if (!raw) {
+    return "";
+  }
+
+  const normalized = normalizeSearchText(raw);
+  const packMatch = raw.match(/(\d+)\s*[x×]\s*(\d+)\s*l/iu);
+  if (packMatch) {
+    const left = Number(packMatch[1]);
+    const right = Number(packMatch[2]);
+    if (left > 0 && right > 0) {
+      return state.uiLanguage === "de"
+        ? `${left}x${right} L Karton`
+        : `${left}x${right}L koli`;
+    }
+  }
+
+  const literMatch = raw.match(/(\d+(?:[.,]\d+)?)\s*l(?:t)?/iu);
+  if (!literMatch) {
+    return "";
+  }
+
+  const liters = literMatch[1].replace(".", ",");
+  const literValue = Number(literMatch[1].replace(",", "."));
+  const isIndustrial = /\bendustriyel\b/.test(normalized);
+  const isDrum = /\bbidon\b/.test(normalized) || isIndustrial;
+  const isTin = /\bteneke\b/.test(normalized) || (/\byag\b/.test(normalized) && literValue === 5);
+
+  if (state.uiLanguage === "de") {
+    if (isDrum) {
+      return `${liters} L Industriegebinde`;
+    }
+    if (isTin) {
+      return `${liters} L Kanister`;
+    }
+    return `${liters} L`;
+  }
+
+  if (isDrum) {
+    return `${liters} Lt endustriyel bidon`;
+  }
+  if (isTin) {
+    return `${liters} Lt teneke`;
+  }
+  return `${liters} Lt`;
+}
+
+function getPublicItemDetail(item) {
+  const note = String(item?.notes || "").trim();
+  const noteParts = note
+    .split("|")
+    .map(cleanPublicDetailPart)
+    .filter(Boolean)
+    .filter((part) => {
+      const normalized = normalizeSearchText(part);
+      return normalized
+        && !normalized.startsWith("kaynak")
+        && !normalized.startsWith("urun kodu")
+        && !normalized.startsWith("daha once belirlenen fiyat")
+        && !normalized.startsWith("daha once belirlenen")
+        && !normalized.startsWith("ithalat klasoru gecmis kaydi")
+        && !normalized.startsWith("tedarikci")
+        && !normalized.startsWith("kaynak dosya")
+        && !normalized.startsWith("eslesen aktif kart")
+        && !normalized.startsWith("id")
+        && !normalized.startsWith("kod")
+        && !normalized.startsWith("ad")
+        && !normalized.startsWith("arsiv")
+        && !normalized.startsWith("fiyat kaynagi")
+        && !normalized.startsWith("tahmini alis maliyeti");
+    })
+    .filter((part) => !/^\d+\s*[x×]\s*\d+\s*l\s*koli$/iu.test(part));
+
+  const packagingDetail = extractPackagingDetail(item);
+  const detailParts = packagingDetail ? [packagingDetail, ...noteParts] : noteParts;
+  const uniqueDetails = [...new Set(detailParts.filter(Boolean))];
+  return localizeItemDetail(uniqueDetails.join(" | "));
+}
+
+function cleanPublicDetailPart(part) {
+  let text = String(part || "").trim();
+  if (!text) {
+    return "";
+  }
+
+  text = text.replace(/^(Detay|Detail)\s*:\s*/iu, "");
+  text = text.replace(/^(Detay|Detail)\s*:\s*/iu, "");
+  text = text.replace(/^(Model)\s*:\s*/iu, "");
+  text = text.replace(/\s+/g, " ").trim();
+  return text;
+}
+
+function formatItemStock(stock, unit) {
+  const displayUnit = getDisplayUnit(unit);
+  return `${numberFormat.format(stock)} ${displayUnit}`.trim();
 }
 
 function itemMatchesSearch(item, query) {
@@ -3968,10 +4382,7 @@ function uniqueValues(field) {
 function buildFilterOptionsSignature() {
   return [
     state.uiLanguage,
-    state.items.length,
-    state.items.reduce((sum, item) => (
-      sum + Number(item.id || 0) * 13 + hashText(item.brand) * 17 + hashText(item.category) * 19
-    ), 0),
+    state.itemsVersion,
   ].join(":");
 }
 
@@ -4004,10 +4415,7 @@ function renderItemSearchSuggestions() {
   }
   const signature = [
     state.uiLanguage,
-    state.items.length,
-    state.items.reduce((sum, item) => (
-      sum + Number(item.id || 0) * 11 + hashText(`${item.name}|${item.brand}|${item.barcode}|${item.category}|${item.notes}`) * 23
-    ), 0),
+    state.itemsVersion,
   ].join(":");
   if (state.itemSearchSuggestionSignature === signature) {
     return;
@@ -4035,6 +4443,138 @@ function renderItemSearchSuggestions() {
       fragment.append(option);
     });
   refs.itemSearchSuggestions.append(fragment);
+}
+
+function getMovementSelectableItems() {
+  if (state.movementSelectableItems) {
+    return state.movementSelectableItems;
+  }
+
+  state.movementSelectableItems = [...state.items].sort((left, right) => {
+    const byName = String(left.name || "").localeCompare(String(right.name || ""), state.uiLanguage === "de" ? "de" : "tr");
+    if (byName !== 0) {
+      return byName;
+    }
+    return String(left.brand || "").localeCompare(String(right.brand || ""), state.uiLanguage === "de" ? "de" : "tr");
+  });
+  return state.movementSelectableItems;
+}
+
+function getMovementOptionLabel(item) {
+  return `${item.name}${item.brand ? ` / ${item.brand}` : ""} (${formatItemStock(item.currentStock, item.unit)})`;
+}
+
+function getMovementSearchMatches(term) {
+  const items = getMovementSelectableItems();
+  const searchTerm = String(term || "").trim();
+  if (!searchTerm) {
+    return items;
+  }
+  return items.filter((item) => itemMatchesSearch(item, searchTerm));
+}
+
+function renderMovementItemSuggestions() {
+  if (!refs.movementItemSuggestions) {
+    return;
+  }
+
+  const suggestions = new Set();
+  getMovementSelectableItems().forEach((item) => {
+    [item.name, item.brand, item.barcode, item.category, item.productCode].filter(Boolean).forEach((value) => suggestions.add(value));
+  });
+
+  refs.movementItemSuggestions.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+  [...suggestions]
+    .sort((a, b) => a.localeCompare(b, state.uiLanguage === "de" ? "de" : "tr"))
+    .slice(0, 250)
+    .forEach((value) => {
+      const option = document.createElement("option");
+      option.value = value;
+      fragment.append(option);
+    });
+  refs.movementItemSuggestions.append(fragment);
+}
+
+function populateMovementItemSelect(options = {}) {
+  const select = refs.movementForm?.elements?.itemId;
+  if (!select) {
+    return;
+  }
+
+  const { preferFirstMatch = false } = options;
+  const previous = String(select.value || "");
+  const matches = getMovementSearchMatches(refs.movementItemSearch?.value || "");
+  const fragment = document.createDocumentFragment();
+
+  select.innerHTML = "";
+  if (matches.length === 0) {
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = langText("Eslesen urun bulunamadi", "Kein passender Artikel gefunden");
+    select.append(option);
+    select.value = "";
+    syncMovementPrice();
+    return;
+  }
+
+  matches.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.textContent = getMovementOptionLabel(item);
+    fragment.append(option);
+  });
+  select.append(fragment);
+
+  const nextValue = preferFirstMatch
+    ? String(matches[0].id)
+    : ([...select.options].some((option) => option.value === previous) ? previous : String(matches[0].id));
+  select.value = nextValue;
+  syncMovementPrice();
+}
+
+function renderMovementItemDropdown() {
+  if (!refs.movementItemDropdown) {
+    return;
+  }
+
+  const term = refs.movementItemSearch?.value.trim();
+  if (!term) {
+    refs.movementItemDropdown.classList.add("hidden");
+    refs.movementItemDropdown.innerHTML = "";
+    return;
+  }
+
+  const matches = getMovementSearchMatches(term).slice(0, 8);
+  if (matches.length === 0) {
+    refs.movementItemDropdown.classList.add("hidden");
+    refs.movementItemDropdown.innerHTML = "";
+    return;
+  }
+
+  refs.movementItemDropdown.innerHTML = matches.map((item) => `
+    <button class="search-suggestion" type="button" data-movement-item-id="${escapeHtml(item.id)}" data-movement-item-name="${escapeHtml(item.name)}">
+      <strong>${escapeHtml(item.name)}</strong>
+      <span>${escapeHtml(item.brand || "-")} | ${escapeHtml(getDisplayCategory(item.category))} | ${escapeHtml(item.barcode || "-")}</span>
+    </button>
+  `).join("");
+  refs.movementItemDropdown.classList.remove("hidden");
+  refs.movementItemDropdown.querySelectorAll("[data-movement-item-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      refs.movementItemSearch.value = button.dataset.movementItemName || "";
+      populateMovementItemSelect({ preferFirstMatch: true });
+      refs.movementItemDropdown.classList.add("hidden");
+    });
+  });
+}
+
+function handleMovementItemSearchInput() {
+  populateMovementItemSelect({ preferFirstMatch: true });
+  renderMovementItemDropdown();
+}
+
+function handleMovementItemSelectionChange() {
+  syncMovementPrice();
 }
 
 function hashText(value) {
@@ -4564,9 +5104,29 @@ async function handleUnbilledSale() {
   window.alert(t("messages.unbilledDone", currency.format(result.total || 0), currency.format(result.paid || 0), currency.format(result.remaining || 0), Number(result.paid || 0) > 0, result.cashEntryId || 0));
 }
 
-async function downloadQuotePdf(quoteId, lang) {
+function buildQuotePdfUrl(quoteId, lang, mode = "download") {
   const resolvedLang = lang === "auto" ? state.uiLanguage : (lang === "de" ? "de" : "tr");
-  const response = await fetch(`/api/quotes/${quoteId}/pdf?lang=${resolvedLang}`, {
+  const searchParams = new URLSearchParams({ lang: resolvedLang });
+  if (mode === "preview") {
+    searchParams.set("disposition", "inline");
+  }
+  return {
+    resolvedLang,
+    url: `/api/quotes/${quoteId}/pdf?${searchParams.toString()}`,
+  };
+}
+
+function openQuotePdfPreview(quoteId, lang) {
+  const { url } = buildQuotePdfUrl(quoteId, lang, "preview");
+  const previewWindow = window.open(url, "_blank", "noopener,noreferrer");
+  if (!previewWindow) {
+    window.alert(langText("PDF onizleme acilamadi. Tarayici acilir pencereyi engellemis olabilir.", "PDF-Vorschau konnte nicht geoeffnet werden. Der Browser blockiert moeglicherweise das Popup."));
+  }
+}
+
+async function downloadQuotePdf(quoteId, lang) {
+  const { resolvedLang, url } = buildQuotePdfUrl(quoteId, lang, "download");
+  const response = await fetch(url, {
     credentials: "include",
   });
 
@@ -4584,16 +5144,16 @@ async function downloadQuotePdf(quoteId, lang) {
   }
 
   const blob = await response.blob();
-  const url = URL.createObjectURL(blob);
+  const blobUrl = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
-  anchor.href = url;
+  anchor.href = blobUrl;
   const disposition = response.headers.get("content-disposition") || "";
   const filenameMatch = disposition.match(/filename="([^"]+)"/i);
   anchor.download = filenameMatch?.[1] || `${resolvedLang === "tr" ? "teklif" : "angebot"}-${quoteId}.pdf`;
   document.body.append(anchor);
   anchor.click();
   anchor.remove();
-  URL.revokeObjectURL(url);
+  URL.revokeObjectURL(blobUrl);
 }
 
 function formToObject(form) {

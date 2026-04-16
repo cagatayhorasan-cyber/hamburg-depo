@@ -40,11 +40,12 @@ const QUOTES_DIR = process.env.QUOTES_DIR
   ? path.resolve(process.env.QUOTES_DIR)
   : path.join(os.homedir(), "Desktop", "Teklifler");
 const SHOULD_PERSIST_QUOTES = !process.env.VERCEL && process.env.DISABLE_FILE_EXPORT !== "1";
-const APP_BASE_URL = process.env.APP_BASE_URL || "";
-const MAIL_FROM = process.env.MAIL_FROM || COMPANY_PROFILE.email;
-const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
-const GMAIL_USER = process.env.GMAIL_USER || "";
-const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || "";
+const APP_BASE_URL = cleanOptional(process.env.APP_BASE_URL) || "";
+const MAIL_FROM = cleanOptional(process.env.MAIL_FROM) || COMPANY_PROFILE.email;
+const RESEND_API_KEY = cleanOptional(process.env.RESEND_API_KEY) || "";
+const GMAIL_FROM = cleanOptional(process.env.GMAIL_FROM) || "";
+const GMAIL_USER = cleanOptional(process.env.GMAIL_USER) || "";
+const GMAIL_APP_PASSWORD = cleanOptional(process.env.GMAIL_APP_PASSWORD) || "";
 const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir(), "Desktop", "DRC_MAN"));
 const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
 const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
@@ -65,8 +66,247 @@ const SECURITY_RATE_LIMIT_BLOCK_MS = 30 * 60 * 1000;
 const SECURITY_EVENT_DETAILS_LIMIT = 1600;
 const ADMIN_MESSAGE_SUBJECT_LIMIT = 160;
 const ADMIN_MESSAGE_BODY_LIMIT = 3000;
+const SALE_PRICE_MULTIPLIER = 1.22;
+const BOOTSTRAP_ITEM_LIMIT = Math.max(60, Number(process.env.BOOTSTRAP_ITEM_LIMIT || 180));
+const TROUBLESHOOTING_BANK_CACHE_TTL_MS = 2 * 60 * 1000;
+const TROUBLESHOOTING_STRONG_HINTS = [
+  "ariza",
+  "sorun",
+  "hata",
+  "alarm",
+  "problem",
+  "fault",
+  "storung",
+  "fehler",
+  "kompresor",
+  "compressor",
+  "verdichter",
+  "basinc",
+  "pressure",
+  "evaporator",
+  "verdampfer",
+  "defrost",
+  "abtau",
+  "buz",
+  "ice",
+  "fan",
+  "ventilator",
+  "drenaj",
+  "drain",
+  "sensor",
+  "txv",
+  "genlesme",
+  "presostat",
+  "kontaktor",
+  "contactors",
+  "solenoid",
+  "magnetventil",
+  "r404a",
+  "r404",
+  "r4040",
+  "r134a",
+  "r134",
+  "r290",
+  "gaz",
+  "kacak",
+  "leak",
+  "vacuum",
+  "vakum",
+  "flare",
+  "charge",
+  "undercharge",
+  "overcharge",
+  "superheat",
+  "subcool",
+  "noncondensable",
+  "moisture",
+  "oil return",
+  "hpc",
+  "lpc",
+];
+const TROUBLESHOOTING_SHORT_TOKENS = new Set(["hp", "lp", "hpc", "lpc", "sh", "sc"]);
+const TROUBLESHOOTING_STOP_WORDS = new Set([
+  "ve",
+  "ile",
+  "icin",
+  "icin",
+  "olarak",
+  "neden",
+  "niye",
+  "nasil",
+  "olur",
+  "olan",
+  "gibi",
+  "bana",
+  "bunu",
+  "su",
+  "bir",
+  "iki",
+  "the",
+  "and",
+  "oder",
+  "und",
+  "der",
+  "die",
+  "das",
+  "ist",
+  "wie",
+  "warum",
+  "wenn",
+  "what",
+  "hangi",
+  "once",
+  "sonra",
+  "nedeni",
+]);
+const TROUBLESHOOTING_ANCHOR_TOKENS = new Set([
+  "r404a",
+  "r404",
+  "r4040",
+  "r134a",
+  "r134",
+  "r290",
+  "hp",
+  "lp",
+  "hpc",
+  "lpc",
+  "superheat",
+  "subcool",
+  "sh",
+  "sc",
+  "noncondensable",
+  "moisture",
+  "vacuum",
+  "micron",
+  "oil",
+  "return",
+  "kontaktor",
+  "schuetz",
+  "presostat",
+  "solenoid",
+  "txv",
+  "genlesme",
+  "kompresor",
+  "verdichter",
+  "defrost",
+  "rezistans",
+  "sensor",
+  "notr",
+  "faz",
+  "role",
+  "relay",
+  "fan",
+  "evaporator",
+]);
 
 let gmailTransporter = null;
+let mailHealthCache = { key: "", expiresAt: 0, result: null };
+let troubleshootingBankCache = { activeOnly: null, expiresAt: 0, entries: [] };
+
+async function handleItemIntake(req, res) {
+  const {
+    name,
+    brand,
+    category,
+    unit,
+    minStock,
+    barcode,
+    notes,
+    listPrice,
+    salePrice,
+    quantity,
+    unitPrice,
+    date,
+    movementNote,
+  } = req.body || {};
+
+  if (!name || !category || !unit || !quantity || !unitPrice || !date) {
+    return res.status(400).json({ error: "Yeni urun ve stok girisi icin zorunlu alanlar eksik." });
+  }
+
+  const trimmedName = name.trim();
+  const trimmedBrand = cleanOptional(brand);
+  const quantityValue = Number(quantity);
+  const unitPriceValue = Number(unitPrice);
+  const listPriceValue = Number(listPrice || 0);
+  const salePriceValue = Number(salePrice || 0);
+  const minStockValue = Number(minStock || 0);
+
+  if (!Number.isFinite(quantityValue) || !Number.isFinite(unitPriceValue) || quantityValue <= 0 || unitPriceValue <= 0) {
+    return res.status(400).json({ error: "Miktar ve birim alis sifirdan buyuk olmali." });
+  }
+  if (!isNonNegativeFinite(listPriceValue) || !isNonNegativeFinite(salePriceValue) || !isNonNegativeFinite(minStockValue)) {
+    return res.status(400).json({ error: "Fiyat ve kritik stok alanlari sifir veya pozitif sayi olmali." });
+  }
+
+  try {
+    const itemId = await withTransaction(async (tx) => {
+      const existingItem = await tx.get(
+        `
+          SELECT id, name, brand
+          FROM items
+          WHERE LOWER(name) = LOWER(?) AND LOWER(COALESCE(brand, '')) = LOWER(?)
+          LIMIT 1
+        `,
+        [trimmedName, trimmedBrand]
+      );
+
+      if (existingItem) {
+        throw new Error("Bu urun zaten mevcut. Mevcut kart icin ustteki stok giris formunu kullanin.");
+      }
+
+      const itemResult = await tx.execute(
+        `
+          INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, list_price, sale_price)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          RETURNING id
+        `,
+        [
+          trimmedName,
+          trimmedBrand,
+          category.trim(),
+          unit.trim(),
+          minStockValue,
+          cleanOptional(barcode) || null,
+          cleanOptional(notes),
+          unitPriceValue,
+          listPriceValue,
+          salePriceValue,
+        ]
+      );
+
+      const insertedItemId = Number(itemResult.rows[0]?.id || itemResult.lastInsertId);
+
+      await tx.execute(
+        `
+          INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
+          VALUES (?, 'entry', ?, ?, ?, ?, ?)
+        `,
+        [
+          insertedItemId,
+          quantityValue,
+          unitPriceValue,
+          date,
+          cleanOptional(movementNote),
+          req.session.user.id,
+        ]
+      );
+
+      return insertedItemId;
+    });
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "item_intake_created",
+      severity: "info",
+      details: { itemId, name: trimmedName, brand: trimmedBrand, quantity: quantityValue, unitPrice: unitPriceValue },
+    });
+
+    return res.json({ ok: true, id: itemId });
+  } catch (error) {
+    return res.status(400).json({ error: error.message || "Yeni urun kaydi olusturulamadi." });
+  }
+}
 
 function createApp() {
   const app = express();
@@ -129,7 +369,13 @@ function createApp() {
     const dbTarget = dbClient === "postgres"
       ? "postgres"
       : path.basename(dbPath);
-    res.json({ ok: true, dbClient, dbTarget });
+    res.json({
+      ok: true,
+      dbClient,
+      dbTarget,
+      sourceOfTruth: dbClient === "postgres" ? "live-postgres" : "local-sqlite",
+      usesExternalDatabase: dbClient === "postgres",
+    });
   });
 
   app.post("/api/login", authRateLimiter, async (req, res) => {
@@ -173,25 +419,44 @@ function createApp() {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
     const language = req.body?.language === "de" ? "de" : "tr";
     const user = await findUserByLoginIdentifier(identifier);
-    if (user?.email) {
+    const mailHealth = await getMailDeliveryHealth();
+    let mailResult = null;
+
+    if (user?.email && mailHealth.available) {
       const token = await issueAuthToken(Number(user.id), "reset_password", 2);
       const resetUrl = `${getAppBaseUrl(req)}?resetToken=${encodeURIComponent(token)}`;
-      await sendPasswordResetEmail(user, resetUrl);
+      mailResult = await sendPasswordResetEmail(user, resetUrl);
     }
+
+    const deliveryAvailable = Boolean(mailHealth.available && (!mailResult || mailResult.sent));
+    const message = deliveryAvailable
+      ? language === "de"
+        ? "Wenn ein passendes Konto gefunden wurde, wurden Anweisungen zum Zuruecksetzen gesendet."
+        : "Eslesen bir hesap bulunduysa sifre yenileme talimati gonderildi."
+      : language === "de"
+        ? `Die automatische E-Mail-Zustellung ist derzeit nicht verfuegbar. Bitte wenden Sie sich an ${COMPANY_PROFILE.phone} oder ${COMPANY_PROFILE.email}.`
+        : `Otomatik mail gonderimi su an kullanilamiyor. Lutfen ${COMPANY_PROFILE.phone} veya ${COMPANY_PROFILE.email} ile iletisime gecin.`;
 
     queueSecurityEvent(req, {
       user,
-      eventType: "password_reset_requested",
-      severity: "info",
+      eventType: deliveryAvailable ? "password_reset_requested" : "password_reset_delivery_unavailable",
+      severity: deliveryAvailable ? "info" : "warn",
       identifier,
-      details: { matchedAccount: Boolean(user), mailTarget: Boolean(user?.email) },
+      details: {
+        matchedAccount: Boolean(user),
+        mailTarget: Boolean(user?.email),
+        deliveryAvailable,
+        mailProvider: mailResult?.provider || mailHealth.provider || "",
+        mailReason: mailResult?.reason || mailHealth.reason || "",
+      },
     });
 
     return res.json({
       ok: true,
-      message: language === "de"
-        ? "Wenn ein passendes Konto gefunden wurde, wurden Anweisungen zum Zuruecksetzen gesendet."
-        : "Eslesen bir hesap bulunduysa sifre yenileme talimati gonderildi.",
+      deliveryAvailable,
+      supportEmail: COMPANY_PROFILE.email,
+      supportPhone: COMPANY_PROFILE.phone,
+      message,
     });
   });
 
@@ -279,6 +544,7 @@ function createApp() {
     const phone = normalizePhone(req.body?.phone);
     const password = String(req.body?.password || "");
     const requestedUsername = normalizeUsername(req.body?.username);
+    const language = req.body?.language === "de" ? "de" : "tr";
 
     if (!name || !email || !password || !phone) {
       return res.status(400).json({ error: "Ad soyad, e-posta, telefon ve sifre zorunludur." });
@@ -328,6 +594,13 @@ function createApp() {
       const token = await issueAuthToken(insertedUser.id, "verify_email", 24);
       const verifyUrl = `${getAppBaseUrl(req)}?verifyEmailToken=${encodeURIComponent(token)}`;
       const mailResult = await sendVerificationEmail(insertedUser, verifyUrl);
+      const message = mailResult.sent
+        ? language === "de"
+          ? "Ihr Konto wurde erstellt. Die Bestaetigungs-E-Mail wurde versendet und Sie befinden sich jetzt im Kundenbereich."
+          : "Hesabiniz olusturuldu. Dogrulama maili gonderildi ve kendi musteri panelinizdesiniz."
+        : language === "de"
+          ? `Ihr Konto wurde erstellt, aber die automatische Mail-Zustellung ist derzeit nicht verfuegbar. Bitte melden Sie sich bei ${COMPANY_PROFILE.phone} oder ${COMPANY_PROFILE.email}.`
+          : `Hesabiniz olusturuldu, ancak otomatik mail gonderimi su an kullanilamiyor. Lutfen ${COMPANY_PROFILE.phone} veya ${COMPANY_PROFILE.email} ile iletisime gecin.`;
       queueSecurityEvent(req, {
         user: insertedUser,
         eventType: "customer_registered",
@@ -339,6 +612,9 @@ function createApp() {
         user: insertedUser,
         mailSent: Boolean(mailResult.sent),
         mailReason: mailResult.reason || "",
+        supportEmail: COMPANY_PROFILE.email,
+        supportPhone: COMPANY_PROFILE.phone,
+        message,
       });
     } catch (_error) {
       return res.status(400).json({ error: "Musteri hesabi olusturulamadi. Bilgileri kontrol edin." });
@@ -367,32 +643,78 @@ function createApp() {
     const message = cleanOptional(req.body?.message);
     const language = req.body?.language === "de" ? "de" : "tr";
     const history = Array.isArray(req.body?.history) ? req.body.history : [];
+    const normalizedMessage = normalizeAssistantText(message);
     const answerLevel = resolveAssistantAnswerLevel(message, req.session.user);
+    let assistantItems = null;
+    const getAssistantItems = async () => {
+      if (assistantItems) {
+        return assistantItems;
+      }
+      assistantItems = isCustomerRole(req.session.user?.role)
+        ? await queryCustomerItems({ includePrices: true })
+        : sanitizeItemsForRole(await queryItems(), req.session.user);
+      return assistantItems;
+    };
     if (!message) {
       return res.status(400).json({ error: "Soru bos olamaz." });
     }
 
-    if (isCustomerRole(req.session.user?.role) && isRestrictedCustomerPurchaseQuestion(message)) {
-      return res.json({
-        answer: customerRestrictedPurchaseAnswer(language),
-        suggestions: language === "de"
-          ? ["Welche Artikel sind auf Lager?", "Verkaufspreis anzeigen"]
-          : ["Stokta hangi urunler var?", "Satis fiyati goster"],
-        provider: "built_in",
-        sourceSummary: language === "de" ? "Kunden-Einkaufspreis-Schutz" : "Musteri alis fiyati korumasi",
-      });
+    const policyReply = evaluateAssistantSafetyPolicy(message, language, req.session.user, history);
+    if (policyReply) {
+      return res.json(policyReply);
     }
 
     if (isDirectPriceQuestion(message)) {
-      const items = isCustomerRole(req.session.user?.role)
-        ? await queryCustomerItems({ includePrices: true })
-        : sanitizeItemsForRole(await queryItems(), req.session.user);
+      const items = await getAssistantItems();
       const answer = answerAssistantQuestion(message, items, language, req.session.user);
-      return res.json({
+      return res.json(finalizeAssistantReply({
         answer: answer.reply,
         suggestions: answer.suggestions || [],
         provider: "built_in",
-      });
+      }, language, req.session.user));
+    }
+
+    const catalogItems = await getAssistantItems();
+    if (shouldPreferAssistantCatalogReply(message, catalogItems)) {
+      const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
+      return res.json(finalizeAssistantReply({
+        answer: answer.reply,
+        suggestions: answer.suggestions || [],
+        provider: "built_in",
+      }, language, req.session.user));
+    }
+
+    const preferTrainingFirst = hasAssistantSalesDialogueIntent(normalizedMessage) || hasAssistantGithubTrainingIntent(normalizedMessage);
+    if (preferTrainingFirst) {
+      const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
+      if (trainingMatch?.answer) {
+        const answer = sanitizeAssistantAnswerForRole(
+          adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
+          language,
+          req.session.user
+        );
+        return res.json(finalizeAssistantReply({
+          answer,
+          suggestions: trainingMatch.suggestions || [],
+          provider: "drc_man",
+          sourceSummary: localizeAssistantSourceSummary(trainingMatch.sourceSummary, language, "training"),
+        }, language, req.session.user));
+      }
+    }
+
+    const troubleshootingMatch = await matchAssistantTroubleshootingBank(message, language, req.session.user, history);
+    if (troubleshootingMatch?.answer) {
+      const answer = sanitizeAssistantAnswerForRole(
+        adaptAssistantTrainingAnswer(troubleshootingMatch.answer, language, answerLevel),
+        language,
+        req.session.user
+      );
+      return res.json(finalizeAssistantReply({
+        answer,
+        suggestions: troubleshootingMatch.suggestions || [],
+        provider: "drc_man",
+        sourceSummary: localizeAssistantSourceSummary(troubleshootingMatch.sourceSummary, language, "troubleshooting"),
+      }, language, req.session.user));
     }
 
     const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
@@ -402,33 +724,30 @@ function createApp() {
         language,
         req.session.user
       );
-      return res.json({
+      return res.json(finalizeAssistantReply({
         answer,
         suggestions: trainingMatch.suggestions || [],
         provider: "drc_man",
-        sourceSummary: trainingMatch.sourceSummary || "DRC MAN yonetici egitimi",
-      });
+        sourceSummary: localizeAssistantSourceSummary(trainingMatch.sourceSummary, language, "training"),
+      }, language, req.session.user));
     }
 
     const drcManResult = queryDrcManAssistant(message, language, req.session.user, answerLevel, history);
     if (drcManResult?.answer) {
-      return res.json({
+      return res.json(finalizeAssistantReply({
         answer: sanitizeAssistantAnswerForRole(drcManResult.answer, language, req.session.user),
         suggestions: drcManResult.suggestions || [],
         provider: "drc_man",
-        sourceSummary: drcManResult.sourceSummary || "",
-      });
+        sourceSummary: localizeAssistantSourceSummary(drcManResult.sourceSummary, language, "default"),
+      }, language, req.session.user));
     }
 
-    const items = isCustomerRole(req.session.user?.role)
-      ? await queryCustomerItems({ includePrices: true })
-      : sanitizeItemsForRole(await queryItems(), req.session.user);
-    const answer = answerAssistantQuestion(message, items, language, req.session.user);
-    return res.json({
+    const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
+    return res.json(finalizeAssistantReply({
       answer: answer.reply,
       suggestions: answer.suggestions || [],
       provider: "built_in",
-    });
+    }, language, req.session.user));
   });
 
   app.get("/api/assistant/trainings", requireAdmin, async (_req, res) => {
@@ -585,6 +904,20 @@ function createApp() {
     }
   });
 
+  app.get("/api/customers", requireStaffOrAdmin, async (_req, res) => {
+    try {
+      const rows = await query(
+        `SELECT id, name, username, email, phone
+         FROM users
+         WHERE role = 'customer'
+         ORDER BY LOWER(name), LOWER(username)`
+      );
+      return res.json({ customers: rows });
+    } catch (error) {
+      return res.status(500).json({ error: "Musteri listesi alinamadi." });
+    }
+  });
+
   app.post("/api/admin-messages", requireAuth, async (req, res) => {
     const category = normalizeAdminMessageCategory(req.body?.category);
     const subject = cleanOptional(req.body?.subject).slice(0, ADMIN_MESSAGE_SUBJECT_LIMIT);
@@ -669,6 +1002,8 @@ function createApp() {
 
     return res.json({ ok: true });
   });
+
+  app.post("/api/item-intake", requireStaffOrAdmin, handleItemIntake);
 
   app.post("/api/items", requireAdmin, async (req, res) => {
     const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, listPrice, salePrice } = req.body || {};
@@ -790,110 +1125,7 @@ function createApp() {
     return res.json({ ok: true });
   });
 
-  app.post("/api/items/intake", requireStaffOrAdmin, async (req, res) => {
-    const {
-      name,
-      brand,
-      category,
-      unit,
-      minStock,
-      barcode,
-      notes,
-      listPrice,
-      salePrice,
-      quantity,
-      unitPrice,
-      date,
-      movementNote,
-    } = req.body || {};
-
-    if (!name || !category || !unit || !quantity || !unitPrice || !date) {
-      return res.status(400).json({ error: "Yeni urun ve stok girisi icin zorunlu alanlar eksik." });
-    }
-
-    const trimmedName = name.trim();
-    const trimmedBrand = cleanOptional(brand);
-    const quantityValue = Number(quantity);
-    const unitPriceValue = Number(unitPrice);
-    const listPriceValue = Number(listPrice || 0);
-    const salePriceValue = Number(salePrice || 0);
-    const minStockValue = Number(minStock || 0);
-
-    if (!Number.isFinite(quantityValue) || !Number.isFinite(unitPriceValue) || quantityValue <= 0 || unitPriceValue <= 0) {
-      return res.status(400).json({ error: "Miktar ve birim alis sifirdan buyuk olmali." });
-    }
-    if (!isNonNegativeFinite(listPriceValue) || !isNonNegativeFinite(salePriceValue) || !isNonNegativeFinite(minStockValue)) {
-      return res.status(400).json({ error: "Fiyat ve kritik stok alanlari sifir veya pozitif sayi olmali." });
-    }
-
-    try {
-      const itemId = await withTransaction(async (tx) => {
-        const existingItem = await tx.get(
-          `
-            SELECT id, name, brand
-            FROM items
-            WHERE LOWER(name) = LOWER(?) AND LOWER(COALESCE(brand, '')) = LOWER(?)
-            LIMIT 1
-          `,
-          [trimmedName, trimmedBrand]
-        );
-
-        if (existingItem) {
-          throw new Error("Bu urun zaten mevcut. Mevcut kart icin ustteki stok giris formunu kullanin.");
-        }
-
-        const itemResult = await tx.execute(
-          `
-            INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, list_price, sale_price)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            RETURNING id
-          `,
-          [
-            trimmedName,
-            trimmedBrand,
-            category.trim(),
-            unit.trim(),
-            minStockValue,
-            cleanOptional(barcode) || null,
-            cleanOptional(notes),
-            unitPriceValue,
-            listPriceValue,
-            salePriceValue,
-          ]
-        );
-
-        const insertedItemId = Number(itemResult.rows[0]?.id || itemResult.lastInsertId);
-
-        await tx.execute(
-          `
-            INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
-            VALUES (?, 'entry', ?, ?, ?, ?, ?)
-          `,
-          [
-            insertedItemId,
-            quantityValue,
-            unitPriceValue,
-            date,
-            cleanOptional(movementNote),
-            req.session.user.id,
-          ]
-        );
-
-        return insertedItemId;
-      });
-
-      queueSecurityEvent(req, {
-        user: req.session.user,
-        eventType: "item_intake_created",
-        severity: "info",
-        details: { itemId, name: trimmedName, brand: trimmedBrand, quantity: quantityValue, unitPrice: unitPriceValue },
-      });
-
-      return res.json({ ok: true, id: itemId });
-    } catch (error) {
-      return res.status(400).json({ error: error.message || "Yeni urun kaydi olusturulamadi." });
-    }
-  });
+  app.post("/api/items/intake", requireStaffOrAdmin, handleItemIntake);
 
   app.post("/api/movements", requireStaffOrAdmin, async (req, res) => {
     const { itemId, type, quantity, unitPrice, date, note } = req.body || {};
@@ -1181,7 +1413,7 @@ function createApp() {
   });
 
   app.post("/api/quotes", requireStaffOrAdmin, async (req, res) => {
-    const { customerName, title, date, discount, note, items, language, isExport } = req.body || {};
+    const { customerName, customerUserId, title, date, discount, note, items, language, isExport } = req.body || {};
     if (!customerName || !title || !date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Teklif bilgileri eksik." });
     }
@@ -1189,6 +1421,8 @@ function createApp() {
     if (!Number.isFinite(discountValue) || discountValue < 0) {
       return res.status(400).json({ error: "Iskonto sifir veya pozitif sayi olmali." });
     }
+
+    const resolvedCustomerUserId = await resolveCustomerUserId(customerUserId);
 
     let pricedItems;
     try {
@@ -1213,14 +1447,15 @@ function createApp() {
         const quoteResult = await tx.execute(
           `
             INSERT INTO quotes (
-              customer_name, title, quote_date, discount, subtotal, total, note, user_id, language,
+              customer_name, customer_user_id, title, quote_date, discount, subtotal, total, note, user_id, language,
               quote_no, vat_rate, vat_amount, net_total, gross_total, is_export
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             RETURNING id
           `,
           [
             customerName.trim(),
+            resolvedCustomerUserId,
             title.trim(),
             date,
             discountValue,
@@ -1273,10 +1508,11 @@ function createApp() {
   });
 
   app.post("/api/sales/checkout", requireStaffOrAdmin, async (req, res) => {
-    const { customerName, title, date, discount, note, items, language, isExport, paymentType, collectedAmount, reference } = req.body || {};
+    const { customerName, customerUserId, title, date, discount, note, items, language, isExport, paymentType, collectedAmount, reference } = req.body || {};
     if (!customerName || !date || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Direkt satis bilgileri eksik." });
     }
+    const resolvedCustomerUserId = await resolveCustomerUserId(customerUserId);
     const discountValue = Number(discount || 0);
     const collectedAmountValue = Number(collectedAmount || 0);
     if (!Number.isFinite(discountValue) || discountValue < 0) {
@@ -1315,14 +1551,15 @@ function createApp() {
         const quoteResult = await tx.execute(
           `
             INSERT INTO quotes (
-              customer_name, title, quote_date, discount, subtotal, total, note, user_id, language,
+              customer_name, customer_user_id, title, quote_date, discount, subtotal, total, note, user_id, language,
               quote_no, vat_rate, vat_amount, net_total, gross_total, is_export
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             RETURNING id
           `,
           [
             customerName.trim(),
+            resolvedCustomerUserId,
             cleanOptional(title) || "Direkt Satis",
             date,
             discountValue,
@@ -1662,6 +1899,7 @@ function createApp() {
 
     const lang = req.query.lang === "tr" ? "tr" : quote.language || "de";
     const filename = `${sanitizeFileName(quote.quoteNo || `DRC-${quote.id}`)}-${lang}.pdf`;
+    const disposition = String(req.query.disposition || "").toLowerCase() === "inline" ? "inline" : "attachment";
 
     try {
       const buffer = await createQuotePdfBuffer(quote, lang);
@@ -1669,7 +1907,7 @@ function createApp() {
         fs.mkdirSync(QUOTES_DIR, { recursive: true });
         fs.writeFileSync(path.join(QUOTES_DIR, filename), buffer);
       }
-      res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+      res.setHeader("Content-Disposition", `${disposition}; filename="${filename}"`);
       res.type("application/pdf").send(buffer);
     } catch (_error) {
       return res.status(500).json({ error: "PDF olusturulamadi." });
@@ -2177,9 +2415,12 @@ function normalizeAdminMessageStatus(value) {
 }
 
 function applySecurityHeaders(req, res, next) {
+  const isAdminToolRequest = req.path.startsWith("/admin-tools");
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.set("X-Content-Type-Options", "nosniff");
-  res.set("X-Frame-Options", "DENY");
+  if (!isAdminToolRequest) {
+    res.set("X-Frame-Options", "DENY");
+  }
   res.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=()");
   res.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   res.set("Cross-Origin-Resource-Policy", "same-origin");
@@ -2195,7 +2436,7 @@ function buildContentSecurityPolicy(req) {
   const directives = {
     "default-src": ["'self'"],
     "base-uri": ["'self'"],
-    "frame-ancestors": ["'none'"],
+    "frame-ancestors": isAdminToolRequest ? ["'self'"] : ["'none'"],
     "form-action": ["'self'"],
     "object-src": ["'none'"],
     "img-src": ["'self'", "data:", "blob:", "https:"],
@@ -2359,6 +2600,24 @@ function isCustomerRole(role) {
   return normalizeRole(role) === "customer";
 }
 
+async function resolveCustomerUserId(rawValue) {
+  if (rawValue === undefined || rawValue === null || rawValue === "") {
+    return null;
+  }
+  const id = Number(rawValue);
+  if (!Number.isFinite(id) || id <= 0) {
+    return null;
+  }
+  try {
+    const row = await get("SELECT id, role FROM users WHERE id = ?", [id]);
+    if (!row) return null;
+    if (!isCustomerRole(row.role)) return null;
+    return Number(row.id);
+  } catch (_error) {
+    return null;
+  }
+}
+
 function cleanOptional(value) {
   return value ? String(value).trim() : "";
 }
@@ -2421,19 +2680,19 @@ function normalizeTrainingAudience(value) {
   return ["all", "admin", "staff", "customer"].includes(value) ? value : "all";
 }
 
-function parseTrainingSuggestions(value) {
+function parseAssistantTextArray(value, limit = 12) {
   if (!value) {
     return [];
   }
 
   if (Array.isArray(value)) {
-    return value.map((item) => cleanOptional(item)).filter(Boolean).slice(0, 6);
+    return value.map((item) => cleanOptional(item)).filter(Boolean).slice(0, limit);
   }
 
   try {
     const parsed = JSON.parse(String(value));
     if (Array.isArray(parsed)) {
-      return parsed.map((item) => cleanOptional(item)).filter(Boolean).slice(0, 6);
+      return parsed.map((item) => cleanOptional(item)).filter(Boolean).slice(0, limit);
     }
   } catch (_error) {
     // Fall back to plain text parsing.
@@ -2443,7 +2702,11 @@ function parseTrainingSuggestions(value) {
     .split(/\r?\n|,/)
     .map((item) => cleanOptional(item))
     .filter(Boolean)
-    .slice(0, 6);
+    .slice(0, limit);
+}
+
+function parseTrainingSuggestions(value) {
+  return parseAssistantTextArray(value, 6);
 }
 
 function normalizeTrainingPayload(body) {
@@ -2633,12 +2896,26 @@ function getOrderStatusTranslations(language = "tr") {
   };
 }
 
-function getMailSenderAddress(provider = "default") {
+function formatMailAddress(address) {
+  return address ? `${COMPANY_PROFILE.name} <${address}>` : "";
+}
+
+function getMailEnvelopeAddress(provider = "default") {
   if (provider === "gmail") {
-    return process.env.GMAIL_FROM || GMAIL_USER || process.env.MAIL_FROM || COMPANY_PROFILE.email;
+    return GMAIL_USER || GMAIL_FROM || MAIL_FROM || COMPANY_PROFILE.email;
   }
 
-  return process.env.MAIL_FROM || GMAIL_USER || COMPANY_PROFILE.email;
+  return MAIL_FROM || GMAIL_USER || COMPANY_PROFILE.email;
+}
+
+function getMailSenderAddress(provider = "default") {
+  return formatMailAddress(getMailEnvelopeAddress(provider));
+}
+
+function getMailReplyTo(provider = "default") {
+  const sender = getMailEnvelopeAddress(provider);
+  const replyTo = GMAIL_FROM || MAIL_FROM || COMPANY_PROFILE.email;
+  return replyTo && replyTo !== sender ? replyTo : "";
 }
 
 function getGmailTransporter() {
@@ -2657,20 +2934,58 @@ function getGmailTransporter() {
   return gmailTransporter;
 }
 
+async function getMailDeliveryHealth() {
+  const cacheKey = [GMAIL_USER, GMAIL_APP_PASSWORD, RESEND_API_KEY, MAIL_FROM, GMAIL_FROM].join("|");
+  const now = Date.now();
+
+  if (mailHealthCache.key === cacheKey && mailHealthCache.expiresAt > now && mailHealthCache.result) {
+    return mailHealthCache.result;
+  }
+
+  let result;
+  if (GMAIL_USER && GMAIL_APP_PASSWORD) {
+    try {
+      await getGmailTransporter().verify();
+      result = { available: true, provider: "gmail", reason: "" };
+    } catch (error) {
+      console.error("Gmail baglantisi dogrulanamadi:", error);
+      result = { available: false, provider: "gmail", reason: "provider_error" };
+    }
+  } else if (RESEND_API_KEY && getMailSenderAddress()) {
+    result = { available: true, provider: "resend", reason: "" };
+  } else {
+    result = { available: false, provider: "", reason: "not_configured" };
+  }
+
+  mailHealthCache = {
+    key: cacheKey,
+    expiresAt: now + 5 * 60 * 1000,
+    result,
+  };
+  return result;
+}
+
 async function sendEmail({ to, subject, html, text }) {
   if (GMAIL_USER && GMAIL_APP_PASSWORD) {
     try {
-      await getGmailTransporter().sendMail({
+      const gmailMessage = {
         from: getMailSenderAddress("gmail"),
         to,
         subject,
         html,
         text,
-      });
+      };
+      const gmailReplyTo = getMailReplyTo("gmail");
+      if (gmailReplyTo) {
+        gmailMessage.replyTo = gmailReplyTo;
+      }
+      await getGmailTransporter().sendMail(gmailMessage);
       return { sent: true, provider: "gmail" };
     } catch (error) {
       console.error("Gmail ile mail gonderilemedi:", error);
-      return { sent: false, reason: "provider_error", provider: "gmail" };
+      if (!RESEND_API_KEY || !getMailSenderAddress()) {
+        return { sent: false, reason: "provider_error", provider: "gmail" };
+      }
     }
   }
 
@@ -2679,6 +2994,7 @@ async function sendEmail({ to, subject, html, text }) {
     return { sent: false, reason: "not_configured" };
   }
 
+  const resendReplyTo = getMailReplyTo();
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -2691,6 +3007,7 @@ async function sendEmail({ to, subject, html, text }) {
       subject,
       html,
       text,
+      ...(resendReplyTo ? { reply_to: resendReplyTo } : {}),
     }),
   });
 
@@ -2874,12 +3191,54 @@ async function assertSaleStockAvailability(items, executor) {
 
 function resolveCustomerUnitPrice(item, quantity) {
   const listPrice = Number(item.list_price || item.listPrice || 0);
-  const netPrice = Number(item.sale_price || item.salePrice || 0);
+  const netPrice = resolveEffectiveSalePrice(item);
   if (Number(quantity) <= 1 && listPrice > 0) {
     return listPrice;
   }
 
   return netPrice > 0 ? netPrice : listPrice;
+}
+
+function resolveBasePurchasePrice(item) {
+  return firstPositiveNumber(
+    item?.default_price,
+    item?.defaultPrice,
+    item?.last_purchase_price,
+    item?.lastPurchasePrice,
+    item?.average_purchase_price,
+    item?.averagePurchasePrice
+  );
+}
+
+function resolveEffectiveSalePrice(item) {
+  const explicitSalePrice = firstPositiveNumber(item?.sale_price, item?.salePrice);
+  if (explicitSalePrice > 0) {
+    return explicitSalePrice;
+  }
+
+  const explicitListPrice = firstPositiveNumber(item?.list_price, item?.listPrice);
+  if (explicitListPrice > 0) {
+    return explicitListPrice;
+  }
+
+  const basePurchasePrice = resolveBasePurchasePrice(item);
+  return basePurchasePrice > 0 ? Number((basePurchasePrice * SALE_PRICE_MULTIPLIER).toFixed(2)) : 0;
+}
+
+function isCriticalStockItem(item) {
+  const minStock = Number(item?.minStock ?? item?.min_stock ?? 0);
+  const currentStock = Number(item?.currentStock ?? item?.current_stock ?? 0);
+  return minStock > 0 && currentStock <= minStock;
+}
+
+function firstPositiveNumber(...values) {
+  for (const value of values) {
+    const numericValue = Number(value || 0);
+    if (numericValue > 0) {
+      return numericValue;
+    }
+  }
+  return 0;
 }
 
 async function queryItems(isActive = true) {
@@ -2925,15 +3284,30 @@ async function queryItems(isActive = true) {
 
 async function queryCustomerItems(options = {}) {
   const includePrices = options.includePrices === true;
+  const limit = Number(options.limit || 0);
   const activeValue = dbClient === "postgres" ? true : 1;
+  const limitClause = Number.isFinite(limit) && limit > 0 ? `LIMIT ${Math.floor(limit)}` : "";
   const rows = await query(
     `
       WITH movement_summary AS (
         SELECT
           item_id,
-          SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock
+          SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock,
+          SUM(CASE WHEN type = 'entry' THEN quantity * unit_price ELSE 0 END) / NULLIF(SUM(CASE WHEN type = 'entry' THEN quantity ELSE 0 END), 0) AS average_purchase_price
         FROM movements
         GROUP BY item_id
+      ),
+      last_entry AS (
+        SELECT item_id, unit_price
+        FROM (
+          SELECT
+            item_id,
+            unit_price,
+            ROW_NUMBER() OVER (PARTITION BY item_id ORDER BY movement_date DESC, id DESC) AS row_number
+          FROM movements
+          WHERE type = 'entry'
+        ) ranked_entries
+        WHERE row_number = 1
       )
       SELECT
         items.id,
@@ -2947,12 +3321,16 @@ async function queryCustomerItems(options = {}) {
         items.default_price,
         items.list_price,
         items.sale_price,
-        COALESCE(movement_summary.current_stock, 0) AS current_stock
+        COALESCE(movement_summary.current_stock, 0) AS current_stock,
+        COALESCE(last_entry.unit_price, 0) AS last_purchase_price,
+        COALESCE(movement_summary.average_purchase_price, 0) AS average_purchase_price
       FROM items
       LEFT JOIN movement_summary ON movement_summary.item_id = items.id
+      LEFT JOIN last_entry ON last_entry.item_id = items.id
       WHERE COALESCE(items.is_active, TRUE) = ?
         AND COALESCE(movement_summary.current_stock, 0) > 0
       ORDER BY items.name ASC, items.id ASC
+      ${limitClause}
     `,
     [activeValue]
   );
@@ -2962,6 +3340,7 @@ async function queryCustomerItems(options = {}) {
 
 function mapItemRow(row, options = {}) {
   const includePrices = options.includePrices !== false;
+  const salePrice = includePrices ? resolveEffectiveSalePrice(row) : 0;
   return {
     id: Number(row.id),
     name: row.name,
@@ -2974,7 +3353,7 @@ function mapItemRow(row, options = {}) {
     currentStock: Number(row.current_stock || 0),
     defaultPrice: includePrices ? Number(row.default_price || 0) : 0,
     listPrice: includePrices ? Number(row.list_price || 0) : 0,
-    salePrice: includePrices ? Number(row.sale_price || 0) : 0,
+    salePrice,
     lastPurchasePrice: includePrices ? Number(row.last_purchase_price || 0) : 0,
     averagePurchasePrice: includePrices ? Number(row.average_purchase_price || 0) : 0,
   };
@@ -3039,14 +3418,6 @@ async function queryExpenses() {
 }
 
 async function queryCashbook(user = null) {
-  const normalizedRole = normalizeRole(user?.role);
-  const clauses = [];
-  const params = [];
-  if (normalizedRole === "staff") {
-    clauses.push("cashbook.user_id = ?");
-    params.push(Number(user.id));
-  }
-  const whereClause = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const rows = await query(
     `
       SELECT
@@ -3061,10 +3432,8 @@ async function queryCashbook(user = null) {
         users.name AS "userName"
       FROM cashbook
       LEFT JOIN users ON users.id = cashbook.user_id
-      ${whereClause}
       ORDER BY cashbook.created_at DESC, cashbook.id DESC
-    `,
-    params
+    `
   );
 
   return rows.map(numberizeRow);
@@ -3226,22 +3595,100 @@ async function queryAgentTrainingEntries(activeOnly = true) {
   }));
 }
 
-async function computeSummary(user = null) {
-  const normalizedRole = normalizeRole(user?.role);
-  const activeValue = dbClient === "postgres" ? true : 1;
-  const cashParams = [];
-  let cashWhereClause = "";
-  if (normalizedRole === "staff") {
-    cashWhereClause = "WHERE user_id = ?";
-    cashParams.push(Number(user.id));
+async function queryTroubleshootingBankEntries(activeOnly = true) {
+  const now = Date.now();
+  if (
+    troubleshootingBankCache.activeOnly === activeOnly
+    && troubleshootingBankCache.expiresAt > now
+    && Array.isArray(troubleshootingBankCache.entries)
+  ) {
+    return troubleshootingBankCache.entries;
   }
+
+  const rows = await query(
+    `
+      SELECT
+        id,
+        bank_key AS "bankKey",
+        context_id AS "contextId",
+        family_id AS "familyId",
+        source_summary AS "sourceSummary",
+        keywords,
+        tr_subject AS "trSubject",
+        de_subject AS "deSubject",
+        tr_questions AS "trQuestions",
+        de_questions AS "deQuestions",
+        tr_answer AS "trAnswer",
+        de_answer AS "deAnswer",
+        suggestions,
+        is_active AS "isActive",
+        updated_at AS "updatedAt"
+      FROM assistant_troubleshooting_bank
+      ${activeOnly ? "WHERE is_active = ?" : ""}
+      ORDER BY updated_at DESC, id DESC
+    `,
+    activeOnly ? [dbClient === "postgres" ? true : 1] : []
+  );
+
+  const entries = rows.map((row) => {
+    const trQuestions = parseAssistantTextArray(row.trQuestions, 10);
+    const deQuestions = parseAssistantTextArray(row.deQuestions, 10);
+    const keywords = parseAssistantTextArray(row.keywords, 20);
+    const preparedPrompts = [...new Set([
+      row.trSubject,
+      row.deSubject,
+      ...trQuestions,
+      ...deQuestions,
+    ].map((value) => normalizeAssistantText(value)).filter(Boolean))].map((prompt) => ({
+      prompt,
+      tokens: tokenizeAssistantText(prompt),
+    }));
+
+    return {
+      id: Number(row.id),
+      bankKey: row.bankKey || "",
+      contextId: row.contextId || "",
+      familyId: row.familyId || "",
+      normalizedContextId: normalizeAssistantText(row.contextId),
+      normalizedFamilyId: normalizeAssistantText(row.familyId),
+      sourceSummary: row.sourceSummary || "DRC MAN 25K ariza bankasi",
+      trSubject: row.trSubject || "",
+      deSubject: row.deSubject || "",
+      trQuestions,
+      deQuestions,
+      trAnswer: row.trAnswer || "",
+      deAnswer: row.deAnswer || "",
+      suggestions: parseTrainingSuggestions(row.suggestions),
+      isActive: toBoolean(row.isActive),
+      updatedAt: row.updatedAt,
+      keywordTokens: [...new Set(
+        keywords
+          .map((value) => normalizeAssistantText(value))
+          .filter(Boolean)
+      )],
+      preparedPrompts,
+    };
+  });
+
+  troubleshootingBankCache = {
+    activeOnly,
+    expiresAt: now + TROUBLESHOOTING_BANK_CACHE_TTL_MS,
+    entries,
+  };
+
+  return entries;
+}
+
+async function computeSummary(user = null) {
+  const activeValue = dbClient === "postgres" ? true : 1;
   const [summaryRow, expenseRow, cashRow] = await Promise.all([
     get(
       `
         WITH movement_summary AS (
           SELECT
             item_id,
-            SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock
+            SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock,
+            SUM(CASE WHEN type = 'entry' THEN quantity * unit_price ELSE 0 END) / NULLIF(SUM(CASE WHEN type = 'entry' THEN quantity ELSE 0 END), 0) AS average_purchase_price
           FROM movements
           GROUP BY item_id
         ),
@@ -3260,20 +3707,37 @@ async function computeSummary(user = null) {
         SELECT
           COUNT(items.id) AS total_items,
           COALESCE(SUM(COALESCE(movement_summary.current_stock, 0) * COALESCE(NULLIF(last_entry.unit_price, 0), items.default_price, 0)), 0) AS stock_cost_value,
-          COALESCE(SUM(COALESCE(movement_summary.current_stock, 0) * COALESCE(items.sale_price, 0)), 0) AS stock_sale_value,
-          COALESCE(SUM(CASE WHEN COALESCE(movement_summary.current_stock, 0) <= COALESCE(items.min_stock, 0) THEN 1 ELSE 0 END), 0) AS critical_count
+          COALESCE(
+            SUM(
+              COALESCE(movement_summary.current_stock, 0) * COALESCE(
+                NULLIF(items.sale_price, 0),
+                NULLIF(items.list_price, 0),
+                ROUND(COALESCE(NULLIF(last_entry.unit_price, 0), movement_summary.average_purchase_price, items.default_price, 0) * ?, 2),
+                0
+              )
+            ),
+            0
+          ) AS stock_sale_value,
+          COALESCE(
+            SUM(
+              CASE
+                WHEN COALESCE(items.min_stock, 0) > 0
+                  AND COALESCE(movement_summary.current_stock, 0) <= COALESCE(items.min_stock, 0)
+                THEN 1
+                ELSE 0
+              END
+            ),
+            0
+          ) AS critical_count
         FROM items
         LEFT JOIN movement_summary ON movement_summary.item_id = items.id
         LEFT JOIN last_entry ON last_entry.item_id = items.id
         WHERE COALESCE(items.is_active, TRUE) = ?
       `,
-      [activeValue]
+      [SALE_PRICE_MULTIPLIER, activeValue]
     ),
     get("SELECT COALESCE(SUM(amount), 0) AS expense_total FROM expenses"),
-    get(
-      `SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook ${cashWhereClause}`,
-      cashParams
-    ),
+    get("SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook"),
   ]);
 
   const stockCostValue = Number(summaryRow?.stock_cost_value || summaryRow?.stockCostValue || 0);
@@ -3343,7 +3807,7 @@ async function buildBootstrap(user) {
 
   if (normalizedRole === "customer") {
     const [items, orders, adminMessages] = await Promise.all([
-      queryCustomerItems({ includePrices: true }),
+      queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT }),
       queryOrders(user),
       queryAdminMessages(user),
     ]);
@@ -3356,7 +3820,7 @@ async function buildBootstrap(user) {
         stockValue: 0,
         stockCostValue: 0,
         stockSaleValue: 0,
-        criticalCount: customerItems.filter((item) => Number(item.currentStock) <= Number(item.minStock)).length,
+        criticalCount: customerItems.filter(isCriticalStockItem).length,
         expenseTotal: 0,
         cashBalance: 0,
       },
@@ -3382,7 +3846,7 @@ async function buildBootstrap(user) {
   const includeSecurity = normalizedRole === "admin";
   const [summary, items, movements, expenses, cashbook, users, quotes, orders, adminMessages, securityEvents, securityBlocks] = await Promise.all([
     computeSummary(user),
-    queryCustomerItems({ includePrices: true }),
+    queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT }),
     queryMovements(user),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
     includeCashbook ? queryCashbook(user) : Promise.resolve([]),
@@ -3436,7 +3900,7 @@ function getAssistantStatus() {
 
   return {
     mode: "built_in",
-    label: "DRC MAN yedek mod",
+    label: "DRC MAN bilgi tabani aktif",
   };
 }
 
@@ -3455,6 +3919,173 @@ function audienceAllowsRole(audience, role) {
     return normalizedRole === "customer";
   }
   return false;
+}
+
+function buildTroubleshootingTokens(value) {
+  return [...new Set(
+    tokenizeAssistantText(value).filter(
+      (token) => (token.length >= 3 || TROUBLESHOOTING_SHORT_TOKENS.has(token)) && !TROUBLESHOOTING_STOP_WORDS.has(token)
+    )
+  )].slice(0, 14);
+}
+
+function isTroubleshootingAssistantQuestion(message, history = []) {
+  const normalizedConversation = normalizeAssistantText(`${message || ""} ${extractAssistantHistoryText(history)}`);
+  if (!normalizedConversation) {
+    return false;
+  }
+
+  return TROUBLESHOOTING_STRONG_HINTS.some((hint) => normalizedConversation.includes(hint));
+}
+
+function buildTroubleshootingSuggestions(entry, language = "tr") {
+  const languageSuggestions = language === "de" ? entry.deQuestions : entry.trQuestions;
+  return [...new Set(languageSuggestions.slice(1, 6))]
+    .map((item) => cleanOptional(item))
+    .filter(Boolean)
+    .slice(0, 5);
+}
+
+function troubleshootingEntryMatchesToken(entry, token) {
+  if (!token) {
+    return false;
+  }
+
+  if (entry.normalizedContextId.includes(token) || entry.normalizedFamilyId.includes(token)) {
+    return true;
+  }
+
+  if (entry.keywordTokens.some((keyword) => keyword.includes(token))) {
+    return true;
+  }
+
+  return entry.preparedPrompts.some(({ prompt }) => prompt.includes(token));
+}
+
+function detectTroubleshootingPreferredPack(normalizedMessage) {
+  if (!normalizedMessage) {
+    return "";
+  }
+
+  if (
+    normalizedMessage.includes("r290")
+    && /(hp alarm|lp alarm|\bhpc\b|\blpc\b|superheat|subcool|noncondensable|moisture|oil return|yag donusu|vacuum fail|vakum)/.test(normalizedMessage)
+  ) {
+    return "r290 gaz hatalari";
+  }
+
+  if (/(r404a|r4040|r404)\b/.test(normalizedMessage)) {
+    return "r404a";
+  }
+
+  if (/(r134a|r134)\b/.test(normalizedMessage)) {
+    return "r134a";
+  }
+
+  if (normalizedMessage.includes("r290")) {
+    return "r290";
+  }
+
+  if (/(hp alarm|lp alarm|\bhpc\b|\blpc\b|superheat|subcool|noncondensable|moisture|oil return|yag donusu|vacuum fail|vakum)/.test(normalizedMessage)) {
+    return "gaz";
+  }
+
+  if (/(kontaktor|schuetz|panel|pano|notr|faz|sigorta|relay|role)/.test(normalizedMessage)) {
+    return "elektrik panosu";
+  }
+
+  if (/(kompresor|verdichter|sivi donusu|floodback|yag donusu|oil return|basma sicakligi|short cycle)/.test(normalizedMessage)) {
+    return "kompresor";
+  }
+
+  if (/(defrost|abtau|rezistans|fan delay|drenaj heater|abtauung)/.test(normalizedMessage)) {
+    return "defrost";
+  }
+
+  if (/(kacak|leak|vacuum|vakum|refrigerant|undercharge|overcharge|sight glass|service valfi|flare)/.test(normalizedMessage)) {
+    return "gaz kacak";
+  }
+
+  return "";
+}
+
+async function matchAssistantTroubleshootingBank(message, language, user, history = []) {
+  if (!isTroubleshootingAssistantQuestion(message, history)) {
+    return null;
+  }
+
+  const normalizedMessage = normalizeAssistantText(`${message || ""} ${extractAssistantHistoryText(history)}`);
+  if (!normalizedMessage) {
+    return null;
+  }
+
+  const tokens = buildTroubleshootingTokens(normalizedMessage);
+  const precisionTokens = tokens.filter((token) => token.length >= 4 || /\d/.test(token));
+  const anchorTokens = tokens.filter((token) => /\d/.test(token) || TROUBLESHOOTING_ANCHOR_TOKENS.has(token));
+  const entries = await queryTroubleshootingBankEntries(true);
+  const anchoredEntries = anchorTokens.length
+    ? entries.filter((entry) => anchorTokens.some((token) => troubleshootingEntryMatchesToken(entry, token)))
+    : entries;
+  const candidateEntries = anchoredEntries.length ? anchoredEntries : entries;
+  const preferredPack = detectTroubleshootingPreferredPack(normalizedMessage);
+  const packScopedEntries = preferredPack
+    ? candidateEntries.filter((entry) => normalizeAssistantText(entry.sourceSummary).includes(preferredPack))
+    : [];
+  const scoredEntries = packScopedEntries.length ? packScopedEntries : candidateEntries;
+  const minimumScore = packScopedEntries.length ? 34 : 52;
+  let bestEntry = null;
+  let bestScore = 0;
+
+  for (const entry of scoredEntries) {
+    let score = 0;
+
+    entry.preparedPrompts.forEach(({ prompt, tokens: promptTokens }) => {
+      score += scorePreparedAssistantPromptMatch(normalizedMessage, tokens, prompt, promptTokens);
+    });
+
+    entry.keywordTokens.forEach((keyword) => {
+      score += scoreAssistantKeywordMatch(normalizedMessage, tokens, keyword);
+    });
+
+    if (tokens.some((token) => entry.normalizedContextId.includes(token) || entry.normalizedFamilyId.includes(token))) {
+      score += 18;
+    }
+
+    precisionTokens.forEach((token) => {
+      const keywordHit = entry.keywordTokens.some((keyword) => keyword.includes(token));
+      const promptHit = entry.preparedPrompts.some(({ prompt }) => prompt.includes(token));
+      if (keywordHit || promptHit) {
+        score += 18;
+      }
+    });
+
+    if (anchorTokens.length && normalizeAssistantText(entry.sourceSummary).includes("derin ariza bankasi")) {
+      score += 24;
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestEntry = entry;
+    }
+  }
+
+  if (!bestEntry || bestScore < minimumScore) {
+    return null;
+  }
+
+  const answer = language === "de"
+    ? cleanOptional(bestEntry.deAnswer) || cleanOptional(bestEntry.trAnswer)
+    : cleanOptional(bestEntry.trAnswer) || cleanOptional(bestEntry.deAnswer);
+
+  if (!answer) {
+    return null;
+  }
+
+  return {
+    answer,
+    suggestions: buildTroubleshootingSuggestions(bestEntry, language),
+    sourceSummary: localizeAssistantSourceSummary(bestEntry.sourceSummary, language, "troubleshooting"),
+  };
 }
 
 async function matchAssistantTraining(message, language, user) {
@@ -3513,7 +4144,7 @@ async function matchAssistantTraining(message, language, user) {
   return {
     answer,
     suggestions: adaptTrainingSuggestions(bestEntry.suggestions || [], language, entries),
-    sourceSummary: cleanOptional(bestEntry.topic) || "DRC MAN yonetici egitimi",
+    sourceSummary: localizeAssistantSourceSummary(bestEntry.topic, language, "training"),
   };
 }
 
@@ -3594,6 +4225,33 @@ function scoreAssistantPromptMatch(normalizedMessage, tokens, prompt) {
       score += token.length >= 4 ? 8 : 4;
     }
   });
+
+  return score;
+}
+
+function scorePreparedAssistantPromptMatch(normalizedMessage, tokens, prompt, promptTokens = []) {
+  if (!prompt) {
+    return 0;
+  }
+
+  let score = 0;
+  if (normalizedMessage === prompt) {
+    score += 160;
+  } else if (prompt.includes(normalizedMessage) || normalizedMessage.includes(prompt)) {
+    score += 95;
+  }
+
+  tokens.forEach((token) => {
+    if (promptTokens.includes(token)) {
+      score += token.length >= 4 ? 22 : 12;
+    } else if (prompt.includes(token)) {
+      score += token.length >= 5 ? 10 : 5;
+    }
+  });
+
+  if (tokens.length >= 2 && tokens.every((token) => prompt.includes(token))) {
+    score += 36;
+  }
 
   return score;
 }
@@ -3699,6 +4357,99 @@ function resolveAssistantAnswerLevel(message, user) {
   return isCustomerRole(user?.role) ? "customer" : "master";
 }
 
+const ASSISTANT_PROMPT_ATTACK_PHRASES = [
+  "system prompt",
+  "developer prompt",
+  "developer message",
+  "developer instructions",
+  "internal instructions",
+  "hidden prompt",
+  "hidden instructions",
+  "ignore previous instructions",
+  "ignore all previous instructions",
+  "ignore system instructions",
+  "bypass safety",
+  "jailbreak",
+  "chain of thought",
+  "internal reasoning",
+  "raw prompt",
+  "prompt injection",
+  "sistem talimati",
+  "gizli talimat",
+  "gelistirici mesaji",
+];
+
+const ASSISTANT_DISCLOSURE_PATTERNS = [
+  /postgres(?:ql)?:\/\//,
+  /\bdatabase url\b/,
+  /\bdatabase_url\b/,
+  /\bsession secret\b/,
+  /\bjwt secret\b/,
+  /\bapi key\b/,
+  /\bapikey\b/,
+  /\bprivate key\b/,
+  /\bssh key\b/,
+  /\bsupabase key\b/,
+  /\bvercel token\b/,
+  /\bgithub token\b/,
+  /\bgmail app password\b/,
+  /\bpassword list\b/,
+  /\bsifre listesi\b/,
+  /\badmin sifresi\b/,
+  /\bpersonel sifresi\b/,
+  /\bmusteri sifresi\b/,
+  /\bkullanici sifresi\b/,
+  /\bsifreleri goster\b/,
+  /\bsifreyi ver\b/,
+  /\btokeni ver\b/,
+  /\bconnection string\b/,
+  /\.env\b/,
+  /\bbearer token\b/,
+  /\brefresh token\b/,
+  /\bpassword hash\b/,
+  /\bsifre hash\b/,
+];
+
+const ASSISTANT_RAW_ACCESS_PATTERNS = [
+  /\bsql dump\b/,
+  /\bdatabase dump\b/,
+  /\braw database\b/,
+  /\bham veri\b/,
+  /\btum veritabani\b/,
+  /\ball users\b/,
+  /\bkullanici listesi\b/,
+  /\bmusteri listesi\b/,
+  /\bsource code\b/,
+  /\bkaynak kod\b/,
+  /server\/app\.js/,
+  /server\/db\.js/,
+  /drc_man_bridge\.py/,
+  /\bpackage\.json\b/,
+  /\bterminal output\b/,
+  /\bloglari goster\b/,
+  /\bbackup dosyasi\b/,
+];
+
+const ASSISTANT_CUSTOMER_INTERNAL_PATTERNS = [
+  /(alis|maliyet|einkauf|einkaufspreis|purchase|cost)/,
+  /(kar marj|kar marji|profit margin|margin|marj)/,
+  /(stok degeri|stock value)/,
+  /(kasa|cashbook|masraf|expense)/,
+  /(tedarikci|supplier)/,
+  /(tum siparis|all orders|baska musteri|other customer)/,
+  /(kullanici listesi|musteri listesi|personel listesi|admin bilgisi)/,
+  /(internal note|ic not|ic operasyon|internal data)/,
+];
+
+const ASSISTANT_STAFF_INTERNAL_PATTERNS = [
+  /(alis|maliyet|einkauf|einkaufspreis|purchase|cost)/,
+  /(kar marj|kar marji|profit margin|margin|marj)/,
+  /(stok degeri|stock value)/,
+  /(tum kullanici|all users|musteri listesi|user list)/,
+  /(admin sifresi|password list|sifre listesi)/,
+  /(database url|database_url|session secret|jwt secret|api key|token|private key|ssh key)/,
+];
+
 function adaptAssistantTrainingAnswer(answer, language = "tr", answerLevel = "master") {
   const text = cleanOptional(answer);
   if (!text || answerLevel !== "customer") {
@@ -3712,20 +4463,176 @@ function adaptAssistantTrainingAnswer(answer, language = "tr", answerLevel = "ma
     : `Kisa ve sade anlatim: ${shortened} Gerekirse DRC MAN bunu usta seviyesinde daha detayli aciklar.`;
 }
 
+function extractAssistantHistoryText(history = []) {
+  if (!Array.isArray(history)) {
+    return "";
+  }
+
+  return history
+    .slice(-8)
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") {
+        return "";
+      }
+      return cleanOptional(entry.text || entry.message || entry.content);
+    })
+    .filter(Boolean)
+    .join(" ");
+}
+
+function assistantTextMatchesAny(normalizedText, patterns = []) {
+  return patterns.some((pattern) => pattern.test(normalizedText));
+}
+
+function assistantTextIncludesAny(normalizedText, phrases = []) {
+  return phrases.some((phrase) => normalizedText.includes(phrase));
+}
+
+function isAssistantSecretDisclosureRequest(normalizedText) {
+  if (assistantTextMatchesAny(normalizedText, ASSISTANT_DISCLOSURE_PATTERNS)) {
+    return true;
+  }
+
+  return /\b(?:ver|goster|listele|paylas|yaz|copy|kopyala|show|reveal|list|dump|export)\b.*\b(?:sifre|password|token|secret|api key|database url|database_url|session|jwt|cookie|key)\b/.test(normalizedText)
+    || /\b(?:sifre|password|token|secret|api key|database url|database_url|session|jwt|cookie|key)\b.*\b(?:ver|goster|listele|paylas|yaz|copy|kopyala|show|reveal|list|dump|export)\b/.test(normalizedText);
+}
+
+function detectAssistantSafetyIssue(message, user = null, history = []) {
+  const role = normalizeRole(user?.role);
+  const normalizedMessage = normalizeAssistantText(message);
+  const normalizedConversation = normalizeAssistantText(`${message || ""} ${extractAssistantHistoryText(history)}`);
+
+  if (assistantTextIncludesAny(normalizedConversation, ASSISTANT_PROMPT_ATTACK_PHRASES)) {
+    return "prompt_security";
+  }
+
+  if (isAssistantSecretDisclosureRequest(normalizedConversation) || assistantTextMatchesAny(normalizedConversation, ASSISTANT_RAW_ACCESS_PATTERNS)) {
+    return "secret_disclosure";
+  }
+
+  if (role === "customer" && (isRestrictedCustomerPurchaseQuestion(message) || assistantTextMatchesAny(normalizedConversation, ASSISTANT_CUSTOMER_INTERNAL_PATTERNS))) {
+    return "customer_internal";
+  }
+
+  if (role === "staff" && assistantTextMatchesAny(normalizedConversation, ASSISTANT_STAFF_INTERNAL_PATTERNS)) {
+    return "staff_internal";
+  }
+
+  if (role === "customer" && /(security event|guvenlik olayi|security log|guvenlik logu|blocked ip|engellenen ip)/.test(normalizedMessage)) {
+    return "customer_internal";
+  }
+
+  return null;
+}
+
+function buildAssistantPolicySuggestions(language = "tr", user = null) {
+  if (language === "de") {
+    return isCustomerRole(user?.role)
+      ? ["Produktpreis zeigen", "Lagerbestand pruefen", "Technische Produktfrage"]
+      : ["Kritische Artikel", "Produktpreis zeigen", "Technische Diagnose"];
+  }
+
+  return isCustomerRole(user?.role)
+    ? ["Urun fiyati goster", "Stok durumunu sor", "Teknik urun sorusu sor"]
+    : ["Kritik urunleri goster", "Urun fiyati goster", "Teknik ariza sorusu sor"];
+}
+
+function buildAssistantPolicyAnswer(reason, language = "tr", user = null) {
+  const role = normalizeRole(user?.role);
+  if (language === "de") {
+    if (reason === "customer_internal") {
+      return "Kundenansicht: DRC MAN gibt nur Verkaufspreise, Lagerstatus, Bestellungen und allgemeine technische Hilfe aus. Einkauf, Marge, Kasse, Kosten, Benutzer- und interne Betriebsdaten bleiben gesperrt.";
+    }
+    if (reason === "staff_internal") {
+      return "Diese Information ist fuer Admin reserviert. Im Personalmodus beantwortet DRC MAN Verkaufs-, Lager- und Technikfragen, aber keine Passwoerter, Schluessel, Benutzerlisten oder internen Kostendaten.";
+    }
+    return role === "admin"
+      ? "DRC MAN gibt auch im Admin-Modus keine Passwoerter, Tokens, Systemprompts, Quellcode, Datenbank-Zugangsdaten oder versteckten Anweisungen preis."
+      : "DRC MAN gibt keine Passwoerter, Tokens, Systemprompts, Quellcode, Datenbank-Zugangsdaten oder versteckten Anweisungen preis.";
+  }
+
+  if (reason === "customer_internal") {
+    return "Musteri modunda DRC MAN sadece satis fiyati, stok durumu, siparis ve genel teknik yardim verir. Alis, marj, kasa, masraf, kullanici ve ic operasyon verileri paylasilmaz.";
+  }
+  if (reason === "staff_internal") {
+    return "Bu bilgi admin seviyesindedir. Personel modunda DRC MAN satis, stok ve teknik yardim verir; sifre, anahtar, kullanici listesi ve ic maliyet detaylarini acmaz.";
+  }
+  return role === "admin"
+    ? "DRC MAN admin icin bile sifre, token, sistem promptu, kaynak kod, veritabani baglanti bilgisi veya gizli talimatlari aciklamaz."
+    : "DRC MAN sifre, token, sistem promptu, kaynak kod, veritabani baglanti bilgisi veya gizli talimatlari aciklamaz.";
+}
+
+function evaluateAssistantSafetyPolicy(message, language = "tr", user = null, history = []) {
+  const reason = detectAssistantSafetyIssue(message, user, history);
+  if (!reason) {
+    return null;
+  }
+
+  return {
+    answer: buildAssistantPolicyAnswer(reason, language, user),
+    suggestions: buildAssistantPolicySuggestions(language, user),
+    provider: "policy",
+    sourceSummary: localizeAssistantSourceSummary("", language, "policy"),
+  };
+}
+
+function detectAssistantAnswerLeak(answer, user = null) {
+  const role = normalizeRole(user?.role);
+  const normalized = normalizeAssistantText(answer);
+  if (!normalized) {
+    return null;
+  }
+
+  if (assistantTextIncludesAny(normalized, ASSISTANT_PROMPT_ATTACK_PHRASES) || isAssistantSecretDisclosureRequest(normalized) || assistantTextMatchesAny(normalized, ASSISTANT_RAW_ACCESS_PATTERNS)) {
+    return "secret_disclosure";
+  }
+
+  if (role === "customer" && assistantTextMatchesAny(normalized, ASSISTANT_CUSTOMER_INTERNAL_PATTERNS)) {
+    return "customer_internal";
+  }
+
+  if (role === "staff" && assistantTextMatchesAny(normalized, ASSISTANT_STAFF_INTERNAL_PATTERNS)) {
+    return "staff_internal";
+  }
+
+  return null;
+}
+
+function finalizeAssistantReply(payload, language = "tr", user = null) {
+  if (!payload || !payload.answer) {
+    return payload;
+  }
+
+  const reason = detectAssistantAnswerLeak(payload.answer, user);
+  if (!reason) {
+    return {
+      ...payload,
+      answer: cleanOptional(payload.answer),
+      suggestions: Array.isArray(payload.suggestions) ? payload.suggestions.filter(Boolean).slice(0, 5) : [],
+    };
+  }
+
+  return {
+    answer: buildAssistantPolicyAnswer(reason, language, user),
+    suggestions: buildAssistantPolicySuggestions(language, user),
+    provider: "policy",
+    sourceSummary: localizeAssistantSourceSummary("", language, "policy"),
+  };
+}
+
 function sanitizeAssistantAnswerForRole(answer, language = "tr", user = null) {
   const role = normalizeRole(user?.role);
   const text = cleanOptional(answer);
-  if (!text || role !== "customer") {
+  if (!text) {
     return text;
   }
 
-  const normalized = normalizeAssistantText(text);
-  const hasRestrictedPurchaseInfo = /(alis|alış|maliyet|maliyetim|kar marji|kâr marji|einkauf|einkaufspreis|kosten|cost|purchase)/.test(normalized);
-  if (!hasRestrictedPurchaseInfo) {
+  const reason = detectAssistantAnswerLeak(text, user);
+  if (!reason) {
     return text;
   }
 
-  return customerRestrictedPurchaseAnswer(language);
+  return buildAssistantPolicyAnswer(reason, language, { role });
 }
 
 function isRestrictedCustomerPurchaseQuestion(message) {
@@ -3734,9 +4641,26 @@ function isRestrictedCustomerPurchaseQuestion(message) {
   return /(alis|alış|maliyet|maliyetim|kar marji|kâr marji|einkauf|einkaufspreis|kosten|cost|purchase)/.test(normalized);
 }
 
+function hasAssistantSalesDialogueIntent(normalizedMessage) {
+  return /(almanca|deutsch|auf deutsch|auf turkisch|verkaufsgesprach|kundengesprach|kunden gesprach|satis konusmasi|satis diyalo|fiyat itirazi|preiseinwand|wie antwortet man|wie reagiert man|angebot erstellen|lieferzeit kommunizieren|bestellung abschliessen)/.test(normalizedMessage);
+}
+
+function hasAssistantGithubTrainingIntent(normalizedMessage) {
+  return /(git hub|github|open fdd|openfdd|fault detection hvac|dinamik esik|dynamic threshold|rough sets refrigeration|iot anomaly detection hvac|lstm models fdd|anomaly pipeline)/.test(normalizedMessage);
+}
+
+function hasAssistantPreferredTrainingIntent(normalizedMessage) {
+  return hasAssistantRoleplayIntent(normalizedMessage)
+    || hasAssistantSalesDialogueIntent(normalizedMessage)
+    || hasAssistantGithubTrainingIntent(normalizedMessage);
+}
+
 function isDirectPriceQuestion(message) {
   const text = cleanOptional(message);
   const normalized = normalizeAssistantText(text);
+  if (hasAssistantPreferredTrainingIntent(normalized)) {
+    return false;
+  }
   return /€|\beur\b/i.test(text)
     || /(fiyat|ucret|ücret|tutar|satis fiyati|satış fiyatı|liste fiyati|liste fiyatı|net fiyat|preis|verkaufspreis|listenpreis)/.test(normalized);
 }
@@ -3745,6 +4669,139 @@ function customerRestrictedPurchaseAnswer(language = "tr") {
   return language === "de"
     ? "Kundenansicht: Verkaufspreise sind sichtbar, Einkaufspreise und Kosten bleiben nur fuer Admins sichtbar."
     : "Musteri ekrani: satis fiyatlari gorunur, alis fiyati ve maliyet bilgisi sadece admin icin sakli kalir.";
+}
+
+function hasAssistantCatalogListIntent(normalizedMessage) {
+  return /(kritik|az stok|stok dusuk|minimum|kritisch|wenig bestand|mindestbestand|en pahali|en yuksek fiyat|en yuksek satis|teuerste|hochste preis|verkaufspreis)/.test(normalizedMessage);
+}
+
+function hasAssistantCatalogItemIntent(normalizedMessage) {
+  return /(kategori|sinif|grup|kategorie|gruppe|stok kodu|kodu|kodu nedir|barkod|artikelcode|lagernummer|code|stok|kac adet|mevcut|bestand|lager|lagerbestand|auf lager|wie viel|verfugbar|fiyat|satis|alis|ucret|preis|verkauf|einkauf|marka|brand)/.test(normalizedMessage);
+}
+
+function hasAssistantAdvisoryIntent(normalizedMessage) {
+  return /(oner|oneri|onerir|tavsiye|hangi urun|hangi marka|ne oner|uygun mu|uygun olur|recommend|empfehl|empfehlen|vorschlag|beratung|proje|projekt|hesapla|hesaplama|secim|sec|soguk oda|kaelteraum)/.test(normalizedMessage);
+}
+
+function hasAssistantRoleplayIntent(normalizedMessage) {
+  return /(roleplay|role play|rol oyunu|rolplay|senaryo|rollenspiel|szenario)/.test(normalizedMessage);
+}
+
+function shouldPreferAssistantCatalogReply(message, items) {
+  const normalized = normalizeAssistantText(message);
+  if (hasAssistantPreferredTrainingIntent(normalized)) {
+    return false;
+  }
+  if (hasAssistantCatalogListIntent(normalized)) {
+    return true;
+  }
+  if (hasAssistantAdvisoryIntent(normalized)) {
+    return false;
+  }
+  if (!hasAssistantCatalogItemIntent(normalized)) {
+    return false;
+  }
+  return findAssistantCandidates(normalized, items).length > 0;
+}
+
+function localizeAssistantItemCategory(category, language = "tr") {
+  if (language !== "de") {
+    return category || "-";
+  }
+
+  const normalized = normalizeAssistantText(category);
+  const categoryMap = {
+    "sogutma yaglari": "Kuehloele",
+    "kompresorler": "Verdichter",
+    "kondenserler": "Verfluessiger",
+    "vrf sistemleri": "VRF-Systeme",
+    "vrf ic uniteleri": "VRF-Innengeraete",
+    "kontrol panelleri": "Steuerungen",
+    "fan motorlari": "Ventilatormotoren",
+    "filtre drier": "Filtertrockner",
+    "filtreler kurutucular": "Filter & Trockner",
+    "servis valfi": "Serviceventile",
+    "genlesme valfleri": "Expansionsventile",
+    "izolasyon": "Isolierung",
+    "montaj sarf": "Montagebedarf",
+    "sogutucu akiskanlar": "Kaeltemittel",
+    "sogutucu gaz": "Kaeltemittel",
+    "dikey tip buzdolaplari": "Vertikale Kuehlschraenke",
+    "termostat": "Thermostate",
+    "sogutma malzemeleri": "Kuehltechnik-Zubehoer",
+    "valfler genlesme valfleri": "Ventile & Expansionsventile",
+    "drenaj pompasi": "Kondensatpumpen",
+  };
+
+  return categoryMap[normalized] || category || "-";
+}
+
+function localizeAssistantItemUnit(unit, language = "tr") {
+  if (language !== "de") {
+    return unit || "";
+  }
+
+  const normalized = normalizeAssistantText(unit);
+  const unitMap = {
+    "adet": "Stk.",
+    "koli": "Karton",
+    "top": "Rolle",
+    "metre": "m",
+    "mt": "m",
+    "paket": "Paket",
+    "set": "Set",
+    "takim": "Set",
+  };
+
+  return unitMap[normalized] || unit || "";
+}
+
+function formatAssistantQuantity(value, unit, language = "tr") {
+  const amount = Number(value || 0);
+  const displayUnit = localizeAssistantItemUnit(unit, language);
+  return `${amount} ${displayUnit}`.trim();
+}
+
+function localizeAssistantSourceSummary(summary, language = "tr", fallbackType = "default") {
+  if (language !== "de") {
+    if (summary) {
+      return summary;
+    }
+    if (fallbackType === "troubleshooting") {
+      return "DRC MAN 25K ariza bankasi";
+    }
+    if (fallbackType === "training") {
+      return "DRC MAN yonetici egitimi";
+    }
+    if (fallbackType === "policy") {
+      return "DRC MAN guvenlik politikasi";
+    }
+    return "DRC MAN";
+  }
+
+  const text = cleanOptional(summary);
+  if (!text) {
+    if (fallbackType === "troubleshooting") {
+      return "DRC MAN Stoerungsdatenbank";
+    }
+    if (fallbackType === "training") {
+      return "DRC MAN Admin-Training";
+    }
+    if (fallbackType === "policy") {
+      return "DRC MAN Sicherheitsrichtlinie";
+    }
+    return "DRC MAN";
+  }
+
+  return text
+    .replace(/DRC MAN 25K ariza bankasi/gi, "DRC MAN Stoerungsdatenbank")
+    .replace(/DRC MAN yonetici egitimi/gi, "DRC MAN Admin-Training")
+    .replace(/DRC MAN guvenlik politikasi/gi, "DRC MAN Sicherheitsrichtlinie")
+    .replace(/saha senaryo egitimi/gi, "Feldszenario-Training")
+    .replace(/derin ariza bankasi/gi, "tiefe Stoerungsdatenbank")
+    .replace(/ariza bankasi/gi, "Stoerungsdatenbank")
+    .replace(/yag donusu bozuk/gi, "Oelruecklauf gestoert")
+    .replace(/gaz hatalari/gi, "Kaeltemittelfehler");
 }
 
 function answerAssistantQuestion(message, items, language = "tr", user = null) {
@@ -3756,12 +4813,12 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
   const canViewSale = true;
 
   if (/(kritik|az stok|stok dusuk|minimum|kritisch|wenig bestand|mindestbestand)/.test(normalized)) {
-    const critical = items.filter((item) => Number(item.currentStock) <= Number(item.minStock)).slice(0, 8);
+    const critical = items.filter(isCriticalStockItem).slice(0, 8);
     if (!critical.length) {
       return { reply: t.noCritical, suggestions: [] };
     }
     return {
-      reply: `${t.criticalList}: ${critical.map((item) => `${item.name} (${item.currentStock} ${item.unit})`).join(", ")}`,
+      reply: `${t.criticalList}: ${critical.map((item) => `${item.name} (${formatAssistantQuantity(item.currentStock, item.unit, language)})`).join(", ")}`,
       suggestions: critical.slice(0, 4).map((item) => item.name),
     };
   }
@@ -3783,7 +4840,7 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
     const item = candidates[0];
     return {
       reply: language === "de"
-        ? `${item.name} ist in der Kategorie ${item.category}. Marke: ${item.brand || "-"}.`
+        ? `${item.name} ist in der Kategorie ${localizeAssistantItemCategory(item.category, language)}. Marke: ${item.brand || "-"}.`
         : `${item.name} urunu ${item.category} kategorisinde. Marka: ${item.brand || "-"}.`,
       suggestions: [`${item.name} ${t.priceWord}`, `${item.name} ${t.stockWord}`],
     };
@@ -3799,11 +4856,11 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
     };
   }
 
-  if (/(stok|kac adet|mevcut|bestand|wie viel|verfugbar)/.test(normalized) && candidates[0]) {
+  if (/(stok|kac adet|mevcut|bestand|lager|lagerbestand|auf lager|wie viel|verfugbar)/.test(normalized) && candidates[0]) {
     const item = candidates[0];
     return {
       reply: language === "de"
-        ? `${item.name} hat aktuell ${item.currentStock} ${item.unit} auf Lager. Kritischer Bestand: ${item.minStock} ${item.unit}.`
+        ? `${item.name} hat aktuell ${formatAssistantQuantity(item.currentStock, item.unit, language)} auf Lager. Kritischer Bestand: ${formatAssistantQuantity(item.minStock, item.unit, language)}.`
         : `${item.name} stokta ${item.currentStock} ${item.unit} gorunuyor. Kritik seviye ${item.minStock} ${item.unit}.`,
       suggestions: [`${item.name} ${t.priceWord}`, `${item.name} ${t.categoryWord}`],
     };
@@ -3814,7 +4871,7 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
     if (!canViewSale) {
       return {
         reply: language === "de"
-          ? `${item.name} ist verfuegbar mit ${item.currentStock} ${item.unit}. Preise werden in der Kundenansicht nicht angezeigt; bitte senden Sie eine Bestellung zur Bestaetigung.`
+          ? `${item.name} ist mit ${formatAssistantQuantity(item.currentStock, item.unit, language)} verfuegbar. Preise werden in der Kundenansicht nicht angezeigt; bitte senden Sie eine Bestellung zur Bestaetigung.`
           : `${item.name} stokta ${item.currentStock} ${item.unit} gorunuyor. Musteri ekraninda fiyat gosterilmez; teyit icin siparis talebi gonderin.`,
         suggestions: [`${item.name} ${t.stockWord}`, t.customerOrderSuggestion],
       };
@@ -3836,7 +4893,7 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
     return {
       reply: `${t.matchList}: ${top.map((item) => canViewSale
         ? `${item.name} (${formatEur(visibleSalePriceForRole(item, canViewPurchase))})`
-        : `${item.name} (${item.currentStock} ${item.unit})`).join(", ")}`,
+        : `${item.name} (${formatAssistantQuantity(item.currentStock, item.unit, language)})`).join(", ")}`,
       suggestions: top.map((item) => `${item.name} ${canViewSale ? t.priceWord : t.stockWord}`).slice(0, 3),
     };
   }
@@ -3855,10 +4912,7 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
 }
 
 function visibleSalePriceForRole(item, canViewPurchase) {
-  if (canViewPurchase) {
-    return Number(item.salePrice || item.defaultPrice || item.lastPurchasePrice || 0);
-  }
-  return Number(item.salePrice || 0);
+  return resolveEffectiveSalePrice(item);
 }
 
 function createAssistantDictionary(language) {
@@ -3964,6 +5018,7 @@ function extractAssistantQuery(normalizedMessage) {
   return normalizedMessage
     .replace(
       /\b(kritik|az|stok|dusuk|minimum|en|pahali|yuksek|fiyat|satis|alis|ucret|kategori|sinif|grup|kodu|nedir|barkod|kac|adet|mevcut|nasil|teklif|yap|direkt|tahsilat|kritisch|wenig|bestand|mindestbestand|teuerste|hochste|preis|verkauf|einkauf|kategorie|gruppe|artikelcode|lagernummer|code|wie|viel|verfugbar|angebot|direktverkauf|zahlung)\b/g,
+      /\b(kritik|az|stok|dusuk|minimum|en|pahali|yuksek|fiyat|satis|alis|ucret|kategori|sinif|grup|kodu|nedir|barkod|kac|adet|mevcut|nasil|teklif|yap|direkt|tahsilat|kritisch|wenig|bestand|lager|lagerbestand|mindestbestand|teuerste|hochste|preis|verkauf|einkauf|kategorie|gruppe|artikelcode|lagernummer|code|wie|viel|verfugbar|angebot|direktverkauf|zahlung)\b/g,
       " "
     )
     .replace(/\s+/g, " ")

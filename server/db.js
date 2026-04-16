@@ -10,18 +10,13 @@ const configuredDbPath = process.env.SQLITE_PATH ? path.resolve(process.env.SQLI
 const dataDir = path.dirname(configuredDbPath);
 const dbPath = isPostgres ? process.env.DATABASE_URL : configuredDbPath;
 
-const DEFAULT_USERS = [
-  { name: "Depo Admin", username: "admin", password: "admin123", role: "admin" },
-  { name: "Depo Operator", username: "operator", password: "operator123", role: "operator" },
-  { name: "Personel 1", username: "personel1", password: "personel123", role: "staff" },
-  { name: "Personel 2", username: "personel2", password: "personel123", role: "staff" },
-  { name: "Musteri 1", username: "musteri1", password: "musteri123", role: "customer" },
-  { name: "Musteri 2", username: "musteri2", password: "musteri123", role: "customer" },
-  { name: "Musteri 3", username: "musteri3", password: "musteri123", role: "customer" },
-];
+const DEFAULT_USERS = [];
 
 let sqliteDb = null;
 let pgPool = null;
+let postgresInitPromise = null;
+let pgSchemaClient = null;
+const POSTGRES_SCHEMA_LOCK_KEY = 41290413;
 
 const sqliteSchema = `
   CREATE TABLE IF NOT EXISTS users (
@@ -167,6 +162,25 @@ const sqliteSchema = `
     FOREIGN KEY(created_by_user_id) REFERENCES users(id)
   );
 
+  CREATE TABLE IF NOT EXISTS assistant_troubleshooting_bank (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bank_key TEXT NOT NULL UNIQUE,
+    context_id TEXT NOT NULL DEFAULT '',
+    family_id TEXT NOT NULL DEFAULT '',
+    source_summary TEXT DEFAULT '',
+    keywords TEXT DEFAULT '[]',
+    tr_subject TEXT NOT NULL,
+    de_subject TEXT DEFAULT '',
+    tr_questions TEXT DEFAULT '[]',
+    de_questions TEXT DEFAULT '[]',
+    tr_answer TEXT NOT NULL,
+    de_answer TEXT DEFAULT '',
+    suggestions TEXT DEFAULT '[]',
+    is_active INTEGER NOT NULL DEFAULT 1,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
+
   CREATE TABLE IF NOT EXISTS security_events (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -207,6 +221,69 @@ const sqliteSchema = `
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(sender_user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS projects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    owner_user_id INTEGER NOT NULL,
+    customer_user_id INTEGER,
+    title TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'draft',
+    project_type TEXT NOT NULL DEFAULT 'custom',
+    parameters TEXT DEFAULT '{}',
+    calculation_result TEXT DEFAULT '{}',
+    note TEXT DEFAULT '',
+    quote_id INTEGER,
+    order_id INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(owner_user_id) REFERENCES users(id),
+    FOREIGN KEY(customer_user_id) REFERENCES users(id),
+    FOREIGN KEY(quote_id) REFERENCES quotes(id),
+    FOREIGN KEY(order_id) REFERENCES orders(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS project_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    project_id INTEGER NOT NULL,
+    item_id INTEGER,
+    item_name TEXT NOT NULL,
+    quantity REAL NOT NULL DEFAULT 1,
+    unit TEXT DEFAULT 'adet',
+    unit_price REAL NOT NULL DEFAULT 0,
+    note TEXT DEFAULT '',
+    source TEXT DEFAULT 'manual',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(project_id) REFERENCES projects(id) ON DELETE CASCADE,
+    FOREIGN KEY(item_id) REFERENCES items(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS documents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    owner_type TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    filename TEXT NOT NULL,
+    storage_path TEXT NOT NULL,
+    size_bytes INTEGER DEFAULT 0,
+    mime TEXT DEFAULT 'application/octet-stream',
+    uploaded_by_user_id INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(uploaded_by_user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS pricelist_imports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    supplier_name TEXT NOT NULL,
+    document_id INTEGER,
+    status TEXT NOT NULL DEFAULT 'parsed',
+    parsed_rows TEXT DEFAULT '[]',
+    applied_rows INTEGER DEFAULT 0,
+    total_rows INTEGER DEFAULT 0,
+    created_by_user_id INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    applied_at TEXT DEFAULT NULL,
+    FOREIGN KEY(document_id) REFERENCES documents(id),
+    FOREIGN KEY(created_by_user_id) REFERENCES users(id)
   );
 `;
 
@@ -352,6 +429,25 @@ const postgresSchema = `
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
 
+  CREATE TABLE IF NOT EXISTS assistant_troubleshooting_bank (
+    id BIGSERIAL PRIMARY KEY,
+    bank_key TEXT NOT NULL UNIQUE,
+    context_id TEXT NOT NULL DEFAULT '',
+    family_id TEXT NOT NULL DEFAULT '',
+    source_summary TEXT DEFAULT '',
+    keywords TEXT DEFAULT '[]',
+    tr_subject TEXT NOT NULL,
+    de_subject TEXT DEFAULT '',
+    tr_questions TEXT DEFAULT '[]',
+    de_questions TEXT DEFAULT '[]',
+    tr_answer TEXT NOT NULL,
+    de_answer TEXT DEFAULT '',
+    suggestions TEXT DEFAULT '[]',
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+
   CREATE TABLE IF NOT EXISTS security_events (
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT REFERENCES users(id),
@@ -391,32 +487,103 @@ const postgresSchema = `
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   );
+
+  CREATE TABLE IF NOT EXISTS projects (
+    id BIGSERIAL PRIMARY KEY,
+    owner_user_id BIGINT NOT NULL REFERENCES users(id),
+    customer_user_id BIGINT REFERENCES users(id),
+    title TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'draft',
+    project_type TEXT NOT NULL DEFAULT 'custom',
+    parameters JSONB NOT NULL DEFAULT '{}'::jsonb,
+    calculation_result JSONB NOT NULL DEFAULT '{}'::jsonb,
+    note TEXT DEFAULT '',
+    quote_id BIGINT REFERENCES quotes(id),
+    order_id BIGINT REFERENCES orders(id),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+
+  CREATE TABLE IF NOT EXISTS project_items (
+    id BIGSERIAL PRIMARY KEY,
+    project_id BIGINT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+    item_id BIGINT REFERENCES items(id),
+    item_name TEXT NOT NULL,
+    quantity NUMERIC NOT NULL DEFAULT 1,
+    unit TEXT DEFAULT 'adet',
+    unit_price NUMERIC NOT NULL DEFAULT 0,
+    note TEXT DEFAULT '',
+    source TEXT DEFAULT 'manual',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+
+  CREATE TABLE IF NOT EXISTS documents (
+    id BIGSERIAL PRIMARY KEY,
+    owner_type TEXT NOT NULL,
+    owner_id BIGINT NOT NULL,
+    filename TEXT NOT NULL,
+    storage_path TEXT NOT NULL,
+    size_bytes BIGINT DEFAULT 0,
+    mime TEXT DEFAULT 'application/octet-stream',
+    uploaded_by_user_id BIGINT REFERENCES users(id),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+
+  CREATE TABLE IF NOT EXISTS pricelist_imports (
+    id BIGSERIAL PRIMARY KEY,
+    supplier_name TEXT NOT NULL,
+    document_id BIGINT REFERENCES documents(id),
+    status TEXT NOT NULL DEFAULT 'parsed',
+    parsed_rows JSONB NOT NULL DEFAULT '[]'::jsonb,
+    applied_rows INTEGER DEFAULT 0,
+    total_rows INTEGER DEFAULT 0,
+    created_by_user_id BIGINT REFERENCES users(id),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    applied_at TIMESTAMPTZ NULL
+  );
 `;
 
 async function initDatabase() {
   if (isPostgres) {
-    const { Pool } = require("pg");
-    pgPool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
-    });
-    await pgPool.query(postgresSchema);
-    await ensureUserRoleConstraintPostgres();
-    await ensureUserColumnsPostgres();
-    await ensureItemColumnsPostgres();
-    await ensureItemIndexesPostgres();
-    await ensureMovementColumnsPostgres();
-    await ensureMovementIndexesPostgres();
-    await ensureAgentTrainingIndexesPostgres();
-    await ensureSecurityIndexesPostgres();
-    await ensureAdminMessageIndexesPostgres();
-    await seedUsers({
-        get: async (sql, params) => firstRow(await query(sql, params)),
-        run: async (sql, params) => query(sql, params),
-        exec: async (sql) => {
-          await pgPool.query(sql);
-      },
-    });
+    if (!pgPool) {
+      const { Pool } = require("pg");
+      pgPool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
+      });
+    }
+
+    if (!postgresInitPromise) {
+      postgresInitPromise = (async () => {
+        const client = await pgPool.connect();
+        let lockAcquired = false;
+        try {
+          const lockResult = await client.query("SELECT pg_try_advisory_lock($1) AS acquired", [POSTGRES_SCHEMA_LOCK_KEY]);
+          lockAcquired = Boolean(lockResult.rows[0]?.acquired);
+          if (!lockAcquired && await hasPostgresRuntimeSchema()) {
+            return;
+          }
+          if (!lockAcquired) {
+            await client.query("SELECT pg_advisory_lock($1)", [POSTGRES_SCHEMA_LOCK_KEY]);
+            lockAcquired = true;
+          }
+
+          pgSchemaClient = client;
+          await runPostgresSchemaInit();
+        } finally {
+          pgSchemaClient = null;
+          if (lockAcquired) {
+            await client.query("SELECT pg_advisory_unlock($1)", [POSTGRES_SCHEMA_LOCK_KEY]).catch(() => {});
+          }
+          client.release();
+        }
+      })().catch((error) => {
+        postgresInitPromise = null;
+        throw error;
+      });
+    }
+
+    await postgresInitPromise;
     return;
   }
 
@@ -433,12 +600,51 @@ async function initDatabase() {
   ensureMovementIndexesSqlite();
   ensureQuoteColumnsSqlite();
   ensureAgentTrainingIndexesSqlite();
+  ensureTroubleshootingBankIndexesSqlite();
   ensureSecurityIndexesSqlite();
   ensureAdminMessageIndexesSqlite();
   await seedUsers({
     get: async (sql, params) => sqlitePrepare(sql).get(...params),
     run: async (sql, params) => sqlitePrepare(sql).run(...params),
     exec: async (sql) => sqliteDb.exec(sql),
+  });
+}
+
+function postgresSchemaQuery(sql, params = []) {
+  return (pgSchemaClient || pgPool).query(sql, params);
+}
+
+async function hasPostgresRuntimeSchema() {
+  const result = await pgPool.query(`
+    SELECT
+      to_regclass('public.users') IS NOT NULL AS has_users,
+      to_regclass('public.items') IS NOT NULL AS has_items,
+      to_regclass('public.assistant_troubleshooting_bank') IS NOT NULL AS has_troubleshooting_bank
+  `);
+  const row = result.rows[0] || {};
+  return Boolean(row.has_users && row.has_items && row.has_troubleshooting_bank);
+}
+
+async function runPostgresSchemaInit() {
+  await postgresSchemaQuery(postgresSchema);
+  await ensureUserRoleConstraintPostgres();
+  await ensureUserColumnsPostgres();
+  await ensureItemColumnsPostgres();
+  await ensureItemIndexesPostgres();
+  await ensureMovementColumnsPostgres();
+  await ensureMovementIndexesPostgres();
+  await ensureAgentTrainingIndexesPostgres();
+  await ensureTroubleshootingBankIndexesPostgres();
+  await ensureSecurityIndexesPostgres();
+  await ensureAdminMessageIndexesPostgres();
+  await ensureQuoteColumnsPostgres();
+  await ensureProjectIndexesPostgres();
+  await seedUsers({
+    get: async (sql, params) => firstRow(await query(sql, params, pgSchemaClient)),
+    run: async (sql, params) => execute(sql, params, pgSchemaClient),
+    exec: async (sql) => {
+      await postgresSchemaQuery(sql);
+    },
   });
 }
 
@@ -668,10 +874,41 @@ function ensureQuoteColumnsSqlite() {
   if (columns.length && !columns.includes("is_export")) {
     sqliteDb.exec("ALTER TABLE quotes ADD COLUMN is_export INTEGER NOT NULL DEFAULT 1");
   }
+  if (columns.length && !columns.includes("customer_user_id")) {
+    sqliteDb.exec("ALTER TABLE quotes ADD COLUMN customer_user_id INTEGER");
+  }
+}
+
+async function ensureQuoteColumnsPostgres() {
+  const columns = await postgresSchemaQuery(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'quotes'
+  `);
+  const names = new Set(columns.rows.map((row) => row.column_name));
+  if (!names.has("customer_user_id")) {
+    await postgresSchemaQuery("ALTER TABLE quotes ADD COLUMN customer_user_id BIGINT REFERENCES users(id)");
+  }
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_quotes_customer_user ON quotes (customer_user_id)");
+}
+
+async function ensureProjectIndexesPostgres() {
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_projects_owner_created ON projects (owner_user_id, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_projects_customer_created ON projects (customer_user_id, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_projects_status ON projects (status, updated_at DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_project_items_project ON project_items (project_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_documents_owner ON documents (owner_type, owner_id, created_at DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_pricelist_imports_status ON pricelist_imports (status, created_at DESC)");
 }
 
 function ensureAgentTrainingIndexesSqlite() {
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training(is_active, created_at DESC)");
+}
+
+function ensureTroubleshootingBankIndexesSqlite() {
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_troubleshooting_bank_active_updated ON assistant_troubleshooting_bank(is_active, updated_at DESC)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_troubleshooting_bank_context ON assistant_troubleshooting_bank(context_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_troubleshooting_bank_family ON assistant_troubleshooting_bank(family_id)");
 }
 
 function ensureSecurityIndexesSqlite() {
@@ -751,107 +988,113 @@ async function withOptionalTransaction(adapter, callback) {
 }
 
 async function ensureItemColumnsPostgres() {
-  const columns = await pgPool.query(`
+  const columns = await postgresSchemaQuery(`
     SELECT column_name
     FROM information_schema.columns
     WHERE table_schema = 'public' AND table_name = 'items'
   `);
   const names = new Set(columns.rows.map((row) => row.column_name));
   if (!names.has("brand")) {
-    await pgPool.query("ALTER TABLE items ADD COLUMN brand TEXT DEFAULT ''");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN brand TEXT DEFAULT ''");
   }
   if (!names.has("product_code")) {
-    await pgPool.query("ALTER TABLE items ADD COLUMN product_code TEXT DEFAULT ''");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN product_code TEXT DEFAULT ''");
   }
   if (!names.has("default_price")) {
-    await pgPool.query("ALTER TABLE items ADD COLUMN default_price NUMERIC NOT NULL DEFAULT 0");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN default_price NUMERIC NOT NULL DEFAULT 0");
   }
   if (!names.has("list_price")) {
-    await pgPool.query("ALTER TABLE items ADD COLUMN list_price NUMERIC NOT NULL DEFAULT 0");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN list_price NUMERIC NOT NULL DEFAULT 0");
   }
   if (!names.has("sale_price")) {
-    await pgPool.query("ALTER TABLE items ADD COLUMN sale_price NUMERIC NOT NULL DEFAULT 0");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN sale_price NUMERIC NOT NULL DEFAULT 0");
   }
   if (!names.has("is_active")) {
-    await pgPool.query("ALTER TABLE items ADD COLUMN is_active BOOLEAN NOT NULL DEFAULT TRUE");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN is_active BOOLEAN NOT NULL DEFAULT TRUE");
   }
 }
 
 async function ensureItemIndexesPostgres() {
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_items_product_code ON items (LOWER(product_code))");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_items_name ON items (LOWER(name))");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_items_product_code ON items (LOWER(product_code))");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_items_name ON items (LOWER(name))");
 }
 
 async function ensureMovementColumnsPostgres() {
-  const columns = await pgPool.query(`
+  const columns = await postgresSchemaQuery(`
     SELECT column_name
     FROM information_schema.columns
     WHERE table_schema = 'public' AND table_name = 'movements'
   `);
   const names = new Set(columns.rows.map((row) => row.column_name));
   if (!names.has("reversal_of")) {
-    await pgPool.query("ALTER TABLE movements ADD COLUMN reversal_of BIGINT");
+    await postgresSchemaQuery("ALTER TABLE movements ADD COLUMN reversal_of BIGINT");
   }
 }
 
 async function ensureMovementIndexesPostgres() {
-  await pgPool.query("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_movements_item_id ON movements (item_id)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_movements_item_type_date ON movements (item_id, type, movement_date DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_movements_created ON movements (created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_quote_items_quote_id ON quote_items (quote_id)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items (order_id)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_quotes_created ON quotes (created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_orders_customer_created ON orders (customer_user_id, created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_cashbook_created ON cashbook (created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_expenses_created ON expenses (created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE UNIQUE INDEX IF NOT EXISTS idx_movements_reversal_of ON movements (reversal_of)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_movements_item_id ON movements (item_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_movements_item_type_date ON movements (item_id, type, movement_date DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_movements_created ON movements (created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_quote_items_quote_id ON quote_items (quote_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items (order_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_quotes_created ON quotes (created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_customer_created ON orders (customer_user_id, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_cashbook_created ON cashbook (created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_expenses_created ON expenses (created_at DESC, id DESC)");
 }
 
 async function ensureAgentTrainingIndexesPostgres() {
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training (is_active, created_at DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_agent_training_active_created ON agent_training (is_active, created_at DESC)");
+}
+
+async function ensureTroubleshootingBankIndexesPostgres() {
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_troubleshooting_bank_active_updated ON assistant_troubleshooting_bank (is_active, updated_at DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_troubleshooting_bank_context ON assistant_troubleshooting_bank (context_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_troubleshooting_bank_family ON assistant_troubleshooting_bank (family_id)");
 }
 
 async function ensureSecurityIndexesPostgres() {
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_created ON security_events (created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_ip_created ON security_events (ip_address, created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_user_created ON security_events (user_id, created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_events_type_created ON security_events (event_type, created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_blocks_until ON security_blocks (block_until)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_security_blocks_released ON security_blocks (released_at)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_security_events_created ON security_events (created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_security_events_ip_created ON security_events (ip_address, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_security_events_user_created ON security_events (user_id, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_security_events_type_created ON security_events (event_type, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_security_blocks_until ON security_blocks (block_until)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_security_blocks_released ON security_blocks (released_at)");
 }
 
 async function ensureAdminMessageIndexesPostgres() {
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_admin_messages_sender_created ON admin_messages (sender_user_id, created_at DESC, id DESC)");
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_admin_messages_status_created ON admin_messages (status, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_admin_messages_sender_created ON admin_messages (sender_user_id, created_at DESC, id DESC)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_admin_messages_status_created ON admin_messages (status, created_at DESC, id DESC)");
 }
 
 async function ensureUserColumnsPostgres() {
-  const columns = await pgPool.query(`
+  const columns = await postgresSchemaQuery(`
     SELECT column_name
     FROM information_schema.columns
     WHERE table_schema = 'public' AND table_name = 'users'
   `);
   const names = new Set(columns.rows.map((row) => row.column_name));
   if (!names.has("email")) {
-    await pgPool.query("ALTER TABLE users ADD COLUMN email TEXT");
+    await postgresSchemaQuery("ALTER TABLE users ADD COLUMN email TEXT");
   }
   if (!names.has("phone")) {
-    await pgPool.query("ALTER TABLE users ADD COLUMN phone TEXT");
+    await postgresSchemaQuery("ALTER TABLE users ADD COLUMN phone TEXT");
   }
   if (!names.has("email_verified")) {
-    await pgPool.query("ALTER TABLE users ADD COLUMN email_verified BOOLEAN NOT NULL DEFAULT TRUE");
+    await postgresSchemaQuery("ALTER TABLE users ADD COLUMN email_verified BOOLEAN NOT NULL DEFAULT TRUE");
   }
-  await pgPool.query(`
+  await postgresSchemaQuery(`
     CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_unique
     ON users (LOWER(email))
     WHERE email IS NOT NULL AND BTRIM(email) <> ''
   `);
-  await pgPool.query("CREATE INDEX IF NOT EXISTS idx_auth_tokens_lookup ON auth_tokens (token_type, token_hash)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_auth_tokens_lookup ON auth_tokens (token_type, token_hash)");
 }
 
 async function ensureUserRoleConstraintPostgres() {
-  await pgPool.query("ALTER TABLE users DROP CONSTRAINT IF EXISTS users_role_check");
-  await pgPool.query(`
+  await postgresSchemaQuery("ALTER TABLE users DROP CONSTRAINT IF EXISTS users_role_check");
+  await postgresSchemaQuery(`
     ALTER TABLE users
     ADD CONSTRAINT users_role_check
     CHECK (role IN ('admin', 'operator', 'staff', 'customer'))
