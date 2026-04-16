@@ -165,6 +165,7 @@ const UI_TEXT = {
     peykCopy: "Oda sicakligi, alarm, defrost ve servis mudahalesini tek panelden yonetin.",
     peykPoints: ["Canli izleme", "Alarm bildirimi", "Uzaktan mudahale"],
     leanEyebrow: "B2B Portal · Hamm & Hamburg",
+    leanTopbarTagline: "Hamm & Hamburg · B2B Portal",
     leanHeroTitle: "Endüstriyel Soğutma — Tedarik, Servis, Proje",
     leanHeroSub: "Personel, bayi ve müşteri için tek portal: stok, sipariş, teklif, soğuk oda projesi ve fiyat yönetimi aynı ekranda.",
     leanCtaLogin: "Giriş Yap",
@@ -366,6 +367,7 @@ const UI_TEXT = {
     peykCopy: "Raumtemperatur, Alarm, Abtauung und Serviceeingriffe werden zentral ueber ein Panel verwaltet.",
     peykPoints: ["Live Monitoring", "Alarmmeldungen", "Fernzugriff"],
     leanEyebrow: "B2B Portal · Hamm & Hamburg",
+    leanTopbarTagline: "Hamm & Hamburg · B2B Portal",
     leanHeroTitle: "Industrielle Kältetechnik — Vertrieb, Service, Projekt",
     leanHeroSub: "Ein Portal für Personal, Partner und Kunden: Bestand, Bestellung, Angebot, Kühlraumprojekt und Preispflege in einer Oberfläche.",
     leanCtaLogin: "Anmelden",
@@ -866,12 +868,13 @@ function applyUiTranslations() {
     setText(node, t("peykPoints")[index] || node.textContent);
   });
 
-  // Lean landing (Faz 6)
+  // Lean landing (Faz 6 v2)
   document.querySelectorAll("[data-lean-eyebrow]").forEach((node) => setText(node, t("leanEyebrow")));
   document.querySelectorAll("[data-lean-title]").forEach((node) => setText(node, t("leanHeroTitle")));
   document.querySelectorAll("[data-lean-sub]").forEach((node) => setText(node, t("leanHeroSub")));
   document.querySelectorAll("[data-lean-cta-login]").forEach((node) => setText(node, t("leanCtaLogin")));
   document.querySelectorAll("[data-lean-cta-register]").forEach((node) => setText(node, t("leanCtaRegister")));
+  document.querySelectorAll("[data-lean-topbar-tagline]").forEach((node) => setText(node, t("leanTopbarTagline")));
   const leanVps = t("leanValueProps") || [];
   document.querySelectorAll("[data-lean-vp-title]").forEach((node) => {
     const idx = Number(node.getAttribute("data-lean-vp-title")) || 0;
@@ -886,6 +889,12 @@ function applyUiTranslations() {
     const idx = Number(node.getAttribute("data-lean-footer-label")) || 0;
     setText(node, leanFooterLabels[idx] || node.textContent);
   });
+  // Auth modal labels
+  document.querySelectorAll("[data-auth-title-login]").forEach((node) => setText(node, t("authLoginTitle")));
+  document.querySelectorAll("[data-auth-desc-login]").forEach((node) => setText(node, t("authLoginDesc")));
+  document.querySelectorAll("[data-auth-title-register]").forEach((node) => setText(node, t("registerTitle")));
+  document.querySelectorAll("[data-auth-desc-register]").forEach((node) => setText(node, t("registerDesc")));
+  document.querySelectorAll("[data-auth-forgot-summary]").forEach((node) => setText(node, t("forgotTitle")));
 
   setFormFieldLabel(refs.loginForm, "identifier", t("loginIdentifier"));
   setFormFieldLabel(refs.loginForm, "password", t("password"));
@@ -1538,6 +1547,7 @@ bindEvents();
 initialize();
 
 function bindEvents() {
+  bindAuthModal();
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("submit", handleLogin);
@@ -2029,7 +2039,72 @@ function showLogin() {
   lockLoginInputs();
   clearToolScopeCookie();
   closeAssistantPanel();
+  closeAuthModal();
   applyUiTranslations();
+}
+
+function bindAuthModal() {
+  const modal = document.getElementById("authModal");
+  if (!modal || modal._drcAuthBound) return;
+  modal._drcAuthBound = true;
+
+  document.querySelectorAll("[data-auth-open]").forEach((node) => {
+    node.addEventListener("click", (event) => {
+      event.preventDefault();
+      const view = node.getAttribute("data-auth-open") || "login";
+      openAuthModal(view);
+    });
+  });
+
+  modal.querySelectorAll("[data-auth-close]").forEach((node) => {
+    node.addEventListener("click", closeAuthModal);
+  });
+
+  modal.querySelectorAll("[data-auth-tab]").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      showAuthModalView(tab.getAttribute("data-auth-tab") || "login");
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
+      closeAuthModal();
+    }
+  });
+}
+
+function openAuthModal(view) {
+  const modal = document.getElementById("authModal");
+  if (!modal) return;
+  modal.removeAttribute("hidden");
+  showAuthModalView(view || "login");
+  document.body.style.overflow = "hidden";
+}
+
+function closeAuthModal() {
+  const modal = document.getElementById("authModal");
+  if (!modal) return;
+  modal.setAttribute("hidden", "");
+  document.body.style.overflow = "";
+}
+
+function showAuthModalView(view) {
+  const modal = document.getElementById("authModal");
+  if (!modal) return;
+  modal.querySelectorAll(".auth-modal-view").forEach((node) => {
+    const target = node.getAttribute("data-auth-view") === view;
+    node.classList.toggle("hidden", !target);
+  });
+  modal.querySelectorAll(".auth-tab").forEach((tab) => {
+    tab.classList.toggle("is-active", tab.getAttribute("data-auth-tab") === view);
+  });
+  // Focus first input
+  const active = modal.querySelector(`.auth-modal-view[data-auth-view="${view}"] input:not([type="hidden"])`);
+  if (active) {
+    setTimeout(() => {
+      try { active.focus({ preventScroll: true }); } catch (_e) { /* ignore */ }
+    }, 60);
+  }
 }
 
 function showApp() {
@@ -5206,6 +5281,7 @@ async function handleAuthUrlActions() {
   if (resetToken && refs.resetPasswordForm) {
     refs.resetPasswordPanel?.classList.remove("hidden");
     refs.resetPasswordForm.elements.token.value = resetToken;
+    openAuthModal("reset");
     clearAuthQueryParams(["resetToken"]);
   } else {
     refs.resetPasswordPanel?.classList.add("hidden");

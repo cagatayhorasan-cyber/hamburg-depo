@@ -8,153 +8,148 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260416-lean-landing-1">
+  <link rel="stylesheet" href="/styles.css?v=20260416-lean-landing-2">
 </head>
 <body>
   <div class="page-shell">
-    <section id="loginScreen" class="auth-screen">
-      <div class="auth-layout">
-        <aside class="auth-showcase auth-showcase-lean" aria-label="D-R-C Kältetechnik portal tanıtım">
-          <section class="lean-hero">
-            <div class="lean-hero-head">
-              <img class="drc-logo-image" src="/assets/drc-logo.svg" alt="D-R-C Kältetechnik GmbH">
-              <div>
-                <p class="eyebrow" data-lean-eyebrow>B2B Portal · Hamm &amp; Hamburg</p>
-                <strong class="lean-brand-name">D-R-C Kältetechnik GmbH</strong>
-              </div>
-            </div>
-            <h1 class="lean-hero-title" data-lean-title>Endüstriyel Soğutma — Tedarik, Servis, Proje</h1>
-            <p class="lean-hero-sub" data-lean-sub>Personel, bayi ve müşteri için tek portal: stok, sipariş, teklif, soğuk oda projesi ve fiyat yönetimi aynı ekranda.</p>
-            <div class="lean-hero-ctas">
-              <a class="primary-button" data-lean-cta-login href="#loginForm">Giriş Yap</a>
-              <a class="secondary-button" data-lean-cta-register href="#customerRegisterPanel">Müşteri Kaydı</a>
-            </div>
-          </section>
+    <section id="loginScreen" class="lean-landing">
 
-          <section class="lean-value-props" aria-label="Öne çıkan değerler">
-            <article class="lean-value-card">
-              <span class="lean-value-icon" aria-hidden="true">01</span>
-              <strong data-lean-vp-title="0">Hamburg &amp; Hamm depodan hızlı tedarik</strong>
-              <p data-lean-vp-copy="0">Kompresör, kondenser, evaporatör, kontrol ve soğuk oda malzemeleri aynı gün sevkiyata hazır.</p>
-            </article>
-            <article class="lean-value-card">
-              <span class="lean-value-icon" aria-hidden="true">02</span>
-              <strong data-lean-vp-title="1">B2B portal ile stok &amp; sipariş</strong>
-              <p data-lean-vp-copy="1">Canlı stok, net/brüt fiyat, sepet ve sipariş takibini kendi hesabınızdan yönetin.</p>
-            </article>
-            <article class="lean-value-card">
-              <span class="lean-value-icon" aria-hidden="true">03</span>
-              <strong data-lean-vp-title="2">Proje destekli teklif</strong>
-              <p data-lean-vp-copy="2">ColdRoomPro destekli soğuk oda hesaplaması ile proje malzeme listesi ve teklif tek adımda.</p>
-            </article>
-          </section>
-
-          <section class="lean-brand-strip" aria-label="Tedarikçi markalar">
-            <span class="lean-brand-chip">Danfoss</span>
-            <span class="lean-brand-chip is-accent">DRC</span>
-            <span class="lean-brand-chip">Dixell</span>
-            <span class="lean-brand-chip">Embraco</span>
-            <span class="lean-brand-chip">Sanhua</span>
-            <span class="lean-brand-chip">Carel</span>
-            <span class="lean-brand-chip">Systemair</span>
-            <span class="lean-brand-chip">FrigoCraft</span>
-          </section>
-
-          <footer class="lean-footer" aria-label="Adres ve iletişim">
-            <div class="lean-footer-row">
-              <div class="lean-footer-col">
-                <span class="lean-footer-kicker" data-lean-footer-label="0">Hauptsitz</span>
-                <strong>Schildkamp 1<br>59063 Hamm · Deutschland</strong>
-              </div>
-              <div class="lean-footer-col">
-                <span class="lean-footer-kicker" data-lean-footer-label="1">Lager Hamburg</span>
-                <strong>Lauenburger Landstraße 3b<br>21039 Börnsen · Deutschland</strong>
-              </div>
-              <div class="lean-footer-col">
-                <span class="lean-footer-kicker" data-lean-footer-label="2">İletişim</span>
-                <a href="tel:+4915221581762">+49 1522 1581762</a>
-                <a href="mailto:info@durmusbaba.com">info@durmusbaba.com</a>
-              </div>
-            </div>
-          </footer>
-        </aside>
-
-        <div class="auth-card">
-        <div class="ui-language-switch auth-language-switch">
-          <span class="ui-language-label">Arayuz Dili</span>
-          <select class="ui-language-select" aria-label="Arayuz dili">
-            <option value="tr">TR</option>
-            <option value="de">DE</option>
-          </select>
+      <header class="lean-topbar">
+        <div class="lean-topbar-brand">
+          <img src="/assets/drc-logo.svg" alt="DRC" class="lean-topbar-logo">
+          <div>
+            <strong>D-R-C Kältetechnik</strong>
+            <small data-lean-topbar-tagline>Hamm &amp; Hamburg · B2B Portal</small>
+          </div>
         </div>
-        <div class="auth-login-heading">
-          <p class="eyebrow">DRC Portal</p>
-          <h2>Portal Girişi</h2>
-          <p class="muted">Yetkili personel, is ortaklari ve musteriler bu portal uzerinden stok yonetimi, satis, siparis takibi ve proje araclarina erisir.</p>
+        <div class="lean-topbar-actions">
+          <div class="ui-language-switch auth-language-switch">
+            <select class="ui-language-select" aria-label="Arayuz dili">
+              <option value="tr">TR</option>
+              <option value="de">DE</option>
+            </select>
+          </div>
+          <button type="button" class="secondary-button lean-topbar-btn" data-auth-open="register" data-lean-cta-register>Müşteri Kaydı</button>
+          <button type="button" class="primary-button lean-topbar-btn" data-auth-open="login" data-lean-cta-login>Giriş Yap</button>
         </div>
-        <form id="loginForm" class="stack-form" autocomplete="off">
-          <input class="autofill-trap" type="text" name="fake-username" autocomplete="username" tabindex="-1" aria-hidden="true">
-          <input class="autofill-trap" type="password" name="fake-password" autocomplete="current-password" tabindex="-1" aria-hidden="true">
-          <label>
-            Kullanici Adi veya E-Posta
-            <input data-login-field name="identifier" type="text" required autocomplete="off" autocapitalize="off" spellcheck="false" readonly>
-          </label>
-          <label>
-            Sifre
-            <input data-login-field name="password" type="password" required autocomplete="new-password" autocapitalize="off" spellcheck="false" readonly>
-          </label>
-          <button class="primary-button" type="submit" data-help="TR: Hesabiniza giris yapar. DE: Meldet Sie in Ihr Konto ein.">Giris Yap</button>
-          <p id="loginError" class="error-text"></p>
-        </form>
-        <section class="auth-subpanel">
-          <div class="section-head auth-section-head">
-            <div>
-              <h3>Sifremi Unuttum</h3>
-              <p class="muted">Kullanici adi veya e-postayi girin. Sistem sifre yenileme talimatini guvenli mail kanaliyla gonderir; mail servisi kapaliysa destek bilgisi gosterilir.</p>
-            </div>
+      </header>
+
+      <main class="lean-hero-stage">
+        <div class="lean-hero-copy">
+          <span class="lean-hero-eyebrow" data-lean-eyebrow>B2B Portal · Hamm &amp; Hamburg</span>
+          <h1 class="lean-hero-title" data-lean-title>Endüstriyel Soğutma — Tedarik, Servis, Proje</h1>
+          <p class="lean-hero-sub" data-lean-sub>Personel, bayi ve müşteri için tek portal: stok, sipariş, teklif, soğuk oda projesi ve fiyat yönetimi aynı ekranda.</p>
+          <div class="lean-hero-ctas">
+            <button type="button" class="primary-button lean-cta-xl" data-auth-open="login" data-lean-cta-login>Giriş Yap</button>
+            <button type="button" class="secondary-button lean-cta-xl" data-auth-open="register" data-lean-cta-register>Müşteri Kaydı</button>
           </div>
-          <form id="forgotPasswordForm" class="form-grid" autocomplete="off">
-            <label>Kullanici Adi veya E-Posta<input name="identifier" type="text" required autocapitalize="off" spellcheck="false"></label>
-            <button class="secondary-button auth-register-button" type="submit" data-help="TR: Guvenli sifre yenileme talimati gonderir. DE: Sendet sichere Anweisungen zum Zuruecksetzen des Passworts.">Yenileme Baglantisi Gonder</button>
-            <p id="forgotPasswordError" class="error-text auth-message"></p>
-            <p id="forgotPasswordSuccess" class="success-text auth-message"></p>
-          </form>
+        </div>
+
+        <section class="lean-value-props" aria-label="Öne çıkan değerler">
+          <article class="lean-value-card">
+            <span class="lean-value-icon" aria-hidden="true">01</span>
+            <strong data-lean-vp-title="0">Hamburg &amp; Hamm depodan hızlı tedarik</strong>
+            <p data-lean-vp-copy="0">Kompresör, kondenser, evaporatör, kontrol ve soğuk oda malzemeleri aynı gün sevkiyata hazır.</p>
+          </article>
+          <article class="lean-value-card">
+            <span class="lean-value-icon" aria-hidden="true">02</span>
+            <strong data-lean-vp-title="1">B2B portal ile stok &amp; sipariş</strong>
+            <p data-lean-vp-copy="1">Canlı stok, net/brüt fiyat, sepet ve sipariş takibini kendi hesabınızdan yönetin.</p>
+          </article>
+          <article class="lean-value-card">
+            <span class="lean-value-icon" aria-hidden="true">03</span>
+            <strong data-lean-vp-title="2">Proje destekli teklif</strong>
+            <p data-lean-vp-copy="2">ColdRoomPro destekli soğuk oda hesaplaması ile proje malzeme listesi ve teklif tek adımda.</p>
+          </article>
         </section>
-        <div class="auth-divider"><span>Musteri hesabi yok mu?</span></div>
-        <section id="customerRegisterPanel" class="auth-subpanel">
-          <div class="section-head auth-section-head">
-            <div>
-              <h3>Musteri Kaydi</h3>
-              <p class="muted">Musteri hesabinizi buradan olusturabilirsiniz.</p>
-            </div>
+
+        <div class="lean-brand-strip" aria-label="Tedarikçi markalar">
+          <span class="lean-brand-chip">Danfoss</span>
+          <span class="lean-brand-chip is-accent">DRC</span>
+          <span class="lean-brand-chip">Dixell</span>
+          <span class="lean-brand-chip">Embraco</span>
+          <span class="lean-brand-chip">Sanhua</span>
+          <span class="lean-brand-chip">Carel</span>
+          <span class="lean-brand-chip">Systemair</span>
+          <span class="lean-brand-chip">FrigoCraft</span>
+        </div>
+      </main>
+
+      <footer class="lean-footer" aria-label="Adres ve iletişim">
+        <div class="lean-footer-col">
+          <span class="lean-footer-kicker" data-lean-footer-label="0">Hauptsitz</span>
+          <strong>Schildkamp 1 · 59063 Hamm · Deutschland</strong>
+        </div>
+        <div class="lean-footer-col">
+          <span class="lean-footer-kicker" data-lean-footer-label="1">Lager Hamburg</span>
+          <strong>Lauenburger Landstraße 3b · 21039 Börnsen · Deutschland</strong>
+        </div>
+        <div class="lean-footer-col">
+          <span class="lean-footer-kicker" data-lean-footer-label="2">İletişim</span>
+          <a href="tel:+4915221581762">+49 1522 1581762</a>
+          <a href="mailto:info@durmusbaba.com">info@durmusbaba.com</a>
+        </div>
+      </footer>
+
+      <div id="authModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle" hidden>
+        <div class="auth-modal-backdrop" data-auth-close></div>
+        <div class="auth-modal-panel" role="document">
+          <button type="button" class="auth-modal-close" data-auth-close aria-label="Kapat">×</button>
+
+          <div class="auth-modal-tabs">
+            <button type="button" class="auth-tab is-active" data-auth-tab="login" data-lean-cta-login>Giriş Yap</button>
+            <button type="button" class="auth-tab" data-auth-tab="register" data-lean-cta-register>Müşteri Kaydı</button>
           </div>
-          <form id="customerRegisterForm" class="form-grid" autocomplete="off">
-            <label>Ad Soyad<input name="name" type="text" required></label>
-            <label>E-Posta<input name="email" type="email" required autocapitalize="off" spellcheck="false"></label>
-            <label>Telefon / WhatsApp<input name="phone" type="tel" required placeholder="+49..."></label>
-            <label>Kullanici Adi (Istege Bagli)<input name="username" type="text" placeholder="Bos birakirsaniz sistem uretir" autocapitalize="off" spellcheck="false"></label>
-            <label>Sifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
-            <button class="secondary-button auth-register-button" type="submit" data-help="TR: Yeni musteri hesabi olusturur. DE: Legt ein neues Kundenkonto an.">Musteri Hesabi Ac</button>
-            <p id="customerRegisterError" class="error-text auth-message"></p>
-            <p id="customerRegisterSuccess" class="success-text auth-message"></p>
-          </form>
-        </section>
-        <section id="resetPasswordPanel" class="auth-subpanel hidden">
-          <div class="section-head auth-section-head">
-            <div>
-              <h3>Yeni Sifre Belirle</h3>
-              <p class="muted">E-postadaki baglanti ile geldiyseniz yeni sifrenizi burada belirleyin.</p>
-            </div>
-          </div>
-          <form id="resetPasswordForm" class="form-grid" autocomplete="off">
-            <input type="hidden" name="token">
-            <label>Yeni Sifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
-            <button class="primary-button auth-register-button" type="submit" data-help="TR: Yeni sifreyi kaydeder. DE: Speichert das neue Passwort.">Sifreyi Guncelle</button>
-            <p id="resetPasswordError" class="error-text auth-message"></p>
-            <p id="resetPasswordSuccess" class="success-text auth-message"></p>
-          </form>
-        </section>
-      </div>
+
+          <section class="auth-modal-view" data-auth-view="login">
+            <h2 id="authModalTitle" data-auth-title-login>Portal Girişi</h2>
+            <p class="muted" data-auth-desc-login>Yetkili personel, iş ortakları ve müşteriler için tek portal.</p>
+            <form id="loginForm" class="stack-form" autocomplete="off">
+              <input class="autofill-trap" type="text" name="fake-username" autocomplete="username" tabindex="-1" aria-hidden="true">
+              <input class="autofill-trap" type="password" name="fake-password" autocomplete="current-password" tabindex="-1" aria-hidden="true">
+              <label>Kullanıcı Adı veya E-Posta<input data-login-field name="identifier" type="text" required autocomplete="off" autocapitalize="off" spellcheck="false" readonly></label>
+              <label>Şifre<input data-login-field name="password" type="password" required autocomplete="new-password" autocapitalize="off" spellcheck="false" readonly></label>
+              <button class="primary-button" type="submit">Giriş Yap</button>
+              <p id="loginError" class="error-text"></p>
+            </form>
+            <details class="auth-modal-extra">
+              <summary data-auth-forgot-summary>Şifremi unuttum</summary>
+              <form id="forgotPasswordForm" class="form-grid" autocomplete="off">
+                <label>Kullanıcı Adı veya E-Posta<input name="identifier" type="text" required autocapitalize="off" spellcheck="false"></label>
+                <button class="secondary-button" type="submit">Yenileme Bağlantısı Gönder</button>
+                <p id="forgotPasswordError" class="error-text auth-message"></p>
+                <p id="forgotPasswordSuccess" class="success-text auth-message"></p>
+              </form>
+            </details>
+          </section>
+
+          <section class="auth-modal-view hidden" data-auth-view="register">
+            <h2 data-auth-title-register>Müşteri Kaydı</h2>
+            <p class="muted" data-auth-desc-register>Kendi hesabınızdan stok, sipariş ve proje takibi için hesap oluşturun.</p>
+            <form id="customerRegisterForm" class="form-grid" autocomplete="off">
+              <label>Ad Soyad<input name="name" type="text" required></label>
+              <label>E-Posta<input name="email" type="email" required autocapitalize="off" spellcheck="false"></label>
+              <label>Telefon / WhatsApp<input name="phone" type="tel" required placeholder="+49..."></label>
+              <label>Kullanıcı Adı (isteğe bağlı)<input name="username" type="text" placeholder="Boş bırakırsanız sistem üretir" autocapitalize="off" spellcheck="false"></label>
+              <label>Şifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
+              <button class="primary-button auth-register-button" type="submit">Müşteri Hesabı Aç</button>
+              <p id="customerRegisterError" class="error-text auth-message"></p>
+              <p id="customerRegisterSuccess" class="success-text auth-message"></p>
+            </form>
+          </section>
+
+          <section id="resetPasswordPanel" class="auth-modal-view hidden" data-auth-view="reset">
+            <h2>Yeni Şifre Belirle</h2>
+            <p class="muted">E-postadaki bağlantıyla geldiyseniz yeni şifrenizi burada belirleyin.</p>
+            <form id="resetPasswordForm" class="form-grid" autocomplete="off">
+              <input type="hidden" name="token">
+              <label>Yeni Şifre<input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
+              <button class="primary-button" type="submit">Şifreyi Güncelle</button>
+              <p id="resetPasswordError" class="error-text auth-message"></p>
+              <p id="resetPasswordSuccess" class="success-text auth-message"></p>
+            </form>
+          </section>
+        </div>
       </div>
     </section>
 
