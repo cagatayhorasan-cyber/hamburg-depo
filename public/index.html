@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260416-user-crud-1">
+  <link rel="stylesheet" href="/styles.css?v=20260416-ui-cleanup-1">
 </head>
 <body>
   <div class="page-shell">
@@ -218,7 +218,6 @@
               <div class="section-head">
                 <div>
                   <h2>Malzeme Arama</h2>
-                  <p class="muted">Listeyi daraltin, uygun urunu bulun, sonra satis sekmesinden teklife ekleyin.</p>
                 </div>
               </div>
               <div class="filter-grid simple-filter-grid">
@@ -339,7 +338,6 @@
             <div class="two-column">
               <section>
                 <h2>Stok Giris / Cikis</h2>
-                <p class="muted section-tip">Bu form mevcut urunlerde stok giris ve cikis icin kullanilir.</p>
                 <form id="movementForm" class="form-grid">
                   <label class="form-span-2">Urun Arama<input id="movementItemSearch" type="search" list="movementItemSuggestions" autocomplete="off" placeholder="Urun, marka veya stok kodu yazin"></label>
                   <datalist id="movementItemSuggestions"></datalist>
@@ -355,7 +353,6 @@
                 <p id="movementAutoCostHint" class="muted section-tip hidden">Maliyet bilgisi sistemde otomatik uygulanir.</p>
                 <div class="panel-lite admin-only">
                   <h3>Yeni Urun + Ilk Stok Girisi</h3>
-                  <p class="muted section-tip">Yeni marka, kategori veya urun karti burada acilir. Kaydedince urun otomatik olusur ve ilk stok girisi ayni anda islenir.</p>
                   <form id="stockIntakeForm" class="form-grid">
                     <label>Malzeme Adi<input name="name" type="text" required placeholder="Orn. Embraco NJ 6220 Z"></label>
                     <label>Marka<input name="brand" type="text" placeholder="Orn. Embraco"></label>
@@ -412,7 +409,6 @@
               </section>
               <section>
                 <h2>Masraf Listesi</h2>
-                <p class="muted section-tip">Her kaydi satirin sagindaki sil butonundan kaldirabilirsiniz.</p>
                 <div class="table-wrap">
                   <table>
                     <thead>
@@ -487,7 +483,6 @@
                 <div class="section-head">
                   <div>
                     <h2>Urun Katalogu</h2>
-                    <p class="muted">Arayin, filtreleyin ve tek tikla sepete ekleyin.</p>
                   </div>
                 </div>
                 <div class="filter-grid simple-filter-grid">
@@ -502,7 +497,6 @@
                 <div class="section-head">
                   <div>
                     <h2>Sepet ve Musteri</h2>
-                    <p class="muted">Teklif olusturmadan once sepeti ve musteri bilgilerini tamamlayin.</p>
                   </div>
                 </div>
                 <form id="quoteForm" class="form-grid compact-form">
@@ -524,7 +518,6 @@
                 </form>
                 <div id="quoteDraftBody" class="cart-list"></div>
                 <p id="quoteDraftSummary" class="muted"></p>
-                <p class="muted section-tip">Direkt Satis stok dusurur; tahsilat yazdiysaniz Kasa Defteri'ne de isler. Teklif Olarak Kaydet sadece Son Teklifler listesine kaydeder, stok ve kasa degismez. Faturasiz satis butonunda sepette gorunen tutar son satis tutaridir; ekstra KDV eklenmez.</p>
                 <div class="action-row pos-actions">
                   <button id="checkoutSaleButton" class="primary-button" type="button" data-help="TR: Sepeti stoktan dusurur, satisi kaydeder ve tahsilati kasaya yazar. DE: Reduziert den Bestand, speichert den Verkauf und schreibt die Zahlung in die Kasse.">Direkt Satis Yap</button>
                   <button id="checkoutUnbilledSaleButton" class="secondary-button" type="button" data-help="TR: Perakende/faturasiz satis yapar. DE: Fuehrt einen Barverkauf ohne Rechnung aus.">Faturasiz Satis</button>
@@ -542,7 +535,6 @@
             <div class="admin-only">
               <section>
                 <h2>Siparis Takibi</h2>
-                <p class="muted section-tip">Musteri siparisleri burada toplanir ve durumlari takip edilir.</p>
                 <div class="table-wrap">
                   <table>
                     <thead>
@@ -563,8 +555,7 @@
 
             <div class="customer-only">
               <div id="customerVerificationBanner" class="panel-lite hidden">
-                <h3>E-Posta Dogrulamasi Bekleniyor</h3>
-                <p class="muted">Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.</p>
+                <h3>E-Posta Doğrulaması Bekleniyor</h3>
                 <div class="action-row">
                   <button id="resendVerificationButton" class="secondary-button" type="button">Dogrulama Mailini Tekrar Gonder</button>
                 </div>
@@ -575,7 +566,6 @@
                   <div class="section-head">
                     <div>
                       <h2>Stoktaki Urunler</h2>
-                      <p class="muted">Stoktaki urunler, stok adedi ve satis fiyatlari burada gosterilir.</p>
                     </div>
                   </div>
                   <div id="customerCatalogGrid" class="pos-catalog-grid"></div>
@@ -585,7 +575,6 @@
                   <div class="section-head">
                     <div>
                       <h2>Siparis Sepeti</h2>
-                      <p class="muted">Istediginiz urunleri secip siparis talebi gonderebilirsiniz.</p>
                     </div>
                   </div>
                   <form id="customerOrderForm" class="form-grid compact-form">
@@ -613,7 +602,7 @@
                   <div class="section-head">
                     <div>
                       <h2>Admin Mesaj Kutusu</h2>
-                      <p id="adminMessagesSummary" class="muted">Yeni istekler, sikayetler ve destek mesajlari burada toplanir.</p>
+                      <p id="adminMessagesSummary" class="muted"></p>
                     </div>
                   </div>
                   <div class="table-wrap">
@@ -642,7 +631,6 @@
                   <div class="section-head">
                     <div>
                       <h2>Admin'e Mesaj Gonder</h2>
-                      <p class="muted">Sikayet, istek, destek talebi veya oneri mesajinizi admin ekibine yazin.</p>
                     </div>
                   </div>
                   <form id="adminMessageForm" class="form-grid">
@@ -665,7 +653,7 @@
                   <div class="section-head">
                     <div>
                       <h2>Mesaj Gecmisim</h2>
-                      <p id="adminMessageHistorySummary" class="muted">Burada size ait tum admin mesajlarinin durumunu gorebilirsiniz.</p>
+                      <p id="adminMessageHistorySummary" class="muted"></p>
                     </div>
                   </div>
                   <div id="adminMessageList" class="activity-feed"></div>
@@ -720,7 +708,7 @@
                 <div class="section-head">
                   <div>
                     <h2>Guvenlik Olaylari</h2>
-                    <p id="securitySummary" class="muted">Son girisler, engellenen denemeler ve kritik islemler burada listelenir.</p>
+                    <p id="securitySummary" class="muted"></p>
                   </div>
                 </div>
                 <div class="table-wrap">
@@ -744,7 +732,6 @@
                 <div class="section-head">
                   <div>
                     <h2>IP Blok Listesi</h2>
-                    <p class="muted">Supheli denemelerde sistem IP adresini gecici bloke eder. Gerekiyorsa buradan kaldirin.</p>
                   </div>
                 </div>
                 <div class="table-wrap">
@@ -772,14 +759,12 @@
               <div class="section-head">
                 <div>
                   <h2>Proje Araclari</h2>
-                  <p class="muted">Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan araclar burada toplandi. Bu bolume tum kullanicilar erisebilir.</p>
                 </div>
               </div>
               <div class="tool-grid">
                 <article class="tool-card">
                   <span class="eyebrow">ColdRoomPro</span>
                   <h3>Soguk Oda Proje Hesaplayici</h3>
-                  <p class="muted">Kapasite, malzeme, teklif ve proje akisi icin kullandiginiz ana ColdRoomPro uygulamasi.</p>
                   <div class="action-row">
                     <a class="primary-button tool-link" href="/admin-tools/coldroompro/" target="_blank" rel="noopener">Yeni Sekmede Ac</a>
                   </div>
@@ -788,7 +773,6 @@
                 <article class="tool-card">
                   <span class="eyebrow">3D Cizim</span>
                   <h3>Soguk Oda Cizim Pro</h3>
-                  <p class="muted">Yan yana oda, ortak duvar, borulama, 3D gorunum ve PDF/PNG ciktilari icin tam cizim araci.</p>
                   <div class="action-row">
                     <a class="primary-button tool-link" href="/admin-tools/soguk-oda-cizim/" target="_blank" rel="noopener">Yeni Sekmede Ac</a>
                   </div>
@@ -802,7 +786,6 @@
             <div class="two-column">
               <section>
                 <h2>DRC MAN Egitim Kaydi</h2>
-                <p class="muted">Buraya eklenen soru-cevaplar once DRC MAN tarafinda denenir. Egitim kayitlari admin tarafindan duzenlenir ve tum yerel kullanicilar ayni bilgiyi alir.</p>
                 <form id="assistantTrainingForm" class="form-grid">
                   <input name="id" type="hidden">
                   <label>Konu<input name="topic" type="text" placeholder="Orn. Faturasiz satis akisi"></label>
@@ -861,7 +844,6 @@
               <div class="section-head">
                 <div>
                   <h2>Retrofit Checklist</h2>
-                  <p class="muted">Mevcut gazdan yeni gaza gecis dusunulurken sahada atlanmamasi gereken adimlari bu arac hizli toparlar.</p>
                 </div>
               </div>
               <div class="two-column">
@@ -951,7 +933,7 @@
                 </section>
                 <section class="panel-lite retrofit-checklist-output-wrap">
                   <h3 id="retrofitChecklistTitle">Saha Kontrol Ciktisi</h3>
-                  <p id="retrofitChecklistHint" class="muted">Formu doldurup checklist urettiginizde burada saha sirasina gore duzenlenmis bir yol haritasi goreceksiniz.</p>
+                  <p id="retrofitChecklistHint" class="muted"></p>
                   <div id="retrofitChecklistOutput" class="retrofit-checklist-output">
                     <div class="empty-state">Henuz checklist uretilmedi.</div>
                   </div>
