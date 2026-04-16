@@ -2720,30 +2720,81 @@ tbody tr:hover td:last-child {
   gap: 10px;
   padding: 9px 12px !important;
   border: none !important;
-  border-radius: 9px !important;
+  border-radius: 10px !important;
   background: transparent !important;
   color: rgba(193, 212, 234, 0.78);
   font-size: 0.86rem !important;
   font-weight: 500;
   min-height: auto !important;
   box-shadow: none !important;
-  transition: all 0.12s ease;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.18s ease;
+}
+
+.erp-nav-buttons .tab-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--erp-tab-accent, #38bdf8);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .erp-nav-buttons .tab-button:hover {
-  background: rgba(100, 180, 255, 0.08) !important;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 18%, transparent) 0%,
+    color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 8%, transparent) 100%
+  ) !important;
   color: #ffffff;
-  transform: none !important;
+  transform: translateX(2px);
   border: none !important;
 }
 
+.erp-nav-buttons .tab-button:hover::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
 .erp-nav-buttons .tab-button.active {
-  background: linear-gradient(135deg, rgba(0, 169, 143, 0.22), rgba(45, 108, 255, 0.18)) !important;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 28%, transparent),
+    color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 14%, transparent)
+  ) !important;
   color: #ffffff !important;
   border: none !important;
-  box-shadow: 0 2px 12px rgba(0, 169, 143, 0.15) !important;
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 28%, transparent) !important;
   font-weight: 700;
 }
+
+.erp-nav-buttons .tab-button.active::before {
+  opacity: 1;
+  transform: scaleY(1);
+  background: var(--erp-tab-accent, #38bdf8);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 60%, transparent);
+}
+
+/* Per-tab accent color via data-tab attribute */
+.erp-nav-buttons .tab-button[data-tab="items"]        { --erp-tab-accent: #38bdf8; /* mavi */ }
+.erp-nav-buttons .tab-button[data-tab="movements"]    { --erp-tab-accent: #22d3ee; /* cyan */ }
+.erp-nav-buttons .tab-button[data-tab="quotes"]       { --erp-tab-accent: #f97316; /* turuncu */ }
+.erp-nav-buttons .tab-button[data-tab="orders"]       { --erp-tab-accent: #a855f7; /* mor */ }
+.erp-nav-buttons .tab-button[data-tab="tools"]        { --erp-tab-accent: #14b8a6; /* teal */ }
+.erp-nav-buttons .tab-button[data-tab="expenses"]     { --erp-tab-accent: #ef4444; /* kırmızı */ }
+.erp-nav-buttons .tab-button[data-tab="archive"]      { --erp-tab-accent: #94a3b8; /* gri */ }
+.erp-nav-buttons .tab-button[data-tab="users"]        { --erp-tab-accent: #84cc16; /* yeşil */ }
+.erp-nav-buttons .tab-button[data-tab="security"]     { --erp-tab-accent: #fb7185; /* pembe */ }
+.erp-nav-buttons .tab-button[data-tab="messages"]     { --erp-tab-accent: #facc15; /* sarı */ }
+.erp-nav-buttons .tab-button[data-tab="training"]     { --erp-tab-accent: #8b5cf6; /* koyu mor */ }
+/* Kasa modal trigger (no data-tab) - icon KS */
+.erp-nav-buttons button:not([data-tab])              { --erp-tab-accent: #10b981; /* yeşil */ }
 
 .erp-nav-icon {
   display: inline-flex;
@@ -2751,20 +2802,27 @@ tbody tr:hover td:last-child {
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
-  background: rgba(100, 180, 255, 0.08);
-  color: rgba(126, 233, 255, 0.70);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 18%, rgba(6, 14, 28, 0.35));
+  color: color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 85%, white);
   font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   flex-shrink: 0;
-  transition: all 0.12s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.18s ease;
+}
+
+.erp-nav-buttons .tab-button:hover .erp-nav-icon {
+  background: color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 38%, rgba(6, 14, 28, 0.35));
+  color: #ffffff;
+  transform: scale(1.04);
 }
 
 .erp-nav-buttons .tab-button.active .erp-nav-icon {
-  background: rgba(0, 169, 143, 0.28);
+  background: var(--erp-tab-accent, #38bdf8);
   color: #ffffff;
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--erp-tab-accent, #38bdf8) 55%, transparent);
 }
 
 .erp-nav-buttons .tab-button .tab-title {
@@ -3537,6 +3595,66 @@ h3 {
   font-size: 11.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Loading spinner / animated placeholder */
+.loading-box {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: linear-gradient(120deg, rgba(45, 108, 255, 0.06), rgba(0, 169, 143, 0.05));
+  border: 1px dashed rgba(45, 108, 255, 0.22);
+  border-radius: var(--radius-md);
+  margin: 8px 0;
+}
+.loading-spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid rgba(45, 108, 255, 0.18);
+  border-top-color: #2d6cff;
+  border-right-color: #00a98f;
+  animation: spin 0.9s linear infinite;
+  flex-shrink: 0;
+}
+.loading-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.loading-text strong {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.loading-text .muted {
+  font-size: 12.5px;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Subtle skeleton shimmer (alternative placeholder) */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(18, 44, 83, 0.06);
+  border-radius: 6px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
 }
 
 /* Respect user preference for reduced motion */

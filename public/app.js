@@ -3946,21 +3946,29 @@ function renderItemSelects() {
 }
 
 function renderInventoryLoading(target) {
-  const message = langText("Tum urun listesi yukleniyor...", "Gesamte Artikelliste wird geladen...");
+  const message = langText("Stok yukleniyor", "Bestand wird geladen");
+  const spinnerHtml = `
+    <div class="loading-box">
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <div class="loading-text">
+        <strong>${message}</strong>
+        <span class="muted">${langText("Binlerce urunun listesi hazirlaniyor, lutfen bekleyin.", "Tausende Artikel werden geladen, bitte warten.")}</span>
+      </div>
+    </div>`;
   if (target === "items") {
-    refs.itemsSummary.textContent = message;
+    refs.itemsSummary.textContent = message + " · " + langText("lütfen bekleyin", "bitte warten");
     refs.stockedItemsSummary.textContent = "";
-    refs.stockedItemsList.innerHTML = `<div class="empty-state">${message}</div>`;
-    refs.itemsTableBody.innerHTML = `<tr><td colspan="10"><div class="empty-state">${message}</div></td></tr>`;
+    refs.stockedItemsList.innerHTML = spinnerHtml;
+    refs.itemsTableBody.innerHTML = `<tr><td colspan="10">${spinnerHtml}</td></tr>`;
     return;
   }
   if (target === "archive") {
     refs.archiveSummary.textContent = message;
-    refs.archiveTableBody.innerHTML = `<tr><td colspan="8"><div class="empty-state">${message}</div></td></tr>`;
+    refs.archiveTableBody.innerHTML = `<tr><td colspan="8">${spinnerHtml}</td></tr>`;
     return;
   }
   if (target === "movements") {
-    refs.movementsTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${message}</div></td></tr>`;
+    refs.movementsTableBody.innerHTML = `<tr><td colspan="7">${spinnerHtml}</td></tr>`;
   }
 }
 
