@@ -40,13 +40,30 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.005em;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(0, 169, 143, 0.18), transparent 24%),
     radial-gradient(circle at top right, rgba(45, 108, 255, 0.20), transparent 26%),
     radial-gradient(circle at bottom right, rgba(255, 138, 0, 0.14), transparent 24%),
     linear-gradient(180deg, #f7fbff 0%, #edf3ff 52%, #f8fbf4 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+/* Monospaced (IDs, codes) — optional */
+code, pre, .mono {
+  font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
 }
 
 body::before {
@@ -173,7 +190,7 @@ input:-webkit-autofill:active {
 }
 
 input:-webkit-autofill::first-line {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
   font-size: 1rem;
   color: var(--text);
 }
@@ -194,7 +211,7 @@ input:-webkit-autofill::first-line {
 .ui-language-label {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -275,7 +292,7 @@ input:-webkit-autofill::first-line {
   font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
 }
 
 .assistant-language-label select {
@@ -305,7 +322,7 @@ input:-webkit-autofill::first-line {
   margin-bottom: 5px;
   font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
 }
 
 .assistant-message p {
@@ -378,7 +395,7 @@ input:-webkit-autofill::first-line {
     radial-gradient(circle at 88% 76%, rgba(255, 138, 0, 0.12), transparent 20%),
     linear-gradient(160deg, #050d18 0%, #0a1f3d 48%, #0f3158 100%);
   box-shadow: 0 26px 70px rgba(4, 11, 23, 0.42);
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
 }
 
 .auth-showcase::before {
@@ -443,17 +460,17 @@ input:-webkit-autofill::first-line {
 .company-info-card span,
 .auth-contact-item span {
   color: #7ee9ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.73rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .auth-location-line {
   margin: 8px 0 0;
   color: rgba(228, 239, 255, 0.78);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
 }
@@ -461,7 +478,7 @@ input:-webkit-autofill::first-line {
 .auth-showcase-title {
   max-width: 13ch;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: clamp(2.05rem, 3vw, 3.15rem);
   line-height: 1.03;
   color: #ffffff;
@@ -511,7 +528,7 @@ input:-webkit-autofill::first-line {
 .brand-logo-card strong,
 .company-info-card strong,
 .auth-contact-item strong {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
 }
 
 .auth-location-card strong {
@@ -621,16 +638,16 @@ input:-webkit-autofill::first-line {
 
 .auth-peyk-eyebrow {
   color: #7ee9ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .auth-peyk-card strong {
   color: #ffffff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 1rem;
   line-height: 1.35;
 }
@@ -715,7 +732,7 @@ input:-webkit-autofill::first-line {
   border: 1px solid rgba(126, 205, 255, 0.18);
   background: rgba(0, 180, 216, 0.10);
   color: #7ee9ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -761,7 +778,7 @@ input:-webkit-autofill::first-line {
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(0, 180, 216, 0.16), rgba(255, 255, 255, 0.08));
   color: #7ee9ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -861,12 +878,12 @@ input:-webkit-autofill::first-line {
   align-self: start;
   position: sticky;
   top: 24px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
 }
 
 .auth-login-heading h2 {
   margin: 8px 0 8px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: clamp(1.55rem, 2vw, 2rem);
 }
 
@@ -2128,7 +2145,7 @@ th {
   z-index: 1;
   background: linear-gradient(180deg, #f0f6ff 0%, #f9fcff 100%);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
   font-size: 0.77rem;
   color: var(--muted);
 }
@@ -2596,7 +2613,7 @@ tbody tr:hover td:last-child {
   box-shadow: 4px 0 32px rgba(0, 8, 24, 0.35);
   z-index: 100;
   overflow: hidden;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
 }
 
 .erp-sidebar::before {
@@ -2635,7 +2652,7 @@ tbody tr:hover td:last-child {
 .erp-sidebar-brand-info strong {
   display: block;
   color: #ffffff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.86rem;
   font-weight: 700;
   line-height: 1.2;
@@ -2684,7 +2701,7 @@ tbody tr:hover td:last-child {
   display: block;
   padding: 14px 12px 5px;
   color: rgba(126, 205, 255, 0.50);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.60rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -2737,7 +2754,7 @@ tbody tr:hover td:last-child {
   border-radius: 8px;
   background: rgba(100, 180, 255, 0.08);
   color: rgba(126, 233, 255, 0.70);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -2983,7 +3000,7 @@ tbody tr:hover td:last-child {
     radial-gradient(circle at 78% 82%, rgba(255, 138, 0, 0.12), transparent 28%),
     linear-gradient(160deg, #050d18 0%, #0a1f3d 48%, #0f3158 100%);
   color: #eef7ff;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
   position: relative;
   overflow: hidden;
 }
@@ -3023,7 +3040,7 @@ tbody tr:hover td:last-child {
 }
 .lean-topbar-brand strong {
   display: block;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 14px;
   letter-spacing: 0.05em;
   color: #eef7ff;
@@ -3032,7 +3049,7 @@ tbody tr:hover td:last-child {
   display: block;
   color: rgba(238, 247, 255, 0.62);
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-top: 2px;
 }
@@ -3089,7 +3106,7 @@ tbody tr:hover td:last-child {
 }
 .lean-hero-title {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-weight: 800;
   font-size: clamp(28px, 4.4vw, 52px);
   line-height: 1.12;
@@ -3143,13 +3160,13 @@ tbody tr:hover td:last-child {
   justify-content: center;
   background: linear-gradient(135deg, rgba(0, 180, 216, 0.3), rgba(255, 138, 0, 0.22));
   color: #eef7ff;
-  font-family: "IBM Plex Sans", monospace;
+  font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
   font-size: 12px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   font-weight: 700;
 }
 .lean-value-card strong {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 15px;
   color: #f4faff;
   line-height: 1.35;
@@ -3174,7 +3191,7 @@ tbody tr:hover td:last-child {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.09);
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   color: rgba(238, 247, 255, 0.82);
@@ -3200,7 +3217,7 @@ tbody tr:hover td:last-child {
   gap: 4px;
 }
 .lean-footer-kicker {
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
   font-size: 10.5px;
   text-transform: uppercase;
   color: rgba(238, 247, 255, 0.56);
@@ -3209,7 +3226,7 @@ tbody tr:hover td:last-child {
   color: #eef7ff;
   font-size: 13px;
   line-height: 1.5;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
   font-weight: 500;
 }
 .lean-footer-col a {
@@ -3253,7 +3270,7 @@ html.auth-modal-open body {
   border-radius: 20px;
   padding: 26px 26px 22px;
   box-shadow: 0 32px 90px rgba(4, 12, 22, 0.52);
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
 }
 .auth-modal-close {
   position: absolute;
@@ -3301,7 +3318,7 @@ html.auth-modal-open body {
 }
 .auth-modal-view h2 {
   margin: 0 0 4px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Outfit", "Inter", sans-serif;
   font-size: 20px;
   color: #12355b;
 }
@@ -3399,4 +3416,137 @@ html.auth-modal-open body {
 }
 .action-cell .small-button {
   min-width: 64px;
+}
+
+/* =========================================================================
+   Dinamik mikro etkileşimler (2026-04-17)
+   - Buton / link hover lift
+   - Kart transitions
+   - Tablo satır hover vurgusu
+   - Odak halkası (keyboard nav için)
+   ========================================================================= */
+button,
+.primary-button,
+.secondary-button,
+.mini-button,
+.danger-button {
+  transition: transform 0.18s ease, box-shadow 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+  will-change: transform;
+}
+button:hover:not(:disabled),
+.primary-button:hover:not(:disabled),
+.secondary-button:hover:not(:disabled),
+.mini-button:hover:not(:disabled),
+.danger-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+button:active:not(:disabled),
+.primary-button:active:not(:disabled),
+.secondary-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+a {
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+input,
+select,
+textarea {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(45, 108, 255, 0.45);
+  outline-offset: 2px;
+}
+
+/* Table row hover */
+tbody tr {
+  transition: background-color 0.14s ease;
+}
+tbody tr:hover {
+  background: rgba(45, 108, 255, 0.035);
+}
+
+/* Card/panel hover lift (panel, panel-lite, stocked-card, lean-value-card, solution-card, brand-logo-card) */
+.panel,
+.panel-lite,
+.stocked-card,
+.overview-card {
+  transition: transform 0.22s ease, box-shadow 0.26s ease, border-color 0.22s ease;
+}
+.stocked-card:hover,
+.overview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tab buttons - smooth active indicator */
+.tab-button {
+  transition: background 0.2s ease, color 0.2s ease, transform 0.18s ease;
+}
+.tab-button:hover:not(.active) {
+  transform: translateX(2px);
+}
+
+/* Subtle entrance animation for newly rendered content */
+@keyframes dynFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.tab-content.active,
+.auth-modal-panel,
+.stocked-card,
+.overview-card {
+  animation: dynFadeIn 0.32s ease-out;
+}
+
+/* Headings - tighter, more confident */
+h1 {
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 800;
+}
+h2 {
+  font-size: clamp(20px, 1.8vw, 24px);
+  font-weight: 700;
+}
+h3 {
+  font-size: clamp(16px, 1.4vw, 18px);
+  font-weight: 600;
+}
+
+/* Muted text slightly softer */
+.muted {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+/* Eyebrow labels - clean and readable */
+.eyebrow {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
