@@ -3657,6 +3657,140 @@ h3 {
   to { transform: translateX(100%); }
 }
 
+/* Customer catalog filter bar */
+.customer-catalog-filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 2fr) repeat(3, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 10px 0 14px;
+  padding: 12px;
+  background: rgba(45, 108, 255, 0.04);
+  border: 1px solid rgba(45, 108, 255, 0.12);
+  border-radius: var(--radius-md);
+}
+.customer-catalog-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.customer-catalog-filters input,
+.customer-catalog-filters select {
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 13.5px;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.customer-catalog-filters input:focus,
+.customer-catalog-filters select:focus {
+  outline: none;
+  border-color: var(--sales);
+  box-shadow: 0 0 0 3px rgba(45, 108, 255, 0.15);
+}
+@media (max-width: 768px) {
+  .customer-catalog-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .customer-filter-search {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Cart totals (müşteri sepeti net/KDV/brüt) */
+.cart-totals {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  margin: 12px 0 8px;
+  background: linear-gradient(135deg, rgba(0, 169, 143, 0.06), rgba(45, 108, 255, 0.06));
+  border: 1px solid rgba(0, 169, 143, 0.20);
+  border-radius: var(--radius-md);
+}
+.cart-totals.hidden {
+  display: none;
+}
+.cart-totals-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.cart-totals-row strong {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+.cart-totals-grand {
+  padding-top: 8px;
+  margin-top: 4px;
+  border-top: 1px dashed rgba(0, 169, 143, 0.30);
+}
+.cart-totals-grand span {
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+.cart-totals-grand strong {
+  font-size: 17px;
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+/* Customer order review modal (reuses .auth-modal base) */
+.order-review-panel {
+  width: min(560px, 100%) !important;
+  max-height: min(90vh, 860px) !important;
+}
+.order-review-list {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 16px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+.order-review-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 13.5px;
+}
+.order-review-row strong {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-weight: 600;
+}
+.order-review-row .muted {
+  font-size: 12.5px;
+}
+.order-review-totals {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(0, 169, 143, 0.08), rgba(45, 108, 255, 0.08));
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+}
+.order-review-panel .action-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.order-review-panel .action-row button {
+  flex: 1;
+}
+
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -564,6 +564,7 @@ const state = {
   },
   quoteDraft: [],
   customerOrderDraft: [],
+  customerCatalogFilters: { search: "", category: "all", brand: "all", sort: "name" },
   customers: [],
   customersLoaded: false,
   quoteFilters: {
@@ -681,6 +682,22 @@ const refs = {
   checkoutUnbilledSaleButton: document.getElementById("checkoutUnbilledSaleButton"),
   quotesList: document.getElementById("quotesList"),
   customerCatalogGrid: document.getElementById("customerCatalogGrid"),
+  customerCatalogSearch: document.getElementById("customerCatalogSearch"),
+  customerCatalogCategory: document.getElementById("customerCatalogCategory"),
+  customerCatalogBrand: document.getElementById("customerCatalogBrand"),
+  customerCatalogSort: document.getElementById("customerCatalogSort"),
+  customerCatalogSummary: document.getElementById("customerCatalogSummary"),
+  customerCartTotals: document.getElementById("customerCartTotals"),
+  cartTotalNet: document.getElementById("cartTotalNet"),
+  cartTotalVat: document.getElementById("cartTotalVat"),
+  cartTotalGross: document.getElementById("cartTotalGross"),
+  customerOrderReviewModal: document.getElementById("customerOrderReviewModal"),
+  orderReviewList: document.getElementById("orderReviewList"),
+  orderReviewNet: document.getElementById("orderReviewNet"),
+  orderReviewVat: document.getElementById("orderReviewVat"),
+  orderReviewGross: document.getElementById("orderReviewGross"),
+  orderReviewNote: document.getElementById("orderReviewNote"),
+  confirmCustomerOrderButton: document.getElementById("confirmCustomerOrderButton"),
   customerOrderForm: document.getElementById("customerOrderForm"),
   customerOrderBody: document.getElementById("customerOrderBody"),
   customerOrderSummary: document.getElementById("customerOrderSummary"),
@@ -1142,7 +1159,7 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.customerOrderForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.customerOrderForm, "note", langText("Siparis Notu", "Bestellnotiz"));
   setFieldPlaceholder(refs.customerOrderForm, "note", langText("Teslim tarihi, aciklama veya ozel not", "Lieferdatum, Beschreibung oder Sondernotiz"));
-  setText(refs.submitCustomerOrderButton, langText("Siparis Gonder", "Bestellung senden"));
+  setText(refs.submitCustomerOrderButton, langText("Siparişi Gözden Geçir", "Bestellung prüfen"));
   setText("[data-tab-content='orders'] .customer-only .recent-quotes h2", langText("Siparis Gecmisi", "Bestellverlauf"));
 
   setText("[data-tab-content='messages'] .admin-only h2", langText("Admin Mesaj Kutusu", "Admin-Nachrichten"));
@@ -1564,8 +1581,38 @@ function bindEvents() {
   refs.saveQuoteButton.addEventListener("click", handleQuoteSave);
   refs.checkoutSaleButton.addEventListener("click", handleDirectSale);
   refs.checkoutUnbilledSaleButton?.addEventListener("click", handleUnbilledSale);
-  refs.submitCustomerOrderButton?.addEventListener("click", handleCustomerOrderSubmit);
+  refs.submitCustomerOrderButton?.addEventListener("click", openCustomerOrderReview);
+  refs.confirmCustomerOrderButton?.addEventListener("click", handleCustomerOrderConfirm);
   refs.resendVerificationButton?.addEventListener("click", handleResendVerification);
+
+  // Customer catalog filters
+  refs.customerCatalogSearch?.addEventListener("input", (e) => {
+    state.customerCatalogFilters.search = e.target.value;
+    if (state._customerFilterTimer) clearTimeout(state._customerFilterTimer);
+    state._customerFilterTimer = setTimeout(() => renderCustomerCatalog(), 150);
+  });
+  refs.customerCatalogCategory?.addEventListener("change", (e) => {
+    state.customerCatalogFilters.category = e.target.value;
+    renderCustomerCatalog();
+  });
+  refs.customerCatalogBrand?.addEventListener("change", (e) => {
+    state.customerCatalogFilters.brand = e.target.value;
+    renderCustomerCatalog();
+  });
+  refs.customerCatalogSort?.addEventListener("change", (e) => {
+    state.customerCatalogFilters.sort = e.target.value;
+    renderCustomerCatalog();
+  });
+
+  // Order review modal close handlers
+  refs.customerOrderReviewModal?.querySelectorAll("[data-order-review-close]").forEach((el) => {
+    el.addEventListener("click", closeCustomerOrderReview);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && refs.customerOrderReviewModal && !refs.customerOrderReviewModal.hasAttribute("hidden")) {
+      closeCustomerOrderReview();
+    }
+  });
 
   if (refs.userForm) {
     refs.userForm.addEventListener("submit", handleUserFormSubmit);
@@ -3795,13 +3842,68 @@ function renderAdminOrders() {
   });
 }
 
+function populateCustomerCatalogFilters() {
+  if (!refs.customerCatalogCategory || !refs.customerCatalogBrand) return;
+  const stockItems = state.items.filter((item) => Number(item.currentStock) > 0);
+  const categories = Array.from(new Set(stockItems.map(i => (i.category || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
+  const brands = Array.from(new Set(stockItems.map(i => (i.brand || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
+  const prevCategory = refs.customerCatalogCategory.value || "all";
+  const prevBrand = refs.customerCatalogBrand.value || "all";
+  refs.customerCatalogCategory.innerHTML = `<option value="all">${langText("Tümü","Alle")}</option>` + categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+  refs.customerCatalogBrand.innerHTML = `<option value="all">${langText("Tümü","Alle")}</option>` + brands.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join("");
+  if (categories.includes(prevCategory)) refs.customerCatalogCategory.value = prevCategory;
+  if (brands.includes(prevBrand)) refs.customerCatalogBrand.value = prevBrand;
+}
+
+function getFilteredCustomerItems() {
+  const filters = state.customerCatalogFilters;
+  const term = (filters.search || "").toLowerCase().trim();
+  let items = state.items.filter((item) => Number(item.currentStock) > 0);
+
+  if (filters.category && filters.category !== "all") {
+    items = items.filter((i) => (i.category || "").trim() === filters.category);
+  }
+  if (filters.brand && filters.brand !== "all") {
+    items = items.filter((i) => (i.brand || "").trim() === filters.brand);
+  }
+  if (term) {
+    items = items.filter((i) => {
+      const name = (i.name || "").toLowerCase();
+      const brand = (i.brand || "").toLowerCase();
+      const code = (i.barcode || "").toLowerCase();
+      const sku = (i.productCode || "").toLowerCase();
+      return name.includes(term) || brand.includes(term) || code.includes(term) || sku.includes(term);
+    });
+  }
+
+  items.sort((a, b) => {
+    switch (filters.sort) {
+      case "price-asc":  return Number(visibleSalePrice(a) || 0) - Number(visibleSalePrice(b) || 0);
+      case "price-desc": return Number(visibleSalePrice(b) || 0) - Number(visibleSalePrice(a) || 0);
+      case "stock-desc": return Number(b.currentStock || 0) - Number(a.currentStock || 0);
+      default:           return (a.name || "").localeCompare(b.name || "", "tr");
+    }
+  });
+
+  return items;
+}
+
 function renderCustomerCatalog() {
   if (!refs.customerCatalogGrid || !isCustomerUser()) {
     return;
   }
 
-  const items = state.items.filter((item) => Number(item.currentStock) > 0).slice(0, 80);
+  populateCustomerCatalogFilters();
+  const allFiltered = getFilteredCustomerItems();
+  const MAX_SHOW = 120;
+  const items = allFiltered.slice(0, MAX_SHOW);
   refs.customerCatalogGrid.innerHTML = "";
+
+  if (refs.customerCatalogSummary) {
+    refs.customerCatalogSummary.textContent = allFiltered.length > MAX_SHOW
+      ? langText(`${allFiltered.length} ürün bulundu · ilk ${MAX_SHOW} gösteriliyor`, `${allFiltered.length} Artikel · erste ${MAX_SHOW} angezeigt`)
+      : langText(`${allFiltered.length} ürün bulundu`, `${allFiltered.length} Artikel gefunden`);
+  }
 
   if (items.length === 0) {
     refs.customerCatalogGrid.innerHTML = `<div class="empty-state">${t("messages.noCustomerCatalog")}</div>`;
@@ -3846,6 +3948,7 @@ function renderCustomerOrderDraft() {
   if (state.customerOrderDraft.length === 0) {
     refs.customerOrderBody.innerHTML = `<div class="empty-state">${t("messages.emptyCustomerCart")}</div>`;
     refs.customerOrderSummary.textContent = t("messages.noCustomerOrderLines");
+    refs.customerCartTotals?.classList.add("hidden");
     return;
   }
 
@@ -3885,6 +3988,66 @@ function renderCustomerOrderDraft() {
   const totalUnits = state.customerOrderDraft.reduce((sum, entry) => sum + Number(entry.quantity), 0);
   const totalPrice = state.customerOrderDraft.reduce((sum, entry) => sum + (Number(entry.quantity) * Number(entry.unitPrice || 0)), 0);
   refs.customerOrderSummary.textContent = t("messages.customerOrderSummary", totalLines, numberFormat.format(totalUnits), currency.format(totalPrice));
+
+  // KDV totals (net + %19 KDV + brüt)
+  const VAT_RATE = 0.19;
+  const net = totalPrice;
+  const vat = +(net * VAT_RATE).toFixed(2);
+  const gross = +(net + vat).toFixed(2);
+  if (refs.customerCartTotals) refs.customerCartTotals.classList.remove("hidden");
+  if (refs.cartTotalNet)   refs.cartTotalNet.textContent = currency.format(net);
+  if (refs.cartTotalVat)   refs.cartTotalVat.textContent = currency.format(vat);
+  if (refs.cartTotalGross) refs.cartTotalGross.textContent = currency.format(gross);
+}
+
+function openCustomerOrderReview() {
+  if (!refs.customerOrderReviewModal) return;
+  if (state.customerOrderDraft.length === 0) {
+    window.alert(t("messages.addQuoteFirst") || langText("Önce sepete ürün ekleyin.", "Zuerst Artikel in den Warenkorb legen."));
+    return;
+  }
+  const VAT_RATE = 0.19;
+  const net = state.customerOrderDraft.reduce((s, e) => s + Number(e.quantity) * Number(e.unitPrice || 0), 0);
+  const vat = +(net * VAT_RATE).toFixed(2);
+  const gross = +(net + vat).toFixed(2);
+
+  if (refs.orderReviewList) {
+    refs.orderReviewList.innerHTML = state.customerOrderDraft.map((e) => `
+      <div class="order-review-row">
+        <div>
+          <strong>${escapeHtml(e.itemName)}</strong>
+          <span class="muted"> · ${numberFormat.format(e.quantity)} ${escapeHtml(e.unit || "")} × ${currency.format(e.unitPrice || 0)}</span>
+        </div>
+        <strong>${currency.format(Number(e.quantity) * Number(e.unitPrice || 0))}</strong>
+      </div>
+    `).join("");
+  }
+  if (refs.orderReviewNet)   refs.orderReviewNet.textContent = currency.format(net);
+  if (refs.orderReviewVat)   refs.orderReviewVat.textContent = currency.format(vat);
+  if (refs.orderReviewGross) refs.orderReviewGross.textContent = currency.format(gross);
+
+  const notePayload = formToObject(refs.customerOrderForm);
+  if (refs.orderReviewNote) {
+    const parts = [];
+    if (notePayload.date) parts.push(langText(`Tarih: ${notePayload.date}`, `Datum: ${notePayload.date}`));
+    if (notePayload.note) parts.push(langText(`Not: ${notePayload.note}`, `Notiz: ${notePayload.note}`));
+    refs.orderReviewNote.textContent = parts.join(" · ");
+  }
+
+  refs.customerOrderReviewModal.removeAttribute("hidden");
+  document.documentElement.classList.add("auth-modal-open");
+}
+
+function closeCustomerOrderReview() {
+  if (!refs.customerOrderReviewModal) return;
+  refs.customerOrderReviewModal.setAttribute("hidden", "");
+  document.documentElement.classList.remove("auth-modal-open");
+}
+
+async function handleCustomerOrderConfirm() {
+  // Actual submission logic — reuses existing submit function
+  closeCustomerOrderReview();
+  await handleCustomerOrderSubmit();
 }
 
 function renderCustomerOrders() {

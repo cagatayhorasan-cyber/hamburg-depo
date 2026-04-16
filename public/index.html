@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260417-sidebar-color-spinner-2">
+  <link rel="stylesheet" href="/styles.css?v=20260417-customer-ux-1">
 </head>
 <body>
   <div class="page-shell">
@@ -565,28 +565,77 @@
                 <section class="pos-catalog">
                   <div class="section-head">
                     <div>
-                      <h2>Stoktaki Urunler</h2>
+                      <h2>Stoktaki Ürünler</h2>
                     </div>
                   </div>
+                  <div class="customer-catalog-filters">
+                    <label class="customer-filter-search">
+                      <span>Ara</span>
+                      <input id="customerCatalogSearch" type="search" placeholder="Ürün, marka veya stok kodu...">
+                    </label>
+                    <label>
+                      <span>Kategori</span>
+                      <select id="customerCatalogCategory"><option value="all">Tümü</option></select>
+                    </label>
+                    <label>
+                      <span>Marka</span>
+                      <select id="customerCatalogBrand"><option value="all">Tümü</option></select>
+                    </label>
+                    <label>
+                      <span>Sıralama</span>
+                      <select id="customerCatalogSort">
+                        <option value="name">İsim (A-Z)</option>
+                        <option value="price-asc">Fiyat (düşük→yüksek)</option>
+                        <option value="price-desc">Fiyat (yüksek→düşük)</option>
+                        <option value="stock-desc">Stok (çok→az)</option>
+                      </select>
+                    </label>
+                  </div>
+                  <p id="customerCatalogSummary" class="muted"></p>
                   <div id="customerCatalogGrid" class="pos-catalog-grid"></div>
                 </section>
 
                 <section class="pos-cart">
                   <div class="section-head">
                     <div>
-                      <h2>Siparis Sepeti</h2>
+                      <h2>Sipariş Sepeti</h2>
                     </div>
                   </div>
                   <form id="customerOrderForm" class="form-grid compact-form">
                     <label>Tarih<input name="date" type="date" required></label>
-                    <label class="form-span-2">Siparis Notu<input name="note" type="text" placeholder="Teslim tarihi, aciklama veya ozel not"></label>
+                    <label class="form-span-2">Sipariş Notu<input name="note" type="text" placeholder="Teslim tarihi, açıklama veya özel not"></label>
                   </form>
                   <div id="customerOrderBody" class="cart-list"></div>
                   <p id="customerOrderSummary" class="muted"></p>
+                  <div id="customerCartTotals" class="cart-totals hidden">
+                    <div class="cart-totals-row"><span>Ara toplam (net)</span><strong id="cartTotalNet">—</strong></div>
+                    <div class="cart-totals-row"><span>KDV (%19)</span><strong id="cartTotalVat">—</strong></div>
+                    <div class="cart-totals-row cart-totals-grand"><span>Toplam (brüt)</span><strong id="cartTotalGross">—</strong></div>
+                  </div>
                   <div class="action-row pos-actions">
-                  <button id="submitCustomerOrderButton" class="primary-button" type="button" data-help="TR: Musteri siparis talebini gonderir. DE: Sendet die Kundenbestellung an das System.">Siparis Gonder</button>
+                  <button id="submitCustomerOrderButton" class="primary-button" type="button" data-help="TR: Siparişi göndermeden önce özet ekran açar. DE: Öffnet eine Übersicht vor dem Absenden der Bestellung.">Siparişi Gözden Geçir</button>
                   </div>
                 </section>
+              </div>
+
+              <!-- Sipariş onay modalı -->
+              <div id="customerOrderReviewModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
+                <div class="auth-modal-backdrop" data-order-review-close></div>
+                <div class="auth-modal-panel order-review-panel" role="document">
+                  <button type="button" class="auth-modal-close" data-order-review-close aria-label="Kapat">×</button>
+                  <h2>Siparişinizi Gözden Geçirin</h2>
+                  <div id="orderReviewList" class="order-review-list"></div>
+                  <div class="order-review-totals">
+                    <div class="cart-totals-row"><span>Ara toplam (net)</span><strong id="orderReviewNet">—</strong></div>
+                    <div class="cart-totals-row"><span>KDV (%19)</span><strong id="orderReviewVat">—</strong></div>
+                    <div class="cart-totals-row cart-totals-grand"><span>Toplam (brüt)</span><strong id="orderReviewGross">—</strong></div>
+                  </div>
+                  <p id="orderReviewNote" class="muted"></p>
+                  <div class="action-row">
+                    <button type="button" class="secondary-button" data-order-review-close>Geri Dön</button>
+                    <button type="button" id="confirmCustomerOrderButton" class="primary-button">Siparişi Gönder</button>
+                  </div>
+                </div>
               </div>
               <section class="recent-quotes">
                 <h2>Siparis Gecmisi</h2>
