@@ -2287,6 +2287,13 @@ function renderFilters() {
   populateSelect(refs.bulkCategoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), refs.bulkCategoryFilter.value || "all");
   populateSelect(refs.quoteBrandFilter, brands, langText("Tum Markalar", "Alle Marken"), state.quoteFilters.brand);
   populateSelect(refs.quoteCategoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), state.quoteFilters.category);
+
+  // Sync state with fallback ("all") if old value disappeared after brand/category normalize
+  if (refs.brandFilter && state.filters.brand !== refs.brandFilter.value) state.filters.brand = refs.brandFilter.value || "all";
+  if (refs.categoryFilter && state.filters.category !== refs.categoryFilter.value) state.filters.category = refs.categoryFilter.value || "all";
+  if (refs.quoteBrandFilter && state.quoteFilters.brand !== refs.quoteBrandFilter.value) state.quoteFilters.brand = refs.quoteBrandFilter.value || "all";
+  if (refs.quoteCategoryFilter && state.quoteFilters.category !== refs.quoteCategoryFilter.value) state.quoteFilters.category = refs.quoteCategoryFilter.value || "all";
+
   renderItemSearchSuggestions();
 }
 
@@ -2821,12 +2828,46 @@ function renderStockedItems(filteredItems) {
     return;
   }
 
+  // If inventory still loading, show spinner (belt & suspenders)
+  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+    const spinnerHtml = `
+      <div class="loading-box">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <div class="loading-text">
+          <strong>${langText("Stok yükleniyor", "Bestand wird geladen")}</strong>
+          <span class="muted">${langText("Binlerce ürünün listesi hazırlanıyor, lütfen bekleyin.", "Tausende Artikel werden geladen, bitte warten.")}</span>
+        </div>
+      </div>`;
+    refs.stockedItemsSummary.textContent = langText("Yükleniyor...", "Wird geladen...");
+    refs.stockedItemsList.innerHTML = spinnerHtml;
+    return;
+  }
+
   const stockedItems = filteredItems.filter((item) => Number(item.currentStock) > 0);
   refs.stockedItemsSummary.textContent = t("messages.stockedSummary", stockedItems.length);
   refs.stockedItemsList.innerHTML = "";
 
   if (stockedItems.length === 0) {
-    refs.stockedItemsList.innerHTML = `<div class="empty-state">${t("messages.noStockedItems")}</div>`;
+    const hasFilter = Boolean(state.filters?.search || (state.filters?.brand && state.filters.brand !== "all") || (state.filters?.category && state.filters.category !== "all"));
+    const msg = hasFilter
+      ? langText("Filtreye uyan stokta ürün bulunamadı.", "Kein Artikel auf Lager entspricht dem Filter.")
+      : t("messages.noStockedItems");
+    refs.stockedItemsList.innerHTML = `<div class="empty-state">
+      <strong>${msg}</strong>
+      ${hasFilter ? `<button type="button" class="secondary-button small-button" id="clearItemsFilterBtn" style="margin-top:10px;">${langText("Filtreleri Temizle", "Filter zurücksetzen")}</button>` : ""}
+    </div>`;
+    if (hasFilter) {
+      const btn = document.getElementById("clearItemsFilterBtn");
+      btn?.addEventListener("click", () => {
+        state.filters.search = "";
+        state.filters.brand = "all";
+        state.filters.category = "all";
+        if (refs.itemSearch) refs.itemSearch.value = "";
+        if (refs.brandFilter) refs.brandFilter.value = "all";
+        if (refs.categoryFilter) refs.categoryFilter.value = "all";
+        renderItems();
+      });
+    }
     return;
   }
 
