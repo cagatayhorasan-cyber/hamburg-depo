@@ -2917,7 +2917,7 @@ function renderStockedItems(filteredItems) {
     return;
   }
 
-  stockedItems.slice(0, 80).forEach((item) => {
+  stockedItems.slice(0, 300).forEach((item) => {
     const listPrice = visibleListPrice(item);
     const price = cartSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
