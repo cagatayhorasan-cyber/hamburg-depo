@@ -2021,6 +2021,120 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  app.post("/api/orders/:id/convert-to-quote", requireStaffOrAdmin, async (req, res) => {
+    const orderId = Number(req.params.id);
+    if (!Number.isFinite(orderId) || orderId <= 0) {
+      return res.status(400).json({ error: "Gecersiz siparis." });
+    }
+
+    const order = await get(
+      `SELECT id, customer_name, customer_user_id, order_date, note, quote_id
+       FROM orders WHERE id = ?`,
+      [orderId]
+    );
+    if (!order) {
+      return res.status(404).json({ error: "Siparis bulunamadi." });
+    }
+    if (order.quote_id) {
+      return res.status(400).json({ error: "Bu siparis zaten teklife baglanmis.", quoteId: Number(order.quote_id) });
+    }
+
+    const orderItems = await query(
+      `SELECT item_id, item_name, quantity, unit FROM order_items WHERE order_id = ? ORDER BY id ASC`,
+      [orderId]
+    );
+    if (!orderItems.length) {
+      return res.status(400).json({ error: "Siparis kalem icermiyor." });
+    }
+
+    const pricingInput = orderItems.map((row) => ({
+      itemId: row.item_id ? Number(row.item_id) : null,
+      itemName: row.item_name,
+      quantity: Number(row.quantity),
+      unit: row.unit || "adet",
+    }));
+
+    let pricedItems;
+    try {
+      pricedItems = await resolveSaleLineItems(pricingInput);
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Siparis kalemleri fiyatlandirilamadi." });
+    }
+
+    const language = req.body?.language === "tr" ? "tr" : "de";
+    const exportSale = isTruthy(req.body?.isExport);
+    const subtotal = pricedItems.reduce((sum, entry) => sum + Number(entry.quantity) * Number(entry.unitPrice), 0);
+    const netTotal = subtotal;
+    const vatRate = exportSale ? 0 : 19;
+    const vatAmount = Number((netTotal * (vatRate / 100)).toFixed(2));
+    const grossTotal = Number((netTotal + vatAmount).toFixed(2));
+    const today = new Date().toISOString().slice(0, 10);
+    const quoteNo = await generateQuoteNo(today);
+    const title = `Siparis #${orderId} - ${order.customer_name}`;
+
+    try {
+      const quoteId = await withTransaction(async (tx) => {
+        const quoteResult = await tx.execute(
+          `
+            INSERT INTO quotes (
+              customer_name, customer_user_id, title, quote_date, discount, subtotal, total, note, user_id, language,
+              quote_no, vat_rate, vat_amount, net_total, gross_total, is_export
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            RETURNING id
+          `,
+          [
+            order.customer_name,
+            order.customer_user_id ? Number(order.customer_user_id) : null,
+            title,
+            today,
+            0,
+            subtotal,
+            grossTotal,
+            cleanOptional(order.note) || `Siparis #${orderId} icin teklif`,
+            req.session.user.id,
+            language,
+            quoteNo,
+            vatRate,
+            vatAmount,
+            netTotal,
+            grossTotal,
+            exportSale ? 1 : 0,
+          ]
+        );
+        const insertedQuoteId = Number(quoteResult.rows[0]?.id || quoteResult.lastInsertId);
+        for (const entry of pricedItems) {
+          await tx.execute(
+            `INSERT INTO quote_items (quote_id, item_id, item_name, quantity, unit, unit_price, total)
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [
+              insertedQuoteId,
+              entry.itemId ? Number(entry.itemId) : null,
+              entry.itemName,
+              Number(entry.quantity),
+              entry.unit || "adet",
+              Number(entry.unitPrice),
+              Number(entry.quantity) * Number(entry.unitPrice),
+            ]
+          );
+        }
+        await tx.execute("UPDATE orders SET quote_id = ? WHERE id = ?", [insertedQuoteId, orderId]);
+        return insertedQuoteId;
+      });
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "order_converted_to_quote",
+        severity: "info",
+        details: { orderId, quoteId, grossTotal, lineCount: pricedItems.length },
+      });
+
+      return res.json({ ok: true, quoteId });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Siparis teklife cevrilemedi." });
+    }
+  });
+
   // ==================================================================
   // /api/projects — Proje modülü (Faz 4)
   // ==================================================================
@@ -5723,6 +5837,7 @@ async function queryOrders(user) {
         orders.id,
         orders.customer_name AS "customerName",
         orders.customer_user_id AS "customerUserId",
+        orders.quote_id AS "quoteId",
         users.phone AS phone,
         orders.order_date AS date,
         orders.status,

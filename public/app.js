@@ -3936,13 +3936,16 @@ function renderAdminOrders() {
       <td>${order.customerName}</td>
       <td>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</td>
       <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span></td>
-      <td>${order.note || "-"}</td>
+      <td>${order.note || "-"}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
       <td class="table-action-cell">
         <div class="action-row">
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparisi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing" data-help="TR: Siparisi hazirlaniyor durumuna alir. DE: Setzt die Bestellung auf in Vorbereitung.">${langText("Hazirla", "Vorbereiten")}</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparisi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschliessen")}</button>
           <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled" data-help="TR: Siparisi iptal eder. DE: Storniert die Bestellung.">${t("common.cancelled")}</button>
+          ${order.quoteId
+            ? `<button class="mini-button secondary-button" type="button" data-order-open-quote="${order.quoteId}" data-help="TR: Bagli teklifi acar. DE: Oeffnet verknuepftes Angebot.">${langText("Teklifi Aç","Angebot oeffnen")}</button>`
+            : `<button class="mini-button primary-button" type="button" data-order-convert="${order.id}" data-help="TR: Siparisi teklife cevirir. DE: Wandelt die Bestellung in ein Angebot um.">${langText("Teklife Çevir","In Angebot umwandeln")}</button>`}
           ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}" data-help="TR: Musteriye hazir WhatsApp mesaji acar. DE: Oeffnet eine vorbereitete WhatsApp-Nachricht.">WhatsApp</button>` : ""}
         </div>
       </td>
@@ -3957,6 +3960,49 @@ function renderAdminOrders() {
   refs.ordersTableBody.querySelectorAll("[data-order-whatsapp]").forEach((button) => {
     button.addEventListener("click", () => openOrderWhatsapp(Number(button.dataset.orderWhatsapp)));
   });
+
+  refs.ordersTableBody.querySelectorAll("[data-order-convert]").forEach((button) => {
+    button.addEventListener("click", () => convertOrderToQuote(Number(button.dataset.orderConvert)));
+  });
+
+  refs.ordersTableBody.querySelectorAll("[data-order-open-quote]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const quoteId = Number(button.dataset.orderOpenQuote);
+      if (!quoteId) return;
+      const quotesTab = document.querySelector('[data-tab="quotes"]');
+      if (quotesTab) quotesTab.click();
+      setTimeout(() => {
+        const row = document.querySelector(`[data-quote-id="${quoteId}"]`);
+        if (row) {
+          row.scrollIntoView({ behavior: "smooth", block: "center" });
+          row.style.outline = "2px solid var(--erp-accent)";
+          setTimeout(() => { row.style.outline = ""; }, 2500);
+        }
+      }, 300);
+    });
+  });
+}
+
+async function convertOrderToQuote(orderId) {
+  if (!orderId) return;
+  const confirmMsg = langText(
+    "Bu siparis icin yeni bir teklif olusturulacak. Devam edilsin mi?",
+    "Fuer diese Bestellung wird ein neues Angebot erstellt. Fortfahren?"
+  );
+  if (!window.confirm(confirmMsg)) return;
+  const result = await request(`/api/orders/${orderId}/convert-to-quote`, {
+    method: "POST",
+    body: JSON.stringify({ language: state.uiLanguage }),
+  });
+  if (result.error) {
+    window.alert(result.error);
+    return;
+  }
+  window.alert(langText(
+    `Teklif #${result.quoteId} olusturuldu.`,
+    `Angebot #${result.quoteId} erstellt.`
+  ));
+  await refreshData();
 }
 
 function populateCustomerCatalogFilters() {

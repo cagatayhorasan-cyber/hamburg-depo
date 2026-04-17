@@ -877,6 +877,11 @@ function ensureQuoteColumnsSqlite() {
   if (columns.length && !columns.includes("customer_user_id")) {
     sqliteDb.exec("ALTER TABLE quotes ADD COLUMN customer_user_id INTEGER");
   }
+
+  const orderColumns = sqliteDb.prepare("PRAGMA table_info(orders)").all().map((column) => column.name);
+  if (orderColumns.length && !orderColumns.includes("quote_id")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN quote_id INTEGER");
+  }
 }
 
 async function ensureQuoteColumnsPostgres() {
@@ -890,6 +895,17 @@ async function ensureQuoteColumnsPostgres() {
     await postgresSchemaQuery("ALTER TABLE quotes ADD COLUMN customer_user_id BIGINT REFERENCES users(id)");
   }
   await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_quotes_customer_user ON quotes (customer_user_id)");
+
+  const orderColumns = await postgresSchemaQuery(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'orders'
+  `);
+  const orderNames = new Set(orderColumns.rows.map((row) => row.column_name));
+  if (!orderNames.has("quote_id")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN quote_id BIGINT REFERENCES quotes(id) ON DELETE SET NULL");
+  }
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_quote_id ON orders (quote_id)");
 }
 
 async function ensureProjectIndexesPostgres() {
