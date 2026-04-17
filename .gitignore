@@ -6,3 +6,17 @@ node_modules
 data/*.sqlite
 data/*.sqlite-shm
 data/*.sqlite-wal
+.vercel
+
+# Claude + Codex ephemeral
+.claude/
+.codex_tmp/
+
+# Backup/working files
+*.bak
+public/*.bak
+public/styles (*).css
+scripts/__pycache__/
+
+# Handoff notes (manuel kalir, repoda degil)
+DEVIR_NOTLARI_*.md
