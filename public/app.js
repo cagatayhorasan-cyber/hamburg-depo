@@ -4001,6 +4001,22 @@ function renderAdminOrders() {
   });
 }
 
+function suggestPriceForOrderLine(line) {
+  // Önce order_items.unit_price, yoksa state.items'te aynı id'den salePrice/listPrice
+  const lineP = Number(line.unitPrice || 0);
+  if (lineP > 0) return lineP;
+  if (line.itemId) {
+    const item = (state.items || []).find((i) => Number(i.id) === Number(line.itemId));
+    if (item) {
+      const sale = Number(item.salePrice || 0);
+      const list = Number(item.listPrice || 0);
+      const def = Number(item.defaultPrice || 0);
+      return sale > 0 ? sale : list > 0 ? list : def;
+    }
+  }
+  return 0;
+}
+
 async function openOrderItemEditor(orderId) {
   if (!orderId) return;
   const order = (state.orders || []).find((o) => Number(o.id) === Number(orderId));
@@ -4009,7 +4025,12 @@ async function openOrderItemEditor(orderId) {
     return;
   }
 
-  // Basit modal oluştur (DOM'a inject)
+  // Satırlar için ön-doldurulmuş fiyatlar
+  const prefilled = order.items.map((it) => ({
+    ...it,
+    _suggestedPrice: suggestPriceForOrderLine(it),
+  }));
+
   const existing = document.getElementById("orderItemEditorModal");
   if (existing) existing.remove();
 
@@ -4019,30 +4040,67 @@ async function openOrderItemEditor(orderId) {
   modal.setAttribute("role", "dialog");
   modal.innerHTML = `
     <div class="auth-modal-backdrop" data-order-editor-close></div>
-    <div class="auth-modal-panel" role="document" style="max-width:820px;">
+    <div class="auth-modal-panel" role="document" style="max-width:920px;">
       <button type="button" class="auth-modal-close" data-order-editor-close>×</button>
-      <h2>${langText("Sipariş Fiyat/Miktar Düzenle","Bestellung bearbeiten")} #${order.id}</h2>
+      <h2>${langText("Sipariş Düzenle & Onayla","Bestellung bearbeiten & bestätigen")} #${order.id}</h2>
       <p class="muted">${langText("Müşteri:","Kunde:")} <strong>${escapeHtml(order.customerName || "")}</strong> · ${escapeHtml(order.date || "")}</p>
-      <div style="max-height:50vh;overflow-y:auto;margin:12px 0;">
+
+      <div style="max-height:45vh;overflow-y:auto;margin:12px 0;">
         <table class="data-table">
           <thead><tr>
             <th>${langText("Ürün","Artikel")}</th>
-            <th style="width:120px;">${langText("Miktar","Menge")}</th>
-            <th style="width:150px;">${langText("Birim Fiyat (€)","Einzelpreis (€)")}</th>
-            <th style="width:120px;">${langText("Toplam","Gesamt")}</th>
+            <th style="width:110px;">${langText("Miktar","Menge")}</th>
+            <th style="width:140px;">${langText("Birim Fiyat (€)","Einzelpreis (€)")}</th>
+            <th style="width:110px;">${langText("Toplam","Gesamt")}</th>
           </tr></thead>
           <tbody id="orderEditorBody">
-            ${order.items.map((it) => `
+            ${prefilled.map((it) => `
               <tr data-line="${it.id || ""}">
-                <td>${escapeHtml(it.itemName || "")}</td>
+                <td>${escapeHtml(it.itemName || "")}${it._suggestedPrice > 0 && !Number(it.unitPrice) ? `<br><span class="muted" style="font-size:.75em;">${langText("(öneri: stok fiyatı)","(Vorschlag: Listenpreis)")}</span>` : ""}</td>
                 <td><input type="number" min="0.01" step="0.01" value="${Number(it.quantity || 0)}" data-field="quantity" style="width:100%;"></td>
-                <td><input type="number" min="0" step="0.01" value="${Number(it.unitPrice || 0)}" data-field="unitPrice" style="width:100%;" placeholder="0,00"></td>
-                <td class="line-total">€${numberFormat.format(Number(it.quantity || 0) * Number(it.unitPrice || 0))}</td>
+                <td><input type="number" min="0" step="0.01" value="${Number(it._suggestedPrice || 0)}" data-field="unitPrice" style="width:100%;" placeholder="0,00"></td>
+                <td class="line-total">€${numberFormat.format(Number(it.quantity || 0) * Number(it._suggestedPrice || 0))}</td>
               </tr>
             `).join("")}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" style="text-align:right;"><strong>${langText("Sipariş Toplamı","Bestellsumme")}</strong></td>
+              <td id="orderEditorGrandTotal"><strong>€0</strong></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
+
+      <fieldset style="border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin:16px 0;">
+        <legend>${langText("Ödeme & Onay","Zahlung & Bestätigung")}</legend>
+        <div class="form-grid" style="grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <label>${langText("Ödeme Türü","Zahlungsart")}
+            <select name="paymentType">
+              <option value="open_account" ${order.paymentType === "open_account" ? "selected" : ""}>${langText("Açık Hesap","Offenes Konto")}</option>
+              <option value="cash" ${order.paymentType === "cash" ? "selected" : ""}>${langText("Nakit","Bar")}</option>
+              <option value="invoice" ${order.paymentType === "invoice" ? "selected" : ""}>${langText("Resmi (Fatura)","Rechnung")}</option>
+              <option value="bank_transfer" ${order.paymentType === "bank_transfer" ? "selected" : ""}>${langText("Havale/EFT","Überweisung")}</option>
+            </select>
+          </label>
+          <label>${langText("Ödeme Durumu","Zahlungsstatus")}
+            <select name="paymentStatus">
+              <option value="unpaid" ${order.paymentStatus === "unpaid" ? "selected" : ""}>${langText("Ödenmedi","Offen")}</option>
+              <option value="partial" ${order.paymentStatus === "partial" ? "selected" : ""}>${langText("Kısmi","Teilweise")}</option>
+              <option value="paid" ${order.paymentStatus === "paid" ? "selected" : ""}>${langText("Ödendi","Bezahlt")}</option>
+            </select>
+          </label>
+          <label>${langText("Ödenen Tutar (€)","Bezahlt (€)")}
+            <input type="number" name="paidAmount" min="0" step="0.01" value="${Number(order.paidAmount || 0)}">
+          </label>
+        </div>
+        <label style="display:block;margin-top:10px;">
+          <input type="checkbox" name="autoApprove" ${order.status === "pending" ? "checked" : ""}>
+          ${langText("Siparişi onayla (Onaylandı) ve stoktan düş","Bestellung bestätigen (Genehmigt) und Lager abziehen")}
+        </label>
+        <p class="muted" style="font-size:.8em;margin-top:6px;">${langText("Nakit/Havale + Ödendi/Kısmi seçilirse eklenen tutar otomatik kasa girişi olur. Açık Hesap borç olarak müşteri bakiyesine yazılır.","Bei Bar/Überweisung + Bezahlt/Teilweise wird der Differenzbetrag ins Kassenbuch gebucht. Offenes Konto verbleibt als Saldo beim Kunden.")}</p>
+      </fieldset>
+
       <div class="action-row" style="justify-content:flex-end;gap:8px;margin-top:12px;">
         <button type="button" class="secondary-button" data-order-editor-close>${langText("Vazgeç","Abbrechen")}</button>
         <button type="button" class="primary-button" id="orderEditorSave">${langText("Kaydet","Speichern")}</button>
@@ -4051,15 +4109,19 @@ async function openOrderItemEditor(orderId) {
   `;
   document.body.appendChild(modal);
 
-  // Toplam hesaplayıcı
-  const recalcLine = (row) => {
-    const q = Number(row.querySelector('[data-field="quantity"]').value || 0);
-    const p = Number(row.querySelector('[data-field="unitPrice"]').value || 0);
-    row.querySelector(".line-total").textContent = "€" + numberFormat.format(q * p);
+  const recalcAll = () => {
+    let grand = 0;
+    modal.querySelectorAll("tr[data-line]").forEach((row) => {
+      const q = Number(row.querySelector('[data-field="quantity"]').value || 0);
+      const p = Number(row.querySelector('[data-field="unitPrice"]').value || 0);
+      const lineTot = q * p;
+      row.querySelector(".line-total").textContent = "€" + numberFormat.format(lineTot);
+      grand += lineTot;
+    });
+    modal.querySelector("#orderEditorGrandTotal").innerHTML = `<strong>€${numberFormat.format(grand)}</strong>`;
   };
-  modal.querySelectorAll("tr[data-line]").forEach((row) => {
-    row.querySelectorAll("input").forEach((inp) => inp.addEventListener("input", () => recalcLine(row)));
-  });
+  modal.querySelectorAll("tr[data-line] input").forEach((inp) => inp.addEventListener("input", recalcAll));
+  recalcAll();
 
   const close = () => modal.remove();
   modal.querySelectorAll("[data-order-editor-close]").forEach((el) => el.addEventListener("click", close));
@@ -4073,16 +4135,41 @@ async function openOrderItemEditor(orderId) {
       quantity: Number(row.querySelector('[data-field="quantity"]').value || 0),
       unitPrice: Number(row.querySelector('[data-field="unitPrice"]').value || 0),
     })).filter((x) => Number.isFinite(x.id) && x.id > 0);
-    if (!items.length) return close();
-    const result = await request(`/api/orders/${orderId}/items`, {
-      method: "PUT",
-      body: JSON.stringify({ items }),
-    });
-    if (result.error) {
-      window.alert(result.error);
-      return;
+
+    // 1) Önce satırları kaydet
+    if (items.length) {
+      const r1 = await request(`/api/orders/${orderId}/items`, {
+        method: "PUT",
+        body: JSON.stringify({ items }),
+      });
+      if (r1.error) { window.alert(r1.error); return; }
     }
-    window.alert(langText(`${result.updated} satır güncellendi.`, `${result.updated} Zeilen aktualisiert.`));
+
+    // 2) Ödeme bilgisini kaydet
+    const paymentType = modal.querySelector('[name="paymentType"]').value;
+    const paymentStatus = modal.querySelector('[name="paymentStatus"]').value;
+    const paidAmount = Number(modal.querySelector('[name="paidAmount"]').value || 0);
+    const r2 = await request(`/api/orders/${orderId}/payment`, {
+      method: "POST",
+      body: JSON.stringify({ paymentType, paymentStatus, paidAmount }),
+    });
+    if (r2.error) { window.alert(r2.error); return; }
+
+    // 3) Onayla seçiliyse stok düş + status='approved'
+    let statusMsg = "";
+    if (modal.querySelector('[name="autoApprove"]').checked) {
+      const r3 = await request(`/api/orders/${orderId}/status`, {
+        method: "POST",
+        body: JSON.stringify({ status: "approved", language: state.uiLanguage }),
+      });
+      if (r3.error) { window.alert(r3.error); return; }
+      statusMsg = r3.autoDeducted
+        ? langText(" · Onaylandı, stok otomatik düştü.", " · Bestätigt, Lager abgezogen.")
+        : langText(" · Onaylandı.", " · Bestätigt.");
+    }
+
+    const cashMsg = r2.cashbookInserted ? langText(" · Kasaya giriş yapıldı.", " · Kassenbuch aktualisiert.") : "";
+    window.alert(langText("Sipariş kaydedildi.", "Bestellung gespeichert.") + cashMsg + statusMsg);
     close();
     await refreshData();
   });
