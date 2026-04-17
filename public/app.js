@@ -989,7 +989,7 @@ function applyUiTranslations() {
     ["movements", t("tabMovements"), t("tabMovementsDesc")],
     ["expenses", t("tabExpenses"), t("tabExpensesDesc")],
     ["cashbook", t("tabCashbook"), t("tabCashbookDesc")],
-    ["orders", isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"), isCustomerUser() ? t("tabCustomerOrdersDesc") : t("tabOrdersDesc")],
+    // ["orders", ...] handled below (admin-only vs customer-only have different labels)
     ["messages", t("tabMessages"), t("tabMessagesDesc")],
     ["iot", t("tabIot"), t("tabIotDesc")],
     ["users", t("tabUsers"), t("tabUsersDesc")],
@@ -1001,6 +1001,16 @@ function applyUiTranslations() {
       setText(button.querySelector(".tab-title"), title);
       setText(button.querySelector("small"), desc);
     });
+  });
+
+  // Orders tab: admin/staff ve customer için ayrı butonlar, farklı metinler
+  document.querySelectorAll('[data-tab="orders"].admin-only, [data-tab="orders"].admin-staff-only').forEach((btn) => {
+    setText(btn.querySelector(".tab-title"), t("tabOrders"));
+    setText(btn.querySelector("small"), t("tabOrdersDesc"));
+  });
+  document.querySelectorAll('[data-tab="orders"].customer-only').forEach((btn) => {
+    setText(btn.querySelector(".tab-title"), t("tabCustomerOrders"));
+    setText(btn.querySelector("small"), t("tabCustomerOrdersDesc"));
   });
   setText(".tab-main-label", langText("Gunluk Islemler", "Taegliche Arbeit"));
   setText(".tab-admin-summary", langText("Yonetim ve Ayarlar", "Verwaltung und Einstellungen"));
