@@ -2021,6 +2021,52 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  // Admin: siparis satirlarini duzenle (fiyat, miktar)
+  app.put("/api/orders/:id/items", requireStaffOrAdmin, async (req, res) => {
+    const orderId = Number(req.params.id);
+    if (!Number.isFinite(orderId) || orderId <= 0) {
+      return res.status(400).json({ error: "Gecersiz siparis." });
+    }
+    const items = Array.isArray(req.body?.items) ? req.body.items : null;
+    if (!items) {
+      return res.status(400).json({ error: "Guncellenecek kalemler yok." });
+    }
+    const order = await get("SELECT id FROM orders WHERE id = ?", [orderId]);
+    if (!order) return res.status(404).json({ error: "Siparis bulunamadi." });
+
+    try {
+      let updated = 0;
+      await withTransaction(async (tx) => {
+        for (const entry of items) {
+          const lineId = Number(entry.id);
+          if (!Number.isFinite(lineId) || lineId <= 0) continue;
+          const qty = Number(entry.quantity);
+          const price = Number(entry.unitPrice);
+          const setParts = [];
+          const params = [];
+          if (Number.isFinite(qty) && qty > 0) { setParts.push("quantity = ?"); params.push(qty); }
+          if (Number.isFinite(price) && price >= 0) { setParts.push("unit_price = ?"); params.push(price); }
+          if (!setParts.length) continue;
+          params.push(lineId, orderId);
+          const r = await tx.execute(
+            `UPDATE order_items SET ${setParts.join(", ")} WHERE id = ? AND order_id = ?`,
+            params
+          );
+          updated += r.rowCount || 0;
+        }
+      });
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "order_items_updated",
+        severity: "info",
+        details: { orderId, updated },
+      });
+      return res.json({ ok: true, updated });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Guncelleme yapilamadi." });
+    }
+  });
+
   app.post("/api/orders/:id/convert-to-quote", requireStaffOrAdmin, async (req, res) => {
     const orderId = Number(req.params.id);
     if (!Number.isFinite(orderId) || orderId <= 0) {
@@ -2040,23 +2086,31 @@ function createApp() {
     }
 
     const orderItems = await query(
-      `SELECT item_id, item_name, quantity, unit FROM order_items WHERE order_id = ? ORDER BY id ASC`,
+      `SELECT item_id, item_name, quantity, unit, COALESCE(unit_price, 0) AS unit_price FROM order_items WHERE order_id = ? ORDER BY id ASC`,
       [orderId]
     );
     if (!orderItems.length) {
       return res.status(400).json({ error: "Siparis kalem icermiyor." });
     }
 
+    // Siparis satirinda unit_price kayitli ise onu kullan; degilse resolveSaleLineItems ile fiyatlandir
     const pricingInput = orderItems.map((row) => ({
       itemId: row.item_id ? Number(row.item_id) : null,
       itemName: row.item_name,
       quantity: Number(row.quantity),
       unit: row.unit || "adet",
+      savedPrice: Number(row.unit_price) || 0,
     }));
 
     let pricedItems;
     try {
-      pricedItems = await resolveSaleLineItems(pricingInput);
+      const resolved = await resolveSaleLineItems(pricingInput.map(({ savedPrice, ...rest }) => rest));
+      // savedPrice > 0 ise onu kullan (admin override)
+      pricedItems = resolved.map((r, i) => {
+        const saved = pricingInput[i].savedPrice;
+        if (saved > 0) return { ...r, unitPrice: saved };
+        return r;
+      });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Siparis kalemleri fiyatlandirilamadi." });
     }

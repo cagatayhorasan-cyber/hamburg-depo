@@ -3937,11 +3937,16 @@ function renderAdminOrders() {
     tr.innerHTML = `
       <td>${order.date}</td>
       <td>${order.customerName}</td>
-      <td>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</td>
+      <td>${order.items.map((item) => {
+        const price = Number(item.unitPrice || 0);
+        const priceLabel = price > 0 ? ` <span class="muted" style="font-size:.85em;">(€${numberFormat.format(price)})</span>` : ` <span style="color:#dc2626;font-size:.85em;">(${langText("fiyat yok","kein Preis")})</span>`;
+        return `${escapeHtml(item.itemName)} x ${numberFormat.format(item.quantity)}${priceLabel}`;
+      }).join("<br>")}</td>
       <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span></td>
       <td>${order.note || "-"}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
       <td class="table-action-cell">
         <div class="action-row">
+          <button class="mini-button primary-button" type="button" data-order-edit="${order.id}" data-help="TR: Siparis satirlarinin fiyat ve miktarini duzenler. DE: Bearbeitet Preise/Mengen der Bestellpositionen.">${langText("Fiyat Düzenle","Preis bearbeiten")}</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparisi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing" data-help="TR: Siparisi hazirlaniyor durumuna alir. DE: Setzt die Bestellung auf in Vorbereitung.">${langText("Hazirla", "Vorbereiten")}</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparisi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschliessen")}</button>
@@ -3968,6 +3973,10 @@ function renderAdminOrders() {
     button.addEventListener("click", () => convertOrderToQuote(Number(button.dataset.orderConvert)));
   });
 
+  refs.ordersTableBody.querySelectorAll("[data-order-edit]").forEach((button) => {
+    button.addEventListener("click", () => openOrderItemEditor(Number(button.dataset.orderEdit)));
+  });
+
   refs.ordersTableBody.querySelectorAll("[data-order-open-quote]").forEach((button) => {
     button.addEventListener("click", () => {
       const quoteId = Number(button.dataset.orderOpenQuote);
@@ -3983,6 +3992,93 @@ function renderAdminOrders() {
         }
       }, 300);
     });
+  });
+}
+
+async function openOrderItemEditor(orderId) {
+  if (!orderId) return;
+  const order = (state.orders || []).find((o) => Number(o.id) === Number(orderId));
+  if (!order || !Array.isArray(order.items)) {
+    window.alert(langText("Siparis bulunamadi.", "Bestellung nicht gefunden."));
+    return;
+  }
+
+  // Basit modal oluştur (DOM'a inject)
+  const existing = document.getElementById("orderItemEditorModal");
+  if (existing) existing.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "orderItemEditorModal";
+  modal.className = "auth-modal";
+  modal.setAttribute("role", "dialog");
+  modal.innerHTML = `
+    <div class="auth-modal-backdrop" data-order-editor-close></div>
+    <div class="auth-modal-panel" role="document" style="max-width:820px;">
+      <button type="button" class="auth-modal-close" data-order-editor-close>×</button>
+      <h2>${langText("Sipariş Fiyat/Miktar Düzenle","Bestellung bearbeiten")} #${order.id}</h2>
+      <p class="muted">${langText("Müşteri:","Kunde:")} <strong>${escapeHtml(order.customerName || "")}</strong> · ${escapeHtml(order.date || "")}</p>
+      <div style="max-height:50vh;overflow-y:auto;margin:12px 0;">
+        <table class="data-table">
+          <thead><tr>
+            <th>${langText("Ürün","Artikel")}</th>
+            <th style="width:120px;">${langText("Miktar","Menge")}</th>
+            <th style="width:150px;">${langText("Birim Fiyat (€)","Einzelpreis (€)")}</th>
+            <th style="width:120px;">${langText("Toplam","Gesamt")}</th>
+          </tr></thead>
+          <tbody id="orderEditorBody">
+            ${order.items.map((it) => `
+              <tr data-line="${it.id || ""}">
+                <td>${escapeHtml(it.itemName || "")}</td>
+                <td><input type="number" min="0.01" step="0.01" value="${Number(it.quantity || 0)}" data-field="quantity" style="width:100%;"></td>
+                <td><input type="number" min="0" step="0.01" value="${Number(it.unitPrice || 0)}" data-field="unitPrice" style="width:100%;" placeholder="0,00"></td>
+                <td class="line-total">€${numberFormat.format(Number(it.quantity || 0) * Number(it.unitPrice || 0))}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+      <div class="action-row" style="justify-content:flex-end;gap:8px;margin-top:12px;">
+        <button type="button" class="secondary-button" data-order-editor-close>${langText("Vazgeç","Abbrechen")}</button>
+        <button type="button" class="primary-button" id="orderEditorSave">${langText("Kaydet","Speichern")}</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Toplam hesaplayıcı
+  const recalcLine = (row) => {
+    const q = Number(row.querySelector('[data-field="quantity"]').value || 0);
+    const p = Number(row.querySelector('[data-field="unitPrice"]').value || 0);
+    row.querySelector(".line-total").textContent = "€" + numberFormat.format(q * p);
+  };
+  modal.querySelectorAll("tr[data-line]").forEach((row) => {
+    row.querySelectorAll("input").forEach((inp) => inp.addEventListener("input", () => recalcLine(row)));
+  });
+
+  const close = () => modal.remove();
+  modal.querySelectorAll("[data-order-editor-close]").forEach((el) => el.addEventListener("click", close));
+  document.addEventListener("keydown", function esc(e) {
+    if (e.key === "Escape") { close(); document.removeEventListener("keydown", esc); }
+  });
+
+  modal.querySelector("#orderEditorSave").addEventListener("click", async () => {
+    const items = Array.from(modal.querySelectorAll("tr[data-line]")).map((row) => ({
+      id: Number(row.dataset.line),
+      quantity: Number(row.querySelector('[data-field="quantity"]').value || 0),
+      unitPrice: Number(row.querySelector('[data-field="unitPrice"]').value || 0),
+    })).filter((x) => Number.isFinite(x.id) && x.id > 0);
+    if (!items.length) return close();
+    const result = await request(`/api/orders/${orderId}/items`, {
+      method: "PUT",
+      body: JSON.stringify({ items }),
+    });
+    if (result.error) {
+      window.alert(result.error);
+      return;
+    }
+    window.alert(langText(`${result.updated} satır güncellendi.`, `${result.updated} Zeilen aktualisiert.`));
+    close();
+    await refreshData();
   });
 }
 
