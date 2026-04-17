@@ -2787,6 +2787,7 @@ tbody tr:hover td:last-child {
 .erp-nav-buttons .tab-button[data-tab="quotes"]       { --erp-tab-accent: #f97316; /* turuncu */ }
 .erp-nav-buttons .tab-button[data-tab="orders"]       { --erp-tab-accent: #a855f7; /* mor */ }
 .erp-nav-buttons .tab-button[data-tab="tools"]        { --erp-tab-accent: #14b8a6; /* teal */ }
+.erp-nav-buttons .tab-button[data-tab="projects"]     { --erp-tab-accent: #f59e0b; /* amber */ }
 .erp-nav-buttons .tab-button[data-tab="expenses"]     { --erp-tab-accent: #ef4444; /* kırmızı */ }
 .erp-nav-buttons .tab-button[data-tab="archive"]      { --erp-tab-accent: #94a3b8; /* gri */ }
 .erp-nav-buttons .tab-button[data-tab="users"]        { --erp-tab-accent: #84cc16; /* yeşil */ }
@@ -3789,6 +3790,211 @@ h3 {
 }
 .order-review-panel .action-row button {
   flex: 1;
+}
+
+/* =========================================================================
+   Proje modülü (Faz 4)
+   ========================================================================= */
+.projects-filter-bar {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 12px;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  border-radius: var(--radius-md);
+}
+.projects-filter-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.projects-filter-bar input,
+.projects-filter-bar select {
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 13.5px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+.project-card {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.project-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+.project-card-head strong {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+.project-card-meta {
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.project-card-meta strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.project-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.project-card-total {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-weight: 700;
+  color: var(--accent-strong);
+  font-size: 16px;
+}
+
+/* Status pill */
+.status-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.status-draft       { background: rgba(148, 163, 184, 0.18); color: #475569; }
+.status-calculating { background: rgba(59, 130, 246, 0.18);  color: #1d4ed8; }
+.status-priced      { background: rgba(34, 197, 94, 0.18);   color: #15803d; }
+.status-quoted      { background: rgba(245, 158, 11, 0.22);  color: #b45309; }
+.status-ordered     { background: rgba(168, 85, 247, 0.18);  color: #7e22ce; }
+.status-done        { background: rgba(20, 184, 166, 0.18);  color: #0f766e; }
+.status-cancelled   { background: rgba(239, 68, 68, 0.18);   color: #b91c1c; }
+
+.project-form-panel,
+.project-detail-panel {
+  width: min(680px, 100%) !important;
+}
+.project-detail-head {
+  margin-bottom: 12px;
+}
+.project-detail-head h2 {
+  margin: 0 0 6px;
+}
+.project-detail-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.project-detail-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 12px 0 16px;
+  padding: 14px;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  border-radius: var(--radius-md);
+}
+.project-detail-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.project-detail-stats strong {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.project-items-list {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 16px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.project-item-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 13px;
+}
+.project-item-row strong {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-weight: 600;
+}
+.project-item-row .muted {
+  font-size: 12px;
+}
+.project-add-item {
+  padding: 14px;
+  margin: 10px 0 14px;
+  background: rgba(45, 108, 255, 0.04);
+  border: 1px dashed rgba(45, 108, 255, 0.24);
+  border-radius: var(--radius-md);
+}
+.project-add-item h4 {
+  margin: 0 0 10px;
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.project-detail-note {
+  margin: 12px 0;
+  padding: 12px 14px;
+  background: rgba(18, 44, 83, 0.04);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+}
+.project-detail-note strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.project-detail-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* Respect user preference for reduced motion */

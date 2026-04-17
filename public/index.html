@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260417-customer-ux-1">
+  <link rel="stylesheet" href="/styles.css?v=20260417-projects-module-1">
 </head>
 <body>
   <div class="page-shell">
@@ -173,6 +173,8 @@
               <span class="erp-nav-label">Sipariş Yönetimi</span>
               <button class="tab-button admin-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Siparişler</span></button>
               <button class="tab-button customer-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Sipariş Ver</span></button>
+              <span class="erp-nav-label">Projeler</span>
+              <button class="tab-button" data-tab="projects" type="button"><span class="erp-nav-icon">PR</span><span class="tab-title">Projeler</span></button>
               <span class="erp-nav-label">Araçlar</span>
               <button class="tab-button" data-tab="tools" type="button"><span class="erp-nav-icon">AR</span><span class="tab-title">Proje Araçları</span></button>
               <span class="erp-nav-label admin-only">Yönetim</span>
@@ -802,6 +804,132 @@
           </div>
 
           <div class="tab-content" data-tab-content="iot" style="display:none"></div>
+
+          <div class="tab-content" data-tab-content="projects">
+            <section class="projects-panel">
+              <div class="section-head">
+                <div>
+                  <h2>Projeler</h2>
+                </div>
+                <div class="action-row">
+                  <button id="newProjectButton" class="primary-button" type="button">+ Yeni Proje</button>
+                </div>
+              </div>
+              <div class="projects-filter-bar">
+                <label>
+                  <span>Ara</span>
+                  <input id="projectSearch" type="search" placeholder="Proje başlığı veya müşteri...">
+                </label>
+                <label>
+                  <span>Durum</span>
+                  <select id="projectStatusFilter">
+                    <option value="all">Tümü</option>
+                    <option value="draft">Taslak</option>
+                    <option value="calculating">Hesaplanıyor</option>
+                    <option value="priced">Fiyatlandı</option>
+                    <option value="quoted">Teklif verildi</option>
+                    <option value="ordered">Sipariş edildi</option>
+                    <option value="done">Tamamlandı</option>
+                    <option value="cancelled">İptal</option>
+                  </select>
+                </label>
+              </div>
+              <p id="projectsListSummary" class="muted"></p>
+              <div id="projectsList" class="projects-grid"></div>
+            </section>
+
+            <!-- Yeni/Düzenle Proje Modali -->
+            <div id="projectFormModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
+              <div class="auth-modal-backdrop" data-project-form-close></div>
+              <div class="auth-modal-panel project-form-panel" role="document">
+                <button type="button" class="auth-modal-close" data-project-form-close aria-label="Kapat">×</button>
+                <h2 id="projectFormTitle">Yeni Proje</h2>
+                <form id="projectForm" class="form-grid">
+                  <input type="hidden" name="id">
+                  <label class="form-span-2">Proje Başlığı<input name="title" type="text" required placeholder="Örn. Ahmet Bey soğuk oda projesi"></label>
+                  <label class="admin-staff-only">Müşteri
+                    <input name="customerName" id="projectCustomerNameInput" type="text" list="projectCustomerDatalist" autocomplete="off" placeholder="Kayıtlı müşteri seç veya ad yaz">
+                    <datalist id="projectCustomerDatalist"></datalist>
+                    <input name="customerUserId" id="projectCustomerUserIdInput" type="hidden">
+                  </label>
+                  <label>Proje Tipi
+                    <select name="projectType">
+                      <option value="cold_room">Soğuk Oda</option>
+                      <option value="freezer_room">Donuk Oda</option>
+                      <option value="panel">Panel / Yapı</option>
+                      <option value="custom">Özel</option>
+                    </select>
+                  </label>
+                  <label>Durum
+                    <select name="status">
+                      <option value="draft">Taslak</option>
+                      <option value="calculating">Hesaplanıyor</option>
+                      <option value="priced">Fiyatlandı</option>
+                      <option value="quoted">Teklif verildi</option>
+                      <option value="ordered">Sipariş edildi</option>
+                      <option value="done">Tamamlandı</option>
+                      <option value="cancelled">İptal</option>
+                    </select>
+                  </label>
+                  <label class="form-span-2">Not<textarea name="note" rows="3"></textarea></label>
+                </form>
+                <div class="action-row">
+                  <button type="button" class="secondary-button" data-project-form-close>Vazgeç</button>
+                  <button type="button" id="projectFormSubmitButton" class="primary-button">Kaydet</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proje Detay Modali -->
+            <div id="projectDetailModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
+              <div class="auth-modal-backdrop" data-project-detail-close></div>
+              <div class="auth-modal-panel project-detail-panel" role="document">
+                <button type="button" class="auth-modal-close" data-project-detail-close aria-label="Kapat">×</button>
+                <div class="project-detail-head">
+                  <h2 id="projectDetailTitle">Proje</h2>
+                  <div class="project-detail-meta">
+                    <span id="projectDetailStatus" class="status-pill"></span>
+                    <span id="projectDetailCustomer" class="muted"></span>
+                  </div>
+                </div>
+                <div class="project-detail-stats">
+                  <div><span class="muted">Kalem</span><strong id="projectDetailItemCount">0</strong></div>
+                  <div><span class="muted">Toplam</span><strong id="projectDetailTotal">€0</strong></div>
+                  <div><span class="muted">Tip</span><strong id="projectDetailType">—</strong></div>
+                </div>
+
+                <h3>Malzeme Listesi (BOM)</h3>
+                <div id="projectItemsList" class="project-items-list"></div>
+
+                <div class="project-add-item admin-staff-only">
+                  <h4>Kalem Ekle</h4>
+                  <form id="projectAddItemForm" class="form-grid compact-form">
+                    <label class="form-span-2">Ürün ara
+                      <input id="projectItemSearch" type="search" list="projectItemSuggestions" placeholder="Stoktan ürün ara...">
+                      <datalist id="projectItemSuggestions"></datalist>
+                      <input name="itemId" id="projectItemIdInput" type="hidden">
+                    </label>
+                    <label>Miktar<input name="quantity" type="number" min="0.01" step="0.01" value="1" required></label>
+                    <label>Birim<input name="unit" type="text" value="adet"></label>
+                    <label>Birim Fiyat<input name="unitPrice" type="number" min="0" step="0.01" value="0"></label>
+                    <label class="form-span-2">Kalem Adı (manuel için)<input name="itemName" type="text" placeholder="Stoktan seçmediyseniz kalem adı yazın"></label>
+                    <button type="button" id="projectAddItemButton" class="primary-button">Kaleme Ekle</button>
+                  </form>
+                </div>
+
+                <div class="project-detail-note">
+                  <strong>Not:</strong>
+                  <p id="projectDetailNote" class="muted"></p>
+                </div>
+
+                <div class="action-row project-detail-actions">
+                  <button type="button" class="secondary-button" id="projectEditButton">Düzenle</button>
+                  <button type="button" class="secondary-button admin-staff-only" id="projectConvertQuoteButton">→ Teklife Çevir</button>
+                  <button type="button" class="danger-button admin-staff-only" id="projectDeleteButton">Sil</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="tab-content" data-tab-content="tools">
             <section class="tools-panel">

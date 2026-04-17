@@ -567,6 +567,9 @@ const state = {
   customerCatalogFilters: { search: "", category: "all", brand: "all", sort: "name" },
   customers: [],
   customersLoaded: false,
+  projects: [],
+  projectsFilters: { search: "", status: "all" },
+  activeProject: null, // {project, items} for detail modal
   quoteFilters: {
     search: "",
     brand: "all",
@@ -701,6 +704,36 @@ const refs = {
   customerOrderForm: document.getElementById("customerOrderForm"),
   customerOrderBody: document.getElementById("customerOrderBody"),
   customerOrderSummary: document.getElementById("customerOrderSummary"),
+  // Project module
+  projectsList: document.getElementById("projectsList"),
+  projectsListSummary: document.getElementById("projectsListSummary"),
+  projectSearch: document.getElementById("projectSearch"),
+  projectStatusFilter: document.getElementById("projectStatusFilter"),
+  newProjectButton: document.getElementById("newProjectButton"),
+  projectFormModal: document.getElementById("projectFormModal"),
+  projectForm: document.getElementById("projectForm"),
+  projectFormTitle: document.getElementById("projectFormTitle"),
+  projectFormSubmitButton: document.getElementById("projectFormSubmitButton"),
+  projectCustomerDatalist: document.getElementById("projectCustomerDatalist"),
+  projectCustomerNameInput: document.getElementById("projectCustomerNameInput"),
+  projectCustomerUserIdInput: document.getElementById("projectCustomerUserIdInput"),
+  projectDetailModal: document.getElementById("projectDetailModal"),
+  projectDetailTitle: document.getElementById("projectDetailTitle"),
+  projectDetailStatus: document.getElementById("projectDetailStatus"),
+  projectDetailCustomer: document.getElementById("projectDetailCustomer"),
+  projectDetailItemCount: document.getElementById("projectDetailItemCount"),
+  projectDetailTotal: document.getElementById("projectDetailTotal"),
+  projectDetailType: document.getElementById("projectDetailType"),
+  projectItemsList: document.getElementById("projectItemsList"),
+  projectDetailNote: document.getElementById("projectDetailNote"),
+  projectAddItemForm: document.getElementById("projectAddItemForm"),
+  projectItemSearch: document.getElementById("projectItemSearch"),
+  projectItemSuggestions: document.getElementById("projectItemSuggestions"),
+  projectItemIdInput: document.getElementById("projectItemIdInput"),
+  projectAddItemButton: document.getElementById("projectAddItemButton"),
+  projectEditButton: document.getElementById("projectEditButton"),
+  projectConvertQuoteButton: document.getElementById("projectConvertQuoteButton"),
+  projectDeleteButton: document.getElementById("projectDeleteButton"),
   customerOrdersList: document.getElementById("customerOrdersList"),
   submitCustomerOrderButton: document.getElementById("submitCustomerOrderButton"),
   customerVerificationBanner: document.getElementById("customerVerificationBanner"),
@@ -1564,6 +1597,7 @@ initialize();
 
 function bindEvents() {
   bindAuthModal();
+  bindProjectsEvents();
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("submit", handleLogin);
@@ -4304,6 +4338,10 @@ function renderTabData(tab) {
     renderOrders();
     return;
   }
+  if (tab === "projects") {
+    renderProjects();
+    return;
+  }
   if (tab === "messages") {
     renderAdminMessages();
     return;
@@ -5539,6 +5577,375 @@ async function request(url, options = {}) {
   }
 
   return response.json();
+}
+
+/* ==============================================================
+   Proje modülü (Faz 4) — UI render ve event handlers
+   ============================================================== */
+const PROJECT_STATUS_LABELS = {
+  draft: ["Taslak", "Entwurf"],
+  calculating: ["Hesaplanıyor", "Wird berechnet"],
+  priced: ["Fiyatlandı", "Preisliste"],
+  quoted: ["Teklif verildi", "Angebot erstellt"],
+  ordered: ["Sipariş edildi", "Bestellt"],
+  done: ["Tamamlandı", "Abgeschlossen"],
+  cancelled: ["İptal", "Abgebrochen"],
+};
+const PROJECT_TYPE_LABELS = {
+  cold_room: ["Soğuk Oda", "Kühlraum"],
+  freezer_room: ["Donuk Oda", "Tiefkühlraum"],
+  panel: ["Panel", "Panel"],
+  custom: ["Özel", "Individuell"],
+};
+
+function projectStatusLabel(status) {
+  const pair = PROJECT_STATUS_LABELS[status];
+  return pair ? langText(pair[0], pair[1]) : status;
+}
+function projectTypeLabel(type) {
+  const pair = PROJECT_TYPE_LABELS[type];
+  return pair ? langText(pair[0], pair[1]) : (type || "");
+}
+
+function renderProjects() {
+  if (!refs.projectsList) return;
+  const filters = state.projectsFilters;
+  const term = (filters.search || "").toLowerCase().trim();
+  let projects = (state.projects || []).filter(p => {
+    if (filters.status !== "all" && p.status !== filters.status) return false;
+    if (term) {
+      const txt = `${p.title || ""} ${p.customerName || ""} ${p.ownerName || ""}`.toLowerCase();
+      if (!txt.includes(term)) return false;
+    }
+    return true;
+  });
+
+  refs.projectsListSummary.textContent = langText(
+    `${projects.length} proje`,
+    `${projects.length} Projekte`
+  );
+
+  refs.projectsList.innerHTML = "";
+  if (projects.length === 0) {
+    refs.projectsList.innerHTML = `<div class="empty-state">${langText("Henüz proje yok.", "Noch keine Projekte.")}</div>`;
+    return;
+  }
+
+  projects.forEach((p) => {
+    const card = document.createElement("article");
+    card.className = "project-card";
+    card.dataset.projectId = p.id;
+    const total = Number(p.totalValue || 0);
+    card.innerHTML = `
+      <div class="project-card-head">
+        <strong>${escapeHtml(p.title || "—")}</strong>
+        <span class="status-pill status-${p.status || "draft"}">${escapeHtml(projectStatusLabel(p.status))}</span>
+      </div>
+      <div class="project-card-meta">
+        <span>${langText("Müşteri", "Kunde")}: <strong>${escapeHtml(p.customerName || "—")}</strong></span>
+        <span>${langText("Tip", "Typ")}: <strong>${escapeHtml(projectTypeLabel(p.projectType))}</strong></span>
+      </div>
+      <div class="project-card-meta">
+        <span>${p.itemCount || 0} ${langText("kalem", "Position")}</span>
+        ${p.quoteId ? `<span class="muted">• ${langText("Teklif", "Angebot")} #${p.quoteId}</span>` : ""}
+        ${p.orderId ? `<span class="muted">• ${langText("Sipariş", "Bestellung")} #${p.orderId}</span>` : ""}
+      </div>
+      <div class="project-card-footer">
+        <span class="muted">${p.updatedAt ? new Date(p.updatedAt).toLocaleDateString(state.uiLanguage) : ""}</span>
+        <span class="project-card-total">${total > 0 ? currency.format(total) : ""}</span>
+      </div>
+    `;
+    card.addEventListener("click", () => openProjectDetail(Number(p.id)));
+    refs.projectsList.append(card);
+  });
+}
+
+function openProjectForm(existing) {
+  if (!refs.projectFormModal || !refs.projectForm) return;
+  refs.projectForm.reset();
+  refs.projectForm.elements.id.value = existing ? existing.id : "";
+  if (existing) {
+    refs.projectForm.elements.title.value = existing.title || "";
+    refs.projectForm.elements.projectType.value = existing.projectType || existing.project_type || "cold_room";
+    refs.projectForm.elements.status.value = existing.status || "draft";
+    refs.projectForm.elements.note.value = existing.note || "";
+    if (refs.projectCustomerNameInput) {
+      refs.projectCustomerNameInput.value = existing.customerName || existing.customer_name || "";
+    }
+    if (refs.projectCustomerUserIdInput) {
+      refs.projectCustomerUserIdInput.value = existing.customerUserId || existing.customer_user_id || "";
+    }
+    refs.projectFormTitle.textContent = langText("Proje Düzenle", "Projekt bearbeiten");
+  } else {
+    refs.projectFormTitle.textContent = langText("Yeni Proje", "Neues Projekt");
+    refs.projectForm.elements.projectType.value = "cold_room";
+    refs.projectForm.elements.status.value = "draft";
+  }
+  // Populate customer datalist
+  if (refs.projectCustomerDatalist) {
+    refs.projectCustomerDatalist.innerHTML = (state.customers || []).map(c =>
+      `<option value="${escapeHtml(c.name || c.username)}" data-customer-id="${c.id}"></option>`
+    ).join("");
+  }
+  refs.projectFormModal.removeAttribute("hidden");
+  document.documentElement.classList.add("auth-modal-open");
+}
+
+function closeProjectForm() {
+  refs.projectFormModal?.setAttribute("hidden", "");
+  document.documentElement.classList.remove("auth-modal-open");
+}
+
+async function handleProjectFormSubmit() {
+  const form = refs.projectForm;
+  if (!form) return;
+  const data = formToObject(form);
+  const editId = Number(data.id || 0);
+  const payload = {
+    title: data.title,
+    projectType: data.projectType,
+    status: data.status,
+    note: data.note,
+    customerUserId: data.customerUserId || null,
+  };
+  if (!payload.title || !payload.title.trim()) {
+    window.alert(langText("Proje başlığı gerekli.", "Projekttitel ist erforderlich."));
+    return;
+  }
+  const url = editId ? `/api/projects/${editId}` : "/api/projects";
+  const method = editId ? "PUT" : "POST";
+  const res = await request(url, { method, body: JSON.stringify(payload) });
+  if (res.error) {
+    window.alert(res.error);
+    return;
+  }
+  closeProjectForm();
+  await refreshData();
+  if (!editId && res.id) {
+    openProjectDetail(Number(res.id));
+  } else if (editId) {
+    openProjectDetail(editId);
+  }
+}
+
+async function openProjectDetail(projectId) {
+  const res = await request(`/api/projects/${projectId}`);
+  if (res.error) {
+    window.alert(res.error);
+    return;
+  }
+  state.activeProject = { project: res.project, items: res.items || [] };
+  renderProjectDetail();
+  refs.projectDetailModal?.removeAttribute("hidden");
+  document.documentElement.classList.add("auth-modal-open");
+}
+
+function closeProjectDetail() {
+  refs.projectDetailModal?.setAttribute("hidden", "");
+  document.documentElement.classList.remove("auth-modal-open");
+  state.activeProject = null;
+}
+
+function renderProjectDetail() {
+  if (!state.activeProject) return;
+  const { project, items } = state.activeProject;
+  refs.projectDetailTitle.textContent = project.title || "";
+  refs.projectDetailStatus.className = `status-pill status-${project.status || "draft"}`;
+  refs.projectDetailStatus.textContent = projectStatusLabel(project.status);
+  refs.projectDetailCustomer.textContent = project.customer_name
+    ? `${langText("Müşteri", "Kunde")}: ${project.customer_name}`
+    : langText("Müşteri atanmamış", "Kein Kunde zugeordnet");
+  refs.projectDetailItemCount.textContent = items.length;
+  refs.projectDetailType.textContent = projectTypeLabel(project.project_type);
+
+  const total = items.reduce((s, it) => s + Number(it.quantity) * Number(it.unit_price || 0), 0);
+  refs.projectDetailTotal.textContent = currency.format(total);
+
+  // Items
+  refs.projectItemsList.innerHTML = items.length === 0
+    ? `<div class="empty-state">${langText("Bu projede henüz kalem yok.", "Noch keine Positionen.")}</div>`
+    : items.map(it => {
+        const lineTotal = Number(it.quantity) * Number(it.unit_price || 0);
+        const canEdit = isAdminUser() || isStaffUser() || (isCustomerUser() && Number(project.customer_user_id) === Number(state.user?.id));
+        return `
+          <div class="project-item-row">
+            <div>
+              <strong>${escapeHtml(it.item_name || "")}</strong>
+              ${it.brand ? `<span class="muted"> · ${escapeHtml(it.brand)}</span>` : ""}
+            </div>
+            <span class="muted">${numberFormat.format(it.quantity)} ${escapeHtml(it.unit || "")}</span>
+            <span>${currency.format(it.unit_price || 0)}</span>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <strong>${currency.format(lineTotal)}</strong>
+              ${canEdit ? `<button class="mini-button danger-button" type="button" data-del-project-item="${it.id}">×</button>` : ""}
+            </div>
+          </div>`;
+      }).join("");
+
+  refs.projectItemsList.querySelectorAll("[data-del-project-item]").forEach(btn => {
+    btn.addEventListener("click", () => handleProjectItemDelete(Number(btn.dataset.delProjectItem)));
+  });
+
+  // Note
+  refs.projectDetailNote.textContent = project.note || langText("(boş)", "(leer)");
+
+  // Item search datalist (stock only)
+  if (refs.projectItemSuggestions) {
+    refs.projectItemSuggestions.innerHTML = (state.items || [])
+      .filter(i => Number(i.currentStock) > 0)
+      .slice(0, 250)
+      .map(i => `<option value="${escapeHtml(i.name)}" data-item-id="${i.id}" data-price="${i.salePrice || i.defaultPrice || 0}" data-unit="${escapeHtml(i.unit || "adet")}"></option>`)
+      .join("");
+  }
+
+  // Button visibility
+  if (refs.projectConvertQuoteButton) {
+    refs.projectConvertQuoteButton.disabled = !!project.quote_id || items.length === 0;
+    refs.projectConvertQuoteButton.textContent = project.quote_id
+      ? langText(`Teklif #${project.quote_id}`, `Angebot #${project.quote_id}`)
+      : langText("→ Teklife Çevir", "→ Zum Angebot");
+  }
+}
+
+async function handleProjectItemDelete(itemId) {
+  if (!state.activeProject) return;
+  const projectId = state.activeProject.project.id;
+  if (!window.confirm(langText("Kalemi silmek istediğinize emin misiniz?", "Position wirklich löschen?"))) return;
+  const res = await request(`/api/projects/${projectId}/items/${itemId}`, { method: "DELETE" });
+  if (res.error) { window.alert(res.error); return; }
+  await openProjectDetail(projectId);
+  await refreshData();
+}
+
+async function handleProjectAddItem() {
+  if (!state.activeProject || !refs.projectAddItemForm) return;
+  const projectId = state.activeProject.project.id;
+  const form = refs.projectAddItemForm;
+  const data = formToObject(form);
+  const payload = {
+    itemId: data.itemId ? Number(data.itemId) : null,
+    itemName: data.itemName || null,
+    quantity: Number(data.quantity || 0),
+    unit: data.unit || "adet",
+    unitPrice: Number(data.unitPrice || 0),
+  };
+  if (!payload.itemId && !payload.itemName) {
+    window.alert(langText("Stoktan ürün seçin veya manuel kalem adı yazın.", "Artikel auswählen oder Positionsname eingeben."));
+    return;
+  }
+  if (payload.quantity <= 0) {
+    window.alert(langText("Miktar sıfırdan büyük olmalı.", "Menge muss größer als null sein."));
+    return;
+  }
+  const res = await request(`/api/projects/${projectId}/items`, { method: "POST", body: JSON.stringify(payload) });
+  if (res.error) { window.alert(res.error); return; }
+  form.reset();
+  form.elements.quantity.value = 1;
+  form.elements.unit.value = "adet";
+  form.elements.unitPrice.value = 0;
+  if (refs.projectItemIdInput) refs.projectItemIdInput.value = "";
+  await openProjectDetail(projectId);
+  await refreshData();
+}
+
+async function handleProjectDelete() {
+  if (!state.activeProject) return;
+  const project = state.activeProject.project;
+  if (!window.confirm(langText(`"${project.title}" projesini silmek istediğinize emin misiniz?`, `Projekt "${project.title}" wirklich löschen?`))) return;
+  const res = await request(`/api/projects/${project.id}`, { method: "DELETE" });
+  if (res.error) { window.alert(res.error); return; }
+  closeProjectDetail();
+  await refreshData();
+}
+
+async function handleProjectConvertToQuote() {
+  if (!state.activeProject) return;
+  const project = state.activeProject.project;
+  if (!window.confirm(langText(`Bu projeyi teklife çevirmek istediğinize emin misiniz? (Teklif #${project.id ? "yeni" : ""})`, "Projekt in Angebot umwandeln?"))) return;
+  const res = await request(`/api/projects/${project.id}/convert-to-quote`, {
+    method: "POST",
+    body: JSON.stringify({ language: state.uiLanguage, isExport: true, discount: 0 }),
+  });
+  if (res.error) { window.alert(res.error); return; }
+  window.alert(langText(`Teklif oluşturuldu: #${res.quoteId}. Son Teklifler ekranında görebilirsiniz.`, `Angebot erstellt: #${res.quoteId}.`));
+  await refreshData();
+  await openProjectDetail(project.id);
+}
+
+function handleProjectCustomerInput() {
+  if (!refs.projectCustomerNameInput || !refs.projectCustomerUserIdInput) return;
+  const value = (refs.projectCustomerNameInput.value || "").trim();
+  let customerId = "";
+  if (value) {
+    const match = (state.customers || []).find(c => (c.name || c.username || "").toLowerCase() === value.toLowerCase());
+    if (match) customerId = String(match.id);
+  }
+  refs.projectCustomerUserIdInput.value = customerId;
+}
+
+function handleProjectItemSearchInput() {
+  if (!refs.projectItemSearch || !refs.projectItemIdInput || !refs.projectAddItemForm) return;
+  const value = (refs.projectItemSearch.value || "").trim();
+  let itemId = "";
+  let unit = "adet";
+  let price = 0;
+  if (value && refs.projectItemSuggestions) {
+    const opt = Array.from(refs.projectItemSuggestions.options).find(o => o.value === value);
+    if (opt) {
+      itemId = opt.dataset.itemId || "";
+      unit = opt.dataset.unit || "adet";
+      price = Number(opt.dataset.price || 0);
+    }
+  }
+  refs.projectItemIdInput.value = itemId;
+  if (itemId) {
+    refs.projectAddItemForm.elements.unit.value = unit;
+    if (Number(refs.projectAddItemForm.elements.unitPrice.value) === 0) {
+      refs.projectAddItemForm.elements.unitPrice.value = price;
+    }
+    refs.projectAddItemForm.elements.itemName.value = "";
+  }
+}
+
+function bindProjectsEvents() {
+  if (refs.newProjectButton?._bound) return;
+  if (refs.newProjectButton) {
+    refs.newProjectButton.addEventListener("click", () => openProjectForm(null));
+    refs.newProjectButton._bound = true;
+  }
+  refs.projectFormModal?.querySelectorAll("[data-project-form-close]").forEach(el => {
+    el.addEventListener("click", closeProjectForm);
+  });
+  refs.projectDetailModal?.querySelectorAll("[data-project-detail-close]").forEach(el => {
+    el.addEventListener("click", closeProjectDetail);
+  });
+  refs.projectFormSubmitButton?.addEventListener("click", handleProjectFormSubmit);
+  refs.projectAddItemButton?.addEventListener("click", handleProjectAddItem);
+  refs.projectDeleteButton?.addEventListener("click", handleProjectDelete);
+  refs.projectConvertQuoteButton?.addEventListener("click", handleProjectConvertToQuote);
+  refs.projectEditButton?.addEventListener("click", () => {
+    if (!state.activeProject) return;
+    closeProjectDetail();
+    openProjectForm(state.activeProject.project);
+  });
+
+  refs.projectSearch?.addEventListener("input", (e) => {
+    state.projectsFilters.search = e.target.value;
+    renderProjects();
+  });
+  refs.projectStatusFilter?.addEventListener("change", (e) => {
+    state.projectsFilters.status = e.target.value;
+    renderProjects();
+  });
+  refs.projectCustomerNameInput?.addEventListener("input", handleProjectCustomerInput);
+  refs.projectItemSearch?.addEventListener("input", handleProjectItemSearchInput);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (refs.projectFormModal && !refs.projectFormModal.hasAttribute("hidden")) closeProjectForm();
+      if (refs.projectDetailModal && !refs.projectDetailModal.hasAttribute("hidden")) closeProjectDetail();
+    }
+  });
 }
 
 async function handleAuthUrlActions() {

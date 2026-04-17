@@ -2021,6 +2021,421 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  // ==================================================================
+  // /api/projects — Proje modülü (Faz 4)
+  // ==================================================================
+  const PROJECT_STATUSES = ["draft", "calculating", "priced", "quoted", "ordered", "done", "cancelled"];
+  const PROJECT_TYPES = ["cold_room", "freezer_room", "panel", "custom"];
+
+  function canAccessProject(project, user) {
+    if (!project) return false;
+    if (isAdminRole(user.role) || isStaffRole(user.role)) return true;
+    if (isCustomerRole(user.role)) {
+      return Number(project.customer_user_id) === Number(user.id) ||
+             Number(project.owner_user_id) === Number(user.id);
+    }
+    return false;
+  }
+
+  app.get("/api/projects", requireAuth, async (req, res) => {
+    const user = req.session.user;
+    let rows;
+    try {
+      if (isAdminRole(user.role) || isStaffRole(user.role)) {
+        // Staff/admin: all projects
+        const customerFilter = req.query.customerUserId ? Number(req.query.customerUserId) : null;
+        if (customerFilter) {
+          rows = await query(
+            `SELECT p.*,
+              owner.name AS owner_name, owner.username AS owner_username,
+              customer.name AS customer_name, customer.username AS customer_username,
+              (SELECT COUNT(*) FROM project_items pi WHERE pi.project_id = p.id) AS item_count,
+              (SELECT COALESCE(SUM(pi.quantity * pi.unit_price), 0) FROM project_items pi WHERE pi.project_id = p.id) AS total_value
+             FROM projects p
+             LEFT JOIN users owner ON owner.id = p.owner_user_id
+             LEFT JOIN users customer ON customer.id = p.customer_user_id
+             WHERE p.customer_user_id = ?
+             ORDER BY p.updated_at DESC, p.id DESC
+             LIMIT 200`,
+            [customerFilter]
+          );
+        } else {
+          rows = await query(
+            `SELECT p.*,
+              owner.name AS owner_name, owner.username AS owner_username,
+              customer.name AS customer_name, customer.username AS customer_username,
+              (SELECT COUNT(*) FROM project_items pi WHERE pi.project_id = p.id) AS item_count,
+              (SELECT COALESCE(SUM(pi.quantity * pi.unit_price), 0) FROM project_items pi WHERE pi.project_id = p.id) AS total_value
+             FROM projects p
+             LEFT JOIN users owner ON owner.id = p.owner_user_id
+             LEFT JOIN users customer ON customer.id = p.customer_user_id
+             ORDER BY p.updated_at DESC, p.id DESC
+             LIMIT 200`
+          );
+        }
+      } else {
+        // Customer: only own
+        rows = await query(
+          `SELECT p.*,
+            owner.name AS owner_name, owner.username AS owner_username,
+            customer.name AS customer_name, customer.username AS customer_username,
+            (SELECT COUNT(*) FROM project_items pi WHERE pi.project_id = p.id) AS item_count,
+            (SELECT COALESCE(SUM(pi.quantity * pi.unit_price), 0) FROM project_items pi WHERE pi.project_id = p.id) AS total_value
+           FROM projects p
+           LEFT JOIN users owner ON owner.id = p.owner_user_id
+           LEFT JOIN users customer ON customer.id = p.customer_user_id
+           WHERE p.customer_user_id = ? OR p.owner_user_id = ?
+           ORDER BY p.updated_at DESC, p.id DESC`,
+          [user.id, user.id]
+        );
+      }
+      return res.json({ projects: rows });
+    } catch (e) {
+      return res.status(500).json({ error: "Projeler alinamadi." });
+    }
+  });
+
+  app.get("/api/projects/:id", requireAuth, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) return res.status(400).json({ error: "Gecersiz proje id." });
+    try {
+      const project = await get(
+        `SELECT p.*,
+          owner.name AS owner_name, owner.username AS owner_username,
+          customer.name AS customer_name, customer.username AS customer_username,
+          customer.email AS customer_email, customer.phone AS customer_phone
+         FROM projects p
+         LEFT JOIN users owner ON owner.id = p.owner_user_id
+         LEFT JOIN users customer ON customer.id = p.customer_user_id
+         WHERE p.id = ?`,
+        [id]
+      );
+      if (!project) return res.status(404).json({ error: "Proje bulunamadi." });
+      if (!canAccessProject(project, req.session.user)) {
+        return res.status(403).json({ error: "Bu projeye erisim yetkiniz yok." });
+      }
+      const items = await query(
+        `SELECT pi.*, i.brand, i.category, i.unit AS item_unit, i.barcode, i.product_code
+         FROM project_items pi
+         LEFT JOIN items i ON i.id = pi.item_id
+         WHERE pi.project_id = ?
+         ORDER BY pi.id ASC`,
+        [id]
+      );
+      return res.json({ project, items });
+    } catch (e) {
+      return res.status(500).json({ error: "Proje detayi alinamadi." });
+    }
+  });
+
+  app.post("/api/projects", requireAuth, async (req, res) => {
+    const user = req.session.user;
+    const { title, customerUserId, projectType, status, parameters, calculationResult, note, items } = req.body || {};
+    if (!title || !String(title).trim()) return res.status(400).json({ error: "Proje basligi gerekli." });
+
+    const type = PROJECT_TYPES.includes(projectType) ? projectType : "custom";
+    const st = PROJECT_STATUSES.includes(status) ? status : "draft";
+    let customerId = null;
+
+    if (isCustomerRole(user.role)) {
+      // Customer projects are always theirs
+      customerId = Number(user.id);
+    } else {
+      customerId = await resolveCustomerUserId(customerUserId);
+    }
+
+    try {
+      const result = await withTransaction(async (tx) => {
+        const ins = await tx.execute(
+          `INSERT INTO projects
+           (owner_user_id, customer_user_id, title, status, project_type, parameters, calculation_result, note, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW()) RETURNING id`,
+          [
+            Number(user.id),
+            customerId,
+            String(title).trim(),
+            st,
+            type,
+            JSON.stringify(parameters || {}),
+            JSON.stringify(calculationResult || {}),
+            cleanOptional(note),
+          ]
+        );
+        const projectId = Number(ins.rows[0]?.id || ins.lastInsertId);
+
+        if (Array.isArray(items) && items.length) {
+          for (const it of items) {
+            const qty = Number(it.quantity);
+            if (!Number.isFinite(qty) || qty <= 0) continue;
+            const itemId = it.itemId ? Number(it.itemId) : null;
+            const itemName = it.itemName || it.name || (itemId ? `#${itemId}` : "Kalem");
+            const unit = it.unit || "adet";
+            const unitPrice = Number(it.unitPrice || 0);
+            const source = it.source || "manual";
+            await tx.execute(
+              `INSERT INTO project_items (project_id, item_id, item_name, quantity, unit, unit_price, note, source)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+              [projectId, itemId, itemName, qty, unit, unitPrice, cleanOptional(it.note), source]
+            );
+          }
+        }
+        return projectId;
+      });
+
+      queueSecurityEvent(req, {
+        user,
+        eventType: "project_created",
+        severity: "info",
+        details: { projectId: result, title: String(title).trim() },
+      });
+
+      return res.json({ ok: true, id: result });
+    } catch (e) {
+      return res.status(400).json({ error: e.message || "Proje olusturulamadi." });
+    }
+  });
+
+  app.put("/api/projects/:id", requireAuth, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) return res.status(400).json({ error: "Gecersiz proje id." });
+    const existing = await get("SELECT * FROM projects WHERE id = ?", [id]);
+    if (!existing) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (!canAccessProject(existing, req.session.user)) {
+      return res.status(403).json({ error: "Bu projeyi duzenleme yetkiniz yok." });
+    }
+
+    const { title, status, projectType, parameters, calculationResult, note, customerUserId } = req.body || {};
+    const updates = [];
+    const values = [];
+
+    if (typeof title === "string" && title.trim()) {
+      updates.push("title = ?");
+      values.push(title.trim());
+    }
+    if (status !== undefined) {
+      if (!PROJECT_STATUSES.includes(status)) {
+        return res.status(400).json({ error: "Gecersiz proje durumu." });
+      }
+      updates.push("status = ?");
+      values.push(status);
+    }
+    if (projectType !== undefined) {
+      if (!PROJECT_TYPES.includes(projectType)) {
+        return res.status(400).json({ error: "Gecersiz proje tipi." });
+      }
+      updates.push("project_type = ?");
+      values.push(projectType);
+    }
+    if (parameters !== undefined) {
+      updates.push("parameters = ?");
+      values.push(JSON.stringify(parameters || {}));
+    }
+    if (calculationResult !== undefined) {
+      updates.push("calculation_result = ?");
+      values.push(JSON.stringify(calculationResult || {}));
+    }
+    if (note !== undefined) {
+      updates.push("note = ?");
+      values.push(cleanOptional(note));
+    }
+    if (customerUserId !== undefined && !isCustomerRole(req.session.user.role)) {
+      const customerId = await resolveCustomerUserId(customerUserId);
+      updates.push("customer_user_id = ?");
+      values.push(customerId);
+    }
+
+    if (updates.length === 0) return res.status(400).json({ error: "Guncellenecek alan gonderilmedi." });
+    updates.push("updated_at = NOW()");
+    values.push(id);
+
+    try {
+      await execute(`UPDATE projects SET ${updates.join(", ")} WHERE id = ?`, values);
+      return res.json({ ok: true });
+    } catch (e) {
+      return res.status(400).json({ error: e.message || "Proje guncellenemedi." });
+    }
+  });
+
+  app.delete("/api/projects/:id", requireAuth, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) return res.status(400).json({ error: "Gecersiz proje id." });
+    const existing = await get("SELECT * FROM projects WHERE id = ?", [id]);
+    if (!existing) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (!canAccessProject(existing, req.session.user)) {
+      return res.status(403).json({ error: "Bu projeyi silme yetkiniz yok." });
+    }
+    if (existing.quote_id || existing.order_id) {
+      return res.status(400).json({ error: "Teklif/siparise donusturulmus proje silinemez. Once durumu iptal edin." });
+    }
+    try {
+      // project_items CASCADE'li, kendi siler
+      await execute("DELETE FROM projects WHERE id = ?", [id]);
+      return res.json({ ok: true });
+    } catch (e) {
+      return res.status(400).json({ error: "Proje silinemedi." });
+    }
+  });
+
+  app.post("/api/projects/:id/items", requireAuth, async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isFinite(id) || id <= 0) return res.status(400).json({ error: "Gecersiz proje id." });
+    const project = await get("SELECT * FROM projects WHERE id = ?", [id]);
+    if (!project) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (!canAccessProject(project, req.session.user)) {
+      return res.status(403).json({ error: "Bu projeye erisim yetkiniz yok." });
+    }
+
+    const { itemId, itemName, quantity, unit, unitPrice, note, source } = req.body || {};
+    const qty = Number(quantity);
+    if (!Number.isFinite(qty) || qty <= 0) return res.status(400).json({ error: "Miktar sifirdan buyuk olmali." });
+
+    try {
+      let finalName = itemName;
+      let finalUnit = unit || "adet";
+      let finalPrice = Number(unitPrice || 0);
+      if (itemId) {
+        const item = await get("SELECT id, name, unit, sale_price, default_price FROM items WHERE id = ?", [Number(itemId)]);
+        if (!item) return res.status(404).json({ error: "Urun bulunamadi." });
+        if (!finalName) finalName = item.name;
+        if (!unit) finalUnit = item.unit || "adet";
+        if (!unitPrice) finalPrice = Number(item.sale_price || item.default_price || 0);
+      }
+      if (!finalName) return res.status(400).json({ error: "Kalem adi gerekli." });
+
+      const result = await execute(
+        `INSERT INTO project_items (project_id, item_id, item_name, quantity, unit, unit_price, note, source)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
+        [id, itemId ? Number(itemId) : null, finalName, qty, finalUnit, finalPrice, cleanOptional(note), source || "manual"]
+      );
+      await execute("UPDATE projects SET updated_at = NOW() WHERE id = ?", [id]);
+      return res.json({ ok: true, id: Number(result.rows[0]?.id || result.lastInsertId) });
+    } catch (e) {
+      return res.status(400).json({ error: e.message || "Kalem eklenemedi." });
+    }
+  });
+
+  app.delete("/api/projects/:id/items/:itemId", requireAuth, async (req, res) => {
+    const projectId = Number(req.params.id);
+    const itemId = Number(req.params.itemId);
+    if (!Number.isFinite(projectId) || !Number.isFinite(itemId)) {
+      return res.status(400).json({ error: "Gecersiz id." });
+    }
+    const project = await get("SELECT * FROM projects WHERE id = ?", [projectId]);
+    if (!project) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (!canAccessProject(project, req.session.user)) {
+      return res.status(403).json({ error: "Yetki yok." });
+    }
+    try {
+      await execute("DELETE FROM project_items WHERE id = ? AND project_id = ?", [itemId, projectId]);
+      await execute("UPDATE projects SET updated_at = NOW() WHERE id = ?", [projectId]);
+      return res.json({ ok: true });
+    } catch (e) {
+      return res.status(400).json({ error: "Kalem silinemedi." });
+    }
+  });
+
+  // Projeden teklif üret — staff/admin
+  app.post("/api/projects/:id/convert-to-quote", requireStaffOrAdmin, async (req, res) => {
+    const id = Number(req.params.id);
+    const project = await get("SELECT * FROM projects WHERE id = ?", [id]);
+    if (!project) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (project.quote_id) {
+      return res.status(400).json({ error: "Bu projeden zaten teklif uretilmis (#" + project.quote_id + ")." });
+    }
+
+    const items = await query(
+      "SELECT * FROM project_items WHERE project_id = ? ORDER BY id ASC",
+      [id]
+    );
+    if (items.length === 0) {
+      return res.status(400).json({ error: "Projede kalem yok." });
+    }
+
+    const { language, isExport, discount } = req.body || {};
+    const discountValue = Number(discount || 0);
+    const exportSale = isTruthy(isExport);
+    const lang = language === "tr" ? "tr" : "de";
+
+    const subtotal = items.reduce((s, it) => s + Number(it.quantity) * Number(it.unit_price || 0), 0);
+    const netTotal = Math.max(subtotal - discountValue, 0);
+    const vatRate = exportSale ? 0 : 19;
+    const vatAmount = Number((netTotal * (vatRate / 100)).toFixed(2));
+    const grossTotal = Number((netTotal + vatAmount).toFixed(2));
+    const today = new Date().toISOString().slice(0, 10);
+    const quoteNo = await generateQuoteNo(today);
+
+    let customerName = "";
+    if (project.customer_user_id) {
+      const customer = await get("SELECT name, username FROM users WHERE id = ?", [project.customer_user_id]);
+      customerName = customer?.name || customer?.username || "";
+    }
+    if (!customerName) customerName = project.title;
+
+    try {
+      const quoteId = await withTransaction(async (tx) => {
+        const qRes = await tx.execute(
+          `INSERT INTO quotes
+           (customer_name, customer_user_id, title, quote_date, discount, subtotal, total, note, user_id,
+            language, quote_no, vat_rate, vat_amount, net_total, gross_total, is_export)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
+          [
+            customerName,
+            project.customer_user_id,
+            `Proje: ${project.title}`,
+            today,
+            discountValue,
+            subtotal,
+            grossTotal,
+            project.note || `Proje #${id}`,
+            req.session.user.id,
+            lang,
+            quoteNo,
+            vatRate,
+            vatAmount,
+            netTotal,
+            grossTotal,
+            exportSale ? 1 : 0,
+          ]
+        );
+        const quoteId = Number(qRes.rows[0]?.id || qRes.lastInsertId);
+
+        for (const it of items) {
+          await tx.execute(
+            `INSERT INTO quote_items (quote_id, item_id, item_name, quantity, unit, unit_price, total)
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [
+              quoteId,
+              it.item_id,
+              it.item_name,
+              Number(it.quantity),
+              it.unit || "adet",
+              Number(it.unit_price || 0),
+              Number(it.quantity) * Number(it.unit_price || 0),
+            ]
+          );
+        }
+
+        await tx.execute(
+          "UPDATE projects SET quote_id = ?, status = 'quoted', updated_at = NOW() WHERE id = ?",
+          [quoteId, id]
+        );
+
+        return quoteId;
+      });
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "project_converted_to_quote",
+        severity: "info",
+        details: { projectId: id, quoteId },
+      });
+
+      return res.json({ ok: true, quoteId });
+    } catch (e) {
+      return res.status(400).json({ error: e.message || "Teklif olusturulamadi." });
+    }
+  });
+
   app.get("/api/quotes/:id/pdf", requireStaffOrAdmin, async (req, res) => {
     const quote = await getQuoteById(Number(req.params.id), req.session.user);
     if (!quote) {
@@ -3936,10 +4351,11 @@ async function buildBootstrap(user) {
   const assistantStatus = getAssistantStatus();
 
   if (normalizedRole === "customer") {
-    const [items, orders, adminMessages] = await Promise.all([
+    const [items, orders, adminMessages, projects] = await Promise.all([
       queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT }),
       queryOrders(user),
       queryAdminMessages(user),
+      queryProjectsForUser(user),
     ]);
 
     const customerItems = items;
@@ -3963,6 +4379,7 @@ async function buildBootstrap(user) {
       quotes: [],
       orders,
       adminMessages,
+      projects,
       securityEvents: [],
       securityBlocks: [],
       agentTraining: [],
@@ -3974,7 +4391,7 @@ async function buildBootstrap(user) {
   const includeCashbook = normalizedRole === "admin" || normalizedRole === "staff";
   const includeUsers = normalizedRole === "admin";
   const includeSecurity = normalizedRole === "admin";
-  const [summary, items, movements, expenses, cashbook, users, quotes, orders, adminMessages, securityEvents, securityBlocks] = await Promise.all([
+  const [summary, items, movements, expenses, cashbook, users, quotes, orders, adminMessages, securityEvents, securityBlocks, projects] = await Promise.all([
     computeSummary(user),
     queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT }),
     queryMovements(user),
@@ -3986,6 +4403,7 @@ async function buildBootstrap(user) {
     queryAdminMessages(user),
     includeSecurity ? querySecurityEvents() : Promise.resolve([]),
     includeSecurity ? querySecurityBlocks() : Promise.resolve([]),
+    queryProjectsForUser(user),
   ]);
 
   return {
@@ -3999,11 +4417,52 @@ async function buildBootstrap(user) {
     quotes,
     orders,
     adminMessages,
+    projects,
     securityEvents,
     securityBlocks,
     agentTraining: [],
     assistantStatus,
   };
+}
+
+async function queryProjectsForUser(user) {
+  try {
+    const role = normalizeRole(user?.role);
+    if (role === "admin" || role === "staff") {
+      return await query(
+        `SELECT p.id, p.owner_user_id AS "ownerUserId", p.customer_user_id AS "customerUserId",
+          p.title, p.status, p.project_type AS "projectType", p.quote_id AS "quoteId", p.order_id AS "orderId",
+          p.created_at AS "createdAt", p.updated_at AS "updatedAt",
+          owner.name AS "ownerName", customer.name AS "customerName",
+          (SELECT COUNT(*) FROM project_items pi WHERE pi.project_id = p.id) AS "itemCount",
+          (SELECT COALESCE(SUM(pi.quantity * pi.unit_price), 0) FROM project_items pi WHERE pi.project_id = p.id) AS "totalValue"
+         FROM projects p
+         LEFT JOIN users owner ON owner.id = p.owner_user_id
+         LEFT JOIN users customer ON customer.id = p.customer_user_id
+         ORDER BY p.updated_at DESC, p.id DESC
+         LIMIT 200`
+      );
+    }
+    if (role === "customer") {
+      return await query(
+        `SELECT p.id, p.owner_user_id AS "ownerUserId", p.customer_user_id AS "customerUserId",
+          p.title, p.status, p.project_type AS "projectType", p.quote_id AS "quoteId", p.order_id AS "orderId",
+          p.created_at AS "createdAt", p.updated_at AS "updatedAt",
+          owner.name AS "ownerName", customer.name AS "customerName",
+          (SELECT COUNT(*) FROM project_items pi WHERE pi.project_id = p.id) AS "itemCount",
+          (SELECT COALESCE(SUM(pi.quantity * pi.unit_price), 0) FROM project_items pi WHERE pi.project_id = p.id) AS "totalValue"
+         FROM projects p
+         LEFT JOIN users owner ON owner.id = p.owner_user_id
+         LEFT JOIN users customer ON customer.id = p.customer_user_id
+         WHERE p.customer_user_id = ? OR p.owner_user_id = ?
+         ORDER BY p.updated_at DESC, p.id DESC`,
+        [user.id, user.id]
+      );
+    }
+    return [];
+  } catch (_e) {
+    return [];
+  }
 }
 
 function deriveBrand(row) {
