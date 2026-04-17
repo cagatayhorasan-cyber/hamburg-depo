@@ -2090,15 +2090,22 @@ function createApp() {
     try {
       await withTransaction(async (tx) => {
         await tx.execute(`UPDATE orders SET ${setParts.join(", ")} WHERE id = ?`, params);
-        // Ödenen tutar arttıysa (delta > 0) mutlaka kasaya işle — ödeme türü "açık hesap" olsa bile
-        // eline para geçmiş demektir; kasa defteri gerçek nakit/banka akışını yansıtır.
-        if (delta > 0) {
+
+        // Kasa senkronizasyonu: bu siparis icin kasada kayitli toplam ile paid_amount arasindaki farki at
+        // Bu yontem hem delta > 0 durumunu (yeni tahsilat) hem de retroaktif duzeltmeyi (eski kayit) kapsar
+        const existing = await tx.get(
+          "SELECT COALESCE(SUM(amount), 0) AS booked FROM cashbook WHERE reference = ? AND type = 'in'",
+          [`ORDER-${orderId}`]
+        );
+        const alreadyBooked = Number(existing?.booked || 0);
+        const shouldBook = newAmount - alreadyBooked;
+        if (shouldBook > 0) {
           await tx.execute(
             `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
              VALUES ('in', ?, ?, CURRENT_DATE, ?, ?, ?)`,
             [
               `Siparis #${orderId} - ${order.customer_name}`,
-              delta,
+              shouldBook,
               `ORDER-${orderId}`,
               `Tahsilat (${newType})`,
               Number(req.session.user.id),
