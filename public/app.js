@@ -2265,17 +2265,16 @@ function scheduleInventoryWarmup() {
   }
 
   state.inventoryWarmupScheduled = true;
-  window.setTimeout(() => {
-    loadInventory()
-      .then(() => {
-        if (state.inventoryLoadedAll && state.activeTab) {
-          renderTabData(state.activeTab);
-        }
-      })
-      .finally(() => {
-        state.inventoryWarmupScheduled = false;
-      });
-  }, 120);
+  // Start warmup immediately (no delay) so data catches up fast
+  loadInventory()
+    .then(() => {
+      if (state.inventoryLoadedAll && state.activeTab) {
+        renderTabData(state.activeTab);
+      }
+    })
+    .finally(() => {
+      state.inventoryWarmupScheduled = false;
+    });
 }
 
 function renderFilters() {
@@ -2768,7 +2767,9 @@ function renderIotMonitor(signals, sites = buildIotSites(signals), lastSync = nu
 }
 
 function renderItems() {
-  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+  // Full-blank loading only if we have NO items yet
+  const hasAnyItems = Array.isArray(state.items) && state.items.length > 0;
+  if (!state.inventoryLoadedAll && !isCustomerUser() && !hasAnyItems) {
     renderInventoryLoading("items");
     return;
   }
@@ -2828,8 +2829,11 @@ function renderStockedItems(filteredItems) {
     return;
   }
 
-  // If inventory still loading, show spinner (belt & suspenders)
-  if (!state.inventoryLoadedAll && !isCustomerUser()) {
+  const stockedItems = filteredItems.filter((item) => Number(item.currentStock) > 0);
+  const loading = !state.inventoryLoadedAll && !isCustomerUser();
+
+  // If no items at all yet AND still loading, show full spinner
+  if (loading && stockedItems.length === 0) {
     const spinnerHtml = `
       <div class="loading-box">
         <div class="loading-spinner" aria-hidden="true"></div>
@@ -2842,9 +2846,10 @@ function renderStockedItems(filteredItems) {
     refs.stockedItemsList.innerHTML = spinnerHtml;
     return;
   }
-
-  const stockedItems = filteredItems.filter((item) => Number(item.currentStock) > 0);
-  refs.stockedItemsSummary.textContent = t("messages.stockedSummary", stockedItems.length);
+  const summaryText = t("messages.stockedSummary", stockedItems.length);
+  refs.stockedItemsSummary.innerHTML = loading
+    ? `${escapeHtml(summaryText)} <span class="loading-pill"><span class="loading-spinner mini" aria-hidden="true"></span>${langText("kalan ürünler güncelleniyor...", "weitere Artikel werden geladen...")}</span>`
+    : escapeHtml(summaryText);
   refs.stockedItemsList.innerHTML = "";
 
   if (stockedItems.length === 0) {
