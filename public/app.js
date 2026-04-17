@@ -4021,9 +4021,20 @@ function populateCustomerCatalogFilters() {
   if (brands.includes(prevBrand)) refs.customerCatalogBrand.value = prevBrand;
 }
 
+function normalizeSearchStr(s) {
+  return String(s || "")
+    .toLocaleLowerCase("tr")
+    .replace(/ı/g, "i").replace(/ü/g, "u").replace(/ö/g, "o")
+    .replace(/ş/g, "s").replace(/ğ/g, "g").replace(/ç/g, "c")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function getFilteredCustomerItems() {
   const filters = state.customerCatalogFilters;
-  const term = (filters.search || "").toLowerCase().trim();
+  const termRaw = normalizeSearchStr(filters.search || "");
+  // Boşluksuz varyant da eşleştir ("dcb100" ↔ "dcb 100")
+  const termNoSpace = termRaw.replace(/\s+/g, "");
   let items = state.items.filter((item) => Number(item.currentStock) > 0);
 
   if (filters.category && filters.category !== "all") {
@@ -4032,13 +4043,11 @@ function getFilteredCustomerItems() {
   if (filters.brand && filters.brand !== "all") {
     items = items.filter((i) => (i.brand || "").trim() === filters.brand);
   }
-  if (term) {
+  if (termRaw) {
     items = items.filter((i) => {
-      const name = (i.name || "").toLowerCase();
-      const brand = (i.brand || "").toLowerCase();
-      const code = (i.barcode || "").toLowerCase();
-      const sku = (i.productCode || "").toLowerCase();
-      return name.includes(term) || brand.includes(term) || code.includes(term) || sku.includes(term);
+      const hay = normalizeSearchStr(`${i.name || ""} ${i.brand || ""} ${i.category || ""} ${i.barcode || ""} ${i.productCode || ""} ${i.notes || ""}`);
+      const hayNoSpace = hay.replace(/\s+/g, "");
+      return hay.includes(termRaw) || hayNoSpace.includes(termNoSpace);
     });
   }
 

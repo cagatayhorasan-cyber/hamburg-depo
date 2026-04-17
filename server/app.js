@@ -5857,7 +5857,7 @@ async function queryOrders(user) {
   for (const order of orders) {
     const items = await query(
       `
-        SELECT item_name AS "itemName", quantity, unit
+        SELECT id, item_id AS "itemId", item_name AS "itemName", quantity, unit, COALESCE(unit_price, 0) AS "unitPrice"
         FROM order_items
         WHERE order_id = ?
         ORDER BY id ASC

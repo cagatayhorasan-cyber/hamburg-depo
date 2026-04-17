@@ -906,6 +906,16 @@ async function ensureQuoteColumnsPostgres() {
     await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN quote_id BIGINT REFERENCES quotes(id) ON DELETE SET NULL");
   }
   await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_quote_id ON orders (quote_id)");
+
+  const orderItemColumns = await postgresSchemaQuery(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'order_items'
+  `);
+  const orderItemNames = new Set(orderItemColumns.rows.map((row) => row.column_name));
+  if (!orderItemNames.has("unit_price")) {
+    await postgresSchemaQuery("ALTER TABLE order_items ADD COLUMN unit_price NUMERIC DEFAULT 0");
+  }
 }
 
 async function ensureProjectIndexesPostgres() {
