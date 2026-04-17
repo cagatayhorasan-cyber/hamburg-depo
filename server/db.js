@@ -905,7 +905,20 @@ async function ensureQuoteColumnsPostgres() {
   if (!orderNames.has("quote_id")) {
     await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN quote_id BIGINT REFERENCES quotes(id) ON DELETE SET NULL");
   }
+  if (!orderNames.has("payment_type")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN payment_type TEXT DEFAULT 'open_account'");
+  }
+  if (!orderNames.has("payment_status")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN payment_status TEXT DEFAULT 'unpaid'");
+  }
+  if (!orderNames.has("paid_amount")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN paid_amount NUMERIC DEFAULT 0");
+  }
+  if (!orderNames.has("stock_deducted_at")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN stock_deducted_at TIMESTAMPTZ");
+  }
   await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_quote_id ON orders (quote_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_payment_status ON orders (payment_status)");
 
   const orderItemColumns = await postgresSchemaQuery(`
     SELECT column_name

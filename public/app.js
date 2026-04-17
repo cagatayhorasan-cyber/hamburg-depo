@@ -1628,6 +1628,7 @@ function bindEvents() {
   refs.submitCustomerOrderButton?.addEventListener("click", openCustomerOrderReview);
   refs.confirmCustomerOrderButton?.addEventListener("click", handleCustomerOrderConfirm);
   refs.resendVerificationButton?.addEventListener("click", handleResendVerification);
+  document.getElementById("openCustomerAccountsButton")?.addEventListener("click", openCustomerAccounts);
 
   // Customer catalog filters
   refs.customerCatalogSearch?.addEventListener("input", (e) => {
@@ -3921,7 +3922,7 @@ function renderAdminOrders() {
 
   refs.ordersTableBody.innerHTML = "";
   if (!state.orders || state.orders.length === 0) {
-    refs.ordersTableBody.innerHTML = `<tr><td colspan="6"><div class="empty-state">${t("messages.noAdminOrders")}</div></td></tr>`;
+    refs.ordersTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${t("messages.noAdminOrders")}</div></td></tr>`;
     return;
   }
 
@@ -3942,7 +3943,8 @@ function renderAdminOrders() {
         const priceLabel = price > 0 ? ` <span class="muted" style="font-size:.85em;">(€${numberFormat.format(price)})</span>` : ` <span style="color:#dc2626;font-size:.85em;">(${langText("fiyat yok","kein Preis")})</span>`;
         return `${escapeHtml(item.itemName)} x ${numberFormat.format(item.quantity)}${priceLabel}`;
       }).join("<br>")}</td>
-      <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span></td>
+      <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span>${order.stockDeductedAt ? `<br><span class="muted" style="font-size:.75em;">${langText("✓ stok düştü","✓ Lager abgezogen")}</span>` : ""}</td>
+      <td>${renderPaymentCell(order)}</td>
       <td>${order.note || "-"}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
       <td class="table-action-cell">
         <div class="action-row">
@@ -3975,6 +3977,10 @@ function renderAdminOrders() {
 
   refs.ordersTableBody.querySelectorAll("[data-order-edit]").forEach((button) => {
     button.addEventListener("click", () => openOrderItemEditor(Number(button.dataset.orderEdit)));
+  });
+
+  refs.ordersTableBody.querySelectorAll("[data-order-payment]").forEach((button) => {
+    button.addEventListener("click", () => openOrderPaymentEditor(Number(button.dataset.orderPayment)));
   });
 
   refs.ordersTableBody.querySelectorAll("[data-order-open-quote]").forEach((button) => {
@@ -4080,6 +4086,150 @@ async function openOrderItemEditor(orderId) {
     close();
     await refreshData();
   });
+}
+
+function renderPaymentCell(order) {
+  const type = order.paymentType || "open_account";
+  const status = order.paymentStatus || "unpaid";
+  const paid = Number(order.paidAmount || 0);
+  const total = (order.items || []).reduce((s, it) => s + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
+  const remaining = Math.max(total - paid, 0);
+  const typeLabel = { cash: langText("Nakit","Bar"), invoice: langText("Resmi","Rechnung"), open_account: langText("Açık Hesap","Offenes Konto"), bank_transfer: langText("Havale","Überweisung") }[type];
+  const statusClass = status === "paid" ? "status-ok" : status === "partial" ? "status-progress" : "status-critical";
+  const statusLabel = { paid: langText("Ödendi","Bezahlt"), partial: langText("Kısmi","Teilweise"), unpaid: langText("Ödenmedi","Offen") }[status];
+  return `
+    <div class="order-payment-cell" data-order-payment-row="${order.id}">
+      <div style="font-size:.85em;">
+        <strong>${escapeHtml(typeLabel)}</strong> · <span class="status-pill ${statusClass}">${escapeHtml(statusLabel)}</span>
+      </div>
+      <div class="muted" style="font-size:.8em;margin-top:2px;">
+        ${langText("Toplam","Ges.")}: €${numberFormat.format(total)} · ${langText("Ödenen","Bez.")}: €${numberFormat.format(paid)}
+        ${remaining > 0 ? ` · <span style="color:#dc2626;">${langText("Kalan","Rest")}: €${numberFormat.format(remaining)}</span>` : ""}
+      </div>
+      <button type="button" class="mini-button primary-button" style="margin-top:4px;" data-order-payment="${order.id}">${langText("Ödeme Al / Düzenle","Zahlung erfassen")}</button>
+    </div>
+  `;
+}
+
+async function openOrderPaymentEditor(orderId) {
+  const order = (state.orders || []).find((o) => Number(o.id) === Number(orderId));
+  if (!order) return;
+  const total = (order.items || []).reduce((s, it) => s + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
+  const existing = document.getElementById("orderPaymentModal");
+  if (existing) existing.remove();
+  const modal = document.createElement("div");
+  modal.id = "orderPaymentModal";
+  modal.className = "auth-modal";
+  modal.innerHTML = `
+    <div class="auth-modal-backdrop" data-pay-close></div>
+    <div class="auth-modal-panel" role="document" style="max-width:520px;">
+      <button type="button" class="auth-modal-close" data-pay-close>×</button>
+      <h2>${langText("Ödeme","Zahlung")} — Sipariş #${order.id}</h2>
+      <p class="muted">${escapeHtml(order.customerName || "")} · ${langText("Toplam","Summe")}: <strong>€${numberFormat.format(total)}</strong></p>
+      <form id="orderPaymentForm" class="stack-form">
+        <label>${langText("Ödeme Türü","Zahlungsart")}
+          <select name="paymentType" required>
+            <option value="open_account" ${order.paymentType === "open_account" ? "selected" : ""}>${langText("Açık Hesap","Offenes Konto")}</option>
+            <option value="cash" ${order.paymentType === "cash" ? "selected" : ""}>${langText("Nakit","Bar")}</option>
+            <option value="invoice" ${order.paymentType === "invoice" ? "selected" : ""}>${langText("Resmi (Faturalı)","Rechnung")}</option>
+            <option value="bank_transfer" ${order.paymentType === "bank_transfer" ? "selected" : ""}>${langText("Havale/EFT","Überweisung")}</option>
+          </select>
+        </label>
+        <label>${langText("Durum","Status")}
+          <select name="paymentStatus" required>
+            <option value="unpaid" ${order.paymentStatus === "unpaid" ? "selected" : ""}>${langText("Ödenmedi","Offen")}</option>
+            <option value="partial" ${order.paymentStatus === "partial" ? "selected" : ""}>${langText("Kısmi","Teilweise")}</option>
+            <option value="paid" ${order.paymentStatus === "paid" ? "selected" : ""}>${langText("Ödendi","Bezahlt")}</option>
+          </select>
+        </label>
+        <label>${langText("Ödenen Tutar (€)","Bezahlter Betrag (€)")}
+          <input type="number" name="paidAmount" min="0" step="0.01" value="${Number(order.paidAmount || 0)}">
+        </label>
+        <p class="muted" style="font-size:.85em;">${langText("Nakit/Havale + Ödendi/Kısmi seçilirse, yeni eklenen tutar otomatik kasaya girer.","Bei Bar/Überweisung + Bezahlt/Teilweise wird der Differenzbetrag automatisch im Kassenbuch erfasst.")}</p>
+        <div class="action-row" style="justify-content:flex-end;gap:8px;">
+          <button type="button" class="secondary-button" data-pay-close>${langText("Vazgeç","Abbrechen")}</button>
+          <button type="submit" class="primary-button">${langText("Kaydet","Speichern")}</button>
+        </div>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  const close = () => modal.remove();
+  modal.querySelectorAll("[data-pay-close]").forEach((el) => el.addEventListener("click", close));
+  modal.querySelector("#orderPaymentForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const body = {
+      paymentType: fd.get("paymentType"),
+      paymentStatus: fd.get("paymentStatus"),
+      paidAmount: Number(fd.get("paidAmount") || 0),
+    };
+    const result = await request(`/api/orders/${orderId}/payment`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+    if (result.error) { window.alert(result.error); return; }
+    if (result.cashbookInserted) {
+      window.alert(langText("Ödeme kaydedildi + kasa girişi yapıldı.","Zahlung gespeichert + Kassenbuch aktualisiert."));
+    } else {
+      window.alert(langText("Ödeme kaydedildi.","Zahlung gespeichert."));
+    }
+    close();
+    await refreshData();
+  });
+}
+
+async function openCustomerAccounts() {
+  const res = await request("/api/customers/accounts");
+  if (res.error) { window.alert(res.error); return; }
+  const customers = Array.isArray(res.customers) ? res.customers : [];
+  const existing = document.getElementById("customerAccountsModal");
+  if (existing) existing.remove();
+  const modal = document.createElement("div");
+  modal.id = "customerAccountsModal";
+  modal.className = "auth-modal";
+  modal.innerHTML = `
+    <div class="auth-modal-backdrop" data-acc-close></div>
+    <div class="auth-modal-panel" role="document" style="max-width:960px;">
+      <button type="button" class="auth-modal-close" data-acc-close>×</button>
+      <h2>${langText("Müşteri Hesapları","Kundenkonten")}</h2>
+      <p class="muted">${langText("Tüm müşterilerin sipariş toplamı, ödenen ve borç bakiyesi.","Gesamt, Bezahlt und Saldo je Kunde.")}</p>
+      <div class="table-wrap" style="max-height:60vh;overflow-y:auto;">
+        <table class="data-table">
+          <thead><tr>
+            <th>${langText("Müşteri","Kunde")}</th>
+            <th>${langText("Telefon","Tel.")}</th>
+            <th style="text-align:right;">${langText("Sipariş #","Bestellungen")}</th>
+            <th style="text-align:right;">${langText("Ödenmemiş","Offen")}</th>
+            <th style="text-align:right;">${langText("Toplam","Summe")}</th>
+            <th style="text-align:right;">${langText("Ödenen","Bezahlt")}</th>
+            <th style="text-align:right;">${langText("Bakiye","Saldo")}</th>
+          </tr></thead>
+          <tbody>
+            ${customers.map((c) => {
+              const total = Number(c.totalAmount || 0);
+              const paid = Number(c.totalPaid || 0);
+              const balance = Math.max(total - paid, 0);
+              return `
+                <tr>
+                  <td><strong>${escapeHtml(c.name || c.username || "")}</strong>${c.email ? `<br><span class="muted" style="font-size:.8em;">${escapeHtml(c.email)}</span>` : ""}</td>
+                  <td>${escapeHtml(c.phone || "-")}</td>
+                  <td style="text-align:right;">${c.orderCount || 0}</td>
+                  <td style="text-align:right;">${Number(c.unpaidCount || 0) > 0 ? `<span style="color:#dc2626;font-weight:600;">${c.unpaidCount}</span>` : "0"}</td>
+                  <td style="text-align:right;">€${numberFormat.format(total)}</td>
+                  <td style="text-align:right;">€${numberFormat.format(paid)}</td>
+                  <td style="text-align:right;">${balance > 0 ? `<strong style="color:#dc2626;">€${numberFormat.format(balance)}</strong>` : `<span style="color:#16a34a;">€0</span>`}</td>
+                </tr>
+              `;
+            }).join("")}
+            ${customers.length === 0 ? `<tr><td colspan="7" class="empty-state">${langText("Müşteri kaydı bulunamadı.","Keine Kunden gefunden.")}</td></tr>` : ""}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  modal.querySelectorAll("[data-acc-close]").forEach((el) => el.addEventListener("click", () => modal.remove()));
 }
 
 async function convertOrderToQuote(orderId) {

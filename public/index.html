@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260417-order-price-edit">
+  <link rel="stylesheet" href="/styles.css?v=20260417-payments">
 </head>
 <body>
   <div class="page-shell">
@@ -535,17 +535,21 @@
           <div class="tab-content" data-tab-content="orders">
             <div class="admin-only">
               <section>
-                <h2>Siparis Takibi</h2>
+                <div class="section-head">
+                  <h2>Sipariş Takibi</h2>
+                  <button type="button" id="openCustomerAccountsButton" class="secondary-button">Müşteri Hesapları</button>
+                </div>
                 <div class="table-wrap">
                   <table>
                     <thead>
                       <tr>
                         <th>Tarih</th>
-                        <th>Musteri</th>
+                        <th>Müşteri</th>
                         <th>Kalemler</th>
                         <th>Durum</th>
+                        <th>Ödeme</th>
                         <th>Not</th>
-                        <th>Islem</th>
+                        <th>İşlem</th>
                       </tr>
                     </thead>
                     <tbody id="ordersTableBody"></tbody>
@@ -1152,6 +1156,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260417-order-price-edit"></script>
+  <script src="/app.js?v=20260417-payments"></script>
 </body>
 </html>

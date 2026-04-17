@@ -1986,7 +1986,8 @@ function createApp() {
 
     const order = await get(
       `
-        SELECT orders.id, orders.customer_name, orders.order_date, users.email, users.name AS user_name
+        SELECT orders.id, orders.customer_name, orders.order_date, orders.stock_deducted_at,
+               users.email, users.name AS user_name
         FROM orders
         LEFT JOIN users ON users.id = orders.customer_user_id
         WHERE orders.id = ?
@@ -1997,7 +1998,40 @@ function createApp() {
       return res.status(404).json({ error: "Siparis bulunamadi." });
     }
 
-    const result = await execute("UPDATE orders SET status = ? WHERE id = ?", [status, Number(req.params.id)]);
+    const orderId = Number(req.params.id);
+    let autoDeducted = false;
+
+    // Otomatik stok düşümü — approved/preparing/completed'e geçişte, henüz yapılmadıysa
+    if (["approved", "preparing", "completed"].includes(status) && !order.stock_deducted_at) {
+      try {
+        await withTransaction(async (tx) => {
+          const lines = await tx.query(
+            "SELECT id, item_id, item_name, quantity, unit, COALESCE(unit_price, 0) AS unit_price FROM order_items WHERE order_id = ?",
+            [orderId]
+          );
+          for (const line of lines) {
+            if (!line.item_id) continue;
+            await tx.execute(
+              `INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
+               VALUES (?, 'exit', ?, ?, CURRENT_DATE, ?, ?)`,
+              [
+                Number(line.item_id),
+                Number(line.quantity),
+                Number(line.unit_price || 0),
+                `Siparis #${orderId} (${order.customer_name}) - otomatik stok düşümü`,
+                Number(req.session.user.id),
+              ]
+            );
+          }
+          await tx.execute("UPDATE orders SET stock_deducted_at = NOW() WHERE id = ?", [orderId]);
+        });
+        autoDeducted = true;
+      } catch (err) {
+        console.error("[orders/status] stok düşüm hatası:", err);
+      }
+    }
+
+    const result = await execute("UPDATE orders SET status = ? WHERE id = ?", [status, orderId]);
     if (result.rowCount && order.email) {
       await sendOrderStatusEmail(
         { name: order.user_name || order.customer_name, email: order.email },
@@ -2015,10 +2049,97 @@ function createApp() {
         user: req.session.user,
         eventType: "order_status_updated",
         severity: "info",
-        details: { orderId: Number(req.params.id), status, language },
+        details: { orderId: Number(req.params.id), status, language, autoDeducted },
       });
     }
-    return res.json({ ok: true });
+    return res.json({ ok: true, autoDeducted });
+  });
+
+  // Admin: ödeme durumu güncelle (resmi/nakit/açık + ödendi/ödenmedi/kısmi)
+  app.post("/api/orders/:id/payment", requireStaffOrAdmin, async (req, res) => {
+    const orderId = Number(req.params.id);
+    if (!Number.isFinite(orderId) || orderId <= 0) return res.status(400).json({ error: "Gecersiz siparis." });
+
+    const VALID_TYPES = ["cash", "invoice", "open_account", "bank_transfer"];
+    const VALID_STATUSES = ["unpaid", "partial", "paid"];
+    const paymentType = VALID_TYPES.includes(req.body?.paymentType) ? req.body.paymentType : null;
+    const paymentStatus = VALID_STATUSES.includes(req.body?.paymentStatus) ? req.body.paymentStatus : null;
+    const paidAmount = Number(req.body?.paidAmount);
+
+    const order = await get(
+      "SELECT id, customer_name, payment_type, payment_status, paid_amount FROM orders WHERE id = ?",
+      [orderId]
+    );
+    if (!order) return res.status(404).json({ error: "Siparis bulunamadi." });
+
+    const setParts = [];
+    const params = [];
+    if (paymentType) { setParts.push("payment_type = ?"); params.push(paymentType); }
+    if (paymentStatus) { setParts.push("payment_status = ?"); params.push(paymentStatus); }
+    if (Number.isFinite(paidAmount) && paidAmount >= 0) { setParts.push("paid_amount = ?"); params.push(paidAmount); }
+    if (!setParts.length) return res.status(400).json({ error: "Guncellenecek alan yok." });
+    params.push(orderId);
+
+    let cashbookInserted = false;
+    const newStatus = paymentStatus || order.payment_status;
+    const newType = paymentType || order.payment_type || "open_account";
+    const newAmount = Number.isFinite(paidAmount) ? paidAmount : Number(order.paid_amount || 0);
+    const prevAmount = Number(order.paid_amount || 0);
+    const delta = newAmount - prevAmount;
+
+    try {
+      await withTransaction(async (tx) => {
+        await tx.execute(`UPDATE orders SET ${setParts.join(", ")} WHERE id = ?`, params);
+        // Pozitif artış ve peşin ödeme türünde ise kasaya giriş yap
+        if (delta > 0 && (newType === "cash" || newType === "bank_transfer" || newStatus === "paid")) {
+          await tx.execute(
+            `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
+             VALUES ('income', ?, ?, CURRENT_DATE, ?, ?, ?)`,
+            [
+              `Siparis #${orderId} - ${order.customer_name}`,
+              delta,
+              `ORDER-${orderId}`,
+              `Ödeme türü: ${newType}`,
+              Number(req.session.user.id),
+            ]
+          );
+          cashbookInserted = true;
+        }
+      });
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "order_payment_updated",
+        severity: "info",
+        details: { orderId, paymentType: newType, paymentStatus: newStatus, paidAmount: newAmount, cashbookInserted },
+      });
+      return res.json({ ok: true, cashbookInserted });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Ödeme guncellenemedi." });
+    }
+  });
+
+  // Admin/staff: müşteri hesap özetleri
+  app.get("/api/customers/accounts", requireStaffOrAdmin, async (_req, res) => {
+    try {
+      const rows = await query(
+        `
+        SELECT
+          u.id, u.name, u.username, u.email, u.phone,
+          (SELECT COUNT(*) FROM orders o WHERE o.customer_user_id = u.id) AS "orderCount",
+          (SELECT COALESCE(SUM(oi.quantity * COALESCE(oi.unit_price, 0)), 0)
+             FROM orders o LEFT JOIN order_items oi ON oi.order_id = o.id
+             WHERE o.customer_user_id = u.id AND o.status <> 'cancelled') AS "totalAmount",
+          (SELECT COALESCE(SUM(o.paid_amount), 0) FROM orders o WHERE o.customer_user_id = u.id) AS "totalPaid",
+          (SELECT COUNT(*) FROM orders o WHERE o.customer_user_id = u.id AND COALESCE(o.payment_status, 'unpaid') = 'unpaid' AND o.status <> 'cancelled') AS "unpaidCount"
+        FROM users u
+        WHERE u.role = 'customer'
+        ORDER BY u.name ASC
+        `
+      );
+      return res.json({ customers: rows });
+    } catch (error) {
+      return res.status(400).json({ error: error.message || "Hesaplar yuklenemedi." });
+    }
   });
 
   // Admin: siparis satirlarini duzenle (fiyat, miktar)
@@ -5893,6 +6014,10 @@ async function queryOrders(user) {
         orders.customer_name AS "customerName",
         orders.customer_user_id AS "customerUserId",
         orders.quote_id AS "quoteId",
+        COALESCE(orders.payment_type, 'open_account') AS "paymentType",
+        COALESCE(orders.payment_status, 'unpaid') AS "paymentStatus",
+        COALESCE(orders.paid_amount, 0) AS "paidAmount",
+        orders.stock_deducted_at AS "stockDeductedAt",
         users.phone AS phone,
         orders.order_date AS date,
         orders.status,
