@@ -2090,16 +2090,17 @@ function createApp() {
     try {
       await withTransaction(async (tx) => {
         await tx.execute(`UPDATE orders SET ${setParts.join(", ")} WHERE id = ?`, params);
-        // Pozitif artış ve peşin ödeme türünde ise kasaya giriş yap
-        if (delta > 0 && (newType === "cash" || newType === "bank_transfer" || newStatus === "paid")) {
+        // Ödenen tutar arttıysa (delta > 0) mutlaka kasaya işle — ödeme türü "açık hesap" olsa bile
+        // eline para geçmiş demektir; kasa defteri gerçek nakit/banka akışını yansıtır.
+        if (delta > 0) {
           await tx.execute(
             `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
-             VALUES ('income', ?, ?, CURRENT_DATE, ?, ?, ?)`,
+             VALUES ('in', ?, ?, CURRENT_DATE, ?, ?, ?)`,
             [
               `Siparis #${orderId} - ${order.customer_name}`,
               delta,
               `ORDER-${orderId}`,
-              `Ödeme türü: ${newType}`,
+              `Tahsilat (${newType})`,
               Number(req.session.user.id),
             ]
           );

@@ -5839,6 +5839,18 @@ async function updateOrderStatus(orderId, status) {
     return;
   }
 
+  const statusLabels = {
+    approved: langText("Onaylandı", "Bestätigt"),
+    preparing: langText("Hazırlanıyor", "In Vorbereitung"),
+    completed: langText("Tamamlandı", "Abgeschlossen"),
+    cancelled: langText("İptal edildi", "Storniert"),
+    pending: langText("Beklemede", "Ausstehend"),
+  };
+  const lbl = statusLabels[status] || status;
+  const stockMsg = result.autoDeducted
+    ? langText(" · Stok otomatik düştü.", " · Lager automatisch abgezogen.")
+    : "";
+  window.alert(langText(`Sipariş #${orderId}: ${lbl}${stockMsg}`, `Bestellung #${orderId}: ${lbl}${stockMsg}`));
   await refreshData();
 }
 
