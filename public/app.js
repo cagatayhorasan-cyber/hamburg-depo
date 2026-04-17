@@ -5740,6 +5740,19 @@ function projectTypeLabel(type) {
 
 function renderProjects() {
   if (!refs.projectsList) return;
+  // Fallback: bootstrap'ten projects gelmediyse API'den doğrudan çek
+  if (!Array.isArray(state.projects) || state.projects.length === 0) {
+    if (!state._projectsFetching) {
+      state._projectsFetching = true;
+      request("/api/projects").then((data) => {
+        state._projectsFetching = false;
+        if (data && Array.isArray(data.projects)) {
+          state.projects = data.projects;
+          renderProjects();
+        }
+      }).catch(() => { state._projectsFetching = false; });
+    }
+  }
   const filters = state.projectsFilters;
   const term = (filters.search || "").toLowerCase().trim();
   let projects = (state.projects || []).filter(p => {
