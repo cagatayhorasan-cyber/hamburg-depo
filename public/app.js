@@ -1996,9 +1996,36 @@ async function logout() {
   showLogin();
 }
 
+function showGlobalLoading(message) {
+  let overlay = document.getElementById("globalLoadingOverlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "globalLoadingOverlay";
+    overlay.className = "global-loading-overlay";
+    overlay.innerHTML = `
+      <div class="loading-box">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <div class="loading-text">
+          <strong id="globalLoadingMessage">${message || ""}</strong>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+  } else {
+    const msg = document.getElementById("globalLoadingMessage");
+    if (msg) msg.textContent = message || "";
+    overlay.style.display = "";
+  }
+}
+function hideGlobalLoading() {
+  const overlay = document.getElementById("globalLoadingOverlay");
+  if (overlay) overlay.remove();
+}
+
 async function refreshData() {
   const previousUserId = Number(state.user?.id || 0);
+  showGlobalLoading(langText("Veriler yükleniyor...", "Daten werden geladen..."));
   const data = await request("/api/bootstrap");
+  hideGlobalLoading();
   if (data.error) {
     showLogin();
     return;
@@ -4758,6 +4785,8 @@ function getPublicItemDetail(item) {
         && !normalized.startsWith("daha once belirlenen")
         && !normalized.startsWith("ithalat klasoru gecmis kaydi")
         && !normalized.startsWith("tedarikci")
+        && !normalized.includes("tedarikcisi")
+        && !normalized.includes("fatura tedarikci")
         && !normalized.startsWith("kaynak dosya")
         && !normalized.startsWith("eslesen aktif kart")
         && !normalized.startsWith("id")

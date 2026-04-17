@@ -3620,6 +3620,22 @@ h3 {
   animation: spin 0.9s linear infinite;
   flex-shrink: 0;
 }
+.global-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: rgba(247, 251, 255, 0.85);
+  backdrop-filter: blur(3px);
+  animation: dynFadeIn 0.2s ease-out;
+}
+.global-loading-overlay .loading-box {
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+  padding: 28px 36px;
+  border: 1px solid var(--line);
+}
 .loading-spinner.mini {
   width: 12px;
   height: 12px;
