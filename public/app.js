@@ -3036,7 +3036,38 @@ function renderExpenses() {
   });
 }
 
+function populateCashCustomerOrderSelectors() {
+  const custSel = document.getElementById("cashCustomerSelect");
+  const ordSel = document.getElementById("cashOrderSelect");
+  if (!custSel || !ordSel) return;
+
+  // Müşteri listesi (state.customers zaten yüklü)
+  const customers = Array.isArray(state.customers) ? state.customers : [];
+  custSel.innerHTML = `<option value="">— seçilmedi —</option>` + customers.map(c => {
+    const label = c.name || c.username || c.email || `#${c.id}`;
+    return `<option value="${c.id}">${escapeHtml(label)}</option>`;
+  }).join("");
+
+  const refreshOrders = () => {
+    const custId = Number(custSel.value || 0);
+    const orders = (state.orders || []).filter(o =>
+      (!custId || Number(o.customerUserId) === custId) &&
+      o.status !== "cancelled"
+    );
+    ordSel.innerHTML = `<option value="">— genel tahsilat —</option>` + orders.map(o => {
+      const total = (o.items || []).reduce((s, it) => s + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
+      const paid = Number(o.paidAmount || 0);
+      const remaining = Math.max(total - paid, 0);
+      const label = `#${o.id} · ${o.customerName} · kalan €${numberFormat.format(remaining)}`;
+      return `<option value="${o.id}">${escapeHtml(label)}</option>`;
+    }).join("");
+  };
+  custSel.addEventListener("change", refreshOrders);
+  refreshOrders();
+}
+
 function renderCashbook() {
+  populateCashCustomerOrderSelectors();
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
     const isUnbilledSale = /faturasiz satis/i.test(String(entry.note || "")) || /faturasiz satis/i.test(String(entry.title || ""));

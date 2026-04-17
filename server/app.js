@@ -1418,7 +1418,7 @@ function createApp() {
   });
 
   app.post("/api/cashbook", requireStaffOrAdmin, async (req, res) => {
-    const { type, title, amount, date, reference, note } = req.body || {};
+    const { type, title, amount, date, reference, note, orderId, customerUserId } = req.body || {};
     if (!type || !title || !amount || !date) {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
     }
@@ -1432,26 +1432,64 @@ function createApp() {
       return res.status(400).json({ error: "Gecersiz kasa hareket tipi." });
     }
 
+    // Siparis ile iliskilendirildiyse referansi otomatik doldur ve paid_amount guncelle
+    const linkOrderId = Number(orderId);
+    const isPaymentForOrder = entryType === "in" && Number.isFinite(linkOrderId) && linkOrderId > 0;
+    let orderUpdated = null;
+
+    const finalReference = isPaymentForOrder
+      ? `ORDER-${linkOrderId}`
+      : cleanOptional(reference);
+
     const entryNote = type === "unbilled_sale"
       ? ["Faturasiz satis", cleanOptional(note)].filter(Boolean).join(" | ")
       : cleanOptional(note);
 
-    await execute(
-      `
-        INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-      `,
-      [entryType, title.trim(), amountValue, date, cleanOptional(reference), entryNote, req.session.user.id]
-    );
+    if (isPaymentForOrder) {
+      await withTransaction(async (tx) => {
+        // Kasaya yaz
+        await tx.execute(
+          `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [entryType, title.trim(), amountValue, date, finalReference, entryNote, req.session.user.id]
+        );
+        // Siparisi guncelle: paid_amount += amount, status belirle
+        const order = await tx.get(
+          "SELECT id, customer_name, paid_amount, payment_type FROM orders WHERE id = ?",
+          [linkOrderId]
+        );
+        if (!order) throw new Error("Siparis bulunamadi.");
+        const currentPaid = Number(order.paid_amount || 0);
+        const newPaid = currentPaid + amountValue;
+        // Satir toplami
+        const linesRes = await tx.query(
+          "SELECT SUM(quantity * COALESCE(unit_price, 0)) AS total FROM order_items WHERE order_id = ?",
+          [linkOrderId]
+        );
+        const orderTotal = Number(linesRes?.[0]?.total || 0);
+        const newStatus = newPaid >= orderTotal && orderTotal > 0 ? "paid" : newPaid > 0 ? "partial" : "unpaid";
+        await tx.execute(
+          "UPDATE orders SET paid_amount = ?, payment_status = ? WHERE id = ?",
+          [newPaid, newStatus, linkOrderId]
+        );
+        orderUpdated = { orderId: linkOrderId, paidAmount: newPaid, paymentStatus: newStatus, orderTotal };
+      });
+    } else {
+      await execute(
+        `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [entryType, title.trim(), amountValue, date, finalReference, entryNote, req.session.user.id]
+      );
+    }
 
     queueSecurityEvent(req, {
       user: req.session.user,
       eventType: "cashbook_created",
       severity: "info",
-      details: { type: entryType, title: title.trim(), amount: amountValue, date },
+      details: { type: entryType, title: title.trim(), amount: amountValue, date, linkedOrderId: isPaymentForOrder ? linkOrderId : null },
     });
 
-    return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType });
+    return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType, orderUpdated });
   });
 
   app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {

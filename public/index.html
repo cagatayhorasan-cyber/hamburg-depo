@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260417-kasa-sync">
+  <link rel="stylesheet" href="/styles.css?v=20260417-cashbook-link">
 </head>
 <body>
   <div class="page-shell">
@@ -449,6 +449,8 @@
                     <label>Baslik<input name="title" type="text" required placeholder="Orn. Tezgah satisi"></label>
                     <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
                     <label>Tarih<input name="date" type="date" required></label>
+                    <label>Müşteri (tahsilat için)<select name="customerUserId" id="cashCustomerSelect"><option value="">— seçilmedi —</option></select></label>
+                    <label>Sipariş<select name="orderId" id="cashOrderSelect"><option value="">— genel tahsilat —</option></select></label>
                     <label>Referans<input name="reference" type="text"></label>
                     <label>Not<input name="note" type="text"></label>
                     <button class="primary-button" type="submit">Kasa Kaydet</button>
@@ -1156,6 +1158,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260417-kasa-sync"></script>
+  <script src="/app.js?v=20260417-cashbook-link"></script>
 </body>
 </html>
