@@ -6090,6 +6090,74 @@ function bindProjectsEvents() {
       if (refs.projectDetailModal && !refs.projectDetailModal.hasAttribute("hidden")) closeProjectDetail();
     }
   });
+
+  // ColdRoomPro → ana sistem köprüsü
+  if (!window._coldroomproBridgeBound) {
+    window.addEventListener("message", async (event) => {
+      const data = event?.data;
+      if (!data || typeof data !== "object") return;
+      if (data.type !== "coldroompro:save-as-project") return;
+      const payload = data.payload || {};
+      await handleColdRoomProSaveAsProject(payload);
+    });
+    window._coldroomproBridgeBound = true;
+  }
+}
+
+async function handleColdRoomProSaveAsProject(payload) {
+  if (!state.user) {
+    window.alert(langText(
+      "Projeyi kaydetmek için oturum açmış olmalısınız.",
+      "Sie müssen angemeldet sein, um das Projekt zu speichern."
+    ));
+    return;
+  }
+  const defaultTitle = payload.title || (langText("Soğuk Oda Projesi", "Kühlraum-Projekt") + " - " + new Date().toLocaleDateString());
+  const userTitle = window.prompt(
+    langText("Proje başlığı:", "Projekttitel:"),
+    defaultTitle
+  );
+  if (!userTitle) return;
+
+  // BOM satırlarını hazırla
+  const bomItems = (Array.isArray(payload.bom) ? payload.bom : []).map((entry) => ({
+    itemName: entry.itemName || entry.name || "Malzeme",
+    quantity: Number(entry.quantity) || 1,
+    unit: entry.unit || "adet",
+    unitPrice: Number(entry.unitPrice) || 0,
+    note: entry.code ? `ColdRoomPro kod: ${entry.code}` : "",
+    source: "coldroompro",
+  }));
+
+  const projectBody = {
+    title: userTitle.trim(),
+    projectType: payload.projectType || "cold_room",
+    status: "calculating",
+    parameters: payload.parameters || null,
+    calculationResult: payload.calculationResult || null,
+    note: payload.note || "",
+    items: bomItems,
+  };
+
+  const projectRes = await request("/api/projects", {
+    method: "POST",
+    body: JSON.stringify(projectBody),
+  });
+  if (projectRes.error) {
+    window.alert(projectRes.error || langText("Proje oluşturulamadı.", "Projekt konnte nicht erstellt werden."));
+    return;
+  }
+  const projectId = projectRes.id;
+  window.alert(langText(
+    `✓ Proje oluşturuldu (#${projectId}). ${bomItems.length} malzeme eklendi.`,
+    `✓ Projekt erstellt (#${projectId}). ${bomItems.length} Materialien hinzugefügt.`
+  ));
+
+  await refreshData();
+
+  // Projeler sekmesine atla
+  const projectsTab = document.querySelector('[data-tab="projects"]');
+  if (projectsTab) projectsTab.click();
 }
 
 async function handleAuthUrlActions() {
