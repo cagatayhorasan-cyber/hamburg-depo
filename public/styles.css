@@ -355,6 +355,16 @@ input:-webkit-autofill::first-line {
   display: none !important;
 }
 
+/* Savunma katmanı: Rol bazlı görünürlük — JS toggle kaçırsa bile CSS kilitler */
+body[data-role="customer"] .admin-only,
+body[data-role="customer"] .admin-staff-only { display: none !important; }
+body[data-role="staff"] .admin-only { display: none !important; }
+body[data-role="staff"] .customer-only { display: none !important; }
+body[data-role="admin"] .customer-only,
+body[data-role="admin"] .non-admin-only { display: none !important; }
+body[data-role="operator"] .admin-only { display: none !important; }
+body[data-role="operator"] .customer-only { display: none !important; }
+
 .auth-screen {
   min-height: calc(100vh - 52px);
   display: grid;

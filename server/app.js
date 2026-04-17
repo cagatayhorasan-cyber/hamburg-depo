@@ -4465,8 +4465,9 @@ async function buildBootstrap(user) {
   const assistantStatus = getAssistantStatus();
 
   if (normalizedRole === "customer") {
+    // Customer için limit yok — queryCustomerItems zaten sadece stoktaki urunleri dondurur (~100 adet)
     const [items, orders, adminMessages, projects] = await Promise.all([
-      queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT }),
+      queryCustomerItems({ includePrices: true }),
       queryOrders(user),
       queryAdminMessages(user),
       queryProjectsForUser(user),

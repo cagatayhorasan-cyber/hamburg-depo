@@ -2157,6 +2157,7 @@ function showLogin() {
   }
   lockLoginInputs();
   clearToolScopeCookie();
+  delete document.body.dataset.role;
   closeAssistantPanel();
   closeAuthModal();
   applyUiTranslations();
@@ -2235,6 +2236,8 @@ function showApp() {
   document.body.style.overflow = "";
   document.documentElement.style.overflow = "";
   setToolScopeCookie();
+  // Rol bazlı CSS kilidi için body'ye data-role set
+  document.body.dataset.role = effectiveRole() || "";
   refs.welcomeText.textContent = t("messages.welcome", state.user.name, isCustomerUser() && !state.user?.emailVerified);
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", !isAdminUser());
