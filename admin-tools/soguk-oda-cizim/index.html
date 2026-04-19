@@ -2430,7 +2430,43 @@ function exportPNG() {
   toast('PNG kaydedildi ✓ (içerik sığdırıldı)');
 }
 
-function exportPDF() {
+// Cache: base64 encoded NotoSans fonts (fetched once per session)
+let _trFontCache = null;
+async function loadTurkishFontForJsPDF(pdf) {
+  try {
+    if (!_trFontCache) {
+      const [regResp, boldResp] = await Promise.all([
+        fetch('./fonts/NotoSans-Regular.ttf', { cache: 'force-cache' }),
+        fetch('./fonts/NotoSans-Bold.ttf', { cache: 'force-cache' }),
+      ]);
+      if (!regResp.ok || !boldResp.ok) throw new Error('Font HTTP ' + regResp.status + '/' + boldResp.status);
+      const toB64 = async (resp) => {
+        const blob = await resp.blob();
+        return await new Promise((resolve, reject) => {
+          const r = new FileReader();
+          r.onloadend = () => resolve(String(r.result).split(',')[1]);
+          r.onerror = reject;
+          r.readAsDataURL(blob);
+        });
+      };
+      _trFontCache = {
+        regular: await toB64(regResp),
+        bold: await toB64(boldResp),
+      };
+    }
+    pdf.addFileToVFS('NotoSans-Regular.ttf', _trFontCache.regular);
+    pdf.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
+    pdf.addFileToVFS('NotoSans-Bold.ttf', _trFontCache.bold);
+    pdf.addFont('NotoSans-Bold.ttf', 'NotoSans', 'bold');
+    pdf.setFont('NotoSans', 'normal');
+    return true;
+  } catch (e) {
+    console.warn('[exportPDF] Türkçe font yüklenemedi, Helvetica fallback:', e);
+    return false;
+  }
+}
+
+async function exportPDF() {
   try {
     const {jsPDF} = window.jspdf;
 
@@ -2444,6 +2480,10 @@ function exportPDF() {
     const drawAreaH = 230;
 
     const pdf = new jsPDF({orientation:'landscape', unit:'mm', format:'a3'});
+
+    // Türkçe karakter desteği için NotoSans font yükle (başarısız olursa Helvetica)
+    await loadTurkishFontForJsPDF(pdf);
+
     // Koyu arka plan
     pdf.setFillColor(21,24,32); pdf.rect(0,0,420,297,'F');
 
