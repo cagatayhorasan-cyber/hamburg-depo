@@ -4601,13 +4601,56 @@ function renderCustomerOrders() {
   }
 
   state.orders.forEach((order) => {
-    const div = document.createElement("div");
-    div.className = "feed-item";
+    const items = Array.isArray(order.items) ? order.items : [];
+    const netTotal = items.reduce((s, it) => s + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
+    const vatRate = 19;
+    const vatAmount = Number((netTotal * vatRate / 100).toFixed(2));
+    const grossTotal = Number((netTotal + vatAmount).toFixed(2));
+    const statusClass = order.status === "completed" || order.status === "approved"
+      ? "status-ok"
+      : order.status === "cancelled" ? "status-critical"
+      : order.status === "preparing" ? "status-progress" : "status-pending";
+
+    const div = document.createElement("article");
+    div.className = "customer-order-card";
     div.innerHTML = `
-      <strong>${langText("Siparis", "Bestellung")} #${order.id}</strong>
-      <span>${order.date} | ${langText("Durum", "Status")}: ${getOrderStatusLabel(order.status)}</span>
-      <span>${order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
-      <span>${order.note || "-"}</span>
+      <header class="customer-order-head">
+        <div>
+          <strong>${langText("Siparişim", "Meine Bestellung")} #${order.id}</strong>
+          ${order.quoteId ? `<span class="status-pill status-ok" style="margin-left:8px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}
+        </div>
+        <span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span>
+      </header>
+      <p class="muted" style="margin:4px 0;">${langText("Tarih","Datum")}: ${order.date}</p>
+      <table class="customer-order-lines" style="width:100%; border-collapse:collapse; font-size:0.9em; margin-top:8px;">
+        <thead>
+          <tr style="background:rgba(255,255,255,0.04);">
+            <th style="text-align:left; padding:4px 6px;">${langText("Ürün","Artikel")}</th>
+            <th style="text-align:right; padding:4px 6px;">${langText("Miktar","Menge")}</th>
+            <th style="text-align:right; padding:4px 6px;">${langText("Birim","Einzelpreis")}</th>
+            <th style="text-align:right; padding:4px 6px;">${langText("Satır","Zeile")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${items.map((it) => {
+            const qty = Number(it.quantity || 0);
+            const up = Number(it.unitPrice || 0);
+            const lineTot = qty * up;
+            return `<tr>
+              <td style="padding:4px 6px;">${escapeHtml(it.itemName || "")}</td>
+              <td style="text-align:right; padding:4px 6px;">${numberFormat.format(qty)} ${it.unit || "ad"}</td>
+              <td style="text-align:right; padding:4px 6px;">${up > 0 ? currency.format(up) : "—"}</td>
+              <td style="text-align:right; padding:4px 6px;"><strong>${lineTot > 0 ? currency.format(lineTot) : "—"}</strong></td>
+            </tr>`;
+          }).join("")}
+        </tbody>
+        ${netTotal > 0 ? `<tfoot>
+          <tr><td colspan="3" style="text-align:right; padding:4px 6px;">${langText("Net","Netto")}:</td><td style="text-align:right; padding:4px 6px;"><strong>${currency.format(netTotal)}</strong></td></tr>
+          <tr><td colspan="3" style="text-align:right; padding:4px 6px;">${langText("KDV","MwSt")} %${vatRate}:</td><td style="text-align:right; padding:4px 6px;">${currency.format(vatAmount)}</td></tr>
+          <tr><td colspan="3" style="text-align:right; padding:4px 6px;"><strong>${langText("Toplam (KDV dahil)","Gesamt (inkl. MwSt)")}:</strong></td><td style="text-align:right; padding:4px 6px;"><strong>${currency.format(grossTotal)}</strong></td></tr>
+        </tfoot>` : ""}
+      </table>
+      ${order.note ? `<p class="muted" style="margin-top:8px;"><em>${langText("Not","Notiz")}: ${escapeHtml(order.note)}</em></p>` : ""}
     `;
     refs.customerOrdersList.append(div);
   });
