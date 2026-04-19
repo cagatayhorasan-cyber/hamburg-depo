@@ -30,8 +30,10 @@ const COMPANY_PROFILE = {
 };
 
 const PDF_FONTS = {
-  regular: "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
-  bold: "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+  regular: path.join(__dirname, "fonts", "NotoSans-Regular.ttf"),
+  bold: path.join(__dirname, "fonts", "NotoSans-Bold.ttf"),
+  fallbackRegular: "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+  fallbackBold: "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
 };
 
 const SESSION_SECRET = process.env.SESSION_SECRET || "hamburg-depo-secret";
@@ -6296,22 +6298,24 @@ function drawQuoteIntro(doc, quote, t, formattedDate, lang) {
 
   doc.roundedRect(382, 170, 171, 102, 16).fill("#f0fffb");
   doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.offerTo), 397, 185);
-  doc.fillColor("#0f172a").font("AppBold").fontSize(14).text(sanitizePdfText(quote.customerName), 397, 207, { width: 136 });
-  doc.fillColor("#607489").font("AppRegular").fontSize(9.5).text(sanitizePdfText(quote.note || t.customerPlaceholder), 397, 232, { width: 136, height: 30 });
+  doc.fillColor("#0f172a").font("AppBold").fontSize(14).text(sanitizePdfText(quote.customerName || ""), 397, 207, { width: 136 });
+  const customerNote = (quote.note || "").trim();
+  if (customerNote) {
+    doc.fillColor("#607489").font("AppRegular").fontSize(9.5).text(sanitizePdfText(customerNote), 397, 232, { width: 136, height: 30, ellipsis: true });
+  }
 
   doc.roundedRect(42, 282, 511, 45, 16).fill("#fff7ed");
-  doc.fillColor("#082b4c").font("AppBold").fontSize(10).text(sanitizePdfText(t.productScope), 58, 296);
-  doc.fillColor("#475569").font("AppRegular").fontSize(9.2).text(
-    sanitizePdfText(`${COMPANY_PROFILE.phone} | ${COMPANY_PROFILE.email} | ${COMPANY_PROFILE.web}`),
+  doc.fillColor("#082b4c").font("AppBold").fontSize(9.5).text(
+    sanitizePdfText(`${COMPANY_PROFILE.phone}   |   ${COMPANY_PROFILE.email}   |   ${COMPANY_PROFILE.web}`),
     58,
-    313,
-    { width: 360 }
+    300,
+    { width: 490 }
   );
-  doc.fillColor("#082b4c").font("AppBold").fontSize(9).text(
-    sanitizePdfText(`${t.offerNo}: ${quote.quoteNo || `DRC-${quote.id}`}  |  ${t.date}: ${formattedDate}  |  ${t.vatLabel}: ${quote.isExport ? t.vatExportShort : `${numberOrZero(quote.vatRate)}%`}`),
-    332,
-    296,
-    { width: 205, align: "right" }
+  doc.fillColor("#475569").font("AppRegular").fontSize(8.8).text(
+    sanitizePdfText(`${t.offerNo}: ${quote.quoteNo || `DRC-${quote.id}`}   ·   ${t.date}: ${formattedDate}   ·   ${t.vatLabel}: ${quote.isExport ? t.vatExportShort : `${numberOrZero(quote.vatRate)}%`}`),
+    58,
+    314,
+    { width: 490 }
   );
 
   return 350;
@@ -6321,7 +6325,7 @@ function drawQuoteItems(doc, quote, t, currency, startY) {
   let y = drawQuoteTableHeader(doc, t, startY);
 
   quote.items.forEach((item, index) => {
-    const nameHeight = doc.font("AppBold").fontSize(11.5).heightOfString(sanitizePdfText(item.itemName), { width: 248 });
+    const nameHeight = doc.font("AppBold").fontSize(11).heightOfString(sanitizePdfText(item.itemName), { width: 240 });
     const rowHeight = Math.max(56, Math.ceil(nameHeight) + 34);
     if (y + rowHeight > 720) {
       doc.addPage();
@@ -6335,15 +6339,15 @@ function drawQuoteItems(doc, quote, t, currency, startY) {
     doc.strokeColor("#e3edf7").lineWidth(1).roundedRect(42, y, 511, rowHeight - 6, 12).stroke();
 
     doc.fillColor("#00a98f").font("AppBold").fontSize(11).text(String(index + 1).padStart(2, "0"), 55, y + 16, { width: 26 });
-    doc.fillColor("#0f172a").font("AppBold").fontSize(11.5).text(sanitizePdfText(item.itemName), 86, y + 12, { width: 248 });
+    doc.fillColor("#0f172a").font("AppBold").fontSize(11).text(sanitizePdfText(item.itemName), 86, y + 12, { width: 240 });
 
-    const meta = [item.brand, item.category, item.itemCode ? `${t.code}: ${item.itemCode}` : ""].filter(Boolean).join("  |  ");
-    doc.fillColor("#607489").font("AppRegular").fontSize(8.8).text(sanitizePdfText(meta || t.productLine), 86, y + 33 + Math.max(0, nameHeight - 14), { width: 248 });
+    const meta = [item.brand, item.category, item.itemCode ? `${t.code}: ${item.itemCode}` : ""].filter(Boolean).join("  ·  ");
+    doc.fillColor("#607489").font("AppRegular").fontSize(8.6).text(sanitizePdfText(meta || t.productLine), 86, y + 33 + Math.max(0, nameHeight - 14), { width: 240 });
 
-    doc.fillColor("#082b4c").font("AppBold").fontSize(12).text(sanitizePdfText(formatPdfQuantity(item.quantity)), 350, y + 14, { width: 46, align: "right" });
-    doc.fillColor("#607489").font("AppRegular").fontSize(8.8).text(sanitizePdfText(item.unit || ""), 350, y + 31, { width: 46, align: "right" });
-    doc.fillColor("#0f172a").font("AppRegular").fontSize(10).text(sanitizePdfText(currency.format(item.unitPrice)), 410, y + 18, { width: 56, align: "right" });
-    doc.fillColor("#ff6a3d").font("AppBold").fontSize(11).text(sanitizePdfText(currency.format(item.total)), 480, y + 18, { width: 58, align: "right" });
+    doc.fillColor("#082b4c").font("AppBold").fontSize(12).text(sanitizePdfText(formatPdfQuantity(item.quantity)), 334, y + 14, { width: 44, align: "right" });
+    doc.fillColor("#607489").font("AppRegular").fontSize(8.6).text(sanitizePdfText(item.unit || ""), 334, y + 31, { width: 44, align: "right" });
+    doc.fillColor("#0f172a").font("AppRegular").fontSize(10).text(sanitizePdfText(currency.format(item.unitPrice)), 384, y + 18, { width: 72, align: "right" });
+    doc.fillColor("#ff6a3d").font("AppBold").fontSize(11).text(sanitizePdfText(currency.format(item.total)), 464, y + 18, { width: 82, align: "right" });
 
     y += rowHeight;
   });
@@ -6355,10 +6359,10 @@ function drawQuoteTableHeader(doc, t, y) {
   doc.roundedRect(42, y, 511, 30, 10).fill("#082b4c");
   doc.fillColor("#ffffff").font("AppBold").fontSize(9.5);
   doc.text("#", 55, y + 10, { width: 26 });
-  doc.text(sanitizePdfText(t.item), 86, y + 10, { width: 248 });
-  doc.text(sanitizePdfText(t.qty), 350, y + 10, { width: 46, align: "right" });
-  doc.text(sanitizePdfText(t.unitPrice), 410, y + 10, { width: 56, align: "right" });
-  doc.text(sanitizePdfText(t.total), 480, y + 10, { width: 58, align: "right" });
+  doc.text(sanitizePdfText(t.item), 86, y + 10, { width: 240 });
+  doc.text(sanitizePdfText(t.qty), 334, y + 10, { width: 44, align: "right" });
+  doc.text(sanitizePdfText(t.unitPrice), 384, y + 10, { width: 72, align: "right" });
+  doc.text(sanitizePdfText(t.total), 464, y + 10, { width: 82, align: "right" });
   return y + 40;
 }
 
@@ -6380,42 +6384,58 @@ function drawQuoteTotals(doc, quote, t, currency, y) {
   doc.fillColor("#ffffff").font("AppBold").fontSize(12).text(sanitizePdfText(`${t.grossTotal}: ${currency.format(numberOrZero(quote.grossTotal || quote.total))}`), 336, y + 125, { width: 187, align: "center" });
 
   doc.roundedRect(42, y, 240, 138, 18).fill("#f8fafc");
-  doc.fillColor("#082b4c").font("AppBold").fontSize(12).text(sanitizePdfText(t.easyReadTitle), 58, y + 16);
-  doc.fillColor("#475569").font("AppRegular").fontSize(9.7).text(sanitizePdfText(t.easyReadCopy), 58, y + 40, { width: 206, lineGap: 3 });
-  drawPdfPills(doc, t.productFamilies, 58, y + 92, {
-    fill: "#e9fff9",
-    color: "#082b4c",
-    border: "#b8f5e7",
-    fontSize: 8.2,
-    maxX: 270,
+  doc.fillColor("#082b4c").font("AppBold").fontSize(12).text(sanitizePdfText(t.conditionsTitle), 58, y + 16);
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.4);
+  t.conditions.forEach((line, index) => {
+    doc.text(sanitizePdfText(`- ${line}`), 58, y + 40 + index * 28, { width: 206, lineGap: 2 });
   });
 
   return y + 164;
 }
 
 function drawQuoteFooter(doc, quote, t, y) {
-  y = ensureQuotePdfSpace(doc, y, 165, quote, t);
+  y = ensureQuotePdfSpace(doc, y, 108, quote, t);
 
-  doc.roundedRect(42, y, 244, 96, 14).fill("#f8fafc");
+  const bankLines = buildBankLines(t);
+  const bankBlockHeight = 26 + bankLines.length * 16 + 6;
+  const signBlockHeight = Math.max(96, bankBlockHeight);
+
+  doc.roundedRect(42, y, 244, signBlockHeight, 14).fill("#f8fafc");
   doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.bankTitle), 56, y + 14);
   doc.fillColor("#475569").font("AppRegular").fontSize(9.3);
-  doc.text(sanitizePdfText(`${t.beneficiary}: ${COMPANY_PROFILE.beneficiary}`), 56, y + 34, { width: 214 });
-  doc.text(sanitizePdfText(`${t.bank}: ${COMPANY_PROFILE.bankName}`), 56, y + 50, { width: 214 });
-  doc.text(sanitizePdfText(`IBAN: ${COMPANY_PROFILE.iban}`), 56, y + 66, { width: 214 });
-  doc.text(sanitizePdfText(`BIC: ${COMPANY_PROFILE.bic}`), 56, y + 82, { width: 214 });
-
-  doc.roundedRect(309, y, 244, 96, 14).fill("#f8fafc");
-  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.signature), 323, y + 14);
-  doc.moveTo(323, y + 61).lineTo(523, y + 61).strokeColor("#94a3b8").stroke();
-  doc.fillColor("#475569").font("AppRegular").fontSize(9.5).text(sanitizePdfText(COMPANY_PROFILE.manager), 323, y + 70);
-  doc.text(sanitizePdfText(`${COMPANY_PROFILE.register} | USt-IdNr.: ${COMPANY_PROFILE.vatId}`), 323, y + 84, { width: 214 });
-
-  y += 118;
-  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.conditionsTitle), 42, y);
-  doc.fillColor("#475569").font("AppRegular").fontSize(9.2);
-  t.conditions.forEach((line, index) => {
-    doc.text(sanitizePdfText(`- ${line}`), 42, y + 20 + index * 15, { width: 511 });
+  bankLines.forEach((line, index) => {
+    doc.text(sanitizePdfText(line), 56, y + 34 + index * 16, { width: 214 });
   });
+
+  doc.roundedRect(309, y, 244, signBlockHeight, 14).fill("#f8fafc");
+  doc.fillColor("#082b4c").font("AppBold").fontSize(11).text(sanitizePdfText(t.signature), 323, y + 14);
+  doc.moveTo(323, y + signBlockHeight - 36).lineTo(523, y + signBlockHeight - 36).strokeColor("#94a3b8").stroke();
+  doc.fillColor("#475569").font("AppRegular").fontSize(9.5).text(sanitizePdfText(COMPANY_PROFILE.manager), 323, y + signBlockHeight - 26);
+  doc.text(sanitizePdfText(`${COMPANY_PROFILE.register} | USt-IdNr.: ${COMPANY_PROFILE.vatId}`), 323, y + signBlockHeight - 12, { width: 214 });
+}
+
+function isPlaceholderIban(iban) {
+  if (!iban) return true;
+  const normalized = String(iban).replace(/[\s-]/g, "");
+  if (!/^DE\d{20}$/i.test(normalized)) return false;
+  return /^DE0+$/i.test(normalized);
+}
+
+function buildBankLines(t) {
+  const lines = [];
+  lines.push(`${t.beneficiary}: ${COMPANY_PROFILE.beneficiary}`);
+  lines.push(`${t.bank}: ${COMPANY_PROFILE.bankName}`);
+  const iban = (COMPANY_PROFILE.iban || "").trim();
+  const bic = (COMPANY_PROFILE.bic || "").trim();
+  const ibanPlaceholder = isPlaceholderIban(iban);
+  const bicPlaceholder = !bic || /^X+DE/i.test(bic) || /^X+$/i.test(bic);
+  if (ibanPlaceholder && bicPlaceholder) {
+    lines.push(`IBAN / BIC: ${t.onRequest}`);
+  } else {
+    if (!ibanPlaceholder) lines.push(`IBAN: ${iban}`);
+    if (!bicPlaceholder) lines.push(`BIC: ${bic}`);
+  }
+  return lines;
 }
 
 function drawTotalLine(doc, label, value, x, y, strong) {
@@ -6468,54 +6488,55 @@ function formatPdfQuantity(value) {
 function getQuoteTranslations(lang) {
   if (lang === "tr") {
     return {
-      logoSubline: "Sogutma ve Klima Teknigi",
+      logoSubline: "Soğutma ve Klima Tekniği",
       headOffice: "Merkez",
       warehouse: "Depo",
-      offerTo: "Musteri",
+      offerTo: "Müşteri",
       offerTitle: "Malzeme Satış Teklifi",
-      materialSaleTitle: "Malzeme Satis Teklifi",
+      materialSaleTitle: "Malzeme Satış Teklifi",
       offerNo: "Teklif No",
       date: "Tarih",
       language: "Dil",
       vatLabel: "KDV",
       vatExportShort: "Yok",
-      payableAmount: "Odenecek",
-      brandLineLabel: "Satisini yaptigimiz markalar",
-      productScope: "Panel, soguk oda kapisi, kondenser, evaporator, gaz, boru, kontrol ve servis malzemeleri",
+      payableAmount: "Ödenecek",
+      brandLineLabel: "Satışını yaptığımız markalar",
+      productScope: "Panel, soğuk oda kapısı, kondenser, evaporatör, gaz, boru, kontrol ve servis malzemeleri",
       item: "Malzeme",
       code: "Kod",
-      productLine: "Urun / malzeme kalemi",
+      productLine: "Ürün / malzeme kalemi",
       qty: "Miktar",
       unitPrice: "Birim Fiyat",
       unit: "Birim",
       total: "Toplam",
-      totalsTitle: "Teklif Ozeti",
+      totalsTitle: "Teklif Özeti",
       easyReadTitle: "Kolay okuma",
-      easyReadCopy: "Urun adi buyuk yazilir. Alt satirda marka, kategori ve stok kodu yer alir. Egitimsiz kullanici da hangi malzemenin teklif edildigini hizli anlar.",
-      productFamilies: ["Panel", "Soguk Oda Kapisi", "Kondenser", "Evaporator", "Termostat", "Gaz", "Bakir Boru", "Fan Motoru"],
+      easyReadCopy: "",
+      productFamilies: [],
       subtotal: "Ara Toplam",
-      discount: "Iskonto",
+      discount: "İskonto",
       netTotal: "Net Toplam",
       vat: "KDV",
-      vatExport: "Ihracat - KDV Yok",
-      grossTotal: "Brut Toplam",
-      conditionsTitle: "Kosullar",
+      vatExport: "İhracat - KDV Yok",
+      grossTotal: "Brüt Toplam",
+      conditionsTitle: "Koşullar",
       bankTitle: "Banka Bilgileri",
       beneficiary: "Lehdar",
       bank: "Banka",
-      signature: "Imza Alani",
-      customerPlaceholder: "Musteri notu belirtilmedi.",
-      pageContinue: "Devam sayfasi",
+      onRequest: "Talep üzerine iletilir",
+      signature: "İmza Alanı",
+      customerPlaceholder: "",
+      pageContinue: "Devam sayfası",
       conditions: [
-        "Teklif tarihinden itibaren 15 gun gecerlidir.",
-        "Teslimat suresi stok ve uretim durumuna gore ayrica teyit edilir.",
-        "Montaj, nakliye ve devreye alma dahil degilse ayrica belirtilir.",
+        "Teklif tarihinden itibaren 15 gün geçerlidir.",
+        "Teslimat süresi stok ve üretim durumuna göre ayrıca teyit edilir.",
+        "Montaj, nakliye ve devreye alma dahil değilse ayrıca belirtilir.",
       ],
     };
   }
 
   return {
-    logoSubline: "Kalte- und Klimatechnik",
+    logoSubline: "Kälte- und Klimatechnik",
     headOffice: "Zentrale",
     warehouse: "Lager",
     offerTo: "Kunde",
@@ -6528,7 +6549,7 @@ function getQuoteTranslations(lang) {
     vatExportShort: "0%",
     payableAmount: "Zu zahlen",
     brandLineLabel: "Marken im Verkauf",
-    productScope: "Paneele, Kuehlraumtueren, Verfluessiger, Verdampfer, Kaeltemittel, Rohr, Steuerung und Serviceteile",
+    productScope: "Paneele, Kühlraumtüren, Verflüssiger, Verdampfer, Kältemittel, Rohr, Steuerung und Serviceteile",
     item: "Artikel",
     code: "Code",
     productLine: "Produkt / Materialposition",
@@ -6536,27 +6557,28 @@ function getQuoteTranslations(lang) {
     unitPrice: "Einzelpreis",
     unit: "Einheit",
     total: "Gesamt",
-    totalsTitle: "Angebotsuebersicht",
-    easyReadTitle: "Einfach lesbar",
-    easyReadCopy: "Der Artikelname steht gross. Darunter stehen Marke, Kategorie und Lagercode. Auch nicht geschulte Nutzer erkennen schnell, welches Material angeboten wird.",
-    productFamilies: ["Paneel", "Kuehlraumtuer", "Verfluessiger", "Verdampfer", "Thermostat", "Gas", "Kupferrohr", "Ventilator"],
+    totalsTitle: "Angebotsübersicht",
+    easyReadTitle: "",
+    easyReadCopy: "",
+    productFamilies: [],
     subtotal: "Zwischensumme",
     discount: "Rabatt",
     netTotal: "Netto",
     vat: "MwSt.",
-    vatExport: "Exportlieferung - keine MwSt.",
+    vatExport: "Exportlieferung – keine MwSt.",
     grossTotal: "Brutto",
     conditionsTitle: "Konditionen",
     bankTitle: "Bankverbindung",
-    beneficiary: "Empfanger",
+    beneficiary: "Empfänger",
     bank: "Bank",
+    onRequest: "Auf Anfrage",
     signature: "Unterschrift",
-    customerPlaceholder: "Keine zusaetzliche Kundennotiz.",
+    customerPlaceholder: "",
     pageContinue: "Folgeseite",
     conditions: [
-      "Dieses Angebot ist 15 Tage ab Angebotsdatum gueltig.",
-      "Lieferzeiten werden je nach Lager- und Produktionsstatus bestaetigt.",
-      "Montage, Transport und Inbetriebnahme sind nur enthalten, wenn ausdruecklich angegeben.",
+      "Dieses Angebot ist 15 Tage ab Angebotsdatum gültig.",
+      "Lieferzeiten werden je nach Lager- und Produktionsstatus bestätigt.",
+      "Montage, Transport und Inbetriebnahme sind nur enthalten, wenn ausdrücklich angegeben.",
     ],
   };
 }
@@ -6565,26 +6587,50 @@ function numberOrZero(value) {
   return Number(value || 0);
 }
 
+let PDF_UNICODE_OK = false;
+
 function sanitizePdfText(value) {
-  return String(value ?? "")
+  let out = String(value ?? "")
     .replace(/\u00a0/g, " ")
-    .replace(/[ğĞ]/g, (char) => (char === "Ğ" ? "G" : "g"))
-    .replace(/[ıİ]/g, (char) => (char === "İ" ? "I" : "i"))
-    .replace(/[şŞ]/g, (char) => (char === "Ş" ? "S" : "s"))
     .replace(/[–—]/g, "-")
     .replace(/[“”]/g, "\"")
     .replace(/[‘’]/g, "'")
-    .replace(/₺/g, "TL")
-    .replace(/[^\t\n\r\u0020-\u007e\u00a0-\u00ff\u20ac]/g, "");
+    .replace(/₺/g, "TL");
+  if (!PDF_UNICODE_OK) {
+    out = out
+      .replace(/[ğĞ]/g, (char) => (char === "Ğ" ? "G" : "g"))
+      .replace(/[ıİ]/g, (char) => (char === "İ" ? "I" : "i"))
+      .replace(/[şŞ]/g, (char) => (char === "Ş" ? "S" : "s"))
+      .replace(/[çÇ]/g, (char) => (char === "Ç" ? "C" : "c"))
+      .replace(/[öÖ]/g, (char) => (char === "Ö" ? "O" : "o"))
+      .replace(/[üÜ]/g, (char) => (char === "Ü" ? "U" : "u"))
+      .replace(/[^\t\n\r\u0020-\u007e\u00a0-\u00ff\u20ac]/g, "");
+  } else {
+    out = out.replace(/[^\t\n\r\u0020-\uffff]/g, "");
+  }
+  return out;
 }
 
 function configurePdfFonts(doc) {
-  if (fs.existsSync(PDF_FONTS.regular) && fs.existsSync(PDF_FONTS.bold)) {
-    doc.registerFont("AppRegular", PDF_FONTS.regular);
-    doc.registerFont("AppBold", PDF_FONTS.bold);
+  const regular = fs.existsSync(PDF_FONTS.regular)
+    ? PDF_FONTS.regular
+    : fs.existsSync(PDF_FONTS.fallbackRegular)
+      ? PDF_FONTS.fallbackRegular
+      : null;
+  const bold = fs.existsSync(PDF_FONTS.bold)
+    ? PDF_FONTS.bold
+    : fs.existsSync(PDF_FONTS.fallbackBold)
+      ? PDF_FONTS.fallbackBold
+      : null;
+
+  if (regular && bold) {
+    doc.registerFont("AppRegular", regular);
+    doc.registerFont("AppBold", bold);
+    PDF_UNICODE_OK = true;
   } else {
     doc.registerFont("AppRegular", "Helvetica");
     doc.registerFont("AppBold", "Helvetica-Bold");
+    PDF_UNICODE_OK = false;
   }
   doc.font("AppRegular");
 }
@@ -6613,16 +6659,30 @@ function isTruthy(value) {
   return value === true || value === "true" || value === 1 || value === "1" || value === "on";
 }
 
-function formatQuoteDate(dateString, lang) {
-  if (!dateString) {
+function formatQuoteDate(dateValue, lang) {
+  if (dateValue === null || dateValue === undefined || dateValue === "") {
     return "";
   }
   const locale = lang === "tr" ? "tr-TR" : "de-DE";
-  const date = new Date(`${dateString}T00:00:00`);
-  if (Number.isNaN(date.getTime())) {
-    return dateString;
+  let date;
+  if (dateValue instanceof Date) {
+    date = dateValue;
+  } else {
+    const s = String(dateValue).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+      date = new Date(`${s}T00:00:00`);
+    } else {
+      date = new Date(s);
+    }
   }
-  return new Intl.DateTimeFormat(locale).format(date);
+  if (!date || Number.isNaN(date.getTime())) {
+    if (dateValue instanceof Date) {
+      return "";
+    }
+    const raw = String(dateValue);
+    return raw.length > 10 ? raw.slice(0, 10) : raw;
+  }
+  return new Intl.DateTimeFormat(locale, { year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
 }
 
 module.exports = {
