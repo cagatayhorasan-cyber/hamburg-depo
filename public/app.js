@@ -5817,6 +5817,7 @@ async function handleCustomerOrderSubmit() {
     itemId: entry.itemId,
     quantity: entry.quantity,
     unit: entry.unit,
+    unitPrice: Number(entry.unitPrice || 0),
   }));
 
   const result = await request("/api/orders", {

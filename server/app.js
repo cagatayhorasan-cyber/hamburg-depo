@@ -1943,7 +1943,7 @@ function createApp() {
             throw new Error("Siparis miktari sifirdan buyuk olmali.");
           }
 
-          const item = await tx.get("SELECT id, name, unit, is_active FROM items WHERE id = ?", [Number(entry.itemId)]);
+          const item = await tx.get("SELECT id, name, unit, is_active, sale_price, list_price, default_price FROM items WHERE id = ?", [Number(entry.itemId)]);
           if (!item) {
             throw new Error("Siparis icindeki bir urun bulunamadi.");
           }
@@ -1951,11 +1951,18 @@ function createApp() {
             throw new Error("Siparis icindeki bir urun aktif degil.");
           }
 
+          // Birim fiyatı: client'tan gelen değer varsa onu kullan, yoksa ürünün satış fiyatını kilitle
+          const clientUnitPrice = Number(entry.unitPrice || 0);
+          const lockedUnitPrice = clientUnitPrice > 0
+            ? clientUnitPrice
+            : Number(item.sale_price || item.list_price || item.default_price || 0);
+
           orderLines.push({
             itemId: Number(item.id),
             itemName: item.name,
             quantity,
             unit: entry.unit || item.unit || "adet",
+            unitPrice: Number(lockedUnitPrice.toFixed(2)),
           });
         }
 
@@ -1986,8 +1993,8 @@ function createApp() {
         for (const entry of orderLines) {
           await tx.execute(
             `
-              INSERT INTO order_items (order_id, item_id, item_name, quantity, unit)
-              VALUES (?, ?, ?, ?, ?)
+              INSERT INTO order_items (order_id, item_id, item_name, quantity, unit, unit_price)
+              VALUES (?, ?, ?, ?, ?, ?)
             `,
             [
               insertedOrderId,
@@ -1995,6 +2002,7 @@ function createApp() {
               entry.itemName,
               entry.quantity,
               entry.unit,
+              entry.unitPrice,
             ]
           );
         }
