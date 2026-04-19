@@ -2905,9 +2905,13 @@ function createApp() {
     doc.end();
   });
 
-  app.get("/admin-tools/:tool", requireAuth, serveAdminTool);
-  app.get("/admin-tools/:tool/", requireAuth, serveAdminTool);
-  app.get("/admin-tools/:tool/*", requireAuth, serveAdminTool);
+  // Admin araçları (ColdRoomPro, Soğuk Oda Çizim) statik HTML/JS/JSON içerir;
+  // iframe içinden açılabilsin diye auth zorunluluğu kaldırıldı.
+  // postMessage köprüsü kullanıcı tarafında session ile korunur (API endpoint'leri
+  // hâlâ requireAuth arkasında).
+  app.get("/admin-tools/:tool", serveAdminTool);
+  app.get("/admin-tools/:tool/", serveAdminTool);
+  app.get("/admin-tools/:tool/*", serveAdminTool);
 
   app.use((error, _req, res, next) => {
     if (error?.type === "entity.too.large") {
