@@ -1842,26 +1842,117 @@ async function handleSubmit(event, url) {
   await refreshData();
 }
 
+// İşlem Tipi → Kasa tipi + kategori mapping
+const CASH_ENTRY_MAPPING = {
+  sale_unbilled:     { type: "unbilled_sale", category: null, shows: ['customer'] },
+  customer_payment:  { type: "in",  category: "Müşteri Ödemesi", shows: ['customer', 'order'] },
+  customer_deposit:  { type: "in",  category: "Müşteri Kaporası", shows: ['customer', 'order'] },
+  capital_in:        { type: "in",  category: "Sermaye Girişi", shows: [] },
+  other_in:          { type: "in",  category: null, shows: [] },
+  salary:            { type: "out", category: "Personel Maaş", shows: ['employee', 'period'] },
+  expense_fuel:      { type: "out", category: "Yakıt", shows: [] },
+  expense_shipping:  { type: "out", category: "Nakliye", shows: [] },
+  expense_rent:      { type: "out", category: "Kira", shows: [] },
+  expense_bill:      { type: "out", category: "Fatura", shows: [] },
+  expense_meal:      { type: "out", category: "Yemek & Market", shows: [] },
+  expense_supplier:  { type: "out", category: "Tedarikçi Ödeme", shows: ['supplier'] },
+  other_out:         { type: "out", category: null, shows: [] },
+};
+
+function updateCashFormVisibility() {
+  if (!refs.cashForm) return;
+  const entryType = refs.cashForm.elements.entryType?.value;
+  const config = CASH_ENTRY_MAPPING[entryType];
+  if (!config) return;
+  const allGroups = ['customer', 'order', 'employee', 'period', 'supplier'];
+  allGroups.forEach(g => {
+    const el = refs.cashForm.querySelector(`[data-entry-group="${g}"]`);
+    if (el) el.style.display = config.shows.includes(g) ? '' : 'none';
+  });
+  // Preview kutusu
+  const preview = document.getElementById('cashFormPreview');
+  if (preview) {
+    const dirText = config.type === 'in' || config.type === 'unbilled_sale' ? '🟢 GİRİŞ' : '🔴 ÇIKIŞ';
+    const catText = config.category ? ` · Kategori: ${config.category}` : '';
+    const stockText = config.type === 'unbilled_sale' ? ' · ⚠️ Stoktan düşecek' : '';
+    preview.textContent = `${dirText}${catText}${stockText}`;
+  }
+}
+
 async function handleCashSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  const payload = formToObject(form);
-  const result = await request("/api/cashbook", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
-
-  if (result.error) {
-    window.alert(result.error);
+  const formData = formToObject(form);
+  const entryType = formData.entryType;
+  const config = CASH_ENTRY_MAPPING[entryType];
+  if (!config) {
+    window.alert("Geçersiz işlem tipi.");
     return;
   }
 
-  form.reset();
-  form.elements.type.value = "in";
-  if (form.elements.date) {
-    form.elements.date.value = today;
+  // Not kontrol
+  if (!formData.note || String(formData.note).trim().length < 3) {
+    window.alert("Not alanı zorunlu (en az 3 karakter).");
+    return;
   }
+
+  // Amount kontrol
+  const amt = Number(formData.amount);
+  if (!Number.isFinite(amt) || amt <= 0) {
+    window.alert("Tutar pozitif bir sayı olmalı.");
+    return;
+  }
+
+  // Büyük miktar uyarısı
+  if (amt > 500) {
+    const ok = window.confirm(`Bu kayıt €${amt.toFixed(2)} tutarındadır. Devam edilsin mi?`);
+    if (!ok) return;
+  }
+
+  // Routing
+  if (entryType === 'sale_unbilled') {
+    // Yönlendir: /api/sales/unbilled-checkout yerine /api/cashbook faturasız satış modunda
+    // (stok düşme işlemi yok — sadece kasaya IN. Gerçek satış için Satış sekmesi kullanılmalı.)
+    const payload = {
+      type: 'unbilled_sale',
+      title: formData.title,
+      amount: amt,
+      date: formData.date,
+      reference: formData.reference,
+      note: formData.note,
+      customerUserId: formData.customerUserId || undefined,
+      category: null,
+    };
+    const result = await request("/api/cashbook", { method: "POST", body: JSON.stringify(payload) });
+    if (result.error) { window.alert(result.error); return; }
+  } else {
+    const payload = {
+      type: config.type,
+      title: formData.title,
+      amount: amt,
+      date: formData.date,
+      reference: formData.reference,
+      note: formData.note,
+      category: config.category,
+      customerUserId: formData.customerUserId || undefined,
+      orderId: formData.orderId || undefined,
+      employeeUserId: formData.employeeUserId || undefined,
+      periodYm: formData.periodYm || undefined,
+    };
+    // Tedarikçi ismini reference'a ekle
+    if (formData.supplierName) {
+      payload.reference = [payload.reference, `Tedarikçi: ${formData.supplierName}`].filter(Boolean).join(" | ");
+    }
+    const result = await request("/api/cashbook", { method: "POST", body: JSON.stringify(payload) });
+    if (result.error) { window.alert(result.error); return; }
+  }
+
+  form.reset();
+  if (form.elements.date) form.elements.date.value = today;
+  if (form.elements.entryType) form.elements.entryType.value = 'sale_unbilled';
+  updateCashFormVisibility();
   await refreshData();
+  window.alert("Kasa kaydı oluşturuldu ✓");
 }
 
 async function handleItemSubmit(event) {
@@ -3039,22 +3130,35 @@ function renderExpenses() {
 function populateCashCustomerOrderSelectors() {
   const custSel = document.getElementById("cashCustomerSelect");
   const ordSel = document.getElementById("cashOrderSelect");
-  if (!custSel || !ordSel) return;
+  const empSel = document.getElementById("cashEmployeeSelect");
 
-  // Müşteri listesi (state.customers zaten yüklü)
-  const customers = Array.isArray(state.customers) ? state.customers : [];
-  custSel.innerHTML = `<option value="">— seçilmedi —</option>` + customers.map(c => {
-    const label = c.name || c.username || c.email || `#${c.id}`;
-    return `<option value="${c.id}">${escapeHtml(label)}</option>`;
-  }).join("");
+  // Müşteri listesi
+  if (custSel) {
+    const customers = Array.isArray(state.customers) ? state.customers : [];
+    custSel.innerHTML = `<option value="">— seçilmedi —</option>` + customers.map(c => {
+      const label = c.name || c.username || c.email || `#${c.id}`;
+      return `<option value="${c.id}">${escapeHtml(label)}</option>`;
+    }).join("");
+  }
+
+  // Çalışan listesi (staff + admin + operator roller)
+  if (empSel) {
+    const employees = (state.users || []).filter(u => ['staff','admin','operator'].includes(String(u.role).toLowerCase()));
+    empSel.innerHTML = `<option value="">— seçilmedi —</option>` + employees.map(e => {
+      const label = e.name || e.username;
+      const roleLabel = e.role === 'admin' ? '(Admin)' : e.role === 'staff' ? '(Personel)' : '(Operator)';
+      return `<option value="${e.id}">${escapeHtml(label)} ${roleLabel}</option>`;
+    }).join("");
+  }
 
   const refreshOrders = () => {
+    if (!ordSel || !custSel) return;
     const custId = Number(custSel.value || 0);
     const orders = (state.orders || []).filter(o =>
       (!custId || Number(o.customerUserId) === custId) &&
       o.status !== "cancelled"
     );
-    ordSel.innerHTML = `<option value="">— genel tahsilat —</option>` + orders.map(o => {
+    ordSel.innerHTML = `<option value="">— bağlı sipariş yok —</option>` + orders.map(o => {
       const total = (o.items || []).reduce((s, it) => s + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
       const paid = Number(o.paidAmount || 0);
       const remaining = Math.max(total - paid, 0);
@@ -3062,8 +3166,42 @@ function populateCashCustomerOrderSelectors() {
       return `<option value="${o.id}">${escapeHtml(label)}</option>`;
     }).join("");
   };
-  custSel.addEventListener("change", refreshOrders);
-  refreshOrders();
+  if (custSel) {
+    custSel.addEventListener("change", refreshOrders);
+    refreshOrders();
+  }
+
+  // entryType değişince form alanları değişsin
+  const entryTypeSelect = document.getElementById("cashEntryType");
+  if (entryTypeSelect && !entryTypeSelect._bound) {
+    entryTypeSelect.addEventListener("change", updateCashFormVisibility);
+    entryTypeSelect._bound = true;
+  }
+  updateCashFormVisibility();
+
+  // Bugünkü tarih varsayılan
+  if (refs.cashForm?.elements?.date && !refs.cashForm.elements.date.value) {
+    refs.cashForm.elements.date.value = today;
+  }
+
+  // Bakiye widget
+  const balText = document.getElementById("cashbookBalanceText");
+  if (balText) {
+    const all = state.cashbook || [];
+    const balance = all.reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
+    const todayStr = new Date().toISOString().slice(0,10);
+    const monthStr = todayStr.slice(0,7);
+    const todayNet = all.filter(e => String(e.date).startsWith(todayStr)).reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
+    const monthNet = all.filter(e => String(e.date).startsWith(monthStr)).reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
+    const balColor = balance >= 0 ? 'var(--erp-success, #10b981)' : 'var(--erp-danger, #ef4444)';
+    balText.innerHTML = `
+      <span style="color:${balColor}; font-size:1.6em; font-weight:700;">€${numberFormat.format(balance)}</span>
+      <span class="muted" style="font-size:0.9em; margin-left:12px;">
+        bugün: ${todayNet >= 0 ? '+' : ''}€${numberFormat.format(todayNet)} ·
+        ay: ${monthNet >= 0 ? '+' : ''}€${numberFormat.format(monthNet)}
+      </span>
+    `;
+  }
 }
 
 function renderCashbook() {
@@ -5671,12 +5809,19 @@ async function deleteExpense(expenseId) {
 }
 
 async function deleteCashEntry(entryId) {
-  const approved = window.confirm(t("messages.deleteCashConfirm"));
-  if (!approved) {
+  const reason = window.prompt(langText(
+    "Bu kasa kaydını silmek için sebep yazın (en az 3 karakter):",
+    "Grund fuer Loeschung eingeben (min. 3 Zeichen):"
+  ));
+  if (!reason || reason.trim().length < 3) {
+    if (reason !== null) window.alert(langText("Silme sebebi zorunlu.", "Grund erforderlich."));
     return;
   }
 
-  const result = await request(`/api/cashbook/${entryId}`, { method: "DELETE" });
+  const result = await request(`/api/cashbook/${entryId}`, {
+    method: "DELETE",
+    body: JSON.stringify({ reason: reason.trim() }),
+  });
   if (result.error) {
     window.alert(result.error);
     return;

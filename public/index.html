@@ -442,18 +442,58 @@
                 <button class="fullscreen-modal-close" onclick="document.getElementById('cashbookModal').classList.remove('modal-open')">&times;</button>
               </div>
               <div class="fullscreen-modal-body">
+                <section style="margin-bottom:24px" id="cashbookBalanceBar">
+                  <h3 id="cashbookBalanceText" class="muted" style="margin:0 0 12px 0;">Yükleniyor...</h3>
+                </section>
                 <section style="margin-bottom:24px">
                   <h3>Yeni Kasa Hareketi</h3>
                   <form id="cashForm" class="form-grid">
-                    <label>Islem<select name="type" required><option value="in">Kasa Girisi</option><option value="out">Kasa Cikisi</option><option value="unbilled_sale">Faturasiz Satis</option></select></label>
-                    <label>Baslik<input name="title" type="text" required placeholder="Orn. Tezgah satisi"></label>
-                    <label>Tutar<input name="amount" type="number" min="0.01" step="0.01" required></label>
+                    <label class="form-span-2">İşlem Tipi
+                      <select name="entryType" id="cashEntryType" required>
+                        <option value="sale_unbilled">🛒 Faturasız Satış (Kasa IN + Stok ↓)</option>
+                        <option value="customer_payment">🤝 Müşteri Ödemesi / Sipariş Tahsilatı (Kasa IN)</option>
+                        <option value="customer_deposit">🤝 Müşteri Kaporası (Kasa IN)</option>
+                        <option value="capital_in">🏦 Sermaye / Elden Giriş (Kasa IN)</option>
+                        <option value="other_in">📥 Diğer Gelir (Kasa IN)</option>
+                        <option value="salary">💰 Personel Maaşı (Kasa OUT)</option>
+                        <option value="expense_fuel">⛽ Yakıt / Benzin (Kasa OUT)</option>
+                        <option value="expense_shipping">🚚 Nakliye / Kargo (Kasa OUT)</option>
+                        <option value="expense_rent">🏢 Kira (Kasa OUT)</option>
+                        <option value="expense_bill">💡 Fatura (Elektrik, Su, İnternet...) (Kasa OUT)</option>
+                        <option value="expense_meal">🍴 Yemek & Market (Kasa OUT)</option>
+                        <option value="expense_supplier">📦 Tedarikçi Ödemesi (Kasa OUT)</option>
+                        <option value="other_out">📤 Diğer Çıkış (Kasa OUT)</option>
+                      </select>
+                    </label>
                     <label>Tarih<input name="date" type="date" required></label>
-                    <label>Müşteri (tahsilat için)<select name="customerUserId" id="cashCustomerSelect"><option value="">— seçilmedi —</option></select></label>
-                    <label>Sipariş<select name="orderId" id="cashOrderSelect"><option value="">— genel tahsilat —</option></select></label>
-                    <label>Referans<input name="reference" type="text"></label>
-                    <label>Not<input name="note" type="text"></label>
-                    <button class="primary-button" type="submit">Kasa Kaydet</button>
+                    <label>Tutar (€)<input name="amount" type="number" min="0.01" step="0.01" required></label>
+                    <!-- Dinamik alanlar: işlem tipine göre göster/gizle -->
+                    <label data-entry-group="customer"><span>Müşteri</span>
+                      <select name="customerUserId" id="cashCustomerSelect"><option value="">— seçilmedi —</option></select>
+                    </label>
+                    <label data-entry-group="order"><span>Sipariş (varsa)</span>
+                      <select name="orderId" id="cashOrderSelect"><option value="">— bağlı sipariş yok —</option></select>
+                    </label>
+                    <label data-entry-group="employee"><span>Çalışan</span>
+                      <select name="employeeUserId" id="cashEmployeeSelect"><option value="">— seçilmedi —</option></select>
+                    </label>
+                    <label data-entry-group="period"><span>Dönem (Ay/Yıl)</span>
+                      <input name="periodYm" type="month" placeholder="2026-04">
+                    </label>
+                    <label data-entry-group="supplier"><span>Tedarikçi / Alıcı</span>
+                      <input name="supplierName" type="text" placeholder="Kontak, ETS, M2M, Danfoss, vb.">
+                    </label>
+                    <label class="form-span-2"><span>Başlık</span>
+                      <input name="title" type="text" required placeholder="Kısa açıklama (örn: Nakliye İstanbul-Hamburg)">
+                    </label>
+                    <label><span>Referans / Fatura No</span>
+                      <input name="reference" type="text" placeholder="Fatura #, irsaliye no, havale ref">
+                    </label>
+                    <label class="form-span-2"><span>Not (en az 3 karakter) <em class="muted">zorunlu</em></span>
+                      <input name="note" type="text" required minlength="3" placeholder="Detaylı açıklama zorunludur">
+                    </label>
+                    <div class="form-span-2" id="cashFormPreview" style="font-size:0.9em;color:var(--erp-accent);margin-top:-4px;"></div>
+                    <button class="primary-button form-span-2" type="submit">✓ Kasa Kaydet</button>
                   </form>
                 </section>
                 <section>

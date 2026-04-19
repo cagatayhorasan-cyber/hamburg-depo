@@ -1418,7 +1418,8 @@ function createApp() {
   });
 
   app.post("/api/cashbook", requireStaffOrAdmin, async (req, res) => {
-    const { type, title, amount, date, reference, note, orderId, customerUserId } = req.body || {};
+    const { type, title, amount, date, reference, note, orderId, customerUserId,
+            category, employeeUserId, periodYm } = req.body || {};
     if (!type || !title || !amount || !date) {
       return res.status(400).json({ error: "Kasa hareketi bilgileri eksik." });
     }
@@ -1432,6 +1433,25 @@ function createApp() {
       return res.status(400).json({ error: "Gecersiz kasa hareket tipi." });
     }
 
+    // Not min 3 karakter (validation)
+    const noteValue = cleanOptional(note);
+    if (noteValue && noteValue.length < 3) {
+      return res.status(400).json({ error: "Not en az 3 karakter olmali." });
+    }
+
+    // Yon-kategori uyum kontrolu
+    const outOnlyCats = new Set(['Personel Maaş','Yakıt','Nakliye','İletişim','Yemek & Market','Kira','Fatura','Tedarikçi Ödeme']);
+    const inOnlyCats = new Set(['Müşteri Ödemesi','Müşteri Kaporası','Sipariş Tahsilat','Sermaye Girişi','Elden Kasa Aktarımı']);
+    const catValue = cleanOptional(category);
+    if (catValue) {
+      if (entryType === 'in' && outOnlyCats.has(catValue)) {
+        return res.status(400).json({ error: `"${catValue}" kategorisi sadece ÇIKIŞ için kullanılabilir.` });
+      }
+      if (entryType === 'out' && inOnlyCats.has(catValue)) {
+        return res.status(400).json({ error: `"${catValue}" kategorisi sadece GİRİŞ için kullanılabilir.` });
+      }
+    }
+
     // Siparis ile iliskilendirildiyse referansi otomatik doldur ve paid_amount guncelle
     const linkOrderId = Number(orderId);
     const isPaymentForOrder = entryType === "in" && Number.isFinite(linkOrderId) && linkOrderId > 0;
@@ -1442,16 +1462,21 @@ function createApp() {
       : cleanOptional(reference);
 
     const entryNote = type === "unbilled_sale"
-      ? ["Faturasiz satis", cleanOptional(note)].filter(Boolean).join(" | ")
-      : cleanOptional(note);
+      ? ["Faturasiz satis", noteValue].filter(Boolean).join(" | ")
+      : noteValue;
+
+    const empId = Number(employeeUserId);
+    const empFk = Number.isFinite(empId) && empId > 0 ? empId : null;
+    const periodVal = cleanOptional(periodYm) || null;
+    const orderFk = isPaymentForOrder ? linkOrderId : (Number.isFinite(linkOrderId) && linkOrderId > 0 ? linkOrderId : null);
 
     if (isPaymentForOrder) {
       await withTransaction(async (tx) => {
         // Kasaya yaz
         await tx.execute(
-          `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
-           VALUES (?, ?, ?, ?, ?, ?, ?)`,
-          [entryType, title.trim(), amountValue, date, finalReference, entryNote, req.session.user.id]
+          `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id, category, employee_user_id, period_ym, order_id)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [entryType, title.trim(), amountValue, date, finalReference, entryNote, req.session.user.id, catValue, empFk, periodVal, orderFk]
         );
         // Siparisi guncelle: paid_amount += amount, status belirle
         const order = await tx.get(
@@ -1476,9 +1501,9 @@ function createApp() {
       });
     } else {
       await execute(
-        `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [entryType, title.trim(), amountValue, date, finalReference, entryNote, req.session.user.id]
+        `INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id, category, employee_user_id, period_ym, order_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [entryType, title.trim(), amountValue, date, finalReference, entryNote, req.session.user.id, catValue, empFk, periodVal, orderFk]
       );
     }
 
@@ -1486,24 +1511,34 @@ function createApp() {
       user: req.session.user,
       eventType: "cashbook_created",
       severity: "info",
-      details: { type: entryType, title: title.trim(), amount: amountValue, date, linkedOrderId: isPaymentForOrder ? linkOrderId : null },
+      details: { type: entryType, title: title.trim(), amount: amountValue, date, linkedOrderId: isPaymentForOrder ? linkOrderId : null, category: catValue, employee_user_id: empFk, period_ym: periodVal },
     });
 
     return res.json({ ok: true, type: entryType, mode: type === "unbilled_sale" ? "unbilled_sale" : entryType, orderUpdated });
   });
 
+  // Soft delete — kalıcı silmek yerine deleted_at atanır. Silme sebebi zorunlu.
   app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {
-    const result = await execute("DELETE FROM cashbook WHERE id = ?", [Number(req.params.id)]);
-    if (!result.rowCount) {
-      return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
+    const reason = cleanOptional(req.body?.reason || req.query?.reason);
+    if (!reason || reason.length < 3) {
+      return res.status(400).json({ error: "Silme sebebi zorunlu (en az 3 karakter)." });
     }
+    const id = Number(req.params.id);
+    const row = await get("SELECT id, deleted_at FROM cashbook WHERE id = ?", [id]);
+    if (!row) return res.status(404).json({ error: "Kasa hareketi bulunamadi." });
+    if (row.deleted_at) return res.status(400).json({ error: "Bu kayıt zaten silinmiş." });
+
+    await execute(
+      `UPDATE cashbook SET deleted_at = NOW(), deleted_by_user_id = ?, deletion_reason = ? WHERE id = ?`,
+      [req.session.user.id, reason, id]
+    );
     queueSecurityEvent(req, {
       user: req.session.user,
       eventType: "cashbook_deleted",
       severity: "warn",
-      details: { id: Number(req.params.id) },
+      details: { id, reason, softDelete: true },
     });
-    return res.json({ ok: true });
+    return res.json({ ok: true, softDeleted: true });
   });
 
   app.post("/api/pricing/bulk", requireAdmin, async (req, res) => {
@@ -4316,10 +4351,17 @@ async function queryCashbook(user = null) {
         cashbook.cash_date AS date,
         cashbook.reference,
         cashbook.note,
+        cashbook.category,
+        cashbook.employee_user_id AS "employeeUserId",
+        cashbook.period_ym AS "periodYm",
+        cashbook.order_id AS "orderId",
         cashbook.created_at AS "createdAt",
-        users.name AS "userName"
+        users.name AS "userName",
+        emp.name AS "employeeName"
       FROM cashbook
       LEFT JOIN users ON users.id = cashbook.user_id
+      LEFT JOIN users emp ON emp.id = cashbook.employee_user_id
+      WHERE cashbook.deleted_at IS NULL
       ORDER BY cashbook.created_at DESC, cashbook.id DESC
     `
   );
@@ -4625,7 +4667,7 @@ async function computeSummary(user = null) {
       [SALE_PRICE_MULTIPLIER, activeValue]
     ),
     get("SELECT COALESCE(SUM(amount), 0) AS expense_total FROM expenses"),
-    get("SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook"),
+    get("SELECT COALESCE(SUM(CASE WHEN type = 'in' THEN amount ELSE -amount END), 0) AS cash_balance FROM cashbook WHERE deleted_at IS NULL"),
   ]);
 
   const stockCostValue = Number(summaryRow?.stock_cost_value || summaryRow?.stockCostValue || 0);
