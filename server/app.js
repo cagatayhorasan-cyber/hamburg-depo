@@ -41,6 +41,7 @@ const IS_SECURE_PROXY = process.env.TRUST_PROXY === "1" || Boolean(process.env.V
 const QUOTES_DIR = process.env.QUOTES_DIR
   ? path.resolve(process.env.QUOTES_DIR)
   : path.join(os.homedir(), "Desktop", "Teklifler");
+const TECHNICAL_DOCUMENT_INDEX = path.join(__dirname, "..", "data", "reports", "teknik-dokumanlar-pdf-listesi-2026-04-17.txt");
 const SHOULD_PERSIST_QUOTES = !process.env.VERCEL && process.env.DISABLE_FILE_EXPORT !== "1";
 const APP_BASE_URL = cleanOptional(process.env.APP_BASE_URL) || "";
 const MAIL_FROM = cleanOptional(process.env.MAIL_FROM) || COMPANY_PROFILE.email;
@@ -1255,6 +1256,62 @@ function createApp() {
     });
 
     return res.json({ ok: true });
+  });
+
+  app.get("/api/items/:id/documents", requireAuth, async (req, res) => {
+    const itemId = Number(req.params.id);
+    if (!Number.isFinite(itemId) || itemId <= 0) {
+      return res.status(400).json({ error: "Gecersiz malzeme." });
+    }
+
+    const item = await get(
+      `
+        SELECT
+          id,
+          name,
+          brand,
+          category,
+          unit,
+          barcode,
+          product_code AS "productCode",
+          notes
+        FROM items
+        WHERE id = ?
+      `,
+      [itemId]
+    );
+    if (!item) {
+      return res.status(404).json({ error: "Malzeme bulunamadi." });
+    }
+
+    const documents = matchItemTechnicalDocuments(item).slice(0, 8).map((entry) => ({
+      category: entry.category,
+      title: entry.title,
+      matchReason: entry.matchReason,
+      openUrl: `/api/documents/open?path=${encodeURIComponent(entry.path)}`,
+    }));
+
+    return res.json({ documents });
+  });
+
+  app.get("/api/documents/open", requireAuth, async (req, res) => {
+    const requestedPath = String(req.query?.path || "");
+    const resolvedPath = path.resolve(requestedPath);
+    const catalog = loadTechnicalDocumentIndex();
+    const allowed = catalog.find((entry) => path.resolve(entry.path) === resolvedPath);
+    if (!allowed) {
+      return res.status(403).json({ error: "Bu dokumana erisim izni yok." });
+    }
+    if (!fs.existsSync(resolvedPath) || !fs.statSync(resolvedPath).isFile()) {
+      return res.status(404).json({ error: "Dosya bulunamadi." });
+    }
+    if (path.extname(resolvedPath).toLowerCase() !== ".pdf") {
+      return res.status(400).json({ error: "Sadece PDF dosyalari acilabilir." });
+    }
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `inline; filename="${sanitizeFileName(path.basename(resolvedPath))}"`);
+    fs.createReadStream(resolvedPath).pipe(res);
   });
 
   app.post("/api/items/intake", requireStaffOrAdmin, handleItemIntake);
@@ -3058,7 +3115,17 @@ function serveAdminTool(req, res) {
     return res.status(404).send("Arac giris dosyasi bulunamadi.");
   }
 
-  res.type(path.extname(filePath));
+  const ext = path.extname(filePath).toLowerCase();
+  res.type(ext);
+  // Cache: HTML ve JSON her zaman fresh (eski 401 cache'i temizlemek için);
+  // JS/CSS/font asset'leri kısa süreli cache (hash'li olduğu için zaten fresh).
+  if (ext === ".html" || ext === ".json") {
+    res.setHeader("Cache-Control", "no-store, max-age=0, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+  } else if (ext === ".js" || ext === ".css" || ext === ".woff" || ext === ".woff2" || ext === ".ttf") {
+    res.setHeader("Cache-Control", "public, max-age=300, must-revalidate");
+  }
   return res.send(fs.readFileSync(filePath));
 }
 
@@ -6254,7 +6321,7 @@ function renderQuotePdf(doc, quote, lang) {
     style: "currency",
     currency: "EUR",
   });
-  const formattedDate = formatQuoteDate(quote.date, lang);
+  const formattedDate = formatQuoteDate(quote.date || quote.quoteDate || quote.createdAt, lang);
 
   configurePdfFonts(doc);
 
@@ -6686,7 +6753,173 @@ function formatQuoteDate(dateValue, lang) {
     const raw = String(dateValue);
     return raw.length > 10 ? raw.slice(0, 10) : raw;
   }
-  return new Intl.DateTimeFormat(locale, { year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "Europe/Istanbul",
+  }).format(date);
+}
+
+let TECHNICAL_DOCUMENT_CACHE = {
+  mtimeMs: 0,
+  rows: [],
+};
+
+function loadTechnicalDocumentIndex() {
+  try {
+    const stat = fs.statSync(TECHNICAL_DOCUMENT_INDEX);
+    if (TECHNICAL_DOCUMENT_CACHE.rows.length && TECHNICAL_DOCUMENT_CACHE.mtimeMs === stat.mtimeMs) {
+      return TECHNICAL_DOCUMENT_CACHE.rows;
+    }
+    const rows = fs.readFileSync(TECHNICAL_DOCUMENT_INDEX, "utf8")
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const [category = "", title = "", filePath = ""] = line.split("\t");
+        return {
+          category: category.trim(),
+          title: title.trim(),
+          path: filePath.trim(),
+        };
+      })
+      .filter((entry) => entry.title && entry.path && fs.existsSync(entry.path));
+    TECHNICAL_DOCUMENT_CACHE = {
+      mtimeMs: stat.mtimeMs,
+      rows,
+    };
+    return rows;
+  } catch (_error) {
+    TECHNICAL_DOCUMENT_CACHE = { mtimeMs: 0, rows: [] };
+    return [];
+  }
+}
+
+function tokenizeAssistantText(value) {
+  return normalizeAssistantText(value)
+    .split(" ")
+    .map((token) => token.trim())
+    .filter((token) => token.length >= 3);
+}
+
+function matchItemTechnicalDocuments(item) {
+  const documents = loadTechnicalDocumentIndex();
+  if (!documents.length || !item) {
+    return [];
+  }
+
+  const brand = normalizeAssistantText(item.brand);
+  const category = normalizeAssistantText(item.category);
+  const itemName = normalizeAssistantText(item.name);
+  const barcode = normalizeAssistantText(item.barcode);
+  const productCode = normalizeAssistantText(item.productCode);
+  const noteText = normalizeAssistantText(item.notes);
+  const tokens = [...new Set([
+    ...tokenizeAssistantText(item.name),
+    ...tokenizeAssistantText(item.brand),
+    ...tokenizeAssistantText(item.category),
+    ...tokenizeAssistantText(item.notes),
+    ...tokenizeAssistantText(item.productCode),
+    ...tokenizeAssistantText(item.barcode),
+  ])];
+
+  const scored = documents.map((entry) => {
+    const haystack = normalizeAssistantText(`${entry.category} ${entry.title} ${entry.path}`);
+    let score = 0;
+    const reasons = [];
+
+    if (productCode && haystack.includes(productCode)) {
+      score += 80;
+      reasons.push("stok kodu eslesmesi");
+    }
+    if (barcode && haystack.includes(barcode)) {
+      score += 70;
+      reasons.push("barkod / model eslesmesi");
+    }
+    if (brand && haystack.includes(brand)) {
+      score += 24;
+      reasons.push("marka eslesmesi");
+    }
+    if (itemName) {
+      const compactName = itemName.replace(/\s+/g, "");
+      if (compactName && haystack.includes(compactName)) {
+        score += 42;
+        reasons.push("urun adi eslesmesi");
+      }
+    }
+    if (category && haystack.includes(category)) {
+      score += 14;
+      reasons.push("kategori eslesmesi");
+    }
+
+    tokens.forEach((token) => {
+      if (haystack.includes(token)) {
+        score += token.length >= 6 ? 10 : 6;
+      }
+    });
+
+    if (brand === "drc" && /dcb|catalogue|katalog/.test(haystack)) {
+      score += 18;
+      reasons.push("DRC katalog");
+    }
+    if (/embraco|copeland|bitzer|zingfa|scroll|kompresor/.test(itemName) && /compress|kompres|scroll|verdichter/.test(haystack)) {
+      score += 18;
+      reasons.push("kompresor teknik dokumani");
+    }
+    if (/kondenser|kondanser|condens/.test(itemName + category) && /kondenser|condens|verfluss/.test(haystack)) {
+      score += 18;
+      reasons.push("kondenser dokumani");
+    }
+    if (/evaporator|evaporator|evaporat|verdampfer/.test(itemName + category) && /evapor|verdamp/.test(haystack)) {
+      score += 18;
+      reasons.push("evaporator dokumani");
+    }
+    if (/panel|kapi|kapi/.test(itemName + noteText + category) && /panel|mespan|kapi|door/.test(haystack)) {
+      score += 18;
+      reasons.push("panel / kapi dokumani");
+    }
+
+    return {
+      ...entry,
+      score,
+      matchReason: reasons[0] || "yerel katalog eslesmesi",
+    };
+  });
+
+  const directMatches = scored
+    .filter((entry) => entry.score >= 24)
+    .sort((left, right) => right.score - left.score || left.title.localeCompare(right.title, "tr"));
+
+  if (directMatches.length) {
+    return dedupeDocumentMatches(directMatches);
+  }
+
+  const fallbacks = scored
+    .filter((entry) => {
+      const haystack = normalizeAssistantText(`${entry.category} ${entry.title}`);
+      if (brand && haystack.includes(brand)) return true;
+      if (brand === "drc" && haystack.includes("drc")) return true;
+      if (/panel|kapi/.test(category) && /mespan|panel|kapi/.test(haystack)) return true;
+      if (/kondenser/.test(category) && /kondenser/.test(haystack)) return true;
+      if (/evaporator|evaporator|evaporat/.test(category) && /evapor/.test(haystack)) return true;
+      return false;
+    })
+    .sort((left, right) => right.score - left.score || left.title.localeCompare(right.title, "tr"));
+
+  return dedupeDocumentMatches(fallbacks);
+}
+
+function dedupeDocumentMatches(rows) {
+  const seen = new Set();
+  return rows.filter((entry) => {
+    const key = `${normalizeAssistantText(entry.title)}|${path.resolve(entry.path)}`;
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
 }
 
 module.exports = {
