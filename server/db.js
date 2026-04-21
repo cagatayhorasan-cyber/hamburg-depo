@@ -547,9 +547,26 @@ async function initDatabase() {
   if (isPostgres) {
     if (!pgPool) {
       const { Pool } = require("pg");
+      // Vercel serverless + Supabase pgbouncer uyumlu pool ayarları:
+      // - max: her serverless instance için 3 bağlantı yeterli (pgbouncer tx mode
+      //   zaten server-side multiplexing yapıyor, çok fazla client connection açmak
+      //   pgbouncer'ı tüketir ve "too many clients" hatasına yol açar).
+      // - idleTimeoutMillis: 10 saniye idle sonrası bağlantı kapansın → soğuk
+      //   fonksiyonlarda dangling connection kalmasın.
+      // - connectionTimeoutMillis: 8 saniyeye kadar bağlantı bekle → pgbouncer
+      //   doluysa kullanıcıya hızlı hata dön, 30 saniye asılıp Vercel timeout'a
+      //   girmektense.
+      const poolMax = Number(process.env.PG_POOL_MAX || (process.env.VERCEL ? 3 : 10));
       pgPool = new Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
+        max: poolMax,
+        idleTimeoutMillis: 10_000,
+        connectionTimeoutMillis: 8_000,
+        keepAlive: true,
+      });
+      pgPool.on("error", (err) => {
+        console.warn("[pg-pool] idle client error:", err.message);
       });
     }
 

@@ -339,10 +339,18 @@ function createApp() {
       httpOnly: true,
       sameSite: "lax",
       secure: IS_SECURE_PROXY,
-      maxAge: 1000 * 60 * 60 * 12,
+      // 30 gün — hafta içi aktif kullanıcı boşta kaldığında bile cookie düşmesin.
+      // Her authenticated request'te touchAuthenticatedSession middleware cookie'yi
+      // yeniden yazar, yani aktif kullanıcılarda süre her istekte tazelenir (rolling).
+      maxAge: 1000 * 60 * 60 * 24 * 30,
       signed: true,
     })
   );
+
+  // Rolling session: her authenticated istekte session objesine küçük bir alan
+  // yazdığımızda cookie-session yeni Set-Cookie üretir ve maxAge tazelenir.
+  // Not: cookie-session sadece session modifiye edildiğinde cookie gönderir.
+  app.use(touchAuthenticatedSession);
 
   app.use(initializeSecurityAuditQueue);
   app.use("/api", enforceIpSecurityBlock);
@@ -2946,6 +2954,26 @@ function requireAuth(req, res, next) {
       details: { requirement: "auth" },
     });
     return res.status(401).json({ error: "Oturum acmaniz gerekiyor." });
+  }
+  return next();
+}
+
+// Rolling session: her authenticated istekte session payload'ına bir timestamp
+// yazarız. cookie-session kütüphanesi sadece session modifiye edildiğinde
+// Set-Cookie header'ı üretir; bu "touch" işlemi cookie'nin maxAge süresini
+// yeniden işaretler (rolling 30 gün). 5 dakikadan kısa aralıklı isteklerde
+// gereksiz cookie yazımından kaçınmak için throttle ediyoruz.
+function touchAuthenticatedSession(req, _res, next) {
+  try {
+    if (req.session && req.session.user) {
+      const last = Number(req.session.touchedAt || 0);
+      const now = Date.now();
+      if (!last || now - last > 5 * 60 * 1000) {
+        req.session.touchedAt = now;
+      }
+    }
+  } catch (_error) {
+    // Session erişiminde hata olursa sessizce devam et — auth akışını kesmemeli.
   }
   return next();
 }
