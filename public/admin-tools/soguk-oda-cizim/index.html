@@ -1,0 +1,2850 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Soğuk Oda Çizim Programı v2.0 Pro</title>
+<script>
+  (function () {
+    function readCookie(name) {
+      const match = document.cookie.match(new RegExp("(^|; )" + name + "=([^;]+)"));
+      return match ? decodeURIComponent(match[2]) : "";
+    }
+
+    if (!window.Storage || window.__hamburgToolStoragePatched) {
+      return;
+    }
+
+    const scope = readCookie("hamburg_tool_scope");
+    if (!scope) {
+      return;
+    }
+
+    const prefix = "hamburg_tool:" + scope + ":";
+    const proto = Storage.prototype;
+    const lengthDescriptor = Object.getOwnPropertyDescriptor(proto, "length");
+    const original = {
+      getItem: proto.getItem,
+      setItem: proto.setItem,
+      removeItem: proto.removeItem,
+      clear: proto.clear,
+      key: proto.key,
+      lengthGet: lengthDescriptor && lengthDescriptor.get,
+    };
+
+    function isScopedStorage(storage) {
+      return storage === window.localStorage;
+    }
+
+    function visibleKeys(storage) {
+      const keys = [];
+      const total = original.lengthGet ? original.lengthGet.call(storage) : 0;
+      for (let index = 0; index < total; index += 1) {
+        const key = original.key.call(storage, index);
+        if (key && key.indexOf(prefix) === 0) {
+          keys.push(key.slice(prefix.length));
+        }
+      }
+      return keys;
+    }
+
+    proto.getItem = function (key) {
+      return isScopedStorage(this) ? original.getItem.call(this, prefix + String(key)) : original.getItem.call(this, key);
+    };
+    proto.setItem = function (key, value) {
+      return isScopedStorage(this) ? original.setItem.call(this, prefix + String(key), value) : original.setItem.call(this, key, value);
+    };
+    proto.removeItem = function (key) {
+      return isScopedStorage(this) ? original.removeItem.call(this, prefix + String(key)) : original.removeItem.call(this, key);
+    };
+    proto.clear = function () {
+      if (!isScopedStorage(this)) {
+        return original.clear.call(this);
+      }
+      visibleKeys(this).forEach((key) => {
+        original.removeItem.call(this, prefix + key);
+      });
+    };
+    proto.key = function (index) {
+      if (!isScopedStorage(this)) {
+        return original.key.call(this, index);
+      }
+      return visibleKeys(this)[Number(index)] || null;
+    };
+    if (lengthDescriptor && lengthDescriptor.configurable) {
+      Object.defineProperty(proto, "length", {
+        configurable: true,
+        enumerable: false,
+        get() {
+          return isScopedStorage(this) ? visibleKeys(this).length : original.lengthGet.call(this);
+        },
+      });
+    }
+
+    window.__hamburgToolStoragePatched = true;
+    window.__hamburgToolStorageScope = scope;
+  })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #1a1d23;
+    --panel: #22262f;
+    --panel2: #2a2f3b;
+    --border: #3a4055;
+    --accent: #00b4d8;
+    --accent2: #0077b6;
+    --green: #2ec4b6;
+    --red: #e63946;
+    --yellow: #ffd166;
+    --orange: #f4a261;
+    --text: #e0e6f0;
+    --text2: #8899aa;
+    --shadow: 0 2px 16px rgba(0,0,0,0.5);
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+  #topbar {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; flex-shrink: 0; flex-wrap: wrap;
+  }
+  .logo { font-weight: 700; font-size: 15px; color: var(--accent); margin-right: 8px; white-space: nowrap; }
+  .logo span { color: var(--text2); font-weight: 400; font-size: 12px; }
+  .tb-btn {
+    background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 12px;
+    display: flex; align-items: center; gap: 5px; transition: all 0.15s; white-space: nowrap;
+  }
+  .tb-btn:hover { background: var(--accent2); border-color: var(--accent); }
+  .tb-btn.danger:hover { background: var(--red); border-color: var(--red); }
+  .sep { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+  .tb-label { font-size: 11px; color: var(--text2); margin-right: 2px; }
+  .tb-select, .tb-input {
+    background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    padding: 4px 8px; border-radius: 5px; font-size: 12px; min-width: 80px;
+  }
+  #zoom-display { font-size: 12px; color: var(--accent); min-width: 40px; text-align: center; }
+
+  #main { display: flex; flex: 1; overflow: hidden; }
+
+  #sidebar {
+    width: 220px; background: var(--panel); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; overflow-y: auto; flex-shrink: 0;
+  }
+  .sb-section { padding: 8px; border-bottom: 1px solid var(--border); }
+  .sb-title {
+    font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .tool-btn {
+    background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    padding: 7px 4px; border-radius: 6px; cursor: pointer; font-size: 11px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    transition: all 0.15s; text-align: center; line-height: 1.2;
+  }
+  .tool-btn:hover { background: var(--accent2); border-color: var(--accent); }
+  .tool-btn.active { background: var(--accent2); border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,180,216,0.3); }
+  .tool-btn .icon { font-size: 18px; }
+
+  .prop-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+  .prop-label { font-size: 11px; color: var(--text2); min-width: 60px; }
+  .prop-input, .prop-select {
+    flex: 1; background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    padding: 4px 7px; border-radius: 4px; font-size: 12px;
+  }
+  .color-swatch { width: 24px; height: 24px; border-radius: 4px; border: 2px solid var(--border); cursor: pointer; }
+
+  #canvas-area {
+    flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative;
+    background: #12151a;
+  }
+  #ruler-row { display: flex; height: 24px; flex-shrink: 0; }
+  #ruler-corner { width: 24px; height: 24px; background: var(--panel2); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  #ruler-h { height: 24px; overflow: hidden; border-bottom: 1px solid var(--border); background: var(--panel2); flex: 1; }
+  #rulers-and-canvas { flex: 1; display: flex; overflow: hidden; position: relative; }
+  #ruler-v { width: 24px; overflow: hidden; border-right: 1px solid var(--border); background: var(--panel2); }
+  #canvas-wrap { flex: 1; overflow: auto; position: relative; }
+  canvas { display: block; cursor: crosshair; }
+
+  #statusbar {
+    background: var(--panel2); border-top: 1px solid var(--border);
+    padding: 3px 12px; font-size: 11px; color: var(--text2);
+    display: flex; gap: 16px; flex-shrink: 0; flex-wrap: wrap;
+  }
+
+  #rightpanel {
+    width: 240px; background: var(--panel); border-left: 1px solid var(--border);
+    display: flex; flex-direction: column; overflow-y: auto; flex-shrink: 0;
+  }
+  .rp-section { padding: 10px; border-bottom: 1px solid var(--border); }
+  .rp-title { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .layer-item {
+    display: flex; align-items: center; gap: 6px; padding: 4px 6px;
+    border-radius: 4px; cursor: pointer; margin-bottom: 2px;
+    border: 1px solid transparent; font-size: 12px;
+  }
+  .layer-item:hover { background: var(--panel2); }
+  .layer-item.active { background: var(--panel2); border-color: var(--accent); }
+  .layer-color { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+  .modal-bg {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+    display: flex; align-items: center; justify-content: center; z-index: 1000;
+  }
+  .modal {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; min-width: 340px; max-width: 520px; max-height: 85vh; overflow-y: auto;
+    box-shadow: var(--shadow);
+  }
+  .modal h3 { color: var(--accent); margin-bottom: 14px; font-size: 15px; }
+  .modal-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .modal-label { font-size: 12px; color: var(--text2); min-width: 120px; }
+  .modal-input, .modal-select {
+    flex: 1; background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    padding: 6px 10px; border-radius: 5px; font-size: 13px;
+  }
+  .modal-input:focus, .modal-select:focus { outline: none; border-color: var(--accent); }
+  .modal-btns { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+  .btn-primary { background: var(--accent2); border: none; color: white; padding: 8px 18px; border-radius: 5px; cursor: pointer; font-size: 13px; }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-secondary { background: var(--panel2); border: 1px solid var(--border); color: var(--text); padding: 8px 18px; border-radius: 5px; cursor: pointer; font-size: 13px; }
+
+  .bom-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  .bom-table th { background: var(--panel2); padding: 6px 8px; text-align: left; color: var(--accent); border: 1px solid var(--border); }
+  .bom-table td { padding: 5px 8px; border: 1px solid var(--border); color: var(--text); }
+  .bom-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+
+  .info-box {
+    background: var(--panel2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px; font-size: 12px; color: var(--text2); margin-bottom: 6px; line-height: 1.6;
+  }
+  .info-box b { color: var(--text); }
+
+  #snap-indicator {
+    position: absolute; bottom: 8px; right: 8px;
+    background: rgba(0,180,216,0.15); border: 1px solid var(--accent);
+    color: var(--accent); font-size: 11px; padding: 3px 10px; border-radius: 12px;
+    pointer-events: none; z-index: 10;
+  }
+
+  #toast {
+    position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,180,216,0.92); color: white; padding: 8px 20px;
+    border-radius: 20px; font-size: 13px; z-index: 9999; pointer-events: none;
+    display: none; transition: opacity 0.3s;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent2); }
+
+  .kbd { background: var(--panel2); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; font-size: 10px; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="logo">❄️ ColdRoom PRO <span>v2.0</span></div>
+  <div class="sep"></div>
+  <button class="tb-btn" onclick="showNewRoomModal()">📐 Yeni Oda</button>
+  <button class="tb-btn" onclick="clearAll()">🗑️ Temizle</button>
+  <div class="sep"></div>
+  <span class="tb-label">Birim:</span>
+  <select class="tb-select" id="unit-sel" onchange="changeUnit(this.value)" style="min-width:70px">
+    <option value="m">Metre</option>
+    <option value="mm">mm</option>
+  </select>
+  <span class="tb-label">Izgara:</span>
+  <select class="tb-select" id="grid-sel" onchange="changeGrid(this.value)" style="min-width:65px">
+    <option value="0.1">10 cm</option>
+    <option value="0.25">25 cm</option>
+    <option value="0.5" selected>50 cm</option>
+    <option value="1">1 m</option>
+  </select>
+  <label style="font-size:12px;display:flex;align-items:center;gap:4px;cursor:pointer">
+    <input type="checkbox" id="snap-chk" checked onchange="snapEnabled=this.checked;document.getElementById('snap-indicator').textContent=snapEnabled?'⊞ Snap Aktif':'⊡ Snap Kapalı'"> Snap
+  </label>
+  <div class="sep"></div>
+  <button class="tb-btn" onclick="zoomIn()">🔍+</button>
+  <div id="zoom-display">100%</div>
+  <button class="tb-btn" onclick="zoomOut()">🔍-</button>
+  <button class="tb-btn" onclick="resetZoom()">↺ Sıfırla</button>
+  <button class="tb-btn" onclick="fitToContent()" title="Tüm nesneleri ekrana sığdır (F)">🎯 Sığdır</button>
+  <div class="sep"></div>
+  <button class="tb-btn" onclick="exportPDF()">📄 PDF Çiz</button>
+  <button class="tb-btn" onclick="exportPNG()">🖼️ PNG</button>
+  <button class="tb-btn" onclick="showBOM()">📋 Malzeme</button>
+  <button class="tb-btn" onclick="sendToDRCProject()" title="Bu çizimi DRC Portal'a proje olarak kaydet" style="background:linear-gradient(135deg,#f59e0b,#d97706);border-color:#f59e0b;color:#fff;font-weight:600;">📤 DRC Projeye Kaydet</button>
+  <button class="tb-btn" onclick="showPipingDiagram()">🔧 Borulama</button>
+  <div class="sep"></div>
+  <button class="tb-btn" onclick="undo()">↩ Geri</button>
+  <button class="tb-btn" onclick="redo()">↪ İleri</button>
+  <div class="sep"></div>
+  <button class="tb-btn" onclick="copySelected()" title="Ctrl+D">📋 Kopyala</button>
+  <button class="tb-btn" onclick="copyNextTo('right')" title="Seçili odayı sağa kopyala">→ Sağa</button>
+  <button class="tb-btn" onclick="copyNextTo('down')" title="Seçili odayı alta kopyala">↓ Alta</button>
+  <button class="tb-btn" onclick="showQuickAddModal()" title="Hızlı çoklu oda ekle">⚡ Çoklu Oda</button>
+  <div class="sep"></div>
+  <button class="tb-btn" onclick="open3DView()" title="3D görünümü aç" style="background:linear-gradient(135deg,#0077b6,#00b4d8);border-color:#00b4d8;font-weight:600;">🔲 3D Görüntüle</button>
+</div>
+
+<div id="main">
+  <!-- LEFT SIDEBAR -->
+  <div id="sidebar">
+    <div class="sb-section">
+      <div class="sb-title">🏗️ Yapı Araçları</div>
+      <div class="tool-grid">
+        <button class="tool-btn active" id="tool-select" onclick="setTool('select')">
+          <span class="icon">🖱️</span>Seçim
+        </button>
+        <button class="tool-btn" id="tool-room" onclick="setTool('room')">
+          <span class="icon">🏠</span>Oda Çiz
+        </button>
+        <button class="tool-btn" id="tool-wall" onclick="setTool('wall')">
+          <span class="icon">🧱</span>Duvar
+        </button>
+        <button class="tool-btn" id="tool-panel" onclick="showPanelModal()">
+          <span class="icon">🔲</span>Panel
+        </button>
+        <button class="tool-btn" id="tool-door" onclick="showDoorModal()">
+          <span class="icon">🚪</span>Kapı
+        </button>
+        <button class="tool-btn" id="tool-window" onclick="setTool('window')">
+          <span class="icon">🪟</span>Pencere
+        </button>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">❄️ Soğutma Ekipmanları</div>
+      <div class="tool-grid">
+        <button class="tool-btn" onclick="showUnitModal('evaporator')">
+          <span class="icon">🌀</span>Evaporatör
+        </button>
+        <button class="tool-btn" onclick="showUnitModal('condenser')">
+          <span class="icon">🔄</span>Kondenser
+        </button>
+        <button class="tool-btn" onclick="showUnitModal('split')">
+          <span class="icon">❄️</span>Split
+        </button>
+        <button class="tool-btn" onclick="showUnitModal('monobloc')">
+          <span class="icon">📦</span>Monoblok
+        </button>
+        <button class="tool-btn" onclick="showUnitModal('rack')">
+          <span class="icon">🗄️</span>Raf Ünite
+        </button>
+        <button class="tool-btn" onclick="showUnitModal('compressor')">
+          <span class="icon">⚙️</span>Kompresör
+        </button>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">🔧 Borulama & Hat</div>
+      <div class="tool-grid">
+        <button class="tool-btn" id="tool-pipe-liquid" onclick="setTool('pipe_liquid')">
+          <span class="icon">🔵</span>Sıvı Boru
+        </button>
+        <button class="tool-btn" id="tool-pipe-suction" onclick="setTool('pipe_suction')">
+          <span class="icon">🟣</span>Emme Boru
+        </button>
+        <button class="tool-btn" id="tool-pipe-discharge" onclick="setTool('pipe_discharge')">
+          <span class="icon">🔴</span>Basma Boru
+        </button>
+        <button class="tool-btn" id="tool-drain" onclick="setTool('drain')">
+          <span class="icon">💧</span>Drenaj
+        </button>
+        <button class="tool-btn" id="tool-electric" onclick="setTool('electric')">
+          <span class="icon">⚡</span>Elektrik
+        </button>
+        <button class="tool-btn" id="tool-dimension" onclick="setTool('dimension')">
+          <span class="icon">📏</span>Ölçü
+        </button>
+      </div>
+      <div style="font-size:10px;color:var(--text2);margin-top:4px;line-height:1.5">
+        💡 Boru çizerken: sol tık=nokta ekle, çift tık/sağ tık=bitir
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">🔩 Aksesuarlar</div>
+      <div class="tool-grid">
+        <button class="tool-btn" onclick="placeAccessory('valve')"><span class="icon">🔴</span>Vana</button>
+        <button class="tool-btn" onclick="placeAccessory('filter')"><span class="icon">🟡</span>Filtre</button>
+        <button class="tool-btn" onclick="placeAccessory('pressure')"><span class="icon">🔵</span>Basınç</button>
+        <button class="tool-btn" onclick="placeAccessory('thermometer')"><span class="icon">🌡️</span>Termometre</button>
+        <button class="tool-btn" onclick="placeAccessory('sensor')"><span class="icon">📡</span>Sensör</button>
+        <button class="tool-btn" onclick="placeAccessory('controller')"><span class="icon">🎛️</span>Kontrol</button>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">🎨 Stil</div>
+      <div class="prop-row">
+        <span class="prop-label">Dolgu:</span>
+        <input type="color" id="fill-color" class="color-swatch" value="#2a3a5c" onchange="updateStyle()">
+      </div>
+      <div class="prop-row">
+        <span class="prop-label">Kenar:</span>
+        <input type="color" id="stroke-color" class="color-swatch" value="#00b4d8" onchange="updateStyle()">
+      </div>
+      <div class="prop-row">
+        <span class="prop-label">Çizgi:</span>
+        <input type="number" id="stroke-width" class="prop-input" value="2" min="1" max="8" onchange="updateStyle()">
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">🏷️ Metin</div>
+      <div class="prop-row">
+        <input type="text" id="text-input" class="prop-input" placeholder="Metin girin...">
+      </div>
+      <div class="prop-row">
+        <span class="prop-label">Boyut:</span>
+        <input type="number" id="font-size" class="prop-input" value="12" min="8" max="36">
+      </div>
+      <button class="tb-btn" style="width:100%;justify-content:center" onclick="setTool('text')">📝 Metin Yerleştir</button>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">🏢 Hızlı Yerleşim</div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:6px">Seçili odayı kopyala:</div>
+      <div class="tool-grid">
+        <button class="tool-btn" onclick="copyNextTo('left')" title="Sola bitişik kopyala"><span class="icon">◀</span>Sola</button>
+        <button class="tool-btn" onclick="copyNextTo('right')" title="Sağa bitişik kopyala"><span class="icon">▶</span>Sağa</button>
+        <button class="tool-btn" onclick="copyNextTo('up')" title="Üste bitişik kopyala"><span class="icon">▲</span>Üste</button>
+        <button class="tool-btn" onclick="copyNextTo('down')" title="Alta bitişik kopyala"><span class="icon">▼</span>Alta</button>
+      </div>
+      <button class="tb-btn" style="width:100%;justify-content:center;margin-top:6px" onclick="showQuickAddModal()">⚡ Çoklu Oda Ekle</button>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">⌨️ Kısayollar</div>
+      <div style="font-size:10px;color:var(--text2);line-height:1.8">
+        <span class="kbd">S</span> Seçim &nbsp; <span class="kbd">R</span> Oda<br>
+        <span class="kbd">W</span> Duvar &nbsp; <span class="kbd">D</span> Ölçü<br>
+        <span class="kbd">Del</span> Sil &nbsp; <span class="kbd">Esc</span> İptal<br>
+        <span class="kbd">Ctrl+Z</span> Geri &nbsp; <span class="kbd">Ctrl+Y</span> İleri<br>
+        <span class="kbd">Ctrl+D</span> Nesne Kopyala<br>
+        <span class="kbd">Ctrl+S</span> PDF Kaydet<br>
+        <span class="kbd">←↑→↓</span> Nesne Taşı<br>
+        <span class="kbd">F</span> Tümüne Sığdır<br>
+        <span class="kbd">Space+Sürükle</span> Kaydır<br>
+        <span class="kbd">Sağ Tık</span> Menü<br>
+        <span class="kbd">+/-</span> Zoom
+      </div>
+    </div>
+  </div>
+
+  <!-- CANVAS AREA -->
+  <div id="canvas-area">
+    <div id="ruler-row">
+      <div id="ruler-corner"></div>
+      <canvas id="ruler-h" height="24"></canvas>
+    </div>
+    <div id="rulers-and-canvas">
+      <canvas id="ruler-v" width="24"></canvas>
+      <div id="canvas-wrap">
+        <canvas id="mainCanvas" width="3000" height="2000"></canvas>
+        <div id="snap-indicator">⊞ Snap Aktif</div>
+      </div>
+    </div>
+    <div id="statusbar">
+      <span id="st-pos">📍 X: 0.00m, Y: 0.00m</span>
+      <span id="st-tool">🔧 Araç: Seçim</span>
+      <span id="st-obj">📦 Nesneler: 0</span>
+      <span id="st-sel">✏️ Seçili: Yok</span>
+      <span id="st-area">📐 Alan: -</span>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div id="rightpanel">
+    <div class="rp-section">
+      <div class="rp-title">📊 Oda Bilgileri</div>
+      <div class="info-box" id="room-info">Henüz oda eklenmedi.<br>📐 "Yeni Oda" veya<br>Oda Çiz aracını kullanın.</div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-title">📐 Seçili Nesne</div>
+      <div id="obj-props">
+        <div class="info-box" style="font-size:11px">Nesne seçmek için tıklayın...</div>
+      </div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-title">🗂️ Katmanlar</div>
+      <div id="layers-list">
+        <div class="layer-item active" data-layer="structure" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('structure',event)">👁️</span>
+          <div class="layer-color" style="background:#4477aa"></div>
+          <span>Yapı & Odalar</span>
+        </div>
+        <div class="layer-item" data-layer="panels" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('panels',event)">👁️</span>
+          <div class="layer-color" style="background:#22aa77"></div>
+          <span>Paneller</span>
+        </div>
+        <div class="layer-item" data-layer="doors" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('doors',event)">👁️</span>
+          <div class="layer-color" style="background:#aa7722"></div>
+          <span>Kapılar</span>
+        </div>
+        <div class="layer-item" data-layer="cooling" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('cooling',event)">👁️</span>
+          <div class="layer-color" style="background:#2299cc"></div>
+          <span>Soğutma</span>
+        </div>
+        <div class="layer-item" data-layer="piping" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('piping',event)">👁️</span>
+          <div class="layer-color" style="background:#cc4422"></div>
+          <span>Borulama</span>
+        </div>
+        <div class="layer-item" data-layer="dimensions" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('dimensions',event)">👁️</span>
+          <div class="layer-color" style="background:#aaaa22"></div>
+          <span>Ölçüler</span>
+        </div>
+        <div class="layer-item" data-layer="accessories" onclick="setActiveLayer(this)">
+          <span class="layer-eye" onclick="toggleLayer('accessories',event)">👁️</span>
+          <div class="layer-color" style="background:#aa22aa"></div>
+          <span>Aksesuarlar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-title">🌡️ Proje Şartları</div>
+      <div class="prop-row">
+        <span class="prop-label" style="font-size:11px">İç Sıcaklık:</span>
+        <input type="number" id="indoor-temp" class="prop-input" value="-18">
+        <span style="font-size:11px">°C</span>
+      </div>
+      <div class="prop-row">
+        <span class="prop-label" style="font-size:11px">Dış Sıcaklık:</span>
+        <input type="number" id="outdoor-temp" class="prop-input" value="35">
+        <span style="font-size:11px">°C</span>
+      </div>
+      <div class="prop-row">
+        <span class="prop-label" style="font-size:11px">Nem (%):</span>
+        <input type="number" id="humidity" class="prop-input" value="85">
+        <span style="font-size:11px">%</span>
+      </div>
+      <div class="prop-row">
+        <span class="prop-label" style="font-size:11px">Ürün Tipi:</span>
+        <select class="prop-select" id="product-type">
+          <option>Et & Balık</option>
+          <option>Süt Ürünleri</option>
+          <option>Meyve & Sebze</option>
+          <option>Dondurulmuş</option>
+          <option>Genel Depo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-title">📝 Proje Notları</div>
+      <textarea id="notes" style="width:100%;height:90px;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:6px;font-size:11px;resize:vertical" placeholder="Proje notları, özel gereksinimler..."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-bg" class="modal-bg" style="display:none" onclick="if(event.target===this)closeModal()">
+  <div id="modal-content" class="modal"></div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const canvas = document.getElementById('mainCanvas');
+const ctx = canvas.getContext('2d');
+const rH = document.getElementById('ruler-h');
+const rV = document.getElementById('ruler-v');
+const ctxH = rH.getContext('2d');
+const ctxV = rV.getContext('2d');
+
+let objects = [];
+let selectedObj = null;
+let currentTool = 'select';
+let zoom = 1;
+let snapEnabled = true;
+let gridSize = 0.5;
+let unit = 'm';
+let activeLayer = 'structure';
+let layers = { structure:true, panels:true, doors:true, cooling:true, piping:true, dimensions:true, accessories:true };
+let undoStack = [], redoStack = [];
+let isDrawing = false;
+let drawStart = null;
+let tempObj = null;
+let pipePoints = [];
+let isDragging = false;
+let dragStartMouse = null;
+let dragStartPos = null;
+let mousePos = { x:0, y:0 };
+let pendingUnit = {};
+let pendingAccessory = null;
+const SCALE = 100;
+
+// Pan (kaydırma) state
+let isPanning = false;
+let panStartMouse = null;
+let panStartScroll = null;
+
+// Snap-to-object threshold (dünya birimi metre)
+const SNAP_DIST = 0.3;
+
+// Sağ tık menüsü
+let ctxMenuObj = null;
+
+const PANEL_PRESETS = {
+  PUR: { name:'PUR Poliüretan', color:'#1a5a8a', lambda:0.022 },
+  PIR: { name:'PIR Poliizosiyanurant', color:'#1a7a4a', lambda:0.020 },
+  EPS: { name:'EPS Strafor', color:'#8a6a1a', lambda:0.038 }
+};
+
+const UNIT_PRESETS = {
+  evaporator: { name:'Evaporatör', icon:'🌀', color:'#0d4f7a', w:1.2, h:0.6 },
+  condenser:  { name:'Kondenser',  icon:'🔄', color:'#7a2a0d', w:1.4, h:0.7 },
+  split:      { name:'Split Ünite',icon:'❄️', color:'#0d4a7a', w:0.8, h:0.3 },
+  monobloc:   { name:'Monoblok',   icon:'📦', color:'#3a2a7a', w:1.2, h:0.8 },
+  rack:       { name:'Raf Ünite',  icon:'🗄️', color:'#5a3a0d', w:2.0, h:1.0 },
+  compressor: { name:'Kompresör',  icon:'⚙️', color:'#2a5a1a', w:0.6, h:0.6 }
+};
+
+const DOOR_TYPES = {
+  single_hinge: 'Tek Kanatlı Menteşeli',
+  double_hinge: 'Çift Kanatlı Menteşeli',
+  sliding: 'Sürgülü Kapı',
+  saloon: 'Kılıç Kapı (Saloon)'
+};
+
+const PIPE_COLORS = {
+  pipe_liquid:'#3399ff', pipe_suction:'#aa44ff', pipe_discharge:'#ff4444',
+  drain:'#44aaaa', electric:'#ffcc00'
+};
+
+const BOM_PRICING = {
+  panelM2: { 60:6.5, 80:7.0, 100:7.5, 120:8.5, 150:10.5, 200:13.0 },
+  doorUnit: { 60:320, 80:335, 100:350, 120:380, 150:420, 200:480 },
+  doorFactor: { single_hinge:1, double_hinge:1.45, sliding:1.3, saloon:1.15 },
+  coolingUnit: { evaporator:250, condenser:350, split:750, monobloc:1200, rack:1800, compressor:300 },
+  pipeM: { pipe_liquid:4.5, pipe_suction:7.5, pipe_discharge:6.0, drain:2.5, electric:1.9 },
+  accessory: { valve:22, filter:8, pressure:25, thermometer:12, sensor:18, controller:65 }
+};
+
+function roundValue(value, decimals=2) {
+  const n = Number(value) || 0;
+  const factor = 10 ** decimals;
+  return Math.round(n * factor) / factor;
+}
+function formatMoneyEUR(value) {
+  return new Intl.NumberFormat('de-DE', { style:'currency', currency:'EUR' }).format(Number(value) || 0);
+}
+function formatMoneyCompact(value) {
+  return `${roundValue(value, 2).toLocaleString('de-DE', { minimumFractionDigits:2, maximumFractionDigits:2 })}€`;
+}
+function formatQty(value) {
+  const n = Number(value) || 0;
+  return Number.isInteger(n)
+    ? String(n)
+    : n.toLocaleString('tr-TR', { minimumFractionDigits:1, maximumFractionDigits:1 });
+}
+function getPanelUnitPrice(thickness) {
+  return BOM_PRICING.panelM2[Number(thickness)] || BOM_PRICING.panelM2[100];
+}
+function getDoorUnitPrice(thickness, doorType='single_hinge') {
+  const base = BOM_PRICING.doorUnit[Number(thickness)] || BOM_PRICING.doorUnit[100];
+  const factor = BOM_PRICING.doorFactor[doorType] || 1;
+  return roundValue(base * factor, 2);
+}
+async function loadSharedAdminCatalog() {
+  const candidates = [
+    './shared-admin-catalog.json',
+    '../shared-admin-catalog.json',
+    '/shared-admin-catalog.json',
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      const response = await fetch(candidate, { cache: 'no-store' });
+      if (!response.ok) continue;
+      const payload = await response.json();
+      applySharedPricingProfile(payload);
+      return true;
+    } catch (_error) {
+      // Fallback to local defaults.
+    }
+  }
+
+  return false;
+}
+function applySharedPricingProfile(payload) {
+  const profile = payload?.pricingProfiles?.sogukOdaV3;
+  if (!profile) return;
+  if (profile.panelM2 && typeof profile.panelM2 === 'object') {
+    Object.assign(BOM_PRICING.panelM2, profile.panelM2);
+  }
+  if (profile.doorUnit && typeof profile.doorUnit === 'object') {
+    Object.assign(BOM_PRICING.doorUnit, profile.doorUnit);
+  }
+}
+function getAnchorRoom(anchorObj=null) {
+  if (anchorObj && anchorObj.type === 'room') return anchorObj;
+  if (ctxMenuObj && ctxMenuObj.type === 'room') return ctxMenuObj;
+  if (selectedObj && selectedObj.type === 'room') return selectedObj;
+  return null;
+}
+function getDefaultPanelValues(anchorObj=null) {
+  const room = getAnchorRoom(anchorObj);
+  if (!room) return { x:0, y:0, w:1.2, h:3, panelType:'PUR', thickness:100 };
+  return {
+    x: roundValue(room.x, 2),
+    y: roundValue(room.y, 2),
+    w: roundValue(Math.max(0.8, room.w), 2),
+    h: roundValue(room.height || 3, 2),
+    panelType: room.panelType || 'PUR',
+    thickness: room.panelThickness || 100
+  };
+}
+function getDefaultDoorValues(anchorObj=null) {
+  const room = getAnchorRoom(anchorObj);
+  if (!room) return { x:2, y:0, w:0.9, h:2.0, thickness:100 };
+  const doorWidth = Math.min(1.2, Math.max(0.9, roundValue(room.w * 0.18, 2)));
+  return {
+    x: roundValue(room.x + Math.max(0.1, (room.w - doorWidth) / 2), 2),
+    y: roundValue(room.y, 2),
+    w: doorWidth,
+    h: roundValue(Math.min(room.height || 3, Math.max(2.0, (room.height || 3) - 0.4)), 2),
+    thickness: room.panelThickness || 100
+  };
+}
+
+// ============================================================
+// COORDINATE
+// ============================================================
+function toCanvas(wx, wy) { return { x: wx*SCALE*zoom, y: wy*SCALE*zoom }; }
+function toWorld(cx, cy) { return { x: cx/(SCALE*zoom), y: cy/(SCALE*zoom) }; }
+function snapVal(v) { return snapEnabled ? Math.round(v/gridSize)*gridSize : v; }
+function snapPt(wx, wy) { return { x: snapVal(wx), y: snapVal(wy) }; }
+
+function getMouseWorld(e) {
+  const rect = canvas.getBoundingClientRect();
+  return snapPt((e.clientX-rect.left)/(SCALE*zoom), (e.clientY-rect.top)/(SCALE*zoom));
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#12151a';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  drawGrid();
+
+  const order = ['structure','panels','doors','cooling','accessories','piping','dimensions'];
+  for (const layer of order) {
+    if (!layers[layer]) continue;
+    for (const obj of objects) if (obj.layer===layer) drawObj(obj, false);
+  }
+  if (tempObj) drawObj(tempObj, true);
+
+  // Pipe preview
+  if (isPipeTool() && pipePoints.length>0 && isDrawing) {
+    const col = PIPE_COLORS[currentTool]||'#888';
+    ctx.save();
+    // Çizilmiş segmentler
+    ctx.strokeStyle=col; ctx.lineWidth=Math.max(1.5,2.5*zoom);
+    if(currentTool==='electric') ctx.setLineDash([8,4]);
+    if(currentTool==='drain') ctx.setLineDash([3,3]);
+    ctx.beginPath();
+    const p0c=toCanvas(pipePoints[0].x,pipePoints[0].y); ctx.moveTo(p0c.x,p0c.y);
+    for(let i=1;i<pipePoints.length;i++){const pc=toCanvas(pipePoints[i].x,pipePoints[i].y);ctx.lineTo(pc.x,pc.y);}
+    ctx.stroke(); ctx.setLineDash([]);
+    // Kesik çizgi preview (son noktadan mouse'a)
+    const last = pipePoints[pipePoints.length-1];
+    const c1 = toCanvas(last.x, last.y);
+    const c2 = toCanvas(mousePos.x, mousePos.y);
+    ctx.strokeStyle=col; ctx.lineWidth=1.5; ctx.setLineDash([5,3]);
+    ctx.beginPath(); ctx.moveTo(c1.x,c1.y); ctx.lineTo(c2.x,c2.y); ctx.stroke();
+    ctx.setLineDash([]);
+    // Nokta göstergeleri
+    for(const pt of pipePoints){
+      const pc=toCanvas(pt.x,pt.y);
+      ctx.fillStyle=col; ctx.beginPath(); ctx.arc(pc.x,pc.y,4*zoom,0,Math.PI*2); ctx.fill();
+    }
+    // Bilgi etiketi
+    const pipeNames2={pipe_liquid:'Sıvı',pipe_suction:'Emme',pipe_discharge:'Basma',drain:'Drenaj',electric:'Elektrik'};
+    ctx.fillStyle='rgba(0,0,0,0.7)'; ctx.fillRect(c2.x+12,c2.y-24,180,20);
+    ctx.fillStyle=col; ctx.font=`${Math.max(10,11*zoom)}px Segoe UI`; ctx.textAlign='left';
+    ctx.fillText(`${pipeNames2[currentTool]} | ${pipePoints.length} nokta | Çift tık / Sağ tık → Bitir`,c2.x+16,c2.y-10);
+    ctx.restore();
+  }
+
+  if (selectedObj) drawHandles(selectedObj);
+
+  // Ortak duvarları vurgula
+  drawSharedWalls();
+
+  drawRulers();
+  updateStatus();
+}
+
+// Ortak duvarları yeşil çizgiyle göster
+function drawSharedWalls() {
+  if (!layers.structure) return;
+  const rooms = objects.filter(o => o.type === 'room');
+  const shared = getSharedWalls();
+  if (shared.length === 0) return;
+
+  ctx.save();
+  for (const sw of shared) {
+    const a = sw.roomA, b = sw.roomB;
+
+    let x1, y1, x2, y2;
+
+    // Sağ/Sol bitişik (dikey ortak duvar)
+    if (sw.side === 'dikey') {
+      // Hangi x koordinatında buluşuyorlar?
+      let sharedX;
+      if (Math.abs((a.x + a.w) - b.x) <= SHARED_TOL) sharedX = (a.x + a.w + b.x) / 2;
+      else sharedX = (b.x + b.w + a.x) / 2;
+      const overlapY1 = Math.max(a.y, b.y);
+      const overlapY2 = Math.min(a.y + a.h, b.y + b.h);
+      const c1 = toCanvas(sharedX, overlapY1);
+      const c2 = toCanvas(sharedX, overlapY2);
+      x1=c1.x; y1=c1.y; x2=c2.x; y2=c2.y;
+    } else {
+      // Üst/Alt bitişik (yatay ortak duvar)
+      let sharedY;
+      if (Math.abs((a.y + a.h) - b.y) <= SHARED_TOL) sharedY = (a.y + a.h + b.y) / 2;
+      else sharedY = (b.y + b.h + a.y) / 2;
+      const overlapX1 = Math.max(a.x, b.x);
+      const overlapX2 = Math.min(a.x + a.w, b.x + b.w);
+      const c1 = toCanvas(overlapX1, sharedY);
+      const c2 = toCanvas(overlapX2, sharedY);
+      x1=c1.x; y1=c1.y; x2=c2.x; y2=c2.y;
+    }
+
+    // Çizgi
+    ctx.strokeStyle = '#00ff88';
+    ctx.lineWidth = Math.max(2.5, 3.5 * zoom);
+    ctx.setLineDash([6 * zoom, 4 * zoom]);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Etiket
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    const fs = Math.max(9, 11 * zoom);
+    ctx.fillStyle = '#00ff88';
+    ctx.font = `bold ${fs}px Segoe UI`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    // Arkaplan kutu
+    const lbl = `ORK. DUVAR ${sw.area.toFixed(1)}m²`;
+    const tw = ctx.measureText(lbl).width + 8;
+    ctx.fillStyle = 'rgba(0,40,20,0.75)';
+    ctx.fillRect(mx - tw/2, my - fs/2 - 2, tw, fs + 4);
+    ctx.fillStyle = '#00ff88';
+    ctx.fillText(lbl, mx, my);
+    ctx.textBaseline = 'alphabetic';
+  }
+  ctx.restore();
+}
+
+function drawGrid() {
+  const step = gridSize*SCALE*zoom;
+  if (step<6) return;
+  ctx.save();
+  ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=1;
+  for (let x=0;x<canvas.width;x+=step) { ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke(); }
+  for (let y=0;y<canvas.height;y+=step) { ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke(); }
+  ctx.strokeStyle='rgba(255,255,255,0.09)';
+  for (let x=0;x<canvas.width;x+=step*5) { ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke(); }
+  for (let y=0;y<canvas.height;y+=step*5) { ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke(); }
+  ctx.restore();
+}
+
+function drawObj(obj, isTemp) {
+  ctx.save();
+  if (isTemp) ctx.globalAlpha=0.55;
+  switch(obj.type) {
+    case 'room': drawRoom(obj); break;
+    case 'wall': drawWall(obj); break;
+    case 'panel': drawPanel(obj); break;
+    case 'door': drawDoor(obj); break;
+    case 'window': drawWindow(obj); break;
+    case 'cooling_unit': drawCooling(obj); break;
+    case 'pipe': drawPipe(obj); break;
+    case 'accessory': drawAccessory(obj); break;
+    case 'dimension': drawDimension(obj); break;
+    case 'text': drawText(obj); break;
+  }
+  ctx.restore();
+}
+
+function drawRoom(obj) {
+  const c = toCanvas(obj.x, obj.y);
+  const cw = obj.w*SCALE*zoom, ch = obj.h*SCALE*zoom;
+  const panPx = (obj.panelThickness||100)/1000*SCALE*zoom;
+  const fs = Math.max(9, 12*zoom);
+
+  // Outer fill
+  ctx.fillStyle = obj.fillColor||'#1a2535';
+  ctx.strokeStyle = obj.strokeColor||'#4488cc';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.rect(c.x,c.y,cw,ch); ctx.fill(); ctx.stroke();
+
+  // Panel insulation
+  if (panPx>1) {
+    const pc = PANEL_PRESETS[obj.panelType||'PUR']?.color||'#1a5a8a';
+    ctx.save();
+    ctx.fillStyle=pc; ctx.globalAlpha=0.55;
+    ctx.fillRect(c.x,c.y,cw,panPx);                         // top
+    ctx.fillRect(c.x,c.y+ch-panPx,cw,panPx);                // bottom
+    ctx.fillRect(c.x,c.y+panPx,panPx,ch-panPx*2);           // left
+    ctx.fillRect(c.x+cw-panPx,c.y+panPx,panPx,ch-panPx*2); // right
+    ctx.restore();
+    hatch(c.x,c.y,cw,panPx,pc);
+    hatch(c.x,c.y+ch-panPx,cw,panPx,pc);
+    hatch(c.x,c.y+panPx,panPx,ch-panPx*2,pc);
+    hatch(c.x+cw-panPx,c.y+panPx,panPx,ch-panPx*2,pc);
+  }
+
+  // Inner floor
+  ctx.fillStyle='#0f141e';
+  ctx.fillRect(c.x+panPx,c.y+panPx,cw-panPx*2,ch-panPx*2);
+
+  // Labels
+  ctx.fillStyle='#aaccee'; ctx.font=`${fs}px Segoe UI`; ctx.textAlign='center';
+  const wl = unit==='m'?`${obj.w.toFixed(2)} m`:`${(obj.w*1000).toFixed(0)} mm`;
+  const hl = unit==='m'?`${obj.h.toFixed(2)} m`:`${(obj.h*1000).toFixed(0)} mm`;
+  ctx.fillText(wl, c.x+cw/2, c.y-7*zoom);
+  ctx.save(); ctx.translate(c.x-8*zoom,c.y+ch/2); ctx.rotate(-Math.PI/2); ctx.fillText(hl,0,0); ctx.restore();
+
+  ctx.fillStyle='#fff'; ctx.font=`bold ${fs+2}px Segoe UI`;
+  ctx.fillText(obj.name||'Soğuk Oda', c.x+cw/2, c.y+ch/2-fs/2);
+
+  ctx.fillStyle='#6688aa'; ctx.font=`${fs}px Segoe UI`;
+  if (obj.panelType) ctx.fillText(`${obj.panelType} ${obj.panelThickness}mm`, c.x+cw/2, c.y+ch/2+fs/2+4);
+
+  const area=(obj.w*obj.h).toFixed(1), vol=(obj.w*obj.h*(obj.height||3)).toFixed(1);
+  ctx.fillText(`${area} m²  /  ${vol} m³`, c.x+cw/2, c.y+ch-8*zoom);
+
+  // Temperature badge
+  if (obj.tempType) {
+    const tLabels={pos:'+2/+8°C',neg:'-18/-22°C',deep:'-25°C',blast:'-35°C'};
+    const tColors={pos:'#2ec4b6',neg:'#0077b6',deep:'#023e8a',blast:'#03045e'};
+    ctx.fillStyle=tColors[obj.tempType]||'#0077b6';
+    ctx.beginPath(); roundRect2(c.x+4,c.y+4,70*zoom,18*zoom,4); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.font=`bold ${Math.max(8,9*zoom)}px Segoe UI`; ctx.textAlign='left';
+    ctx.fillText(tLabels[obj.tempType]||'', c.x+8,c.y+15*zoom);
+    ctx.textAlign='center';
+  }
+}
+
+function hatch(x,y,w,h,col) {
+  ctx.save(); ctx.strokeStyle=col; ctx.lineWidth=0.5; ctx.globalAlpha=0.25;
+  ctx.beginPath();
+  for (let i=-h;i<w+h;i+=8) { ctx.moveTo(x+i,y); ctx.lineTo(x+i+h,y+h); }
+  ctx.stroke(); ctx.restore();
+}
+
+function drawWall(obj) {
+  const c1=toCanvas(obj.x1,obj.y1), c2=toCanvas(obj.x2,obj.y2);
+  const t=(obj.thickness||0.2)*SCALE*zoom;
+  const angle=Math.atan2(c2.y-c1.y,c2.x-c1.x);
+  const dx=Math.sin(angle)*t/2, dy=Math.cos(angle)*t/2;
+  ctx.fillStyle=obj.fillColor||'#3a4a5a';
+  ctx.strokeStyle=obj.strokeColor||'#6699aa';
+  ctx.lineWidth=1.5;
+  ctx.beginPath();
+  ctx.moveTo(c1.x-dx,c1.y+dy); ctx.lineTo(c1.x+dx,c1.y-dy);
+  ctx.lineTo(c2.x+dx,c2.y-dy); ctx.lineTo(c2.x-dx,c2.y+dy);
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  const len=Math.sqrt((obj.x2-obj.x1)**2+(obj.y2-obj.y1)**2);
+  const lbl=unit==='m'?`${len.toFixed(2)}m`:`${(len*1000).toFixed(0)}mm`;
+  ctx.fillStyle='#aaccee'; ctx.font=`${Math.max(9,11*zoom)}px Segoe UI`; ctx.textAlign='center';
+  ctx.fillText(lbl,(c1.x+c2.x)/2,(c1.y+c2.y)/2-9*zoom);
+}
+
+function drawPanel(obj) {
+  const c=toCanvas(obj.x,obj.y);
+  const cw=obj.w*SCALE*zoom, ch=obj.h*SCALE*zoom;
+  const col=PANEL_PRESETS[obj.panelType||'PUR']?.color||'#1a5a8a';
+  ctx.fillStyle=col; ctx.globalAlpha=0.8;
+  ctx.fillRect(c.x,c.y,cw,ch); ctx.globalAlpha=1;
+  ctx.strokeStyle=lighten(col,50); ctx.lineWidth=1.5;
+  ctx.strokeRect(c.x,c.y,cw,ch);
+  hatch(c.x,c.y,cw,ch,col);
+  const fs=Math.max(9,11*zoom);
+  ctx.fillStyle='#fff'; ctx.font=`bold ${fs}px Segoe UI`; ctx.textAlign='center';
+  ctx.fillText(`${obj.panelType} ${obj.thickness}mm`, c.x+cw/2, c.y+ch/2+fs/3);
+}
+
+function drawDoor(obj) {
+  const c=toCanvas(obj.x,obj.y);
+  const cw=obj.w*SCALE*zoom, ch=obj.h*SCALE*zoom;
+  ctx.fillStyle='#5a3a1a'; ctx.strokeStyle='#cc8844'; ctx.lineWidth=2.5;
+  ctx.fillRect(c.x,c.y,cw,ch); ctx.strokeRect(c.x,c.y,cw,ch);
+
+  if (obj.doorType==='single_hinge') {
+    ctx.save(); ctx.strokeStyle='#ffaa44'; ctx.lineWidth=1.2; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.arc(c.x,c.y+ch,cw,-Math.PI/2,0); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(c.x,c.y+ch); ctx.lineTo(c.x+cw,c.y+ch); ctx.stroke();
+    ctx.setLineDash([]); ctx.restore();
+  } else if (obj.doorType==='double_hinge') {
+    ctx.save(); ctx.strokeStyle='#ffaa44'; ctx.lineWidth=1.2; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.arc(c.x,c.y+ch,cw/2,-Math.PI/2,0); ctx.stroke();
+    ctx.beginPath(); ctx.arc(c.x+cw,c.y+ch,cw/2,-Math.PI,-Math.PI/2); ctx.stroke();
+    ctx.setLineDash([]); ctx.restore();
+  } else if (obj.doorType==='sliding') {
+    ctx.save(); ctx.strokeStyle='#ffaa44'; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(c.x,c.y+ch/2); ctx.lineTo(c.x+cw*1.3,c.y+ch/2); ctx.stroke();
+    arrow(c.x+cw*1.3,c.y+ch/2,0,'#ffaa44');
+    ctx.setLineDash([]); ctx.restore();
+  } else if (obj.doorType==='saloon') {
+    ctx.save(); ctx.strokeStyle='#ffaa44'; ctx.lineWidth=1.2; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.arc(c.x+cw/2,c.y+ch,cw/2,Math.PI,0); ctx.stroke();
+    ctx.beginPath(); ctx.arc(c.x+cw/2,c.y+ch,cw/2,-Math.PI,0); ctx.stroke();
+    ctx.setLineDash([]); ctx.restore();
+  }
+
+  const fs=Math.max(8,10*zoom);
+  ctx.fillStyle='#ffcc88'; ctx.font=`bold ${fs}px Segoe UI`; ctx.textAlign='center';
+  const dtS={single_hinge:'TEK',double_hinge:'ÇİFT',sliding:'SÜRGÜLÜ',saloon:'KILIÇ'};
+  ctx.fillText(dtS[obj.doorType]||'KAPI', c.x+cw/2, c.y+ch/2);
+  ctx.font=`${fs}px Segoe UI`;
+  ctx.fillText(`${obj.w.toFixed(2)}m×${obj.h.toFixed(2)}m`, c.x+cw/2, c.y+ch-5*zoom);
+}
+
+function drawWindow(obj) {
+  const c=toCanvas(obj.x,obj.y);
+  const cw=obj.w*SCALE*zoom, ch=obj.h*SCALE*zoom;
+  ctx.fillStyle='rgba(100,200,255,0.15)'; ctx.strokeStyle='#44aaff'; ctx.lineWidth=1.5;
+  ctx.fillRect(c.x,c.y,cw,ch); ctx.strokeRect(c.x,c.y,cw,ch);
+  ctx.beginPath();
+  ctx.moveTo(c.x,c.y); ctx.lineTo(c.x+cw,c.y+ch);
+  ctx.moveTo(c.x+cw,c.y); ctx.lineTo(c.x,c.y+ch);
+  ctx.stroke();
+}
+
+function drawCooling(obj) {
+  const c=toCanvas(obj.x,obj.y);
+  const cw=obj.w*SCALE*zoom, ch=obj.h*SCALE*zoom;
+  const p=UNIT_PRESETS[obj.unitType]||UNIT_PRESETS.evaporator;
+  ctx.fillStyle='rgba(0,0,0,0.3)'; ctx.fillRect(c.x+3,c.y+3,cw,ch);
+  ctx.fillStyle=p.color; ctx.strokeStyle=lighten(p.color,60); ctx.lineWidth=2;
+  ctx.beginPath(); roundRect2(c.x,c.y,cw,ch,5*zoom); ctx.fill(); ctx.stroke();
+  const fs=Math.max(10,16*zoom);
+  ctx.font=`${fs}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(p.icon,c.x+cw/2,c.y+ch/2);
+  ctx.textBaseline='alphabetic';
+  ctx.fillStyle='#fff'; ctx.font=`bold ${Math.max(8,10*zoom)}px Segoe UI`;
+  ctx.fillText(p.name,c.x+cw/2,c.y+13*zoom);
+  if (obj.model) { ctx.font=`${Math.max(7,9*zoom)}px Segoe UI`; ctx.fillStyle='#aaccee'; ctx.fillText(obj.model,c.x+cw/2,c.y+ch-13*zoom); }
+  if (obj.capacity) { ctx.fillStyle='#ffdd88'; ctx.font=`${Math.max(7,9*zoom)}px Segoe UI`; ctx.fillText(obj.capacity+' kW',c.x+cw/2,c.y+ch-4*zoom); }
+}
+
+function drawPipe(obj) {
+  if (!obj.points||obj.points.length<2) return;
+  ctx.strokeStyle=PIPE_COLORS[obj.pipeType]||'#888';
+  ctx.lineWidth=Math.max(1.5,2.5*zoom);
+  if (obj.pipeType==='electric') ctx.setLineDash([8,4]);
+  if (obj.pipeType==='drain') ctx.setLineDash([3,3]);
+  ctx.beginPath();
+  const p0=toCanvas(obj.points[0].x,obj.points[0].y);
+  ctx.moveTo(p0.x,p0.y);
+  for (let i=1;i<obj.points.length;i++) { const p=toCanvas(obj.points[i].x,obj.points[i].y); ctx.lineTo(p.x,p.y); }
+  ctx.stroke(); ctx.setLineDash([]);
+
+  // Arrow at midpoint
+  if (obj.points.length>=2) {
+    const mi=Math.floor(obj.points.length/2);
+    const a=toCanvas(obj.points[mi-1].x,obj.points[mi-1].y);
+    const b=toCanvas(obj.points[mi].x,obj.points[mi].y);
+    const ang=Math.atan2(b.y-a.y,b.x-a.x);
+    const mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+    ctx.save(); ctx.fillStyle=PIPE_COLORS[obj.pipeType]||'#888';
+    ctx.translate(mx,my); ctx.rotate(ang);
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(-8*zoom,-4*zoom); ctx.lineTo(-8*zoom,4*zoom); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  if (obj.diameter) {
+    const mi=Math.floor(obj.points.length/2);
+    const mp=toCanvas(obj.points[mi].x,obj.points[mi].y);
+    ctx.fillStyle=PIPE_COLORS[obj.pipeType]||'#888';
+    ctx.font=`${Math.max(8,10*zoom)}px Segoe UI`; ctx.textAlign='center';
+    ctx.fillText(`DN${obj.diameter}`,mp.x,mp.y-9*zoom);
+  }
+}
+
+function drawAccessory(obj) {
+  const c=toCanvas(obj.x,obj.y);
+  const s=16*zoom;
+  const icons={valve:'🔴',filter:'🟡',pressure:'🔵',thermometer:'🌡️',sensor:'📡',controller:'🎛️'};
+  const cols={valve:'#cc2222',filter:'#aaaa22',pressure:'#2222cc',thermometer:'#22aaaa',sensor:'#aa22aa',controller:'#224488'};
+  const lbls={valve:'Vana',filter:'Filtre',pressure:'Basınç',thermometer:'Termo',sensor:'Sensör',controller:'Kontrol'};
+  ctx.fillStyle=cols[obj.accType]||'#444';
+  ctx.strokeStyle=lighten(cols[obj.accType]||'#444',50); ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(c.x,c.y,s,0,Math.PI*2); ctx.fill(); ctx.stroke();
+  ctx.font=`${Math.max(10,14*zoom)}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(icons[obj.accType]||'●',c.x,c.y); ctx.textBaseline='alphabetic';
+  ctx.fillStyle='#fff'; ctx.font=`${Math.max(7,9*zoom)}px Segoe UI`;
+  ctx.fillText(lbls[obj.accType]||obj.accType, c.x, c.y+s+11*zoom);
+}
+
+function drawDimension(obj) {
+  const c1=toCanvas(obj.x1,obj.y1), c2=toCanvas(obj.x2,obj.y2);
+  const off=32*zoom;
+  const ang=Math.atan2(c2.y-c1.y,c2.x-c1.x);
+  const px=Math.sin(ang)*off, py=-Math.cos(ang)*off;
+  ctx.save(); ctx.strokeStyle='#ffdd44'; ctx.fillStyle='#ffdd44'; ctx.lineWidth=1.5;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(c1.x,c1.y); ctx.lineTo(c1.x+px,c1.y+py);
+  ctx.moveTo(c2.x,c2.y); ctx.lineTo(c2.x+px,c2.y+py); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(c1.x+px,c1.y+py); ctx.lineTo(c2.x+px,c2.y+py); ctx.stroke();
+  const ha=Math.atan2((c2.y+py)-(c1.y+py),(c2.x+px)-(c1.x+px));
+  arrowAt(c1.x+px,c1.y+py,ha,'#ffdd44');
+  arrowAt(c2.x+px,c2.y+py,ha+Math.PI,'#ffdd44');
+  const dist=Math.sqrt((obj.x2-obj.x1)**2+(obj.y2-obj.y1)**2);
+  const lbl=unit==='m'?`${dist.toFixed(3)} m`:`${(dist*1000).toFixed(0)} mm`;
+  ctx.fillStyle='#fff'; ctx.font=`bold ${Math.max(9,11*zoom)}px Segoe UI`; ctx.textAlign='center';
+  ctx.fillText(lbl,(c1.x+c2.x)/2+px,(c1.y+c2.y)/2+py-8*zoom);
+  ctx.restore();
+}
+
+function drawText(obj) {
+  const c=toCanvas(obj.x,obj.y);
+  ctx.fillStyle=obj.color||'#ffffff';
+  ctx.font=`${Math.max(10,(obj.fontSize||12)*zoom)}px Segoe UI`;
+  ctx.textAlign='left'; ctx.fillText(obj.text,c.x,c.y);
+}
+
+function drawHandles(obj) {
+  ctx.save();
+  // Boru seçim vurgusu
+  if(obj.type==='pipe' && obj.points && obj.points.length>=2) {
+    ctx.strokeStyle='#00e5ff'; ctx.lineWidth=Math.max(3,4*zoom); ctx.setLineDash([6,3]);
+    ctx.beginPath();
+    const p0c=toCanvas(obj.points[0].x,obj.points[0].y); ctx.moveTo(p0c.x,p0c.y);
+    for(let i=1;i<obj.points.length;i++){const pc=toCanvas(obj.points[i].x,obj.points[i].y);ctx.lineTo(pc.x,pc.y);}
+    ctx.stroke(); ctx.setLineDash([]);
+    // Nokta handle'ları
+    ctx.fillStyle='#00e5ff';
+    for(const pt of obj.points){const pc=toCanvas(pt.x,pt.y);ctx.beginPath();ctx.arc(pc.x,pc.y,5*zoom,0,Math.PI*2);ctx.fill();}
+    ctx.restore(); return;
+  }
+  // Aksesuar seçim vurgusu
+  if(obj.type==='accessory') {
+    const c=toCanvas(obj.x,obj.y);
+    ctx.strokeStyle='#00e5ff'; ctx.lineWidth=2; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.arc(c.x,c.y,22*zoom,0,Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore(); return;
+  }
+  let bx,by,bw,bh;
+  if (['room','panel','door','window','cooling_unit'].includes(obj.type)) { bx=obj.x;by=obj.y;bw=obj.w;bh=obj.h; }
+  else { ctx.restore(); return; }
+  const c=toCanvas(bx,by); const cw=bw*SCALE*zoom, ch=bh*SCALE*zoom;
+  ctx.strokeStyle='#00e5ff'; ctx.lineWidth=1.5; ctx.setLineDash([5,3]);
+  ctx.strokeRect(c.x-3,c.y-3,cw+6,ch+6); ctx.setLineDash([]);
+  ctx.fillStyle='#00e5ff';
+  [[c.x,c.y],[c.x+cw/2,c.y],[c.x+cw,c.y],[c.x,c.y+ch/2],[c.x+cw,c.y+ch/2],
+   [c.x,c.y+ch],[c.x+cw/2,c.y+ch],[c.x+cw,c.y+ch]].forEach(([hx,hy])=>ctx.fillRect(hx-4,hy-4,8,8));
+  ctx.restore();
+}
+
+function drawRulers() {
+  const wrap = document.getElementById('canvas-wrap');
+  rH.width = wrap.clientWidth; rV.height = wrap.clientHeight;
+  const scrollX=wrap.scrollLeft, scrollY=wrap.scrollTop;
+  const step=gridSize*SCALE*zoom;
+
+  ctxH.clearRect(0,0,rH.width,24); ctxH.fillStyle='#22262f'; ctxH.fillRect(0,0,rH.width,24);
+  ctxH.fillStyle='#8899aa'; ctxH.font='9px Segoe UI'; ctxH.textAlign='center';
+  for (let x=0;x<rH.width+step;x+=step) {
+    const rx=x-(scrollX%step);
+    const worldX=(rx+scrollX)/(SCALE*zoom);
+    if (rx<0||rx>rH.width) continue;
+    ctxH.strokeStyle='#3a4055'; ctxH.lineWidth=1;
+    ctxH.beginPath(); ctxH.moveTo(rx,16); ctxH.lineTo(rx,24); ctxH.stroke();
+    ctxH.fillText(unit==='m'?worldX.toFixed(1):(worldX*1000).toFixed(0),rx,12);
+  }
+  ctxV.clearRect(0,0,24,rV.height); ctxV.fillStyle='#22262f'; ctxV.fillRect(0,0,24,rV.height);
+  ctxV.fillStyle='#8899aa'; ctxV.font='9px Segoe UI'; ctxV.textAlign='center';
+  for (let y=0;y<rV.height+step;y+=step) {
+    const ry=y-(scrollY%step);
+    const worldY=(ry+scrollY)/(SCALE*zoom);
+    if (ry<0||ry>rV.height) continue;
+    ctxV.strokeStyle='#3a4055'; ctxV.lineWidth=1;
+    ctxV.beginPath(); ctxV.moveTo(16,ry); ctxV.lineTo(24,ry); ctxV.stroke();
+    ctxV.save(); ctxV.translate(12,ry); ctxV.rotate(-Math.PI/2);
+    ctxV.fillText(unit==='m'?worldY.toFixed(1):(worldY*1000).toFixed(0),0,3); ctxV.restore();
+  }
+}
+
+function arrowAt(x,y,ang,col) {
+  const s=8*zoom;
+  ctx.save(); ctx.fillStyle=col; ctx.translate(x,y); ctx.rotate(ang);
+  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(-s,-s/2); ctx.lineTo(-s,s/2); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+
+function arrow(x,y,ang,col) { arrowAt(x,y,ang,col); }
+
+function roundRect2(x,y,w,h,r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r); ctx.closePath();
+}
+
+function lighten(hex,amt) {
+  try { let c=parseInt(hex.replace('#',''),16);
+    const r=Math.min(255,(c>>16)+amt), g=Math.min(255,((c>>8)&0xff)+amt), b=Math.min(255,(c&0xff)+amt);
+    return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1); } catch(e){return hex;}
+}
+
+// ============================================================
+// MOUSE
+// ============================================================
+canvas.addEventListener('mousedown', e => {
+  // Orta tuş veya Space+sol tuş → pan
+  if (e.button===1 || (e.button===0 && spaceDown)) {
+    e.preventDefault();
+    isPanning=true;
+    const wrap=document.getElementById('canvas-wrap');
+    panStartMouse={x:e.clientX,y:e.clientY};
+    panStartScroll={x:wrap.scrollLeft,y:wrap.scrollTop};
+    canvas.style.cursor='grab';
+    return;
+  }
+
+  const wp=getMouseWorld(e);
+  if (currentTool==='select') {
+    const hit=hitTest(wp.x,wp.y);
+    if (hit) {
+      selectedObj=hit; isDragging=true;
+      dragStartMouse={...wp};
+      dragStartPos={x:hit.x,y:hit.y,x1:hit.x1,y1:hit.y1,x2:hit.x2,y2:hit.y2};
+      updateObjPanel(hit);
+    } else { selectedObj=null; clearObjPanel(); }
+    draw(); return;
+  }
+  if (['room','wall','window','dimension'].includes(currentTool)) { isDrawing=true; drawStart={...wp}; return; }
+  if (isPipeTool()) {
+    if (e.detail >= 2) return; // dblclick ikinci tıklamasını yoksay
+    if (!isDrawing) { isDrawing=true; pipePoints=[{...wp}]; } else { pipePoints.push({...wp}); }
+    draw(); return;
+  }
+  if (currentTool==='text') {
+    const txt=document.getElementById('text-input').value||'Metin';
+    pushUndo(); objects.push({id:gid(),type:'text',x:wp.x,y:wp.y,text:txt,fontSize:parseInt(document.getElementById('font-size').value)||12,color:document.getElementById('stroke-color').value,layer:'structure'});
+    setTool('select'); draw(); return;
+  }
+  if (currentTool==='cooling_unit' && pendingUnit.type) { placeCoolingUnit(wp.x,wp.y); return; }
+  if (currentTool==='acc_place' && pendingAccessory) { placeAccAt(wp.x,wp.y,pendingAccessory); return; }
+});
+
+canvas.addEventListener('mousemove', e => {
+  // Pan modu
+  if (isPanning) {
+    const wrap=document.getElementById('canvas-wrap');
+    wrap.scrollLeft=panStartScroll.x-(e.clientX-panStartMouse.x);
+    wrap.scrollTop=panStartScroll.y-(e.clientY-panStartMouse.y);
+    return;
+  }
+
+  const wp=getMouseWorld(e); mousePos={...wp};
+  document.getElementById('st-pos').textContent = unit==='m'?`📍 X: ${wp.x.toFixed(2)}m, Y: ${wp.y.toFixed(2)}m`:`📍 X: ${(wp.x*1000).toFixed(0)}mm, Y: ${(wp.y*1000).toFixed(0)}mm`;
+
+  if (isDragging && selectedObj) {
+    const dx=wp.x-dragStartMouse.x, dy=wp.y-dragStartMouse.y;
+    let nx=dragStartPos.x+dx, ny=dragStartPos.y+dy;
+
+    // Snap-to-rooms (diğer odalara mıknatıs gibi yapış)
+    if (['room','panel','door','window','cooling_unit'].includes(selectedObj.type)) {
+      const snapped = snapToObjects(selectedObj, nx, ny);
+      nx=snapped.x; ny=snapped.y;
+    }
+
+    if (selectedObj.x !== undefined) { selectedObj.x=nx; selectedObj.y=ny; }
+    if (selectedObj.type==='wall') {
+      selectedObj.x1=dragStartPos.x1+dx; selectedObj.y1=dragStartPos.y1+dy;
+      selectedObj.x2=dragStartPos.x2+dx; selectedObj.y2=dragStartPos.y2+dy;
+    }
+    draw(); return;
+  }
+
+  if (isDrawing && drawStart) {
+    const x=Math.min(drawStart.x,wp.x), y=Math.min(drawStart.y,wp.y);
+    const w=Math.abs(wp.x-drawStart.x), h=Math.abs(wp.y-drawStart.y);
+    if (currentTool==='room') tempObj={id:'t',type:'room',x,y,w,h,name:'Oda',panelType:'PUR',panelThickness:100,fillColor:'#1a2535',strokeColor:'#4488cc',layer:'structure'};
+    else if (currentTool==='wall') tempObj={id:'t',type:'wall',x1:drawStart.x,y1:drawStart.y,x2:wp.x,y2:wp.y,x:drawStart.x,y:drawStart.y,thickness:0.2,layer:'structure'};
+    else if (currentTool==='window') tempObj={id:'t',type:'window',x,y,w,h,layer:'structure'};
+    else if (currentTool==='dimension') tempObj={id:'t',type:'dimension',x1:drawStart.x,y1:drawStart.y,x2:wp.x,y2:wp.y,x:drawStart.x,y:drawStart.y,layer:'dimensions'};
+    draw();
+  }
+  if (isPipeTool()&&isDrawing) draw();
+});
+
+canvas.addEventListener('mouseup', e => {
+  if (isPanning) {
+    isPanning=false;
+    canvas.style.cursor=currentTool==='select'?'default':'crosshair';
+    return;
+  }
+  const wp=getMouseWorld(e);
+  if (isDragging) { isDragging=false; pushUndo(); draw(); updateRoomInfo(); return; }
+  if (!isDrawing||!drawStart) return;
+  const x=Math.min(drawStart.x,wp.x), y=Math.min(drawStart.y,wp.y);
+  const w=Math.abs(wp.x-drawStart.x), h=Math.abs(wp.y-drawStart.y);
+  if (currentTool==='room') { if(w>0.3&&h>0.3) showRoomDetails(x,y,w,h); isDrawing=false;drawStart=null;tempObj=null;draw();return;}
+  if (currentTool==='wall') { if(w>0.05||h>0.05){pushUndo();objects.push({id:gid(),type:'wall',x1:drawStart.x,y1:drawStart.y,x2:wp.x,y2:wp.y,x:drawStart.x,y:drawStart.y,thickness:0.2,layer:'structure'});} isDrawing=false;drawStart=null;tempObj=null;draw();return;}
+  if (currentTool==='window') { if(w>0.1&&h>0.1){pushUndo();objects.push({id:gid(),type:'window',x,y,w,h,layer:'structure'});} isDrawing=false;drawStart=null;tempObj=null;draw();return;}
+  if (currentTool==='dimension') { pushUndo();objects.push({id:gid(),type:'dimension',x1:drawStart.x,y1:drawStart.y,x2:wp.x,y2:wp.y,x:drawStart.x,y:drawStart.y,layer:'dimensions'}); isDrawing=false;drawStart=null;tempObj=null;draw();return;}
+});
+
+canvas.addEventListener('dblclick', e => {
+  if (isPipeTool()&&isDrawing&&pipePoints.length>=2) finishPipe();
+});
+
+canvas.addEventListener('contextmenu', e => {
+  e.preventDefault();
+  if (isPipeTool()&&isDrawing) {
+    if(pipePoints.length>=2) finishPipe();
+    else { isDrawing=false; pipePoints=[]; draw(); }
+    return;
+  }
+  // Sağ tık menüsü
+  const wp=getMouseWorld(e);
+  const hit=hitTest(wp.x,wp.y);
+  showContextMenu(e.clientX, e.clientY, hit);
+});
+
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  zoom=Math.max(0.2,Math.min(5,zoom*(e.deltaY>0?0.9:1.1)));
+  document.getElementById('zoom-display').textContent=Math.round(zoom*100)+'%';
+  draw();
+}, {passive:false});
+
+function isPipeTool() { return ['pipe_liquid','pipe_suction','pipe_discharge','drain','electric'].includes(currentTool); }
+
+// Space tuşu ile pan
+let spaceDown=false;
+document.addEventListener('keydown', ev => {
+  if (ev.code==='Space' && ev.target.tagName!=='INPUT' && ev.target.tagName!=='TEXTAREA') {
+    spaceDown=true; canvas.style.cursor='grab'; ev.preventDefault();
+  }
+});
+document.addEventListener('keyup', ev => {
+  if (ev.code==='Space') { spaceDown=false; canvas.style.cursor=currentTool==='select'?'default':'crosshair'; }
+});
+
+// Snap-to-objects: sürüklenen nesneyi diğer nesne kenarlarına yapıştır
+function snapToObjects(obj, nx, ny) {
+  if (!snapEnabled) return {x:nx, y:ny};
+  const others = objects.filter(o => o.id!==obj.id && ['room','panel'].includes(o.type));
+  const ow=obj.w||0, oh=obj.h||0;
+  let bx=nx, by=ny;
+
+  for (const o of others) {
+    const th=SNAP_DIST;
+    // Sağ kenara yapış (obj sağ tarafı = o sol tarafı)
+    if (Math.abs((nx+ow)-o.x)<th) bx=o.x-ow;
+    // Sol kenara yapış (obj sol tarafı = o sağ tarafı)
+    if (Math.abs(nx-(o.x+o.w))<th) bx=o.x+o.w;
+    // Sağ kenara hizala (obj.x = o.x)
+    if (Math.abs(nx-o.x)<th) bx=o.x;
+    // Sol kenara hizala (obj.x+ow = o.x+o.w)
+    if (Math.abs((nx+ow)-(o.x+o.w))<th) bx=o.x+o.w-ow;
+
+    // Alt kenara yapış (obj alt = o üst)
+    if (Math.abs((ny+oh)-o.y)<th) by=o.y-oh;
+    // Üst kenara yapış (obj üst = o alt)
+    if (Math.abs(ny-(o.y+o.h))<th) by=o.y+o.h;
+    // Üst kenara hizala (obj.y = o.y)
+    if (Math.abs(ny-o.y)<th) by=o.y;
+    // Alt kenara hizala (obj.y+oh = o.y+o.h)
+    if (Math.abs((ny+oh)-(o.y+o.h))<th) by=o.y+o.h-oh;
+  }
+  return {x:bx, y:by};
+}
+
+// Sağ tık context menüsü
+function showContextMenu(cx, cy, obj) {
+  removeContextMenu();
+  ctxMenuObj=obj;
+  const menu=document.createElement('div');
+  menu.id='ctx-menu';
+  Object.assign(menu.style, {
+    position:'fixed', left:cx+'px', top:cy+'px',
+    background:'#22262f', border:'1px solid #3a4055', borderRadius:'8px',
+    padding:'6px 0', zIndex:'9998', minWidth:'180px',
+    boxShadow:'0 4px 20px rgba(0,0,0,0.6)', fontSize:'13px'
+  });
+
+  // Boru için özel menü
+  if(obj && obj.type==='pipe') {
+    const pipeNames={pipe_liquid:'🔵 Sıvı',pipe_suction:'🟣 Emme',pipe_discharge:'🔴 Basma',drain:'💧 Drenaj',electric:'⚡ Elektrik'};
+    const pipeItems = [
+      {icon:'ℹ️', label:`Hat: ${pipeNames[obj.pipeType]||obj.pipeType}`, fn:'void 0'},
+      {sep:true},
+      {icon:'✏️', label:'Çap Değiştir', fn:`changePipeDia()`},
+      {icon:'🗑️', label:'Bu Boruyu Sil', fn:'deleteSelected()', danger:true},
+    ];
+    for(const item of pipeItems){
+      if(item.sep){const sep=document.createElement('div');sep.style.cssText='height:1px;background:#3a4055;margin:4px 0';menu.appendChild(sep);continue;}
+      const el=document.createElement('div');
+      el.innerHTML=`${item.icon} ${item.label}`;
+      Object.assign(el.style,{padding:'7px 14px',cursor:'pointer',color:item.danger?'#e63946':'#e0e6f0',display:'flex',alignItems:'center',gap:'6px'});
+      el.onmouseenter=()=>el.style.background='#2a2f3b';
+      el.onmouseleave=()=>el.style.background='';
+      el.onclick=()=>{removeContextMenu();selectedObj=obj;updateObjPanel(obj);eval(item.fn);};
+      menu.appendChild(el);
+    }
+    document.body.appendChild(menu);
+    setTimeout(()=>document.addEventListener('mousedown',removeContextMenu,{once:true}),10);
+    return;
+  }
+
+  const items = obj ? [
+    ...(obj.type === 'room' ? [
+      {icon:'🚪', label:'Bu Odaya Kapı Ekle', fn:'showDoorModal(ctxMenuObj)'},
+      {icon:'🔲', label:'Bu Odaya Panel Ekle', fn:'showPanelModal(ctxMenuObj)'},
+      {sep:true},
+    ] : []),
+    {icon:'📋', label:'Kopyala (Ctrl+D)', fn:'copySelected()'},
+    {icon:'📋', label:'Yan Yana Kopyala →', fn:'copyNextTo("right")'},
+    {icon:'📋', label:'Alt Alta Kopyala ↓', fn:'copyNextTo("down")'},
+    {icon:'📋', label:'Sol Yana Kopyala ←', fn:'copyNextTo("left")'},
+    {icon:'📋', label:'Üst Üste Kopyala ↑', fn:'copyNextTo("up")'},
+    {sep:true},
+    {icon:'✏️', label:'Özelliklerini Düzenle', fn:'editSelected()'},
+    {sep:true},
+    {icon:'⬆️', label:'Öne Getir', fn:'bringForward()'},
+    {icon:'⬇️', label:'Arkaya Gönder', fn:'sendBackward()'},
+    {sep:true},
+    {icon:'🗑️', label:'Sil', fn:'deleteSelected()', danger:true},
+  ] : [
+    {icon:'📐', label:'Yeni Oda Ekle', fn:'showNewRoomModal()'},
+    {icon:'🚪', label:'Kapı Ekle', fn:'showDoorModal()'},
+    {sep:true},
+    {icon:'↩', label:'Geri Al (Ctrl+Z)', fn:'undo()'},
+    {icon:'↪', label:'İleri (Ctrl+Y)', fn:'redo()'},
+    {sep:true},
+    {icon:'🔍', label:'Zoom Sıfırla', fn:'resetZoom()'},
+    {icon:'📋', label:'Tümünü Seç', fn:'selectAll()'},
+  ];
+
+  for (const item of items) {
+    if (item.sep) {
+      const sep=document.createElement('div');
+      sep.style.cssText='height:1px;background:#3a4055;margin:4px 0';
+      menu.appendChild(sep); continue;
+    }
+    const el=document.createElement('div');
+    el.innerHTML=`${item.icon} ${item.label}`;
+    Object.assign(el.style, {
+      padding:'7px 14px', cursor:'pointer',
+      color: item.danger ? '#e63946' : '#e0e6f0',
+      display:'flex', alignItems:'center', gap:'6px'
+    });
+    el.onmouseenter=()=>el.style.background='#2a2f3b';
+    el.onmouseleave=()=>el.style.background='';
+    el.onclick=()=>{ removeContextMenu(); if(obj){selectedObj=obj;} eval(item.fn); };
+    menu.appendChild(el);
+  }
+
+  document.body.appendChild(menu);
+  setTimeout(()=>document.addEventListener('mousedown', removeContextMenu, {once:true}), 10);
+}
+
+function removeContextMenu() {
+  const m=document.getElementById('ctx-menu');
+  if(m) m.remove();
+}
+
+// Seçili nesneyi kopyala
+function copySelected() {
+  if(!selectedObj) return;
+  pushUndo();
+  const clone=JSON.parse(JSON.stringify(selectedObj));
+  clone.id=gid();
+  clone.x=(clone.x||0)+0.5;
+  clone.y=(clone.y||0)+0.5;
+  if(clone.name) clone.name=clone.name+' (Kopya)';
+  objects.push(clone);
+  selectedObj=clone;
+  updateObjPanel(clone);
+  updateRoomInfo();
+  draw();
+  toast('Nesne kopyalandı');
+}
+
+// Belirli yöne bitişik kopyala
+function copyNextTo(dir) {
+  if(!selectedObj) return;
+  const o=selectedObj;
+  pushUndo();
+  const clone=JSON.parse(JSON.stringify(o));
+  clone.id=gid();
+  if(clone.name) clone.name=clone.name+' 2';
+  switch(dir) {
+    case 'right': clone.x=(o.x||0)+(o.w||0); clone.y=o.y||0; break;
+    case 'left':  clone.x=(o.x||0)-(o.w||0); clone.y=o.y||0; break;
+    case 'down':  clone.x=o.x||0; clone.y=(o.y||0)+(o.h||0); break;
+    case 'up':    clone.x=o.x||0; clone.y=(o.y||0)-(o.h||0); break;
+  }
+  objects.push(clone);
+  selectedObj=clone;
+  updateObjPanel(clone);
+  updateRoomInfo();
+  draw();
+  const dirNames={right:'Sağ yana',left:'Sol yana',down:'Alt alta',up:'Üst üste'};
+  toast(`${dirNames[dir]} kopyalandı ✓`);
+}
+
+// Seçili nesneyi düzenle (oda ise modal aç)
+function editSelected() {
+  if(!selectedObj) return;
+  if(selectedObj.type==='room') showEditRoomModal(selectedObj);
+  else if(selectedObj.type==='door') showEditDoorModal(selectedObj);
+}
+
+function showEditRoomModal(obj) {
+  const tl={pos:'pos',neg:'neg',deep:'deep',blast:'blast'};
+  showModal(`<h3>✏️ Oda Düzenle</h3>
+    <div class="modal-row"><span class="modal-label">Oda Adı:</span><input class="modal-input" id="m-name" value="${obj.name||''}"></div>
+    <div class="modal-row"><span class="modal-label">Genişlik (m):</span><input class="modal-input" id="m-w" type="number" value="${obj.w.toFixed(2)}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Derinlik (m):</span><input class="modal-input" id="m-h" type="number" value="${obj.h.toFixed(2)}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Yükseklik (m):</span><input class="modal-input" id="m-hgt" type="number" value="${obj.height||3}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">X Konum:</span><input class="modal-input" id="m-x" type="number" value="${obj.x.toFixed(2)}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Y Konum:</span><input class="modal-input" id="m-y" type="number" value="${obj.y.toFixed(2)}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Panel Tipi:</span>
+      <select class="modal-select" id="m-pt">
+        <option value="PUR" ${obj.panelType==='PUR'?'selected':''}>PUR Poliüretan</option>
+        <option value="PIR" ${obj.panelType==='PIR'?'selected':''}>PIR Poliizosiyanurant</option>
+        <option value="EPS" ${obj.panelType==='EPS'?'selected':''}>EPS Strafor</option>
+      </select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Panel Kalınlığı (mm):</span>
+      <select class="modal-select" id="m-pth">
+        ${[60,80,100,120,150,200].map(t=>`<option ${obj.panelThickness==t?'selected':''}>${t}</option>`).join('')}
+      </select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Sıcaklık:</span>
+      <select class="modal-select" id="m-temp">
+        <option value="pos" ${obj.tempType==='pos'?'selected':''}>Pozitif (+2/+8°C)</option>
+        <option value="neg" ${obj.tempType==='neg'?'selected':''}>Negatif (-18/-22°C)</option>
+        <option value="deep" ${obj.tempType==='deep'?'selected':''}>Derin (-25°C)</option>
+        <option value="blast" ${obj.tempType==='blast'?'selected':''}>Şok (-35°C)</option>
+      </select>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="closeModal()">İptal</button>
+      <button class="btn-primary" onclick="applyEditRoom('${obj.id}')">✅ Kaydet</button>
+    </div>`);
+}
+
+function applyEditRoom(id) {
+  const obj=objects.find(o=>o.id===id); if(!obj) return;
+  pushUndo();
+  obj.name=document.getElementById('m-name').value||obj.name;
+  obj.w=parseFloat(document.getElementById('m-w').value)||obj.w;
+  obj.h=parseFloat(document.getElementById('m-h').value)||obj.h;
+  obj.height=parseFloat(document.getElementById('m-hgt').value)||obj.height;
+  obj.x=parseFloat(document.getElementById('m-x').value)||obj.x;
+  obj.y=parseFloat(document.getElementById('m-y').value)||obj.y;
+  obj.panelType=document.getElementById('m-pt').value;
+  obj.panelThickness=parseInt(document.getElementById('m-pth').value);
+  obj.tempType=document.getElementById('m-temp').value;
+  closeModal(); draw(); updateRoomInfo(); updateObjPanel(obj);
+  toast('Oda güncellendi ✓');
+}
+
+function showEditDoorModal(obj) {
+  showModal(`<h3>✏️ Kapı Düzenle</h3>
+    <div class="modal-row"><span class="modal-label">Kapı Tipi:</span>
+      <select class="modal-select" id="m-dt">
+        <option value="single_hinge" ${obj.doorType==='single_hinge'?'selected':''}>Tek Kanatlı Menteşeli</option>
+        <option value="double_hinge" ${obj.doorType==='double_hinge'?'selected':''}>Çift Kanatlı Menteşeli</option>
+        <option value="sliding" ${obj.doorType==='sliding'?'selected':''}>Sürgülü Kapı</option>
+        <option value="saloon" ${obj.doorType==='saloon'?'selected':''}>Kılıç Kapı</option>
+      </select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Genişlik (m):</span><input class="modal-input" id="m-dw" type="number" value="${obj.w.toFixed(2)}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Yükseklik (m):</span><input class="modal-input" id="m-dh" type="number" value="${obj.h.toFixed(2)}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">X:</span><input class="modal-input" id="m-dx" type="number" value="${obj.x.toFixed(2)}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Y:</span><input class="modal-input" id="m-dy" type="number" value="${obj.y.toFixed(2)}" step="0.05"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="closeModal()">İptal</button>
+      <button class="btn-primary" onclick="applyEditDoor('${obj.id}')">✅ Kaydet</button>
+    </div>`);
+}
+
+function applyEditDoor(id) {
+  const obj=objects.find(o=>o.id===id); if(!obj) return;
+  pushUndo();
+  obj.doorType=document.getElementById('m-dt').value;
+  obj.w=parseFloat(document.getElementById('m-dw').value)||obj.w;
+  obj.h=parseFloat(document.getElementById('m-dh').value)||obj.h;
+  obj.x=parseFloat(document.getElementById('m-dx').value)||obj.x;
+  obj.y=parseFloat(document.getElementById('m-dy').value)||obj.y;
+  closeModal(); draw(); toast('Kapı güncellendi ✓');
+}
+
+// Öne/arkaya
+function bringForward() {
+  if(!selectedObj) return;
+  const i=objects.indexOf(selectedObj);
+  if(i<objects.length-1){pushUndo();objects.splice(i,1);objects.push(selectedObj);draw();toast('Öne getirildi');}
+}
+function sendBackward() {
+  if(!selectedObj) return;
+  const i=objects.indexOf(selectedObj);
+  if(i>0){pushUndo();objects.splice(i,1);objects.unshift(selectedObj);draw();toast('Arkaya gönderildi');}
+}
+
+// Çoklu oda hızlı ekleme
+function showQuickAddModal() {
+  showModal(`<h3>⚡ Çoklu Oda Ekle</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Aynı özelliklerde birden fazla oda yerleştirin — yan yana, alt alta veya matris şeklinde.</p>
+    <div class="modal-row"><span class="modal-label">Oda Adı Ön Eki:</span><input class="modal-input" id="q-name" value="Soğuk Oda"></div>
+    <div class="modal-row"><span class="modal-label">Genişlik (m):</span><input class="modal-input" id="q-w" type="number" value="4" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Derinlik (m):</span><input class="modal-input" id="q-h" type="number" value="3" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Yükseklik (m):</span><input class="modal-input" id="q-hgt" type="number" value="3" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Panel Tipi:</span>
+      <select class="modal-select" id="q-pt"><option value="PUR">PUR</option><option value="PIR">PIR</option><option value="EPS">EPS</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Panel Kalınlığı:</span>
+      <select class="modal-select" id="q-pth"><option>60</option><option>80</option><option selected>100</option><option>120</option><option>150</option><option>200</option></select>
+      <span style="font-size:11px">mm</span>
+    </div>
+    <div class="modal-row"><span class="modal-label">Sıcaklık:</span>
+      <select class="modal-select" id="q-temp"><option value="pos">Pozitif +2/+8°C</option><option value="neg" selected>Negatif -18/-22°C</option><option value="deep">Derin -25°C</option><option value="blast">Şok -35°C</option></select>
+    </div>
+    <hr style="border-color:var(--border);margin:10px 0">
+    <b style="font-size:12px;color:var(--accent)">Yerleşim</b>
+    <div class="modal-row" style="margin-top:8px"><span class="modal-label">Sütun Sayısı:</span><input class="modal-input" id="q-cols" type="number" value="3" min="1" max="10" step="1"></div>
+    <div class="modal-row"><span class="modal-label">Satır Sayısı:</span><input class="modal-input" id="q-rows" type="number" value="1" min="1" max="10" step="1"></div>
+    <div class="modal-row"><span class="modal-label">Boşluk (m):</span><input class="modal-input" id="q-gap" type="number" value="0" min="0" step="0.1" placeholder="0 = bitişik"></div>
+    <div class="modal-row"><span class="modal-label">Başlangıç X (m):</span><input class="modal-input" id="q-x" type="number" value="1" step="0.5"></div>
+    <div class="modal-row"><span class="modal-label">Başlangıç Y (m):</span><input class="modal-input" id="q-y" type="number" value="1" step="0.5"></div>
+    <div style="background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:8px;font-size:11px;color:var(--text2);margin-top:8px">
+      💡 3 sütun × 1 satır = 3 oda yan yana<br>
+      💡 1 sütun × 3 satır = 3 oda alt alta<br>
+      💡 2 sütun × 2 satır = 4 oda matris
+    </div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="closeModal()">İptal</button>
+      <button class="btn-primary" onclick="addMultipleRooms()">✅ Odaları Ekle</button>
+    </div>`);
+}
+
+function addMultipleRooms() {
+  const name=document.getElementById('q-name').value||'Soğuk Oda';
+  const w=parseFloat(document.getElementById('q-w').value)||4;
+  const h=parseFloat(document.getElementById('q-h').value)||3;
+  const height=parseFloat(document.getElementById('q-hgt').value)||3;
+  const pt=document.getElementById('q-pt').value;
+  const pth=parseInt(document.getElementById('q-pth').value);
+  const temp=document.getElementById('q-temp').value;
+  const cols=parseInt(document.getElementById('q-cols').value)||1;
+  const rows=parseInt(document.getElementById('q-rows').value)||1;
+  const gap=parseFloat(document.getElementById('q-gap').value)||0;
+  const startX=parseFloat(document.getElementById('q-x').value)||0;
+  const startY=parseFloat(document.getElementById('q-y').value)||0;
+
+  pushUndo();
+  let count=0;
+  for(let row=0;row<rows;row++) {
+    for(let col=0;col<cols;col++) {
+      count++;
+      objects.push({
+        id:gid(), type:'room',
+        x: startX + col*(w+gap),
+        y: startY + row*(h+gap),
+        w, h, height,
+        name: (cols*rows>1) ? `${name} ${count}` : name,
+        panelType:pt, panelThickness:pth, tempType:temp,
+        fillColor:'#1a2535', strokeColor:'#4488cc', layer:'structure'
+      });
+    }
+  }
+  closeModal();
+  setTool('select');
+  updateRoomInfo();
+  draw();
+  toast(`${count} oda eklendi ✓`);
+}
+
+// Tümünü seç
+function selectAll() {
+  if(objects.length===0) return;
+  selectedObj=objects[objects.length-1];
+  updateObjPanel(selectedObj);
+  draw();
+  toast(`${objects.length} nesne var — son seçildi`);
+}
+
+function finishPipe() {
+  if(pipePoints.length < 2) { isDrawing=false; pipePoints=[]; draw(); return; }
+  pushUndo();
+  const pipeNames={pipe_liquid:'Sıvı Borusu',pipe_suction:'Emme Borusu',pipe_discharge:'Basma Borusu',drain:'Drenaj',electric:'Elektrik Hattı'};
+  objects.push({id:gid(),type:'pipe',pipeType:currentTool,points:[...pipePoints],x:pipePoints[0].x,y:pipePoints[0].y,diameter:22,layer:'piping'});
+  isDrawing=false; pipePoints=[];
+  draw();
+  toast(`✅ ${pipeNames[currentTool]||'Boru'} çizildi. Devam etmek için tıklayın.`);
+}
+
+// ============================================================
+// HIT TEST
+// ============================================================
+function hitTest(wx,wy) {
+  for (let i=objects.length-1;i>=0;i--) {
+    const o=objects[i]; if (!layers[o.layer]) continue;
+    if (['room','panel','door','window','cooling_unit'].includes(o.type)) { if(wx>=o.x&&wx<=o.x+o.w&&wy>=o.y&&wy<=o.y+o.h) return o; }
+    if (o.type==='accessory') { if(Math.sqrt((wx-o.x)**2+(wy-o.y)**2)<0.4) return o; }
+    if (o.type==='text') { if(Math.abs(wx-o.x)<2&&Math.abs(wy-o.y)<0.4) return o; }
+    if (o.type==='wall') { if(ptLineDist(wx,wy,o.x1,o.y1,o.x2,o.y2)<0.25) return o; }
+    if (o.type==='pipe' && o.points && o.points.length>=2) {
+      for (let j=1;j<o.points.length;j++) {
+        if(ptLineDist(wx,wy,o.points[j-1].x,o.points[j-1].y,o.points[j].x,o.points[j].y)<0.25) return o;
+      }
+    }
+  }
+  return null;
+}
+function ptLineDist(px,py,x1,y1,x2,y2) {
+  const dx=x2-x1,dy=y2-y1,l2=dx*dx+dy*dy;
+  if(l2===0) return Math.sqrt((px-x1)**2+(py-y1)**2);
+  const t=Math.max(0,Math.min(1,((px-x1)*dx+(py-y1)*dy)/l2));
+  return Math.sqrt((px-x1-t*dx)**2+(py-y1-t*dy)**2);
+}
+
+// ============================================================
+// TOOLS
+// ============================================================
+function setTool(t) {
+  currentTool=t; isDrawing=false; pipePoints=[]; tempObj=null; drawStart=null;
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  const id='tool-'+t.replace(/_/g,'-');
+  const btn=document.getElementById(id); if(btn) btn.classList.add('active');
+  const names={select:'Seçim',room:'Oda Çiz',wall:'Duvar',panel:'Panel',door:'Kapı',window:'Pencere',
+    pipe_liquid:'Sıvı Borusu',pipe_suction:'Emme Borusu',pipe_discharge:'Basma Borusu',
+    drain:'Drenaj',electric:'Elektrik',dimension:'Ölçü Çizgisi',text:'Metin',
+    cooling_unit:'Soğutma Ünitesi Yerleştir',acc_place:'Aksesuar Yerleştir'};
+  document.getElementById('st-tool').textContent='🔧 Araç: '+(names[t]||t);
+  canvas.style.cursor=t==='select'?'default':t==='text'?'text':'crosshair';
+  draw();
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function showModal(html) { document.getElementById('modal-content').innerHTML=html; document.getElementById('modal-bg').style.display='flex'; }
+function closeModal() { document.getElementById('modal-bg').style.display='none'; }
+
+function showNewRoomModal() {
+  showModal(`<h3>📐 Yeni Soğuk Oda</h3>
+    <div class="modal-row"><span class="modal-label">Oda Adı:</span><input class="modal-input" id="m-name" value="Soğuk Oda 1"></div>
+    <div class="modal-row"><span class="modal-label">Genişlik (m):</span><input class="modal-input" id="m-w" type="number" value="5" step="0.1" min="0.5"></div>
+    <div class="modal-row"><span class="modal-label">Derinlik (m):</span><input class="modal-input" id="m-h" type="number" value="4" step="0.1" min="0.5"></div>
+    <div class="modal-row"><span class="modal-label">Yükseklik (m):</span><input class="modal-input" id="m-hgt" type="number" value="3" step="0.1" min="1"></div>
+    <div class="modal-row"><span class="modal-label">Panel Tipi:</span>
+      <select class="modal-select" id="m-pt"><option value="PUR">PUR Poliüretan</option><option value="PIR">PIR Poliizosiyanurant</option><option value="EPS">EPS Strafor</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Panel Kalınlığı (mm):</span>
+      <select class="modal-select" id="m-pth"><option>60</option><option>80</option><option selected>100</option><option>120</option><option>150</option><option>200</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Kullanım Sıcaklığı:</span>
+      <select class="modal-select" id="m-temp"><option value="pos">Pozitif (+2 / +8°C)</option><option value="neg">Negatif (-18 / -22°C)</option><option value="deep">Derin Dondurucu (-25°C)</option><option value="blast">Şok Soğutucu (-35°C)</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Başlangıç X (m):</span><input class="modal-input" id="m-x" type="number" value="1" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Başlangıç Y (m):</span><input class="modal-input" id="m-y" type="number" value="1" step="0.1"></div>
+    <div class="modal-btns"><button class="btn-secondary" onclick="closeModal()">İptal</button><button class="btn-primary" onclick="addRoom()">✅ Oda Oluştur</button></div>`);
+}
+
+function showRoomDetails(x,y,w,h) {
+  showModal(`<h3>📐 Oda Detayları</h3>
+    <div class="modal-row"><span class="modal-label">Oda Adı:</span><input class="modal-input" id="m-name" value="Soğuk Oda"></div>
+    <div class="modal-row"><span class="modal-label">Çizilen Genişlik:</span><b style="color:var(--accent)">${w.toFixed(2)} m</b></div>
+    <div class="modal-row"><span class="modal-label">Çizilen Derinlik:</span><b style="color:var(--accent)">${h.toFixed(2)} m</b></div>
+    <div class="modal-row"><span class="modal-label">Yükseklik (m):</span><input class="modal-input" id="m-hgt" type="number" value="3" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Panel Tipi:</span>
+      <select class="modal-select" id="m-pt"><option value="PUR">PUR Poliüretan</option><option value="PIR">PIR Poliizosiyanurant</option><option value="EPS">EPS Strafor</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Panel Kalınlığı (mm):</span>
+      <select class="modal-select" id="m-pth"><option>60</option><option>80</option><option selected>100</option><option>120</option><option>150</option><option>200</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Sıcaklık Tipi:</span>
+      <select class="modal-select" id="m-temp"><option value="pos">Pozitif (+2/+8°C)</option><option value="neg">Negatif (-18/-22°C)</option><option value="deep">Derin (-25°C)</option><option value="blast">Şok (-35°C)</option></select>
+    </div>
+    <input type="hidden" id="m-x" value="${x}"><input type="hidden" id="m-y" value="${y}">
+    <input type="hidden" id="m-w" value="${w}"><input type="hidden" id="m-h" value="${h}">
+    <div class="modal-btns"><button class="btn-secondary" onclick="closeModal()">İptal</button><button class="btn-primary" onclick="addRoom()">✅ Ekle</button></div>`);
+}
+
+function addRoom() {
+  const x=parseFloat(document.getElementById('m-x').value);
+  const y=parseFloat(document.getElementById('m-y').value);
+  const w=parseFloat(document.getElementById('m-w').value);
+  const h=parseFloat(document.getElementById('m-h').value);
+  pushUndo();
+  objects.push({id:gid(),type:'room',x,y,w,h,
+    height:parseFloat(document.getElementById('m-hgt').value)||3,
+    name:document.getElementById('m-name').value||'Soğuk Oda',
+    panelType:document.getElementById('m-pt').value,
+    panelThickness:parseInt(document.getElementById('m-pth').value),
+    tempType:document.getElementById('m-temp').value,
+    fillColor:'#1a2535',strokeColor:'#4488cc',layer:'structure'});
+  closeModal(); setTool('select'); updateRoomInfo(); draw();
+}
+
+function showPanelModal(anchorObj=null) {
+  const defaults = getDefaultPanelValues(anchorObj);
+  showModal(`<h3>🔲 Panel Yerleştir</h3>
+    <div class="modal-row"><span class="modal-label">Panel Tipi:</span>
+      <select class="modal-select" id="m-pt"><option value="PUR" ${defaults.panelType==='PUR'?'selected':''}>PUR Poliüretan</option><option value="PIR" ${defaults.panelType==='PIR'?'selected':''}>PIR Poliizosiyanurant</option><option value="EPS" ${defaults.panelType==='EPS'?'selected':''}>EPS Strafor</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Kalınlık (mm):</span>
+      <select class="modal-select" id="m-pth"><option>60</option><option>80</option><option selected>100</option><option>120</option><option>150</option><option>200</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Genişlik (m):</span><input class="modal-input" id="m-pw" type="number" value="${defaults.w}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Yükseklik (m):</span><input class="modal-input" id="m-ph" type="number" value="${defaults.h}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">X:</span><input class="modal-input" id="m-x" type="number" value="${defaults.x}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Y:</span><input class="modal-input" id="m-y" type="number" value="${defaults.y}" step="0.1"></div>
+    <div class="modal-btns"><button class="btn-secondary" onclick="closeModal()">İptal</button><button class="btn-primary" onclick="addPanel()">✅ Panel Ekle</button></div>`);
+  document.getElementById('m-pth').value = String(defaults.thickness);
+}
+
+function addPanel() {
+  const x = parseFloat(document.getElementById('m-x').value);
+  const y = parseFloat(document.getElementById('m-y').value);
+  const w = parseFloat(document.getElementById('m-pw').value);
+  const h = parseFloat(document.getElementById('m-ph').value);
+  if (!(w > 0 && h > 0)) { toast('Geçerli panel ölçüsü girin'); return; }
+  pushUndo();
+  const panel = {id:gid(),type:'panel',
+    x,y,w,h,
+    panelType:document.getElementById('m-pt').value,thickness:parseInt(document.getElementById('m-pth').value),layer:'panels'};
+  objects.push(panel);
+  selectedObj = panel;
+  closeModal(); setTool('select'); updateObjPanel(panel); updateRoomInfo(); draw();
+  toast('Panel eklendi ✓');
+}
+
+function showDoorModal(anchorObj=null) {
+  const defaults = getDefaultDoorValues(anchorObj);
+  showModal(`<h3>🚪 Kapı Ekle</h3>
+    <div class="modal-row"><span class="modal-label">Kapı Tipi:</span>
+      <select class="modal-select" id="m-dt"><option value="single_hinge">Tek Kanatlı Menteşeli</option><option value="double_hinge">Çift Kanatlı Menteşeli</option><option value="sliding">Sürgülü Kapı</option><option value="saloon">Kılıç Kapı (Saloon)</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">Kapı Genişliği (m):</span><input class="modal-input" id="m-dw" type="number" value="${defaults.w}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Kapı Yüksekliği (m):</span><input class="modal-input" id="m-dh" type="number" value="${defaults.h}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Panel Kalınlığı (mm):</span>
+      <select class="modal-select" id="m-dpth"><option>60</option><option>80</option><option selected>100</option><option>120</option><option>150</option></select>
+    </div>
+    <div class="modal-row"><span class="modal-label">X Konumu (m):</span><input class="modal-input" id="m-dx" type="number" value="${defaults.x}" step="0.05"></div>
+    <div class="modal-row"><span class="modal-label">Y Konumu (m):</span><input class="modal-input" id="m-dy" type="number" value="${defaults.y}" step="0.05"></div>
+    <div class="modal-btns"><button class="btn-secondary" onclick="closeModal()">İptal</button><button class="btn-primary" onclick="addDoor()">✅ Kapı Ekle</button></div>`);
+  document.getElementById('m-dpth').value = String(defaults.thickness);
+}
+
+function addDoor() {
+  const x = parseFloat(document.getElementById('m-dx').value);
+  const y = parseFloat(document.getElementById('m-dy').value);
+  const w = parseFloat(document.getElementById('m-dw').value);
+  const h = parseFloat(document.getElementById('m-dh').value);
+  if (!(w > 0 && h > 0)) { toast('Geçerli kapı ölçüsü girin'); return; }
+  pushUndo();
+  const door = {id:gid(),type:'door',
+    x,y,w,h,
+    doorType:document.getElementById('m-dt').value,panelThickness:parseInt(document.getElementById('m-dpth').value),layer:'doors'};
+  objects.push(door);
+  selectedObj = door;
+  closeModal(); setTool('select'); updateObjPanel(door); updateRoomInfo(); draw();
+  toast('Kapı eklendi ✓');
+}
+
+function showUnitModal(type) {
+  const p=UNIT_PRESETS[type];
+  showModal(`<h3>${p.icon} ${p.name} Ekle</h3>
+    <div class="modal-row"><span class="modal-label">Model:</span><input class="modal-input" id="m-um" placeholder="Örn: Bitzer 2EES"></div>
+    <div class="modal-row"><span class="modal-label">Kapasite (kW):</span><input class="modal-input" id="m-uc" type="number" step="0.5" placeholder="kW"></div>
+    <div class="modal-row"><span class="modal-label">Genişlik (m):</span><input class="modal-input" id="m-uw" type="number" value="${p.w}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Derinlik (m):</span><input class="modal-input" id="m-uh" type="number" value="${p.h}" step="0.1"></div>
+    <div class="modal-row"><span class="modal-label">Bağlantı:</span>
+      <select class="modal-select" id="m-ub"><option>Sıvı + Emme</option><option>Sıvı + Emme + Basma</option><option>Monoblok</option></select>
+    </div>
+    <p style="font-size:11px;color:var(--text2);margin-top:6px">💡 Tamam'dan sonra canvas üzerine tıklayarak yerleştirin</p>
+    <div class="modal-btns"><button class="btn-secondary" onclick="closeModal()">İptal</button><button class="btn-primary" onclick="prepUnit('${type}')">✅ Yerleştir</button></div>`);
+}
+
+function prepUnit(type) {
+  pendingUnit={type,model:document.getElementById('m-um').value,capacity:document.getElementById('m-uc').value,
+    w:parseFloat(document.getElementById('m-uw').value),h:parseFloat(document.getElementById('m-uh').value)};
+  closeModal(); setTool('cooling_unit'); toast(`${UNIT_PRESETS[type].name} yerleştirmek için tıklayın`);
+}
+
+function placeCoolingUnit(x,y) {
+  pushUndo();
+  objects.push({id:gid(),type:'cooling_unit',x,y,w:pendingUnit.w||1.2,h:pendingUnit.h||0.6,
+    unitType:pendingUnit.type,model:pendingUnit.model,capacity:pendingUnit.capacity,layer:'cooling'});
+  pendingUnit={}; setTool('select'); draw();
+}
+
+function changePipeDia() {
+  if(!selectedObj||selectedObj.type!=='pipe') return;
+  const newDia = prompt(`Boru çapı (DN): Mevcut = DN${selectedObj.diameter||22}`, selectedObj.diameter||22);
+  if(newDia && !isNaN(parseInt(newDia))) { pushUndo(); selectedObj.diameter=parseInt(newDia); draw(); updateObjPanel(selectedObj); toast(`Çap güncellendi: DN${selectedObj.diameter}`); }
+}
+
+function placeAccessory(type) {
+  const accNames={valve:'Vana',filter:'Filtre',pressure:'Basınç Göstergesi',thermometer:'Termometre',sensor:'Sensör',controller:'Kontrol Panosu'};
+  pendingAccessory=type; setTool('acc_place');
+  toast(`📍 ${accNames[type]||type} yerleştirmek için canvas'a tıklayın`);
+}
+
+function placeAccAt(x,y,type) {
+  pushUndo();
+  objects.push({id:gid(),type:'accessory',x,y,accType:type,layer:'accessories'});
+  draw(); // Aynı aksesuarı tekrar yerleştirmeye devam et (Esc veya sağ tık ile çık)
+}
+
+// ============================================================
+// BOM
+// ============================================================
+function showBOM() {
+  const bom = genBOM();
+  const sharedWalls = getSharedWalls();
+  const rooms = objects.filter(o => o.type === 'room');
+  const bomTotal = bom.reduce((sum, row) => sum + (Number(row.totalPrice) || 0), 0);
+
+  // ── Ortak Duvar Özet Tablosu ──
+  let sharedHtml = '';
+  if (sharedWalls.length > 0) {
+    const totalSharedArea = sharedWalls.reduce((s, sw) => s + sw.area, 0);
+    sharedHtml = `
+      <div style="margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#00ff88">🔗 Ortak / Bölüm Duvarları</span>
+          <span style="background:#004422;color:#00ff88;font-size:11px;padding:2px 8px;border-radius:10px">
+            Toplam tasarruf: ${totalSharedArea.toFixed(1)} m²
+          </span>
+        </div>
+        <table class="bom-table">
+          <thead><tr>
+            <th>Oda A</th><th>Oda B</th><th>Duvar Yönü</th>
+            <th>Uzunluk</th><th>Yükseklik</th><th>Alan</th><th>Açıklama</th>
+          </tr></thead>
+          <tbody>
+            ${sharedWalls.map(sw => `
+              <tr>
+                <td style="color:#00cc66">${sw.roomA.name}</td>
+                <td style="color:#00cc66">${sw.roomB.name}</td>
+                <td>${sw.side === 'dikey' ? '↔ Yan Yana' : '↕ Üst-Alt'}</td>
+                <td>${sw.length.toFixed(2)} m</td>
+                <td>${sw.height.toFixed(1)} m</td>
+                <td style="color:#00ff88;font-weight:700">${sw.area.toFixed(2)} m²</td>
+                <td style="color:#88bb88;font-size:11px">Bu alan her iki odadan 1× sayılır</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+
+        <div style="background:#001a0d;border:1px solid #00aa44;border-radius:6px;padding:10px;margin-top:8px;font-size:12px">
+          <b style="color:#00ff88">📐 Oda Bazlı Panel Dökümü</b><br>
+          <table class="bom-table" style="margin-top:6px">
+            <thead><tr><th>Oda</th><th>Brüt Alan</th><th>Ortak Duvar</th><th>Net Panel</th><th>Panel</th></tr></thead>
+            <tbody>
+              ${rooms.map(r => {
+                const bd = calcRoomPanelBreakdown(r, sharedWalls);
+                return `<tr>
+                  <td><b>${r.name}</b></td>
+                  <td>${bd.grossArea.toFixed(1)} m²</td>
+                  <td style="color:#ff8844">${bd.sharedArea > 0 ? '-' + bd.sharedArea.toFixed(1) + ' m²' : '—'}</td>
+                  <td style="color:#00ff88;font-weight:700">${bd.netArea.toFixed(1)} m²</td>
+                  <td style="font-size:11px">${bd.panelType} ${bd.panelThickness}mm</td>
+                </tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+          ${sharedWalls.length > 0 ? `
+          <div style="margin-top:8px;padding:7px;background:#002211;border-radius:4px;font-size:11px;color:#88cc88">
+            ⚠️ <b>Not:</b> Ortak duvarlar her iki odanın panel hesabından düşülmüştür.
+            Bitişik odalarda aynı sıcaklık farkı varsa ortak duvar bazen daha ince
+            panel kullanılabilir (termik köprü riski azalır). Mühendis onayı alınız.
+          </div>` : ''}
+        </div>
+      </div>
+      <hr style="border-color:var(--border);margin:10px 0">`;
+  }
+
+  // ── Ana BOM tablosu ──
+  const rows = bom.map(r => `
+    <tr>
+      <td>${r.cat}</td>
+      <td>${r.name}</td>
+      <td style="font-weight:700;color:var(--accent)">${formatQty(r.qty)}</td>
+      <td>${r.unit}</td>
+      <td style="font-size:11px;color:var(--text2)">${r.note}</td>
+      <td style="text-align:right">${r.unitPrice > 0 ? formatMoneyEUR(r.unitPrice) : '-'}</td>
+      <td style="text-align:right;font-weight:700;color:#8dd6ff">${r.totalPrice > 0 ? formatMoneyEUR(r.totalPrice) : '-'}</td>
+    </tr>`).join('');
+
+  showModal(`
+    <h3>📋 Malzeme & Ekipman Listesi</h3>
+    ${sharedHtml}
+    <b style="font-size:12px;color:var(--accent)">Genel Malzeme Listesi (Net)</b>
+    <table class="bom-table" style="margin-top:6px">
+      <thead><tr><th>Kategori</th><th>Malzeme</th><th>Miktar (Net)</th><th>Birim</th><th>Not</th><th>Birim Fiyat</th><th>Toplam</th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="7" style="text-align:center;color:var(--text2)">Nesne bulunamadı</td></tr>'}</tbody>
+    </table>
+    <div style="margin-top:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--panel2);display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:12px;color:var(--text2)">Yaklaşık net BOM toplamı</span>
+      <span style="font-size:16px;font-weight:800;color:var(--accent)">${formatMoneyEUR(bomTotal)}</span>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="closeModal()">Kapat</button>
+      <button class="btn-primary" onclick="exportBOMCSV()">⬇️ CSV İndir</button>
+    </div>`);
+}
+
+// ============================================================
+// ORTAK DUVAR ANALİZİ
+// ============================================================
+// İki oda arasındaki çakışan kenar uzunluğunu hesapla
+// Tolerans: 2 × max panel kalınlığı (200mm = 0.2m) kadar örtüşme sayılır
+const SHARED_TOL = 0.25; // metre
+
+function getSharedWalls() {
+  const rooms = objects.filter(o => o.type === 'room');
+  const shared = []; // { roomA, roomB, side, length, height, area, panelType, panelThickness }
+
+  for (let i = 0; i < rooms.length; i++) {
+    for (let j = i + 1; j < rooms.length; j++) {
+      const a = rooms[i], b = rooms[j];
+      const ha = a.height || 3, hb = b.height || 3;
+      const wallH = Math.min(ha, hb); // ortak duvar alçak odanın yüksekliğini kullanır
+
+      // Sağ duvarı A — Sol duvarı B  (A.x2 ≈ B.x1)
+      if (Math.abs((a.x + a.w) - b.x) <= SHARED_TOL) {
+        const ov = segOverlap(a.y, a.y+a.h, b.y, b.y+b.h);
+        if (ov > 0.01) shared.push({ roomA:a, roomB:b, side:'dikey', length:ov, height:wallH, area:ov*wallH });
+      }
+      // Sol duvarı A — Sağ duvarı B  (B.x2 ≈ A.x1)
+      if (Math.abs((b.x + b.w) - a.x) <= SHARED_TOL) {
+        const ov = segOverlap(a.y, a.y+a.h, b.y, b.y+b.h);
+        if (ov > 0.01) shared.push({ roomA:a, roomB:b, side:'dikey', length:ov, height:wallH, area:ov*wallH });
+      }
+      // Alt duvarı A — Üst duvarı B  (A.y2 ≈ B.y1)
+      if (Math.abs((a.y + a.h) - b.y) <= SHARED_TOL) {
+        const ov = segOverlap(a.x, a.x+a.w, b.x, b.x+b.w);
+        if (ov > 0.01) shared.push({ roomA:a, roomB:b, side:'yatay', length:ov, height:wallH, area:ov*wallH });
+      }
+      // Üst duvarı A — Alt duvarı B  (B.y2 ≈ A.y1)
+      if (Math.abs((b.y + b.h) - a.y) <= SHARED_TOL) {
+        const ov = segOverlap(a.x, a.x+a.w, b.x, b.x+b.w);
+        if (ov > 0.01) shared.push({ roomA:a, roomB:b, side:'yatay', length:ov, height:wallH, area:ov*wallH });
+      }
+    }
+  }
+  return shared;
+}
+
+// İki 1D segmentin örtüşme uzunluğu
+function segOverlap(a1, a2, b1, b2) {
+  return Math.max(0, Math.min(a2, b2) - Math.max(a1, b1));
+}
+
+// Her oda için 6 yüzeyin (4 yan + tavan + taban) panel alanını hesapla,
+// ortak duvarları çıkar
+function calcRoomPanelBreakdown(room, sharedWalls) {
+  const w = room.w, d = room.h, h = room.height || 3;
+  const pt = room.panelType || 'PUR', pth = room.panelThickness || 100;
+
+  // Başlangıçta her yüzey tam alan
+  let surfaces = {
+    'Ön Duvar':    { area: w * h },
+    'Arka Duvar':  { area: w * h },
+    'Sol Duvar':   { area: d * h },
+    'Sağ Duvar':   { area: d * h },
+    'Tavan':       { area: w * d },
+    'Zemin':       { area: w * d },
+  };
+  let totalGross = w*h*2 + d*h*2 + w*d*2;
+
+  // Bu odanın paylaştığı ortak duvarları bul ve alanı düş
+  let sharedArea = 0;
+  const sharedWith = [];
+  for (const sw of sharedWalls) {
+    if (sw.roomA.id === room.id || sw.roomB.id === room.id) {
+      sharedArea += sw.area;
+      const other = sw.roomA.id === room.id ? sw.roomB : sw.roomA;
+      sharedWith.push({ name: other.name, area: sw.area.toFixed(1), length: sw.length.toFixed(2), height: sw.height.toFixed(1) });
+    }
+  }
+
+  return {
+    grossArea:     totalGross,
+    sharedArea:    sharedArea,
+    netArea:       totalGross - sharedArea,
+    panelType:     pt,
+    panelThickness:pth,
+    sharedWith
+  };
+}
+
+function genBOM() {
+  const bom=[];
+  const rooms = objects.filter(o => o.type === 'room');
+  const sharedWalls = getSharedWalls();
+
+  // ── Panel hesabı: her oda brüt – ortak duvar ──
+  const panAreas = {}; // key: "PUR_100"
+  const sharedDeduct = {}; // aynı key ile düşülen alan
+  for (const r of rooms) {
+    const bd = calcRoomPanelBreakdown(r, sharedWalls);
+    const k = `${bd.panelType}_${bd.panelThickness}`;
+    panAreas[k]    = (panAreas[k]    || 0) + bd.grossArea;
+    sharedDeduct[k]= (sharedDeduct[k]|| 0) + bd.sharedArea;
+  }
+  // Ayrı panel objeleri (serbest panel)
+  for (const o of objects) {
+    if (o.type === 'panel') {
+      const k = `${o.panelType||'PUR'}_${o.thickness||100}`;
+      panAreas[k] = (panAreas[k] || 0) + o.w * o.h;
+    }
+  }
+  for (const [k, gross] of Object.entries(panAreas)) {
+    const [pt, th] = k.split('_');
+    const ded = sharedDeduct[k] || 0;
+    const net = gross - ded;
+    const unitPrice = getPanelUnitPrice(th);
+    const note = ded > 0
+      ? `Brüt: ${gross.toFixed(1)} m² | Ortak duvar: -${ded.toFixed(1)} m² | λ=${PANEL_PRESETS[pt]?.lambda||0.025} W/mK`
+      : `λ=${PANEL_PRESETS[pt]?.lambda||0.025} W/mK`;
+    bom.push({
+      cat:'Panel',
+      name:`${PANEL_PRESETS[pt]?.name||pt} ${th}mm`,
+      qty:roundValue(net, 1),
+      unit:'m²',
+      note,
+      unitPrice,
+      totalPrice: roundValue(net * unitPrice, 2)
+    });
+  }
+
+  // ── Kapılar ──
+  const doorsMap = {};
+  for (const o of objects) {
+    if (o.type === 'door') {
+      const k = `${o.doorType}_${o.panelThickness||100}`;
+      doorsMap[k] = (doorsMap[k] || 0) + 1;
+    }
+  }
+  const dtN={single_hinge:'Tek Kanatlı',double_hinge:'Çift Kanatlı',sliding:'Sürgülü',saloon:'Kılıç Kapı'};
+  for (const [k,q] of Object.entries(doorsMap)) {
+    const [dt,th] = k.split('_');
+    const unitPrice = getDoorUnitPrice(th, dt);
+    bom.push({
+      cat:'Kapı',
+      name:`${dtN[dt]||dt} ${th}mm Soğuk Oda Kapısı`,
+      qty:q,
+      unit:'adet',
+      note:'',
+      unitPrice,
+      totalPrice: roundValue(q * unitPrice, 2)
+    });
+  }
+
+  // ── Soğutma ──
+  const unitsMap = {};
+  for (const o of objects) if (o.type==='cooling_unit') unitsMap[o.unitType]=(unitsMap[o.unitType]||0)+1;
+  const uN={evaporator:'Evaporatör',condenser:'Kondenser',split:'Split Ünite',monobloc:'Monoblok',rack:'Raf Ünite',compressor:'Kompresör'};
+  for (const [t,q] of Object.entries(unitsMap)) {
+    const unitPrice = BOM_PRICING.coolingUnit[t] || 0;
+    bom.push({ cat:'Soğutma', name:uN[t]||t, qty:q, unit:'adet', note:'', unitPrice, totalPrice: roundValue(q * unitPrice, 2) });
+  }
+
+  // ── Borulama ──
+  const pipesMap = {};
+  for (const o of objects) {
+    if (o.type==='pipe') {
+      let l=0; for(let i=1;i<o.points.length;i++) l+=Math.sqrt((o.points[i].x-o.points[i-1].x)**2+(o.points[i].y-o.points[i-1].y)**2);
+      pipesMap[o.pipeType]=(pipesMap[o.pipeType]||0)+l;
+    }
+  }
+  const pN={pipe_liquid:'Sıvı Hattı',pipe_suction:'Emme Hattı',pipe_discharge:'Basma Hattı',drain:'Drenaj',electric:'Elektrik Kablosu'};
+  for (const [t,l] of Object.entries(pipesMap)) {
+    const qty = roundValue(l * 1.15, 1);
+    const unitPrice = BOM_PRICING.pipeM[t] || 0;
+    bom.push({ cat:'Borulama', name:pN[t]||t, qty, unit:'m', note:'%15 fire dahil', unitPrice, totalPrice: roundValue(qty * unitPrice, 2) });
+  }
+
+  // ── Aksesuarlar ──
+  const accsMap = {};
+  for (const o of objects) if (o.type==='accessory') accsMap[o.accType]=(accsMap[o.accType]||0)+1;
+  const aN={valve:'Vana',filter:'Filtre/Kurutucu',pressure:'Basınç Göstergesi',thermometer:'Termometre',sensor:'Sıcaklık Sensörü',controller:'Kontrol Panosu'};
+  for (const [t,q] of Object.entries(accsMap)) {
+    const unitPrice = BOM_PRICING.accessory[t] || 0;
+    bom.push({ cat:'Aksesuar', name:aN[t]||t, qty:q, unit:'adet', note:'', unitPrice, totalPrice: roundValue(q * unitPrice, 2) });
+  }
+
+  return bom;
+}
+
+// ============================================================
+// DRC PORTAL KÖPRÜSÜ — postMessage ile proje kaydetme
+// ============================================================
+function sendToDRCProject() {
+  try {
+    const bom = genBOM();
+    const rooms = objects.filter(o => o.type === 'room');
+    const sharedWalls = getSharedWalls();
+    const units = objects.filter(o => o.type === 'cooling_unit');
+    const pipes = objects.filter(o => o.type === 'pipe');
+
+    if (rooms.length === 0 && bom.length === 0) {
+      alert('Önce en az bir oda çizin veya malzeme ekleyin.');
+      return;
+    }
+
+    // Proje başlığı
+    const defaultTitle = rooms.length > 0
+      ? `Soğuk Oda Çizimi — ${rooms.map(r => r.name || 'Oda').join(' + ')}`
+      : `Soğuk Oda Projesi — ${new Date().toLocaleDateString('tr-TR')}`;
+    const title = (prompt('Proje başlığı:', defaultTitle) || defaultTitle).trim();
+    if (!title) return;
+
+    // Oda parametreleri
+    const parameters = {
+      rooms: rooms.map(r => ({
+        name: r.name,
+        width: r.w, height: r.h, ceiling: r.height || 3,
+        panelType: r.panelType, panelThickness: r.panelThickness,
+        temperature: r.temperature, insulation: r.insulation,
+      })),
+      sharedWalls: sharedWalls.map(sw => ({
+        roomA: sw.roomA?.name, roomB: sw.roomB?.name,
+        side: sw.side, length: sw.length, height: sw.height, area: sw.area,
+      })),
+      coolingUnits: units.map(u => ({ kind: u.unitKind, model: u.model, count: u.count || 1 })),
+      pipes: pipes.map(p => ({ type: p.pipeType, diameter: p.diameter })),
+    };
+
+    const calculationResult = {
+      totalPanelArea: rooms.reduce((s, r) => {
+        const bd = calcRoomPanelBreakdown ? calcRoomPanelBreakdown(r, sharedWalls) : { netArea: 0 };
+        return s + (Number(bd.netArea) || 0);
+      }, 0),
+      bomTotal: bom.reduce((s, r) => s + (Number(r.totalPrice) || 0), 0),
+      roomCount: rooms.length,
+      unitCount: units.length,
+    };
+
+    const payload = {
+      type: 'coldroompro:save-as-project',
+      payload: {
+        title,
+        projectType: 'cold_room',
+        parameters,
+        calculationResult,
+        note: `Soğuk Oda Çizim Pro v2.0 (${new Date().toISOString()})`,
+        bom: bom.map(r => ({
+          itemName: `${r.cat} — ${r.name}`,
+          quantity: Number(r.qty) || 1,
+          unit: r.unit || 'adet',
+          unitPrice: Number(r.unitPrice) || 0,
+          code: '',
+          note: r.note || '',
+          source: 'soguk-oda-cizim',
+        })),
+        language: 'tr',
+      },
+    };
+
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage(payload, '*');
+      alert('✓ Proje portal\'a gönderildi — admin Projeler sekmesinde göreceksin.');
+    } else {
+      alert('Portal içinde çalışmıyor. Soğuk Oda Çizim\'i DRC portal üzerinden açınız.');
+    }
+  } catch (e) {
+    console.error('[Soğuk Oda Çizim] DRC Projeye gönderim hatası:', e);
+    alert('Hata: ' + (e?.message || 'bilinmeyen'));
+  }
+}
+
+function exportBOMCSV() {
+  const shared = getSharedWalls();
+  const rooms  = objects.filter(o => o.type === 'room');
+  let csv = '\uFEFF';
+
+  // Ortak duvar bölümü
+  if (shared.length > 0) {
+    csv += 'ORTAK / BÖLÜM DUVARLAR\n';
+    csv += 'Oda A,Oda B,Yön,Uzunluk (m),Yükseklik (m),Alan (m²)\n';
+    for (const sw of shared) {
+      csv += `${sw.roomA.name},${sw.roomB.name},${sw.side === 'dikey' ? 'Yan Yana' : 'Üst-Alt'},${sw.length.toFixed(2)},${sw.height.toFixed(1)},${sw.area.toFixed(2)}\n`;
+    }
+    csv += '\n';
+
+    csv += 'ODA BAZLI PANEL DÖKÜMÜ\n';
+    csv += 'Oda Adı,Brüt Alan (m²),Ortak Duvar Düşümü (m²),Net Panel (m²),Panel Tipi,Kalınlık (mm)\n';
+    for (const r of rooms) {
+      const bd = calcRoomPanelBreakdown(r, shared);
+      csv += `${r.name},${bd.grossArea.toFixed(1)},${bd.sharedArea.toFixed(1)},${bd.netArea.toFixed(1)},${bd.panelType},${bd.panelThickness}\n`;
+    }
+    csv += '\n';
+  }
+
+  // Genel BOM
+  csv += 'GENEL MALZEME LİSTESİ (NET)\n';
+  csv += 'Kategori,Malzeme,Miktar,Birim,Not,Birim Fiyat EUR,Toplam EUR\n';
+  for (const r of genBOM()) csv += `${r.cat},${r.name},${r.qty},${r.unit},"${r.note}",${roundValue(r.unitPrice,2)},${roundValue(r.totalPrice,2)}\n`;
+
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = 'malzeme-listesi.csv';
+  a.click();
+}
+
+// ============================================================
+// PIPING
+// ============================================================
+function showPipingDiagram() {
+  const pipes=objects.filter(o=>o.type==='pipe');
+  const units=objects.filter(o=>o.type==='cooling_unit');
+  const pN={pipe_liquid:'🔵 Sıvı Hattı',pipe_suction:'🟣 Emme Hattı',pipe_discharge:'🔴 Basma Hattı',drain:'💧 Drenaj',electric:'⚡ Elektrik'};
+  const pGroups={};
+  for (const p of pipes) {
+    let l=0; for(let i=1;i<p.points.length;i++) l+=Math.sqrt((p.points[i].x-p.points[i-1].x)**2+(p.points[i].y-p.points[i-1].y)**2);
+    if (!pGroups[p.pipeType]) pGroups[p.pipeType]={len:0,dia:p.diameter||22};
+    pGroups[p.pipeType].len+=l;
+  }
+  let pRows=Object.entries(pGroups).map(([t,d])=>`<tr><td>${pN[t]||t}</td><td>${d.len.toFixed(1)} m</td><td>DN${d.dia}</td></tr>`).join('');
+  let uRows=units.map(u=>`<tr><td>${UNIT_PRESETS[u.unitType]?.icon} ${UNIT_PRESETS[u.unitType]?.name||u.unitType}</td><td>${u.model||'-'}</td><td>${u.capacity?u.capacity+' kW':'-'}</td></tr>`).join('');
+  showModal(`<h3>🔧 Borulama & Ekipman Özeti</h3>
+    <div class="info-box" style="font-size:11px">
+      <span style="color:#3399ff">■</span> Sıvı (Mavi)&nbsp;&nbsp;
+      <span style="color:#aa44ff">■</span> Emme (Mor)&nbsp;&nbsp;
+      <span style="color:#ff4444">■</span> Basma (Kırmızı)&nbsp;&nbsp;
+      <span style="color:#44aaaa">■</span> Drenaj&nbsp;&nbsp;
+      <span style="color:#ffcc00">■</span> Elektrik
+    </div>
+    ${pipes.length>0?`<b style="font-size:12px;color:var(--accent)">Boru Hatları</b>
+    <table class="bom-table"><thead><tr><th>Hat</th><th>Uzunluk</th><th>Çap</th></tr></thead><tbody>${pRows}</tbody></table>`:'<p style="color:var(--text2);font-size:12px;margin:8px 0">Borulama yok</p>'}
+    ${units.length>0?`<br><b style="font-size:12px;color:var(--accent)">Soğutma Üniteleri</b>
+    <table class="bom-table"><thead><tr><th>Ünite</th><th>Model</th><th>Kapasite</th></tr></thead><tbody>${uRows}</tbody></table>`:''}
+    <div class="modal-btns"><button class="btn-secondary" onclick="closeModal()">Kapat</button></div>`);
+}
+
+// ============================================================
+// EXPORT — AKILLI KIRPMA (sadece nesnelerin bulunduğu alan)
+// ============================================================
+
+// Tüm nesnelerin dünya koordinatlarındaki sınır kutusunu hesapla
+function getContentBounds(padding) {
+  const pad = padding || 1.5; // metre cinsinden kenar boşluğu
+  let minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
+  for (const o of objects) {
+    if (['room','panel','door','window','cooling_unit'].includes(o.type)) {
+      minX=Math.min(minX,o.x); minY=Math.min(minY,o.y);
+      maxX=Math.max(maxX,o.x+(o.w||0)); maxY=Math.max(maxY,o.y+(o.h||0));
+    }
+    if (o.type==='wall') {
+      minX=Math.min(minX,o.x1,o.x2); minY=Math.min(minY,o.y1,o.y2);
+      maxX=Math.max(maxX,o.x1,o.x2); maxY=Math.max(maxY,o.y1,o.y2);
+    }
+    if (o.type==='accessory'||o.type==='text') {
+      minX=Math.min(minX,o.x-0.5); minY=Math.min(minY,o.y-0.5);
+      maxX=Math.max(maxX,o.x+0.5); maxY=Math.max(maxY,o.y+0.5);
+    }
+    if (o.type==='pipe'&&o.points) {
+      for (const p of o.points) {
+        minX=Math.min(minX,p.x); minY=Math.min(minY,p.y);
+        maxX=Math.max(maxX,p.x); maxY=Math.max(maxY,p.y);
+      }
+    }
+    if (o.type==='dimension') {
+      minX=Math.min(minX,o.x1,o.x2); minY=Math.min(minY,o.y1,o.y2);
+      maxX=Math.max(maxX,o.x1,o.x2); maxY=Math.max(maxY,o.y1,o.y2);
+    }
+  }
+  if (!isFinite(minX)) return null; // hiç nesne yok
+  return {
+    minX: minX-pad, minY: minY-pad,
+    maxX: maxX+pad, maxY: maxY+pad,
+    w: (maxX-minX)+pad*2,
+    h: (maxY-minY)+pad*2
+  };
+}
+
+// Canvas'tan sadece içerik alanını kırpıp yeni bir canvas döndür
+function getCroppedCanvas(padM) {
+  const b = getContentBounds(padM||1.5);
+  if (!b) return canvas; // nesne yoksa tüm canvas
+
+  const px = b.minX * SCALE * zoom;
+  const py = b.minY * SCALE * zoom;
+  const pw = b.w * SCALE * zoom;
+  const ph = b.h * SCALE * zoom;
+
+  // Sınırları canvas boyutuna kısıtla
+  const sx = Math.max(0, Math.floor(px));
+  const sy = Math.max(0, Math.floor(py));
+  const sw = Math.min(Math.ceil(pw), canvas.width - sx);
+  const sh = Math.min(Math.ceil(ph), canvas.height - sy);
+
+  if (sw <= 0 || sh <= 0) return canvas;
+
+  const tmp = document.createElement('canvas');
+  tmp.width = sw; tmp.height = sh;
+  tmp.getContext('2d').drawImage(canvas, sx, sy, sw, sh, 0, 0, sw, sh);
+  return tmp;
+}
+
+function exportPNG() {
+  const cropped = getCroppedCanvas(1.5);
+  const a = document.createElement('a');
+  a.download = 'soguk-oda.png';
+  a.href = cropped.toDataURL('image/png');
+  a.click();
+  toast('PNG kaydedildi ✓ (içerik sığdırıldı)');
+}
+
+// Cache: base64 encoded NotoSans fonts (fetched once per session)
+let _trFontCache = null;
+async function loadTurkishFontForJsPDF(pdf) {
+  try {
+    if (!_trFontCache) {
+      const [regResp, boldResp] = await Promise.all([
+        fetch('./fonts/NotoSans-Regular.ttf', { cache: 'force-cache' }),
+        fetch('./fonts/NotoSans-Bold.ttf', { cache: 'force-cache' }),
+      ]);
+      if (!regResp.ok || !boldResp.ok) throw new Error('Font HTTP ' + regResp.status + '/' + boldResp.status);
+      const toB64 = async (resp) => {
+        const blob = await resp.blob();
+        return await new Promise((resolve, reject) => {
+          const r = new FileReader();
+          r.onloadend = () => resolve(String(r.result).split(',')[1]);
+          r.onerror = reject;
+          r.readAsDataURL(blob);
+        });
+      };
+      _trFontCache = {
+        regular: await toB64(regResp),
+        bold: await toB64(boldResp),
+      };
+    }
+    pdf.addFileToVFS('NotoSans-Regular.ttf', _trFontCache.regular);
+    pdf.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
+    pdf.addFileToVFS('NotoSans-Bold.ttf', _trFontCache.bold);
+    pdf.addFont('NotoSans-Bold.ttf', 'NotoSans', 'bold');
+    pdf.setFont('NotoSans', 'normal');
+    return true;
+  } catch (e) {
+    console.warn('[exportPDF] Türkçe font yüklenemedi, Helvetica fallback:', e);
+    return false;
+  }
+}
+
+async function exportPDF() {
+  try {
+    const {jsPDF} = window.jspdf;
+
+    // İçerik sınırlarını hesapla
+    const b = getContentBounds(1.5);
+    const bomList = genBOM();
+    const hasBOM = bomList.length > 0;
+
+    // BOM varsa sağ tarafa alan bırak, yoksa tam sayfa çizim
+    const drawAreaW = hasBOM ? 290 : 400;
+    const drawAreaH = 230;
+
+    const pdf = new jsPDF({orientation:'landscape', unit:'mm', format:'a3'});
+
+    // Türkçe karakter desteği için NotoSans font yükle (başarısız olursa Helvetica)
+    await loadTurkishFontForJsPDF(pdf);
+
+    // Koyu arka plan
+    pdf.setFillColor(21,24,32); pdf.rect(0,0,420,297,'F');
+
+    // Başlık
+    pdf.setTextColor(0,180,216); pdf.setFontSize(16);
+    pdf.text('SOĞUK ODA TEKNİK ÇİZİM', 420/2, 13, {align:'center'});
+    pdf.setTextColor(136,153,170); pdf.setFontSize(8.5);
+    pdf.text(
+      `Tarih: ${new Date().toLocaleDateString('tr-TR')}` +
+      `  |  İç: ${document.getElementById('indoor-temp').value}°C` +
+      `  |  Dış: ${document.getElementById('outdoor-temp').value}°C` +
+      `  |  Nem: ${document.getElementById('humidity').value}%` +
+      `  |  ColdRoom PRO v2.0`,
+      420/2, 20, {align:'center'}
+    );
+
+    // ── Çizim alanı: kırpılmış canvas ──
+    const cropped = getCroppedCanvas(1.5);
+    const imgData = cropped.toDataURL('image/png');
+
+    // Çizimi orantılı yerleştir (maksimum drawAreaW x drawAreaH mm)
+    const imgW = cropped.width, imgH = cropped.height;
+    let dw = drawAreaW, dh = imgH * (drawAreaW / imgW);
+    if (dh > drawAreaH) { dh = drawAreaH; dw = imgW * (drawAreaH / imgH); }
+    const dx = 8 + (drawAreaW - dw) / 2; // yatay ortala
+    pdf.addImage(imgData, 'PNG', dx, 25, dw, dh);
+
+    // Çizim çerçevesi
+    pdf.setDrawColor(58,64,85); pdf.setLineWidth(0.3);
+    pdf.rect(8, 24, drawAreaW, dh+2);
+
+    // ── BOM (sağ kolon) ──
+    if (hasBOM) {
+      const bx = drawAreaW + 14;
+      let ry = 28;
+      const bomTotal = bomList.reduce((sum, row) => sum + (Number(row.totalPrice) || 0), 0);
+      pdf.setFontSize(9.5); pdf.setTextColor(0,180,216);
+      pdf.text('MALZEME LİSTESİ', bx, ry); ry += 6;
+      pdf.setDrawColor(0,180,216); pdf.setLineWidth(0.3);
+      pdf.line(bx, ry, bx+115, ry); ry += 4;
+
+      pdf.setFontSize(7); pdf.setTextColor(150,170,200);
+      pdf.text('Kategori', bx, ry);
+      pdf.text('Malzeme/Ekipman', bx+18, ry);
+      pdf.text('Mik.', bx+74, ry);
+      pdf.text('Br.F.', bx+87, ry);
+      pdf.text('Toplam', bx+100, ry);
+      ry += 3;
+      pdf.setDrawColor(58,64,85); pdf.line(bx, ry, bx+115, ry); ry += 3;
+
+      pdf.setTextColor(200,215,235);
+      for (const r of bomList) {
+        pdf.text(r.cat, bx, ry);
+        pdf.text(r.name.substring(0,26), bx+18, ry);
+        pdf.text(formatQty(r.qty), bx+74, ry);
+        pdf.text(r.unitPrice > 0 ? formatMoneyCompact(r.unitPrice) : '-', bx+87, ry);
+        pdf.text(r.totalPrice > 0 ? formatMoneyCompact(r.totalPrice) : '-', bx+100, ry);
+        ry += 4.2;
+        if (ry > 270) { pdf.text('...', bx, ry); break; }
+      }
+      pdf.setTextColor(0,180,216);
+      pdf.setFontSize(8);
+      pdf.text(`Net Toplam: ${formatMoneyCompact(bomTotal)}`, bx, Math.min(284, ry + 5));
+    }
+
+    // ── Oda özeti (alt bant) ──
+    const rms = objects.filter(o=>o.type==='room');
+    if (rms.length > 0) {
+      const bottomY = 258;
+      pdf.setDrawColor(58,64,85); pdf.setLineWidth(0.3);
+      pdf.line(8, bottomY-2, 408, bottomY-2);
+      pdf.setFontSize(8); pdf.setTextColor(0,180,216);
+      pdf.text('ODA ÖZETİ', 10, bottomY+4);
+
+      const tl={pos:'+2/+8°C',neg:'-18/-22°C',deep:'-25°C',blast:'-35°C'};
+      let col=0, rx=32;
+      const colW = hasBOM ? 90 : 120;
+      for (const r of rms) {
+        if (rx + colW > 405) break;
+        pdf.setFontSize(7.5); pdf.setTextColor(220,235,255);
+        pdf.text(r.name, rx, bottomY+4);
+        pdf.setFontSize(6.5); pdf.setTextColor(150,175,210);
+        pdf.text(`${r.w.toFixed(1)}×${r.h.toFixed(1)}×${r.height||3}m`, rx, bottomY+9);
+        pdf.text(`${(r.w*r.h).toFixed(1)}m²  ${(r.w*r.h*(r.height||3)).toFixed(1)}m³`, rx, bottomY+13.5);
+        pdf.text(`${r.panelType} ${r.panelThickness}mm  ${tl[r.tempType]||''}`, rx, bottomY+18);
+        rx += colW;
+      }
+    }
+
+    // ── Ortak Duvar özeti (PDF'e ekle) ──
+    const sharedWallsPDF = getSharedWalls();
+    if (sharedWallsPDF.length > 0) {
+      const totalSh = sharedWallsPDF.reduce((s, sw) => s + sw.area, 0);
+      let shY = dh + 32;
+      if (shY < 220) shY = 220;
+      pdf.setFontSize(8); pdf.setTextColor(0,220,120);
+      pdf.text(`🔗 Ortak Duvarlar: ${sharedWallsPDF.length} adet | Toplam: ${totalSh.toFixed(1)} m² panel tasarrufu`, 10, shY);
+      pdf.setFontSize(7); pdf.setTextColor(100,180,140);
+      sharedWallsPDF.forEach((sw, idx) => {
+        pdf.text(
+          `  ${sw.roomA.name} ↔ ${sw.roomB.name}: ${sw.length.toFixed(2)}m × ${sw.height.toFixed(1)}m = ${sw.area.toFixed(2)} m²`,
+          10, shY + 5 + idx * 4.5
+        );
+      });
+    }
+
+    // ── Notlar ──
+    const notes = document.getElementById('notes').value;
+    if (notes) {
+      pdf.setFontSize(7.5); pdf.setTextColor(130,155,180);
+      pdf.text('NOT: ' + notes.substring(0,160), 10, 290);
+    }
+
+    // ── İçerik boyutu bilgisi (etiket) ──
+    if (b) {
+      pdf.setFontSize(7); pdf.setTextColor(80,100,130);
+      pdf.text(`Çizim alanı: ${b.w.toFixed(1)}×${b.h.toFixed(1)} m`, 10, 295);
+    }
+
+    pdf.save('soguk-oda-teknik-cizim.pdf');
+    toast('PDF kaydedildi ✓');
+  } catch(e) {
+    console.error(e);
+    alert('PDF hatası: ' + e.message + '\nPNG ile deneyin.');
+  }
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function gid() { return 'o'+Date.now()+'_'+Math.random().toString(36).substr(2,5); }
+function genId() { return gid(); }
+function pushUndo() { undoStack.push(JSON.stringify(objects)); if(undoStack.length>60)undoStack.shift(); redoStack=[]; }
+function undo() { if(!undoStack.length)return; redoStack.push(JSON.stringify(objects)); objects=JSON.parse(undoStack.pop()); selectedObj=null; draw(); updateRoomInfo(); }
+function redo() { if(!redoStack.length)return; undoStack.push(JSON.stringify(objects)); objects=JSON.parse(redoStack.pop()); selectedObj=null; draw(); updateRoomInfo(); }
+function clearAll() { if(!confirm('Tüm çizimler silinecek. Emin misiniz?'))return; pushUndo(); objects=[]; selectedObj=null; clearObjPanel(); draw(); updateRoomInfo(); }
+function zoomIn() { zoom=Math.min(5,zoom*1.2); document.getElementById('zoom-display').textContent=Math.round(zoom*100)+'%'; draw(); }
+function zoomOut() { zoom=Math.max(0.2,zoom/1.2); document.getElementById('zoom-display').textContent=Math.round(zoom*100)+'%'; draw(); }
+function resetZoom() { zoom=1; document.getElementById('zoom-display').textContent='100%'; draw(); }
+
+// Tüm nesneleri görünür alana sığdır
+function fitToContent() {
+  const b = getContentBounds(1.5);
+  if (!b) { toast('Önce bir nesne ekleyin'); return; }
+
+  const wrap = document.getElementById('canvas-wrap');
+  const vw = wrap.clientWidth;
+  const vh = wrap.clientHeight;
+
+  // İçeriği viewport'a sığdıracak zoom hesapla
+  const zx = vw / (b.w * SCALE);
+  const zy = vh / (b.h * SCALE);
+  zoom = Math.min(zx, zy, 3) * 0.92; // %8 kenar payı
+
+  document.getElementById('zoom-display').textContent = Math.round(zoom*100) + '%';
+  draw();
+
+  // İçeriğin başlangıç noktasına kaydır
+  requestAnimationFrame(() => {
+    const sx = Math.max(0, b.minX * SCALE * zoom - 20);
+    const sy = Math.max(0, b.minY * SCALE * zoom - 20);
+    wrap.scrollLeft = sx;
+    wrap.scrollTop = sy;
+  });
+
+  toast('Tümü ekrana sığdırıldı 🎯');
+}
+function changeUnit(v) { unit=v; draw(); }
+function changeGrid(v) { gridSize=parseFloat(v); draw(); }
+function updateStyle() { if(selectedObj){ selectedObj.fillColor=document.getElementById('fill-color').value; selectedObj.strokeColor=document.getElementById('stroke-color').value; draw(); } }
+
+function updateStatus() {
+  document.getElementById('st-obj').textContent=`📦 Nesneler: ${objects.length}`;
+  document.getElementById('st-sel').textContent=selectedObj?`✏️ Seçili: ${selectedObj.type}`:'✏️ Seçili: Yok';
+  const rms=objects.filter(o=>o.type==='room');
+  if(rms.length>0) { const ta=rms.reduce((s,r)=>s+r.w*r.h,0); document.getElementById('st-area').textContent=`📐 Toplam: ${ta.toFixed(1)} m²`; }
+}
+
+function updateRoomInfo() {
+  const rms=objects.filter(o=>o.type==='room');
+  if(!rms.length){document.getElementById('room-info').innerHTML='Henüz oda eklenmedi.<br>📐 "Yeni Oda" veya<br>Oda Çiz aracını kullanın.';return;}
+  const tl={pos:'Poz. +2/+8°C',neg:'Neg. -18/-22°C',deep:'Derin -25°C',blast:'Şok -35°C'};
+  const tColors={pos:'#2ec4b6',neg:'#0077b6',deep:'#023e8a',blast:'#9b2335'};
+  const totalArea=rms.reduce((s,r)=>s+r.w*r.h,0);
+  const totalVol=rms.reduce((s,r)=>s+r.w*r.h*(r.height||3),0);
+
+  let html=`<div style="font-size:11px;color:var(--accent);margin-bottom:6px">
+    Toplam: <b>${rms.length} oda</b> | ${totalArea.toFixed(1)} m² | ${totalVol.toFixed(1)} m³
+  </div>`;
+
+  html+=rms.map(r=>`
+    <div style="background:var(--panel2);border:1px solid var(--border);border-radius:6px;padding:7px;margin-bottom:5px;cursor:pointer"
+         onclick="selectedObj=objects.find(o=>o.id==='${r.id}');updateObjPanel(selectedObj);draw()">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+        <b style="font-size:12px">${r.name}</b>
+        <span style="background:${tColors[r.tempType]||'#0077b6'};color:#fff;font-size:9px;padding:1px 6px;border-radius:8px">${tl[r.tempType]||''}</span>
+      </div>
+      <div style="font-size:11px;color:var(--text2)">
+        ${r.w.toFixed(2)} × ${r.h.toFixed(2)} × ${r.height||3} m<br>
+        ${(r.w*r.h).toFixed(1)} m² &nbsp;/&nbsp; ${(r.w*r.h*(r.height||3)).toFixed(1)} m³<br>
+        <span style="color:${PANEL_PRESETS[r.panelType]?.color||'#4488cc'}">${r.panelType} ${r.panelThickness}mm</span>
+      </div>
+      <div style="display:flex;gap:4px;margin-top:5px">
+        <button onclick="event.stopPropagation();selectedObj=objects.find(o=>o.id==='${r.id}');showEditRoomModal(selectedObj)"
+          style="flex:1;background:var(--border);border:none;color:var(--text);border-radius:4px;padding:3px;font-size:10px;cursor:pointer">✏️ Düzenle</button>
+        <button onclick="event.stopPropagation();selectedObj=objects.find(o=>o.id==='${r.id}');copyNextTo('right')"
+          style="flex:1;background:var(--border);border:none;color:var(--text);border-radius:4px;padding:3px;font-size:10px;cursor:pointer">→ Kopyala</button>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('room-info').innerHTML=html;
+}
+
+function updateObjPanel(obj) {
+  const pipeNames={pipe_liquid:'🔵 Sıvı Borusu',pipe_suction:'🟣 Emme Borusu',pipe_discharge:'🔴 Basma Borusu',drain:'💧 Drenaj',electric:'⚡ Elektrik Hattı'};
+  const accNames={valve:'🔴 Vana',filter:'🟡 Filtre',pressure:'🔵 Basınç Göstergesi',thermometer:'🌡️ Termometre',sensor:'📡 Sensör',controller:'🎛️ Kontrol Panosu'};
+  const typeLabels={room:'🏠 Oda',wall:'🧱 Duvar',door:'🚪 Kapı',window:'🪟 Pencere',cooling_unit:'❄️ Soğutma Ünitesi',pipe:'🔧 Boru Hattı',accessory:'🔩 Aksesuar',dimension:'📏 Ölçü',text:'📝 Metin'};
+
+  let h=`<div class="info-box">`;
+  h+=`<b>${typeLabels[obj.type]||obj.type}</b>`;
+  if(obj.name) h+=`<br><b>Ad:</b> ${obj.name}`;
+
+  // BORU bilgisi
+  if(obj.type==='pipe') {
+    h+=`<br><b>Hat:</b> ${pipeNames[obj.pipeType]||obj.pipeType}`;
+    if(obj.points) {
+      let len=0;
+      for(let i=1;i<obj.points.length;i++){
+        const dx=obj.points[i].x-obj.points[i-1].x, dy=obj.points[i].y-obj.points[i-1].y;
+        len+=Math.sqrt(dx*dx+dy*dy);
+      }
+      h+=`<br><b>Uzunluk:</b> ${len.toFixed(2)} m`;
+      h+=`<br><b>Nokta sayısı:</b> ${obj.points.length}`;
+    }
+    h+=`<br><b>Çap:</b> DN${obj.diameter||22}`;
+    h+='</div>';
+    h+=`<div class="prop-row"><span class="prop-label">Çap (DN):</span><input type="number" class="prop-input" value="${obj.diameter||22}" min="6" max="200" step="1" oninput="updateSelProp('diameter',parseInt(this.value))"></div>`;
+    h+=`<button class="tb-btn danger" style="width:100%;justify-content:center;margin-top:8px" onclick="deleteSelected()">🗑️ Boruyu Sil</button>`;
+    document.getElementById('obj-props').innerHTML=h;
+    return;
+  }
+
+  // AKSESUAR bilgisi
+  if(obj.type==='accessory') {
+    h+=`<br><b>Tür:</b> ${accNames[obj.accType]||obj.accType}`;
+    h+=`<br><b>X:</b> ${obj.x.toFixed(2)} m &nbsp; <b>Y:</b> ${obj.y.toFixed(2)} m`;
+    h+='</div>';
+    h+=`<div class="prop-row"><span class="prop-label">X:</span><input type="number" class="prop-input" value="${obj.x.toFixed(2)}" step="0.05" oninput="updateSelProp('x',parseFloat(this.value))"></div>`;
+    h+=`<div class="prop-row"><span class="prop-label">Y:</span><input type="number" class="prop-input" value="${obj.y.toFixed(2)}" step="0.05" oninput="updateSelProp('y',parseFloat(this.value))"></div>`;
+    h+=`<button class="tb-btn danger" style="width:100%;justify-content:center;margin-top:8px" onclick="deleteSelected()">🗑️ Aksesuarı Sil</button>`;
+    document.getElementById('obj-props').innerHTML=h;
+    return;
+  }
+
+  // Diğer nesneler
+  if(obj.x!=null) h+=`<br><b>X:</b> ${obj.x.toFixed(2)} m`;
+  if(obj.y!=null) h+=`<br><b>Y:</b> ${obj.y.toFixed(2)} m`;
+  if(obj.w) h+=`<br><b>Gen:</b> ${obj.w.toFixed(2)} m`;
+  if(obj.h) h+=`<br><b>Der:</b> ${obj.h.toFixed(2)} m`;
+  if(obj.panelType) h+=`<br><b>Panel:</b> ${obj.panelType} ${obj.panelThickness||obj.thickness||''}mm`;
+  if(obj.unitType) h+=`<br><b>Ünite:</b> ${UNIT_PRESETS[obj.unitType]?.name}`;
+  if(obj.capacity) h+=`<br><b>Kap.:</b> ${obj.capacity} kW`;
+  h+='</div>';
+  if(['room','panel','door','window','cooling_unit'].includes(obj.type)) {
+    h+=`<div class="prop-row"><span class="prop-label">X:</span><input type="number" class="prop-input" value="${obj.x?.toFixed(2)||0}" step="0.05" oninput="updateSelProp('x',parseFloat(this.value))"></div>`;
+    h+=`<div class="prop-row"><span class="prop-label">Y:</span><input type="number" class="prop-input" value="${obj.y?.toFixed(2)||0}" step="0.05" oninput="updateSelProp('y',parseFloat(this.value))"></div>`;
+    if(obj.w!=null) h+=`<div class="prop-row"><span class="prop-label">Genişlik:</span><input type="number" class="prop-input" value="${obj.w.toFixed(2)}" step="0.05" oninput="updateSelProp('w',parseFloat(this.value))"></div>`;
+    if(obj.h!=null) h+=`<div class="prop-row"><span class="prop-label">Derinlik:</span><input type="number" class="prop-input" value="${obj.h.toFixed(2)}" step="0.05" oninput="updateSelProp('h',parseFloat(this.value))"></div>`;
+  }
+  h+=`<button class="tb-btn danger" style="width:100%;justify-content:center;margin-top:8px" onclick="deleteSelected()">🗑️ Nesneyi Sil</button>`;
+  document.getElementById('obj-props').innerHTML=h;
+}
+function clearObjPanel() { document.getElementById('obj-props').innerHTML='<div class="info-box" style="font-size:11px">Nesne seçmek için tıklayın...</div>'; }
+function updateSelProp(prop,val) { if(selectedObj&&!isNaN(val)){selectedObj[prop]=val;draw();} }
+
+function deleteSelected() {
+  if(!selectedObj)return; if(!confirm('Seçili nesne silinecek?'))return;
+  pushUndo(); objects=objects.filter(o=>o.id!==selectedObj.id); selectedObj=null; clearObjPanel(); draw(); updateRoomInfo();
+}
+
+function setActiveLayer(el) {
+  document.querySelectorAll('.layer-item').forEach(e=>e.classList.remove('active'));
+  el.classList.add('active');
+  activeLayer=el.getAttribute('data-layer');
+}
+
+function toggleLayer(l,e) {
+  e.stopPropagation(); layers[l]=!layers[l];
+  e.target.textContent=layers[l]?'👁️':'🙈'; draw();
+}
+
+function toast(msg) {
+  const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block'; t.style.opacity='1';
+  setTimeout(()=>{ t.style.opacity='0'; setTimeout(()=>t.style.display='none',300); },2200);
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  const tag=e.target.tagName;
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT') return;
+  if(e.key==='Delete'||e.key==='Backspace') deleteSelected();
+  if(e.key==='Escape'){
+    if(isPipeTool()&&isDrawing){ isDrawing=false; pipePoints=[]; draw(); toast('❌ Boru çizimi iptal edildi'); }
+    else if(currentTool==='acc_place'){ pendingAccessory=null; setTool('select'); toast('❌ Aksesuar yerleştirme iptal edildi'); }
+    else { setTool('select'); closeModal(); removeContextMenu(); }
+  }
+  if(e.ctrlKey&&e.key==='z'){e.preventDefault();undo();}
+  if(e.ctrlKey&&e.key==='y'){e.preventDefault();redo();}
+  if(e.ctrlKey&&e.key==='s'){e.preventDefault();exportPDF();}
+  if(e.ctrlKey&&e.key==='d'){e.preventDefault();copySelected();}
+  // Seçili nesneyi ok tuşlarıyla taşı
+  if(selectedObj && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+    e.preventDefault();
+    const step=e.shiftKey?gridSize*5:gridSize;
+    if(e.key==='ArrowLeft'){selectedObj.x=(selectedObj.x||0)-step;}
+    if(e.key==='ArrowRight'){selectedObj.x=(selectedObj.x||0)+step;}
+    if(e.key==='ArrowUp'){selectedObj.y=(selectedObj.y||0)-step;}
+    if(e.key==='ArrowDown'){selectedObj.y=(selectedObj.y||0)+step;}
+    pushUndo(); draw(); updateObjPanel(selectedObj); return;
+  }
+  if(!e.ctrlKey) {
+    if(e.key==='s') setTool('select');
+    if(e.key==='r') setTool('room');
+    if(e.key==='w') setTool('wall');
+    if(e.key==='d') setTool('dimension');
+    if(e.key==='f'||e.key==='F') fitToContent();
+  }
+  if(e.key==='+'||e.key==='=') zoomIn();
+  if(e.key==='-') zoomOut();
+});
+
+// 3D VIEWER INTEGRATION
+function open3DView() {
+  if(objects.length === 0) {
+    toast('⚠️ Önce çizim yapın!');
+    return;
+  }
+  // Save current project data to localStorage
+  localStorage.setItem('coldroom_objects', JSON.stringify(objects));
+  localStorage.setItem('coldroom_unit', unit);
+  localStorage.setItem('coldroom_ts', Date.now().toString());
+  // Open 3D viewer in new tab
+  const viewer = window.open('view3d.html', '_blank');
+  if(!viewer) {
+    toast('❌ Yeni sekme açılamadı. Pop-up engelleyiciyi kontrol edin.');
+  } else {
+    toast('🔲 3D görüntüleyici açılıyor...');
+  }
+}
+
+// INIT
+window.addEventListener('load', async () => {
+  canvas.width=3200; canvas.height=2400;
+  new ResizeObserver(()=>draw()).observe(document.getElementById('canvas-wrap'));
+  await loadSharedAdminCatalog();
+  draw();
+  toast('❄️ ColdRoom PRO v2.0 hazır!');
+});
+</script>
+</body>
+</html>

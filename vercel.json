@@ -174,10 +174,6 @@
       "dest": "api/[...path].js"
     },
     {
-      "src": "/admin-tools/(.*)",
-      "dest": "api/[...path].js"
-    },
-    {
       "src": "/",
       "dest": "api/[...path].js"
     },

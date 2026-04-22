@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>ColdRoomPro</title>
+    <script>
+      // DEBUG: Beyaz ekran yakalayıcı — hata olursa ekranda göster
+      (function(){
+        var box=null;
+        function ensureBox(){
+          if(box) return box;
+          box=document.createElement('pre');
+          box.style.cssText='position:fixed;top:0;left:0;right:0;max-height:70vh;overflow:auto;background:#fee;color:#900;padding:16px;font:12px/1.4 monospace;z-index:99999;white-space:pre-wrap;border-bottom:3px solid #c00;margin:0;';
+          (document.body||document.documentElement).appendChild(box);
+          return box;
+        }
+        window.addEventListener('error', function(e){
+          var b=ensureBox();
+          b.textContent += '[JS ERROR] '+(e.message||'')+'\n  at '+(e.filename||'')+':'+(e.lineno||'')+':'+(e.colno||'')+'\n'+((e.error&&e.error.stack)||'')+'\n\n';
+        });
+        window.addEventListener('unhandledrejection', function(e){
+          var b=ensureBox();
+          var r=e.reason||{};
+          b.textContent += '[PROMISE REJECT] '+(r.message||r)+'\n'+(r.stack||'')+'\n\n';
+        });
+        // Boot watchdog: 8 sn içinde #root içi boşsa uyarı göster
+        setTimeout(function(){
+          var root=document.getElementById('root');
+          if(root && root.children.length===0){
+            var b=ensureBox();
+            b.textContent += '[WATCHDOG] 8sn sonra #root hâlâ boş — React boot olmadı veya sessizce fail oldu.\n'
+              +'UA: '+navigator.userAgent+'\n'
+              +'Location: '+location.href+'\n\n';
+          }
+        }, 8000);
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-D1bu-DAz.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CKMGQ-ef.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  </html>
