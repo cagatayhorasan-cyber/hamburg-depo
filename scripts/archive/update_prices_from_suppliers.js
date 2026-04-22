@@ -15,7 +15,11 @@ const { Pool } = require('pg');
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
-const DB_URL   = 'postgresql://postgres.jzdwwepybhxctasmkhmz:Tdc43510.Tdc70510.@aws-1-eu-west-1.pooler.supabase.com:6543/postgres';
+const DB_URL = process.env.DATABASE_URL;
+if (!DB_URL) {
+  console.error('DATABASE_URL env değişkeni tanımlı değil. .env dosyasından okumak için dotenv ile çalıştırın.');
+  process.exit(1);
+}
 const BURAK2   = '/Users/anilakbas/Desktop/Burak2 ';
 
 const ESEN_FILES = [
