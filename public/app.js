@@ -2410,7 +2410,7 @@ function showGlobalLoading(message) {
       <div class="loading-box">
         <div class="loading-spinner" aria-hidden="true"></div>
         <div class="loading-text">
-          <strong id="globalLoadingMessage">${message || ""}</strong>
+          <strong id="globalLoadingMessage">${escapeHtml(message || "")}</strong>
         </div>
       </div>`;
     document.body.appendChild(overlay);
@@ -2795,7 +2795,7 @@ function renderStats() {
   cards.forEach(([label, value, subtitle]) => {
     const card = document.createElement("article");
     card.className = "stat-card";
-    card.innerHTML = `<p class="eyebrow">${label}</p><strong>${value}</strong><span class="muted">${subtitle}</span>`;
+    card.innerHTML = `<p class="eyebrow">${escapeHtml(label)}</p><strong>${escapeHtml(String(value))}</strong><span class="muted">${escapeHtml(subtitle)}</span>`;
     refs.statsGrid.append(card);
   });
 }
@@ -3270,15 +3270,15 @@ function renderItems() {
       `
       : `<span class="muted">${t("common.viewOnly")}</span>`;
     tr.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.brand || "-"}</td>
-      <td>${getDisplayCategory(item.category)}</td>
-      <td>${formatItemStock(item.currentStock, item.unit)}</td>
+      <td>${escapeHtml(item.name)}</td>
+      <td>${escapeHtml(item.brand || "-")}</td>
+      <td>${escapeHtml(getDisplayCategory(item.category))}</td>
+      <td>${escapeHtml(formatItemStock(item.currentStock, item.unit))}</td>
       ${canViewPurchasePrices() ? `<td>${purchasePrice ? currency.format(purchasePrice) : "-"}</td>` : ""}
       <td>${listPrice ? currency.format(listPrice) : "-"}</td>
       <td>${salePrice ? currency.format(salePrice) : "-"}</td>
-      <td><span class="status-pill ${critical ? "status-critical" : "status-ok"}">${numberFormat.format(item.minStock)} ${getDisplayUnit(item.unit)}</span></td>
-      <td>${item.barcode}</td>
+      <td><span class="status-pill ${critical ? "status-critical" : "status-ok"}">${numberFormat.format(item.minStock)} ${escapeHtml(getDisplayUnit(item.unit))}</span></td>
+      <td>${escapeHtml(item.barcode || "")}</td>
       <td>${actionMarkup}</td>
     `;
     refs.itemsTableBody.append(tr);
@@ -3363,13 +3363,13 @@ function renderStockedItems(filteredItems) {
         <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
         <button class="stocked-card-more" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
-      <strong>${item.name}</strong>
-      <span class="stocked-card-category">${getDisplayCategory(item.category)}</span>
+      <strong>${escapeHtml(item.name)}</strong>
+      <span class="stocked-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
       ${itemDetail ? `<span class="stocked-card-detail">${langText("Kisa not", "Kurzinfo")}: ${escapeHtml(itemDetail)}</span>` : ""}
       <div class="stocked-card-footer">
         <div class="stocked-card-stock">
           <small>${langText("Stok", "Bestand")}</small>
-          <b>${formatItemStock(item.currentStock, item.unit)}</b>
+          <b>${escapeHtml(formatItemStock(item.currentStock, item.unit))}</b>
         </div>
         <div class="stocked-card-price">
           <small>${langText("Net / Satis", "Netto / Verkauf")}</small>
@@ -3377,7 +3377,7 @@ function renderStockedItems(filteredItems) {
         </div>
       </div>
       <div class="stocked-card-meta">
-        <span class="mono">${item.barcode || "-"}</span>
+        <span class="mono">${escapeHtml(item.barcode || "-")}</span>
         ${listPrice ? `<span>${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
       </div>
     `;
@@ -3428,13 +3428,13 @@ function renderArchive() {
     const salePrice = visibleSalePrice(item);
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.brand || "-"}</td>
-      <td>${item.category}</td>
+      <td>${escapeHtml(item.name)}</td>
+      <td>${escapeHtml(item.brand || "-")}</td>
+      <td>${escapeHtml(item.category || "")}</td>
       ${canViewPurchasePrices() ? `<td>${item.defaultPrice ? currency.format(item.defaultPrice) : "-"}</td>` : ""}
       <td>${listPrice ? currency.format(listPrice) : "-"}</td>
       <td>${salePrice ? currency.format(salePrice) : "-"}</td>
-      <td>${item.barcode}</td>
+      <td>${escapeHtml(item.barcode || "")}</td>
       <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}" data-help="TR: Arsivdeki urunu tekrar aktif listeye alir. DE: Holt den archivierten Artikel in die aktive Liste zurueck.">${t("common.restore")}</button></td>
     `;
     refs.archiveTableBody.append(tr);
@@ -3468,12 +3468,12 @@ function renderMovements() {
       : numberFormat.format(movement.quantity);
 
     tr.innerHTML = `
-      <td>${movement.date}</td>
-      <td>${movement.itemName}</td>
-      <td>${movementTypeLabel}</td>
+      <td>${escapeHtml(movement.date || "")}</td>
+      <td>${escapeHtml(movement.itemName || "")}</td>
+      <td>${escapeHtml(movementTypeLabel)}</td>
       <td>${quantityMarkup}</td>
-      <td>${movement.note || "-"}</td>
-      <td>${movement.userName || "-"}</td>
+      <td>${escapeHtml(movement.note || "-")}</td>
+      <td>${escapeHtml(movement.userName || "-")}</td>
       <td class="table-action-cell">${actionMarkup}</td>
     `;
     refs.movementsTableBody.append(tr);
@@ -3489,13 +3489,13 @@ function renderExpenses() {
   state.expenses.slice(0, 20).forEach((expense) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${expense.date}</td>
-      <td>${expense.title}</td>
-      <td>${expense.category}</td>
-      <td>${getPaymentTypeLabel(expense.paymentType)}</td>
-      <td>${expense.note || "-"}</td>
+      <td>${escapeHtml(expense.date || "")}</td>
+      <td>${escapeHtml(expense.title || "")}</td>
+      <td>${escapeHtml(expense.category || "")}</td>
+      <td>${escapeHtml(getPaymentTypeLabel(expense.paymentType))}</td>
+      <td>${escapeHtml(expense.note || "-")}</td>
       <td>${currency.format(expense.amount)}</td>
-      <td>${expense.userName || "-"}</td>
+      <td>${escapeHtml(expense.userName || "-")}</td>
       <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydini siler. DE: Loescht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe loeschen")}</button></td>
     `;
     refs.expensesTableBody.append(tr);
@@ -4513,11 +4513,11 @@ function renderQuotes() {
       const div = document.createElement("div");
       div.className = "feed-item";
       div.innerHTML = `
-        <strong>${quote.title} - ${quote.customerName}</strong>
-        <span>${quote.quoteNo || `#${quote.id}`} | ${quote.date} | ${langText("Net", "Netto")} ${currency.format(quote.netTotal || quote.total)} | ${langText("Brut", "Brutto")} ${currency.format(quote.grossTotal || quote.total)}</span>
-        <span>${quote.userName || "-"} | ${quote.language === "tr" ? "TR" : "DE"} | ${quote.isExport ? t("common.export") : t("common.inland")}</span>
-        <span>${quote.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
-        ${quote.note ? `<span>${quote.note}</span>` : ""}
+        <strong>${escapeHtml(quote.title || "")} - ${escapeHtml(quote.customerName || "")}</strong>
+        <span>${escapeHtml(quote.quoteNo || `#${quote.id}`)} | ${escapeHtml(quote.date || "")} | ${langText("Net", "Netto")} ${currency.format(quote.netTotal || quote.total)} | ${langText("Brut", "Brutto")} ${currency.format(quote.grossTotal || quote.total)}</span>
+        <span>${escapeHtml(quote.userName || "-")} | ${quote.language === "tr" ? "TR" : "DE"} | ${quote.isExport ? t("common.export") : t("common.inland")}</span>
+        <span>${quote.items.map((item) => `${escapeHtml(item.itemName || "")} x ${numberFormat.format(item.quantity)}`).join(", ")}</span>
+        ${quote.note ? `<span>${escapeHtml(quote.note)}</span>` : ""}
         <div class="action-row">
           <button class="mini-button secondary-button" type="button" data-quote-preview="${quote.id}" data-lang="auto" data-help="TR: Teklif PDF onizlemesini yeni sekmede acar. DE: Oeffnet die PDF-Vorschau des Angebots in einem neuen Tab.">${langText("Onizle", "Vorschau")}</button>
           <button class="mini-button secondary-button" type="button" data-quote-pdf="${quote.id}" data-lang="auto" data-help="TR: Teklifi panel dilinde PDF olarak indirir. DE: Laedt das Angebot in der aktuellen Oberflaechensprache als PDF herunter.">${langText("Indir", "Download")} PDF ${state.uiLanguage.toUpperCase()}</button>
@@ -4555,8 +4555,8 @@ function renderQuotes() {
         : langText("net", "netto");
       row.innerHTML = `
         <div class="cart-item-main">
-          <strong>${entry.itemName}</strong>
-          <span>${entry.unit} | ${currency.format(entry.unitPrice)} / ${langText("birim", "Einheit")} (${priceLabel})</span>
+          <strong>${escapeHtml(entry.itemName || "")}</strong>
+          <span>${escapeHtml(entry.unit || "")} | ${currency.format(entry.unitPrice)} / ${langText("birim", "Einheit")} (${priceLabel})</span>
         </div>
         <div class="cart-item-controls">
           <button class="mini-button secondary-button" type="button" data-quote-qty="${index}" data-delta="-1">-</button>
@@ -4635,15 +4635,15 @@ function renderPosCatalog() {
     card.innerHTML = `
       <div class="pos-card-head">
         <div>
-          <strong>${item.name}</strong>
-          <span>${item.brand || "-"}</span>
+          <strong>${escapeHtml(item.name || "")}</strong>
+          <span>${escapeHtml(item.brand || "-")}</span>
         </div>
         <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
       <div class="pos-card-meta">
-        <span>${getDisplayCategory(item.category)}</span>
-        <span>${langText("Stok", "Bestand")}: ${formatItemStock(item.currentStock, item.unit)}</span>
-        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${itemDetail}</span>` : ""}
+        <span>${escapeHtml(getDisplayCategory(item.category))}</span>
+        <span>${langText("Stok", "Bestand")}: ${escapeHtml(formatItemStock(item.currentStock, item.unit))}</span>
+        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</span>` : ""}
       </div>
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : "-"}</div>
       ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span></div>` : ""}
@@ -4709,16 +4709,16 @@ function renderAdminOrders() {
           ? "status-progress"
           : "status-pending";
     tr.innerHTML = `
-      <td>${order.date}</td>
-      <td>${order.customerName}</td>
+      <td>${escapeHtml(order.date || "")}</td>
+      <td>${escapeHtml(order.customerName || "")}</td>
       <td>${order.items.map((item) => {
         const price = Number(item.unitPrice || 0);
         const priceLabel = price > 0 ? ` <span class="muted" style="font-size:.85em;">(€${numberFormat.format(price)})</span>` : ` <span style="color:#dc2626;font-size:.85em;">(${langText("fiyat yok","kein Preis")})</span>`;
         return `${escapeHtml(item.itemName)} x ${numberFormat.format(item.quantity)}${priceLabel}`;
       }).join("<br>")}</td>
-      <td><span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span>${order.stockDeductedAt ? `<br><span class="muted" style="font-size:.75em;">${langText("✓ stok düştü","✓ Lager abgezogen")}</span>` : ""}</td>
+      <td><span class="status-pill ${statusClass}">${escapeHtml(getOrderStatusLabel(order.status))}</span>${order.stockDeductedAt ? `<br><span class="muted" style="font-size:.75em;">${langText("✓ stok düştü","✓ Lager abgezogen")}</span>` : ""}</td>
       <td>${renderPaymentCell(order)}</td>
-      <td>${order.note || "-"}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
+      <td>${escapeHtml(order.note || "-")}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
       <td class="table-action-cell">
         <div class="action-row">
           <button class="mini-button primary-button" type="button" data-order-edit="${order.id}" data-help="TR: Siparis satirlarinin fiyat ve miktarini duzenler. DE: Bearbeitet Preise/Mengen der Bestellpositionen.">${langText("Fiyat Düzenle","Preis bearbeiten")}</button>
@@ -5203,16 +5203,16 @@ function renderCustomerCatalog() {
     card.innerHTML = `
       <div class="pos-card-head">
         <div>
-          <strong>${item.name}</strong>
-          <span>${item.brand || "-"}</span>
+          <strong>${escapeHtml(item.name || "")}</strong>
+          <span>${escapeHtml(item.brand || "-")}</span>
         </div>
         <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
       <div class="pos-card-meta">
-        <span>${getDisplayCategory(item.category)}</span>
-        <span>${langText("Stok", "Bestand")}: ${formatItemStock(item.currentStock, item.unit)}</span>
-        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${itemDetail}</span>` : ""}
-        <span>${langText("Stok Kodu", "Lagercode")}: ${item.barcode || "-"}</span>
+        <span>${escapeHtml(getDisplayCategory(item.category))}</span>
+        <span>${langText("Stok", "Bestand")}: ${escapeHtml(formatItemStock(item.currentStock, item.unit))}</span>
+        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</span>` : ""}
+        <span>${langText("Stok Kodu", "Lagercode")}: ${escapeHtml(item.barcode || "-")}</span>
       </div>
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : langText("Fiyat sorunuz", "Preis auf Anfrage")}</div>
       ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span></div>` : ""}
@@ -5267,8 +5267,8 @@ function renderCustomerOrderDraft() {
     row.className = "cart-item";
     row.innerHTML = `
         <div class="cart-item-main">
-          <strong>${entry.itemName}</strong>
-          <span>${entry.unit} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${entry.unit} | ${langText("Birim", "Einzel")}: ${currency.format(entry.unitPrice || 0)}</span>
+          <strong>${escapeHtml(entry.itemName || "")}</strong>
+          <span>${escapeHtml(entry.unit || "")} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${escapeHtml(entry.unit || "")} | ${langText("Birim", "Einzel")}: ${currency.format(entry.unitPrice || 0)}</span>
         </div>
       <div class="cart-item-controls">
         <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="-1">-</button>
@@ -5390,9 +5390,9 @@ function renderCustomerOrders() {
           <strong>${langText("Siparişim", "Meine Bestellung")} #${order.id}</strong>
           ${order.quoteId ? `<span class="status-pill status-ok" style="margin-left:8px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}
         </div>
-        <span class="status-pill ${statusClass}">${getOrderStatusLabel(order.status)}</span>
+        <span class="status-pill ${statusClass}">${escapeHtml(getOrderStatusLabel(order.status))}</span>
       </header>
-      <p class="muted" style="margin:4px 0;">${langText("Tarih","Datum")}: ${order.date}</p>
+      <p class="muted" style="margin:4px 0;">${langText("Tarih","Datum")}: ${escapeHtml(order.date || "")}</p>
       <table class="customer-order-lines" style="width:100%; border-collapse:collapse; font-size:0.9em; margin-top:8px;">
         <thead>
           <tr style="background:rgba(255,255,255,0.04);">
@@ -5409,7 +5409,7 @@ function renderCustomerOrders() {
             const lineTot = qty * up;
             return `<tr>
               <td style="padding:4px 6px;">${escapeHtml(it.itemName || "")}</td>
-              <td style="text-align:right; padding:4px 6px;">${numberFormat.format(qty)} ${it.unit || "ad"}</td>
+              <td style="text-align:right; padding:4px 6px;">${numberFormat.format(qty)} ${escapeHtml(it.unit || "ad")}</td>
               <td style="text-align:right; padding:4px 6px;">${up > 0 ? currency.format(up) : "—"}</td>
               <td style="text-align:right; padding:4px 6px;"><strong>${lineTot > 0 ? currency.format(lineTot) : "—"}</strong></td>
             </tr>`;
