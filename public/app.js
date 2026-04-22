@@ -3608,9 +3608,12 @@ function renderCashbook() {
   populateCashCustomerOrderSelectors();
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
-    const isUnbilledSale = /faturasiz satis/i.test(String(entry.note || "")) || /faturasiz satis/i.test(String(entry.title || ""));
-    const isDirectSale = /direkt satis/i.test(String(entry.title || ""));
-    const isSale = isUnbilledSale || isDirectSale;
+    const saleHaystack = `${String(entry.title || "")} | ${String(entry.note || "")}`;
+    const isUnbilledSale = /faturasiz sati[sş]/i.test(saleHaystack);
+    const isDirectSale = /direkt sati[sş]/i.test(saleHaystack);
+    const isGenericSale = /\bsati[sş]\b|\bverkauf\b|\bperakende\b|DRC-\d{4}-\d{3,}/i.test(saleHaystack);
+    const isSaleByType = entry.type === "in" && (entry.orderId || isGenericSale);
+    const isSale = isUnbilledSale || isDirectSale || isSaleByType;
     const links = extractCashbookLinks(entry);
     const linkedQuotes = links.quoteNos
       .map((qn) => (state.quotes || []).find((q) => String(q.quoteNo || "").toUpperCase() === qn))
@@ -3643,10 +3646,17 @@ function renderCashbook() {
     const actionMarkup = canManageCashbook()
       ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button>`
       : `<span class="muted">-</span>`;
+    const typeCell = isUnbilledSale
+      ? t("common.unbilledSale")
+      : isDirectSale || isSaleByType
+        ? langText("Satış", "Verkauf")
+        : entry.type === "in"
+          ? t("common.in")
+          : t("common.out");
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${entry.date}</td>
-      <td>${isUnbilledSale ? t("common.unbilledSale") : entry.type === "in" ? t("common.in") : t("common.out")}</td>
+      <td>${escapeHtml(entry.date || "")}</td>
+      <td>${escapeHtml(typeCell)}</td>
       <td>${escapeHtml(entry.title || "")}</td>
       <td>${referenceCell}</td>
       <td>${escapeHtml(entry.note || "-")}</td>
