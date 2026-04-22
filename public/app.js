@@ -3490,12 +3490,13 @@ function renderArchive() {
 }
 
 function renderMovements() {
-  if (!state.inventoryLoadedAll && !isCustomerUser()) {
-    renderInventoryLoading("movements");
+  // Movements bootstrap ile geliyor ve itemName JOIN'li — full inventory load bekleme.
+  // (Arkada loadInventory çalışsa bile tablo anında render edilir.)
+  refs.movementsTableBody.innerHTML = "";
+  if (!Array.isArray(state.movements) || state.movements.length === 0) {
+    refs.movementsTableBody.innerHTML = `<tr><td colspan="7" class="muted" style="text-align:center; padding:18px;">${langText("Stok hareketi yok", "Keine Lagerbewegungen")}</td></tr>`;
     return;
   }
-
-  refs.movementsTableBody.innerHTML = "";
   state.movements.slice(0, 20).forEach((movement) => {
     const tr = document.createElement("tr");
     const movementTypeLabel = movement.type === "entry" ? t("common.in") : t("common.out");
@@ -5686,17 +5687,18 @@ function renderTabData(tab) {
     return;
   }
   if (tab === "movements") {
+    // Tabloyu hemen bootstrap verisiyle göster; dropdown (item selects) için
+    // full inventory gerekir — arkada yükle ve gelince dropdown'ı doldur.
+    renderMovements();
     if (!state.inventoryLoadedAll && !isCustomerUser()) {
-      renderMovements();
       loadInventory().then(() => {
         if (state.inventoryLoadedAll) {
-          renderTabData("movements");
+          renderItemSelects();
         }
       });
       return;
     }
     renderItemSelects();
-    renderMovements();
     return;
   }
   if (tab === "expenses") {
