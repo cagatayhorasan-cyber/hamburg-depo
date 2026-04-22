@@ -2081,6 +2081,14 @@ function bindEvents() {
 
 async function initialize() {
   state.user = null;
+  // Modals loginScreen içindeyse, login sonrası parent hidden olunca görünmüyor.
+  // Hepsini body'nin direkt çocuğu yap (fixed-positioned oldukları için güvenli).
+  ["authModal", "itemDetailModal", "saleDetailModal"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el && el.parentElement !== document.body) {
+      document.body.appendChild(el);
+    }
+  });
   applyUiTranslations();
   showLogin();
   await handleAuthUrlActions();
@@ -3500,13 +3508,21 @@ function renderMovements() {
   state.movements.slice(0, 20).forEach((movement) => {
     const tr = document.createElement("tr");
     const movementTypeLabel = movement.type === "entry" ? t("common.in") : t("common.out");
-    let actionMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}" data-help="TR: Hareketi ters kayitla geri alir. DE: Storniert die Bewegung mit einer Gegenbuchung.">${t("common.reverse")}</button>`;
+    let reverseMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}" data-help="TR: Hareketi ters kayitla geri alir. DE: Storniert die Bewegung mit einer Gegenbuchung.">${t("common.reverse")}</button>`;
 
     if (movement.reversalOf) {
-      actionMarkup = `<span class="muted">${t("common.reverseRecord")}</span>`;
+      reverseMarkup = `<span class="muted">${t("common.reverseRecord")}</span>`;
     } else if (movement.reversedById) {
-      actionMarkup = `<span class="muted">${t("common.reversed")}</span>`;
+      reverseMarkup = `<span class="muted">${t("common.reversed")}</span>`;
     }
+
+    const isSaleMovement = movement.type === "exit" && /sati[sş]/i.test(String(movement.note || ""));
+    const saleDetailButton = isSaleMovement
+      ? `<button class="mini-button cashbook-detail-button" type="button" data-movement-sale-detail="${movement.id}" data-help="TR: Bu ürünün dahil olduğu satışı aç. DE: Zum zugehörigen Verkauf öffnen.">🔎 ${langText("Satış Detayı", "Verkaufsdetails")}</button>`
+      : "";
+    const actionMarkup = saleDetailButton
+      ? `<div class="cashbook-action-stack">${saleDetailButton}${reverseMarkup}</div>`
+      : reverseMarkup;
 
     const quantityMarkup = canViewPurchasePrices()
       ? `${numberFormat.format(movement.quantity)} / ${currency.format(movement.unitPrice)}`
@@ -3522,6 +3538,15 @@ function renderMovements() {
       <td class="table-action-cell">${actionMarkup}</td>
     `;
     refs.movementsTableBody.append(tr);
+  });
+
+  refs.movementsTableBody.querySelectorAll("[data-movement-sale-detail]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const mvId = Number(button.dataset.movementSaleDetail);
+      const mv = (state.movements || []).find((m) => Number(m.id) === mvId);
+      if (mv) openSaleDetailFromMovement(mv);
+    });
   });
 
   refs.movementsTableBody.querySelectorAll("[data-reverse-movement]").forEach((button) => {
@@ -3896,9 +3921,62 @@ function findSaleSourceForCashbook(entry) {
   };
 }
 
+function openSaleDetailFromMovement(movement) {
+  if (!movement || movement.type !== "exit") return;
+  const note = String(movement.note || "");
+  const dateKey = String(movement.date || "").slice(0, 10);
+  const userName = movement.userName;
+
+  let customerHint = "";
+  let isDirect = false;
+  const directMatch = note.match(/Direkt\s*sati[sş]\s*-\s*(.+?)(?:\s*\||$)/i);
+  const unbilledMatch = note.match(/Faturasi?z\s*sati[sş]\s*-\s*(.+?)(?:\s*\||$)/i);
+  if (directMatch) {
+    customerHint = directMatch[1].trim();
+    isDirect = true;
+  } else if (unbilledMatch) {
+    customerHint = unbilledMatch[1].trim();
+    isDirect = false;
+  }
+
+  // 1) Eşleşen cashbook entry'sini bul
+  const customerLower = customerHint.toLowerCase();
+  const matchedEntry = customerHint
+    ? (state.cashbook || []).find((entry) => {
+        if (entry.type !== "in") return false;
+        if (String(entry.date || "").slice(0, 10) !== dateKey) return false;
+        if (userName && entry.userName && entry.userName !== userName) return false;
+        return String(entry.title || "").toLowerCase().includes(customerLower);
+      })
+    : null;
+
+  if (matchedEntry) {
+    openSaleDetailFromCashbook(matchedEntry);
+    return;
+  }
+
+  // 2) Fallback: pseudo cashbook entry (sadece o günün ilgili movement'leri gösterilir)
+  const prefix = isDirect ? "Direkt satis tahsilati" : "Faturasiz satis tahsilati";
+  const pseudo = {
+    id: `mv-${movement.id}`,
+    type: "in",
+    title: customerHint ? `${prefix} - ${customerHint}` : prefix,
+    date: movement.date,
+    note: isDirect ? "" : "Faturasiz satis",
+    amount: 0,
+    userName: movement.userName,
+    orderId: null,
+  };
+  openSaleDetailFromCashbook(pseudo);
+}
+
 function openSaleDetailFromCashbook(entry) {
   const modal = document.getElementById("saleDetailModal");
   if (!modal) return;
+  // Emniyet: modal loginScreen içindeyse (parent .hidden olabilir) body'ye taşı.
+  if (modal.parentElement !== document.body) {
+    document.body.appendChild(modal);
+  }
 
   const titleEl = document.getElementById("saleDetailTitle");
   const kickerEl = document.getElementById("saleDetailKicker");
