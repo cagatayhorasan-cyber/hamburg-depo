@@ -13,10 +13,33 @@ Bu uygulama stok, hareket, masraf, kasa ve teklif yonetimi icin web tabanli bir 
 - Excel ve PDF rapor disa aktarma
 - Docker ve Nginx ile uzak sunucuya kurulum
 
-## Varsayilan kullanicilar
+## Kullanim notu
 
-- `admin / admin123`
-- `operator / operator123`
+- Canli kullanimda varsayilan kullanici uretilmez.
+- Ilk kullanicilar panel veya veritabani uzerinden tanimlanir.
+- Uretim ve gelistirme tarafinda ornek hesap yerine gerçek kullanici acmak tavsiye edilir.
+
+## Veri kaynagi disiplini
+
+- `DATABASE_URL` tanimliysa uygulamanin gercek kaynagi `Postgres` olur.
+- `data/hamburg-depo.sqlite` sadece yerel calisma veya eski offline veri icindir.
+- `data/hamburg-depo.live-postgres.sqlite` canli Postgres verisinin okunabilir snapshot kopyasidir.
+- Canli kullanici, kasa, siparis ve stok kontrolu icin yerel SQLite dosyasina bakmayin; once `npm run db:report` calistirin.
+
+Temel komutlar:
+
+```bash
+npm run db:report
+npm run db:sync-live
+npm run db:refresh-local
+```
+
+Ne yaparlar:
+
+- `npm run db:report`: canli Postgres, yerel SQLite ve varsa snapshot dosyasini karsilastirir
+- `npm run db:sync-live`: canli Postgres verisini `data/hamburg-depo.live-postgres.sqlite` dosyasina indirir
+- `npm run db:refresh-local`: once canli snapshot alir, sonra yerel `data/hamburg-depo.sqlite` dosyasini birebir canli kopya ile degistirir
+- Raporlar `data/reports` altina JSON olarak yazilir
 
 ## Yerelde calistirma
 
@@ -69,7 +92,7 @@ Uygulama mail gonderimi icin iki yol destekler:
 Gmail ile gondermek icin `.env` veya Vercel ortam degiskenlerine su alanlari ekleyin:
 
 ```env
-APP_BASE_URL=https://drckaltetechnik.vercel.app
+APP_BASE_URL=https://YOUR-PROJECT.vercel.app
 MAIL_FROM=mailadresiniz@gmail.com
 GMAIL_USER=mailadresiniz@gmail.com
 GMAIL_APP_PASSWORD=google-uygulama-sifresi
@@ -161,7 +184,9 @@ En hizli ve daha az operasyon yuklu cozum Cloudflare kullanmaktir.
 ## Veri ve ciktilar
 
 - SQLite veritabani: `data/hamburg-depo.sqlite`
+- Canli Postgres snapshot: `data/hamburg-depo.live-postgres.sqlite`
 - Kaydedilen teklif PDF dosyalari: `exports/quotes`
+- Raporlar: `data/reports`
 - Yedekler: `backups`
 
 ## Yedek alma

@@ -893,6 +893,14 @@ async function run() {
       assert.ok(response.body.length > 500);
     });
 
+    await check("Teklif PDF onizleme endpointi calisiyor", async () => {
+      const response = await staffClient.get(`/api/quotes/${state.quoteId}/pdf?lang=tr&disposition=inline`, { expectBinary: true });
+      assert.equal(response.status, 200);
+      assert.ok(response.contentType.includes("application/pdf"));
+      assert.ok(String(response.headers.get("content-disposition") || "").toLowerCase().includes("inline"));
+      assert.ok(response.body.length > 500);
+    });
+
     await check("Barkod PNG uretiliyor", async () => {
       assert.ok(state.intakeItemId, "Barkod icin test urunu yok.");
       const response = await staffClient.get(`/api/barcodes/${state.intakeItemId}`, { expectBinary: true });

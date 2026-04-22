@@ -7,8 +7,8 @@
   <title>D-R-C Kältetechnik GmbH Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260417-cashbook-link">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=20260420-product-modal">
 </head>
 <body>
   <div class="page-shell">
@@ -148,6 +148,79 @@
               <p id="resetPasswordError" class="error-text auth-message"></p>
               <p id="resetPasswordSuccess" class="success-text auth-message"></p>
             </form>
+          </section>
+        </div>
+      </div>
+
+      <div id="itemDetailModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="itemDetailTitle" hidden>
+        <div class="auth-modal-backdrop" data-item-detail-close></div>
+        <div class="auth-modal-panel product-detail-modal" role="document">
+          <button type="button" class="auth-modal-close" data-item-detail-close aria-label="Kapat">×</button>
+          <section class="product-detail-shell">
+            <div class="product-detail-topline">
+              <span id="itemDetailEyebrow" class="product-detail-eyebrow">Urun Karti</span>
+              <span id="itemDetailCode" class="product-detail-code mono">-</span>
+            </div>
+            <div class="product-detail-hero">
+              <div class="product-detail-brandbox">
+                <img id="itemDetailBrandLogo" class="product-detail-brand-logo" src="/assets/drc-logo.svg" alt="Marka logosu">
+              </div>
+              <div class="product-detail-visualbox">
+                <img id="itemDetailVisual" class="product-detail-visual" src="/assets/drc-product-showcase.svg" alt="Urun gorseli">
+              </div>
+            </div>
+            <h2 id="itemDetailTitle">Urun Detayi</h2>
+            <p id="itemDetailSubtitle" class="muted">Marka ve kategori bilgisi</p>
+
+            <div class="product-detail-stats">
+              <article class="product-detail-stat">
+                <span>Stok</span>
+                <strong id="itemDetailStock">-</strong>
+              </article>
+              <article class="product-detail-stat">
+                <span>Net / Satis</span>
+                <strong id="itemDetailNetPrice">-</strong>
+              </article>
+              <article class="product-detail-stat">
+                <span>Liste</span>
+                <strong id="itemDetailListPrice">-</strong>
+              </article>
+            </div>
+
+            <div class="product-detail-tabs" role="tablist" aria-label="Urun detay sekmeleri">
+              <button type="button" class="product-detail-tab is-active" data-item-detail-tab="overview">Genel Bilgi</button>
+              <button type="button" class="product-detail-tab" data-item-detail-tab="tech">Teknik Veri</button>
+              <button type="button" class="product-detail-tab" data-item-detail-tab="pricing">Fiyat</button>
+              <button type="button" class="product-detail-tab" data-item-detail-tab="docs">PDF / Katalog</button>
+              <button type="button" class="product-detail-tab" data-item-detail-tab="notes">Notlar</button>
+            </div>
+
+            <div class="product-detail-grid">
+              <article class="product-detail-panel product-detail-view" data-item-detail-view="overview">
+                <h3>Hizli Bilgi</h3>
+                <div id="itemDetailFacts" class="product-detail-facts"></div>
+              </article>
+              <article class="product-detail-panel product-detail-view hidden" data-item-detail-view="tech">
+                <h3>Teknik Veri</h3>
+                <div id="itemDetailTech" class="product-detail-facts"></div>
+              </article>
+              <article class="product-detail-panel product-detail-view hidden" data-item-detail-view="pricing">
+                <h3>Fiyat Bilgisi</h3>
+                <div id="itemDetailPricing" class="product-detail-facts"></div>
+              </article>
+              <article class="product-detail-panel product-detail-view hidden" data-item-detail-view="docs">
+                <h3>PDF / Katalog</h3>
+                <div id="itemDetailDocuments" class="product-detail-documents"></div>
+              </article>
+              <article class="product-detail-panel product-detail-view hidden" data-item-detail-view="notes">
+                <h3>Notlar</h3>
+                <div id="itemDetailNotes" class="product-detail-facts"></div>
+              </article>
+              <article class="product-detail-panel product-detail-view" data-item-detail-view="overview-copy">
+                <h3>Aciklama</h3>
+                <p id="itemDetailDescription" class="product-detail-description"></p>
+              </article>
+            </div>
           </section>
         </div>
       </div>

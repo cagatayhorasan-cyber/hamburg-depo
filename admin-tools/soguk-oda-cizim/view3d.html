@@ -129,7 +129,6 @@
   <div class="logo">❄️ ColdRoom 3D <span>Görüntüleyici</span></div>
   <div class="sep"></div>
   <button class="tb-btn" onclick="window.open('index.html','_self')">← 2D Çizime Dön</button>
-  <button class="tb-btn" onclick="loadDemo()">📦 Demo Yükle</button>
   <button class="tb-btn" onclick="showImportArea()">📂 Proje Yükle</button>
   <div class="sep"></div>
   <button class="tb-btn" id="btn-walls" onclick="toggleWalls()" class="active">🧱 Duvarlar</button>
@@ -258,9 +257,8 @@
     <div id="import-area">
       <h2>❄️ ColdRoom 3D Görüntüleyici</h2>
       <p>2D çizim programındaki projenizi 3D olarak görüntüleyin.<br>
-         2D programdan <b>"3D Görüntüle"</b> butonuna tıklayın veya demo yükleyin.</p>
+         2D programdan <b>"3D Görüntüle"</b> butonuna tıklayın veya kayitli projeyi yükleyin.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-        <button class="big-btn" onclick="loadDemo()">📦 Demo Projeyi Yükle</button>
         <button class="big-btn secondary" onclick="hideImportArea()">✕ Kapat</button>
       </div>
     </div>
@@ -871,34 +869,8 @@ function focusRoom(idx) {
 }
 
 // ============================================================
-// DEMO & IMPORT
+// IMPORT
 // ============================================================
-function loadDemo() {
-  const demo = {
-    objects: [
-      { id:'r1', type:'room', x:0,  y:0, w:5,   h:4, height:3, name:'Soğuk Oda 1',    panelType:'PUR', panelThickness:100, tempType:'neg' },
-      { id:'r2', type:'room', x:5,  y:0, w:4,   h:4, height:3, name:'Dondurma Odası', panelType:'PIR', panelThickness:120, tempType:'deep' },
-      { id:'r3', type:'room', x:9,  y:0, w:3,   h:4, height:3, name:'Şok Soğutucu',   panelType:'PUR', panelThickness:150, tempType:'blast' },
-      { id:'r4', type:'room', x:0,  y:4, w:9,   h:5, height:4, name:'Depolama Odası', panelType:'EPS', panelThickness:100, tempType:'pos' },
-      { id:'d1', type:'door', x:2,  y:0, w:0.9, h:2, doorType:'single_hinge', panelThickness:100 },
-      { id:'d2', type:'door', x:6,  y:0, w:1.2, h:2, doorType:'sliding',      panelThickness:120 },
-      { id:'d3', type:'door', x:3,  y:4, w:1.8, h:2, doorType:'double_hinge', panelThickness:100 },
-      { id:'u1', type:'cooling_unit', x:1,   y:0.3, w:1.2, h:0.6, unitType:'evaporator', model:'ECO-200', capacity:'12', height:3 },
-      { id:'u2', type:'cooling_unit', x:5.5, y:0.3, w:1.4, h:0.7, unitType:'condenser',  model:'CDN-150', capacity:'15', height:3 },
-      { id:'u3', type:'cooling_unit', x:9.5, y:0.3, w:0.6, h:0.6, unitType:'compressor', model:'BIZ-4',   capacity:'8',  height:3 },
-      { id:'u4', type:'cooling_unit', x:2,   y:5.0, w:2.0, h:1.0, unitType:'rack',       model:'RACK-3',  capacity:'30', height:4 },
-      { id:'p1', type:'pipe', pipeType:'pipe_liquid',    points:[{x:1.5,y:0.2},{x:10,y:0.2},{x:10,y:8}], diameter:22 },
-      { id:'p2', type:'pipe', pipeType:'pipe_suction',   points:[{x:1.5,y:1.0},{x:10,y:1.0}],             diameter:28 },
-      { id:'p3', type:'pipe', pipeType:'pipe_discharge', points:[{x:10,y:0.5},{x:10,y:5}],                diameter:18 },
-      { id:'a1', type:'accessory', x:3,   y:0.5, accType:'valve' },
-      { id:'a2', type:'accessory', x:7,   y:0.5, accType:'thermometer' },
-      { id:'a3', type:'accessory', x:10.5,y:1.5, accType:'pressure' },
-    ]
-  };
-  document.getElementById('loading').style.display='flex';
-  setTimeout(()=>buildScene(demo), 100);
-}
-
 function showImportArea()  { document.getElementById('import-area').style.display='flex'; }
 function hideImportArea()  { document.getElementById('import-area').style.display='none'; }
 
@@ -906,12 +878,15 @@ function hideImportArea()  { document.getElementById('import-area').style.displa
 function loadFromStorage() {
   try {
     const raw=localStorage.getItem('coldroom_objects');
-    if(!raw) { toast('2D programda kayıtlı veri yok, demo yükleniyor...'); loadDemo(); return; }
+    if(!raw) { showImportArea(); toast('2D programda kayitli proje bulunamadi.'); return; }
     const objects=JSON.parse(raw);
-    if(!objects.length) { loadDemo(); return; }
+    if(!objects.length) { showImportArea(); toast('Kayitli proje listesi bos.'); return; }
     document.getElementById('loading').style.display='flex';
     setTimeout(()=>buildScene({objects}), 100);
-  } catch(e) { loadDemo(); }
+  } catch(e) {
+    showImportArea();
+    toast('Proje verisi okunamadi.');
+  }
 }
 
 function screenshotPNG() {
@@ -957,10 +932,7 @@ animate();
 // ============================================================
 window.addEventListener('load', () => {
   onResize();
-  // URL parametresinden veya localStorage'dan veri al
-  const urlParams=new URLSearchParams(window.location.search);
-  if(urlParams.get('demo')==='1') loadDemo();
-  else loadFromStorage();
+  loadFromStorage();
 });
 
 // 2D programdan mesaj dinle

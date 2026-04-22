@@ -6,13 +6,12 @@ loadEnv(path.join(process.cwd(), ".env"));
 
 const { initDatabase, query } = require("../server/db");
 
-const DEFAULT_SOURCE_DIR = "/Users/anilakbas/Desktop/DRX_PRO_v11/coldroompro/src";
+const DEFAULT_SOURCE_DIR = path.join(process.cwd(), "admin-tools", "coldroompro-source", "src");
 const SOURCE_DIR = process.env.COLDROOMPRO_SRC_DIR || DEFAULT_SOURCE_DIR;
 const MATERIAL_PATH = path.join(SOURCE_DIR, "materialCatalog.js");
 const REPORT_PATH = path.join(process.cwd(), "data", "coldroompro-price-sync-report.json");
 const DEFAULT_BUNDLE_DIRS = [
   path.join(process.cwd(), "admin-tools", "coldroompro"),
-  path.join(path.dirname(SOURCE_DIR), "dist"),
 ];
 
 async function main() {

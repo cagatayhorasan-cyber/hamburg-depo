@@ -6,7 +6,7 @@ loadEnv(path.join(process.cwd(), ".env"));
 
 const { initDatabase, query, withTransaction, dbClient } = require("../server/db");
 
-const DEFAULT_SOURCE_DIR = "/Users/anilakbas/Desktop/DRX_PRO_v11/coldroompro/src";
+const DEFAULT_SOURCE_DIR = path.join(process.cwd(), "admin-tools", "coldroompro-source", "src");
 const SOURCE_DIR = process.env.COLDROOMPRO_SRC_DIR || DEFAULT_SOURCE_DIR;
 const MATERIAL_PATH = path.join(SOURCE_DIR, "materialCatalog.js");
 const PRODUCT_PATH = path.join(SOURCE_DIR, "productCatalog.js");

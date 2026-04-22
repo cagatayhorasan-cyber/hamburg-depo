@@ -6,7 +6,17 @@
   "scripts": {
     "start": "node server.js",
     "desktop": "electron .",
-    "check": "node --check server.js && node --check server/app.js && node --check server/db.js && node --check public/app.js && node --check electron/main.js"
+    "check": "node --check server.js && node --check server/app.js && node --check server/db.js && node --check public/app.js && node --check electron/main.js && node --check scripts/sync-live-postgres-to-sqlite.js && node --check scripts/report-database-integrity.js && node --check scripts/refresh-local-sqlite-from-live.js && node --check scripts/lib/database-tools.js",
+    "db:sync-live": "node scripts/sync-live-postgres-to-sqlite.js",
+    "db:refresh-local": "node scripts/refresh-local-sqlite-from-live.js",
+    "db:report": "node scripts/report-database-integrity.js",
+    "db:fix-catalog-prices": "node scripts/fix-catalog-pricing-apr15.js",
+    "catalog:stock-tech": "node scripts/export-bilingual-stock-tech-catalog.js",
+    "sync:shared-admin-catalog": "node scripts/export-shared-admin-catalog.js",
+    "train:drcman": "node scripts/train-drc-man-all.js",
+    "generate:drcman:25k": "node scripts/generate_drc_man_troubleshooting_25k.js",
+    "generate:drcman:deep": "node scripts/generate_drc_man_troubleshooting_deep_packs.js",
+    "import:drcman:25k": "node scripts/import-drc-man-troubleshooting-25k.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -308,9 +308,9 @@ const UI_TEXT = {
       adminMessagesSummary: (total, fresh) => `${total} mesaj | ${fresh} yeni`,
       adminMessageHistorySummary: (total, fresh) => `${total} mesaj | ${fresh} acik takip`,
       adminMessageSent: "Mesajiniz admin ekibine gonderildi.",
-      noSecurityEvents: "Henuz kaydedilmis guvenlik olayi yok.",
-      noSecurityBlocks: "Aktif veya gecmis IP blogu yok.",
-      securitySummary: (events, blocks, activeBlocks) => `${events} olay | ${blocks} blok kaydi | ${activeBlocks} aktif blok`,
+      noSecurityEvents: "Su an dikkat gerektiren bir guvenlik kaydi yok.",
+      noSecurityBlocks: "Su an acik IP blogu bulunmuyor.",
+      securitySummary: (events, blocks, activeBlocks) => `${events} kayit | ${blocks} blok gecmisi | ${activeBlocks} aktif blok`,
       trainingSummary: (count) => `${count} egitim kaydi var. DRC MAN bu kayitlari once kontrol eder.`,
       noTraining: "Henuz egitim kaydi yok. Ilk soru-cevap ciftinizi soldan ekleyin.",
       trainingSaved: "Egitim Kaydet",
@@ -510,9 +510,9 @@ const UI_TEXT = {
       adminMessagesSummary: (total, fresh) => `${total} Nachrichten | ${fresh} neu`,
       adminMessageHistorySummary: (total, fresh) => `${total} Nachrichten | ${fresh} offen`,
       adminMessageSent: "Ihre Nachricht wurde an das Admin-Team gesendet.",
-      noSecurityEvents: "Es gibt noch keine protokollierten Sicherheitsereignisse.",
-      noSecurityBlocks: "Es gibt keine aktiven oder vergangenen IP-Sperren.",
-      securitySummary: (events, blocks, activeBlocks) => `${events} Ereignisse | ${blocks} Sperreintraege | ${activeBlocks} aktiv`,
+      noSecurityEvents: "Aktuell gibt es keinen sicherheitsrelevanten Eintrag mit Handlungsbedarf.",
+      noSecurityBlocks: "Aktuell gibt es keine offene IP-Sperre.",
+      securitySummary: (events, blocks, activeBlocks) => `${events} Eintraege | ${blocks} Sperrverlauf | ${activeBlocks} aktiv`,
       trainingSummary: (count) => `${count} Trainingseintraege vorhanden. DRC MAN prueft diese zuerst.`,
       noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
       trainingSaved: "Training speichern",
@@ -752,6 +752,22 @@ const refs = {
   assistantMessages: document.getElementById("assistantMessages"),
   assistantForm: document.getElementById("assistantForm"),
   assistantInput: document.getElementById("assistantInput"),
+  itemDetailModal: document.getElementById("itemDetailModal"),
+  itemDetailEyebrow: document.getElementById("itemDetailEyebrow"),
+  itemDetailCode: document.getElementById("itemDetailCode"),
+  itemDetailBrandLogo: document.getElementById("itemDetailBrandLogo"),
+  itemDetailVisual: document.getElementById("itemDetailVisual"),
+  itemDetailTitle: document.getElementById("itemDetailTitle"),
+  itemDetailSubtitle: document.getElementById("itemDetailSubtitle"),
+  itemDetailStock: document.getElementById("itemDetailStock"),
+  itemDetailNetPrice: document.getElementById("itemDetailNetPrice"),
+  itemDetailListPrice: document.getElementById("itemDetailListPrice"),
+  itemDetailFacts: document.getElementById("itemDetailFacts"),
+  itemDetailTech: document.getElementById("itemDetailTech"),
+  itemDetailPricing: document.getElementById("itemDetailPricing"),
+  itemDetailDocuments: document.getElementById("itemDetailDocuments"),
+  itemDetailNotes: document.getElementById("itemDetailNotes"),
+  itemDetailDescription: document.getElementById("itemDetailDescription"),
   uiLanguageSelects: document.querySelectorAll(".ui-language-select"),
 };
 
@@ -777,6 +793,301 @@ function setText(selector, value) {
     return;
   }
   node.textContent = value;
+}
+
+function formatMoneyOrDash(value) {
+  const numeric = Number(value || 0);
+  return numeric > 0 ? currency.format(numeric) : "-";
+}
+
+function buildItemDetailFacts(item) {
+  const facts = [
+    [langText("Marka", "Marke"), item.brand || "-"],
+    [langText("Kategori", "Kategorie"), getDisplayCategory(item.category)],
+    [langText("Birim", "Einheit"), getDisplayUnit(item.unit)],
+    [langText("Stok Kodu", "Lagercode"), item.barcode || item.productCode || "-"],
+    [langText("Mevcut Stok", "Aktueller Bestand"), formatItemStock(item.currentStock, item.unit)],
+  ];
+  const minStock = Number(item?.minStock || 0);
+  if (minStock > 0) {
+    facts.push([langText("Minimum Stok", "Mindestbestand"), formatItemStock(minStock, item.unit)]);
+  }
+  const packaging = extractPackagingDetail(item);
+  if (packaging) {
+    facts.push([langText("Ambalaj", "Gebinde"), packaging]);
+  }
+  const detail = getPublicItemDetail(item);
+  if (detail) {
+    facts.push([langText("Detay", "Detail"), detail]);
+  }
+  const noteSnippet = cleanPublicDetailPart(String(item.notes || "").split("|")[0] || "");
+  if (noteSnippet && noteSnippet !== detail) {
+    facts.push([langText("Not", "Notiz"), noteSnippet]);
+  }
+  return facts;
+}
+
+const BRAND_MEDIA_MAP = {
+  danfoss: { logo: "/assets/brands/danfoss-logo.svg", visual: "/assets/brands/danfoss.png" },
+  embraco: { logo: "/assets/brands/embraco.png", visual: "/assets/brands/embraco.png" },
+  sanhua: { logo: "/assets/brands/sanhua-logo.svg", visual: "/assets/brands/sanhua.png" },
+  frigocraft: { logo: "/assets/brands/frigocraft.png", visual: "/assets/brands/frigocraft.png" },
+  copeland: { logo: "/assets/brands/copeland.png", visual: "/assets/brands/copeland.png" },
+  bitzer: { logo: "/assets/brands/bitzer-logo.png", visual: "/assets/brands/bitzer-logo.png" },
+  drc: { logo: "/assets/drc-logo.svg", visual: "/assets/drc-product-showcase.svg" },
+};
+
+function getBrandMedia(item) {
+  const brand = normalizeSearchText(item?.brand || "");
+  for (const [key, media] of Object.entries(BRAND_MEDIA_MAP)) {
+    if (brand.includes(key)) {
+      return media;
+    }
+  }
+  return { logo: "/assets/drc-logo.svg", visual: "/assets/drc-product-showcase.svg" };
+}
+
+function buildItemTechFacts(item) {
+  const detail = getPublicItemDetail(item);
+  const noteBits = String(item.notes || "")
+    .split("|")
+    .map(cleanPublicDetailPart)
+    .filter(Boolean);
+  const combined = [...new Set([detail, ...noteBits].filter(Boolean))];
+  const facts = [
+    [langText("Model / Kod", "Modell / Code"), item.productCode || item.barcode || "-"],
+    [langText("Marka", "Marke"), item.brand || "-"],
+    [langText("Kategori", "Kategorie"), getDisplayCategory(item.category)],
+    [langText("Stok Birimi", "Lagereinheit"), getDisplayUnit(item.unit)],
+    [langText("Mevcut Stok", "Aktueller Bestand"), formatItemStock(item.currentStock, item.unit)],
+  ];
+  const minStock = Number(item?.minStock || 0);
+  if (minStock > 0) {
+    facts.push([langText("Minimum Stok", "Mindestbestand"), formatItemStock(minStock, item.unit)]);
+  }
+  const packaging = extractPackagingDetail(item);
+  if (packaging) {
+    facts.push([langText("Ambalaj", "Gebinde"), packaging]);
+  }
+  if (combined.length) {
+    combined.slice(0, 20).forEach((entry, index) => {
+      facts.push([`${langText("Ozellik", "Merkmal")} ${index + 1}`, entry]);
+    });
+  } else {
+    facts.push([
+      langText("Durum", "Status"),
+      langText("Teknik veri bu karta daha sonra eklenecek.", "Technische Daten werden spaeter fuer diese Karte ergaenzt."),
+    ]);
+  }
+  return facts;
+}
+
+function buildItemPricingFacts(item) {
+  const purchase = firstPositiveNumber(item?.defaultPrice, item?.lastPurchasePrice, item?.averagePurchasePrice);
+  const list = visibleListPrice(item);
+  const net = visibleSalePrice(item);
+  const single = cartSalePrice(item, 1);
+  const facts = [
+    [langText("Alis", "Einkauf"), formatMoneyOrDash(purchase)],
+    [langText("Net / Satis", "Netto / Verkauf"), formatMoneyOrDash(net)],
+    [langText("Liste", "Liste"), formatMoneyOrDash(list)],
+    [langText("1 Adet Fiyati", "Einzelstueck"), formatMoneyOrDash(single)],
+  ];
+  if (net > 0 && purchase > 0) {
+    const marginValue = Number((net - purchase).toFixed(2));
+    const marginPct = Number(((marginValue / purchase) * 100).toFixed(1));
+    if (Number.isFinite(marginPct)) {
+      facts.push([langText("Brut Kar", "Bruttomarge"), `${currency.format(marginValue)} · %${marginPct}`]);
+    }
+  }
+  return facts;
+}
+
+function buildItemNotesFacts(item) {
+  const notes = String(item.notes || "")
+    .split("|")
+    .map(cleanPublicDetailPart)
+    .filter(Boolean);
+  if (!notes.length) {
+    return [[
+      langText("Not", "Notiz"),
+      langText("Bu urun icin ozel not veya kullanim aciklamasi henuz girilmedi.", "Fuer diesen Artikel wurde noch keine spezielle Notiz hinterlegt."),
+    ]];
+  }
+  return notes.slice(0, 20).map((note, index) => [`${langText("Not", "Notiz")} ${index + 1}`, note]);
+}
+
+function renderItemDetailFactList(target, rows) {
+  if (!target) {
+    return;
+  }
+  target.innerHTML = rows
+    .map(([label, value]) => `
+      <div class="product-detail-fact">
+        <span>${escapeHtml(String(label))}</span>
+        <strong>${escapeHtml(String(value || "-"))}</strong>
+      </div>
+    `)
+    .join("");
+}
+
+function renderItemDocuments(target, documents) {
+  if (!target) {
+    return;
+  }
+  const docs = Array.isArray(documents) ? documents : [];
+  if (!docs.length) {
+    target.innerHTML = `
+      <div class="product-detail-doc-empty">
+        <strong>${escapeHtml(langText("Hazir PDF bulunamadi", "Kein passendes PDF gefunden"))}</strong>
+        <p>${escapeHtml(langText(
+          "Bu urun icin yerel katalog veya datasheet daha sonra eklenecek.",
+          "Fuer diesen Artikel wird spaeter ein lokaler Katalog oder ein Datenblatt hinterlegt."
+        ))}</p>
+      </div>
+    `;
+    return;
+  }
+  target.innerHTML = docs.map((doc) => `
+    <article class="product-detail-doc-card">
+      <div class="product-detail-doc-meta">
+        <span>${escapeHtml(String(doc.category || langText("Dokuman", "Dokument")))}</span>
+        <strong>${escapeHtml(String(doc.title || "PDF"))}</strong>
+        <p>${escapeHtml(String(doc.matchReason || langText("Urun ile eslesen katalog", "Zum Artikel passender Katalog")))}</p>
+      </div>
+      <a
+        class="product-detail-doc-link"
+        href="${escapeHtml(String(doc.openUrl || "#"))}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >${escapeHtml(langText("PDF Ac", "PDF oeffnen"))}</a>
+    </article>
+  `).join("");
+}
+
+async function loadItemDocuments(item) {
+  if (!refs.itemDetailDocuments || !item?.id) {
+    return;
+  }
+  refs.itemDetailDocuments.innerHTML = `
+    <div class="product-detail-doc-empty">
+      <strong>${escapeHtml(langText("Dokumanlar taraniyor", "Dokumente werden geladen"))}</strong>
+      <p>${escapeHtml(langText(
+        "Bu bilgisayardaki katalog ve PDF dosyalari urun koduna gore eslestiriliyor.",
+        "Die lokalen Kataloge und PDFs auf diesem Computer werden per Artikelcode abgeglichen."
+      ))}</p>
+    </div>
+  `;
+  try {
+    const response = await fetch(`/api/items/${encodeURIComponent(item.id)}/documents`, {
+      credentials: "same-origin",
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(payload?.error || "Dokuman bilgisi alinamadi.");
+    }
+    if (Number(item.id) !== Number(state.itemDetailSelection?.id)) {
+      return;
+    }
+    renderItemDocuments(refs.itemDetailDocuments, payload.documents || []);
+  } catch (_error) {
+    renderItemDocuments(refs.itemDetailDocuments, []);
+  }
+}
+
+function setItemDetailTab(view) {
+  if (!refs.itemDetailModal) {
+    return;
+  }
+  refs.itemDetailModal.querySelectorAll("[data-item-detail-tab]").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.itemDetailTab === view);
+  });
+  refs.itemDetailModal.querySelectorAll("[data-item-detail-view]").forEach((panel) => {
+    const panelView = panel.dataset.itemDetailView;
+    const active = panelView === view || (view === "overview" && panelView === "overview-copy");
+    panel.classList.toggle("hidden", !active);
+  });
+}
+
+function openItemDetailModal(item) {
+  if (!refs.itemDetailModal || !item) {
+    return;
+  }
+  state.itemDetailSelection = item;
+  const detail = getPublicItemDetail(item);
+  const media = getBrandMedia(item);
+  setText(refs.itemDetailEyebrow, langText("Urun Karti", "Artikelkarte"));
+  setText(refs.itemDetailCode, item.barcode || item.productCode || "-");
+  if (refs.itemDetailBrandLogo) {
+    refs.itemDetailBrandLogo.src = media.logo;
+    refs.itemDetailBrandLogo.alt = `${item.brand || "DRC"} logo`;
+  }
+  if (refs.itemDetailVisual) {
+    refs.itemDetailVisual.src = media.visual;
+    refs.itemDetailVisual.alt = item.name || "Urun gorseli";
+  }
+  setText(refs.itemDetailTitle, item.name || langText("Urun Detayi", "Artikeldetail"));
+  setText(refs.itemDetailSubtitle, `${item.brand || "-"} · ${getDisplayCategory(item.category)}`);
+  setText(refs.itemDetailStock, formatItemStock(item.currentStock, item.unit));
+  setText(refs.itemDetailNetPrice, `${formatMoneyOrDash(visibleSalePrice(item))} ${langText("net", "netto")}`);
+  setText(refs.itemDetailListPrice, formatMoneyOrDash(visibleListPrice(item)));
+  if (refs.itemDetailDescription) {
+    const noteBits = String(item.notes || "")
+      .split("|")
+      .map(cleanPublicDetailPart)
+      .filter(Boolean);
+    const uniqueBits = [...new Set([detail, ...noteBits].filter(Boolean))].slice(0, 20);
+    if (uniqueBits.length > 1) {
+      refs.itemDetailDescription.innerHTML = `<ul class="product-detail-description-list">${
+        uniqueBits.map((line) => `<li>${escapeHtml(line)}</li>`).join("")
+      }</ul>`;
+    } else if (uniqueBits.length === 1) {
+      refs.itemDetailDescription.textContent = uniqueBits[0];
+    } else {
+      refs.itemDetailDescription.textContent = langText(
+        "Bu urun icin teknik ozellik henuz girilmedi.",
+        "Fuer diesen Artikel wurden noch keine technischen Daten hinterlegt."
+      );
+    }
+  }
+  if (refs.itemDetailFacts) {
+    renderItemDetailFactList(refs.itemDetailFacts, buildItemDetailFacts(item));
+  }
+  renderItemDetailFactList(refs.itemDetailTech, buildItemTechFacts(item));
+  renderItemDetailFactList(refs.itemDetailPricing, buildItemPricingFacts(item));
+  renderItemDetailFactList(refs.itemDetailNotes, buildItemNotesFacts(item));
+  loadItemDocuments(item);
+  setItemDetailTab("overview");
+  refs.itemDetailModal.removeAttribute("hidden");
+  document.documentElement.classList.add("auth-modal-open");
+}
+
+function closeItemDetailModal() {
+  if (!refs.itemDetailModal) {
+    return;
+  }
+  state.itemDetailSelection = null;
+  refs.itemDetailModal.setAttribute("hidden", "");
+  document.documentElement.classList.remove("auth-modal-open");
+}
+
+function bindItemDetailModal() {
+  const modal = refs.itemDetailModal;
+  if (!modal || modal._drcBound) {
+    return;
+  }
+  modal._drcBound = true;
+  modal.querySelectorAll("[data-item-detail-close]").forEach((node) => {
+    node.addEventListener("click", closeItemDetailModal);
+  });
+  modal.querySelectorAll("[data-item-detail-tab]").forEach((node) => {
+    node.addEventListener("click", () => setItemDetailTab(node.dataset.itemDetailTab || "overview"));
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
+      closeItemDetailModal();
+    }
+  });
 }
 
 function setHtml(selector, value) {
@@ -1453,7 +1764,7 @@ function applyUiTranslations() {
   ]);
   setTableHeaders(refs.securityEventsTableBody, [
     langText("Tarih", "Datum"),
-    langText("Seviye", "Stufe"),
+    langText("Durum", "Status"),
     langText("Olay", "Ereignis"),
     langText("Kullanici", "Benutzer"),
     langText("Rol", "Rolle"),
@@ -1607,6 +1918,7 @@ initialize();
 
 function bindEvents() {
   bindAuthModal();
+  bindItemDetailModal();
   bindProjectsEvents();
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
@@ -2119,6 +2431,35 @@ async function refreshData() {
   const data = await request("/api/bootstrap");
   hideGlobalLoading();
   if (data.error) {
+    // Sadece gerçek 401 (oturum bitti) durumunda login'e at.
+    // Ağ/timeout/5xx gibi geçici hatalarda mevcut state'i koru ve kullanıcıya
+    // bir bilgi mesajı göster; böylece sunucu yavaşken oturum düşmüş gibi
+    // algılanmasın.
+    if (data._status === 401) {
+      state.user = null;
+      showLogin();
+      return;
+    }
+    if (data._networkError || data._transientError) {
+      console.warn("[refreshData] gecici hata, oturum korunuyor:", data.error);
+      // UI'da ufak bir uyari cubugu goster — overlay kaldirildi, kullanici
+      // login'e atilmadi. state.user hala doldu, mevcut ekran calismaya devam.
+      try {
+        let bar = document.getElementById("transientErrorBar");
+        if (!bar) {
+          bar = document.createElement("div");
+          bar.id = "transientErrorBar";
+          bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffe69c;padding:8px 16px;font:13px/1.4 system-ui,Segoe UI,Arial;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.08);";
+          document.body.appendChild(bar);
+        }
+        bar.textContent = langText(
+          "Sunucu yavas yanit verdi, oturum devam ediyor. Tekrar denemek icin sayfayi yenileyin.",
+          "Server antwortete langsam, Sitzung bleibt aktiv. Bitte Seite neu laden."
+        );
+        setTimeout(() => { if (bar && bar.parentNode) bar.parentNode.removeChild(bar); }, 8000);
+      } catch (_e) { /* ignore DOM errors */ }
+      return;
+    }
     showLogin();
     return;
   }
@@ -3014,16 +3355,54 @@ function renderStockedItems(filteredItems) {
     const itemDetail = getPublicItemDetail(item);
     const card = document.createElement("article");
     card.className = "stocked-card";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.dataset.itemDetailId = String(item.id);
     card.innerHTML = `
+      <div class="stocked-card-top">
+        <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
+        <button class="stocked-card-more" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
+      </div>
       <strong>${item.name}</strong>
-      <span>${item.brand || "-"} | ${getDisplayCategory(item.category)}</span>
-      ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${itemDetail}</span>` : ""}
-      <span>${langText("Stok", "Bestand")}: ${formatItemStock(item.currentStock, item.unit)}</span>
-      <span>${item.barcode || "-"}</span>
-      <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
-      ${listPrice ? `<span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span>` : ""}
+      <span class="stocked-card-category">${getDisplayCategory(item.category)}</span>
+      ${itemDetail ? `<span class="stocked-card-detail">${langText("Kisa not", "Kurzinfo")}: ${escapeHtml(itemDetail)}</span>` : ""}
+      <div class="stocked-card-footer">
+        <div class="stocked-card-stock">
+          <small>${langText("Stok", "Bestand")}</small>
+          <b>${formatItemStock(item.currentStock, item.unit)}</b>
+        </div>
+        <div class="stocked-card-price">
+          <small>${langText("Net / Satis", "Netto / Verkauf")}</small>
+          <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
+        </div>
+      </div>
+      <div class="stocked-card-meta">
+        <span class="mono">${item.barcode || "-"}</span>
+        ${listPrice ? `<span>${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
+      </div>
     `;
     refs.stockedItemsList.append(card);
+  });
+
+  refs.stockedItemsList.querySelectorAll("[data-open-item-detail]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const item = state.items.find((entry) => Number(entry.id) === Number(button.dataset.openItemDetail));
+      openItemDetailModal(item);
+    });
+  });
+  refs.stockedItemsList.querySelectorAll("[data-item-detail-id]").forEach((card) => {
+    const open = () => {
+      const item = state.items.find((entry) => Number(entry.id) === Number(card.dataset.itemDetailId));
+      openItemDetailModal(item);
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open();
+      }
+    });
   });
 }
 
@@ -3204,11 +3583,63 @@ function populateCashCustomerOrderSelectors() {
   }
 }
 
+function extractCashbookLinks(entry) {
+  const haystack = [entry?.title, entry?.note, entry?.reference].filter(Boolean).join(" | ");
+  const quoteNos = new Set();
+  const orderIds = new Set();
+  const quoteRegex = /DRC-\d{4}-\d{3,}/gi;
+  let match;
+  while ((match = quoteRegex.exec(haystack)) !== null) {
+    quoteNos.add(match[0].toUpperCase());
+  }
+  const orderRegex = /ORDER-(\d+)/gi;
+  while ((match = orderRegex.exec(haystack)) !== null) {
+    orderIds.add(Number(match[1]));
+  }
+  // DB kolonundan gelen order_id (referans dışı)
+  const directOrderId = Number(entry?.orderId || 0);
+  if (Number.isFinite(directOrderId) && directOrderId > 0) {
+    orderIds.add(directOrderId);
+  }
+  return { quoteNos: Array.from(quoteNos), orderIds: Array.from(orderIds) };
+}
+
 function renderCashbook() {
   populateCashCustomerOrderSelectors();
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
     const isUnbilledSale = /faturasiz satis/i.test(String(entry.note || "")) || /faturasiz satis/i.test(String(entry.title || ""));
+    const isDirectSale = /direkt satis/i.test(String(entry.title || ""));
+    const isSale = isUnbilledSale || isDirectSale;
+    const links = extractCashbookLinks(entry);
+    const linkedQuotes = links.quoteNos
+      .map((qn) => (state.quotes || []).find((q) => String(q.quoteNo || "").toUpperCase() === qn))
+      .filter(Boolean);
+    const linkedOrders = links.orderIds
+      .map((id) => (state.orders || []).find((o) => Number(o.id) === Number(id)))
+      .filter(Boolean);
+
+    const badges = [];
+    const matchedQuoteNos = new Set(linkedQuotes.map((q) => String(q.quoteNo || "").toUpperCase()));
+    linkedQuotes.forEach((quote) => {
+      badges.push(`<button type="button" class="cashbook-link-pill" data-cash-open-quote="${quote.id}" title="${langText("Teklif/satis PDF onizle", "Angebot/Verkauf PDF-Vorschau")}">📄 ${escapeHtml(quote.quoteNo || `#${quote.id}`)}</button>`);
+    });
+    // Quote numaras\u0131 not'ta var ama state.quotes'ta yok (son 20 d\u0131\u015f\u0131nda) - yaln\u0131z metin rozeti
+    links.quoteNos.forEach((qn) => {
+      if (!matchedQuoteNos.has(qn)) {
+        badges.push(`<span class="cashbook-link-pill cashbook-link-pill-inactive" title="${langText("Bu teklif son 20 kay\u0131t aras\u0131nda de\u011fil, PDF'i Teklifler sekmesinden acabilirsiniz", "Angebot nicht in den letzten 20 \u2014 PDF ueber Angebote-Tab oeffnen")}">📄 ${escapeHtml(qn)}</span>`);
+      }
+    });
+    linkedOrders.forEach((order) => {
+      badges.push(`<button type="button" class="cashbook-link-pill" data-cash-open-order="${order.id}" title="${langText("Sipari\u015f detayini ac", "Bestelldetails \u00f6ffnen")}">🧾 #${escapeHtml(String(order.id))}</button>`);
+    });
+    if (isSale) {
+      badges.push(`<span class="cashbook-stock-hint" title="${langText("Sat\u0131lan \u00fcr\u00fcnler otomatik stoktan d\u00fc\u015ft\u00fc (stok hareketi = '\u00e7\u0131k\u0131\u015f')", "Verkaufte Artikel wurden automatisch vom Bestand abgezogen")}">✓ ${langText("Stoktan d\u00fc\u015ft\u00fc", "Bestand abgezogen")}</span>`);
+    }
+    const referenceCell = badges.length
+      ? `<div class="cashbook-link-cell">${badges.join("")}${entry.reference ? `<span class="muted">${escapeHtml(entry.reference)}</span>` : ""}</div>`
+      : escapeHtml(entry.reference || "-");
+
     const actionMarkup = canManageCashbook()
       ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button>`
       : `<span class="muted">-</span>`;
@@ -3216,14 +3647,46 @@ function renderCashbook() {
     tr.innerHTML = `
       <td>${entry.date}</td>
       <td>${isUnbilledSale ? t("common.unbilledSale") : entry.type === "in" ? t("common.in") : t("common.out")}</td>
-      <td>${entry.title}</td>
-      <td>${entry.reference || "-"}</td>
-      <td>${entry.note || "-"}</td>
+      <td>${escapeHtml(entry.title || "")}</td>
+      <td>${referenceCell}</td>
+      <td>${escapeHtml(entry.note || "-")}</td>
       <td>${currency.format(entry.amount)}</td>
-      <td>${entry.userName || "-"}</td>
+      <td>${escapeHtml(entry.userName || "-")}</td>
       <td class="table-action-cell">${actionMarkup}</td>
     `;
     refs.cashbookTableBody.append(tr);
+  });
+
+  refs.cashbookTableBody.querySelectorAll("[data-cash-open-quote]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const quoteId = Number(button.dataset.cashOpenQuote);
+      if (Number.isFinite(quoteId) && quoteId > 0) {
+        openQuotePdfPreview(quoteId, "auto");
+      }
+    });
+  });
+
+  refs.cashbookTableBody.querySelectorAll("[data-cash-open-order]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const orderId = Number(button.dataset.cashOpenOrder);
+      if (!Number.isFinite(orderId) || orderId <= 0) {
+        return;
+      }
+      const ordersTab = document.querySelector('[data-tab="orders"]');
+      if (ordersTab) {
+        ordersTab.click();
+      }
+      setTimeout(() => {
+        const orderRow = document.querySelector(`[data-order-id="${orderId}"]`);
+        if (orderRow) {
+          orderRow.scrollIntoView({ behavior: "smooth", block: "center" });
+          orderRow.classList.add("highlight-flash");
+          setTimeout(() => orderRow.classList.remove("highlight-flash"), 2500);
+        }
+      }, 220);
+    });
   });
 
   if (canManageCashbook()) {
@@ -3468,9 +3931,9 @@ function securitySeverityLabel(value) {
     return langText("Kritik", "Kritisch");
   }
   if (value === "warn") {
-    return langText("Uyari", "Warnung");
+    return langText("Dikkat", "Achtung");
   }
-  return langText("Bilgi", "Info");
+  return langText("Normal", "Normal");
 }
 
 function securityEventLabel(eventType) {
@@ -3540,6 +4003,114 @@ function summarizeSecurityDetails(details) {
     .join(" | ") || "-";
 }
 
+function getSecurityDetailValue(entry, key) {
+  if (!entry?.details || typeof entry.details !== "object") {
+    return "";
+  }
+  return String(entry.details[key] ?? "").trim();
+}
+
+function isNormalAuthNoise(entry) {
+  return entry?.eventType === "access_denied" && getSecurityDetailValue(entry, "requirement") === "auth";
+}
+
+function isCriticalSecurityOperation(entry) {
+  return entry?.eventType === "cashbook_deleted";
+}
+
+function isSuspiciousSecurityEvent(entry) {
+  if (!entry) {
+    return false;
+  }
+  if (entry.eventType === "ip_blocked" || entry.eventType === "rate_limit_hit") {
+    return true;
+  }
+  if (entry.eventType === "login_failed") {
+    return true;
+  }
+  if (entry.eventType === "access_denied" && getSecurityDetailValue(entry, "requirement") !== "auth") {
+    return true;
+  }
+  return entry.severity === "critical";
+}
+
+function groupSecurityEvents(events) {
+  const groupedAuth = new Map();
+  const visible = [];
+
+  events.forEach((entry) => {
+    if (!isNormalAuthNoise(entry)) {
+      visible.push(entry);
+      return;
+    }
+    const key = [
+      entry.ipAddress || "-",
+      entry.userName || "-",
+      entry.userRole || "-",
+      String(entry.createdAt || "").slice(0, 10),
+    ].join("|");
+    const existing = groupedAuth.get(key);
+    if (existing) {
+      existing.count += 1;
+      existing.lastSeen = existing.lastSeen > entry.createdAt ? existing.lastSeen : entry.createdAt;
+      return;
+    }
+    groupedAuth.set(key, {
+      ...entry,
+      count: 1,
+      lastSeen: entry.createdAt,
+      details: {
+        requirement: "auth",
+        grouped: true,
+      },
+    });
+  });
+
+  const groupedRows = Array.from(groupedAuth.values()).map((entry) => ({
+    ...entry,
+    groupedAuth: true,
+    createdAt: entry.lastSeen,
+  }));
+
+  return {
+    hiddenAuthCount: Array.from(groupedAuth.values()).reduce((sum, entry) => sum + entry.count, 0),
+    visibleRows: [...visible, ...groupedRows].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)),
+  };
+}
+
+function getSecurityEventPresentation(entry) {
+  if (entry.groupedAuth) {
+    return {
+      severityClass: "status-ok",
+      severityLabel: langText("Normal", "Normal"),
+      eventLabel: langText("Oturum yok denemeleri (toplu)", "Zugriffe ohne Anmeldung (gebuendelt)"),
+      detailText: langText(`${entry.count} adet auth istegi toplandi.`, `${entry.count} Auth-Anfragen zusammengefasst.`),
+    };
+  }
+  if (isCriticalSecurityOperation(entry)) {
+    return {
+      severityClass: "status-critical",
+      severityLabel: langText("Kritik Islem", "Kritischer Vorgang"),
+      eventLabel: securityEventLabel(entry.eventType),
+      detailText: summarizeSecurityDetails(entry.details),
+    };
+  }
+  if (isSuspiciousSecurityEvent(entry)) {
+    return {
+      severityClass: "status-pending",
+      severityLabel: langText("Supheli", "Verdaechtig"),
+      eventLabel: securityEventLabel(entry.eventType),
+      detailText: summarizeSecurityDetails(entry.details),
+    };
+  }
+  return {
+    severityClass: entry.severity === "critical" ? "status-critical" : entry.severity === "warn" ? "status-pending" : "status-ok",
+    severityLabel: isNormalAuthNoise(entry) ? langText("Normal", "Normal") : securitySeverityLabel(entry.severity),
+    eventLabel: securityEventLabel(entry.eventType),
+    detailText: summarizeSecurityDetails(entry.details),
+  };
+}
+
 function renderSecurity() {
   if (!refs.securityEventsTableBody || !isAdminUser()) {
     return;
@@ -3548,25 +4119,28 @@ function renderSecurity() {
   const events = Array.isArray(state.securityEvents) ? state.securityEvents : [];
   const blocks = Array.isArray(state.securityBlocks) ? state.securityBlocks : [];
   const activeBlocks = blocks.filter((entry) => entry.isActive).length;
+  const { hiddenAuthCount, visibleRows } = groupSecurityEvents(events);
+  const suspiciousCount = visibleRows.filter((entry) => isSuspiciousSecurityEvent(entry) || isCriticalSecurityOperation(entry)).length;
   if (refs.securitySummary) {
-    refs.securitySummary.textContent = t("messages.securitySummary", events.length, blocks.length, activeBlocks);
+    const base = t("messages.securitySummary", events.length, blocks.length, activeBlocks);
+    refs.securitySummary.textContent = `${base} | ${suspiciousCount} ${langText("supheli/kritik", "verdaechtig/kritisch")} | ${hiddenAuthCount} ${langText("auth kaydi toplandi", "Auth-Eintraege gebuendelt")}`;
   }
 
   refs.securityEventsTableBody.innerHTML = "";
-  if (events.length === 0) {
+  if (visibleRows.length === 0) {
     refs.securityEventsTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${t("messages.noSecurityEvents")}</div></td></tr>`;
   } else {
-    events.forEach((entry) => {
+    visibleRows.forEach((entry) => {
       const tr = document.createElement("tr");
-      const severityClass = entry.severity === "critical" ? "status-critical" : entry.severity === "warn" ? "status-pending" : "status-ok";
+      const presentation = getSecurityEventPresentation(entry);
       tr.innerHTML = `
         <td>${escapeHtml(formatDateTime(entry.createdAt))}</td>
-        <td><span class="status-pill ${severityClass}">${escapeHtml(securitySeverityLabel(entry.severity))}</span></td>
-        <td>${escapeHtml(securityEventLabel(entry.eventType))}</td>
+        <td><span class="status-pill ${presentation.severityClass}">${escapeHtml(presentation.severityLabel)}</span></td>
+        <td>${escapeHtml(presentation.eventLabel)}</td>
         <td>${escapeHtml(entry.userName || "-")}</td>
         <td>${escapeHtml(securityRoleLabel(entry.userRole))}</td>
         <td>${escapeHtml(entry.ipAddress || "-")}</td>
-        <td>${escapeHtml(summarizeSecurityDetails(entry.details))}</td>
+        <td>${escapeHtml(presentation.detailText)}</td>
       `;
       refs.securityEventsTableBody.append(tr);
     });
@@ -4048,6 +4622,9 @@ function renderPosCatalog() {
   items.slice(0, 60).forEach((item) => {
     const card = document.createElement("article");
     card.className = "pos-card";
+    card.dataset.itemDetailId = String(item.id);
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
     const listPrice = visibleListPrice(item);
     const netPrice = visibleSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
@@ -4057,8 +4634,11 @@ function renderPosCatalog() {
     }
     card.innerHTML = `
       <div class="pos-card-head">
-        <strong>${item.name}</strong>
-        <span>${item.brand || "-"}</span>
+        <div>
+          <strong>${item.name}</strong>
+          <span>${item.brand || "-"}</span>
+        </div>
+        <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
       <div class="pos-card-meta">
         <span>${getDisplayCategory(item.category)}</span>
@@ -4073,7 +4653,30 @@ function renderPosCatalog() {
   });
 
   refs.posCatalogGrid.querySelectorAll("[data-add-quote-item]").forEach((button) => {
-    button.addEventListener("click", () => addItemToQuote(Number(button.dataset.addQuoteItem)));
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      addItemToQuote(Number(button.dataset.addQuoteItem));
+    });
+  });
+  refs.posCatalogGrid.querySelectorAll("[data-open-item-detail]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const item = state.items.find((entry) => Number(entry.id) === Number(button.dataset.openItemDetail));
+      openItemDetailModal(item);
+    });
+  });
+  refs.posCatalogGrid.querySelectorAll("[data-item-detail-id]").forEach((card) => {
+    const open = () => {
+      const item = state.items.find((entry) => Number(entry.id) === Number(card.dataset.itemDetailId));
+      openItemDetailModal(item);
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open();
+      }
+    });
   });
 }
 
@@ -4097,6 +4700,7 @@ function renderAdminOrders() {
 
   state.orders.forEach((order) => {
     const tr = document.createElement("tr");
+    tr.dataset.orderId = String(order.id);
     const statusClass = order.status === "completed" || order.status === "approved"
       ? "status-ok"
       : order.status === "cancelled"
@@ -4590,13 +5194,19 @@ function renderCustomerCatalog() {
   items.forEach((item) => {
     const card = document.createElement("article");
     card.className = "pos-card";
+    card.dataset.itemDetailId = String(item.id);
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
     const listPrice = visibleListPrice(item);
     const netPrice = visibleSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
     card.innerHTML = `
       <div class="pos-card-head">
-        <strong>${item.name}</strong>
-        <span>${item.brand || "-"}</span>
+        <div>
+          <strong>${item.name}</strong>
+          <span>${item.brand || "-"}</span>
+        </div>
+        <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
       <div class="pos-card-meta">
         <span>${getDisplayCategory(item.category)}</span>
@@ -4612,7 +5222,30 @@ function renderCustomerCatalog() {
   });
 
   refs.customerCatalogGrid.querySelectorAll("[data-add-order-item]").forEach((button) => {
-    button.addEventListener("click", () => addItemToCustomerOrder(Number(button.dataset.addOrderItem)));
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      addItemToCustomerOrder(Number(button.dataset.addOrderItem));
+    });
+  });
+  refs.customerCatalogGrid.querySelectorAll("[data-open-item-detail]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const item = state.items.find((entry) => Number(entry.id) === Number(button.dataset.openItemDetail));
+      openItemDetailModal(item);
+    });
+  });
+  refs.customerCatalogGrid.querySelectorAll("[data-item-detail-id]").forEach((card) => {
+    const open = () => {
+      const item = state.items.find((entry) => Number(entry.id) === Number(card.dataset.itemDetailId));
+      openItemDetailModal(item);
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open();
+      }
+    });
   });
 }
 
@@ -6270,21 +6903,46 @@ function formToObject(form) {
 }
 
 async function request(url, options = {}) {
-  const response = await fetch(url, {
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
-    credentials: "include",
-    ...options,
-  });
+  let response;
+  try {
+    response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(options.headers || {}),
+      },
+      credentials: "include",
+      ...options,
+    });
+  } catch (networkError) {
+    // Ağ hatası (ör. mobilde sinyal kesilmesi, Vercel cold-start timeout).
+    // Kullanıcıyı login'e atmak yerine geçici bir hata dönelim — caller'lar
+    // `result.error` kontrolüyle nazikçe bilgilendirsin, state silinmesin.
+    return {
+      error: networkError?.message || "Baglanti hatasi. Lutfen tekrar deneyin.",
+      _networkError: true,
+    };
+  }
 
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
+    // Non-JSON response (ör. Vercel 504 HTML sayfası). Geçici bir hata olarak
+    // işaretle — session'ı düşürmeyelim, tekrar denemeyi UI'a bırakalım.
+    if (!response.ok) {
+      return {
+        error: `Sunucu gecici olarak yanit vermiyor (HTTP ${response.status}).`,
+        _transientError: true,
+        _status: response.status,
+      };
+    }
     return {};
   }
 
-  return response.json();
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok && !payload.error) {
+    payload.error = `HTTP ${response.status}`;
+  }
+  payload._status = response.status;
+  return payload;
 }
 
 /* ==============================================================
