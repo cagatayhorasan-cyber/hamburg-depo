@@ -3688,8 +3688,14 @@ function renderCashbook() {
       ? `<div class="cashbook-link-cell">${badges.join("")}${entry.reference ? `<span class="muted">${escapeHtml(entry.reference)}</span>` : ""}</div>`
       : escapeHtml(entry.reference || "-");
 
-    const actionMarkup = canManageCashbook()
+    const detailButton = isSale
+      ? `<button class="mini-button cashbook-detail-button" type="button" data-cash-sale-detail="${entry.id}" data-help="TR: Satış detayı - ürünler, müşteri, satıcı. DE: Verkaufsdetails - Positionen, Kunde, Verkäufer.">🔎 ${langText("Detay", "Details")}</button>`
+      : "";
+    const deleteButton = canManageCashbook()
       ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button>`
+      : "";
+    const actionMarkup = detailButton || deleteButton
+      ? `<div class="cashbook-action-stack">${detailButton}${deleteButton}</div>`
       : `<span class="muted">-</span>`;
     const typeCell = isUnbilledSale
       ? t("common.unbilledSale")
@@ -3698,6 +3704,9 @@ function renderCashbook() {
         : entry.type === "in"
           ? t("common.in")
           : t("common.out");
+    const sellerCell = entry.userName
+      ? `<span class="cashbook-seller" title="${langText("Kaydı oluşturan personel", "Erfasst von")}">👤 <strong>${escapeHtml(entry.userName)}</strong></span>`
+      : `<span class="muted">-</span>`;
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${escapeHtml(entry.date || "")}</td>
@@ -3706,10 +3715,21 @@ function renderCashbook() {
       <td>${referenceCell}</td>
       <td>${escapeHtml(entry.note || "-")}</td>
       <td>${currency.format(entry.amount)}</td>
-      <td>${escapeHtml(entry.userName || "-")}</td>
+      <td>${sellerCell}</td>
       <td class="table-action-cell">${actionMarkup}</td>
     `;
     refs.cashbookTableBody.append(tr);
+  });
+
+  refs.cashbookTableBody.querySelectorAll("[data-cash-sale-detail]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const cashId = Number(button.dataset.cashSaleDetail);
+      const entry = (state.cashbook || []).find((e) => Number(e.id) === cashId);
+      if (entry) {
+        openSaleDetailFromCashbook(entry);
+      }
+    });
   });
 
   refs.cashbookTableBody.querySelectorAll("[data-cash-open-quote]").forEach((button) => {
@@ -3750,6 +3770,252 @@ function renderCashbook() {
     });
   }
 }
+
+// ---- Satış detay modalı (kasadan açılır) ----
+function extractCustomerFromCashTitle(title) {
+  if (!title) return "";
+  const str = String(title);
+  // "Direkt satis tahsilati - Şenol" / "Faturasiz satis tahsilati - Musteri Adi"
+  const match = str.match(/-\s*(.+)$/);
+  return match ? match[1].trim() : "";
+}
+
+function prettifyPaymentType(raw) {
+  if (!raw) return "";
+  const str = String(raw).toLowerCase();
+  if (str.includes("nakit") || str.includes("cash") || str === "bar") return langText("Nakit", "Bar");
+  if (str.includes("kart") || str.includes("karte") || str.includes("card")) return langText("Kart", "Karte");
+  if (str.includes("havale") || str.includes("bank") || str.includes("überweis") || str.includes("uberweis")) return langText("Havale", "Überweisung");
+  if (str.includes("veresiye") || str.includes("offen") || str.includes("open_account")) return langText("Veresiye", "Offen");
+  return raw.charAt(0).toUpperCase() + raw.slice(1);
+}
+
+function extractPaymentTypeFromNote(note) {
+  if (!note) return "";
+  const parts = String(note).split("|").map((p) => p.trim()).filter(Boolean);
+  for (const part of parts) {
+    const lower = part.toLowerCase();
+    if (["cash", "nakit", "bar"].includes(lower)) return prettifyPaymentType(part);
+    if (["card", "kart", "karte"].includes(lower)) return prettifyPaymentType(part);
+    if (["havale", "transfer", "bank", "überweisung", "uberweisung"].includes(lower)) return prettifyPaymentType(part);
+  }
+  return "";
+}
+
+function findSaleSourceForCashbook(entry) {
+  // Öncelik sırası: orderId → DRC quoteNo → movements eşleşmesi
+  const links = extractCashbookLinks(entry);
+
+  // 1) orderId
+  if (entry.orderId) {
+    const order = (state.orders || []).find((o) => Number(o.id) === Number(entry.orderId));
+    if (order && Array.isArray(order.items) && order.items.length) {
+      const subtotal = order.items.reduce(
+        (sum, it) => sum + Number(it.quantity || 0) * Number(it.unitPrice || 0),
+        0
+      );
+      return {
+        source: "order",
+        sourceLabel: langText("Sipariş", "Bestellung"),
+        sourceRef: `#${order.id}`,
+        customerName: order.customerName || extractCustomerFromCashTitle(entry.title),
+        items: order.items,
+        subtotal,
+        discount: 0,
+        vatAmount: 0,
+        grossTotal: Number(entry.amount || 0),
+      };
+    }
+  }
+
+  // 2) DRC quoteNo
+  for (const qn of links.quoteNos) {
+    const quote = (state.quotes || []).find((q) => String(q.quoteNo || "").toUpperCase() === qn);
+    if (quote && Array.isArray(quote.items) && quote.items.length) {
+      const subtotal = Number(quote.subtotal || 0) ||
+        quote.items.reduce((sum, it) => sum + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
+      return {
+        source: "quote",
+        sourceLabel: langText("Teklif / Satış", "Angebot / Verkauf"),
+        sourceRef: quote.quoteNo || `#${quote.id}`,
+        quoteId: quote.id,
+        customerName: quote.customerName || extractCustomerFromCashTitle(entry.title),
+        items: quote.items,
+        subtotal,
+        discount: Number(quote.discount || 0),
+        vatAmount: Number(quote.vatAmount || 0),
+        grossTotal: Number(quote.grossTotal || quote.total || entry.amount || 0),
+      };
+    }
+  }
+
+  // 3) Faturasız: movements eşleşmesi (tarih + satıcı + müşteri adı)
+  const dateKey = String(entry.date || "").slice(0, 10);
+  const customerHint = extractCustomerFromCashTitle(entry.title).toLowerCase();
+  const sellerHint = entry.userName;
+  const related = (state.movements || []).filter((mv) => {
+    if (mv.type !== "exit") return false;
+    if (String(mv.date || "").slice(0, 10) !== dateKey) return false;
+    if (sellerHint && mv.userName && mv.userName !== sellerHint) return false;
+    if (customerHint && !String(mv.note || "").toLowerCase().includes(customerHint)) return false;
+    return true;
+  });
+  if (related.length) {
+    const items = related.map((mv) => ({
+      itemName: mv.itemName,
+      quantity: mv.quantity,
+      unit: "adet",
+      unitPrice: mv.unitPrice,
+      total: Number(mv.quantity || 0) * Number(mv.unitPrice || 0),
+    }));
+    const subtotal = items.reduce((sum, it) => sum + Number(it.total || 0), 0);
+    return {
+      source: "movements",
+      sourceLabel: langText("Faturasız Satış", "Barverkauf"),
+      sourceRef: "",
+      customerName: extractCustomerFromCashTitle(entry.title) || langText("Perakende", "Einzelhandel"),
+      items,
+      subtotal,
+      discount: 0,
+      vatAmount: 0,
+      grossTotal: Number(entry.amount || 0),
+    };
+  }
+
+  // Hiçbir eşleşme bulunamadı
+  return {
+    source: "none",
+    sourceLabel: langText("Kaynak bulunamadı", "Quelle nicht gefunden"),
+    sourceRef: "",
+    customerName: extractCustomerFromCashTitle(entry.title),
+    items: [],
+    subtotal: 0,
+    discount: 0,
+    vatAmount: 0,
+    grossTotal: Number(entry.amount || 0),
+  };
+}
+
+function openSaleDetailFromCashbook(entry) {
+  const modal = document.getElementById("saleDetailModal");
+  if (!modal) return;
+
+  const titleEl = document.getElementById("saleDetailTitle");
+  const kickerEl = document.getElementById("saleDetailKicker");
+  const metaEl = document.getElementById("saleDetailMeta");
+  const bodyEl = document.getElementById("saleDetailBody");
+  const footerEl = document.getElementById("saleDetailFooter");
+  if (!titleEl || !metaEl || !bodyEl || !footerEl) return;
+
+  const info = findSaleSourceForCashbook(entry);
+  const sellerName = entry.userName || langText("Bilinmiyor", "Unbekannt");
+  const paymentType = extractPaymentTypeFromNote(entry.note);
+  const sellerLabel = langText("Satıcı (kaydı yapan)", "Verkäufer (Erfasser)");
+  const customerLabel = langText("Müşteri", "Kunde");
+  const dateLabel = langText("Tarih", "Datum");
+  const paymentLabel = langText("Ödeme", "Zahlung");
+  const sourceLabel = langText("Kaynak", "Quelle");
+
+  if (kickerEl) setText(kickerEl, langText("Satış Detayı", "Verkaufsdetails"));
+  titleEl.textContent = entry.title || langText("Satış", "Verkauf");
+
+  const metaItems = [
+    { label: dateLabel, value: entry.date || "-" },
+    { label: sellerLabel, value: sellerName },
+    { label: customerLabel, value: info.customerName || "-" },
+  ];
+  if (info.sourceRef) {
+    metaItems.push({ label: sourceLabel, value: `${info.sourceLabel}: ${info.sourceRef}` });
+  } else {
+    metaItems.push({ label: sourceLabel, value: info.sourceLabel });
+  }
+  if (paymentType) {
+    metaItems.push({ label: paymentLabel, value: paymentType });
+  }
+  metaEl.innerHTML = metaItems
+    .map(
+      (m) => `<div class="sale-detail-meta-row"><span>${escapeHtml(m.label)}</span><strong>${escapeHtml(String(m.value))}</strong></div>`
+    )
+    .join("");
+
+  if (!info.items.length) {
+    bodyEl.innerHTML = `<div class="sale-detail-empty">
+      <strong>${langText("Ürün detayı bulunamadı", "Keine Positionsdaten gefunden")}</strong>
+      <p class="muted">${langText("Bu kayıt eski olabilir veya teklif/sipariş son 20 kayıt dışında kalmış olabilir. PDF'i 'Satış' sekmesinden teklif no ile açabilirsiniz.", "Dieser Eintrag ist ggf. älter als die letzten 20 Datensätze. PDF im Angebote-Tab öffnen.")}</p>
+    </div>`;
+  } else {
+    const rows = info.items
+      .map((it) => {
+        const qty = Number(it.quantity || 0);
+        const unit = it.unit || "adet";
+        const unitPrice = Number(it.unitPrice || 0);
+        const total = Number(it.total != null ? it.total : qty * unitPrice);
+        return `
+          <tr>
+            <td>${escapeHtml(it.itemName || "-")}</td>
+            <td class="nowrap">${numberFormat.format(qty)} ${escapeHtml(unit)}</td>
+            <td class="nowrap">${currency.format(unitPrice)}</td>
+            <td class="nowrap"><strong>${currency.format(total)}</strong></td>
+          </tr>
+        `;
+      })
+      .join("");
+    bodyEl.innerHTML = `
+      <table class="sale-detail-items">
+        <thead>
+          <tr>
+            <th>${langText("Ürün", "Artikel")}</th>
+            <th>${langText("Miktar", "Menge")}</th>
+            <th>${langText("Birim", "Einzelpreis")}</th>
+            <th>${langText("Toplam", "Gesamt")}</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+
+  const footerRows = [];
+  if (info.subtotal && info.subtotal !== info.grossTotal) {
+    footerRows.push(`<div class="sale-detail-total-row"><span>${langText("Ara Toplam", "Zwischensumme")}</span><strong>${currency.format(info.subtotal)}</strong></div>`);
+  }
+  if (info.discount > 0) {
+    footerRows.push(`<div class="sale-detail-total-row"><span>${langText("İskonto", "Rabatt")}</span><strong>-${currency.format(info.discount)}</strong></div>`);
+  }
+  if (info.vatAmount > 0) {
+    footerRows.push(`<div class="sale-detail-total-row"><span>KDV / MwSt</span><strong>${currency.format(info.vatAmount)}</strong></div>`);
+  }
+  footerRows.push(`<div class="sale-detail-total-row is-primary"><span>${langText("Tahsil edilen", "Einnahme")}</span><strong>${currency.format(info.grossTotal)}</strong></div>`);
+  footerEl.innerHTML = footerRows.join("");
+
+  document.documentElement.classList.add("auth-modal-open");
+  modal.hidden = false;
+}
+
+function closeSaleDetailModal() {
+  const modal = document.getElementById("saleDetailModal");
+  if (!modal) return;
+  modal.hidden = true;
+  // Diğer modallar kalmadıysa body overflow'u serbest bırak
+  const anyOpen = document.querySelectorAll(".auth-modal:not([hidden])").length > 0;
+  if (!anyOpen) {
+    document.documentElement.classList.remove("auth-modal-open");
+  }
+}
+
+document.addEventListener("click", (event) => {
+  const closer = event.target.closest("[data-sale-detail-close]");
+  if (closer) {
+    event.preventDefault();
+    closeSaleDetailModal();
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    const modal = document.getElementById("saleDetailModal");
+    if (modal && !modal.hidden) closeSaleDetailModal();
+  }
+});
 
 function renderUsers() {
   if (!refs.usersTableBody) {

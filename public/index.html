@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260422-landing-refresh">
+  <link rel="stylesheet" href="/styles.css?v=20260423-sale-detail-modal">
 </head>
 <body>
   <div class="page-shell">
@@ -299,6 +299,20 @@
               </article>
             </div>
           </section>
+        </div>
+      </div>
+
+      <div id="saleDetailModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="saleDetailTitle" hidden>
+        <div class="auth-modal-backdrop" data-sale-detail-close></div>
+        <div class="auth-modal-panel sale-detail-panel" role="document">
+          <button type="button" class="auth-modal-close" data-sale-detail-close aria-label="Kapat">×</button>
+          <div class="sale-detail-header">
+            <span id="saleDetailKicker" class="sale-detail-kicker">Satış Detayı</span>
+            <h2 id="saleDetailTitle">-</h2>
+            <div id="saleDetailMeta" class="sale-detail-meta"></div>
+          </div>
+          <div id="saleDetailBody" class="sale-detail-body"></div>
+          <div id="saleDetailFooter" class="sale-detail-footer"></div>
         </div>
       </div>
     </section>
@@ -1348,6 +1362,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260423-movements-fix"></script>
+  <script src="/app.js?v=20260423-sale-detail-modal"></script>
 </body>
 </html>
