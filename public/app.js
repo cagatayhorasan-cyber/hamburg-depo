@@ -175,6 +175,17 @@ const UI_TEXT = {
       { title: "B2B portal ile stok & sipariş", copy: "Canlı stok, net/brüt fiyat, sepet ve sipariş takibini kendi hesabınızdan yönetin." },
       { title: "Proje destekli teklif", copy: "ColdRoomPro destekli soğuk oda hesaplaması ile proje malzeme listesi ve teklif tek adımda." }
     ],
+    leanStats: [
+      { value: "2.500+", label: "Ürün stoğu" },
+      { value: "2", label: "Depo · Hamm & Hamburg" },
+      { value: "48 sa", label: "AB içi sevkiyat" },
+      { value: "%100", label: "Yetkili orijinal" }
+    ],
+    leanPreviewKicker: "B2B Portal",
+    leanPreviewTitle: "Stok & Sipariş Ekranı",
+    leanPreviewBadge: "Canlı",
+    leanPreviewKpiLabels: ["Stok kalemi", "Aktif sipariş", "Bekleyen teklif"],
+    leanPreviewStockUnit: "stok",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "İletişim"],
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
@@ -377,6 +388,17 @@ const UI_TEXT = {
       { title: "B2B-Portal: Bestand & Bestellung", copy: "Live-Bestand, Netto-/Bruttopreise, Warenkorb und Bestellverlauf in Ihrem eigenen Konto." },
       { title: "Projektbasiertes Angebot", copy: "Kühlraumauslegung mit ColdRoomPro — Stückliste und Angebot in einem Schritt." }
     ],
+    leanStats: [
+      { value: "2.500+", label: "Artikel am Lager" },
+      { value: "2", label: "Lager · Hamm & Hamburg" },
+      { value: "48 h", label: "EU-weiter Versand" },
+      { value: "100 %", label: "Autorisiert & original" }
+    ],
+    leanPreviewKicker: "B2B Portal",
+    leanPreviewTitle: "Bestand & Bestellungen",
+    leanPreviewBadge: "Live",
+    leanPreviewKpiLabels: ["Artikel", "Aktive Bestellung", "Offene Angebote"],
+    leanPreviewStockUnit: "Lager",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "Kontakt"],
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
@@ -1249,6 +1271,28 @@ function applyUiTranslations() {
   document.querySelectorAll("[data-lean-footer-label]").forEach((node) => {
     const idx = Number(node.getAttribute("data-lean-footer-label")) || 0;
     setText(node, leanFooterLabels[idx] || node.textContent);
+  });
+  const leanStats = t("leanStats") || [];
+  document.querySelectorAll("[data-lean-stat-value]").forEach((node) => {
+    const idx = Number(node.getAttribute("data-lean-stat-value")) || 0;
+    setText(node, leanStats[idx]?.value || node.textContent);
+  });
+  document.querySelectorAll("[data-lean-stat-label]").forEach((node) => {
+    const idx = Number(node.getAttribute("data-lean-stat-label")) || 0;
+    setText(node, leanStats[idx]?.label || node.textContent);
+  });
+  document.querySelectorAll("[data-lean-preview-kicker]").forEach((node) => setText(node, t("leanPreviewKicker")));
+  document.querySelectorAll("[data-lean-preview-title]").forEach((node) => setText(node, t("leanPreviewTitle")));
+  document.querySelectorAll("[data-lean-preview-badge]").forEach((node) => setText(node, t("leanPreviewBadge")));
+  const leanPreviewKpiLabels = t("leanPreviewKpiLabels") || [];
+  document.querySelectorAll("[data-lean-preview-kpi-label]").forEach((node) => {
+    const idx = Number(node.getAttribute("data-lean-preview-kpi-label")) || 0;
+    setText(node, leanPreviewKpiLabels[idx] || node.textContent);
+  });
+  const leanStockUnit = t("leanPreviewStockUnit") || "stok";
+  const previewStockMap = { "data-lean-preview-stock": 12, "data-lean-preview-stock2": 34, "data-lean-preview-stock3": 3 };
+  Object.entries(previewStockMap).forEach(([attr, qty]) => {
+    document.querySelectorAll(`[${attr}]`).forEach((node) => setText(node, `${qty} ${leanStockUnit}`));
   });
   // Auth modal labels
   document.querySelectorAll("[data-auth-title-login]").forEach((node) => setText(node, t("authLoginTitle")));
