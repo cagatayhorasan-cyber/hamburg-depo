@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260423-cust-privacy">
+  <link rel="stylesheet" href="/styles.css?v=20260423-de-i18n">
 </head>
 <body>
   <div class="page-shell">
@@ -214,23 +214,23 @@
             <img src="/assets/drc-logo.svg" alt="DRC" class="erp-sidebar-logo">
             <div class="erp-sidebar-brand-info">
               <strong>D-R-C Kältetechnik</strong>
-              <small>Depo &amp; Stok Yönetimi</small>
+              <small data-brand-sub>Depo &amp; Stok Yönetimi</small>
             </div>
           </div>
           <nav class="erp-nav">
             <div class="tab-buttons erp-nav-buttons">
-              <span class="erp-nav-label">Ana İşlemler</span>
+              <span class="erp-nav-label admin-staff-only" data-nav-label="main">Ana İşlemler</span>
               <button class="tab-button admin-staff-only active" data-tab="items" type="button"><span class="erp-nav-icon">ST</span><span class="tab-title">Stok</span></button>
               <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="erp-nav-icon">GÇ</span><span class="tab-title">Giriş / Çıkış</span></button>
               <button class="tab-button admin-staff-only" data-tab="quotes" type="button"><span class="erp-nav-icon">SŞ</span><span class="tab-title">Satış</span></button>
               <button class="tab-button admin-staff-only" type="button" onclick="document.getElementById('cashbookModal').classList.add('modal-open');if(typeof renderCashbook==='function')renderCashbook()"><span class="erp-nav-icon">KS</span><span class="tab-title">Kasa</span></button>
-              <span class="erp-nav-label">Sipariş Yönetimi</span>
+              <span class="erp-nav-label" data-nav-label="orders">Sipariş Yönetimi</span>
               <button class="tab-button admin-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Siparişler</span></button>
               <button class="tab-button customer-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Sipariş Ver</span></button>
-              <span class="erp-nav-label">Proje &amp; Araçlar</span>
+              <span class="erp-nav-label" data-nav-label="projects">Proje &amp; Araçlar</span>
               <button class="tab-button" data-tab="projects" type="button"><span class="erp-nav-icon">PR</span><span class="tab-title">Projeler</span></button>
               <button class="tab-button" data-tab="tools" type="button"><span class="erp-nav-icon">AR</span><span class="tab-title">Proje Araçları</span></button>
-              <span class="erp-nav-label admin-only">Yönetim</span>
+              <span class="erp-nav-label admin-only" data-nav-label="admin">Yönetim</span>
               <!-- Masraf sekmesi kaldırıldı — tüm gider/gelir Kasa'da (cashbook) yönetiliyor -->
               <button class="tab-button admin-only" data-tab="archive" type="button"><span class="erp-nav-icon">AŞ</span><span class="tab-title">Arşiv</span></button>
               <button class="tab-button admin-only" data-tab="users" type="button"><span class="erp-nav-icon">KL</span><span class="tab-title">Kullanıcılar</span></button>
@@ -1252,6 +1252,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260423-cust-privacy"></script>
+  <script src="/app.js?v=20260423-de-i18n"></script>
 </body>
 </html>

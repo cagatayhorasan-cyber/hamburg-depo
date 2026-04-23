@@ -1385,6 +1385,39 @@ function applyUiTranslations() {
   setText(".tab-main-label", langText("Gunluk Islemler", "Taegliche Arbeit"));
   setText(".tab-admin-summary", langText("Yonetim ve Ayarlar", "Verwaltung und Einstellungen"));
 
+  setText('[data-nav-label="main"]', langText("Ana İşlemler", "Hauptvorgänge"));
+  setText('[data-nav-label="orders"]', langText("Sipariş Yönetimi", "Bestellverwaltung"));
+  setText('[data-nav-label="projects"]', langText("Proje & Araçlar", "Projekte & Werkzeuge"));
+  setText('[data-nav-label="admin"]', langText("Yönetim", "Verwaltung"));
+  setText("[data-brand-sub]", langText("Depo & Stok Yönetimi", "Lager & Bestandsverwaltung"));
+
+  if (refs.customerCatalogSearch) {
+    const searchLabel = refs.customerCatalogSearch.closest("label");
+    if (searchLabel) replaceLabelText(searchLabel, langText("Ara", "Suchen"));
+    refs.customerCatalogSearch.placeholder = langText(
+      "Ürün, marka veya stok kodu...",
+      "Artikel, Marke oder Lagercode..."
+    );
+  }
+  if (refs.customerCatalogCategory) {
+    const catLabel = refs.customerCatalogCategory.closest("label");
+    if (catLabel) replaceLabelText(catLabel, langText("Kategori", "Kategorie"));
+  }
+  if (refs.customerCatalogBrand) {
+    const brandLabel = refs.customerCatalogBrand.closest("label");
+    if (brandLabel) replaceLabelText(brandLabel, langText("Marka", "Marke"));
+  }
+  if (refs.customerCatalogSort) {
+    const sortLabel = refs.customerCatalogSort.closest("label");
+    if (sortLabel) replaceLabelText(sortLabel, langText("Sıralama", "Sortierung"));
+    setSelectOptionTexts(refs.customerCatalogSort, {
+      name: langText("İsim (A-Z)", "Name (A-Z)"),
+      "price-asc": langText("Fiyat (düşük→yüksek)", "Preis (niedrig→hoch)"),
+      "price-desc": langText("Fiyat (yüksek→düşük)", "Preis (hoch→niedrig)"),
+      "stock-desc": langText("Stok (çok→az)", "Bestand (viel→wenig)"),
+    });
+  }
+
   setText("[data-tab-content='items'] .sales-search-panel h2", langText("Malzeme Arama", "Artikelsuche"));
   replaceLabelText(refs.itemSearch?.closest("label"), langText("Arama", "Suche"));
   replaceLabelText(refs.brandFilter?.closest("label"), langText("Marka", "Marke"));
@@ -5669,7 +5702,7 @@ function populateCustomerCatalogFilters() {
   const brands = Array.from(new Set(stockItems.map(i => (i.brand || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
   const prevCategory = refs.customerCatalogCategory.value || "all";
   const prevBrand = refs.customerCatalogBrand.value || "all";
-  refs.customerCatalogCategory.innerHTML = `<option value="all">${langText("Tümü","Alle")}</option>` + categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+  refs.customerCatalogCategory.innerHTML = `<option value="all">${langText("Tümü","Alle")}</option>` + categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(getDisplayCategory(c))}</option>`).join("");
   refs.customerCatalogBrand.innerHTML = `<option value="all">${langText("Tümü","Alle")}</option>` + brands.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join("");
   if (categories.includes(prevCategory)) refs.customerCatalogCategory.value = prevCategory;
   if (brands.includes(prevBrand)) refs.customerCatalogBrand.value = prevBrand;
@@ -6418,24 +6451,44 @@ function getDisplayCategory(category) {
   const categoryMap = {
     "sogutma yaglari": "Kuehloele",
     "kompresorler": "Verdichter",
+    "kompresor": "Verdichter",
+    "kompresor scroll": "Verdichter > Scroll",
     "kondenserler": "Verfluessiger",
+    "kondenser uniteleri": "Verfluessigereinheiten",
     "vrf sistemleri": "VRF-Systeme",
     "vrf ic uniteleri": "VRF-Innengeraete",
+    "klima sistemleri": "Klimasysteme",
     "kontrol panelleri": "Steuerungen",
+    "elektronik kontrolorler": "Elektronische Regler",
     "fan motorlari": "Ventilatormotoren",
     "filtre drier": "Filtertrockner",
     "filtreler kurutucular": "Filter & Trockner",
     "servis valfi": "Serviceventile",
     "genlesme valfleri": "Expansionsventile",
+    "genlesme vanalari": "Expansionsventile",
+    "solenoid vanalari": "Magnetventile",
+    "vanalar ve regulatorler": "Ventile & Regler",
     "izolasyon": "Isolierung",
+    "izolasyonlar ve bantlar": "Isolierung & Klebebaender",
+    "izolasyonlu borular": "Isolierte Rohre",
     "montaj sarf": "Montagebedarf",
     "sogutucu akiskanlar": "Kaeltemittel",
     "sogutucu gaz": "Kaeltemittel",
     "dikey tip buzdolaplari": "Vertikale Kuehlschraenke",
+    "buzdolaplari ve vitrinler": "Kuehlschraenke & Vitrinen",
     "termostat": "Thermostate",
     "sogutma malzemeleri": "Kuehltechnik-Zubehoer",
+    "soguk oda aksesuarlari": "Kuehlraum-Zubehoer",
+    "soguk oda kapilari": "Kuehlraumtueren",
+    "evaporatorler": "Verdampfer",
+    "sogutma gruplari": "Kuehlaggregate",
+    "likit tanklar": "Sammler (Fluessigkeitsbehaelter)",
+    "hat aksesuarlari": "Leitungszubehoer",
+    "elektrik malzemeleri": "Elektromaterial",
+    "pompa ve drenaj": "Pumpen & Entwaesserung",
     "valfler genlesme valfleri": "Ventile & Expansionsventile",
     "drenaj pompasi": "Kondensatpumpen",
+    "panel": "Panel",
   };
 
   return categoryMap[normalized] || category || "-";
@@ -6449,8 +6502,12 @@ function getDisplayUnit(unit) {
   const normalized = normalizeSearchText(unit);
   const unitMap = {
     "adet": "Stk.",
+    "pcs": "Stk.",
+    "stk": "Stk.",
+    "stuck": "Stk.",
     "koli": "Karton",
     "top": "Rolle",
+    "rulo": "Rolle",
     "metre": "m",
     "mt": "m",
     "paket": "Paket",
