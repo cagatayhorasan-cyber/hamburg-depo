@@ -2947,12 +2947,12 @@ function createApp() {
     }
   });
 
-  // Toplu TR→DE çeviri (admin) — name_de/notes_de boş olanları sözlükten çevirir.
-  // Batch destekli: ?limit=500&afterId=0&force=false
+  // Toplu TR→DE çeviri (admin) — DeepL API ile yüksek kaliteli çeviri.
+  // Batch destekli: ?limit=200&afterId=0&force=false&engine=deepl|dict
   app.post("/api/admin/bulk-translate-items-de", requireAdmin, async (req, res) => {
     try {
-      const { translateTrToDe } = require("../scripts/lib/tr-de-dictionary");
-      const limit = Math.min(Math.max(Number(req.query.limit || req.body?.limit || 500), 1), 2000);
+      const engine = String(req.query.engine || req.body?.engine || "deepl").toLowerCase();
+      const limit = Math.min(Math.max(Number(req.query.limit || req.body?.limit || 200), 1), 500);
       const afterId = Math.max(Number(req.query.afterId || req.body?.afterId || 0), 0);
       const force = String(req.query.force || req.body?.force || "").toLowerCase() === "true";
 
@@ -2971,24 +2971,65 @@ function createApp() {
         [afterId, limit]
       );
 
+      // Hangi metinler çevrilecek? Toplu bir batch oluşturup tek DeepL isteğinde gönderiyoruz.
+      const jobs = []; // { rowId, field: 'name_de'|'notes_de', text }
+      for (const r of rows) {
+        const needsName = force || !String(r.name_de || "").trim();
+        const needsNotes = force || !String(r.notes_de || "").trim();
+        if (needsName && r.name) jobs.push({ rowId: r.id, field: "name_de", text: r.name });
+        if (needsNotes && r.notes) jobs.push({ rowId: r.id, field: "notes_de", text: r.notes });
+      }
+
+      let translations = [];
+      if (jobs.length) {
+        if (engine === "deepl") {
+          const { translateBatch } = require("../scripts/lib/deepl-client");
+          try {
+            translations = await translateBatch(jobs.map((j) => j.text), {
+              sourceLang: "TR",
+              targetLang: "DE",
+              formality: "more", // Sie/Ihr, daha resmi (B2B için uygun)
+            });
+          } catch (deeplErr) {
+            console.error("[bulk-translate-de] DeepL hatası:", deeplErr.message);
+            return res.status(502).json({
+              error: deeplErr.message || "DeepL çeviri başarısız.",
+              code: deeplErr.code || "DEEPL_ERROR",
+              hint: deeplErr.code === "DEEPL_KEY_MISSING"
+                ? "Vercel → Project Settings → Environment Variables bölümünde DEEPL_API_KEY ekleyin, redeploy edin."
+                : undefined,
+            });
+          }
+        } else {
+          // Fallback: sözlük tabanlı (keysiz)
+          const { translateTrToDe } = require("../scripts/lib/tr-de-dictionary");
+          translations = jobs.map((j) => translateTrToDe(j.text));
+        }
+      }
+
+      // Satır bazlı grupla ve UPDATE
+      const updatesByRow = new Map();
+      for (let i = 0; i < jobs.length; i += 1) {
+        const job = jobs[i];
+        const translated = String(translations[i] ?? "").trim();
+        if (!translated) continue;
+        if (!updatesByRow.has(job.rowId)) updatesByRow.set(job.rowId, {});
+        updatesByRow.get(job.rowId)[job.field] = translated;
+      }
+
       let updated = 0;
       let skipped = 0;
       let lastId = afterId;
       for (const r of rows) {
         lastId = Number(r.id);
-        const needsName = force || !String(r.name_de || "").trim();
-        const needsNotes = force || !String(r.notes_de || "").trim();
-        if (!needsName && !needsNotes) { skipped += 1; continue; }
-
-        const newNameDe = needsName && r.name ? translateTrToDe(r.name) : null;
-        const newNotesDe = needsNotes && r.notes ? translateTrToDe(r.notes) : null;
-
+        const patch = updatesByRow.get(r.id);
+        if (!patch || !Object.keys(patch).length) { skipped += 1; continue; }
         const sets = [];
         const vals = [];
-        if (newNameDe !== null) { sets.push("name_de = ?"); vals.push(newNameDe); }
-        if (newNotesDe !== null) { sets.push("notes_de = ?"); vals.push(newNotesDe); }
-        if (!sets.length) { skipped += 1; continue; }
-
+        for (const [k, v] of Object.entries(patch)) {
+          sets.push(`${k} = ?`);
+          vals.push(v);
+        }
         vals.push(r.id);
         await execute(`UPDATE items SET ${sets.join(", ")} WHERE id = ?`, vals);
         updated += 1;
@@ -2998,11 +3039,12 @@ function createApp() {
         user: req.session.user,
         eventType: "bulk_translate_de",
         severity: "info",
-        details: { afterId, limit, force, processed: rows.length, updated, skipped, lastId },
+        details: { engine, afterId, limit, force, processed: rows.length, updated, skipped, lastId },
       });
 
       return res.json({
         ok: true,
+        engine,
         total,
         emptyBefore: emptyCount,
         processed: rows.length,
@@ -3014,6 +3056,41 @@ function createApp() {
     } catch (e) {
       console.error("[bulk-translate-de]", e);
       return res.status(500).json({ error: e.message || "Toplu ceviri basarisiz." });
+    }
+  });
+
+  // DeepL kotasını göster (admin)
+  app.get("/api/admin/deepl-usage", requireAdmin, async (req, res) => {
+    try {
+      const { getUsage } = require("../scripts/lib/deepl-client");
+      const usage = await getUsage();
+      return res.json({ ok: true, usage });
+    } catch (e) {
+      return res.status(502).json({ error: e.message || "DeepL usage alınamadı.", code: e.code });
+    }
+  });
+
+  // Mevcut DE çevirilerini sıfırla (admin) — sözlük tabanlı yanlış verileri temizlemek için.
+  // Kullanım: POST /api/admin/reset-de-translations?confirm=YES
+  app.post("/api/admin/reset-de-translations", requireAdmin, async (req, res) => {
+    try {
+      const confirm = String(req.query.confirm || req.body?.confirm || "");
+      if (confirm !== "YES") {
+        return res.status(400).json({ error: "Onay eksik. ?confirm=YES parametresi gerekli." });
+      }
+      const result = await execute(
+        "UPDATE items SET name_de = NULL, notes_de = NULL WHERE name_de IS NOT NULL OR notes_de IS NOT NULL"
+      );
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "reset_de_translations",
+        severity: "warn",
+        details: { affected: result?.rowCount ?? result?.changes ?? null },
+      });
+      return res.json({ ok: true, affected: result?.rowCount ?? result?.changes ?? null });
+    } catch (e) {
+      console.error("[reset-de-translations]", e);
+      return res.status(500).json({ error: e.message || "Sıfırlama başarısız." });
     }
   });
 

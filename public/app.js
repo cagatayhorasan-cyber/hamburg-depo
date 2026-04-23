@@ -658,6 +658,7 @@ const refs = {
   stockedItemsSummary: document.getElementById("stockedItemsSummary"),
   stockedItemsList: document.getElementById("stockedItemsList"),
   bulkTranslateDeButton: document.getElementById("bulkTranslateDeButton"),
+  resetDeButton: document.getElementById("resetDeButton"),
   bulkTranslateProgress: document.getElementById("bulkTranslateProgress"),
   archiveTableBody: document.getElementById("archiveTableBody"),
   archiveSummary: document.getElementById("archiveSummary"),
@@ -2205,6 +2206,7 @@ function bindEvents() {
   refs.brandFilter.addEventListener("change", handleFilterChange);
   refs.categoryFilter.addEventListener("change", handleFilterChange);
   refs.bulkTranslateDeButton?.addEventListener("click", handleBulkTranslateDe);
+  refs.resetDeButton?.addEventListener("click", handleResetDeTranslations);
   refs.assistantToggle.addEventListener("click", toggleAssistantPanel);
   refs.assistantClose.addEventListener("click", closeAssistantPanel);
   refs.assistantLanguage.addEventListener("change", handleAssistantLanguageChange);
@@ -6420,17 +6422,25 @@ function handleQuoteFilterChange() {
 
 async function handleBulkTranslateDe() {
   if (!isAdminUser()) return;
-  const confirmMsg = langText(
-    "Tüm ürün adlarını ve notlarını TR→DE otomatik çevirecek. Yalnızca BOŞ olan name_de/notes_de alanları doldurulacak (dolu olanlara dokunulmaz). Devam edilsin mi?",
-    "Alle Artikelnamen und Notizen werden automatisch TR→DE übersetzt. Nur LEERE name_de/notes_de werden gefüllt. Fortfahren?"
-  );
-  if (!window.confirm(confirmMsg)) return;
+  // Seçenek modalı yerine basit prompt: engine + force
+  const forceReplace = window.confirm(langText(
+    "DeepL ile TR→DE çeviri başlatılacak.\n\n• Tamam = SADECE BOŞ olan name_de/notes_de'yi doldur\n• İptal = Seçeneği değiştir (aşağıdaki ikinci diyalogda Force modu seç)",
+    "DeepL-Übersetzung TR→DE wird gestartet.\n\n• OK = Nur leere name_de/notes_de füllen\n• Abbrechen = Option ändern (im nächsten Dialog Force-Modus wählen)"
+  ));
+  let force = false;
+  if (!forceReplace) {
+    force = window.confirm(langText(
+      "FORCE modu: Mevcut DE çevirilerinin ÜSTÜNE YAZILACAK (eski rule-based yanlış çevirileri değiştirmek için).\n\nDevam edilsin mi?",
+      "FORCE-Modus: Bestehende DE-Übersetzungen werden ÜBERSCHRIEBEN. Fortfahren?"
+    ));
+    if (!force) return;
+  }
 
   const progress = refs.bulkTranslateProgress;
   const button = refs.bulkTranslateDeButton;
   if (progress) {
     progress.style.display = "block";
-    progress.textContent = langText("Başlatılıyor...", "Starte...");
+    progress.textContent = langText("DeepL'e bağlanılıyor...", "Verbinde mit DeepL...");
   }
   if (button) button.disabled = true;
 
@@ -6439,15 +6449,23 @@ async function handleBulkTranslateDe() {
   let totalUpdated = 0;
   let totalSkipped = 0;
   let overallTotal = 0;
-  const batchLimit = 500;
+  const batchLimit = 200; // DeepL sınırı için küçük tutuyoruz
 
   try {
-    for (let iter = 0; iter < 60; iter += 1) {
-      const res = await request(`/api/admin/bulk-translate-items-de?afterId=${afterId}&limit=${batchLimit}`, {
+    for (let iter = 0; iter < 200; iter += 1) {
+      const params = new URLSearchParams({
+        afterId: String(afterId),
+        limit: String(batchLimit),
+        engine: "deepl",
+        force: force ? "true" : "false",
+      });
+      const res = await request(`/api/admin/bulk-translate-items-de?${params.toString()}`, {
         method: "POST",
       });
       if (res.error) {
-        if (progress) progress.textContent = `✗ ${res.error}`;
+        const hint = res.hint ? `\n\n💡 ${res.hint}` : "";
+        if (progress) progress.textContent = `✗ ${res.error}${hint}`;
+        window.alert(`${res.error}${hint}`);
         break;
       }
       totalProcessed += Number(res.processed) || 0;
@@ -6457,21 +6475,66 @@ async function handleBulkTranslateDe() {
       overallTotal = Number(res.total) || overallTotal;
       if (progress) {
         progress.textContent = langText(
-          `İşleniyor... ${totalUpdated} güncellendi / ${totalProcessed} işlendi (toplam ${overallTotal}) — son id: ${afterId}`,
-          `Verarbeitung... ${totalUpdated} aktualisiert / ${totalProcessed} verarbeitet (gesamt ${overallTotal}) — letzte id: ${afterId}`
+          `🌐 DeepL çeviri... ${totalUpdated} güncel / ${totalProcessed} işlendi (top. ${overallTotal}) — id: ${afterId}`,
+          `🌐 DeepL läuft... ${totalUpdated} aktuell / ${totalProcessed} verarbeitet (ges. ${overallTotal}) — id: ${afterId}`
         );
       }
       if (!res.hasMore) break;
     }
     if (progress) {
       progress.textContent = langText(
-        `✓ Tamamlandı — ${totalUpdated} güncellendi, ${totalSkipped} atlandı (zaten dolu), ${totalProcessed} işlendi.`,
+        `✓ Tamamlandı — ${totalUpdated} güncellendi, ${totalSkipped} atlandı, ${totalProcessed} işlendi.`,
         `✓ Fertig — ${totalUpdated} aktualisiert, ${totalSkipped} übersprungen, ${totalProcessed} verarbeitet.`
       );
     }
     window.alert(langText(
-      `✓ Toplu DE çeviri tamamlandı.\n\nGüncellenen: ${totalUpdated}\nAtlanan (zaten dolu): ${totalSkipped}\nToplam işlenen: ${totalProcessed}`,
-      `✓ Bulk DE-Übersetzung abgeschlossen.\n\nAktualisiert: ${totalUpdated}\nÜbersprungen: ${totalSkipped}\nVerarbeitet: ${totalProcessed}`
+      `✓ DeepL TR→DE çeviri tamamlandı.\n\nGüncellenen: ${totalUpdated}\nAtlanan: ${totalSkipped}\nToplam işlenen: ${totalProcessed}`,
+      `✓ DeepL TR→DE-Übersetzung abgeschlossen.\n\nAktualisiert: ${totalUpdated}\nÜbersprungen: ${totalSkipped}\nVerarbeitet: ${totalProcessed}`
+    ));
+    await refreshData();
+  } catch (e) {
+    if (progress) progress.textContent = `✗ ${e.message || "Hata"}`;
+  } finally {
+    if (button) button.disabled = false;
+  }
+}
+
+async function handleResetDeTranslations() {
+  if (!isAdminUser()) return;
+  const warn = window.confirm(langText(
+    "⚠️ TÜM ürünlerin DE (Almanca) çevirileri SİLİNECEK.\n\nBu işlem geri alınamaz. Mevcut sözlük tabanlı yanlış çevirileri temizlemek için kullanılır. Sonra DeepL ile yeniden çevirebilirsin.\n\nDevam edilsin mi?",
+    "⚠️ ALLE DE-Übersetzungen werden GELÖSCHT.\n\nNicht rückgängig zu machen. Für das Bereinigen der alten Wörterbuch-Übersetzungen. Danach kann mit DeepL neu übersetzt werden.\n\nFortfahren?"
+  ));
+  if (!warn) return;
+  const second = window.confirm(langText(
+    "Son onay: 'YES' yazmak yerine Tamam'a basarak onaylıyorsun. Emin misin?",
+    "Letzte Bestätigung: OK klicken bestätigt. Sicher?"
+  ));
+  if (!second) return;
+
+  const progress = refs.bulkTranslateProgress;
+  const button = refs.resetDeButton;
+  if (progress) {
+    progress.style.display = "block";
+    progress.textContent = langText("Siliniyor...", "Löschen...");
+  }
+  if (button) button.disabled = true;
+  try {
+    const res = await request("/api/admin/reset-de-translations?confirm=YES", { method: "POST" });
+    if (res.error) {
+      if (progress) progress.textContent = `✗ ${res.error}`;
+      window.alert(res.error);
+      return;
+    }
+    if (progress) {
+      progress.textContent = langText(
+        `✓ ${res.affected ?? "?"} kayıt temizlendi. Şimdi DeepL ile yeniden çevir.`,
+        `✓ ${res.affected ?? "?"} Einträge gelöscht. Jetzt mit DeepL neu übersetzen.`
+      );
+    }
+    window.alert(langText(
+      `✓ ${res.affected ?? "?"} ürünün DE çevirisi silindi.`,
+      `✓ ${res.affected ?? "?"} DE-Übersetzungen gelöscht.`
     ));
     await refreshData();
   } catch (e) {
