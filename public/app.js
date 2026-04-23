@@ -844,7 +844,7 @@ function buildItemDetailFacts(item) {
   if (detail) {
     facts.push([langText("Detay", "Detail"), detail]);
   }
-  const rawFirstNote = cleanPublicDetailPart(String(item.notes || "").split("|")[0] || "");
+  const rawFirstNote = cleanPublicDetailPart(String(resolveLocalizedNotes(item)).split("|")[0] || "");
   // Müşteri için ilk notu da public-safe kontrolünden geçir (tedarikçi/kaynak/fatura gizlensin)
   const noteSnippet = (isCustomer && rawFirstNote && !isPublicSafeNotePart(rawFirstNote))
     ? ""
@@ -878,7 +878,7 @@ function getBrandMedia(item) {
 function buildItemTechFacts(item) {
   const isCustomer = isCustomerUser();
   const detail = getPublicItemDetail(item);
-  const rawNoteBits = String(item.notes || "")
+  const rawNoteBits = String(resolveLocalizedNotes(item))
     .split("|")
     .map(cleanPublicDetailPart)
     .filter(Boolean);
@@ -937,7 +937,7 @@ function buildItemPricingFacts(item) {
 
 function buildItemNotesFacts(item) {
   const isCustomer = isCustomerUser();
-  const rawNotes = String(item.notes || "")
+  const rawNotes = String(resolveLocalizedNotes(item))
     .split("|")
     .map(cleanPublicDetailPart)
     .filter(Boolean);
@@ -1059,16 +1059,16 @@ function openItemDetailModal(item) {
   }
   if (refs.itemDetailVisual) {
     refs.itemDetailVisual.src = media.visual;
-    refs.itemDetailVisual.alt = item.name || "Urun gorseli";
+    refs.itemDetailVisual.alt = resolveLocalizedName(item) || "Urun gorseli";
   }
-  setText(refs.itemDetailTitle, item.name || langText("Urun Detayi", "Artikeldetail"));
+  setText(refs.itemDetailTitle, resolveLocalizedName(item) || langText("Urun Detayi", "Artikeldetail"));
   setText(refs.itemDetailSubtitle, `${item.brand || "-"} · ${getDisplayCategory(item.category)}`);
   setText(refs.itemDetailStock, formatItemStock(item.currentStock, item.unit));
   setText(refs.itemDetailNetPrice, `${formatMoneyOrDash(visibleSalePrice(item))} ${langText("net", "netto")}`);
   setText(refs.itemDetailListPrice, formatMoneyOrDash(visibleListPrice(item)));
   if (refs.itemDetailDescription) {
     const isCustomer = isCustomerUser();
-    const rawNoteBits = String(item.notes || "")
+    const rawNoteBits = String(resolveLocalizedNotes(item))
       .split("|")
       .map(cleanPublicDetailPart)
       .filter(Boolean);
@@ -1438,10 +1438,12 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.itemForm, "listPrice", langText("Liste Fiyati", "Listenpreis"));
   setFormFieldLabel(refs.itemForm, "salePrice", langText("Net/Satis Fiyati", "Netto-/Verkaufspreis"));
   setFormFieldLabel(refs.itemForm, "barcode", langText("Stok Kodu", "Lagercode"));
-  setFormFieldLabel(refs.itemForm, "notes", langText("Not", "Notiz"));
+  setFormFieldLabel(refs.itemForm, "notes", langText("Not (TR)", "Notiz (TR)"));
+  setFormFieldLabel(refs.itemForm, "notesDe", langText("Not (DE)", "Notiz (DE)"));
   setFieldPlaceholder(refs.itemForm, "brand", langText("Orn. Embraco, Hisense", "z. B. Embraco, Hisense"));
   setFieldPlaceholder(refs.itemForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
-  setFieldPlaceholder(refs.itemForm, "notes", langText("Raf veya tedarik notu", "Regal- oder Lieferantennotiz"));
+  setFieldPlaceholder(refs.itemForm, "notes", langText("Türkçe ürün notu — müşteri TR modunda bunu görür", "Tuerkische Notiz — wird Kunden im TR-Modus angezeigt"));
+  setFieldPlaceholder(refs.itemForm, "notesDe", langText("Almanca ürün notu (boş bırakırsan TR gösterilir)", "Deutsche Artikelnotiz (leer = TR-Fallback)"));
   refs.itemSubmitButton.textContent = refs.itemForm?.elements?.id?.value
     ? langText("Malzemeyi Guncelle", "Artikel aktualisieren")
     : langText("Malzeme Ekle", "Artikel anlegen");
@@ -3494,7 +3496,7 @@ function renderStockedItems(filteredItems) {
         <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
         <button class="stocked-card-more" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
-      <strong>${escapeHtml(item.name)}</strong>
+      <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
       <span class="stocked-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
       ${itemDetail ? `<span class="stocked-card-detail">${langText("Kisa not", "Kurzinfo")}: ${escapeHtml(itemDetail)}</span>` : ""}
       <div class="stocked-card-footer">
@@ -5134,10 +5136,16 @@ function renderQuotes() {
       const priceLabel = entry.quantity <= 1 && Number(entry.listPrice || 0) > 0
         ? langText("liste", "Liste")
         : langText("net", "netto");
+      const brandLabel = String(entry.brand || "").trim();
+      const unitLabel = getDisplayUnit(entry.unit || "");
+      const displayName = (state.uiLanguage === "de" && String(entry.itemNameDe || "").trim())
+        ? String(entry.itemNameDe).trim()
+        : (entry.itemName || "");
       row.innerHTML = `
         <div class="cart-item-main">
-          <strong>${escapeHtml(entry.itemName || "")}</strong>
-          <span>${escapeHtml(entry.unit || "")} | ${currency.format(entry.unitPrice)} / ${langText("birim", "Einheit")} (${priceLabel})</span>
+          <strong>${escapeHtml(displayName)}</strong>
+          ${brandLabel ? `<span class="cart-item-brand">${escapeHtml(brandLabel)}</span>` : ""}
+          <span>${escapeHtml(unitLabel)} | ${currency.format(entry.unitPrice)} / ${langText("birim", "Einheit")} (${priceLabel})</span>
         </div>
         <div class="cart-item-controls">
           <button class="mini-button secondary-button" type="button" data-quote-qty="${index}" data-delta="-1">-</button>
@@ -5216,7 +5224,7 @@ function renderPosCatalog() {
     card.innerHTML = `
       <div class="pos-card-head">
         <div>
-          <strong>${escapeHtml(item.name || "")}</strong>
+          <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
           <span>${escapeHtml(item.brand || "-")}</span>
         </div>
         <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
@@ -5784,7 +5792,7 @@ function renderCustomerCatalog() {
     card.innerHTML = `
       <div class="pos-card-head">
         <div>
-          <strong>${escapeHtml(item.name || "")}</strong>
+          <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
           <span>${escapeHtml(item.brand || "-")}</span>
         </div>
         <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
@@ -5846,10 +5854,16 @@ function renderCustomerOrderDraft() {
   state.customerOrderDraft.forEach((entry, index) => {
     const row = document.createElement("article");
     row.className = "cart-item";
+    const brandLabel = String(entry.brand || "").trim();
+    const unitLabel = getDisplayUnit(entry.unit || "");
+    const displayName = (state.uiLanguage === "de" && String(entry.itemNameDe || "").trim())
+      ? String(entry.itemNameDe).trim()
+      : (entry.itemName || "");
     row.innerHTML = `
         <div class="cart-item-main">
-          <strong>${escapeHtml(entry.itemName || "")}</strong>
-          <span>${escapeHtml(entry.unit || "")} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${escapeHtml(entry.unit || "")} | ${langText("Birim", "Einzel")}: ${currency.format(entry.unitPrice || 0)}</span>
+          <strong>${escapeHtml(displayName)}</strong>
+          ${brandLabel ? `<span class="cart-item-brand">${escapeHtml(brandLabel)}</span>` : ""}
+          <span>${escapeHtml(unitLabel)} | ${langText("Stok", "Bestand")}: ${numberFormat.format(entry.maxQuantity)} ${escapeHtml(unitLabel)} | ${langText("Birim", "Einzel")}: ${currency.format(entry.unitPrice || 0)}</span>
         </div>
       <div class="cart-item-controls">
         <button class="mini-button secondary-button" type="button" data-order-qty="${index}" data-delta="-1">-</button>
@@ -5903,15 +5917,23 @@ function openCustomerOrderReview() {
   const gross = +(net + vat).toFixed(2);
 
   if (refs.orderReviewList) {
-    refs.orderReviewList.innerHTML = state.customerOrderDraft.map((e) => `
+    refs.orderReviewList.innerHTML = state.customerOrderDraft.map((e) => {
+      const brandLabel = String(e.brand || "").trim();
+      const unitLabel = getDisplayUnit(e.unit || "");
+      const displayName = (state.uiLanguage === "de" && String(e.itemNameDe || "").trim())
+        ? String(e.itemNameDe).trim()
+        : (e.itemName || "");
+      return `
       <div class="order-review-row">
         <div>
-          <strong>${escapeHtml(e.itemName)}</strong>
-          <span class="muted"> · ${numberFormat.format(e.quantity)} ${escapeHtml(e.unit || "")} × ${currency.format(e.unitPrice || 0)}</span>
+          <strong>${escapeHtml(displayName)}</strong>
+          ${brandLabel ? `<span class="cart-item-brand">${escapeHtml(brandLabel)}</span>` : ""}
+          <span class="muted"> · ${numberFormat.format(e.quantity)} ${escapeHtml(unitLabel)} × ${currency.format(e.unitPrice || 0)}</span>
         </div>
         <strong>${currency.format(Number(e.quantity) * Number(e.unitPrice || 0))}</strong>
       </div>
-    `).join("");
+    `;
+    }).join("");
   }
   if (refs.orderReviewNet)   refs.orderReviewNet.textContent = currency.format(net);
   if (refs.orderReviewVat)   refs.orderReviewVat.textContent = currency.format(vat);
@@ -6636,8 +6658,29 @@ function isPublicSafeNotePart(part) {
     && !normalized.startsWith("tahmini alis maliyeti");
 }
 
+// DE modunda notes_de varsa onu, yoksa TR notes'ı döndürür (localizeItemDetail regex fallback'i
+// yine de çalışır, böylece TR içerik kalmış olursa minimum çeviri sağlanır).
+function resolveLocalizedNotes(item) {
+  if (!item) return "";
+  if (state.uiLanguage === "de") {
+    const de = String(item.notesDe || "").trim();
+    if (de) return de;
+  }
+  return String(item.notes || "");
+}
+
+// DE modunda name_de varsa onu, yoksa TR name'i döndürür. nameDe null/boş olursa sessiz fallback.
+function resolveLocalizedName(item) {
+  if (!item) return "";
+  if (state.uiLanguage === "de") {
+    const de = String(item.nameDe || "").trim();
+    if (de) return de;
+  }
+  return String(item.name || "");
+}
+
 function getPublicItemDetail(item) {
-  const note = String(item?.notes || "").trim();
+  const note = resolveLocalizedNotes(item).trim();
   const noteParts = note
     .split("|")
     .map(cleanPublicDetailPart)
@@ -6988,6 +7031,9 @@ function startItemEdit(itemId) {
   }
   refs.itemForm.elements.id.value = item.id;
   refs.itemForm.elements.name.value = item.name;
+  if (refs.itemForm.elements.nameDe) {
+    refs.itemForm.elements.nameDe.value = item.nameDe || "";
+  }
   refs.itemForm.elements.brand.value = item.brand || "";
   refs.itemForm.elements.category.value = item.category;
   refs.itemForm.elements.unit.value = item.unit;
@@ -6997,6 +7043,9 @@ function startItemEdit(itemId) {
   refs.itemForm.elements.salePrice.value = item.salePrice || "";
   refs.itemForm.elements.barcode.value = item.barcode.startsWith("ITEM-") ? "" : item.barcode;
   refs.itemForm.elements.notes.value = item.notes || "";
+  if (refs.itemForm.elements.notesDe) {
+    refs.itemForm.elements.notesDe.value = item.notesDe || "";
+  }
   refs.itemSubmitButton.textContent = langText("Malzemeyi Guncelle", "Artikel aktualisieren");
   refs.itemCancelEdit.classList.remove("hidden");
   activateTab("items");
@@ -7168,6 +7217,8 @@ function addItemToQuote(itemId) {
     state.quoteDraft.push({
       itemId: Number(item.id),
       itemName: item.name,
+      itemNameDe: String(item.nameDe || "").trim(),
+      brand: String(item.brand || "").trim(),
       quantity: 1,
       unitPrice: price,
       listPrice: Number(item.listPrice || 0),
@@ -7194,6 +7245,8 @@ function addItemToCustomerOrder(itemId) {
     state.customerOrderDraft.push({
       itemId: Number(item.id),
       itemName: item.name,
+      itemNameDe: String(item.nameDe || "").trim(),
+      brand: String(item.brand || "").trim(),
       quantity: 1,
       unitPrice: price,
       listPrice: Number(item.listPrice || 0),

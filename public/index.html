@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260423-de-i18n">
+  <link rel="stylesheet" href="/styles.css?v=20260424-name-de-cart">
 </head>
 <body>
   <div class="page-shell">
@@ -323,7 +323,8 @@
                   <h2>Malzeme Karti</h2>
                   <form id="itemForm" class="form-grid">
                     <input name="id" type="hidden">
-                    <label>Malzeme Adi<input name="name" type="text" required></label>
+                    <label>Malzeme Adi (TR)<input name="name" type="text" required></label>
+                    <label>Malzeme Adi (DE)<input name="nameDe" type="text" placeholder="Deutscher Artikelname (optional)"></label>
                     <label>Marka<input name="brand" type="text" placeholder="Orn. Embraco, Hisense"></label>
                     <label>Kategori<input name="category" type="text" required></label>
                     <label>Birim<input name="unit" type="text" required></label>
@@ -332,7 +333,8 @@
                     <label>Liste Fiyati<input name="listPrice" type="number" min="0" step="0.01" placeholder="1 adet fiyat"></label>
                     <label>Net/Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="Normal musteri net"></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
-                    <label>Not<input name="notes" type="text" placeholder="Raf veya tedarik notu"></label>
+                    <label class="form-span-2">Not (TR)<textarea name="notes" rows="3" placeholder="Raf veya tedarik notu — TR içerik"></textarea></label>
+                    <label class="form-span-2">Not (DE)<textarea name="notesDe" rows="3" placeholder="Deutsche Artikelnotiz (optional) — boş bırakırsan müşteri DE modunda TR notu görür"></textarea></label>
                     <button id="itemSubmitButton" class="primary-button" type="submit" data-help="TR: Yeni malzeme karti olusturur veya duzenlemeyi kaydeder. DE: Legt eine neue Artikelkarte an oder speichert die Bearbeitung.">Malzeme Ekle</button>
                     <button id="itemCancelEdit" class="secondary-button hidden" type="button">Duzenlemeyi Iptal Et</button>
                   </form>
@@ -1252,6 +1254,6 @@
       </form>
     </section>
   </aside>
-  <script src="/app.js?v=20260423-de-i18n"></script>
+  <script src="/app.js?v=20260424-name-de-cart"></script>
 </body>
 </html>

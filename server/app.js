@@ -1146,7 +1146,7 @@ function createApp() {
   app.post("/api/item-intake", requireStaffOrAdmin, handleItemIntake);
 
   app.post("/api/items", requireAdmin, async (req, res) => {
-    const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, listPrice, salePrice } = req.body || {};
+    const { name, nameDe, brand, category, unit, minStock, barcode, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
@@ -1158,18 +1158,20 @@ function createApp() {
     try {
       const result = await execute(
         `
-          INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, list_price, sale_price)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO items (name, name_de, brand, category, unit, min_stock, barcode, notes, notes_de, default_price, list_price, sale_price)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
           RETURNING id
         `,
         [
           name.trim(),
+          cleanOptional(nameDe),
           cleanOptional(brand),
           category.trim(),
           unit.trim(),
           numericFields.minStock,
           cleanOptional(barcode) || null,
           cleanOptional(notes),
+          cleanOptional(notesDe),
           numericFields.defaultPrice,
           numericFields.listPrice,
           numericFields.salePrice,
@@ -1190,7 +1192,7 @@ function createApp() {
   });
 
   app.put("/api/items/:id", requireAdmin, async (req, res) => {
-    const { name, brand, category, unit, minStock, barcode, notes, defaultPrice, listPrice, salePrice } = req.body || {};
+    const { name, nameDe, brand, category, unit, minStock, barcode, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
@@ -1203,17 +1205,19 @@ function createApp() {
       const result = await execute(
         `
           UPDATE items
-          SET name = ?, brand = ?, category = ?, unit = ?, min_stock = ?, barcode = ?, notes = ?, default_price = ?, list_price = ?, sale_price = ?
+          SET name = ?, name_de = ?, brand = ?, category = ?, unit = ?, min_stock = ?, barcode = ?, notes = ?, notes_de = ?, default_price = ?, list_price = ?, sale_price = ?
           WHERE id = ?
         `,
         [
           name.trim(),
+          cleanOptional(nameDe),
           cleanOptional(brand),
           category.trim(),
           unit.trim(),
           numericFields.minStock,
           cleanOptional(barcode) || null,
           cleanOptional(notes),
+          cleanOptional(notesDe),
           numericFields.defaultPrice,
           numericFields.listPrice,
           numericFields.salePrice,
@@ -4280,12 +4284,14 @@ async function queryCustomerItems(options = {}) {
       SELECT
         items.id,
         items.name,
+        items.name_de,
         items.brand,
         items.category,
         items.unit,
         items.min_stock,
         items.barcode,
         items.notes,
+        items.notes_de,
         items.default_price,
         items.list_price,
         items.sale_price,
@@ -4312,12 +4318,14 @@ function mapItemRow(row, options = {}) {
   return {
     id: Number(row.id),
     name: row.name,
+    nameDe: row.name_de || "",
     brand: row.brand || deriveBrand(row),
     category: row.category,
     unit: row.unit,
     minStock: Number(row.min_stock || 0),
     barcode: row.barcode || `ITEM-${String(row.id).padStart(5, "0")}`,
     notes: row.notes,
+    notesDe: row.notes_de || "",
     currentStock: Number(row.current_stock || 0),
     defaultPrice: includePrices ? Number(row.default_price || 0) : 0,
     listPrice: includePrices ? Number(row.list_price || 0) : 0,

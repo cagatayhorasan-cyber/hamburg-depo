@@ -33,12 +33,14 @@ const sqliteSchema = `
   CREATE TABLE IF NOT EXISTS items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
+    name_de TEXT DEFAULT '',
     category TEXT NOT NULL,
     unit TEXT NOT NULL,
     min_stock REAL NOT NULL DEFAULT 0,
     product_code TEXT DEFAULT '',
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
+    notes_de TEXT DEFAULT '',
     is_active INTEGER NOT NULL DEFAULT 1,
     list_price REAL NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -302,6 +304,7 @@ const postgresSchema = `
   CREATE TABLE IF NOT EXISTS items (
     id BIGSERIAL PRIMARY KEY,
     name TEXT NOT NULL,
+    name_de TEXT DEFAULT '',
     brand TEXT DEFAULT '',
     category TEXT NOT NULL,
     unit TEXT NOT NULL,
@@ -309,6 +312,7 @@ const postgresSchema = `
     product_code TEXT DEFAULT '',
     barcode TEXT UNIQUE,
     notes TEXT DEFAULT '',
+    notes_de TEXT DEFAULT '',
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     default_price NUMERIC NOT NULL DEFAULT 0,
     list_price NUMERIC NOT NULL DEFAULT 0,
@@ -783,6 +787,12 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("is_active")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN is_active INTEGER NOT NULL DEFAULT 1");
   }
+  if (!columns.includes("notes_de")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN notes_de TEXT DEFAULT ''");
+  }
+  if (!columns.includes("name_de")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN name_de TEXT DEFAULT ''");
+  }
 }
 
 function ensureUserColumnsSqlite() {
@@ -1098,6 +1108,12 @@ async function ensureItemColumnsPostgres() {
   }
   if (!names.has("is_active")) {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN is_active BOOLEAN NOT NULL DEFAULT TRUE");
+  }
+  if (!names.has("notes_de")) {
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN notes_de TEXT DEFAULT ''");
+  }
+  if (!names.has("name_de")) {
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN name_de TEXT DEFAULT ''");
   }
 }
 
