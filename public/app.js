@@ -823,6 +823,7 @@ function formatMoneyOrDash(value) {
 }
 
 function buildItemDetailFacts(item) {
+  const isCustomer = isCustomerUser();
   const facts = [
     [langText("Marka", "Marke"), item.brand || "-"],
     [langText("Kategori", "Kategorie"), getDisplayCategory(item.category)],
@@ -830,8 +831,9 @@ function buildItemDetailFacts(item) {
     [langText("Stok Kodu", "Lagercode"), item.barcode || item.productCode || "-"],
     [langText("Mevcut Stok", "Aktueller Bestand"), formatItemStock(item.currentStock, item.unit)],
   ];
+  // Minimum stok iç envanter parametresi — müşteriye gösterme
   const minStock = Number(item?.minStock || 0);
-  if (minStock > 0) {
+  if (minStock > 0 && !isCustomer) {
     facts.push([langText("Minimum Stok", "Mindestbestand"), formatItemStock(minStock, item.unit)]);
   }
   const packaging = extractPackagingDetail(item);
@@ -842,7 +844,11 @@ function buildItemDetailFacts(item) {
   if (detail) {
     facts.push([langText("Detay", "Detail"), detail]);
   }
-  const noteSnippet = cleanPublicDetailPart(String(item.notes || "").split("|")[0] || "");
+  const rawFirstNote = cleanPublicDetailPart(String(item.notes || "").split("|")[0] || "");
+  // Müşteri için ilk notu da public-safe kontrolünden geçir (tedarikçi/kaynak/fatura gizlensin)
+  const noteSnippet = (isCustomer && rawFirstNote && !isPublicSafeNotePart(rawFirstNote))
+    ? ""
+    : rawFirstNote;
   if (noteSnippet && noteSnippet !== detail) {
     facts.push([langText("Not", "Notiz"), noteSnippet]);
   }
@@ -870,11 +876,14 @@ function getBrandMedia(item) {
 }
 
 function buildItemTechFacts(item) {
+  const isCustomer = isCustomerUser();
   const detail = getPublicItemDetail(item);
-  const noteBits = String(item.notes || "")
+  const rawNoteBits = String(item.notes || "")
     .split("|")
     .map(cleanPublicDetailPart)
     .filter(Boolean);
+  // Müşteri için tedarikçi/kaynak/fatura/arşiv içeren parçaları filtrele
+  const noteBits = isCustomer ? rawNoteBits.filter(isPublicSafeNotePart) : rawNoteBits;
   const combined = [...new Set([detail, ...noteBits].filter(Boolean))];
   const facts = [
     [langText("Model / Kod", "Modell / Code"), item.productCode || item.barcode || "-"],
@@ -883,8 +892,9 @@ function buildItemTechFacts(item) {
     [langText("Stok Birimi", "Lagereinheit"), getDisplayUnit(item.unit)],
     [langText("Mevcut Stok", "Aktueller Bestand"), formatItemStock(item.currentStock, item.unit)],
   ];
+  // Minimum stok iç envanter parametresi — müşteriye gösterme
   const minStock = Number(item?.minStock || 0);
-  if (minStock > 0) {
+  if (minStock > 0 && !isCustomer) {
     facts.push([langText("Minimum Stok", "Mindestbestand"), formatItemStock(minStock, item.unit)]);
   }
   const packaging = extractPackagingDetail(item);
@@ -926,10 +936,13 @@ function buildItemPricingFacts(item) {
 }
 
 function buildItemNotesFacts(item) {
-  const notes = String(item.notes || "")
+  const isCustomer = isCustomerUser();
+  const rawNotes = String(item.notes || "")
     .split("|")
     .map(cleanPublicDetailPart)
     .filter(Boolean);
+  // Müşteri için iç operasyonel notları (tedarikçi, kaynak, fatura, arşiv) filtrele
+  const notes = isCustomer ? rawNotes.filter(isPublicSafeNotePart) : rawNotes;
   if (!notes.length) {
     return [[
       langText("Not", "Notiz"),
@@ -1054,10 +1067,12 @@ function openItemDetailModal(item) {
   setText(refs.itemDetailNetPrice, `${formatMoneyOrDash(visibleSalePrice(item))} ${langText("net", "netto")}`);
   setText(refs.itemDetailListPrice, formatMoneyOrDash(visibleListPrice(item)));
   if (refs.itemDetailDescription) {
-    const noteBits = String(item.notes || "")
+    const isCustomer = isCustomerUser();
+    const rawNoteBits = String(item.notes || "")
       .split("|")
       .map(cleanPublicDetailPart)
       .filter(Boolean);
+    const noteBits = isCustomer ? rawNoteBits.filter(isPublicSafeNotePart) : rawNoteBits;
     const uniqueBits = [...new Set([detail, ...noteBits].filter(Boolean))].slice(0, 20);
     if (uniqueBits.length > 1) {
       refs.itemDetailDescription.innerHTML = `<ul class="product-detail-description-list">${
@@ -6540,33 +6555,37 @@ function extractPackagingDetail(item) {
   return `${liters} Lt`;
 }
 
+// Bir not parçasının müşteriye açık (public) gösterilebilir olup olmadığını döner.
+// İç operasyon alanlarını (tedarikçi, kaynak dosya, fatura, arşiv kodu, maliyet notu vs.) filtreler.
+function isPublicSafeNotePart(part) {
+  const normalized = normalizeSearchText(part);
+  if (!normalized) return false;
+  if (/^\d+\s*[x×]\s*\d+\s*l\s*koli$/iu.test(String(part))) return false;
+  return !normalized.startsWith("kaynak")
+    && !normalized.startsWith("urun kodu")
+    && !normalized.startsWith("daha once belirlenen fiyat")
+    && !normalized.startsWith("daha once belirlenen")
+    && !normalized.startsWith("ithalat klasoru gecmis kaydi")
+    && !normalized.startsWith("tedarikci")
+    && !normalized.includes("tedarikcisi")
+    && !normalized.includes("fatura tedarikci")
+    && !normalized.startsWith("kaynak dosya")
+    && !normalized.startsWith("eslesen aktif kart")
+    && !normalized.startsWith("id")
+    && !normalized.startsWith("kod")
+    && !normalized.startsWith("ad")
+    && !normalized.startsWith("arsiv")
+    && !normalized.startsWith("fiyat kaynagi")
+    && !normalized.startsWith("tahmini alis maliyeti");
+}
+
 function getPublicItemDetail(item) {
   const note = String(item?.notes || "").trim();
   const noteParts = note
     .split("|")
     .map(cleanPublicDetailPart)
     .filter(Boolean)
-    .filter((part) => {
-      const normalized = normalizeSearchText(part);
-      return normalized
-        && !normalized.startsWith("kaynak")
-        && !normalized.startsWith("urun kodu")
-        && !normalized.startsWith("daha once belirlenen fiyat")
-        && !normalized.startsWith("daha once belirlenen")
-        && !normalized.startsWith("ithalat klasoru gecmis kaydi")
-        && !normalized.startsWith("tedarikci")
-        && !normalized.includes("tedarikcisi")
-        && !normalized.includes("fatura tedarikci")
-        && !normalized.startsWith("kaynak dosya")
-        && !normalized.startsWith("eslesen aktif kart")
-        && !normalized.startsWith("id")
-        && !normalized.startsWith("kod")
-        && !normalized.startsWith("ad")
-        && !normalized.startsWith("arsiv")
-        && !normalized.startsWith("fiyat kaynagi")
-        && !normalized.startsWith("tahmini alis maliyeti");
-    })
-    .filter((part) => !/^\d+\s*[x×]\s*\d+\s*l\s*koli$/iu.test(part));
+    .filter(isPublicSafeNotePart);
 
   const packagingDetail = extractPackagingDetail(item);
   const detailParts = packagingDetail ? [packagingDetail, ...noteParts] : noteParts;
