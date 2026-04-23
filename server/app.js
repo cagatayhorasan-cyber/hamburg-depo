@@ -2831,6 +2831,122 @@ function createApp() {
     }
   });
 
+  // BOM satırı güncelleme (miktar, fiyat, not)
+  app.put("/api/projects/:id/items/:itemId", requireAuth, async (req, res) => {
+    const projectId = Number(req.params.id);
+    const lineId = Number(req.params.itemId);
+    if (!Number.isFinite(projectId) || !Number.isFinite(lineId)) {
+      return res.status(400).json({ error: "Gecersiz id." });
+    }
+    const project = await get("SELECT * FROM projects WHERE id = ?", [projectId]);
+    if (!project) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (!canAccessProject(project, req.session.user)) {
+      return res.status(403).json({ error: "Yetki yok." });
+    }
+
+    const { quantity, unitPrice, unit, note } = req.body || {};
+    const updates = [];
+    const values = [];
+    if (quantity !== undefined) {
+      const q = Number(quantity);
+      if (!Number.isFinite(q) || q <= 0) return res.status(400).json({ error: "Miktar sifirdan buyuk olmali." });
+      updates.push("quantity = ?");
+      values.push(q);
+    }
+    if (unitPrice !== undefined) {
+      const p = Number(unitPrice);
+      if (!Number.isFinite(p) || p < 0) return res.status(400).json({ error: "Fiyat negatif olamaz." });
+      updates.push("unit_price = ?");
+      values.push(p);
+    }
+    if (unit !== undefined) {
+      updates.push("unit = ?");
+      values.push(String(unit || "adet"));
+    }
+    if (note !== undefined) {
+      updates.push("note = ?");
+      values.push(cleanOptional(note));
+    }
+    if (!updates.length) return res.status(400).json({ error: "Guncellenecek alan yok." });
+    values.push(lineId, projectId);
+    try {
+      await execute(
+        `UPDATE project_items SET ${updates.join(", ")} WHERE id = ? AND project_id = ?`,
+        values
+      );
+      await execute("UPDATE projects SET updated_at = NOW() WHERE id = ?", [projectId]);
+      return res.json({ ok: true });
+    } catch (e) {
+      return res.status(400).json({ error: "Kalem guncellenemedi." });
+    }
+  });
+
+  // Projeden müşteri siparişi üret — staff/admin veya projenin müşterisi
+  app.post("/api/projects/:id/convert-to-order", requireAuth, async (req, res) => {
+    const id = Number(req.params.id);
+    const project = await get("SELECT * FROM projects WHERE id = ?", [id]);
+    if (!project) return res.status(404).json({ error: "Proje bulunamadi." });
+    if (!canAccessProject(project, req.session.user)) {
+      return res.status(403).json({ error: "Yetki yok." });
+    }
+    if (project.order_id) {
+      return res.status(400).json({ error: "Bu projeden zaten siparis uretilmis (#" + project.order_id + ")." });
+    }
+    if (!project.customer_user_id) {
+      return res.status(400).json({ error: "Projeye once musteri atayin." });
+    }
+
+    const items = await query(
+      "SELECT * FROM project_items WHERE project_id = ? ORDER BY id ASC",
+      [id]
+    );
+    if (items.length === 0) {
+      return res.status(400).json({ error: "Projede kalem yok." });
+    }
+
+    const customer = await get("SELECT name, username FROM users WHERE id = ?", [project.customer_user_id]);
+    const customerName = customer?.name || customer?.username || project.title;
+    const today = new Date().toISOString().slice(0, 10);
+    const note = String(req.body?.note || "").trim() || `Proje #${id}: ${project.title}`;
+
+    try {
+      const orderId = await withTransaction(async (tx) => {
+        const oRes = await tx.execute(
+          `INSERT INTO orders (customer_user_id, customer_name, order_date, status, note)
+           VALUES (?, ?, ?, 'pending', ?) RETURNING id`,
+          [Number(project.customer_user_id), customerName, today, note]
+        );
+        const orderId = Number(oRes.rows[0]?.id || oRes.lastInsertId);
+
+        for (const it of items) {
+          await tx.execute(
+            `INSERT INTO order_items (order_id, item_id, item_name, quantity, unit)
+             VALUES (?, ?, ?, ?, ?)`,
+            [orderId, it.item_id, it.item_name, Number(it.quantity), it.unit || "adet"]
+          );
+        }
+
+        await tx.execute(
+          "UPDATE projects SET order_id = ?, status = 'ordered', updated_at = NOW() WHERE id = ?",
+          [orderId, id]
+        );
+
+        return orderId;
+      });
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "project_converted_to_order",
+        severity: "info",
+        details: { projectId: id, orderId },
+      });
+
+      return res.json({ ok: true, orderId });
+    } catch (e) {
+      return res.status(400).json({ error: e.message || "Siparis olusturulamadi." });
+    }
+  });
+
   app.get("/api/quotes/:id/pdf", requireStaffOrAdmin, async (req, res) => {
     const quote = await getQuoteById(Number(req.params.id), req.session.user);
     if (!quote) {

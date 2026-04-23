@@ -755,7 +755,11 @@ const refs = {
   projectAddItemButton: document.getElementById("projectAddItemButton"),
   projectEditButton: document.getElementById("projectEditButton"),
   projectConvertQuoteButton: document.getElementById("projectConvertQuoteButton"),
+  projectConvertOrderButton: document.getElementById("projectConvertOrderButton"),
   projectDeleteButton: document.getElementById("projectDeleteButton"),
+  openColdRoomProButton: document.getElementById("openColdRoomProButton"),
+  coldRoomProModal: document.getElementById("coldRoomProModal"),
+  coldRoomProFrame: document.getElementById("coldRoomProFrame"),
   customerOrdersList: document.getElementById("customerOrdersList"),
   submitCustomerOrderButton: document.getElementById("submitCustomerOrderButton"),
   customerVerificationBanner: document.getElementById("customerVerificationBanner"),
@@ -7847,6 +7851,16 @@ function renderProjectDetail() {
       ? langText(`Teklif #${project.quote_id}`, `Angebot #${project.quote_id}`)
       : langText("→ Teklife Çevir", "→ Zum Angebot");
   }
+  if (refs.projectConvertOrderButton) {
+    const hasCustomer = !!project.customer_user_id;
+    refs.projectConvertOrderButton.disabled = !!project.order_id || items.length === 0 || !hasCustomer;
+    refs.projectConvertOrderButton.title = !hasCustomer
+      ? langText("Müşteri atanmamış projeden sipariş üretilemez.", "Ohne Kunde kann keine Bestellung erzeugt werden.")
+      : "";
+    refs.projectConvertOrderButton.textContent = project.order_id
+      ? langText(`Sipariş #${project.order_id}`, `Bestellung #${project.order_id}`)
+      : langText("→ Siparişe Çevir", "→ Zur Bestellung");
+  }
 }
 
 async function handleProjectItemDelete(itemId) {
@@ -7914,6 +7928,30 @@ async function handleProjectConvertToQuote() {
   await openProjectDetail(project.id);
 }
 
+async function handleProjectConvertToOrder() {
+  if (!state.activeProject) return;
+  const project = state.activeProject.project;
+  if (!project.customer_user_id) {
+    window.alert(langText("Bu projeye önce bir müşteri atayın (Projeyi Düzenle).", "Bitte zuerst einen Kunden zuweisen (Projekt bearbeiten)."));
+    return;
+  }
+  if (!window.confirm(langText(
+    `"${project.title}" projesi müşteri siparişine çevrilecek. Emin misiniz?`,
+    `Projekt "${project.title}" wird in eine Kundenbestellung umgewandelt. Fortfahren?`
+  ))) return;
+  const res = await request(`/api/projects/${project.id}/convert-to-order`, {
+    method: "POST",
+    body: JSON.stringify({ note: project.note || "" }),
+  });
+  if (res.error) { window.alert(res.error); return; }
+  window.alert(langText(
+    `Sipariş oluşturuldu: #${res.orderId}. Siparişler ekranında görebilirsiniz.`,
+    `Bestellung erstellt: #${res.orderId}.`
+  ));
+  await refreshData();
+  await openProjectDetail(project.id);
+}
+
 function handleProjectCustomerInput() {
   if (!refs.projectCustomerNameInput || !refs.projectCustomerUserIdInput) return;
   const value = (refs.projectCustomerNameInput.value || "").trim();
@@ -7965,6 +8003,11 @@ function bindProjectsEvents() {
   refs.projectAddItemButton?.addEventListener("click", handleProjectAddItem);
   refs.projectDeleteButton?.addEventListener("click", handleProjectDelete);
   refs.projectConvertQuoteButton?.addEventListener("click", handleProjectConvertToQuote);
+  refs.projectConvertOrderButton?.addEventListener("click", handleProjectConvertToOrder);
+  refs.openColdRoomProButton?.addEventListener("click", openColdRoomProModal);
+  refs.coldRoomProModal?.querySelectorAll("[data-coldroompro-close]").forEach((el) => {
+    el.addEventListener("click", closeColdRoomProModal);
+  });
   refs.projectEditButton?.addEventListener("click", () => {
     if (!state.activeProject) return;
     closeProjectDetail();
@@ -7997,9 +8040,27 @@ function bindProjectsEvents() {
       if (data.type !== "coldroompro:save-as-project") return;
       const payload = data.payload || {};
       await handleColdRoomProSaveAsProject(payload);
+      closeColdRoomProModal();
     });
     window._coldroomproBridgeBound = true;
   }
+}
+
+function openColdRoomProModal() {
+  if (!refs.coldRoomProModal) return;
+  if (refs.coldRoomProFrame && !refs.coldRoomProFrame.src) {
+    refs.coldRoomProFrame.src = "/admin-tools/coldroompro/";
+  }
+  refs.coldRoomProModal.removeAttribute("hidden");
+  refs.coldRoomProModal.classList.add("open");
+  document.body.classList.add("modal-open");
+}
+
+function closeColdRoomProModal() {
+  if (!refs.coldRoomProModal) return;
+  refs.coldRoomProModal.setAttribute("hidden", "");
+  refs.coldRoomProModal.classList.remove("open");
+  document.body.classList.remove("modal-open");
 }
 
 async function handleColdRoomProSaveAsProject(payload) {

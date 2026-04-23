@@ -914,6 +914,7 @@
                 </div>
                 <div class="action-row">
                   <button id="newProjectButton" class="primary-button" type="button">+ Yeni Proje</button>
+                  <button id="openColdRoomProButton" class="secondary-button admin-staff-only" type="button">🧊 ColdRoomPro ile Hesapla</button>
                 </div>
               </div>
               <div class="projects-filter-bar">
@@ -1026,8 +1027,27 @@
                 <div class="action-row project-detail-actions">
                   <button type="button" class="secondary-button" id="projectEditButton">Düzenle</button>
                   <button type="button" class="secondary-button admin-staff-only" id="projectConvertQuoteButton">→ Teklife Çevir</button>
+                  <button type="button" class="primary-button admin-staff-only" id="projectConvertOrderButton">→ Siparişe Çevir</button>
                   <button type="button" class="danger-button admin-staff-only" id="projectDeleteButton">Sil</button>
                 </div>
+              </div>
+            </div>
+
+            <!-- ColdRoomPro Launcher Modal -->
+            <div id="coldRoomProModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
+              <div class="auth-modal-backdrop" data-coldroompro-close></div>
+              <div class="auth-modal-panel" role="document" style="max-width:min(1200px,95vw);height:90vh;display:flex;flex-direction:column;padding:0;">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <h2 style="margin:0;font-size:18px;">🧊 ColdRoomPro — Soğuk Oda Hesaplama</h2>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <a href="/admin-tools/coldroompro/" target="_blank" rel="noopener" class="secondary-button" style="font-size:12px;">Yeni Sekmede Aç</a>
+                    <button type="button" class="auth-modal-close" data-coldroompro-close aria-label="Kapat" style="position:relative;inset:auto;">×</button>
+                  </div>
+                </div>
+                <iframe id="coldRoomProFrame" src="" title="ColdRoomPro" style="flex:1;width:100%;border:0;background:#fff;"></iframe>
+                <p class="muted" style="padding:8px 20px;margin:0;font-size:12px;border-top:1px solid rgba(255,255,255,0.1);">
+                  Hesaplamanızı tamamladıktan sonra ColdRoomPro içinden "Projeye Kaydet" butonuna basın — proje otomatik oluşturulacaktır.
+                </p>
               </div>
             </div>
           </div>
