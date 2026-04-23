@@ -6422,10 +6422,9 @@ function handleQuoteFilterChange() {
 
 async function handleBulkTranslateDe() {
   if (!isAdminUser()) return;
-  // Seçenek modalı yerine basit prompt: engine + force
   const forceReplace = window.confirm(langText(
-    "DeepL ile TR→DE çeviri başlatılacak.\n\n• Tamam = SADECE BOŞ olan name_de/notes_de'yi doldur\n• İptal = Seçeneği değiştir (aşağıdaki ikinci diyalogda Force modu seç)",
-    "DeepL-Übersetzung TR→DE wird gestartet.\n\n• OK = Nur leere name_de/notes_de füllen\n• Abbrechen = Option ändern (im nächsten Dialog Force-Modus wählen)"
+    "Google Translate ile TR→DE çeviri başlatılacak (keysiz, ücretsiz).\n\n• Tamam = SADECE BOŞ olan name_de/notes_de'yi doldur\n• İptal = Seçeneği değiştir (aşağıdaki 2. dialogda Force modu seç)\n\n⏱️ 10.000 ürün için tahmini süre: ~30 dk.",
+    "Google-Übersetzung TR→DE wird gestartet (ohne Key, kostenlos).\n\n• OK = Nur leere name_de/notes_de füllen\n• Abbrechen = Option ändern (im nächsten Dialog Force-Modus wählen)\n\n⏱️ Geschätzte Zeit für 10.000 Artikel: ~30 Min."
   ));
   let force = false;
   if (!forceReplace) {
@@ -6440,7 +6439,7 @@ async function handleBulkTranslateDe() {
   const button = refs.bulkTranslateDeButton;
   if (progress) {
     progress.style.display = "block";
-    progress.textContent = langText("DeepL'e bağlanılıyor...", "Verbinde mit DeepL...");
+    progress.textContent = langText("Google Translate'e bağlanılıyor...", "Verbinde mit Google Translate...");
   }
   if (button) button.disabled = true;
 
@@ -6449,14 +6448,16 @@ async function handleBulkTranslateDe() {
   let totalUpdated = 0;
   let totalSkipped = 0;
   let overallTotal = 0;
-  const batchLimit = 200; // DeepL sınırı için küçük tutuyoruz
+  const batchLimit = 40; // Serverless timeout'u için küçük tutuyoruz
 
+  const startTime = Date.now();
   try {
-    for (let iter = 0; iter < 200; iter += 1) {
+    // 10K ürün için ~250 iterasyon gerekir, emniyet payı bırakıyoruz
+    for (let iter = 0; iter < 500; iter += 1) {
       const params = new URLSearchParams({
         afterId: String(afterId),
         limit: String(batchLimit),
-        engine: "deepl",
+        engine: "google",
         force: force ? "true" : "false",
       });
       const res = await request(`/api/admin/bulk-translate-items-de?${params.toString()}`, {
@@ -6473,23 +6474,28 @@ async function handleBulkTranslateDe() {
       totalSkipped += Number(res.skipped) || 0;
       afterId = Number(res.lastId) || afterId;
       overallTotal = Number(res.total) || overallTotal;
+
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const mm = String(Math.floor(elapsed / 60)).padStart(2, "0");
+      const ss = String(elapsed % 60).padStart(2, "0");
       if (progress) {
         progress.textContent = langText(
-          `🌐 DeepL çeviri... ${totalUpdated} güncel / ${totalProcessed} işlendi (top. ${overallTotal}) — id: ${afterId}`,
-          `🌐 DeepL läuft... ${totalUpdated} aktuell / ${totalProcessed} verarbeitet (ges. ${overallTotal}) — id: ${afterId}`
+          `🌐 Google çeviri... ${totalUpdated} güncel / ${totalProcessed} işlendi (top. ${overallTotal}) — id: ${afterId} · ⏱ ${mm}:${ss}`,
+          `🌐 Google läuft... ${totalUpdated} aktuell / ${totalProcessed} verarbeitet (ges. ${overallTotal}) — id: ${afterId} · ⏱ ${mm}:${ss}`
         );
       }
       if (!res.hasMore) break;
     }
+    const elapsedSec = Math.floor((Date.now() - startTime) / 1000);
     if (progress) {
       progress.textContent = langText(
-        `✓ Tamamlandı — ${totalUpdated} güncellendi, ${totalSkipped} atlandı, ${totalProcessed} işlendi.`,
-        `✓ Fertig — ${totalUpdated} aktualisiert, ${totalSkipped} übersprungen, ${totalProcessed} verarbeitet.`
+        `✓ Tamamlandı — ${totalUpdated} güncellendi, ${totalSkipped} atlandı, ${totalProcessed} işlendi (${elapsedSec}sn).`,
+        `✓ Fertig — ${totalUpdated} aktualisiert, ${totalSkipped} übersprungen, ${totalProcessed} verarbeitet (${elapsedSec}s).`
       );
     }
     window.alert(langText(
-      `✓ DeepL TR→DE çeviri tamamlandı.\n\nGüncellenen: ${totalUpdated}\nAtlanan: ${totalSkipped}\nToplam işlenen: ${totalProcessed}`,
-      `✓ DeepL TR→DE-Übersetzung abgeschlossen.\n\nAktualisiert: ${totalUpdated}\nÜbersprungen: ${totalSkipped}\nVerarbeitet: ${totalProcessed}`
+      `✓ Google TR→DE çeviri tamamlandı.\n\nGüncellenen: ${totalUpdated}\nAtlanan: ${totalSkipped}\nToplam işlenen: ${totalProcessed}\nSüre: ${elapsedSec}sn`,
+      `✓ Google TR→DE-Übersetzung abgeschlossen.\n\nAktualisiert: ${totalUpdated}\nÜbersprungen: ${totalSkipped}\nVerarbeitet: ${totalProcessed}\nZeit: ${elapsedSec}s`
     ));
     await refreshData();
   } catch (e) {

@@ -2947,12 +2947,17 @@ function createApp() {
     }
   });
 
-  // Toplu TR→DE çeviri (admin) — DeepL API ile yüksek kaliteli çeviri.
-  // Batch destekli: ?limit=200&afterId=0&force=false&engine=deepl|dict
+  // Toplu TR→DE çeviri (admin).
+  // Varsayılan motor: Google Translate (keysiz, unofficial).
+  // Alternatifler: deepl (DEEPL_API_KEY gerekir) | dict (rule-based, sadece acil fallback)
+  // Batch destekli: ?limit=40&afterId=0&force=false&engine=google|deepl|dict
   app.post("/api/admin/bulk-translate-items-de", requireAdmin, async (req, res) => {
     try {
-      const engine = String(req.query.engine || req.body?.engine || "deepl").toLowerCase();
-      const limit = Math.min(Math.max(Number(req.query.limit || req.body?.limit || 200), 1), 500);
+      const engine = String(req.query.engine || req.body?.engine || "google").toLowerCase();
+      // Serverless timeout'u için batch küçük: Google 150ms/istek, concurrency=3 → 40 ürün × 2 alan × 150/3 ≈ 4sn
+      const defaultLimit = engine === "deepl" ? 200 : 40;
+      const maxLimit = engine === "deepl" ? 500 : 80;
+      const limit = Math.min(Math.max(Number(req.query.limit || req.body?.limit || defaultLimit), 1), maxLimit);
       const afterId = Math.max(Number(req.query.afterId || req.body?.afterId || 0), 0);
       const force = String(req.query.force || req.body?.force || "").toLowerCase() === "true";
 
@@ -2982,13 +2987,30 @@ function createApp() {
 
       let translations = [];
       if (jobs.length) {
-        if (engine === "deepl") {
+        if (engine === "google") {
+          const { translateBatch } = require("../scripts/lib/google-translate-client");
+          try {
+            translations = await translateBatch(jobs.map((j) => j.text), {
+              sourceLang: "tr",
+              targetLang: "de",
+              concurrency: 3,
+              delayMs: 150,
+              useLibreFallback: true,
+            });
+          } catch (gErr) {
+            console.error("[bulk-translate-de] Google hatası:", gErr.message);
+            return res.status(502).json({
+              error: gErr.message || "Google Translate başarısız.",
+              code: gErr.code || "GOOGLE_ERROR",
+            });
+          }
+        } else if (engine === "deepl") {
           const { translateBatch } = require("../scripts/lib/deepl-client");
           try {
             translations = await translateBatch(jobs.map((j) => j.text), {
               sourceLang: "TR",
               targetLang: "DE",
-              formality: "more", // Sie/Ihr, daha resmi (B2B için uygun)
+              formality: "more",
             });
           } catch (deeplErr) {
             console.error("[bulk-translate-de] DeepL hatası:", deeplErr.message);
