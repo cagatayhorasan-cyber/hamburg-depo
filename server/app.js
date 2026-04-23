@@ -61,6 +61,9 @@ const API_RATE_WINDOW_MS = 60 * 1000;
 const AUTH_RATE_WINDOW_MS = 10 * 60 * 1000;
 const GENERAL_API_RATE_LIMIT = Number(process.env.GENERAL_API_RATE_LIMIT || 240);
 const AUTH_API_RATE_LIMIT = Number(process.env.AUTH_API_RATE_LIMIT || 12);
+const ASSISTANT_CUSTOMER_RATE_LIMIT = Number(process.env.ASSISTANT_CUSTOMER_RATE_LIMIT || 30);
+const ASSISTANT_STAFF_RATE_LIMIT = Number(process.env.ASSISTANT_STAFF_RATE_LIMIT || 60);
+const ASSISTANT_ADMIN_RATE_LIMIT = Number(process.env.ASSISTANT_ADMIN_RATE_LIMIT || 120);
 const RATE_LIMIT_BUCKETS = new Map();
 const SECURITY_FAILURE_WINDOW_MS = 15 * 60 * 1000;
 const SECURITY_AUTH_FAILURE_THRESHOLD = Number(process.env.SECURITY_AUTH_FAILURE_THRESHOLD || 15);
@@ -652,7 +655,50 @@ function createApp() {
     });
   });
 
-  app.post("/api/assistant/query", requireAuth, async (req, res) => {
+  const assistantRateLimiter = createRateLimiter({
+    name: "assistant-api",
+    windowMs: API_RATE_WINDOW_MS,
+    max: ASSISTANT_ADMIN_RATE_LIMIT, // effective max; alt sınırı role göre el ile uyguluyoruz (dolayısıyla en yüksek değeri burada veriyoruz)
+    keyFn: (req) => {
+      const userId = req.session?.user?.id ? `u${req.session.user.id}` : `ip:${getClientIp(req)}`;
+      return `${userId}:${normalizeRole(req.session?.user?.role) || "anon"}`;
+    },
+    message: "DRC MAN asistan limiti asildi. Lutfen bir dakika sonra tekrar deneyin.",
+  });
+
+  // Role-bazli ikinci katman (assistant-api genel sayacı altında, customer/staff için daha sıkı)
+  const assistantRoleLimiter = async (req, res, next) => {
+    try {
+      const role = normalizeRole(req.session?.user?.role) || "customer";
+      const now = Date.now();
+      const max = role === "admin"
+        ? ASSISTANT_ADMIN_RATE_LIMIT
+        : role === "staff" || role === "operator"
+          ? ASSISTANT_STAFF_RATE_LIMIT
+          : ASSISTANT_CUSTOMER_RATE_LIMIT;
+      const key = `assistant-role:${req.session?.user?.id || getClientIp(req)}`;
+      const bucket = RATE_LIMIT_BUCKETS.get(key) || [];
+      const fresh = bucket.filter((timestamp) => now - timestamp < API_RATE_WINDOW_MS);
+      if (fresh.length >= max) {
+        RATE_LIMIT_BUCKETS.set(key, fresh);
+        res.set("Retry-After", String(Math.max(1, Math.ceil((API_RATE_WINDOW_MS - (now - fresh[0])) / 1000))));
+        queueSecurityEvent(req, {
+          user: req.session?.user,
+          eventType: "assistant_rate_limit",
+          severity: "warn",
+          details: { role, limit: max, windowMs: API_RATE_WINDOW_MS },
+        });
+        return res.status(429).json({ error: "DRC MAN asistan limiti asildi. Lutfen bir dakika sonra tekrar deneyin." });
+      }
+      fresh.push(now);
+      RATE_LIMIT_BUCKETS.set(key, fresh);
+      return next();
+    } catch (error) {
+      return next(error);
+    }
+  };
+
+  app.post("/api/assistant/query", requireAuth, assistantRateLimiter, assistantRoleLimiter, async (req, res) => {
     const message = cleanOptional(req.body?.message);
     const language = req.body?.language === "de" ? "de" : "tr";
     const history = Array.isArray(req.body?.history) ? req.body.history : [];
@@ -669,99 +715,115 @@ function createApp() {
         : sanitizeItemsForRole(await queryItems(), req.session.user);
       return assistantItems;
     };
+    // finalize wrapper: eger reply 'policy' sağlayıcısına donerse güvenlik olayı kaydet.
+    const sendAssistantReply = (payload, stage = "unknown") => {
+      const finalized = finalizeAssistantReply(payload, language, req.session.user);
+      if (finalized && finalized.provider === "policy") {
+        queueSecurityEvent(req, {
+          user: req.session.user,
+          eventType: "assistant_policy_block",
+          severity: "warn",
+          details: {
+            stage,
+            origin: "outgoing_leak",
+            originalProvider: payload?.provider || "unknown",
+            language,
+          },
+        });
+      }
+      return res.json(finalized);
+    };
     if (!message) {
       return res.status(400).json({ error: "Soru bos olamaz." });
     }
 
     const policyReply = evaluateAssistantSafetyPolicy(message, language, req.session.user, history);
     if (policyReply) {
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "assistant_policy_block",
+        severity: "warn",
+        details: {
+          stage: "incoming_question",
+          reason: detectAssistantSafetyIssue(message, req.session.user, history),
+          language,
+          messagePreview: String(message).slice(0, 120),
+        },
+      });
       return res.json(policyReply);
     }
 
     if (isDirectPriceQuestion(message)) {
       const items = await getAssistantItems();
       const answer = answerAssistantQuestion(message, items, language, req.session.user);
-      return res.json(finalizeAssistantReply({
+      return sendAssistantReply({
         answer: answer.reply,
         suggestions: answer.suggestions || [],
         provider: "built_in",
-      }, language, req.session.user));
+      }, "built_in_price");
     }
 
     const catalogItems = await getAssistantItems();
     if (shouldPreferAssistantCatalogReply(message, catalogItems)) {
       const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
-      return res.json(finalizeAssistantReply({
+      return sendAssistantReply({
         answer: answer.reply,
         suggestions: answer.suggestions || [],
         provider: "built_in",
-      }, language, req.session.user));
+      }, "built_in_catalog");
     }
 
     const preferTrainingFirst = hasAssistantSalesDialogueIntent(normalizedMessage) || hasAssistantGithubTrainingIntent(normalizedMessage);
     if (preferTrainingFirst) {
       const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
       if (trainingMatch?.answer) {
-        const answer = sanitizeAssistantAnswerForRole(
-          adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
-          language,
-          req.session.user
-        );
-        return res.json(finalizeAssistantReply({
-          answer,
+        // finalizeAssistantReply icinde detectAssistantAnswerLeak + buildAssistantPolicyAnswer calisir;
+        // pre-sanitize kaldirildi ki leak bulunursa provider=policy olsun ve guvenlik olayi kaydedilsin.
+        return sendAssistantReply({
+          answer: adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
           suggestions: trainingMatch.suggestions || [],
           provider: "drc_man",
           sourceSummary: localizeAssistantSourceSummary(trainingMatch.sourceSummary, language, "training"),
-        }, language, req.session.user));
+        }, "training_preferred");
       }
     }
 
     const troubleshootingMatch = await matchAssistantTroubleshootingBank(message, language, req.session.user, history);
     if (troubleshootingMatch?.answer) {
-      const answer = sanitizeAssistantAnswerForRole(
-        adaptAssistantTrainingAnswer(troubleshootingMatch.answer, language, answerLevel),
-        language,
-        req.session.user
-      );
-      return res.json(finalizeAssistantReply({
-        answer,
+      return sendAssistantReply({
+        answer: adaptAssistantTrainingAnswer(troubleshootingMatch.answer, language, answerLevel),
         suggestions: troubleshootingMatch.suggestions || [],
         provider: "drc_man",
         sourceSummary: localizeAssistantSourceSummary(troubleshootingMatch.sourceSummary, language, "troubleshooting"),
-      }, language, req.session.user));
+      }, "troubleshooting");
     }
 
     const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
     if (trainingMatch?.answer) {
-      const answer = sanitizeAssistantAnswerForRole(
-        adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
-        language,
-        req.session.user
-      );
-      return res.json(finalizeAssistantReply({
-        answer,
+      return sendAssistantReply({
+        answer: adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
         suggestions: trainingMatch.suggestions || [],
         provider: "drc_man",
         sourceSummary: localizeAssistantSourceSummary(trainingMatch.sourceSummary, language, "training"),
-      }, language, req.session.user));
+      }, "training");
     }
 
     const drcManResult = queryDrcManAssistant(message, language, req.session.user, answerLevel, history);
     if (drcManResult?.answer) {
-      return res.json(finalizeAssistantReply({
-        answer: sanitizeAssistantAnswerForRole(drcManResult.answer, language, req.session.user),
+      return sendAssistantReply({
+        answer: drcManResult.answer,
         suggestions: drcManResult.suggestions || [],
         provider: "drc_man",
         sourceSummary: localizeAssistantSourceSummary(drcManResult.sourceSummary, language, "default"),
-      }, language, req.session.user));
+      }, "python_bridge");
     }
 
     const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
-    return res.json(finalizeAssistantReply({
+    return sendAssistantReply({
       answer: answer.reply,
       suggestions: answer.suggestions || [],
       provider: "built_in",
-    }, language, req.session.user));
+    }, "built_in_fallback");
   });
 
   app.get("/api/assistant/trainings", requireAdmin, async (_req, res) => {
