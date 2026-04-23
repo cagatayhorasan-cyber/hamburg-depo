@@ -4892,3 +4892,295 @@ h3 {
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================================================
+   Google-minimal landing — Tek ekran: logo + marka + giriş kartı + adresler
+   2026-04-23 redesign: hero copy, preview, value props ve brand strip kaldırıldı.
+   ========================================================================= */
+.login-minimal {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(0, 180, 216, 0.08), transparent 38%),
+    radial-gradient(circle at 88% 82%, rgba(0, 180, 216, 0.06), transparent 40%),
+    #f5f7fb;
+  color: #1a2a3d;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
+}
+.login-minimal > * {
+  position: relative;
+  z-index: 1;
+}
+.login-minimal .login-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(18px, 4vw, 38px);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(26, 42, 61, 0.06);
+}
+.login-topbar-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.login-topbar-logo {
+  width: 36px;
+  height: 36px;
+  flex: none;
+}
+.login-topbar-brand strong {
+  display: block;
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: #1a2a3d;
+}
+.login-topbar-brand small {
+  display: block;
+  color: rgba(26, 42, 61, 0.55);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.login-topbar-lang .ui-language-switch {
+  background: rgba(26, 42, 61, 0.04);
+  border: 1px solid rgba(26, 42, 61, 0.08);
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+.login-topbar-lang .ui-language-select {
+  background: transparent;
+  color: #1a2a3d;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+.login-topbar-lang .ui-language-select option {
+  color: #1a2a3d;
+}
+
+.login-minimal-main {
+  display: grid;
+  place-items: center;
+  padding: clamp(28px, 6vw, 56px) clamp(16px, 4vw, 32px);
+}
+.login-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(26, 42, 61, 0.07);
+  box-shadow: 0 18px 50px rgba(18, 53, 91, 0.08), 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 44px) clamp(24px, 4vw, 36px);
+  width: min(420px, 100%);
+  display: grid;
+  gap: 22px;
+}
+.login-card-brandblock {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  text-align: center;
+}
+.login-card-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(26, 42, 61, 0.1);
+}
+.login-card-title {
+  margin: 6px 0 0;
+  font-family: "Outfit", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.005em;
+  color: #1a2a3d;
+}
+.login-card-tagline {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(26, 42, 61, 0.58);
+  letter-spacing: 0.04em;
+}
+
+.login-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: rgba(26, 42, 61, 0.04);
+  border-radius: 12px;
+  padding: 4px;
+}
+.login-tab {
+  border: none;
+  background: transparent;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(26, 42, 61, 0.65);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  font-family: inherit;
+}
+.login-tab:hover {
+  color: #1a2a3d;
+}
+.login-tab.is-active {
+  background: #ffffff;
+  color: #0b6cd9;
+  box-shadow: 0 1px 2px rgba(11, 108, 217, 0.14), 0 0 0 1px rgba(11, 108, 217, 0.18);
+}
+
+.login-view {
+  display: grid;
+  gap: 14px;
+}
+.login-view.hidden {
+  display: none;
+}
+.login-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 12.5px;
+  color: rgba(26, 42, 61, 0.72);
+  font-weight: 500;
+}
+.login-form input {
+  padding: 10px 12px;
+  border: 1px solid rgba(26, 42, 61, 0.14);
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 14px;
+  color: #1a2a3d;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+.login-form input:focus {
+  border-color: #0b6cd9;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(11, 108, 217, 0.14);
+}
+.login-submit {
+  margin-top: 4px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  width: 100%;
+}
+.login-form .error-text {
+  margin: 0;
+  color: #d93434;
+  font-size: 12.5px;
+  min-height: 1em;
+}
+.login-form .success-text,
+.login-form .auth-message.success-text {
+  color: #127b4b;
+  font-size: 12.5px;
+}
+
+.login-extra {
+  border-top: 1px dashed rgba(26, 42, 61, 0.1);
+  padding-top: 14px;
+}
+.login-extra summary {
+  cursor: pointer;
+  font-size: 12.5px;
+  color: #0b6cd9;
+  font-weight: 500;
+  list-style: none;
+  padding: 4px 0;
+}
+.login-extra summary::-webkit-details-marker {
+  display: none;
+}
+.login-extra summary:hover {
+  text-decoration: underline;
+}
+.login-extra form {
+  display: grid;
+  gap: 10px;
+  padding-top: 10px;
+}
+.login-extra label {
+  display: grid;
+  gap: 5px;
+  font-size: 12.5px;
+  color: rgba(26, 42, 61, 0.72);
+  font-weight: 500;
+}
+.login-extra input {
+  padding: 9px 11px;
+  border: 1px solid rgba(26, 42, 61, 0.14);
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 13.5px;
+  font-family: inherit;
+}
+.login-extra input:focus {
+  border-color: #0b6cd9;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(11, 108, 217, 0.14);
+}
+.login-extra .secondary-button {
+  padding: 9px 14px;
+  font-size: 13px;
+  border-radius: 9px;
+}
+
+.login-minimal .login-addresses {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding: 18px clamp(20px, 5vw, 48px) 22px;
+  border-top: 1px solid rgba(26, 42, 61, 0.06);
+  background: rgba(255, 255, 255, 0.85);
+}
+.login-address-col {
+  display: grid;
+  gap: 4px;
+}
+.login-address-kicker {
+  letter-spacing: 0.06em;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  color: rgba(26, 42, 61, 0.55);
+  font-weight: 600;
+}
+.login-address-col strong {
+  color: #1a2a3d;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+}
+.login-address-col a {
+  color: rgba(26, 42, 61, 0.82);
+  font-size: 13px;
+  text-decoration: none;
+}
+.login-address-col a:hover {
+  color: #0b6cd9;
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .login-topbar-brand small {
+    display: none;
+  }
+  .login-card {
+    padding: 24px 20px 20px;
+    border-radius: 14px;
+  }
+  .login-card-title {
+    font-size: 20px;
+  }
+}

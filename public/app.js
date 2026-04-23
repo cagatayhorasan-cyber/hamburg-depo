@@ -1962,6 +1962,7 @@ initialize();
 
 function bindEvents() {
   bindAuthModal();
+  bindInlineAuthTabs();
   bindItemDetailModal();
   bindProjectsEvents();
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
@@ -2675,6 +2676,36 @@ function bindAuthModal() {
     if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
       closeAuthModal();
     }
+  });
+}
+
+function bindInlineAuthTabs() {
+  const tabs = document.querySelectorAll("[data-inline-auth-tab]");
+  if (!tabs.length || document._drcInlineAuthBound) return;
+  document._drcInlineAuthBound = true;
+  const showView = (view) => {
+    document.querySelectorAll("[data-inline-auth-tab]").forEach((tab) => {
+      const active = tab.getAttribute("data-inline-auth-tab") === view;
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    document.querySelectorAll("[data-inline-auth-view]").forEach((node) => {
+      node.classList.toggle("hidden", node.getAttribute("data-inline-auth-view") !== view);
+    });
+    const focusTarget = document.querySelector(
+      `[data-inline-auth-view="${view}"] input:not([type="hidden"]):not(.autofill-trap):not([readonly])`
+    );
+    if (focusTarget) {
+      setTimeout(() => {
+        try { focusTarget.focus({ preventScroll: true }); } catch (_e) { /* ignore */ }
+      }, 60);
+    }
+  };
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", (event) => {
+      event.preventDefault();
+      showView(tab.getAttribute("data-inline-auth-tab") || "login");
+    });
   });
 }
 
