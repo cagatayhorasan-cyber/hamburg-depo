@@ -2947,6 +2947,76 @@ function createApp() {
     }
   });
 
+  // Toplu TR→DE çeviri (admin) — name_de/notes_de boş olanları sözlükten çevirir.
+  // Batch destekli: ?limit=500&afterId=0&force=false
+  app.post("/api/admin/bulk-translate-items-de", requireAdmin, async (req, res) => {
+    try {
+      const { translateTrToDe } = require("../scripts/lib/tr-de-dictionary");
+      const limit = Math.min(Math.max(Number(req.query.limit || req.body?.limit || 500), 1), 2000);
+      const afterId = Math.max(Number(req.query.afterId || req.body?.afterId || 0), 0);
+      const force = String(req.query.force || req.body?.force || "").toLowerCase() === "true";
+
+      // Toplam sayıları göster
+      const totalRow = await get("SELECT COUNT(*)::int AS n FROM items");
+      const emptyRow = await get("SELECT COUNT(*)::int AS n FROM items WHERE COALESCE(name_de,'') = '' OR COALESCE(notes_de,'') = ''");
+      const total = totalRow?.n || 0;
+      const emptyCount = emptyRow?.n || 0;
+
+      // Çevrilecek ürünleri çek
+      const whereClause = force
+        ? "WHERE id > ?"
+        : "WHERE id > ? AND (COALESCE(name_de,'') = '' OR COALESCE(notes_de,'') = '')";
+      const rows = await query(
+        `SELECT id, name, notes, name_de, notes_de FROM items ${whereClause} ORDER BY id ASC LIMIT ?`,
+        [afterId, limit]
+      );
+
+      let updated = 0;
+      let skipped = 0;
+      let lastId = afterId;
+      for (const r of rows) {
+        lastId = Number(r.id);
+        const needsName = force || !String(r.name_de || "").trim();
+        const needsNotes = force || !String(r.notes_de || "").trim();
+        if (!needsName && !needsNotes) { skipped += 1; continue; }
+
+        const newNameDe = needsName && r.name ? translateTrToDe(r.name) : null;
+        const newNotesDe = needsNotes && r.notes ? translateTrToDe(r.notes) : null;
+
+        const sets = [];
+        const vals = [];
+        if (newNameDe !== null) { sets.push("name_de = ?"); vals.push(newNameDe); }
+        if (newNotesDe !== null) { sets.push("notes_de = ?"); vals.push(newNotesDe); }
+        if (!sets.length) { skipped += 1; continue; }
+
+        vals.push(r.id);
+        await execute(`UPDATE items SET ${sets.join(", ")} WHERE id = ?`, vals);
+        updated += 1;
+      }
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "bulk_translate_de",
+        severity: "info",
+        details: { afterId, limit, force, processed: rows.length, updated, skipped, lastId },
+      });
+
+      return res.json({
+        ok: true,
+        total,
+        emptyBefore: emptyCount,
+        processed: rows.length,
+        updated,
+        skipped,
+        lastId,
+        hasMore: rows.length >= limit,
+      });
+    } catch (e) {
+      console.error("[bulk-translate-de]", e);
+      return res.status(500).json({ error: e.message || "Toplu ceviri basarisiz." });
+    }
+  });
+
   app.get("/api/quotes/:id/pdf", requireStaffOrAdmin, async (req, res) => {
     const quote = await getQuoteById(Number(req.params.id), req.session.user);
     if (!quote) {

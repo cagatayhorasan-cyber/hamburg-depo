@@ -657,6 +657,8 @@ const refs = {
   itemsSummary: document.getElementById("itemsSummary"),
   stockedItemsSummary: document.getElementById("stockedItemsSummary"),
   stockedItemsList: document.getElementById("stockedItemsList"),
+  bulkTranslateDeButton: document.getElementById("bulkTranslateDeButton"),
+  bulkTranslateProgress: document.getElementById("bulkTranslateProgress"),
   archiveTableBody: document.getElementById("archiveTableBody"),
   archiveSummary: document.getElementById("archiveSummary"),
   movementsTableBody: document.getElementById("movementsTableBody"),
@@ -676,6 +678,7 @@ const refs = {
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
   barcodeImage: document.getElementById("barcodeImage"),
   logoutButton: document.getElementById("logoutButton"),
+  helpLink: document.getElementById("helpLink"),
   downloadXlsx: document.getElementById("downloadXlsx"),
   downloadPdf: document.getElementById("downloadPdf"),
   itemSearch: document.getElementById("itemSearch"),
@@ -1269,6 +1272,9 @@ function applyUiTranslations() {
 
   setText("#loginScreen .ui-language-label", t("uiLanguage"));
   setText("#appScreen .ui-language-label", t("uiLanguage"));
+  if (refs.helpLink) {
+    refs.helpLink.textContent = state.uiLanguage === "de" ? "Hilfe" : "Yardım";
+  }
   setText(".auth-brand-eyebrow", t("companyName"));
   setText(".auth-location-line", t("authLocationLine"));
   setText(".auth-showcase-title", t("authShowcaseTitle"));
@@ -2198,6 +2204,7 @@ function bindEvents() {
   });
   refs.brandFilter.addEventListener("change", handleFilterChange);
   refs.categoryFilter.addEventListener("change", handleFilterChange);
+  refs.bulkTranslateDeButton?.addEventListener("click", handleBulkTranslateDe);
   refs.assistantToggle.addEventListener("click", toggleAssistantPanel);
   refs.assistantClose.addEventListener("click", closeAssistantPanel);
   refs.assistantLanguage.addEventListener("change", handleAssistantLanguageChange);
@@ -2908,6 +2915,16 @@ function showApp() {
     node.classList.toggle("hidden", isAdminUser());
   });
   syncRoleSensitiveFields();
+  // Yardım bağlantısını role göre yönlendir
+  if (refs.helpLink) {
+    let helpTarget = "/help/customer.html";
+    if (isAdminUser()) helpTarget = "/help/admin.html";
+    else if (isStaffUser()) helpTarget = "/help/admin.html"; // staff de admin kılavuzunu kullanır (satış/teklif/proje)
+    else if (effectiveRole() === "operator") helpTarget = "/help/operator.html";
+    refs.helpLink.setAttribute("href", helpTarget);
+    const isDe = state.uiLanguage === "de";
+    refs.helpLink.textContent = isDe ? "Hilfe" : "Yardım";
+  }
   refs.customerVerificationBanner?.classList.toggle("hidden", !isCustomerUser() || Boolean(state.user?.emailVerified));
   if (refs.resendVerificationMessage) {
     refs.resendVerificationMessage.textContent = "";
@@ -6399,6 +6416,69 @@ function handleQuoteFilterChange() {
     state.quoteFilters.category = refs.quoteCategoryFilter.value;
     renderQuotes();
   }, SEARCH_DEBOUNCE_MS);
+}
+
+async function handleBulkTranslateDe() {
+  if (!isAdminUser()) return;
+  const confirmMsg = langText(
+    "Tüm ürün adlarını ve notlarını TR→DE otomatik çevirecek. Yalnızca BOŞ olan name_de/notes_de alanları doldurulacak (dolu olanlara dokunulmaz). Devam edilsin mi?",
+    "Alle Artikelnamen und Notizen werden automatisch TR→DE übersetzt. Nur LEERE name_de/notes_de werden gefüllt. Fortfahren?"
+  );
+  if (!window.confirm(confirmMsg)) return;
+
+  const progress = refs.bulkTranslateProgress;
+  const button = refs.bulkTranslateDeButton;
+  if (progress) {
+    progress.style.display = "block";
+    progress.textContent = langText("Başlatılıyor...", "Starte...");
+  }
+  if (button) button.disabled = true;
+
+  let afterId = 0;
+  let totalProcessed = 0;
+  let totalUpdated = 0;
+  let totalSkipped = 0;
+  let overallTotal = 0;
+  const batchLimit = 500;
+
+  try {
+    for (let iter = 0; iter < 60; iter += 1) {
+      const res = await request(`/api/admin/bulk-translate-items-de?afterId=${afterId}&limit=${batchLimit}`, {
+        method: "POST",
+      });
+      if (res.error) {
+        if (progress) progress.textContent = `✗ ${res.error}`;
+        break;
+      }
+      totalProcessed += Number(res.processed) || 0;
+      totalUpdated += Number(res.updated) || 0;
+      totalSkipped += Number(res.skipped) || 0;
+      afterId = Number(res.lastId) || afterId;
+      overallTotal = Number(res.total) || overallTotal;
+      if (progress) {
+        progress.textContent = langText(
+          `İşleniyor... ${totalUpdated} güncellendi / ${totalProcessed} işlendi (toplam ${overallTotal}) — son id: ${afterId}`,
+          `Verarbeitung... ${totalUpdated} aktualisiert / ${totalProcessed} verarbeitet (gesamt ${overallTotal}) — letzte id: ${afterId}`
+        );
+      }
+      if (!res.hasMore) break;
+    }
+    if (progress) {
+      progress.textContent = langText(
+        `✓ Tamamlandı — ${totalUpdated} güncellendi, ${totalSkipped} atlandı (zaten dolu), ${totalProcessed} işlendi.`,
+        `✓ Fertig — ${totalUpdated} aktualisiert, ${totalSkipped} übersprungen, ${totalProcessed} verarbeitet.`
+      );
+    }
+    window.alert(langText(
+      `✓ Toplu DE çeviri tamamlandı.\n\nGüncellenen: ${totalUpdated}\nAtlanan (zaten dolu): ${totalSkipped}\nToplam işlenen: ${totalProcessed}`,
+      `✓ Bulk DE-Übersetzung abgeschlossen.\n\nAktualisiert: ${totalUpdated}\nÜbersprungen: ${totalSkipped}\nVerarbeitet: ${totalProcessed}`
+    ));
+    await refreshData();
+  } catch (e) {
+    if (progress) progress.textContent = `✗ ${e.message || "Hata"}`;
+  } finally {
+    if (button) button.disabled = false;
+  }
 }
 
 function toggleAssistantPanel() {

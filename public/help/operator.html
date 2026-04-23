@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRC Kältetechnik — Operatör Kılavuzu / Operator-Handbuch</title>
+<link rel="stylesheet" href="/help/help.css">
+<script defer src="/help/help.js"></script>
+</head>
+<body>
+
+<header class="help-topbar">
+  <div class="help-topbar-brand">
+    <img src="/assets/drc-logo.svg" alt="DRC">
+    <span>DRC Kältetechnik</span>
+  </div>
+  <div class="help-topbar-actions">
+    <a href="/" class="help-back-link" data-lang="tr">← Portal</a>
+    <a href="/" class="help-back-link" data-lang="de">← Portal</a>
+    <div class="help-lang-switch">
+      <button type="button" data-lang="tr">TR</button>
+      <button type="button" data-lang="de">DE</button>
+    </div>
+  </div>
+</header>
+
+<main class="help-container">
+
+  <section class="help-hero">
+    <span class="role-badge" data-lang="tr">OPERATÖR</span>
+    <span class="role-badge" data-lang="de">OPERATOR</span>
+    <h1 data-lang="tr">Operatör Kullanım Kılavuzu</h1>
+    <h1 data-lang="de">Operator-Handbuch</h1>
+    <p data-lang="tr">Bu kılavuz depoda ürün giriş ve çıkışlarını kaydeden operatörler içindir. Yapman gereken tek şey: gelen malları girişte, çıkanları çıkışta doğru saymak ve kaydetmek.</p>
+    <p data-lang="de">Dieses Handbuch richtet sich an Lageroperatoren, die Wareneingänge und -ausgänge erfassen. Aufgabe: eingehende Ware beim Eingang und ausgehende Ware beim Ausgang korrekt zählen und erfassen.</p>
+  </section>
+
+  <nav class="help-toc">
+    <h3 data-lang="tr">İçindekiler</h3>
+    <h3 data-lang="de">Inhaltsverzeichnis</h3>
+    <ol>
+      <li><a href="#giris" data-lang="tr">Giriş ve portal açılışı</a><a href="#giris" data-lang="de">Anmeldung und Portalstart</a></li>
+      <li><a href="#gorev" data-lang="tr">Operatör görevi nedir?</a><a href="#gorev" data-lang="de">Was macht ein Operator?</a></li>
+      <li><a href="#urun-bulma" data-lang="tr">Ürün bulma</a><a href="#urun-bulma" data-lang="de">Artikel finden</a></li>
+      <li><a href="#giris-hareket" data-lang="tr">Stok giriş hareketi (gelen mal)</a><a href="#giris-hareket" data-lang="de">Wareneingang erfassen</a></li>
+      <li><a href="#cikis-hareket" data-lang="tr">Stok çıkış hareketi (çıkan mal)</a><a href="#cikis-hareket" data-lang="de">Warenausgang erfassen</a></li>
+      <li><a href="#hata" data-lang="tr">Hatalı hareket düzeltme</a><a href="#hata" data-lang="de">Fehlerhafte Bewegung korrigieren</a></li>
+      <li><a href="#ipucu" data-lang="tr">İpuçları ve kurallar</a><a href="#ipucu" data-lang="de">Tipps und Regeln</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. Giriş -->
+  <section class="help-section" id="giris">
+    <h2><span class="emoji">🚪</span><span data-lang="tr">1. Giriş ve portal açılışı</span><span data-lang="de">1. Anmeldung und Portalstart</span></h2>
+    <ol data-lang="tr">
+      <li>Tarayıcıdan <code>drckaltetechnik.vercel.app</code> adresini aç.</li>
+      <li>Sağdaki giriş kutusuna kullanıcı adını ve parolanı gir.</li>
+      <li>Giriş yapınca sadece <kbd>Stok</kbd> sekmesini göreceksin — bu normal.</li>
+      <li>Sağ üstten TR/DE dilini seçebilirsin.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Im Browser <code>drckaltetechnik.vercel.app</code> öffnen.</li>
+      <li>Rechts Benutzername und Passwort eingeben.</li>
+      <li>Nach Anmeldung ist nur der Tab <kbd>Bestand</kbd> sichtbar — das ist korrekt.</li>
+      <li>Oben rechts kann Sprache TR/DE gewählt werden.</li>
+    </ol>
+
+    <div class="callout" data-lang="tr">
+      Parolanı kimseyle paylaşma. Unutursan admin'e ulaş, sıfırlatır.
+    </div>
+    <div class="callout" data-lang="de">
+      Passwort niemals teilen. Bei Verlust Admin kontaktieren, Zurücksetzen erfolgt dort.
+    </div>
+  </section>
+
+  <!-- 2. Görev -->
+  <section class="help-section" id="gorev">
+    <h2><span class="emoji">🎯</span><span data-lang="tr">2. Operatör görevi nedir?</span><span data-lang="de">2. Was macht ein Operator?</span></h2>
+    <p data-lang="tr">Operatör rolünün <b>tek</b> sorumluluğu depo hareketlerini kayda geçirmektir:</p>
+    <p data-lang="de">Die <b>einzige</b> Aufgabe der Operator-Rolle ist die Erfassung von Lagerbewegungen:</p>
+    <ul data-lang="tr">
+      <li><b>Giriş:</b> Tedarikçiden gelen malı sayıp sisteme giriş olarak kaydetmek.</li>
+      <li><b>Çıkış:</b> Depodan çıkan (teslim, iade, hasar, iç transfer) malı çıkış olarak kaydetmek.</li>
+    </ul>
+    <ul data-lang="de">
+      <li><b>Eingang:</b> Vom Lieferanten eingetroffene Ware zählen und als Wareneingang erfassen.</li>
+      <li><b>Ausgang:</b> Aus dem Lager gehende Ware (Auslieferung, Retoure, Beschädigung, Umlagerung) als Ausgang erfassen.</li>
+    </ul>
+
+    <h3 data-lang="tr">Göremediğin şeyler</h3>
+    <h3 data-lang="de">Was nicht sichtbar ist</h3>
+    <ul data-lang="tr">
+      <li>Satış fiyatları, alış fiyatları — <i>gizli</i>.</li>
+      <li>Kullanıcı listesi, müşteri bilgileri — <i>gizli</i>.</li>
+      <li>Teklifler, satışlar, siparişler — <i>gizli</i>.</li>
+      <li>Finans, gelir/gider raporları — <i>gizli</i>.</li>
+    </ul>
+    <ul data-lang="de">
+      <li>Verkaufs- und Einkaufspreise — <i>verborgen</i>.</li>
+      <li>Benutzerliste, Kundendaten — <i>verborgen</i>.</li>
+      <li>Angebote, Verkäufe, Bestellungen — <i>verborgen</i>.</li>
+      <li>Finanzen, Einnahmen/Ausgaben — <i>verborgen</i>.</li>
+    </ul>
+    <div class="callout callout-warn" data-lang="tr">
+      Göremediğin bir şey olduğunda "hata var" sanma — rol gereği gizlenmiş.
+    </div>
+    <div class="callout callout-warn" data-lang="de">
+      Wenn etwas nicht sichtbar ist, ist das kein Fehler — es ist rollenbedingt verborgen.
+    </div>
+  </section>
+
+  <!-- 3. Ürün bulma -->
+  <section class="help-section" id="urun-bulma">
+    <h2><span class="emoji">🔎</span><span data-lang="tr">3. Ürün bulma</span><span data-lang="de">3. Artikel finden</span></h2>
+    <p data-lang="tr"><kbd>Stok</kbd> sekmesinde ürünleri aramak için üç yöntem var:</p>
+    <p data-lang="de">Im Tab <kbd>Bestand</kbd> gibt es drei Wege, einen Artikel zu finden:</p>
+    <ol data-lang="tr">
+      <li><b>Arama kutusu:</b> Ürün adını, markayı veya stok kodunu (DRC-XXXXX) yaz.</li>
+      <li><b>Kategori filtresi:</b> Kompresör, Kondenser, Panel vb.</li>
+      <li><b>Kart tıklaması:</b> Ürün kartına tıklayınca detay açılır, stok hareketi buradan da yapılır.</li>
+    </ol>
+    <ol data-lang="de">
+      <li><b>Suchfeld:</b> Artikelname, Marke oder Lagercode (DRC-XXXXX) eingeben.</li>
+      <li><b>Kategoriefilter:</b> Verdichter, Verflüssiger, Paneel usw.</li>
+      <li><b>Kartenklick:</b> Klick auf Artikelkarte öffnet Details — Bewegung auch von dort.</li>
+    </ol>
+
+    <div class="callout" data-lang="tr">
+      <b>Stok kodu</b> en hızlı yoldur. Mümkünse tedarikçi irsaliyesindeki DRC kodunu tara veya yaz.
+    </div>
+    <div class="callout" data-lang="de">
+      <b>Lagercode</b> ist der schnellste Weg. Wenn möglich den DRC-Code vom Lieferschein scannen/eingeben.
+    </div>
+  </section>
+
+  <!-- 4. Giriş hareketi -->
+  <section class="help-section" id="giris-hareket">
+    <h2><span class="emoji">📥</span><span data-lang="tr">4. Stok giriş hareketi (gelen mal)</span><span data-lang="de">4. Wareneingang erfassen</span></h2>
+    <p data-lang="tr">Depoya yeni mal geldiğinde yapılacaklar:</p>
+    <p data-lang="de">Wenn neue Ware im Lager eintrifft:</p>
+    <ol data-lang="tr">
+      <li>Tedarikçi irsaliyesini eline al.</li>
+      <li>Her satırı tek tek say — kutu sayısı değil <b>adet</b> sayısı.</li>
+      <li>Sistemde <kbd>Stok</kbd> sekmesinden ürünü bul.</li>
+      <li>Sağdaki <b>"Stok Giriş / Çıkış"</b> formunda:
+        <ul>
+          <li>Ürün: (aranan ürün)</li>
+          <li>Tip: <b>Giriş</b></li>
+          <li>Miktar: saydığın adet</li>
+          <li>Tarih: bugün (otomatik gelir)</li>
+          <li>Not: irsaliye numarası veya tedarikçi adı (opsiyonel ama önerilir)</li>
+        </ul>
+      </li>
+      <li>"Kaydet" butonuna bas.</li>
+      <li>Ürün kartındaki stok miktarının arttığını doğrula.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Lieferschein des Lieferanten bereithalten.</li>
+      <li>Jede Zeile einzeln zählen — nicht Kartons, sondern <b>Stückzahl</b>.</li>
+      <li>Im Tab <kbd>Bestand</kbd> den Artikel suchen.</li>
+      <li>Im Formular <b>"Wareneingang / -ausgang"</b> rechts:
+        <ul>
+          <li>Artikel: (gesuchter Artikel)</li>
+          <li>Typ: <b>Eingang</b></li>
+          <li>Menge: gezählte Stück</li>
+          <li>Datum: heute (automatisch)</li>
+          <li>Notiz: Lieferscheinnummer oder Lieferant (optional, empfohlen)</li>
+        </ul>
+      </li>
+      <li>"Speichern" klicken.</li>
+      <li>Prüfen, dass sich der Lagerbestand auf der Artikelkarte erhöht hat.</li>
+    </ol>
+
+    <div class="callout callout-warn" data-lang="tr">
+      <b>Ürün sistemde yoksa:</b> Kendi kendine ekleyemezsin (operatör yetkisi yok). Admin veya personeli bilgilendir, onlar ürünü kayıtlasın, sonra giriş yap.
+    </div>
+    <div class="callout callout-warn" data-lang="de">
+      <b>Wenn Artikel nicht im System ist:</b> Operator darf Artikel nicht anlegen. Admin oder Personal informieren; nach Anlage den Eingang erfassen.
+    </div>
+  </section>
+
+  <!-- 5. Çıkış hareketi -->
+  <section class="help-section" id="cikis-hareket">
+    <h2><span class="emoji">📤</span><span data-lang="tr">5. Stok çıkış hareketi (çıkan mal)</span><span data-lang="de">5. Warenausgang erfassen</span></h2>
+    <p data-lang="tr">Depodan mal çıkarken:</p>
+    <p data-lang="de">Wenn Ware das Lager verlässt:</p>
+    <ol data-lang="tr">
+      <li>Çıkış sebebini öğren (satış, iade, hasar, iç transfer, numune).</li>
+      <li>Ürünü bul.</li>
+      <li>Formda:
+        <ul>
+          <li>Tip: <b>Çıkış</b></li>
+          <li>Miktar: çıkan adet</li>
+          <li>Not: sebep yaz (ör. "Müşteri teslim — sipariş #1234", "Hasarlı — iade").</li>
+        </ul>
+      </li>
+      <li>"Kaydet".</li>
+      <li>Stok azalmış mı kontrol et.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Grund des Ausgangs klären (Verkauf, Retoure, Beschädigung, Umlagerung, Muster).</li>
+      <li>Artikel suchen.</li>
+      <li>Im Formular:
+        <ul>
+          <li>Typ: <b>Ausgang</b></li>
+          <li>Menge: ausgehende Stück</li>
+          <li>Notiz: Grund (z. B. "Kundenauslieferung — Bestellung #1234", "Beschädigt — Retoure").</li>
+        </ul>
+      </li>
+      <li>"Speichern".</li>
+      <li>Prüfen, dass Bestand reduziert wurde.</li>
+    </ol>
+
+    <div class="callout callout-danger" data-lang="tr">
+      <b>Satışlar için çıkış yapma!</b> Satış yapılınca stok otomatik düşer (personel/admin POS'tan işlediğinde). Aynı malı bir kez daha çıkış olarak girersen stok yanlış olur. Satış dışı çıkışlar için (hasar, iade, numune) kullan.
+    </div>
+    <div class="callout callout-danger" data-lang="de">
+      <b>Bei Verkäufen keinen Ausgang erfassen!</b> Verkauf reduziert den Bestand automatisch (POS durch Personal/Admin). Eine manuelle Ausbuchung würde doppelt zählen. Nur für Nicht-Verkäufe (Beschädigung, Retoure, Muster) verwenden.
+    </div>
+  </section>
+
+  <!-- 6. Hata düzeltme -->
+  <section class="help-section" id="hata">
+    <h2><span class="emoji">🛠️</span><span data-lang="tr">6. Hatalı hareket düzeltme</span><span data-lang="de">6. Fehlerhafte Bewegung korrigieren</span></h2>
+    <p data-lang="tr">Yanlış miktar veya yanlış ürün girmişsen:</p>
+    <p data-lang="de">Bei falscher Menge oder falschem Artikel:</p>
+    <ol data-lang="tr">
+      <li><b>Silme yetki yok.</b> Kaydı manuel silemezsin.</li>
+      <li>Tersine hareket kaydet: yanlış giriş yaptıysan aynı miktarı <b>çıkış</b> olarak gir ve nota "Yanlış giriş düzeltmesi - orijinal: tarih/hareket ID" yaz.</li>
+      <li>Sonra doğru hareketi gir.</li>
+      <li>Büyük hatalar için admin'e bildir — logdan takip edilir.</li>
+    </ol>
+    <ol data-lang="de">
+      <li><b>Kein Löschrecht.</b> Einträge können nicht manuell gelöscht werden.</li>
+      <li>Gegenbuchung erfassen: bei Fehl-Eingang dieselbe Menge als <b>Ausgang</b> mit Notiz "Korrektur Fehl-Eingang - Original: Datum/ID".</li>
+      <li>Danach korrekte Bewegung erfassen.</li>
+      <li>Bei größeren Fehlern Admin informieren — wird im Protokoll nachverfolgt.</li>
+    </ol>
+  </section>
+
+  <!-- 7. İpucu -->
+  <section class="help-section" id="ipucu">
+    <h2><span class="emoji">💡</span><span data-lang="tr">7. İpuçları ve kurallar</span><span data-lang="de">7. Tipps und Regeln</span></h2>
+    <ul data-lang="tr">
+      <li>Her hareketi <b>anında</b> kaydet — gün sonuna bırakma, unutursun.</li>
+      <li>Not alanı kısa kalsın ama <b>sebep</b> yazılsın (örn. "Esen irsaliye 2024-0917").</li>
+      <li>Sayarken iki kez say, bir kez kaydet.</li>
+      <li>Emin değilsen admin'e veya personele sor — yanlış veriden iyidir.</li>
+      <li>Klavye: Enter formu gönderir, Tab alan atlar.</li>
+      <li>Portal'dan çıkarken sağ üst <kbd>Çıkış</kbd> butonuna bas (özellikle ortak bilgisayarda).</li>
+    </ul>
+    <ul data-lang="de">
+      <li>Jede Bewegung <b>sofort</b> erfassen — nicht auf Tagesende warten.</li>
+      <li>Notiz kurz halten, aber <b>Grund</b> angeben (z. B. "Esen Lieferschein 2024-0917").</li>
+      <li>Zweimal zählen, einmal erfassen.</li>
+      <li>Im Zweifel Admin oder Personal fragen — besser als falsche Daten.</li>
+      <li>Tastatur: Enter sendet Formular, Tab wechselt Feld.</li>
+      <li>Beim Verlassen <kbd>Abmelden</kbd> oben rechts klicken (insb. am Gemeinschaftsrechner).</li>
+    </ul>
+
+    <div class="callout" data-lang="tr">
+      <b>Unutma:</b> Depo stoğu doğrudan faturalara, müşteri siparişlerine ve tedarik planına gider. Senin kaydettiğin her adet burada işler. Sağlam çalışman bütün sistemi sağlam tutar.
+    </div>
+    <div class="callout" data-lang="de">
+      <b>Merke:</b> Der Lagerbestand fließt direkt in Rechnungen, Kundenbestellungen und Einkaufsplanung. Jede erfasste Menge zählt. Deine sorgfältige Arbeit hält das ganze System stabil.
+    </div>
+  </section>
+
+  <footer class="help-footer">
+    <p data-lang="tr">DRC Kältetechnik GmbH · Sorun için admin'e ulaş: <a href="mailto:info@drckaltetechnik.de">info@drckaltetechnik.de</a></p>
+    <p data-lang="de">DRC Kältetechnik GmbH · Bei Problemen Admin kontaktieren: <a href="mailto:info@drckaltetechnik.de">info@drckaltetechnik.de</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

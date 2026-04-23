@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRC Kältetechnik — Admin Kılavuzu / Admin-Handbuch</title>
+<link rel="stylesheet" href="/help/help.css">
+<script defer src="/help/help.js"></script>
+</head>
+<body>
+
+<header class="help-topbar">
+  <div class="help-topbar-brand">
+    <img src="/assets/drc-logo.svg" alt="DRC">
+    <span>DRC Kältetechnik</span>
+  </div>
+  <div class="help-topbar-actions">
+    <a href="/" class="help-back-link" data-lang="tr">← Portal</a>
+    <a href="/" class="help-back-link" data-lang="de">← Portal</a>
+    <div class="help-lang-switch">
+      <button type="button" data-lang="tr">TR</button>
+      <button type="button" data-lang="de">DE</button>
+    </div>
+  </div>
+</header>
+
+<main class="help-container">
+
+  <section class="help-hero">
+    <span class="role-badge" data-lang="tr">ADMIN</span>
+    <span class="role-badge" data-lang="de">ADMIN</span>
+    <h1 data-lang="tr">Admin Kullanım Kılavuzu</h1>
+    <h1 data-lang="de">Admin-Handbuch</h1>
+    <p data-lang="tr">Bu kılavuz sistem yöneticilerine (admin) yöneliktir. Tüm modüller, izinler, raporlar ve sistem ayarlarını kapsar.</p>
+    <p data-lang="de">Dieses Handbuch richtet sich an Systemadministratoren. Es behandelt alle Module, Berechtigungen, Berichte und Systemeinstellungen.</p>
+  </section>
+
+  <nav class="help-toc">
+    <h3 data-lang="tr">İçindekiler</h3>
+    <h3 data-lang="de">Inhaltsverzeichnis</h3>
+    <ol>
+      <li><a href="#rol-sistemi" data-lang="tr">Rol sistemi ve kullanıcı yönetimi</a><a href="#rol-sistemi" data-lang="de">Rollen und Benutzerverwaltung</a></li>
+      <li><a href="#stok" data-lang="tr">Stok yönetimi</a><a href="#stok" data-lang="de">Bestandsverwaltung</a></li>
+      <li><a href="#teklif-satis" data-lang="tr">Teklif, satış ve sipariş</a><a href="#teklif-satis" data-lang="de">Angebot, Verkauf und Bestellung</a></li>
+      <li><a href="#projeler" data-lang="tr">Projeler (ColdRoomPro)</a><a href="#projeler" data-lang="de">Projekte (ColdRoomPro)</a></li>
+      <li><a href="#finans" data-lang="tr">Finans: Gelir, gider, kasa</a><a href="#finans" data-lang="de">Finanzen: Einnahmen, Ausgaben, Kasse</a></li>
+      <li><a href="#ceviri" data-lang="tr">Toplu DE çeviri</a><a href="#ceviri" data-lang="de">Bulk DE-Übersetzung</a></li>
+      <li><a href="#guvenlik" data-lang="tr">Güvenlik ve olay kayıtları</a><a href="#guvenlik" data-lang="de">Sicherheit und Ereignisprotokoll</a></li>
+      <li><a href="#mesajlar" data-lang="tr">Mesajlar ve müşteri destek</a><a href="#mesajlar" data-lang="de">Nachrichten und Kundensupport</a></li>
+      <li><a href="#ayarlar" data-lang="tr">Sistem ayarları</a><a href="#ayarlar" data-lang="de">Systemeinstellungen</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. Rol Sistemi -->
+  <section class="help-section" id="rol-sistemi">
+    <h2><span class="emoji">👥</span><span data-lang="tr">1. Rol sistemi ve kullanıcı yönetimi</span><span data-lang="de">1. Rollen und Benutzerverwaltung</span></h2>
+    <p class="lead" data-lang="tr">Sistemde dört rol vardır: <b>admin</b>, <b>staff</b> (personel), <b>operator</b>, <b>customer</b>. Her birinin erişim seviyesi farklıdır.</p>
+    <p class="lead" data-lang="de">Das System kennt vier Rollen: <b>admin</b>, <b>staff</b> (Personal), <b>operator</b>, <b>customer</b> (Kunde). Jede Rolle hat unterschiedliche Zugriffsrechte.</p>
+
+    <h3 data-lang="tr">Rol yetkileri</h3>
+    <h3 data-lang="de">Rollenberechtigungen</h3>
+    <ul data-lang="tr">
+      <li><b>Admin:</b> Her şeye tam erişim — stok, fiyat, kullanıcı, güvenlik, finans.</li>
+      <li><b>Staff:</b> Satış/teklif, stok görüntüleme, müşteri siparişi; fiyat değiştirme ve kullanıcı yönetimi yok.</li>
+      <li><b>Operator:</b> Sadece stok giriş/çıkış kayıtları.</li>
+      <li><b>Customer:</b> Kendi hesabı — katalog, kendi siparişleri, kendi projeleri.</li>
+    </ul>
+    <ul data-lang="de">
+      <li><b>Admin:</b> Vollzugriff — Bestand, Preise, Benutzer, Sicherheit, Finanzen.</li>
+      <li><b>Staff:</b> Verkauf/Angebot, Bestand einsehen, Kundenbestellungen; keine Preisänderungen, keine Benutzerverwaltung.</li>
+      <li><b>Operator:</b> Nur Wareneingang/-ausgang erfassen.</li>
+      <li><b>Customer:</b> Eigenes Konto — Katalog, eigene Bestellungen, eigene Projekte.</li>
+    </ul>
+
+    <h3 data-lang="tr">Yeni kullanıcı oluşturma</h3>
+    <h3 data-lang="de">Neuen Benutzer anlegen</h3>
+    <ol data-lang="tr">
+      <li>Sol menüden <kbd>Kullanıcılar</kbd> sekmesine geç.</li>
+      <li>Sağ üstte "Yeni Kullanıcı" butonu.</li>
+      <li>Rol seç (Staff / Operator / Customer), adı + kullanıcı adı + parola + email gir.</li>
+      <li>Müşteri için email doğrulaması otomatik gönderilir.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Im linken Menü den Tab <kbd>Benutzer</kbd> öffnen.</li>
+      <li>Oben rechts "Neuer Benutzer".</li>
+      <li>Rolle wählen (Staff / Operator / Customer), Name + Benutzername + Passwort + E-Mail eingeben.</li>
+      <li>Für Kunden wird die E-Mail-Bestätigung automatisch versendet.</li>
+    </ol>
+
+    <div class="callout callout-warn" data-lang="tr">
+      <b>Dikkat:</b> Admin kullanıcı silme işlemi geri alınamaz. Silme yerine rolünü düşürmeyi tercih et.
+    </div>
+    <div class="callout callout-warn" data-lang="de">
+      <b>Achtung:</b> Das Löschen von Admin-Benutzern ist nicht rückgängig zu machen. Besser die Rolle herabstufen.
+    </div>
+  </section>
+
+  <!-- 2. Stok -->
+  <section class="help-section" id="stok">
+    <h2><span class="emoji">📦</span><span data-lang="tr">2. Stok yönetimi</span><span data-lang="de">2. Bestandsverwaltung</span></h2>
+
+    <h3 data-lang="tr">Yeni ürün ekleme</h3>
+    <h3 data-lang="de">Neuen Artikel hinzufügen</h3>
+    <ol data-lang="tr">
+      <li><kbd>Stok</kbd> sekmesinde sağdaki <b>"Yeni Ürün + İlk Stok Girişi"</b> formunu doldur.</li>
+      <li>Zorunlu: Ad, Birim, Kritik Stok, Stok Kodu (DRC-XXXXX formatında önerilir).</li>
+      <li>Opsiyonel: Marka, Kategori, Alış Fiyatı, Satış Fiyatı, Liste Fiyatı, Açıklama.</li>
+      <li>İlk stok miktarını da gir — tek adımda ürün + giriş hareketi oluşturulur.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Im Tab <kbd>Bestand</kbd> das Formular <b>"Neuer Artikel + Erste Einlagerung"</b> ausfüllen.</li>
+      <li>Pflichtfelder: Name, Einheit, Mindestbestand, Lagercode (Format DRC-XXXXX empfohlen).</li>
+      <li>Optional: Marke, Kategorie, Einkaufspreis, Verkaufspreis, Listenpreis, Beschreibung.</li>
+      <li>Anfangsmenge angeben — Artikel und erste Bewegung werden in einem Schritt erstellt.</li>
+    </ol>
+
+    <h3 data-lang="tr">Stok giriş/çıkış hareketi</h3>
+    <h3 data-lang="de">Wareneingang/-ausgang erfassen</h3>
+    <p data-lang="tr"><kbd>Stok</kbd> sekmesinde <b>"Stok Giriş / Çıkış"</b> formunu kullan. Giriş → stok artar, çıkış → azalır. Her hareket tarihli loglanır.</p>
+    <p data-lang="de">Im Tab <kbd>Bestand</kbd> das Formular <b>"Wareneingang / -ausgang"</b> verwenden. Eingang = Bestand steigt, Ausgang = sinkt. Jede Bewegung wird mit Datum protokolliert.</p>
+
+    <h3 data-lang="tr">Kritik stok uyarıları</h3>
+    <h3 data-lang="de">Mindestbestand-Warnungen</h3>
+    <p data-lang="tr">Her ürün için "Kritik Stok" değeri tanımla. Mevcut stok bu değerin altına düşünce kart kırmızı olur ve listede işaretlenir. Admin dashboard'a özet düşer.</p>
+    <p data-lang="de">Für jeden Artikel einen "Mindestbestand" definieren. Fällt der Bestand darunter, wird die Karte rot markiert. Admin-Dashboard zeigt eine Übersicht.</p>
+  </section>
+
+  <!-- 3. Teklif / satış -->
+  <section class="help-section" id="teklif-satis">
+    <h2><span class="emoji">📄</span><span data-lang="tr">3. Teklif, satış ve sipariş</span><span data-lang="de">3. Angebot, Verkauf und Bestellung</span></h2>
+
+    <h3 data-lang="tr">Teklif oluşturma</h3>
+    <h3 data-lang="de">Angebot erstellen</h3>
+    <ol data-lang="tr">
+      <li><kbd>Teklif</kbd> sekmesine geç.</li>
+      <li>Müşteri adı (serbest metin veya kayıtlı müşteri dropdown'undan seç).</li>
+      <li>Başlık, tarih, açıklama gir.</li>
+      <li>"Ürün Ekle" ile stoktan kalemler seç veya elle ürün adı yaz.</li>
+      <li>İskonto %, KDV (%19 veya %0 ihracat) ayarla.</li>
+      <li>Dil seç (TR veya DE) → PDF buna göre üretilir.</li>
+      <li>"Teklif Oluştur" → PDF indirmeye hazır.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Tab <kbd>Angebot</kbd> öffnen.</li>
+      <li>Kundenname (frei oder aus Dropdown).</li>
+      <li>Titel, Datum, Notiz eingeben.</li>
+      <li>"Artikel hinzufügen" — Lagerartikel wählen oder Artikelname manuell eintragen.</li>
+      <li>Rabatt %, MwSt (19 % oder 0 % Export) setzen.</li>
+      <li>Sprache wählen (TR/DE) → PDF wird entsprechend erstellt.</li>
+      <li>"Angebot erstellen" → PDF steht zum Download bereit.</li>
+    </ol>
+
+    <h3 data-lang="tr">Satış (POS)</h3>
+    <h3 data-lang="de">Verkauf (POS)</h3>
+    <p data-lang="tr">Satış tamamlandığında stok otomatik düşer. Ödeme türü (Nakit/Banka/Kart) ve tahsil edilen tutar girilir. Kısmi ödeme varsa "Açık hesap" olarak işaretlenir.</p>
+    <p data-lang="de">Beim Verkaufsabschluss wird der Bestand automatisch reduziert. Zahlungsart (Bar/Bank/Karte) und eingenommener Betrag erfasst. Teilzahlung wird als "Offene Rechnung" markiert.</p>
+
+    <h3 data-lang="tr">Sipariş yönetimi</h3>
+    <h3 data-lang="de">Bestellungsverwaltung</h3>
+    <p data-lang="tr"><kbd>Siparişler</kbd> sekmesinde tüm müşteri siparişlerini görürsün. Durum: Bekliyor → Onaylandı → Hazırlanıyor → Tamamlandı. Onay anında stok düşer. Durumu "İptal" yaparsan stok geri gelir (stock_deducted_at null'sa).</p>
+    <p data-lang="de">Im Tab <kbd>Bestellungen</kbd> alle Kundenbestellungen. Status: Ausstehend → Bestätigt → In Bearbeitung → Abgeschlossen. Bei Bestätigung wird Bestand reduziert. "Storniert" setzt Bestand zurück (wenn stock_deducted_at = NULL).</p>
+  </section>
+
+  <!-- 4. Projeler -->
+  <section class="help-section" id="projeler">
+    <h2><span class="emoji">🧊</span><span data-lang="tr">4. Projeler (ColdRoomPro)</span><span data-lang="de">4. Projekte (ColdRoomPro)</span></h2>
+
+    <p data-lang="tr"><kbd>Projeler</kbd> sekmesi soğuk oda projelerini barındırır — hesaplama, BOM (malzeme listesi), teklife/siparişe çevirme.</p>
+    <p data-lang="de">Der Tab <kbd>Projekte</kbd> enthält Kühlraumprojekte — Berechnung, BOM (Stückliste), Umwandlung in Angebot/Bestellung.</p>
+
+    <h3 data-lang="tr">Yeni proje oluşturma</h3>
+    <h3 data-lang="de">Neues Projekt erstellen</h3>
+    <ol data-lang="tr">
+      <li><b>Manuel:</b> "+ Yeni Proje" → başlık, tip, müşteri, açıklama.</li>
+      <li><b>ColdRoomPro ile:</b> "🧊 ColdRoomPro ile Hesapla" → iframe açılır, hesaplama sonunda otomatik proje oluşur.</li>
+    </ol>
+    <ol data-lang="de">
+      <li><b>Manuell:</b> "+ Neues Projekt" → Titel, Typ, Kunde, Notiz.</li>
+      <li><b>Mit ColdRoomPro:</b> "🧊 Mit ColdRoomPro berechnen" → iframe öffnet, nach Berechnung wird das Projekt automatisch erstellt.</li>
+    </ol>
+
+    <h3 data-lang="tr">Projeden teklif/sipariş üretme</h3>
+    <h3 data-lang="de">Angebot/Bestellung aus Projekt</h3>
+    <ul data-lang="tr">
+      <li><b>Teklife Çevir:</b> BOM → quote_items olarak kopyalanır, PDF üretilebilir.</li>
+      <li><b>Siparişe Çevir:</b> Müşteri atanmışsa direkt order oluşturulur.</li>
+    </ul>
+    <ul data-lang="de">
+      <li><b>In Angebot umwandeln:</b> BOM wird zu quote_items kopiert, PDF erstellbar.</li>
+      <li><b>In Bestellung umwandeln:</b> Wenn Kunde zugeordnet, wird direkt eine Bestellung erstellt.</li>
+    </ul>
+  </section>
+
+  <!-- 5. Finans -->
+  <section class="help-section" id="finans">
+    <h2><span class="emoji">💰</span><span data-lang="tr">5. Finans: Gelir, gider, kasa</span><span data-lang="de">5. Finanzen: Einnahmen, Ausgaben, Kasse</span></h2>
+    <ul data-lang="tr">
+      <li><b>Gelir:</b> Satışlardan otomatik kayıt + manuel gelir eklenebilir.</li>
+      <li><b>Gider:</b> Tedarikçi ödemeleri, operasyonel giderler — kategorize edilmeli.</li>
+      <li><b>Kasa:</b> Nakit/Banka/Kart bakiyeleri. Gün sonu kapanış raporu.</li>
+      <li><b>Raporlar:</b> Aylık net, müşteri bazlı alacak, en çok satan ürünler.</li>
+    </ul>
+    <ul data-lang="de">
+      <li><b>Einnahmen:</b> Automatisch aus Verkäufen + manuelle Einträge.</li>
+      <li><b>Ausgaben:</b> Lieferantenzahlungen, Betriebskosten — kategorisieren.</li>
+      <li><b>Kasse:</b> Bar-/Bank-/Kartensalden. Tagesabschluss.</li>
+      <li><b>Berichte:</b> Monatsnettos, Forderungen pro Kunde, Top-Artikel.</li>
+    </ul>
+  </section>
+
+  <!-- 6. Toplu DE çeviri -->
+  <section class="help-section" id="ceviri">
+    <h2><span class="emoji">🌐</span><span data-lang="tr">6. Toplu DE çeviri (yeni)</span><span data-lang="de">6. Bulk DE-Übersetzung (neu)</span></h2>
+    <p data-lang="tr">Tüm ürünlerin adını ve notunu TR→DE otomatik çevirme aracı. Sadece <code>name_de</code> / <code>notes_de</code> boş olan kayıtlara dokunur.</p>
+    <p data-lang="de">Tool zur automatischen TR→DE-Übersetzung aller Artikelnamen und Notizen. Nur leere <code>name_de</code> / <code>notes_de</code> Felder werden gefüllt.</p>
+    <ol data-lang="tr">
+      <li><kbd>Stok</kbd> sekmesine geç.</li>
+      <li>"Stokta Olan Ürünler" başlığının yanındaki <b>🌐 Toplu DE Çeviri</b> butonuna bas.</li>
+      <li>Onay diyaloğu gelir, kabul et.</li>
+      <li>500'lü batch'ler halinde otomatik ilerler, progress bar gösterir.</li>
+      <li>Bitince "X güncellendi, Y atlandı" özeti.</li>
+    </ol>
+    <ol data-lang="de">
+      <li>Tab <kbd>Bestand</kbd> öffnen.</li>
+      <li>Neben "Artikel am Lager" den Button <b>🌐 Bulk DE-Übersetzung</b> klicken.</li>
+      <li>Im Bestätigungsdialog fortfahren.</li>
+      <li>Läuft automatisch in 500er-Batches mit Fortschrittsanzeige.</li>
+      <li>Am Ende Zusammenfassung "X aktualisiert, Y übersprungen".</li>
+    </ol>
+    <div class="callout" data-lang="tr">
+      Çeviri kural tabanlı (teknik sözlük). Yanlış çıkan kayıtları manuel olarak ürün kartından düzeltebilirsin.
+    </div>
+    <div class="callout" data-lang="de">
+      Regelbasierte Übersetzung (Fachwörterbuch). Falsche Einträge können manuell in der Artikelkarte korrigiert werden.
+    </div>
+  </section>
+
+  <!-- 7. Güvenlik -->
+  <section class="help-section" id="guvenlik">
+    <h2><span class="emoji">🔒</span><span data-lang="tr">7. Güvenlik ve olay kayıtları</span><span data-lang="de">7. Sicherheit und Ereignisprotokoll</span></h2>
+    <p data-lang="tr"><kbd>Güvenlik</kbd> sekmesinde tüm sistem olayları: girişler, başarısız denemeler, rate-limit bloklar, admin işlemleri.</p>
+    <p data-lang="de">Im Tab <kbd>Sicherheit</kbd> alle Systemereignisse: Logins, Fehlversuche, Rate-Limit-Blocks, Admin-Aktionen.</p>
+    <ul data-lang="tr">
+      <li>Brute-force bloklarını manuel kaldırabilirsin.</li>
+      <li>Şüpheli IP'leri kalıcı banlayabilirsin (yakında).</li>
+      <li>Olay severity: info / warn / error / critical.</li>
+    </ul>
+    <ul data-lang="de">
+      <li>Brute-Force-Blocks manuell aufheben möglich.</li>
+      <li>Verdächtige IPs dauerhaft sperren (demnächst).</li>
+      <li>Ereignis-Severity: info / warn / error / critical.</li>
+    </ul>
+  </section>
+
+  <!-- 8. Mesajlar -->
+  <section class="help-section" id="mesajlar">
+    <h2><span class="emoji">💬</span><span data-lang="tr">8. Mesajlar ve müşteri destek</span><span data-lang="de">8. Nachrichten und Kundensupport</span></h2>
+    <p data-lang="tr">Müşteriler portal içinden admin'e mesaj gönderebilir (destek talebi, teknik soru). Admin panelinden yanıtlanır.</p>
+    <p data-lang="de">Kunden können aus dem Portal Nachrichten an den Admin senden (Supportanfrage, technische Frage). Beantwortung über Admin-Panel.</p>
+  </section>
+
+  <!-- 9. Sistem ayarları -->
+  <section class="help-section" id="ayarlar">
+    <h2><span class="emoji">⚙️</span><span data-lang="tr">9. Sistem ayarları</span><span data-lang="de">9. Systemeinstellungen</span></h2>
+    <ul data-lang="tr">
+      <li>Portal dili TR/DE — her kullanıcı kendi seçimini kaydeder.</li>
+      <li>PDF logo ve firma bilgisi (Impressum) — server tarafından.</li>
+      <li>KDV oranı (varsayılan %19), ihracat 0 %.</li>
+      <li>Kritik stok eşikleri ürün bazında.</li>
+    </ul>
+    <ul data-lang="de">
+      <li>Portalsprache TR/DE — pro Benutzer gespeichert.</li>
+      <li>PDF-Logo und Firmendaten (Impressum) — serverseitig.</li>
+      <li>MwSt-Satz (Standard 19 %), Export 0 %.</li>
+      <li>Mindestbestand pro Artikel.</li>
+    </ul>
+  </section>
+
+  <footer class="help-footer">
+    <p data-lang="tr">DRC Kältetechnik GmbH · Sorun için <a href="mailto:info@drckaltetechnik.de">info@drckaltetechnik.de</a></p>
+    <p data-lang="de">DRC Kältetechnik GmbH · Bei Problemen <a href="mailto:info@drckaltetechnik.de">info@drckaltetechnik.de</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

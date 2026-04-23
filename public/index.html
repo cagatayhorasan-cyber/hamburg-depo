@@ -251,6 +251,7 @@
               </div>
               <button id="downloadXlsx" class="erp-action-btn admin-only" type="button">Excel</button>
               <button id="downloadPdf" class="erp-action-btn admin-only" type="button">PDF</button>
+              <a id="helpLink" class="erp-action-btn" href="/help/customer.html" target="_blank" rel="noopener" data-tr="Yardım" data-de="Hilfe">Yardım</a>
               <button id="logoutButton" class="erp-logout-btn" type="button">Çıkış Yap</button>
             </div>
           </div>
@@ -288,7 +289,11 @@
                     <h3>Stokta Olan Ürünler</h3>
                     <p id="stockedItemsSummary" class="muted"></p>
                   </div>
+                  <div class="action-row admin-only">
+                    <button id="bulkTranslateDeButton" class="secondary-button" type="button" title="Ürün adlarını ve notlarını TR→DE otomatik çevirir (boş olanlara)">🌐 Toplu DE Çeviri</button>
+                  </div>
                 </div>
+                <div id="bulkTranslateProgress" class="muted" style="display:none;margin:4px 0;font-size:13px;"></div>
                 <div id="stockedItemsList" class="stocked-grid"></div>
               </section>
               <details class="secondary-drawer items-list-drawer">
