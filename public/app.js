@@ -869,6 +869,29 @@ const BRAND_MEDIA_MAP = {
   drc: { logo: "/assets/drc-logo.svg", visual: "/assets/drc-product-showcase.svg" },
 };
 
+// Logo asset'i olmayan ama sık görülen markaların rengi — metin rozeti için
+const BRAND_BADGE_COLORS = {
+  ottocool: "#0b6cb3",
+  weiguang: "#c8102e",
+  esen: "#1b1f23",
+  dixell: "#1e6091",
+  carel: "#e31937",
+  systemair: "#005aaa",
+  tecumseh: "#c8102e",
+  honeywell: "#eb1b25",
+  emerson: "#005daa",
+  elektrosan: "#0f5132",
+  siemens: "#00a9a5",
+  schneider: "#3dcd58",
+  mitsubishi: "#dc0032",
+  daikin: "#0075be",
+  lg: "#a50034",
+  samsung: "#1428a0",
+  lu_ve: "#e30613",
+  guntner: "#003366",
+  alfalaval: "#001f3f",
+};
+
 function getBrandMedia(item) {
   const brand = normalizeSearchText(item?.brand || "");
   for (const [key, media] of Object.entries(BRAND_MEDIA_MAP)) {
@@ -876,7 +899,19 @@ function getBrandMedia(item) {
       return media;
     }
   }
-  return { logo: "/assets/drc-logo.svg", visual: "/assets/drc-product-showcase.svg" };
+  return { logo: null, visual: "/assets/drc-product-showcase.svg", fallback: true };
+}
+
+function getBrandBadgeColor(item) {
+  const brand = normalizeSearchText(item?.brand || "");
+  for (const [key, color] of Object.entries(BRAND_BADGE_COLORS)) {
+    if (brand.includes(key)) return color;
+  }
+  // Generic deterministic hash for unknown brands so same brand always gets same color
+  let hash = 0;
+  for (let i = 0; i < brand.length; i += 1) hash = (hash * 31 + brand.charCodeAt(i)) >>> 0;
+  const palette = ["#0b6cb3", "#c8102e", "#1e6091", "#e31937", "#005aaa", "#0f5132", "#6f42c1", "#d97706", "#065f46"];
+  return palette[hash % palette.length];
 }
 
 function buildItemTechFacts(item) {
@@ -1058,8 +1093,22 @@ function openItemDetailModal(item) {
   setText(refs.itemDetailEyebrow, langText("Urun Karti", "Artikelkarte"));
   setText(refs.itemDetailCode, item.barcode || item.productCode || "-");
   if (refs.itemDetailBrandLogo) {
-    refs.itemDetailBrandLogo.src = media.logo;
-    refs.itemDetailBrandLogo.alt = `${item.brand || "DRC"} logo`;
+    const logoWrap = refs.itemDetailBrandLogo.parentElement;
+    // Önceki rozet kaldır
+    logoWrap?.querySelectorAll(".product-detail-brand-badge").forEach((n) => n.remove());
+    if (media.logo) {
+      refs.itemDetailBrandLogo.src = media.logo;
+      refs.itemDetailBrandLogo.alt = `${item.brand || "DRC"} logo`;
+      refs.itemDetailBrandLogo.style.display = "";
+    } else {
+      // Logo asset'i yok → renkli metin rozeti
+      refs.itemDetailBrandLogo.style.display = "none";
+      const badge = document.createElement("span");
+      badge.className = "product-detail-brand-badge";
+      badge.textContent = item.brand || "—";
+      badge.style.cssText = `display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:999px;background:${getBrandBadgeColor(item)};color:#fff;font-weight:600;font-size:13px;letter-spacing:0.02em;`;
+      logoWrap?.appendChild(badge);
+    }
   }
   if (refs.itemDetailVisual) {
     refs.itemDetailVisual.src = media.visual;
@@ -1268,6 +1317,17 @@ function applyUiTranslations() {
   setText("#peykCopy", t("peykCopy"));
   document.querySelectorAll("[data-peyk-point]").forEach((node, index) => {
     setText(node, t("peykPoints")[index] || node.textContent);
+  });
+
+  // Ürün detay modali stats etiketleri (Stok / Net / Satış / Liste)
+  const itemDetailStatLabels = {
+    stock: langText("Stok", "Bestand"),
+    netPrice: langText("Net / Satış", "Netto / Verkauf"),
+    listPrice: langText("Liste", "Liste"),
+  };
+  document.querySelectorAll("[data-item-detail-stat-label]").forEach((node) => {
+    const key = node.getAttribute("data-item-detail-stat-label");
+    if (itemDetailStatLabels[key]) setText(node, itemDetailStatLabels[key]);
   });
 
   // Ürün detay modali sekme ve panel başlıkları (statik HTML metni)
