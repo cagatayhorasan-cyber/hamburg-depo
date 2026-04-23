@@ -52,6 +52,9 @@ const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir
 const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
 const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
 const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
+// Herkese (auth'lu tüm rollere) açık araçlar — customer da ColdRoomPro ile proje hesaplayabilsin diye.
+// Bu sette olmayan her tool sadece admin erişebilir.
+const PUBLIC_TOOLS = new Set(["coldroompro"]);
 const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || "256kb";
 const FORM_BODY_LIMIT = process.env.FORM_BODY_LIMIT || "64kb";
 const API_RATE_WINDOW_MS = 60 * 1000;
@@ -660,8 +663,9 @@ function createApp() {
       if (assistantItems) {
         return assistantItems;
       }
+      // Customer AI cevaplarında alış fiyatı/kritik stok/stok miktarı sızmasın diye sanitize.
       assistantItems = isCustomerRole(req.session.user?.role)
-        ? await queryCustomerItems({ includePrices: true })
+        ? sanitizeItemsForRole(await queryCustomerItems({ includePrices: true }), req.session.user)
         : sanitizeItemsForRole(await queryItems(), req.session.user);
       return assistantItems;
     };
@@ -3205,13 +3209,14 @@ function createApp() {
     doc.end();
   });
 
-  // Admin araçları (ColdRoomPro, Soğuk Oda Çizim) statik HTML/JS/JSON içerir;
-  // iframe içinden açılabilsin diye auth zorunluluğu kaldırıldı.
-  // postMessage köprüsü kullanıcı tarafında session ile korunur (API endpoint'leri
-  // hâlâ requireAuth arkasında).
-  app.get("/admin-tools/:tool", serveAdminTool);
-  app.get("/admin-tools/:tool/", serveAdminTool);
-  app.get("/admin-tools/:tool/*", serveAdminTool);
+  // Admin araçları (ColdRoomPro, Soğuk Oda Çizim) statik HTML/JS/JSON içerir.
+  // Erişim kuralı:
+  //   - PUBLIC_TOOLS içindekiler (ör. coldroompro): auth'lu her kullanıcı (customer dahil).
+  //   - Diğerleri: sadece admin.
+  // API endpoint'leri (proje kaydı vs.) hâlâ requireAuth/requireAdmin arkasında.
+  app.get("/admin-tools/:tool", requireAdminToolAccess, serveAdminTool);
+  app.get("/admin-tools/:tool/", requireAdminToolAccess, serveAdminTool);
+  app.get("/admin-tools/:tool/*", requireAdminToolAccess, serveAdminTool);
 
   app.use((error, _req, res, next) => {
     if (error?.type === "entity.too.large") {
@@ -3308,6 +3313,27 @@ function requireStaffOrAdmin(req, res, next) {
       details: { requirement: "staff_or_admin" },
     });
     return res.status(403).json({ error: "Bu islem icin personel veya admin yetkisi gerekiyor." });
+  }
+  return next();
+}
+
+// Admin-tools erişim kontrolü: auth zorunlu, admin olmayan yalnız PUBLIC_TOOLS (coldroompro) erişebilir.
+function requireAdminToolAccess(req, res, next) {
+  if (!req.session.user) {
+    return res.redirect("/");
+  }
+  const toolName = String(req.params.tool || "");
+  if (PUBLIC_TOOLS.has(toolName)) {
+    return next();
+  }
+  if (!isAdminRole(req.session.user.role)) {
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "access_denied",
+      severity: "warn",
+      details: { requirement: "admin_tool", tool: toolName },
+    });
+    return res.status(403).send("Bu arac icin admin yetkisi gerekiyor.");
   }
   return next();
 }
@@ -5054,6 +5080,21 @@ function sanitizeItemsForRole(items, user) {
     return items;
   }
 
+  // Customer: alış fiyatlarını, kritik stok eşiğini ve gerçek stok miktarını gizle.
+  // Sadece "stokta var/yok" bilgisi ve satış/liste fiyatı görünür.
+  if (role === "customer") {
+    return items.map((item) => ({
+      ...item,
+      defaultPrice: 0,
+      lastPurchasePrice: 0,
+      averagePurchasePrice: 0,
+      minStock: 0,
+      currentStock: Number(item.currentStock) > 0 ? 1 : 0, // stokta var/yok sinyali
+      inStock: Number(item.currentStock) > 0,
+    }));
+  }
+
+  // Staff/operator: alış fiyatlarını gizle, stok miktarını koru (operasyonel).
   return items.map((item) => ({
     ...item,
     defaultPrice: 0,
@@ -5094,7 +5135,7 @@ async function buildBootstrap(user) {
         stockValue: 0,
         stockCostValue: 0,
         stockSaleValue: 0,
-        criticalCount: customerItems.filter(isCriticalStockItem).length,
+        criticalCount: 0, // customer kritik stok bilgisini görmemeli
         expenseTotal: 0,
         cashBalance: 0,
       },

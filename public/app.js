@@ -1120,7 +1120,14 @@ function openItemDetailModal(item) {
   }
   setText(refs.itemDetailTitle, resolveLocalizedName(item) || langText("Urun Detayi", "Artikeldetail"));
   setText(refs.itemDetailSubtitle, `${item.brand || "-"} · ${getDisplayCategory(item.category)}`);
-  setText(refs.itemDetailStock, formatItemStock(item.currentStock, item.unit));
+  setText(
+    refs.itemDetailStock,
+    isCustomerUser()
+      ? (item.inStock === false || Number(item.currentStock) <= 0
+          ? langText("Tükendi", "Nicht verfügbar")
+          : langText("Mevcut", "Verfügbar"))
+      : formatItemStock(item.currentStock, item.unit)
+  );
   setText(refs.itemDetailNetPrice, `${formatMoneyOrDash(visibleSalePrice(item))} ${langText("net", "netto")}`);
   setText(refs.itemDetailListPrice, formatMoneyOrDash(visibleListPrice(item)));
   if (refs.itemDetailDescription) {
@@ -5908,7 +5915,7 @@ function renderCustomerCatalog() {
       </div>
       <div class="pos-card-meta">
         <span>${escapeHtml(getDisplayCategory(item.category))}</span>
-        <span>${langText("Stok", "Bestand")}: ${escapeHtml(formatItemStock(item.currentStock, item.unit))}</span>
+        <span>${langText("Stok", "Bestand")}: ${item.inStock === false || Number(item.currentStock) <= 0 ? langText("Tükendi", "Nicht verfügbar") : langText("Mevcut", "Verfügbar")}</span>
         ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</span>` : ""}
         <span>${langText("Stok Kodu", "Lagercode")}: ${escapeHtml(item.barcode || "-")}</span>
       </div>
@@ -7488,11 +7495,18 @@ function addItemToCustomerOrder(itemId) {
   if (!item) {
     return;
   }
+  // Customer için backend stok miktarını gizliyor (currentStock=1 sinyal).
+  // Gerçek stok kontrolü backend /api/orders onayında yapılıyor.
+  if (item.inStock === false || Number(item.currentStock) <= 0) {
+    window.alert(langText("Bu ürün şu an stokta yok.", "Dieser Artikel ist aktuell nicht verfügbar."));
+    return;
+  }
 
   const price = cartSalePrice(item, 1);
+  const CUSTOMER_MAX = 999; // Customer için görünür stok yok, üst sınır yüksek; backend kontrol eder.
   const existing = state.customerOrderDraft.find((entry) => Number(entry.itemId) === Number(item.id));
   if (existing) {
-    existing.quantity = Math.min(Number(existing.quantity) + 1, Number(existing.maxQuantity));
+    existing.quantity = Math.min(Number(existing.quantity) + 1, Number(existing.maxQuantity) || CUSTOMER_MAX);
     existing.unitPrice = cartSalePrice(item, existing.quantity);
   } else {
     state.customerOrderDraft.push({
@@ -7505,7 +7519,7 @@ function addItemToCustomerOrder(itemId) {
       listPrice: Number(item.listPrice || 0),
       salePrice: Number(item.salePrice || 0),
       unit: item.unit,
-      maxQuantity: Number(item.currentStock),
+      maxQuantity: CUSTOMER_MAX,
     });
   }
 
