@@ -616,6 +616,7 @@ async function initDatabase() {
   ensureMovementColumnsSqlite();
   ensureMovementIndexesSqlite();
   ensureQuoteColumnsSqlite();
+  ensureCashbookColumnsSqlite();
   ensureAgentTrainingIndexesSqlite();
   ensureTroubleshootingBankIndexesSqlite();
   ensureSecurityIndexesSqlite();
@@ -655,6 +656,7 @@ async function runPostgresSchemaInit() {
   await ensureSecurityIndexesPostgres();
   await ensureAdminMessageIndexesPostgres();
   await ensureQuoteColumnsPostgres();
+  await ensureCashbookColumnsPostgres();
   await ensureProjectIndexesPostgres();
   await seedUsers({
     get: async (sql, params) => firstRow(await query(sql, params, pgSchemaClient)),
@@ -853,6 +855,35 @@ function ensureMovementColumnsSqlite() {
   if (columns.length && !columns.includes("reversal_of")) {
     sqliteDb.exec("ALTER TABLE movements ADD COLUMN reversal_of INTEGER");
   }
+  if (columns.length && !columns.includes("order_id")) {
+    sqliteDb.exec("ALTER TABLE movements ADD COLUMN order_id INTEGER");
+  }
+  if (columns.length && !columns.includes("quote_id")) {
+    sqliteDb.exec("ALTER TABLE movements ADD COLUMN quote_id INTEGER");
+  }
+}
+
+function ensureCashbookColumnsSqlite() {
+  const columns = sqliteDb.prepare("PRAGMA table_info(cashbook)").all().map((column) => column.name);
+  if (!columns.length) return;
+  const additions = [
+    ["category", "ALTER TABLE cashbook ADD COLUMN category TEXT"],
+    ["employee_user_id", "ALTER TABLE cashbook ADD COLUMN employee_user_id INTEGER"],
+    ["period_ym", "ALTER TABLE cashbook ADD COLUMN period_ym TEXT"],
+    ["order_id", "ALTER TABLE cashbook ADD COLUMN order_id INTEGER"],
+    ["quote_id", "ALTER TABLE cashbook ADD COLUMN quote_id INTEGER"],
+    ["deleted_at", "ALTER TABLE cashbook ADD COLUMN deleted_at TEXT"],
+    ["deleted_by_user_id", "ALTER TABLE cashbook ADD COLUMN deleted_by_user_id INTEGER"],
+    ["deletion_reason", "ALTER TABLE cashbook ADD COLUMN deletion_reason TEXT"],
+  ];
+  for (const [name, sql] of additions) {
+    if (!columns.includes(name)) {
+      sqliteDb.exec(sql);
+    }
+  }
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_cashbook_order_id ON cashbook(order_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_cashbook_quote_id ON cashbook(quote_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_cashbook_deleted_at ON cashbook(deleted_at)");
 }
 
 function ensureMovementIndexesSqlite() {
@@ -1085,6 +1116,41 @@ async function ensureMovementColumnsPostgres() {
   if (!names.has("reversal_of")) {
     await postgresSchemaQuery("ALTER TABLE movements ADD COLUMN reversal_of BIGINT");
   }
+  if (!names.has("order_id")) {
+    await postgresSchemaQuery("ALTER TABLE movements ADD COLUMN order_id BIGINT REFERENCES orders(id) ON DELETE SET NULL");
+  }
+  if (!names.has("quote_id")) {
+    await postgresSchemaQuery("ALTER TABLE movements ADD COLUMN quote_id BIGINT REFERENCES quotes(id) ON DELETE SET NULL");
+  }
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_movements_order_id ON movements (order_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_movements_quote_id ON movements (quote_id)");
+}
+
+async function ensureCashbookColumnsPostgres() {
+  const columns = await postgresSchemaQuery(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = 'public' AND table_name = 'cashbook'
+  `);
+  const names = new Set(columns.rows.map((row) => row.column_name));
+  const additions = [
+    ["category", "ALTER TABLE cashbook ADD COLUMN category TEXT"],
+    ["employee_user_id", "ALTER TABLE cashbook ADD COLUMN employee_user_id BIGINT REFERENCES users(id) ON DELETE SET NULL"],
+    ["period_ym", "ALTER TABLE cashbook ADD COLUMN period_ym TEXT"],
+    ["order_id", "ALTER TABLE cashbook ADD COLUMN order_id BIGINT REFERENCES orders(id) ON DELETE SET NULL"],
+    ["quote_id", "ALTER TABLE cashbook ADD COLUMN quote_id BIGINT REFERENCES quotes(id) ON DELETE SET NULL"],
+    ["deleted_at", "ALTER TABLE cashbook ADD COLUMN deleted_at TIMESTAMPTZ"],
+    ["deleted_by_user_id", "ALTER TABLE cashbook ADD COLUMN deleted_by_user_id BIGINT REFERENCES users(id) ON DELETE SET NULL"],
+    ["deletion_reason", "ALTER TABLE cashbook ADD COLUMN deletion_reason TEXT"],
+  ];
+  for (const [name, sql] of additions) {
+    if (!names.has(name)) {
+      await postgresSchemaQuery(sql);
+    }
+  }
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_cashbook_order_id ON cashbook (order_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_cashbook_quote_id ON cashbook (quote_id)");
+  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_cashbook_deleted_at ON cashbook (deleted_at)");
 }
 
 async function ensureMovementIndexesPostgres() {

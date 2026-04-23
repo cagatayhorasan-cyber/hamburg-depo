@@ -3828,10 +3828,29 @@ function extractPaymentTypeFromNote(note) {
 }
 
 function findSaleSourceForCashbook(entry) {
-  // Öncelik sırası: orderId → DRC quoteNo → movements eşleşmesi
+  // Öncelik sırası: _fallbackItems → orderId → quoteId (FK) → DRC quoteNo (metin) → movements eşleşmesi
   const links = extractCashbookLinks(entry);
 
-  // 1) orderId
+  // 0) Pseudo-entry fallback items (movement'ten türetilmiş)
+  if (Array.isArray(entry._fallbackItems) && entry._fallbackItems.length) {
+    const subtotal = entry._fallbackItems.reduce(
+      (sum, it) => sum + Number(it.total || Number(it.quantity || 0) * Number(it.unitPrice || 0)),
+      0
+    );
+    return {
+      source: "movement",
+      sourceLabel: langText("Stok Hareketi", "Lagerbewegung"),
+      sourceRef: "",
+      customerName: extractCustomerFromCashTitle(entry.title) || langText("Bilinmiyor", "Unbekannt"),
+      items: entry._fallbackItems,
+      subtotal,
+      discount: 0,
+      vatAmount: 0,
+      grossTotal: Number(entry.amount || subtotal),
+    };
+  }
+
+  // 1) orderId (FK bağı)
   if (entry.orderId) {
     const order = (state.orders || []).find((o) => Number(o.id) === Number(entry.orderId));
     if (order && Array.isArray(order.items) && order.items.length) {
@@ -3853,7 +3872,28 @@ function findSaleSourceForCashbook(entry) {
     }
   }
 
-  // 2) DRC quoteNo
+  // 2) quoteId (FK bağı — direkt satış)
+  if (entry.quoteId) {
+    const quote = (state.quotes || []).find((q) => Number(q.id) === Number(entry.quoteId));
+    if (quote && Array.isArray(quote.items) && quote.items.length) {
+      const subtotal = Number(quote.subtotal || 0) ||
+        quote.items.reduce((sum, it) => sum + Number(it.quantity || 0) * Number(it.unitPrice || 0), 0);
+      return {
+        source: "quote",
+        sourceLabel: langText("Teklif / Satış", "Angebot / Verkauf"),
+        sourceRef: quote.quoteNo || `#${quote.id}`,
+        quoteId: quote.id,
+        customerName: quote.customerName || extractCustomerFromCashTitle(entry.title),
+        items: quote.items,
+        subtotal,
+        discount: Number(quote.discount || 0),
+        vatAmount: Number(quote.vatAmount || 0),
+        grossTotal: Number(quote.grossTotal || quote.total || entry.amount || 0),
+      };
+    }
+  }
+
+  // 3) DRC quoteNo (metin içinde)
   for (const qn of links.quoteNos) {
     const quote = (state.quotes || []).find((q) => String(q.quoteNo || "").toUpperCase() === qn);
     if (quote && Array.isArray(quote.items) && quote.items.length) {
@@ -3927,6 +3967,62 @@ function openSaleDetailFromMovement(movement) {
   const dateKey = String(movement.date || "").slice(0, 10);
   const userName = movement.userName;
 
+  // 1) FK üzerinden kesin bağ (yeni satışlar burada yakalanır)
+  const orderId = Number(movement.orderId || 0);
+  const quoteId = Number(movement.quoteId || 0);
+
+  if (orderId > 0) {
+    const matched = (state.cashbook || []).find(
+      (e) => e.type === "in" && Number(e.orderId || 0) === orderId
+    );
+    if (matched) {
+      openSaleDetailFromCashbook(matched);
+      return;
+    }
+    // Sipariş kasaya düşmeden de (ödeme yapılmadan stok düşüldüyse) modal aç
+    const order = (state.orders || []).find((o) => Number(o.id) === orderId);
+    if (order) {
+      openSaleDetailFromCashbook({
+        id: `mv-order-${movement.id}`,
+        type: "in",
+        title: `${langText("Sipariş", "Bestellung")} #${orderId} - ${order.customerName || ""}`.trim(),
+        date: movement.date,
+        note: "",
+        amount: 0,
+        userName: movement.userName,
+        orderId,
+        quoteId: null,
+      });
+      return;
+    }
+  }
+
+  if (quoteId > 0) {
+    const matched = (state.cashbook || []).find(
+      (e) => e.type === "in" && Number(e.quoteId || 0) === quoteId
+    );
+    if (matched) {
+      openSaleDetailFromCashbook(matched);
+      return;
+    }
+    const quote = (state.quotes || []).find((q) => Number(q.id) === quoteId);
+    if (quote) {
+      openSaleDetailFromCashbook({
+        id: `mv-quote-${movement.id}`,
+        type: "in",
+        title: `${langText("Satış", "Verkauf")} ${quote.quoteNo || `#${quoteId}`} - ${quote.customerName || ""}`.trim(),
+        date: movement.date,
+        note: "",
+        amount: 0,
+        userName: movement.userName,
+        orderId: null,
+        quoteId,
+      });
+      return;
+    }
+  }
+
+  // 2) Geriye dönük: FK yoksa eski not heuristiği (eski kayıtlar için)
   let customerHint = "";
   let isDirect = false;
   const directMatch = note.match(/Direkt\s*sati[sş]\s*-\s*(.+?)(?:\s*\||$)/i);
@@ -3939,7 +4035,6 @@ function openSaleDetailFromMovement(movement) {
     isDirect = false;
   }
 
-  // 1) Eşleşen cashbook entry'sini bul
   const customerLower = customerHint.toLowerCase();
   const matchedEntry = customerHint
     ? (state.cashbook || []).find((entry) => {
@@ -3955,7 +4050,7 @@ function openSaleDetailFromMovement(movement) {
     return;
   }
 
-  // 2) Fallback: pseudo cashbook entry (sadece o günün ilgili movement'leri gösterilir)
+  // 3) Fallback: pseudo cashbook entry (ürün bilgisini doğrudan movement'ten al)
   const prefix = isDirect ? "Direkt satis tahsilati" : "Faturasiz satis tahsilati";
   const pseudo = {
     id: `mv-${movement.id}`,
@@ -3963,9 +4058,17 @@ function openSaleDetailFromMovement(movement) {
     title: customerHint ? `${prefix} - ${customerHint}` : prefix,
     date: movement.date,
     note: isDirect ? "" : "Faturasiz satis",
-    amount: 0,
+    amount: Number(movement.quantity || 0) * Number(movement.unitPrice || 0),
     userName: movement.userName,
     orderId: null,
+    quoteId: null,
+    _fallbackItems: [{
+      itemName: movement.itemName || langText("Ürün", "Artikel"),
+      quantity: Number(movement.quantity || 0),
+      unit: "adet",
+      unitPrice: Number(movement.unitPrice || 0),
+      total: Number(movement.quantity || 0) * Number(movement.unitPrice || 0),
+    }],
   };
   openSaleDetailFromCashbook(pseudo);
 }

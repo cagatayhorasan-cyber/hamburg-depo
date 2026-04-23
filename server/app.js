@@ -1810,8 +1810,8 @@ function createApp() {
 
           await tx.execute(
             `
-              INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
-              VALUES (?, 'exit', ?, ?, ?, ?, ?)
+              INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id, quote_id)
+              VALUES (?, 'exit', ?, ?, ?, ?, ?, ?)
             `,
             [
               Number(entry.itemId),
@@ -1820,6 +1820,7 @@ function createApp() {
               date,
               `Direkt satis - ${customerName}`,
               req.session.user.id,
+              insertedQuoteId,
             ]
           );
         }
@@ -1827,8 +1828,8 @@ function createApp() {
         if (paid > 0) {
           await tx.execute(
             `
-              INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id)
-              VALUES ('in', ?, ?, ?, ?, ?, ?)
+              INSERT INTO cashbook (type, title, amount, cash_date, reference, note, user_id, quote_id)
+              VALUES ('in', ?, ?, ?, ?, ?, ?, ?)
             `,
             [
               `Direkt satis tahsilati - ${customerName}`,
@@ -1837,6 +1838,7 @@ function createApp() {
               cleanOptional(reference),
               `${cleanOptional(paymentType) || "cash"} | ${quoteNo}`,
               req.session.user.id,
+              insertedQuoteId,
             ]
           );
         }
@@ -2103,14 +2105,15 @@ function createApp() {
           for (const line of lines) {
             if (!line.item_id) continue;
             await tx.execute(
-              `INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id)
-               VALUES (?, 'exit', ?, ?, CURRENT_DATE, ?, ?)`,
+              `INSERT INTO movements (item_id, type, quantity, unit_price, movement_date, note, user_id, order_id)
+               VALUES (?, 'exit', ?, ?, CURRENT_DATE, ?, ?, ?)`,
               [
                 Number(line.item_id),
                 Number(line.quantity),
                 Number(line.unit_price || 0),
                 `Siparis #${orderId} (${order.customer_name}) - otomatik stok düşümü`,
                 Number(req.session.user.id),
+                orderId,
               ]
             );
           }
@@ -4343,8 +4346,11 @@ async function queryMovements(user) {
         movements.movement_date AS date,
         movements.note,
         movements.reversal_of AS "reversalOf",
+        movements.order_id AS "orderId",
+        movements.quote_id AS "quoteId",
         movements.created_at AS "createdAt",
         items.name AS "itemName",
+        items.id AS "itemId",
         users.name AS "userName",
         reverse_entry.id AS "reversedById"
       FROM movements
@@ -4397,6 +4403,7 @@ async function queryCashbook(user = null) {
         cashbook.employee_user_id AS "employeeUserId",
         cashbook.period_ym AS "periodYm",
         cashbook.order_id AS "orderId",
+        cashbook.quote_id AS "quoteId",
         cashbook.created_at AS "createdAt",
         users.name AS "userName",
         emp.name AS "employeeName"
