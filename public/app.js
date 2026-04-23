@@ -5999,7 +5999,7 @@ function renderCustomerOrders() {
         </div>
         <span class="status-pill ${statusClass}">${escapeHtml(getOrderStatusLabel(order.status))}</span>
       </header>
-      <p class="muted" style="margin:4px 0;">${langText("Tarih","Datum")}: ${escapeHtml(order.date || "")}</p>
+      <p class="muted" style="margin:4px 0;">${langText("Tarih","Datum")}: ${escapeHtml(formatOrderDate(order.date))}</p>
       <table class="customer-order-lines" style="width:100%; border-collapse:collapse; font-size:0.9em; margin-top:8px;">
         <thead>
           <tr style="background:rgba(255,255,255,0.04);">
@@ -6014,8 +6014,10 @@ function renderCustomerOrders() {
             const qty = Number(it.quantity || 0);
             const up = Number(it.unitPrice || 0);
             const lineTot = qty * up;
+            const linked = it.itemId ? (state.items || []).find((x) => Number(x.id) === Number(it.itemId)) : null;
+            const displayName = linked ? resolveLocalizedName(linked) : (it.itemName || "");
             return `<tr>
-              <td style="padding:4px 6px;">${escapeHtml(it.itemName || "")}</td>
+              <td style="padding:4px 6px;">${escapeHtml(displayName)}</td>
               <td style="text-align:right; padding:4px 6px;">${numberFormat.format(qty)} ${escapeHtml(it.unit || "ad")}</td>
               <td style="text-align:right; padding:4px 6px;">${up > 0 ? currency.format(up) : "—"}</td>
               <td style="text-align:right; padding:4px 6px;"><strong>${lineTot > 0 ? currency.format(lineTot) : "—"}</strong></td>
@@ -6973,6 +6975,18 @@ function formatDateTime(value) {
     return String(value);
   }
   return date.toLocaleString(state.uiLanguage === "de" ? "de-DE" : "tr-TR");
+}
+
+function formatOrderDate(value) {
+  if (!value) return "-";
+  const s = String(value);
+  // ISO "YYYY-MM-DD..." veya Date parse edilebilir bir şey
+  const date = new Date(s);
+  if (Number.isNaN(date.getTime())) {
+    // Olduğu gibi göster (zaten insan okuyabilir format ise)
+    return s.length >= 10 ? s.slice(0, 10) : s;
+  }
+  return date.toLocaleDateString(state.uiLanguage === "de" ? "de-DE" : "tr-TR");
 }
 
 function renderSearchDropdown() {
