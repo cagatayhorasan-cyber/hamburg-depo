@@ -1270,6 +1270,32 @@ function applyUiTranslations() {
     setText(node, t("peykPoints")[index] || node.textContent);
   });
 
+  // Ürün detay modali sekme ve panel başlıkları (statik HTML metni)
+  const itemDetailTabLabels = {
+    overview: langText("Genel Bilgi", "Übersicht"),
+    tech: langText("Teknik Veri", "Technische Daten"),
+    pricing: langText("Fiyat", "Preis"),
+    docs: langText("PDF / Katalog", "PDF / Katalog"),
+    notes: langText("Notlar", "Notizen"),
+  };
+  document.querySelectorAll("[data-item-detail-tab]").forEach((node) => {
+    const key = node.getAttribute("data-item-detail-tab");
+    if (itemDetailTabLabels[key]) setText(node, itemDetailTabLabels[key]);
+  });
+  const itemDetailViewHeadings = {
+    overview: langText("Hızlı Bilgi", "Kurzinfo"),
+    tech: langText("Teknik Veri", "Technische Daten"),
+    pricing: langText("Fiyat Bilgisi", "Preisinformation"),
+    docs: langText("PDF / Katalog", "PDF / Katalog"),
+    notes: langText("Notlar", "Notizen"),
+    "overview-copy": langText("Açıklama", "Beschreibung"),
+  };
+  document.querySelectorAll("[data-item-detail-view]").forEach((node) => {
+    const key = node.getAttribute("data-item-detail-view");
+    const h3 = node.querySelector("h3");
+    if (h3 && itemDetailViewHeadings[key]) setText(h3, itemDetailViewHeadings[key]);
+  });
+
   // Lean landing (Faz 6 v2)
   document.querySelectorAll("[data-lean-eyebrow]").forEach((node) => setText(node, t("leanEyebrow")));
   document.querySelectorAll("[data-lean-title]").forEach((node) => setText(node, t("leanHeroTitle")));
