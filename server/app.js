@@ -6289,9 +6289,26 @@ function hasAssistantRoleplayIntent(normalizedMessage) {
   return /(roleplay|role play|rol oyunu|rolplay|senaryo|rollenspiel|szenario)/.test(normalizedMessage);
 }
 
+// 42k test (2026-04-24): 1.722 soru catalog'a düştü çünkü "kompresor calismiyor",
+// "defrost tekrar ediyor", "kondenser buz tutuyor" gibi diagnostic sorular içindeki
+// ürün adı catalog match'ını tetikliyor. Bu fonksiyon diagnostic/fault/service
+// niyetli soruları yakalar; şuan çağıran shouldPreferAssistantCatalogReply bu
+// durumda catalog'u atlayıp troubleshooting_bank'a öncelik verir.
+function hasAssistantTroubleshootingIntent(normalizedMessage) {
+  const trDiagnostic = /(calismiyor|calismiyorsa|donmuyor|buz tutuyor|buzlaniyor|kisa devre|termige|termik atiyor|neden olur|neden olabilir|neyi kontrol|kontrol eder|servis sirasi|hangi olcum|en sik hata|montaj hatas|montajdan olabilir|tekrar ediyorsa|koken ne olabilir|hangi tarafta|semptom|aldatici|acik kaldig|sorun nerede|sorun hangi|durumunda|olursa|oldugunda|varsa sorun|rezistans calismiyor|pump down|emniyet zinciri|valf.*zayif|valf.*uyumsuz|ariza|arizasi|arizanin|alarm verir|defrost calismiyor|fan donmuyor|kontakt|role atiyor|hava tarafi|gaz devresi|gaz kacak|gaz kacagi|yag donusu|yag geri donmuyor|superheat|subcool|alcak basinc|yuksek basinc|motor koruma|kontrolor ayarlari|kontrol ayarlari|sensor dogrulugu|uzaktan calis izni|drenaj hatti|kapi rezistansi|usta once|usta nasil|usta ne yapar|usta mantigi|fazla gaz|eksik gaz|gaz sarji sonrasi|gaz sarji|retrofit)/;
+  const deDiagnostic = /(prueft man|was prueft|welche.*ursache|welcher.*fehler|welche messwerte|wie loest man|warum kommt es|warum laeuft|warum geht|stoerung|stoert|ausloest|vereist|schwitzt|montagefehler|fluessigkeit zum verdichter|ungewoehnliche geraeusche|motorschutz|hochdruck|niederdruck|abtaubilanz|immer wieder auftritt|kaeltekreis|luftseite|rueckkehr|zurueckkehrt|meister zuerst|verdampfer vereist|boden vereist|ventilator.*nicht|verdichter.*geht|abtauung|zu viel kaeltemittel|zu wenig kaeltemittel|kaeltemittel.*im system)/;
+  return trDiagnostic.test(normalizedMessage) || deDiagnostic.test(normalizedMessage);
+}
+
 function shouldPreferAssistantCatalogReply(message, items) {
   const normalized = normalizeAssistantText(message);
   if (hasAssistantPreferredTrainingIntent(normalized)) {
+    return false;
+  }
+  // Troubleshooting/diagnostic soruları catalog'a hijack olmasın;
+  // troubleshooting_bank eşleşsin. List intent'ten (kritik stok / en pahalı vb)
+  // ÖNCE çalışır çünkü "kritik" kelimesi "kritischer bestand" alarmlarda geçebilir.
+  if (hasAssistantTroubleshootingIntent(normalized)) {
     return false;
   }
   if (hasAssistantCatalogListIntent(normalized)) {
