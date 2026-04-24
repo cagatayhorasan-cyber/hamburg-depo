@@ -5538,6 +5538,13 @@ function isTroubleshootingAssistantQuestion(message, history = []) {
     return false;
   }
 
+  // Faz A: sales_instinct meta-sorulari da bu kapiya girsin ki
+  // matchAssistantTroubleshootingBank (tum bank context'lerini tarar) devreye
+  // girsin ve sales_instinct context_id'li entry'leri bulabilsin.
+  if (hasAssistantSalesInstinctIntent(normalizedConversation)) {
+    return true;
+  }
+
   return TROUBLESHOOTING_STRONG_HINTS.some((hint) => normalizedConversation.includes(hint));
 }
 
@@ -6264,6 +6271,11 @@ function isDirectPriceQuestion(message) {
   if (hasAssistantPreferredTrainingIntent(normalized)) {
     return false;
   }
+  // Faz A: meta-soru (satis refleksi) varsa catalog'a dusmesin ki
+  // troubleshooting_bank'teki sales_instinct cevap versin.
+  if (hasAssistantSalesInstinctIntent(normalized)) {
+    return false;
+  }
   // Faz A (2026-04-24): fiyat sorusu varyasyonlari genisletildi.
   // TR: kac para|ne kadar|kaca|bedeli|ucreti|paha|kac euro|kac eur|kac avro|fiyati ne|kac tl.
   // DE: wie teuer|was kostet|kostet|kosten|betrag|preise|wie viel eur|was zahlt man.
@@ -6291,6 +6303,17 @@ function hasAssistantAdvisoryIntent(normalizedMessage) {
 
 function hasAssistantRoleplayIntent(normalizedMessage) {
   return /(roleplay|role play|rol oyunu|rolplay|senaryo|rollenspiel|szenario)/.test(normalizedMessage);
+}
+
+// Faz A (2026-04-24): DRC MAN satis refleksi (sales_instinct) sorulari
+// meta-sorudur (KDV kurali, alis fiyati gizliligi, stokta yok vaadi,
+// internet karsilastirmasi). Catalog motorundan erken cikmamasi ve
+// troubleshooting_bank'e ulasabilmesi icin isDirectPriceQuestion ve
+// shouldPreferAssistantCatalogReply bu intent varsa bypass eder.
+// isTroubleshootingAssistantQuestion de bu intent'i kabul eder ki
+// matchAssistantTroubleshootingBank devreye girsin.
+function hasAssistantSalesInstinctIntent(normalizedMessage) {
+  return /(satis sureci|alis fiyati|alis fiyatini|maliyet bilgisi|kdv dahil|kdv orani|kdv sifir|ihracat siparisi|ihracat toggle|export toggle|internet karsilastirmasi|fiyat politikasi|tedarik suresi|stokta yok.*ne zaman|stokta yok dedigin|pos.*sekme|teklif.*direkt satis|direkt satis.*teklif|musteri fiyat itiraz|kime soyleyebilir|kar marjini|maliyet musteriye|preise inklusive|preise inkl|preise beinhalten|mwst dahil|mwst inklusive|mwst inkl|verkaufsprozess|wie laeuft der verkauf|einkaufspreis.*nennen|einkaufspreis.*zeigen|kostenbasis|preisvergleich|lieferzeit.*bestand|backorder|wann kommt.*artikel|marge.*kunde)/.test(normalizedMessage);
 }
 
 // 42k test (2026-04-24): 1.722 soru catalog'a düştü çünkü "kompresor calismiyor",
@@ -6322,6 +6345,11 @@ function hasAssistantStockQueryIntent(normalizedMessage) {
 function shouldPreferAssistantCatalogReply(message, items) {
   const normalized = normalizeAssistantText(message);
   if (hasAssistantPreferredTrainingIntent(normalized)) {
+    return false;
+  }
+  // Faz A: sales_instinct meta-sorulari (KDV/ihracat/alis gizliligi/stokta yok
+  // vaadi) catalog'dan cikmasin; troubleshooting_bank'teki sales_instinct cevap.
+  if (hasAssistantSalesInstinctIntent(normalized)) {
     return false;
   }
   // Troubleshooting/diagnostic soruları catalog'a hijack olmasın;
