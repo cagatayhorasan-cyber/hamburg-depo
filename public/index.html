@@ -1087,6 +1087,21 @@
           </div>
 
           <div class="tab-content admin-only" data-tab-content="training">
+            <section class="card" id="drcManBulkImportCard" style="padding:14px 16px;margin-bottom:16px;background:linear-gradient(180deg,#f4f8ff,#eef3ff);border:1px solid #cfd9ef;border-radius:10px;">
+              <div class="section-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <div>
+                  <h2 style="margin:0 0 4px 0;">DRC MAN Toplu Egitim Yukle</h2>
+                  <p class="muted" id="drcManBulkImportHelp" style="margin:0;max-width:640px;">
+                    Tum urun, ariza, elektrik, gaz, PT, master saha ve egitim FAQ dosyalarini canli Postgres'e yazar (assistant_troubleshooting_bank). Mevcut ayni kaynak satirlarini once siler, sonra yeniden ekler. Surec yaklasik 10 saniye surer.
+                  </p>
+                </div>
+                <div class="action-row" style="gap:8px;">
+                  <button id="drcManBulkImportButton" class="primary-button" type="button">Egitimi Yukle</button>
+                  <button id="drcManBulkImportDryRunButton" class="secondary-button" type="button">On Izleme</button>
+                </div>
+              </div>
+              <div id="drcManBulkImportResult" class="muted" style="margin-top:10px;font-size:13px;"></div>
+            </section>
             <div class="two-column">
               <section>
                 <h2>DRC MAN Egitim Kaydi</h2>

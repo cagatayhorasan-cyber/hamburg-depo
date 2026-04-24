@@ -1,0 +1,2154 @@
+[
+  {
+    "id": "electrical_phase_loss",
+    "tr_subject": "faz eksigi var",
+    "de_subject": "eine phase fehlt",
+    "keywords": [
+      "faz eksigi var",
+      "eine phase fehlt",
+      "phase loss",
+      "faz yok"
+    ],
+    "tr_questions": [
+      "faz eksigi var neden olur",
+      "faz eksigi var olursa neye bakilir",
+      "faz eksigi var varsa usta once ne kontrol eder",
+      "faz eksigi var arizasinda teshis nasil baslar",
+      "faz eksigi var sorunu nasil cozulur",
+      "faz eksigi var neden tekrar eder",
+      "faz eksigi var oldugunda hangi olcumler yapilir",
+      "faz eksigi var montaj hatasi olabilir mi",
+      "faz eksigi var gorulurse servis sirasi ne olur",
+      "faz eksigi var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt eine phase fehlt auf",
+      "worauf schaut man wenn eine phase fehlt auftritt",
+      "was prueft ein meister zuerst wenn eine phase fehlt da ist",
+      "wie beginnt die diagnose bei eine phase fehlt",
+      "wie loest man eine phase fehlt",
+      "warum kommt eine phase fehlt immer wieder",
+      "welche messungen macht man bei eine phase fehlt",
+      "kann montagefehler eine phase fehlt verursachen",
+      "wie ist die service reihenfolge bei eine phase fehlt",
+      "was ist der haeufigste fehler bei eine phase fehlt"
+    ],
+    "tr_answer": "faz eksigi var durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden bir fazin kopuk, sigortadan dusmus veya klemenste kayip olmasi; bunun yaninda ana besleme hattinda gevseklik, kablo kesiti sorunu veya sebeke dengesizligi bulunmasidir. Ilk kontrolde ana giris, faz-faz ve faz-notr gerilimleri, sigortalar ve yuk altindaki gerilim dusumu birlikte olculur. Bunun teknik sebebi tek faz eksiginde motorlar ya hic kalkmaz ya da asiri zorlanir; ayrica uc fazli sogutma ekipmanlari enerji kalitesi bozuldugunda mekanik ariza gibi gorunen davranislar gosterebilir. En sik hata ise sadece cihazin icine bakip besleme hattini ve pano girisini ihmal etmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn eine phase fehlt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist eine Phase unterbrochen ist, an der Sicherung fehlt oder an der Klemme verloren geht; zusaetzlich kommen lockere Einspeisung, ungeeigneter Kabelquerschnitt oder Netzinstabilitaet vorliegt vor. Bei der Erstpruefung werden Einspeisung, Phase-Phase- und Phase-N-Werte, Sicherungen und der Spannungsfall unter Last zusammen gemessen. Der technische Hintergrund ist Motoren bei fehlender Phase entweder gar nicht starten oder extrem ueberlasten; ausserdem gilt drei-phasige Kaelteanlagen bei schlechter Energiequalitaet Symptome zeigen koennen, die wie Mechanikfehler aussehen. Ein sehr haeufiger Fehler besteht darin, dass nur ins Geraet zu schauen und Zuleitung sowie Schaltschrank-Einspeisung zu uebersehen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "gevsek klemens ne yapar",
+      "kompresor neden calismiyor"
+    ]
+  },
+  {
+    "id": "electrical_voltage_imbalance",
+    "tr_subject": "fazlar dengesiz geliyor",
+    "de_subject": "die phasen unausgeglichen sind",
+    "keywords": [
+      "fazlar dengesiz geliyor",
+      "die phasen unausgeglichen sind",
+      "phase imbalance",
+      "faz dengesizligi"
+    ],
+    "tr_questions": [
+      "fazlar dengesiz geliyor neden olur",
+      "fazlar dengesiz geliyor olursa neye bakilir",
+      "fazlar dengesiz geliyor varsa usta once ne kontrol eder",
+      "fazlar dengesiz geliyor arizasinda teshis nasil baslar",
+      "fazlar dengesiz geliyor sorunu nasil cozulur",
+      "fazlar dengesiz geliyor neden tekrar eder",
+      "fazlar dengesiz geliyor oldugunda hangi olcumler yapilir",
+      "fazlar dengesiz geliyor montaj hatasi olabilir mi",
+      "fazlar dengesiz geliyor gorulurse servis sirasi ne olur",
+      "fazlar dengesiz geliyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die phasen unausgeglichen sind auf",
+      "worauf schaut man wenn die phasen unausgeglichen sind auftritt",
+      "was prueft ein meister zuerst wenn die phasen unausgeglichen sind da ist",
+      "wie beginnt die diagnose bei die phasen unausgeglichen sind",
+      "wie loest man die phasen unausgeglichen sind",
+      "warum kommt die phasen unausgeglichen sind immer wieder",
+      "welche messungen macht man bei die phasen unausgeglichen sind",
+      "kann montagefehler die phasen unausgeglichen sind verursachen",
+      "wie ist die service reihenfolge bei die phasen unausgeglichen sind",
+      "was ist der haeufigste fehler bei die phasen unausgeglichen sind"
+    ],
+    "tr_answer": "fazlar dengesiz geliyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden faz gerilimlerinin birbirinden sapmis olmasi; bunun yaninda ana besleme hattinda gevseklik, kablo kesiti sorunu veya sebeke dengesizligi bulunmasidir. Ilk kontrolde ana giris, faz-faz ve faz-notr gerilimleri, sigortalar ve yuk altindaki gerilim dusumu birlikte olculur. Bunun teknik sebebi dengesiz faz kompresor akimini bir kolda asiri yukseltebilir; ayrica uc fazli sogutma ekipmanlari enerji kalitesi bozuldugunda mekanik ariza gibi gorunen davranislar gosterebilir. En sik hata ise sadece cihazin icine bakip besleme hattini ve pano girisini ihmal etmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die phasen unausgeglichen sind auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Spannungen der drei Phasen deutlich auseinanderlaufen; zusaetzlich kommen lockere Einspeisung, ungeeigneter Kabelquerschnitt oder Netzinstabilitaet vorliegt vor. Bei der Erstpruefung werden Einspeisung, Phase-Phase- und Phase-N-Werte, Sicherungen und der Spannungsfall unter Last zusammen gemessen. Der technische Hintergrund ist eine unsymmetrische Phase den Verdichterstrom auf einer Seite stark erhoehen kann; ausserdem gilt drei-phasige Kaelteanlagen bei schlechter Energiequalitaet Symptome zeigen koennen, die wie Mechanikfehler aussehen. Ein sehr haeufiger Fehler besteht darin, dass nur ins Geraet zu schauen und Zuleitung sowie Schaltschrank-Einspeisung zu uebersehen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "gevsek klemens ne yapar",
+      "kompresor neden calismiyor"
+    ]
+  },
+  {
+    "id": "electrical_undervoltage",
+    "tr_subject": "voltaj dusuk geliyor",
+    "de_subject": "unterspannung anliegt",
+    "keywords": [
+      "voltaj dusuk geliyor",
+      "unterspannung anliegt",
+      "under voltage",
+      "dusuk voltaj"
+    ],
+    "tr_questions": [
+      "voltaj dusuk geliyor neden olur",
+      "voltaj dusuk geliyor olursa neye bakilir",
+      "voltaj dusuk geliyor varsa usta once ne kontrol eder",
+      "voltaj dusuk geliyor arizasinda teshis nasil baslar",
+      "voltaj dusuk geliyor sorunu nasil cozulur",
+      "voltaj dusuk geliyor neden tekrar eder",
+      "voltaj dusuk geliyor oldugunda hangi olcumler yapilir",
+      "voltaj dusuk geliyor montaj hatasi olabilir mi",
+      "voltaj dusuk geliyor gorulurse servis sirasi ne olur",
+      "voltaj dusuk geliyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt unterspannung anliegt auf",
+      "worauf schaut man wenn unterspannung anliegt auftritt",
+      "was prueft ein meister zuerst wenn unterspannung anliegt da ist",
+      "wie beginnt die diagnose bei unterspannung anliegt",
+      "wie loest man unterspannung anliegt",
+      "warum kommt unterspannung anliegt immer wieder",
+      "welche messungen macht man bei unterspannung anliegt",
+      "kann montagefehler unterspannung anliegt verursachen",
+      "wie ist die service reihenfolge bei unterspannung anliegt",
+      "was ist der haeufigste fehler bei unterspannung anliegt"
+    ],
+    "tr_answer": "voltaj dusuk geliyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden uzun hat, zayif kesit veya yuk aninda gerilim cokmesi; bunun yaninda ana besleme hattinda gevseklik, kablo kesiti sorunu veya sebeke dengesizligi bulunmasidir. Ilk kontrolde ana giris, faz-faz ve faz-notr gerilimleri, sigortalar ve yuk altindaki gerilim dusumu birlikte olculur. Bunun teknik sebebi dusuk voltaj motor akimini arttirarak isitma ve termik sorununa doner; ayrica uc fazli sogutma ekipmanlari enerji kalitesi bozuldugunda mekanik ariza gibi gorunen davranislar gosterebilir. En sik hata ise sadece cihazin icine bakip besleme hattini ve pano girisini ihmal etmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn unterspannung anliegt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist lange Leitung, zu kleiner Querschnitt oder Spannungseinbruch unter Last; zusaetzlich kommen lockere Einspeisung, ungeeigneter Kabelquerschnitt oder Netzinstabilitaet vorliegt vor. Bei der Erstpruefung werden Einspeisung, Phase-Phase- und Phase-N-Werte, Sicherungen und der Spannungsfall unter Last zusammen gemessen. Der technische Hintergrund ist Unterspannung die Stromaufnahme erhoeht und zu Ueberhitzung fuehrt; ausserdem gilt drei-phasige Kaelteanlagen bei schlechter Energiequalitaet Symptome zeigen koennen, die wie Mechanikfehler aussehen. Ein sehr haeufiger Fehler besteht darin, dass nur ins Geraet zu schauen und Zuleitung sowie Schaltschrank-Einspeisung zu uebersehen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "gevsek klemens ne yapar",
+      "kompresor neden calismiyor"
+    ]
+  },
+  {
+    "id": "electrical_overvoltage",
+    "tr_subject": "voltaj gereksiz yuksek",
+    "de_subject": "ueberspannung anliegt",
+    "keywords": [
+      "voltaj gereksiz yuksek",
+      "ueberspannung anliegt",
+      "over voltage",
+      "yuksek voltaj"
+    ],
+    "tr_questions": [
+      "voltaj gereksiz yuksek neden olur",
+      "voltaj gereksiz yuksek olursa neye bakilir",
+      "voltaj gereksiz yuksek varsa usta once ne kontrol eder",
+      "voltaj gereksiz yuksek arizasinda teshis nasil baslar",
+      "voltaj gereksiz yuksek sorunu nasil cozulur",
+      "voltaj gereksiz yuksek neden tekrar eder",
+      "voltaj gereksiz yuksek oldugunda hangi olcumler yapilir",
+      "voltaj gereksiz yuksek montaj hatasi olabilir mi",
+      "voltaj gereksiz yuksek gorulurse servis sirasi ne olur",
+      "voltaj gereksiz yuksek icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt ueberspannung anliegt auf",
+      "worauf schaut man wenn ueberspannung anliegt auftritt",
+      "was prueft ein meister zuerst wenn ueberspannung anliegt da ist",
+      "wie beginnt die diagnose bei ueberspannung anliegt",
+      "wie loest man ueberspannung anliegt",
+      "warum kommt ueberspannung anliegt immer wieder",
+      "welche messungen macht man bei ueberspannung anliegt",
+      "kann montagefehler ueberspannung anliegt verursachen",
+      "wie ist die service reihenfolge bei ueberspannung anliegt",
+      "was ist der haeufigste fehler bei ueberspannung anliegt"
+    ],
+    "tr_answer": "voltaj gereksiz yuksek durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden sebeke tarafinda anlik ya da surekli yuksek gerilim bulunmasi; bunun yaninda ana besleme hattinda gevseklik, kablo kesiti sorunu veya sebeke dengesizligi bulunmasidir. Ilk kontrolde ana giris, faz-faz ve faz-notr gerilimleri, sigortalar ve yuk altindaki gerilim dusumu birlikte olculur. Bunun teknik sebebi yuksek voltaj elektronik kartlar ve surucu modulleri icin ayri risk yaratir; ayrica uc fazli sogutma ekipmanlari enerji kalitesi bozuldugunda mekanik ariza gibi gorunen davranislar gosterebilir. En sik hata ise sadece cihazin icine bakip besleme hattini ve pano girisini ihmal etmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn ueberspannung anliegt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist im Netz kurzzeitig oder dauerhaft zu hohe Spannung vorhanden ist; zusaetzlich kommen lockere Einspeisung, ungeeigneter Kabelquerschnitt oder Netzinstabilitaet vorliegt vor. Bei der Erstpruefung werden Einspeisung, Phase-Phase- und Phase-N-Werte, Sicherungen und der Spannungsfall unter Last zusammen gemessen. Der technische Hintergrund ist Ueberspannung fuer Regler und Frequenzumrichter ein eigenes Risiko darstellt; ausserdem gilt drei-phasige Kaelteanlagen bei schlechter Energiequalitaet Symptome zeigen koennen, die wie Mechanikfehler aussehen. Ein sehr haeufiger Fehler besteht darin, dass nur ins Geraet zu schauen und Zuleitung sowie Schaltschrank-Einspeisung zu uebersehen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "gevsek klemens ne yapar",
+      "kompresor neden calismiyor"
+    ]
+  },
+  {
+    "id": "electrical_neutral_loss",
+    "tr_subject": "notr kopuklugu ariza yapiyor",
+    "de_subject": "ein neutralleiterfehler stoerungen macht",
+    "keywords": [
+      "notr kopuklugu ariza yapiyor",
+      "ein neutralleiterfehler stoerungen macht",
+      "neutral loss",
+      "notr kopuklugu"
+    ],
+    "tr_questions": [
+      "notr kopuklugu ariza yapiyor neden olur",
+      "notr kopuklugu ariza yapiyor olursa neye bakilir",
+      "notr kopuklugu ariza yapiyor varsa usta once ne kontrol eder",
+      "notr kopuklugu ariza yapiyor arizasinda teshis nasil baslar",
+      "notr kopuklugu ariza yapiyor sorunu nasil cozulur",
+      "notr kopuklugu ariza yapiyor neden tekrar eder",
+      "notr kopuklugu ariza yapiyor oldugunda hangi olcumler yapilir",
+      "notr kopuklugu ariza yapiyor montaj hatasi olabilir mi",
+      "notr kopuklugu ariza yapiyor gorulurse servis sirasi ne olur",
+      "notr kopuklugu ariza yapiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt ein neutralleiterfehler stoerungen macht auf",
+      "worauf schaut man wenn ein neutralleiterfehler stoerungen macht auftritt",
+      "was prueft ein meister zuerst wenn ein neutralleiterfehler stoerungen macht da ist",
+      "wie beginnt die diagnose bei ein neutralleiterfehler stoerungen macht",
+      "wie loest man ein neutralleiterfehler stoerungen macht",
+      "warum kommt ein neutralleiterfehler stoerungen macht immer wieder",
+      "welche messungen macht man bei ein neutralleiterfehler stoerungen macht",
+      "kann montagefehler ein neutralleiterfehler stoerungen macht verursachen",
+      "wie ist die service reihenfolge bei ein neutralleiterfehler stoerungen macht",
+      "was ist der haeufigste fehler bei ein neutralleiterfehler stoerungen macht"
+    ],
+    "tr_answer": "notr kopuklugu ariza yapiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden notr hattinin zayiflamasi veya kopmasi; bunun yaninda ana besleme hattinda gevseklik, kablo kesiti sorunu veya sebeke dengesizligi bulunmasidir. Ilk kontrolde ana giris, faz-faz ve faz-notr gerilimleri, sigortalar ve yuk altindaki gerilim dusumu birlikte olculur. Bunun teknik sebebi ozellikle kontrol devrelerinde notr kaybi rastgele kart ve sensor hatalarina donusebilir; ayrica uc fazli sogutma ekipmanlari enerji kalitesi bozuldugunda mekanik ariza gibi gorunen davranislar gosterebilir. En sik hata ise sadece cihazin icine bakip besleme hattini ve pano girisini ihmal etmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn ein neutralleiterfehler stoerungen macht auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Neutralleiter locker oder unterbrochen ist; zusaetzlich kommen lockere Einspeisung, ungeeigneter Kabelquerschnitt oder Netzinstabilitaet vorliegt vor. Bei der Erstpruefung werden Einspeisung, Phase-Phase- und Phase-N-Werte, Sicherungen und der Spannungsfall unter Last zusammen gemessen. Der technische Hintergrund ist gerade in Steuerkreisen ein Neutralleiterfehler zu scheinbar zufaelligen Karten- und Fuehlerfehlern fuehrt; ausserdem gilt drei-phasige Kaelteanlagen bei schlechter Energiequalitaet Symptome zeigen koennen, die wie Mechanikfehler aussehen. Ein sehr haeufiger Fehler besteht darin, dass nur ins Geraet zu schauen und Zuleitung sowie Schaltschrank-Einspeisung zu uebersehen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "faz sirasi neden onemli",
+      "gevsek klemens ne yapar",
+      "kompresor neden calismiyor"
+    ]
+  },
+  {
+    "id": "electrical_breaker_trip",
+    "tr_subject": "otomatik sigorta atiyor",
+    "de_subject": "der leitungsschutz ausloest",
+    "keywords": [
+      "otomatik sigorta atiyor",
+      "der leitungsschutz ausloest",
+      "breaker trip",
+      "otomatik atiyor"
+    ],
+    "tr_questions": [
+      "otomatik sigorta atiyor neden olur",
+      "otomatik sigorta atiyor olursa neye bakilir",
+      "otomatik sigorta atiyor varsa usta once ne kontrol eder",
+      "otomatik sigorta atiyor arizasinda teshis nasil baslar",
+      "otomatik sigorta atiyor sorunu nasil cozulur",
+      "otomatik sigorta atiyor neden tekrar eder",
+      "otomatik sigorta atiyor oldugunda hangi olcumler yapilir",
+      "otomatik sigorta atiyor montaj hatasi olabilir mi",
+      "otomatik sigorta atiyor gorulurse servis sirasi ne olur",
+      "otomatik sigorta atiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der leitungsschutz ausloest auf",
+      "worauf schaut man wenn der leitungsschutz ausloest auftritt",
+      "was prueft ein meister zuerst wenn der leitungsschutz ausloest da ist",
+      "wie beginnt die diagnose bei der leitungsschutz ausloest",
+      "wie loest man der leitungsschutz ausloest",
+      "warum kommt der leitungsschutz ausloest immer wieder",
+      "welche messungen macht man bei der leitungsschutz ausloest",
+      "kann montagefehler der leitungsschutz ausloest verursachen",
+      "wie ist die service reihenfolge bei der leitungsschutz ausloest",
+      "was ist der haeufigste fehler bei der leitungsschutz ausloest"
+    ],
+    "tr_answer": "otomatik sigorta atiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ani asiri akim veya kisa devre benzeri bir durum olusmasi; bunun yaninda koruma elemanlarinin gercek bir yuk sorununa tepki vermesi veya secim-ayarin yanlis olmasidir. Ilk kontrolde sigorta, otomatik, termik ve kacaga karsi koruma elemanlari gercek olcumlerle karsilastirilir. Bunun teknik sebebi hatta veya motorda anlik zorlanma varsa otomatik ilk tepkiyi verir; ayrica koruma elemani arizanin kendisi degil, sistemin bir yerde zorlandigini gosteren isarettir. En sik hata ise korumayi buyutup sistemi zorla calistirmaya calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der leitungsschutz ausloest auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist eine kurzzeitige Ueberstrom- oder Kurzschlussbedingung entsteht; zusaetzlich kommen Schutzelemente auf eine echte Ueberlast reagieren oder falsch ausgewaehlt bzw. eingestellt sind vor. Bei der Erstpruefung werden Sicherung, Leitungsschutz, Motorschutz und Fehlerstromschutz mit realen Messwerten abgeglichen. Der technische Hintergrund ist der Leitungsschutz bei plötzlicher Ueberlast oder Kurzschluss als erstes reagiert; ausserdem gilt das Schutzelement meist nicht die Ursache, sondern das Warnsignal fuer ein tieferes Problem ist. Ein sehr haeufiger Fehler besteht darin, dass den Schutz groesser zu machen und die Anlage gewaltsam weiterlaufen zu lassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "termik neden atar",
+      "kacak akim rolesi neden atar",
+      "basinc switch neden acilir"
+    ]
+  },
+  {
+    "id": "electrical_fuse_blow",
+    "tr_subject": "eriyen sigorta surekli kopuyor",
+    "de_subject": "die schmelzsicherung immer wieder ausfaellt",
+    "keywords": [
+      "eriyen sigorta surekli kopuyor",
+      "die schmelzsicherung immer wieder ausfaellt",
+      "fuse blow",
+      "eriyen sigorta"
+    ],
+    "tr_questions": [
+      "eriyen sigorta surekli kopuyor neden olur",
+      "eriyen sigorta surekli kopuyor olursa neye bakilir",
+      "eriyen sigorta surekli kopuyor varsa usta once ne kontrol eder",
+      "eriyen sigorta surekli kopuyor arizasinda teshis nasil baslar",
+      "eriyen sigorta surekli kopuyor sorunu nasil cozulur",
+      "eriyen sigorta surekli kopuyor neden tekrar eder",
+      "eriyen sigorta surekli kopuyor oldugunda hangi olcumler yapilir",
+      "eriyen sigorta surekli kopuyor montaj hatasi olabilir mi",
+      "eriyen sigorta surekli kopuyor gorulurse servis sirasi ne olur",
+      "eriyen sigorta surekli kopuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die schmelzsicherung immer wieder ausfaellt auf",
+      "worauf schaut man wenn die schmelzsicherung immer wieder ausfaellt auftritt",
+      "was prueft ein meister zuerst wenn die schmelzsicherung immer wieder ausfaellt da ist",
+      "wie beginnt die diagnose bei die schmelzsicherung immer wieder ausfaellt",
+      "wie loest man die schmelzsicherung immer wieder ausfaellt",
+      "warum kommt die schmelzsicherung immer wieder ausfaellt immer wieder",
+      "welche messungen macht man bei die schmelzsicherung immer wieder ausfaellt",
+      "kann montagefehler die schmelzsicherung immer wieder ausfaellt verursachen",
+      "wie ist die service reihenfolge bei die schmelzsicherung immer wieder ausfaellt",
+      "was ist der haeufigste fehler bei die schmelzsicherung immer wieder ausfaellt"
+    ],
+    "tr_answer": "eriyen sigorta surekli kopuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kisa devreye yakin sert akim cekisi veya yanlış sigorta karakteristigi; bunun yaninda koruma elemanlarinin gercek bir yuk sorununa tepki vermesi veya secim-ayarin yanlis olmasidir. Ilk kontrolde sigorta, otomatik, termik ve kacaga karsi koruma elemanlari gercek olcumlerle karsilastirilir. Bunun teknik sebebi eriyen sigorta yavas degil sert akim darbelerine hassastir; ayrica koruma elemani arizanin kendisi degil, sistemin bir yerde zorlandigini gosteren isarettir. En sik hata ise korumayi buyutup sistemi zorla calistirmaya calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die schmelzsicherung immer wieder ausfaellt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist sehr harter Stromanstieg oder eine unpassende Sicherungscharakteristik; zusaetzlich kommen Schutzelemente auf eine echte Ueberlast reagieren oder falsch ausgewaehlt bzw. eingestellt sind vor. Bei der Erstpruefung werden Sicherung, Leitungsschutz, Motorschutz und Fehlerstromschutz mit realen Messwerten abgeglichen. Der technische Hintergrund ist Schmelzsicherungen besonders empfindlich auf harte Stromspitzen reagieren; ausserdem gilt das Schutzelement meist nicht die Ursache, sondern das Warnsignal fuer ein tieferes Problem ist. Ein sehr haeufiger Fehler besteht darin, dass den Schutz groesser zu machen und die Anlage gewaltsam weiterlaufen zu lassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "termik neden atar",
+      "kacak akim rolesi neden atar",
+      "basinc switch neden acilir"
+    ]
+  },
+  {
+    "id": "electrical_thermal_overload",
+    "tr_subject": "termik role dusuyor",
+    "de_subject": "das motorschutzrelais ausloest",
+    "keywords": [
+      "termik role dusuyor",
+      "das motorschutzrelais ausloest",
+      "thermal overload",
+      "termik role"
+    ],
+    "tr_questions": [
+      "termik role dusuyor neden olur",
+      "termik role dusuyor olursa neye bakilir",
+      "termik role dusuyor varsa usta once ne kontrol eder",
+      "termik role dusuyor arizasinda teshis nasil baslar",
+      "termik role dusuyor sorunu nasil cozulur",
+      "termik role dusuyor neden tekrar eder",
+      "termik role dusuyor oldugunda hangi olcumler yapilir",
+      "termik role dusuyor montaj hatasi olabilir mi",
+      "termik role dusuyor gorulurse servis sirasi ne olur",
+      "termik role dusuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das motorschutzrelais ausloest auf",
+      "worauf schaut man wenn das motorschutzrelais ausloest auftritt",
+      "was prueft ein meister zuerst wenn das motorschutzrelais ausloest da ist",
+      "wie beginnt die diagnose bei das motorschutzrelais ausloest",
+      "wie loest man das motorschutzrelais ausloest",
+      "warum kommt das motorschutzrelais ausloest immer wieder",
+      "welche messungen macht man bei das motorschutzrelais ausloest",
+      "kann montagefehler das motorschutzrelais ausloest verursachen",
+      "wie ist die service reihenfolge bei das motorschutzrelais ausloest",
+      "was ist der haeufigste fehler bei das motorschutzrelais ausloest"
+    ],
+    "tr_answer": "termik role dusuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden motorun izin verilenden fazla akim cekmesi; bunun yaninda koruma elemanlarinin gercek bir yuk sorununa tepki vermesi veya secim-ayarin yanlis olmasidir. Ilk kontrolde sigorta, otomatik, termik ve kacaga karsi koruma elemanlari gercek olcumlerle karsilastirilir. Bunun teknik sebebi termik, sargilarin yanmasini onlemek icin gecikmeli koruma verir; ayrica koruma elemani arizanin kendisi degil, sistemin bir yerde zorlandigini gosteren isarettir. En sik hata ise korumayi buyutup sistemi zorla calistirmaya calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das motorschutzrelais ausloest auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Motor mehr Strom als zulaessig zieht; zusaetzlich kommen Schutzelemente auf eine echte Ueberlast reagieren oder falsch ausgewaehlt bzw. eingestellt sind vor. Bei der Erstpruefung werden Sicherung, Leitungsschutz, Motorschutz und Fehlerstromschutz mit realen Messwerten abgeglichen. Der technische Hintergrund ist das Motorschutzrelais die Wicklung mit einer zeitverzoegerten Schutzlogik schuetzt; ausserdem gilt das Schutzelement meist nicht die Ursache, sondern das Warnsignal fuer ein tieferes Problem ist. Ein sehr haeufiger Fehler besteht darin, dass den Schutz groesser zu machen und die Anlage gewaltsam weiterlaufen zu lassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "termik neden atar",
+      "kacak akim rolesi neden atar",
+      "basinc switch neden acilir"
+    ]
+  },
+  {
+    "id": "electrical_rcd_trip",
+    "tr_subject": "kacak akim rolesi atiyor",
+    "de_subject": "der fehlerstromschutz ausloest",
+    "keywords": [
+      "kacak akim rolesi atiyor",
+      "der fehlerstromschutz ausloest",
+      "rcd trip",
+      "kacak akim"
+    ],
+    "tr_questions": [
+      "kacak akim rolesi atiyor neden olur",
+      "kacak akim rolesi atiyor olursa neye bakilir",
+      "kacak akim rolesi atiyor varsa usta once ne kontrol eder",
+      "kacak akim rolesi atiyor arizasinda teshis nasil baslar",
+      "kacak akim rolesi atiyor sorunu nasil cozulur",
+      "kacak akim rolesi atiyor neden tekrar eder",
+      "kacak akim rolesi atiyor oldugunda hangi olcumler yapilir",
+      "kacak akim rolesi atiyor montaj hatasi olabilir mi",
+      "kacak akim rolesi atiyor gorulurse servis sirasi ne olur",
+      "kacak akim rolesi atiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der fehlerstromschutz ausloest auf",
+      "worauf schaut man wenn der fehlerstromschutz ausloest auftritt",
+      "was prueft ein meister zuerst wenn der fehlerstromschutz ausloest da ist",
+      "wie beginnt die diagnose bei der fehlerstromschutz ausloest",
+      "wie loest man der fehlerstromschutz ausloest",
+      "warum kommt der fehlerstromschutz ausloest immer wieder",
+      "welche messungen macht man bei der fehlerstromschutz ausloest",
+      "kann montagefehler der fehlerstromschutz ausloest verursachen",
+      "wie ist die service reihenfolge bei der fehlerstromschutz ausloest",
+      "was ist der haeufigste fehler bei der fehlerstromschutz ausloest"
+    ],
+    "tr_answer": "kacak akim rolesi atiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden topraga sizan akim veya izolasyon zafiyeti bulunmasi; bunun yaninda koruma elemanlarinin gercek bir yuk sorununa tepki vermesi veya secim-ayarin yanlis olmasidir. Ilk kontrolde sigorta, otomatik, termik ve kacaga karsi koruma elemanlari gercek olcumlerle karsilastirilir. Bunun teknik sebebi yikama, nem ve rezistans kacaklari bu korumayi tetikleyebilir; ayrica koruma elemani arizanin kendisi degil, sistemin bir yerde zorlandigini gosteren isarettir. En sik hata ise korumayi buyutup sistemi zorla calistirmaya calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der fehlerstromschutz ausloest auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Ableitstrom gegen Erde oder ein Isolationsfehler vorliegt; zusaetzlich kommen Schutzelemente auf eine echte Ueberlast reagieren oder falsch ausgewaehlt bzw. eingestellt sind vor. Bei der Erstpruefung werden Sicherung, Leitungsschutz, Motorschutz und Fehlerstromschutz mit realen Messwerten abgeglichen. Der technische Hintergrund ist Reinigung, Feuchte und Heizungsleckstroeme diesen Schutz oft ausloesen; ausserdem gilt das Schutzelement meist nicht die Ursache, sondern das Warnsignal fuer ein tieferes Problem ist. Ein sehr haeufiger Fehler besteht darin, dass den Schutz groesser zu machen und die Anlage gewaltsam weiterlaufen zu lassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "termik neden atar",
+      "kacak akim rolesi neden atar",
+      "basinc switch neden acilir"
+    ]
+  },
+  {
+    "id": "electrical_safety_chain_open",
+    "tr_subject": "emniyet zinciri acik kaldigi icin cihaz calismiyor",
+    "de_subject": "die sicherheitskette offen ist und die anlage nicht startet",
+    "keywords": [
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor",
+      "die sicherheitskette offen ist und die anlage nicht startet",
+      "safety chain",
+      "emniyet zinciri"
+    ],
+    "tr_questions": [
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor neden olur",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor olursa neye bakilir",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor varsa usta once ne kontrol eder",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor arizasinda teshis nasil baslar",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor sorunu nasil cozulur",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor neden tekrar eder",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor oldugunda hangi olcumler yapilir",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor montaj hatasi olabilir mi",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor gorulurse servis sirasi ne olur",
+      "emniyet zinciri acik kaldigi icin cihaz calismiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die sicherheitskette offen ist und die anlage nicht startet auf",
+      "worauf schaut man wenn die sicherheitskette offen ist und die anlage nicht startet auftritt",
+      "was prueft ein meister zuerst wenn die sicherheitskette offen ist und die anlage nicht startet da ist",
+      "wie beginnt die diagnose bei die sicherheitskette offen ist und die anlage nicht startet",
+      "wie loest man die sicherheitskette offen ist und die anlage nicht startet",
+      "warum kommt die sicherheitskette offen ist und die anlage nicht startet immer wieder",
+      "welche messungen macht man bei die sicherheitskette offen ist und die anlage nicht startet",
+      "kann montagefehler die sicherheitskette offen ist und die anlage nicht startet verursachen",
+      "wie ist die service reihenfolge bei die sicherheitskette offen ist und die anlage nicht startet",
+      "was ist der haeufigste fehler bei die sicherheitskette offen ist und die anlage nicht startet"
+    ],
+    "tr_answer": "emniyet zinciri acik kaldigi icin cihaz calismiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden basinc switch, kapi switchi veya acil stop hatti gibi seri emniyetlerden birinin acik olmasi; bunun yaninda koruma elemanlarinin gercek bir yuk sorununa tepki vermesi veya secim-ayarin yanlis olmasidir. Ilk kontrolde sigorta, otomatik, termik ve kacaga karsi koruma elemanlari gercek olcumlerle karsilastirilir. Bunun teknik sebebi seri emniyet zincirinde tek bir kopukluk butun devreyi durdurur; ayrica koruma elemani arizanin kendisi degil, sistemin bir yerde zorlandigini gosteren isarettir. En sik hata ise korumayi buyutup sistemi zorla calistirmaya calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die sicherheitskette offen ist und die anlage nicht startet auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist ein Glied der Sicherheitskette wie Druckschalter, Tuerschalter oder Not-Aus offen ist; zusaetzlich kommen Schutzelemente auf eine echte Ueberlast reagieren oder falsch ausgewaehlt bzw. eingestellt sind vor. Bei der Erstpruefung werden Sicherung, Leitungsschutz, Motorschutz und Fehlerstromschutz mit realen Messwerten abgeglichen. Der technische Hintergrund ist bei einer Serienschaltung schon ein offenes Glied die ganze Anlage sperrt; ausserdem gilt das Schutzelement meist nicht die Ursache, sondern das Warnsignal fuer ein tieferes Problem ist. Ein sehr haeufiger Fehler besteht darin, dass den Schutz groesser zu machen und die Anlage gewaltsam weiterlaufen zu lassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "termik neden atar",
+      "kacak akim rolesi neden atar",
+      "basinc switch neden acilir"
+    ]
+  },
+  {
+    "id": "electrical_contactor_not_pulling",
+    "tr_subject": "kontaktor cekmiyor",
+    "de_subject": "das schuetz nicht anzieht",
+    "keywords": [
+      "kontaktor cekmiyor",
+      "das schuetz nicht anzieht",
+      "contactor",
+      "schuetz zieht nicht"
+    ],
+    "tr_questions": [
+      "kontaktor cekmiyor neden olur",
+      "kontaktor cekmiyor olursa neye bakilir",
+      "kontaktor cekmiyor varsa usta once ne kontrol eder",
+      "kontaktor cekmiyor arizasinda teshis nasil baslar",
+      "kontaktor cekmiyor sorunu nasil cozulur",
+      "kontaktor cekmiyor neden tekrar eder",
+      "kontaktor cekmiyor oldugunda hangi olcumler yapilir",
+      "kontaktor cekmiyor montaj hatasi olabilir mi",
+      "kontaktor cekmiyor gorulurse servis sirasi ne olur",
+      "kontaktor cekmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das schuetz nicht anzieht auf",
+      "worauf schaut man wenn das schuetz nicht anzieht auftritt",
+      "was prueft ein meister zuerst wenn das schuetz nicht anzieht da ist",
+      "wie beginnt die diagnose bei das schuetz nicht anzieht",
+      "wie loest man das schuetz nicht anzieht",
+      "warum kommt das schuetz nicht anzieht immer wieder",
+      "welche messungen macht man bei das schuetz nicht anzieht",
+      "kann montagefehler das schuetz nicht anzieht verursachen",
+      "wie ist die service reihenfolge bei das schuetz nicht anzieht",
+      "was ist der haeufigste fehler bei das schuetz nicht anzieht"
+    ],
+    "tr_answer": "kontaktor cekmiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden bobine komut gelmemesi veya bobinin kopuk olmasi; bunun yaninda start ve anahtarlama ekipmanlarinda mekanik yipranma veya bobin-kontak zayifligi olmasidir. Ilk kontrolde kontaktor sesi, kontak dusumu, bobin gerilimi ve kalkis komponentleri birlikte kontrol edilir. Bunun teknik sebebi kontaktor cekmezse yuk devresi hic kapanmaz; ayrica kompresor ve fanlarin saglikli kalkisi icin anahtarlama zincirinin temiz calismasi gerekir. En sik hata ise sadece motoru suclayip kalkis devresini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das schuetz nicht anzieht auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist keine Spannung an die Spule kommt oder die Spule selbst defekt ist; zusaetzlich kommen mechanischer Verschleiss oder Schwachstellen an Spulen und Kontakten in der Start- und Schaltkette vorliegen vor. Bei der Erstpruefung werden Schuetzgeraeusch, Kontaktabfall, Spulenspannung und Startkomponenten gemeinsam geprueft. Der technische Hintergrund ist ohne anziehendes Schuetz der Lastkreis gar nicht geschlossen wird; ausserdem gilt Verdichter und Ventilatoren nur sauber anlaufen, wenn die Schaltkette elektrisch und mechanisch gesund ist. Ein sehr haeufiger Fehler besteht darin, dass nur den Motor zu verdaechtigen und den Startkreis zu ueberspringen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "zor kalkis neden olur",
+      "kontaktorda neye bakilir"
+    ]
+  },
+  {
+    "id": "electrical_contactor_chatter",
+    "tr_subject": "kontaktor titreyerek cekiyor",
+    "de_subject": "das schuetz flattert",
+    "keywords": [
+      "kontaktor titreyerek cekiyor",
+      "das schuetz flattert",
+      "chatter",
+      "flattern"
+    ],
+    "tr_questions": [
+      "kontaktor titreyerek cekiyor neden olur",
+      "kontaktor titreyerek cekiyor olursa neye bakilir",
+      "kontaktor titreyerek cekiyor varsa usta once ne kontrol eder",
+      "kontaktor titreyerek cekiyor arizasinda teshis nasil baslar",
+      "kontaktor titreyerek cekiyor sorunu nasil cozulur",
+      "kontaktor titreyerek cekiyor neden tekrar eder",
+      "kontaktor titreyerek cekiyor oldugunda hangi olcumler yapilir",
+      "kontaktor titreyerek cekiyor montaj hatasi olabilir mi",
+      "kontaktor titreyerek cekiyor gorulurse servis sirasi ne olur",
+      "kontaktor titreyerek cekiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das schuetz flattert auf",
+      "worauf schaut man wenn das schuetz flattert auftritt",
+      "was prueft ein meister zuerst wenn das schuetz flattert da ist",
+      "wie beginnt die diagnose bei das schuetz flattert",
+      "wie loest man das schuetz flattert",
+      "warum kommt das schuetz flattert immer wieder",
+      "welche messungen macht man bei das schuetz flattert",
+      "kann montagefehler das schuetz flattert verursachen",
+      "wie ist die service reihenfolge bei das schuetz flattert",
+      "was ist der haeufigste fehler bei das schuetz flattert"
+    ],
+    "tr_answer": "kontaktor titreyerek cekiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden bobin geriliminin kararsiz olmasi veya mekanigin kirli-gevsek olmasi; bunun yaninda start ve anahtarlama ekipmanlarinda mekanik yipranma veya bobin-kontak zayifligi olmasidir. Ilk kontrolde kontaktor sesi, kontak dusumu, bobin gerilimi ve kalkis komponentleri birlikte kontrol edilir. Bunun teknik sebebi titreyen kontaktor kontaklari yakip gerilim dusumune yol acar; ayrica kompresor ve fanlarin saglikli kalkisi icin anahtarlama zincirinin temiz calismasi gerekir. En sik hata ise sadece motoru suclayip kalkis devresini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das schuetz flattert auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Spulenspannung instabil ist oder die Mechanik verschmutzt bzw. locker ist; zusaetzlich kommen mechanischer Verschleiss oder Schwachstellen an Spulen und Kontakten in der Start- und Schaltkette vorliegen vor. Bei der Erstpruefung werden Schuetzgeraeusch, Kontaktabfall, Spulenspannung und Startkomponenten gemeinsam geprueft. Der technische Hintergrund ist ein flatterndes Schuetz Kontakte abbrennt und Spannungsabfall erzeugt; ausserdem gilt Verdichter und Ventilatoren nur sauber anlaufen, wenn die Schaltkette elektrisch und mechanisch gesund ist. Ein sehr haeufiger Fehler besteht darin, dass nur den Motor zu verdaechtigen und den Startkreis zu ueberspringen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "zor kalkis neden olur",
+      "kontaktorda neye bakilir"
+    ]
+  },
+  {
+    "id": "electrical_burnt_contacts",
+    "tr_subject": "kontaktor kontaklari yanmis",
+    "de_subject": "die schuetzkontakte verbrannt sind",
+    "keywords": [
+      "kontaktor kontaklari yanmis",
+      "die schuetzkontakte verbrannt sind",
+      "burnt contacts",
+      "yanik kontak"
+    ],
+    "tr_questions": [
+      "kontaktor kontaklari yanmis neden olur",
+      "kontaktor kontaklari yanmis olursa neye bakilir",
+      "kontaktor kontaklari yanmis varsa usta once ne kontrol eder",
+      "kontaktor kontaklari yanmis arizasinda teshis nasil baslar",
+      "kontaktor kontaklari yanmis sorunu nasil cozulur",
+      "kontaktor kontaklari yanmis neden tekrar eder",
+      "kontaktor kontaklari yanmis oldugunda hangi olcumler yapilir",
+      "kontaktor kontaklari yanmis montaj hatasi olabilir mi",
+      "kontaktor kontaklari yanmis gorulurse servis sirasi ne olur",
+      "kontaktor kontaklari yanmis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die schuetzkontakte verbrannt sind auf",
+      "worauf schaut man wenn die schuetzkontakte verbrannt sind auftritt",
+      "was prueft ein meister zuerst wenn die schuetzkontakte verbrannt sind da ist",
+      "wie beginnt die diagnose bei die schuetzkontakte verbrannt sind",
+      "wie loest man die schuetzkontakte verbrannt sind",
+      "warum kommt die schuetzkontakte verbrannt sind immer wieder",
+      "welche messungen macht man bei die schuetzkontakte verbrannt sind",
+      "kann montagefehler die schuetzkontakte verbrannt sind verursachen",
+      "wie ist die service reihenfolge bei die schuetzkontakte verbrannt sind",
+      "was ist der haeufigste fehler bei die schuetzkontakte verbrannt sind"
+    ],
+    "tr_answer": "kontaktor kontaklari yanmis durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden uzun sure yuksek akim, zayif temas veya sık start-stop; bunun yaninda start ve anahtarlama ekipmanlarinda mekanik yipranma veya bobin-kontak zayifligi olmasidir. Ilk kontrolde kontaktor sesi, kontak dusumu, bobin gerilimi ve kalkis komponentleri birlikte kontrol edilir. Bunun teknik sebebi yanik kontaklar disaridan kapali gorunse de yukte ciddi dusum yapar; ayrica kompresor ve fanlarin saglikli kalkisi icin anahtarlama zincirinin temiz calismasi gerekir. En sik hata ise sadece motoru suclayip kalkis devresini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die schuetzkontakte verbrannt sind auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist lange Ueberlast, schlechter Kontakt oder haeufiges Takten; zusaetzlich kommen mechanischer Verschleiss oder Schwachstellen an Spulen und Kontakten in der Start- und Schaltkette vorliegen vor. Bei der Erstpruefung werden Schuetzgeraeusch, Kontaktabfall, Spulenspannung und Startkomponenten gemeinsam geprueft. Der technische Hintergrund ist verbrannte Kontakte auch im geschlossenen Zustand starken Spannungsfall erzeugen; ausserdem gilt Verdichter und Ventilatoren nur sauber anlaufen, wenn die Schaltkette elektrisch und mechanisch gesund ist. Ein sehr haeufiger Fehler besteht darin, dass nur den Motor zu verdaechtigen und den Startkreis zu ueberspringen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "zor kalkis neden olur",
+      "kontaktorda neye bakilir"
+    ]
+  },
+  {
+    "id": "electrical_start_relay_fault",
+    "tr_subject": "kalkis rolesi arizali",
+    "de_subject": "das startrelais stoert",
+    "keywords": [
+      "kalkis rolesi arizali",
+      "das startrelais stoert",
+      "start relay",
+      "kalkis rolesi"
+    ],
+    "tr_questions": [
+      "kalkis rolesi arizali neden olur",
+      "kalkis rolesi arizali olursa neye bakilir",
+      "kalkis rolesi arizali varsa usta once ne kontrol eder",
+      "kalkis rolesi arizali arizasinda teshis nasil baslar",
+      "kalkis rolesi arizali sorunu nasil cozulur",
+      "kalkis rolesi arizali neden tekrar eder",
+      "kalkis rolesi arizali oldugunda hangi olcumler yapilir",
+      "kalkis rolesi arizali montaj hatasi olabilir mi",
+      "kalkis rolesi arizali gorulurse servis sirasi ne olur",
+      "kalkis rolesi arizali icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das startrelais stoert auf",
+      "worauf schaut man wenn das startrelais stoert auftritt",
+      "was prueft ein meister zuerst wenn das startrelais stoert da ist",
+      "wie beginnt die diagnose bei das startrelais stoert",
+      "wie loest man das startrelais stoert",
+      "warum kommt das startrelais stoert immer wieder",
+      "welche messungen macht man bei das startrelais stoert",
+      "kann montagefehler das startrelais stoert verursachen",
+      "wie ist die service reihenfolge bei das startrelais stoert",
+      "was ist der haeufigste fehler bei das startrelais stoert"
+    ],
+    "tr_answer": "kalkis rolesi arizali durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden yardimci sarginin dogru zamanda devreye girip cikmamasi; bunun yaninda start ve anahtarlama ekipmanlarinda mekanik yipranma veya bobin-kontak zayifligi olmasidir. Ilk kontrolde kontaktor sesi, kontak dusumu, bobin gerilimi ve kalkis komponentleri birlikte kontrol edilir. Bunun teknik sebebi tek fazli motorlarda start rolesi kalkisin karakterini belirler; ayrica kompresor ve fanlarin saglikli kalkisi icin anahtarlama zincirinin temiz calismasi gerekir. En sik hata ise sadece motoru suclayip kalkis devresini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das startrelais stoert auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Hilfswicklung nicht zur richtigen Zeit zu- und abgeschaltet wird; zusaetzlich kommen mechanischer Verschleiss oder Schwachstellen an Spulen und Kontakten in der Start- und Schaltkette vorliegen vor. Bei der Erstpruefung werden Schuetzgeraeusch, Kontaktabfall, Spulenspannung und Startkomponenten gemeinsam geprueft. Der technische Hintergrund ist bei einphasigen Motoren das Startrelais den Startcharakter wesentlich bestimmt; ausserdem gilt Verdichter und Ventilatoren nur sauber anlaufen, wenn die Schaltkette elektrisch und mechanisch gesund ist. Ein sehr haeufiger Fehler besteht darin, dass nur den Motor zu verdaechtigen und den Startkreis zu ueberspringen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "zor kalkis neden olur",
+      "kontaktorda neye bakilir"
+    ]
+  },
+  {
+    "id": "electrical_start_capacitor_fault",
+    "tr_subject": "kalkis kapasitörü zayif",
+    "de_subject": "der startkondensator schwach ist",
+    "keywords": [
+      "kalkis kapasitörü zayif",
+      "der startkondensator schwach ist",
+      "start capacitor",
+      "kondansator zayif"
+    ],
+    "tr_questions": [
+      "kalkis kapasitörü zayif neden olur",
+      "kalkis kapasitörü zayif olursa neye bakilir",
+      "kalkis kapasitörü zayif varsa usta once ne kontrol eder",
+      "kalkis kapasitörü zayif arizasinda teshis nasil baslar",
+      "kalkis kapasitörü zayif sorunu nasil cozulur",
+      "kalkis kapasitörü zayif neden tekrar eder",
+      "kalkis kapasitörü zayif oldugunda hangi olcumler yapilir",
+      "kalkis kapasitörü zayif montaj hatasi olabilir mi",
+      "kalkis kapasitörü zayif gorulurse servis sirasi ne olur",
+      "kalkis kapasitörü zayif icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der startkondensator schwach ist auf",
+      "worauf schaut man wenn der startkondensator schwach ist auftritt",
+      "was prueft ein meister zuerst wenn der startkondensator schwach ist da ist",
+      "wie beginnt die diagnose bei der startkondensator schwach ist",
+      "wie loest man der startkondensator schwach ist",
+      "warum kommt der startkondensator schwach ist immer wieder",
+      "welche messungen macht man bei der startkondensator schwach ist",
+      "kann montagefehler der startkondensator schwach ist verursachen",
+      "wie ist die service reihenfolge bei der startkondensator schwach ist",
+      "was ist der haeufigste fehler bei der startkondensator schwach ist"
+    ],
+    "tr_answer": "kalkis kapasitörü zayif durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kapasitor degerinin dusmesi veya tamamen bozulmasi; bunun yaninda start ve anahtarlama ekipmanlarinda mekanik yipranma veya bobin-kontak zayifligi olmasidir. Ilk kontrolde kontaktor sesi, kontak dusumu, bobin gerilimi ve kalkis komponentleri birlikte kontrol edilir. Bunun teknik sebebi zayif kapasitör motoru dondurmez, sadece homurdanmaya iter; ayrica kompresor ve fanlarin saglikli kalkisi icin anahtarlama zincirinin temiz calismasi gerekir. En sik hata ise sadece motoru suclayip kalkis devresini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der startkondensator schwach ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Kondensatorwert abgesunken oder ganz ausgefallen ist; zusaetzlich kommen mechanischer Verschleiss oder Schwachstellen an Spulen und Kontakten in der Start- und Schaltkette vorliegen vor. Bei der Erstpruefung werden Schuetzgeraeusch, Kontaktabfall, Spulenspannung und Startkomponenten gemeinsam geprueft. Der technische Hintergrund ist ein schwacher Kondensator den Motor nicht sauber anzieht, sondern nur schwer anlaufen laesst; ausserdem gilt Verdichter und Ventilatoren nur sauber anlaufen, wenn die Schaltkette elektrisch und mechanisch gesund ist. Ein sehr haeufiger Fehler besteht darin, dass nur den Motor zu verdaechtigen und den Startkreis zu ueberspringen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kompresor neden calismiyor",
+      "zor kalkis neden olur",
+      "kontaktorda neye bakilir"
+    ]
+  },
+  {
+    "id": "electrical_fan_winding_fault",
+    "tr_subject": "fan motor sargisi sorunlu",
+    "de_subject": "die ventilatorwicklung defekt ist",
+    "keywords": [
+      "fan motor sargisi sorunlu",
+      "die ventilatorwicklung defekt ist",
+      "fan winding",
+      "motor sargisi"
+    ],
+    "tr_questions": [
+      "fan motor sargisi sorunlu neden olur",
+      "fan motor sargisi sorunlu olursa neye bakilir",
+      "fan motor sargisi sorunlu varsa usta once ne kontrol eder",
+      "fan motor sargisi sorunlu arizasinda teshis nasil baslar",
+      "fan motor sargisi sorunlu sorunu nasil cozulur",
+      "fan motor sargisi sorunlu neden tekrar eder",
+      "fan motor sargisi sorunlu oldugunda hangi olcumler yapilir",
+      "fan motor sargisi sorunlu montaj hatasi olabilir mi",
+      "fan motor sargisi sorunlu gorulurse servis sirasi ne olur",
+      "fan motor sargisi sorunlu icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die ventilatorwicklung defekt ist auf",
+      "worauf schaut man wenn die ventilatorwicklung defekt ist auftritt",
+      "was prueft ein meister zuerst wenn die ventilatorwicklung defekt ist da ist",
+      "wie beginnt die diagnose bei die ventilatorwicklung defekt ist",
+      "wie loest man die ventilatorwicklung defekt ist",
+      "warum kommt die ventilatorwicklung defekt ist immer wieder",
+      "welche messungen macht man bei die ventilatorwicklung defekt ist",
+      "kann montagefehler die ventilatorwicklung defekt ist verursachen",
+      "wie ist die service reihenfolge bei die ventilatorwicklung defekt ist",
+      "was ist der haeufigste fehler bei die ventilatorwicklung defekt ist"
+    ],
+    "tr_answer": "fan motor sargisi sorunlu durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden motor sargisinda kismi yanik veya dengesiz direnç olmasi; bunun yaninda fan ve yardimci motor grubunda sargi, rulman veya donus problemi bulunmasidir. Ilk kontrolde motor akimi, rulman sesi, serbest donus ve hava karakteri birlikte izlenir. Bunun teknik sebebi sargi hatasi motorun hem akimini hem torkunu bozar; ayrica motor grubu bozuldugunda elektrik arizasi hava tarafina yansir ve sogutma performansi da duser. En sik hata ise fan donuyor diye saglikli saymaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die ventilatorwicklung defekt ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Motorwicklung teilgeschaedigt ist oder ungleichmaessige Widerstaende zeigt; zusaetzlich kommen an Ventilatoren und Hilfsmotoren Wicklungs-, Lager- oder Drehrichtungsprobleme auftreten vor. Bei der Erstpruefung werden Motorstrom, Lagergeraeusch, freie Drehbarkeit und Luftbild gemeinsam beobachtet werden. Der technische Hintergrund ist ein Wicklungsfehler Stromaufnahme und Drehmoment gleichzeitig stoert; ausserdem gilt Motorprobleme auf der Luftseite direkt in Kuehlleistungsprobleme uebersetzen. Ein sehr haeufiger Fehler besteht darin, dass den Ventilator allein wegen Drehung fuer gesund zu halten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "fan neden donmuyor",
+      "yanlis fan yonu ne yapar",
+      "motor rulmani nasil anlasilir"
+    ]
+  },
+  {
+    "id": "electrical_motor_wrong_rotation",
+    "tr_subject": "motor ters yonde donuyor",
+    "de_subject": "der motor falsch herum laeuft",
+    "keywords": [
+      "motor ters yonde donuyor",
+      "der motor falsch herum laeuft",
+      "wrong rotation",
+      "ters donus"
+    ],
+    "tr_questions": [
+      "motor ters yonde donuyor neden olur",
+      "motor ters yonde donuyor olursa neye bakilir",
+      "motor ters yonde donuyor varsa usta once ne kontrol eder",
+      "motor ters yonde donuyor arizasinda teshis nasil baslar",
+      "motor ters yonde donuyor sorunu nasil cozulur",
+      "motor ters yonde donuyor neden tekrar eder",
+      "motor ters yonde donuyor oldugunda hangi olcumler yapilir",
+      "motor ters yonde donuyor montaj hatasi olabilir mi",
+      "motor ters yonde donuyor gorulurse servis sirasi ne olur",
+      "motor ters yonde donuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der motor falsch herum laeuft auf",
+      "worauf schaut man wenn der motor falsch herum laeuft auftritt",
+      "was prueft ein meister zuerst wenn der motor falsch herum laeuft da ist",
+      "wie beginnt die diagnose bei der motor falsch herum laeuft",
+      "wie loest man der motor falsch herum laeuft",
+      "warum kommt der motor falsch herum laeuft immer wieder",
+      "welche messungen macht man bei der motor falsch herum laeuft",
+      "kann montagefehler der motor falsch herum laeuft verursachen",
+      "wie ist die service reihenfolge bei der motor falsch herum laeuft",
+      "was ist der haeufigste fehler bei der motor falsch herum laeuft"
+    ],
+    "tr_answer": "motor ters yonde donuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden faz sirasi veya kablolama nedeniyle donus yonunun ters gelmesi; bunun yaninda fan ve yardimci motor grubunda sargi, rulman veya donus problemi bulunmasidir. Ilk kontrolde motor akimi, rulman sesi, serbest donus ve hava karakteri birlikte izlenir. Bunun teknik sebebi ters donus hava akisini bozar ve bazen motoru saglikli gosterdigi halde isi bozabilir; ayrica motor grubu bozuldugunda elektrik arizasi hava tarafina yansir ve sogutma performansi da duser. En sik hata ise fan donuyor diye saglikli saymaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der motor falsch herum laeuft auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Phasenfolge oder Verdrahtung die Drehrichtung vertauscht wurde; zusaetzlich kommen an Ventilatoren und Hilfsmotoren Wicklungs-, Lager- oder Drehrichtungsprobleme auftreten vor. Bei der Erstpruefung werden Motorstrom, Lagergeraeusch, freie Drehbarkeit und Luftbild gemeinsam beobachtet werden. Der technische Hintergrund ist falsche Drehrichtung den Luftstrom zerstoert und trotz laufendem Motor den Prozess stoert; ausserdem gilt Motorprobleme auf der Luftseite direkt in Kuehlleistungsprobleme uebersetzen. Ein sehr haeufiger Fehler besteht darin, dass den Ventilator allein wegen Drehung fuer gesund zu halten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "fan neden donmuyor",
+      "yanlis fan yonu ne yapar",
+      "motor rulmani nasil anlasilir"
+    ]
+  },
+  {
+    "id": "electrical_motor_bearing_seize",
+    "tr_subject": "motor rulmani sikişiyor",
+    "de_subject": "das motorlager festgeht",
+    "keywords": [
+      "motor rulmani sikişiyor",
+      "das motorlager festgeht",
+      "bearing seize",
+      "rulman"
+    ],
+    "tr_questions": [
+      "motor rulmani sikişiyor neden olur",
+      "motor rulmani sikişiyor olursa neye bakilir",
+      "motor rulmani sikişiyor varsa usta once ne kontrol eder",
+      "motor rulmani sikişiyor arizasinda teshis nasil baslar",
+      "motor rulmani sikişiyor sorunu nasil cozulur",
+      "motor rulmani sikişiyor neden tekrar eder",
+      "motor rulmani sikişiyor oldugunda hangi olcumler yapilir",
+      "motor rulmani sikişiyor montaj hatasi olabilir mi",
+      "motor rulmani sikişiyor gorulurse servis sirasi ne olur",
+      "motor rulmani sikişiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das motorlager festgeht auf",
+      "worauf schaut man wenn das motorlager festgeht auftritt",
+      "was prueft ein meister zuerst wenn das motorlager festgeht da ist",
+      "wie beginnt die diagnose bei das motorlager festgeht",
+      "wie loest man das motorlager festgeht",
+      "warum kommt das motorlager festgeht immer wieder",
+      "welche messungen macht man bei das motorlager festgeht",
+      "kann montagefehler das motorlager festgeht verursachen",
+      "wie ist die service reihenfolge bei das motorlager festgeht",
+      "was ist der haeufigste fehler bei das motorlager festgeht"
+    ],
+    "tr_answer": "motor rulmani sikişiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden rulman yorgunlugu veya su-nem nedeniyle mekanik surtunme artmasi; bunun yaninda fan ve yardimci motor grubunda sargi, rulman veya donus problemi bulunmasidir. Ilk kontrolde motor akimi, rulman sesi, serbest donus ve hava karakteri birlikte izlenir. Bunun teknik sebebi mekanik sıkisma elektriksel olarak fazla akim ve ses olarak geri doner; ayrica motor grubu bozuldugunda elektrik arizasi hava tarafina yansir ve sogutma performansi da duser. En sik hata ise fan donuyor diye saglikli saymaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das motorlager festgeht auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Lagerschaden oder mechanische Reibung durch Wasser und Feuchte zunimmt; zusaetzlich kommen an Ventilatoren und Hilfsmotoren Wicklungs-, Lager- oder Drehrichtungsprobleme auftreten vor. Bei der Erstpruefung werden Motorstrom, Lagergeraeusch, freie Drehbarkeit und Luftbild gemeinsam beobachtet werden. Der technische Hintergrund ist mechanisches Klemmen elektrisch als hoher Strom und akustisch als Geraeusch sichtbar wird; ausserdem gilt Motorprobleme auf der Luftseite direkt in Kuehlleistungsprobleme uebersetzen. Ein sehr haeufiger Fehler besteht darin, dass den Ventilator allein wegen Drehung fuer gesund zu halten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "fan neden donmuyor",
+      "yanlis fan yonu ne yapar",
+      "motor rulmani nasil anlasilir"
+    ]
+  },
+  {
+    "id": "electrical_fan_ice_block",
+    "tr_subject": "fan buzdan kilitleniyor",
+    "de_subject": "der ventilator durch eis blockiert",
+    "keywords": [
+      "fan buzdan kilitleniyor",
+      "der ventilator durch eis blockiert",
+      "fan ice block",
+      "fan buz kilidi"
+    ],
+    "tr_questions": [
+      "fan buzdan kilitleniyor neden olur",
+      "fan buzdan kilitleniyor olursa neye bakilir",
+      "fan buzdan kilitleniyor varsa usta once ne kontrol eder",
+      "fan buzdan kilitleniyor arizasinda teshis nasil baslar",
+      "fan buzdan kilitleniyor sorunu nasil cozulur",
+      "fan buzdan kilitleniyor neden tekrar eder",
+      "fan buzdan kilitleniyor oldugunda hangi olcumler yapilir",
+      "fan buzdan kilitleniyor montaj hatasi olabilir mi",
+      "fan buzdan kilitleniyor gorulurse servis sirasi ne olur",
+      "fan buzdan kilitleniyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der ventilator durch eis blockiert auf",
+      "worauf schaut man wenn der ventilator durch eis blockiert auftritt",
+      "was prueft ein meister zuerst wenn der ventilator durch eis blockiert da ist",
+      "wie beginnt die diagnose bei der ventilator durch eis blockiert",
+      "wie loest man der ventilator durch eis blockiert",
+      "warum kommt der ventilator durch eis blockiert immer wieder",
+      "welche messungen macht man bei der ventilator durch eis blockiert",
+      "kann montagefehler der ventilator durch eis blockiert verursachen",
+      "wie ist die service reihenfolge bei der ventilator durch eis blockiert",
+      "was ist der haeufigste fehler bei der ventilator durch eis blockiert"
+    ],
+    "tr_answer": "fan buzdan kilitleniyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden defrost ve drenaj sorunu yuzunden kanat veya koruma telinde buz birikmesi; bunun yaninda fan ve yardimci motor grubunda sargi, rulman veya donus problemi bulunmasidir. Ilk kontrolde motor akimi, rulman sesi, serbest donus ve hava karakteri birlikte izlenir. Bunun teknik sebebi buz kilidi motoru elektriksel ariza gibi gosterebilir ama kok neden hava-nem tarafidir; ayrica motor grubu bozuldugunda elektrik arizasi hava tarafina yansir ve sogutma performansi da duser. En sik hata ise fan donuyor diye saglikli saymaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der ventilator durch eis blockiert auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Abtau- oder Ablaufprobleme Eis an Schaufel oder Schutzgitter entsteht; zusaetzlich kommen an Ventilatoren und Hilfsmotoren Wicklungs-, Lager- oder Drehrichtungsprobleme auftreten vor. Bei der Erstpruefung werden Motorstrom, Lagergeraeusch, freie Drehbarkeit und Luftbild gemeinsam beobachtet werden. Der technische Hintergrund ist eine Eisblockade wie ein Elektrofehler wirken kann, obwohl die Grundursache an Feuchte und Luft liegt; ausserdem gilt Motorprobleme auf der Luftseite direkt in Kuehlleistungsprobleme uebersetzen. Ein sehr haeufiger Fehler besteht darin, dass den Ventilator allein wegen Drehung fuer gesund zu halten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "fan neden donmuyor",
+      "yanlis fan yonu ne yapar",
+      "motor rulmani nasil anlasilir"
+    ]
+  },
+  {
+    "id": "electrical_condenser_fan_cycle_fault",
+    "tr_subject": "kondenser fan devreye yanlis giriyor",
+    "de_subject": "der verfluessiger ventilator falsch schaltet",
+    "keywords": [
+      "kondenser fan devreye yanlis giriyor",
+      "der verfluessiger ventilator falsch schaltet",
+      "fan cycle",
+      "cond fan control"
+    ],
+    "tr_questions": [
+      "kondenser fan devreye yanlis giriyor neden olur",
+      "kondenser fan devreye yanlis giriyor olursa neye bakilir",
+      "kondenser fan devreye yanlis giriyor varsa usta once ne kontrol eder",
+      "kondenser fan devreye yanlis giriyor arizasinda teshis nasil baslar",
+      "kondenser fan devreye yanlis giriyor sorunu nasil cozulur",
+      "kondenser fan devreye yanlis giriyor neden tekrar eder",
+      "kondenser fan devreye yanlis giriyor oldugunda hangi olcumler yapilir",
+      "kondenser fan devreye yanlis giriyor montaj hatasi olabilir mi",
+      "kondenser fan devreye yanlis giriyor gorulurse servis sirasi ne olur",
+      "kondenser fan devreye yanlis giriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der verfluessiger ventilator falsch schaltet auf",
+      "worauf schaut man wenn der verfluessiger ventilator falsch schaltet auftritt",
+      "was prueft ein meister zuerst wenn der verfluessiger ventilator falsch schaltet da ist",
+      "wie beginnt die diagnose bei der verfluessiger ventilator falsch schaltet",
+      "wie loest man der verfluessiger ventilator falsch schaltet",
+      "warum kommt der verfluessiger ventilator falsch schaltet immer wieder",
+      "welche messungen macht man bei der verfluessiger ventilator falsch schaltet",
+      "kann montagefehler der verfluessiger ventilator falsch schaltet verursachen",
+      "wie ist die service reihenfolge bei der verfluessiger ventilator falsch schaltet",
+      "was ist der haeufigste fehler bei der verfluessiger ventilator falsch schaltet"
+    ],
+    "tr_answer": "kondenser fan devreye yanlis giriyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden fan kontrol basincina veya role lojigine uygun calismamasi; bunun yaninda fan ve yardimci motor grubunda sargi, rulman veya donus problemi bulunmasidir. Ilk kontrolde motor akimi, rulman sesi, serbest donus ve hava karakteri birlikte izlenir. Bunun teknik sebebi yanlis fan sekansi basinç dalgalanmasi ve enerji kaybina yol acar; ayrica motor grubu bozuldugunda elektrik arizasi hava tarafina yansir ve sogutma performansi da duser. En sik hata ise fan donuyor diye saglikli saymaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der verfluessiger ventilator falsch schaltet auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Ventilator nicht passend zu Druckschalter oder Regelrelais arbeitet; zusaetzlich kommen an Ventilatoren und Hilfsmotoren Wicklungs-, Lager- oder Drehrichtungsprobleme auftreten vor. Bei der Erstpruefung werden Motorstrom, Lagergeraeusch, freie Drehbarkeit und Luftbild gemeinsam beobachtet werden. Der technische Hintergrund ist falsche Ventilatorzyklen starke Druckschwankungen und Energieverluste erzeugen; ausserdem gilt Motorprobleme auf der Luftseite direkt in Kuehlleistungsprobleme uebersetzen. Ein sehr haeufiger Fehler besteht darin, dass den Ventilator allein wegen Drehung fuer gesund zu halten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "fan neden donmuyor",
+      "yanlis fan yonu ne yapar",
+      "motor rulmani nasil anlasilir"
+    ]
+  },
+  {
+    "id": "electrical_controller_no_power",
+    "tr_subject": "kontrolor acilmiyor",
+    "de_subject": "der regler keine spannung hat",
+    "keywords": [
+      "kontrolor acilmiyor",
+      "der regler keine spannung hat",
+      "controller no power",
+      "regler tot"
+    ],
+    "tr_questions": [
+      "kontrolor acilmiyor neden olur",
+      "kontrolor acilmiyor olursa neye bakilir",
+      "kontrolor acilmiyor varsa usta once ne kontrol eder",
+      "kontrolor acilmiyor arizasinda teshis nasil baslar",
+      "kontrolor acilmiyor sorunu nasil cozulur",
+      "kontrolor acilmiyor neden tekrar eder",
+      "kontrolor acilmiyor oldugunda hangi olcumler yapilir",
+      "kontrolor acilmiyor montaj hatasi olabilir mi",
+      "kontrolor acilmiyor gorulurse servis sirasi ne olur",
+      "kontrolor acilmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der regler keine spannung hat auf",
+      "worauf schaut man wenn der regler keine spannung hat auftritt",
+      "was prueft ein meister zuerst wenn der regler keine spannung hat da ist",
+      "wie beginnt die diagnose bei der regler keine spannung hat",
+      "wie loest man der regler keine spannung hat",
+      "warum kommt der regler keine spannung hat immer wieder",
+      "welche messungen macht man bei der regler keine spannung hat",
+      "kann montagefehler der regler keine spannung hat verursachen",
+      "wie ist die service reihenfolge bei der regler keine spannung hat",
+      "was ist der haeufigste fehler bei der regler keine spannung hat"
+    ],
+    "tr_answer": "kontrolor acilmiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kontrolore gelen yardimci beslemenin kesik olmasi; bunun yaninda kontrol beslemesinde 24V veya yardimci besleme hatalari bulunmasidir. Ilk kontrolde kontrolor beslemesi, trafo, SMPS ve dusuk gerilim devreleri yuk altinda olculur. Bunun teknik sebebi regler acilmadan diger cikislarin hicbiri mantikli davranmaz; ayrica dijital kontrol tarafi zayiflarsa saha arizasi rastgele ve tutarsiz gorunebilir. En sik hata ise sadece ana guce bakip kumanda gerilimini unutmak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der regler keine spannung hat auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Hilfsversorgung des Reglers unterbrochen ist; zusaetzlich kommen im Steuerkreis 24V- oder Hilfsversorgungsausfaelle auftreten vor. Bei der Erstpruefung werden Reglerversorgung, Trafo, Netzteil und Kleinspannungskreise unter Last gemessen. Der technische Hintergrund ist ohne aktiven Regler keine Ausgangsstufe sauber arbeiten kann; ausserdem gilt eine schwache Steuerversorgung zu scheinbar zufaelligen und wechselnden Fehlerbildern fuehrt. Ein sehr haeufiger Fehler besteht darin, dass nur die Hauptspannung zu sehen und die Steuerspannung zu vergessen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kontrolor neden acilmiyor",
+      "24v neden duser",
+      "trafo nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "electrical_24v_supply_sag",
+    "tr_subject": "24 volt besleme cökuyor",
+    "de_subject": "die 24-volt versorgung einbricht",
+    "keywords": [
+      "24 volt besleme cökuyor",
+      "die 24-volt versorgung einbricht",
+      "24v sag",
+      "control voltage low"
+    ],
+    "tr_questions": [
+      "24 volt besleme cökuyor neden olur",
+      "24 volt besleme cökuyor olursa neye bakilir",
+      "24 volt besleme cökuyor varsa usta once ne kontrol eder",
+      "24 volt besleme cökuyor arizasinda teshis nasil baslar",
+      "24 volt besleme cökuyor sorunu nasil cozulur",
+      "24 volt besleme cökuyor neden tekrar eder",
+      "24 volt besleme cökuyor oldugunda hangi olcumler yapilir",
+      "24 volt besleme cökuyor montaj hatasi olabilir mi",
+      "24 volt besleme cökuyor gorulurse servis sirasi ne olur",
+      "24 volt besleme cökuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die 24-volt versorgung einbricht auf",
+      "worauf schaut man wenn die 24-volt versorgung einbricht auftritt",
+      "was prueft ein meister zuerst wenn die 24-volt versorgung einbricht da ist",
+      "wie beginnt die diagnose bei die 24-volt versorgung einbricht",
+      "wie loest man die 24-volt versorgung einbricht",
+      "warum kommt die 24-volt versorgung einbricht immer wieder",
+      "welche messungen macht man bei die 24-volt versorgung einbricht",
+      "kann montagefehler die 24-volt versorgung einbricht verursachen",
+      "wie ist die service reihenfolge bei die 24-volt versorgung einbricht",
+      "was ist der haeufigste fehler bei die 24-volt versorgung einbricht"
+    ],
+    "tr_answer": "24 volt besleme cökuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden yardimci guc kaynagi yukte degeri tutamiyor; bunun yaninda kontrol beslemesinde 24V veya yardimci besleme hatalari bulunmasidir. Ilk kontrolde kontrolor beslemesi, trafo, SMPS ve dusuk gerilim devreleri yuk altinda olculur. Bunun teknik sebebi 24V cokerse sensor, role ve kart lojigi rastgele hata vermeye baslar; ayrica dijital kontrol tarafi zayiflarsa saha arizasi rastgele ve tutarsiz gorunebilir. En sik hata ise sadece ana guce bakip kumanda gerilimini unutmak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die 24-volt versorgung einbricht auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist das Hilfsnetzteil die Spannung unter Last nicht halten kann; zusaetzlich kommen im Steuerkreis 24V- oder Hilfsversorgungsausfaelle auftreten vor. Bei der Erstpruefung werden Reglerversorgung, Trafo, Netzteil und Kleinspannungskreise unter Last gemessen. Der technische Hintergrund ist ein Einbruch der 24V-Versorgung Sensorik, Relais und Logik gleichzeitig stoeren kann; ausserdem gilt eine schwache Steuerversorgung zu scheinbar zufaelligen und wechselnden Fehlerbildern fuehrt. Ein sehr haeufiger Fehler besteht darin, dass nur die Hauptspannung zu sehen und die Steuerspannung zu vergessen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kontrolor neden acilmiyor",
+      "24v neden duser",
+      "trafo nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "electrical_transformer_fault",
+    "tr_subject": "kumanda trafosu arizali",
+    "de_subject": "der steuertrafo defekt ist",
+    "keywords": [
+      "kumanda trafosu arizali",
+      "der steuertrafo defekt ist",
+      "control transformer",
+      "steuertrafo"
+    ],
+    "tr_questions": [
+      "kumanda trafosu arizali neden olur",
+      "kumanda trafosu arizali olursa neye bakilir",
+      "kumanda trafosu arizali varsa usta once ne kontrol eder",
+      "kumanda trafosu arizali arizasinda teshis nasil baslar",
+      "kumanda trafosu arizali sorunu nasil cozulur",
+      "kumanda trafosu arizali neden tekrar eder",
+      "kumanda trafosu arizali oldugunda hangi olcumler yapilir",
+      "kumanda trafosu arizali montaj hatasi olabilir mi",
+      "kumanda trafosu arizali gorulurse servis sirasi ne olur",
+      "kumanda trafosu arizali icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der steuertrafo defekt ist auf",
+      "worauf schaut man wenn der steuertrafo defekt ist auftritt",
+      "was prueft ein meister zuerst wenn der steuertrafo defekt ist da ist",
+      "wie beginnt die diagnose bei der steuertrafo defekt ist",
+      "wie loest man der steuertrafo defekt ist",
+      "warum kommt der steuertrafo defekt ist immer wieder",
+      "welche messungen macht man bei der steuertrafo defekt ist",
+      "kann montagefehler der steuertrafo defekt ist verursachen",
+      "wie ist die service reihenfolge bei der steuertrafo defekt ist",
+      "was ist der haeufigste fehler bei der steuertrafo defekt ist"
+    ],
+    "tr_answer": "kumanda trafosu arizali durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden trafo sargisinin isinma, yaslanma veya kisa devreyle bozulmasi; bunun yaninda kontrol beslemesinde 24V veya yardimci besleme hatalari bulunmasidir. Ilk kontrolde kontrolor beslemesi, trafo, SMPS ve dusuk gerilim devreleri yuk altinda olculur. Bunun teknik sebebi trafo arizasi bazen bosta normal, yukte bozuk davranis verebilir; ayrica dijital kontrol tarafi zayiflarsa saha arizasi rastgele ve tutarsiz gorunebilir. En sik hata ise sadece ana guce bakip kumanda gerilimini unutmak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der steuertrafo defekt ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Trafowicklung durch Hitze, Alterung oder Kurzschluss geschaedigt ist; zusaetzlich kommen im Steuerkreis 24V- oder Hilfsversorgungsausfaelle auftreten vor. Bei der Erstpruefung werden Reglerversorgung, Trafo, Netzteil und Kleinspannungskreise unter Last gemessen. Der technische Hintergrund ist ein defekter Trafo im Leerlauf noch plausibel wirken, unter Last aber zusammenbrechen kann; ausserdem gilt eine schwache Steuerversorgung zu scheinbar zufaelligen und wechselnden Fehlerbildern fuehrt. Ein sehr haeufiger Fehler besteht darin, dass nur die Hauptspannung zu sehen und die Steuerspannung zu vergessen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kontrolor neden acilmiyor",
+      "24v neden duser",
+      "trafo nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "electrical_backup_battery_loss",
+    "tr_subject": "saat ve hafiza ayarlari gidiyor",
+    "de_subject": "uhr und speicher verlieren ihre daten",
+    "keywords": [
+      "saat ve hafiza ayarlari gidiyor",
+      "uhr und speicher verlieren ihre daten",
+      "rtc battery",
+      "hafiza gidiyor"
+    ],
+    "tr_questions": [
+      "saat ve hafiza ayarlari gidiyor neden olur",
+      "saat ve hafiza ayarlari gidiyor olursa neye bakilir",
+      "saat ve hafiza ayarlari gidiyor varsa usta once ne kontrol eder",
+      "saat ve hafiza ayarlari gidiyor arizasinda teshis nasil baslar",
+      "saat ve hafiza ayarlari gidiyor sorunu nasil cozulur",
+      "saat ve hafiza ayarlari gidiyor neden tekrar eder",
+      "saat ve hafiza ayarlari gidiyor oldugunda hangi olcumler yapilir",
+      "saat ve hafiza ayarlari gidiyor montaj hatasi olabilir mi",
+      "saat ve hafiza ayarlari gidiyor gorulurse servis sirasi ne olur",
+      "saat ve hafiza ayarlari gidiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt uhr und speicher verlieren ihre daten auf",
+      "worauf schaut man wenn uhr und speicher verlieren ihre daten auftritt",
+      "was prueft ein meister zuerst wenn uhr und speicher verlieren ihre daten da ist",
+      "wie beginnt die diagnose bei uhr und speicher verlieren ihre daten",
+      "wie loest man uhr und speicher verlieren ihre daten",
+      "warum kommt uhr und speicher verlieren ihre daten immer wieder",
+      "welche messungen macht man bei uhr und speicher verlieren ihre daten",
+      "kann montagefehler uhr und speicher verlieren ihre daten verursachen",
+      "wie ist die service reihenfolge bei uhr und speicher verlieren ihre daten",
+      "was ist der haeufigste fehler bei uhr und speicher verlieren ihre daten"
+    ],
+    "tr_answer": "saat ve hafiza ayarlari gidiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ic pil, hafiza veya saat modulu degerini koruyamiyor; bunun yaninda kontrol beslemesinde 24V veya yardimci besleme hatalari bulunmasidir. Ilk kontrolde kontrolor beslemesi, trafo, SMPS ve dusuk gerilim devreleri yuk altinda olculur. Bunun teknik sebebi zaman kaybi özellikle defrost ve gece-gunduz programlarini bozar; ayrica dijital kontrol tarafi zayiflarsa saha arizasi rastgele ve tutarsiz gorunebilir. En sik hata ise sadece ana guce bakip kumanda gerilimini unutmak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn uhr und speicher verlieren ihre daten auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Batterie, Speicher oder Echtzeituhr die Daten nicht halten; zusaetzlich kommen im Steuerkreis 24V- oder Hilfsversorgungsausfaelle auftreten vor. Bei der Erstpruefung werden Reglerversorgung, Trafo, Netzteil und Kleinspannungskreise unter Last gemessen. Der technische Hintergrund ist Zeitverlust besonders Abtau- und Tagesprogramme zerstoert; ausserdem gilt eine schwache Steuerversorgung zu scheinbar zufaelligen und wechselnden Fehlerbildern fuehrt. Ein sehr haeufiger Fehler besteht darin, dass nur die Hauptspannung zu sehen und die Steuerspannung zu vergessen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kontrolor neden acilmiyor",
+      "24v neden duser",
+      "trafo nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "electrical_digital_input_flap",
+    "tr_subject": "dijital giris sinyali titriyor",
+    "de_subject": "das digitale eingangssignal flattert",
+    "keywords": [
+      "dijital giris sinyali titriyor",
+      "das digitale eingangssignal flattert",
+      "digital input bounce",
+      "input flicker"
+    ],
+    "tr_questions": [
+      "dijital giris sinyali titriyor neden olur",
+      "dijital giris sinyali titriyor olursa neye bakilir",
+      "dijital giris sinyali titriyor varsa usta once ne kontrol eder",
+      "dijital giris sinyali titriyor arizasinda teshis nasil baslar",
+      "dijital giris sinyali titriyor sorunu nasil cozulur",
+      "dijital giris sinyali titriyor neden tekrar eder",
+      "dijital giris sinyali titriyor oldugunda hangi olcumler yapilir",
+      "dijital giris sinyali titriyor montaj hatasi olabilir mi",
+      "dijital giris sinyali titriyor gorulurse servis sirasi ne olur",
+      "dijital giris sinyali titriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das digitale eingangssignal flattert auf",
+      "worauf schaut man wenn das digitale eingangssignal flattert auftritt",
+      "was prueft ein meister zuerst wenn das digitale eingangssignal flattert da ist",
+      "wie beginnt die diagnose bei das digitale eingangssignal flattert",
+      "wie loest man das digitale eingangssignal flattert",
+      "warum kommt das digitale eingangssignal flattert immer wieder",
+      "welche messungen macht man bei das digitale eingangssignal flattert",
+      "kann montagefehler das digitale eingangssignal flattert verursachen",
+      "wie ist die service reihenfolge bei das digitale eingangssignal flattert",
+      "was ist der haeufigste fehler bei das digitale eingangssignal flattert"
+    ],
+    "tr_answer": "dijital giris sinyali titriyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden sinyal kablosu, sensor kontagi veya gerilim seviyesi kararsiz; bunun yaninda kontrol beslemesinde 24V veya yardimci besleme hatalari bulunmasidir. Ilk kontrolde kontrolor beslemesi, trafo, SMPS ve dusuk gerilim devreleri yuk altinda olculur. Bunun teknik sebebi titreyen giris reglemenin beklenmedik sekilde mod degistirmesine neden olur; ayrica dijital kontrol tarafi zayiflarsa saha arizasi rastgele ve tutarsiz gorunebilir. En sik hata ise sadece ana guce bakip kumanda gerilimini unutmak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das digitale eingangssignal flattert auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Signalleitung, Kontakt oder Spannungsniveau instabil sind; zusaetzlich kommen im Steuerkreis 24V- oder Hilfsversorgungsausfaelle auftreten vor. Bei der Erstpruefung werden Reglerversorgung, Trafo, Netzteil und Kleinspannungskreise unter Last gemessen. Der technische Hintergrund ist ein flatternder Eingang den Regler unvermittelt in andere Betriebsmodi druecken kann; ausserdem gilt eine schwache Steuerversorgung zu scheinbar zufaelligen und wechselnden Fehlerbildern fuehrt. Ein sehr haeufiger Fehler besteht darin, dass nur die Hauptspannung zu sehen und die Steuerspannung zu vergessen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "kontrolor neden acilmiyor",
+      "24v neden duser",
+      "trafo nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "electrical_sensor_open_circuit",
+    "tr_subject": "sensor kopuk gorunuyor",
+    "de_subject": "der fuehler offen ist",
+    "keywords": [
+      "sensor kopuk gorunuyor",
+      "der fuehler offen ist",
+      "sensor open",
+      "open circuit sensor"
+    ],
+    "tr_questions": [
+      "sensor kopuk gorunuyor neden olur",
+      "sensor kopuk gorunuyor olursa neye bakilir",
+      "sensor kopuk gorunuyor varsa usta once ne kontrol eder",
+      "sensor kopuk gorunuyor arizasinda teshis nasil baslar",
+      "sensor kopuk gorunuyor sorunu nasil cozulur",
+      "sensor kopuk gorunuyor neden tekrar eder",
+      "sensor kopuk gorunuyor oldugunda hangi olcumler yapilir",
+      "sensor kopuk gorunuyor montaj hatasi olabilir mi",
+      "sensor kopuk gorunuyor gorulurse servis sirasi ne olur",
+      "sensor kopuk gorunuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der fuehler offen ist auf",
+      "worauf schaut man wenn der fuehler offen ist auftritt",
+      "was prueft ein meister zuerst wenn der fuehler offen ist da ist",
+      "wie beginnt die diagnose bei der fuehler offen ist",
+      "wie loest man der fuehler offen ist",
+      "warum kommt der fuehler offen ist immer wieder",
+      "welche messungen macht man bei der fuehler offen ist",
+      "kann montagefehler der fuehler offen ist verursachen",
+      "wie ist die service reihenfolge bei der fuehler offen ist",
+      "was ist der haeufigste fehler bei der fuehler offen ist"
+    ],
+    "tr_answer": "sensor kopuk gorunuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden NTC/PTC hattinin kopuk veya soketten cikmis olmasi; bunun yaninda sensor, parametre ve cikis kontrol mantiginda olcum veya yazilim tarafli sapmalar bulunmasidir. Ilk kontrolde sensor degerleri, referans olcumler ve cikis role davranislari birlikte karsilastirilir. Bunun teknik sebebi kopuk sensor kontroloru en yuksek ya da anlamsiz degere iter; ayrica yanlis bilgiyle beslenen kontrol mantigi saglam sistemi bile dengesiz gosterebilir. En sik hata ise tek bir ekrana bakip saha gercegini teyit etmemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der fuehler offen ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die NTC/PTC-Leitung unterbrochen oder am Stecker geloest ist; zusaetzlich kommen an Sensorik, Parametern oder Ausgangslogik Mess- und Softwareabweichungen auftreten vor. Bei der Erstpruefung werden Sensorwerte, Referenzmessung und Ausgangsrelais gemeinsam abgeglichen. Der technische Hintergrund ist ein offener Fuehler den Regler oft auf Extremwerte zwingt; ausserdem gilt eine Regelung mit falscher Information selbst eine gesunde Anlage unruhig wirken lassen kann. Ein sehr haeufiger Fehler besteht darin, dass nur auf einen Anzeigenwert zu schauen und die Feldrealitaet nicht zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "sensor nereye konur",
+      "kontrolor ayarlari neden onemli",
+      "defrost neden bozulur"
+    ]
+  },
+  {
+    "id": "electrical_sensor_short_circuit",
+    "tr_subject": "sensor kisa devre hata veriyor",
+    "de_subject": "der fuehler kurzschluss hat",
+    "keywords": [
+      "sensor kisa devre hata veriyor",
+      "der fuehler kurzschluss hat",
+      "sensor short",
+      "fuehler kurzschluss"
+    ],
+    "tr_questions": [
+      "sensor kisa devre hata veriyor neden olur",
+      "sensor kisa devre hata veriyor olursa neye bakilir",
+      "sensor kisa devre hata veriyor varsa usta once ne kontrol eder",
+      "sensor kisa devre hata veriyor arizasinda teshis nasil baslar",
+      "sensor kisa devre hata veriyor sorunu nasil cozulur",
+      "sensor kisa devre hata veriyor neden tekrar eder",
+      "sensor kisa devre hata veriyor oldugunda hangi olcumler yapilir",
+      "sensor kisa devre hata veriyor montaj hatasi olabilir mi",
+      "sensor kisa devre hata veriyor gorulurse servis sirasi ne olur",
+      "sensor kisa devre hata veriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der fuehler kurzschluss hat auf",
+      "worauf schaut man wenn der fuehler kurzschluss hat auftritt",
+      "was prueft ein meister zuerst wenn der fuehler kurzschluss hat da ist",
+      "wie beginnt die diagnose bei der fuehler kurzschluss hat",
+      "wie loest man der fuehler kurzschluss hat",
+      "warum kommt der fuehler kurzschluss hat immer wieder",
+      "welche messungen macht man bei der fuehler kurzschluss hat",
+      "kann montagefehler der fuehler kurzschluss hat verursachen",
+      "wie ist die service reihenfolge bei der fuehler kurzschluss hat",
+      "was ist der haeufigste fehler bei der fuehler kurzschluss hat"
+    ],
+    "tr_answer": "sensor kisa devre hata veriyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden sensor kablosunun ezilmesi veya icten kisalmasi; bunun yaninda sensor, parametre ve cikis kontrol mantiginda olcum veya yazilim tarafli sapmalar bulunmasidir. Ilk kontrolde sensor degerleri, referans olcumler ve cikis role davranislari birlikte karsilastirilir. Bunun teknik sebebi kisa devreli sensor ekrani aşiri soguk veya aşiri sicak gostertebilir; ayrica yanlis bilgiyle beslenen kontrol mantigi saglam sistemi bile dengesiz gosterebilir. En sik hata ise tek bir ekrana bakip saha gercegini teyit etmemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der fuehler kurzschluss hat auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist das Fuehlerkabel gequetscht ist oder intern kurzschliesst; zusaetzlich kommen an Sensorik, Parametern oder Ausgangslogik Mess- und Softwareabweichungen auftreten vor. Bei der Erstpruefung werden Sensorwerte, Referenzmessung und Ausgangsrelais gemeinsam abgeglichen. Der technische Hintergrund ist ein kurzgeschlossener Fuehler unplausible Extremwerte anzeigen kann; ausserdem gilt eine Regelung mit falscher Information selbst eine gesunde Anlage unruhig wirken lassen kann. Ein sehr haeufiger Fehler besteht darin, dass nur auf einen Anzeigenwert zu schauen und die Feldrealitaet nicht zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "sensor nereye konur",
+      "kontrolor ayarlari neden onemli",
+      "defrost neden bozulur"
+    ]
+  },
+  {
+    "id": "electrical_sensor_drift",
+    "tr_subject": "sensor dogrulugu kaymis",
+    "de_subject": "der fuehler driftet",
+    "keywords": [
+      "sensor dogrulugu kaymis",
+      "der fuehler driftet",
+      "sensor drift",
+      "kalibrasyon"
+    ],
+    "tr_questions": [
+      "sensor dogrulugu kaymis neden olur",
+      "sensor dogrulugu kaymis olursa neye bakilir",
+      "sensor dogrulugu kaymis varsa usta once ne kontrol eder",
+      "sensor dogrulugu kaymis arizasinda teshis nasil baslar",
+      "sensor dogrulugu kaymis sorunu nasil cozulur",
+      "sensor dogrulugu kaymis neden tekrar eder",
+      "sensor dogrulugu kaymis oldugunda hangi olcumler yapilir",
+      "sensor dogrulugu kaymis montaj hatasi olabilir mi",
+      "sensor dogrulugu kaymis gorulurse servis sirasi ne olur",
+      "sensor dogrulugu kaymis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der fuehler driftet auf",
+      "worauf schaut man wenn der fuehler driftet auftritt",
+      "was prueft ein meister zuerst wenn der fuehler driftet da ist",
+      "wie beginnt die diagnose bei der fuehler driftet",
+      "wie loest man der fuehler driftet",
+      "warum kommt der fuehler driftet immer wieder",
+      "welche messungen macht man bei der fuehler driftet",
+      "kann montagefehler der fuehler driftet verursachen",
+      "wie ist die service reihenfolge bei der fuehler driftet",
+      "was ist der haeufigste fehler bei der fuehler driftet"
+    ],
+    "tr_answer": "sensor dogrulugu kaymis durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden zamanla sensorun referans degerden sapmasi; bunun yaninda sensor, parametre ve cikis kontrol mantiginda olcum veya yazilim tarafli sapmalar bulunmasidir. Ilk kontrolde sensor degerleri, referans olcumler ve cikis role davranislari birlikte karsilastirilir. Bunun teknik sebebi kucuk sensor sapmasi kritik depolarda buyuk urun farki yaratabilir; ayrica yanlis bilgiyle beslenen kontrol mantigi saglam sistemi bile dengesiz gosterebilir. En sik hata ise tek bir ekrana bakip saha gercegini teyit etmemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der fuehler driftet auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Fuehler im Lauf der Zeit vom Referenzwert abweicht; zusaetzlich kommen an Sensorik, Parametern oder Ausgangslogik Mess- und Softwareabweichungen auftreten vor. Bei der Erstpruefung werden Sensorwerte, Referenzmessung und Ausgangsrelais gemeinsam abgeglichen. Der technische Hintergrund ist selbst kleine Sensorabweichungen bei sensiblen Raeumen grosse Folgen haben; ausserdem gilt eine Regelung mit falscher Information selbst eine gesunde Anlage unruhig wirken lassen kann. Ein sehr haeufiger Fehler besteht darin, dass nur auf einen Anzeigenwert zu schauen und die Feldrealitaet nicht zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "sensor nereye konur",
+      "kontrolor ayarlari neden onemli",
+      "defrost neden bozulur"
+    ]
+  },
+  {
+    "id": "electrical_wrong_parameters",
+    "tr_subject": "kontrol parametreleri yanlis",
+    "de_subject": "die reglerparameter falsch sind",
+    "keywords": [
+      "kontrol parametreleri yanlis",
+      "die reglerparameter falsch sind",
+      "parameter wrong",
+      "kontrol ayari"
+    ],
+    "tr_questions": [
+      "kontrol parametreleri yanlis neden olur",
+      "kontrol parametreleri yanlis olursa neye bakilir",
+      "kontrol parametreleri yanlis varsa usta once ne kontrol eder",
+      "kontrol parametreleri yanlis arizasinda teshis nasil baslar",
+      "kontrol parametreleri yanlis sorunu nasil cozulur",
+      "kontrol parametreleri yanlis neden tekrar eder",
+      "kontrol parametreleri yanlis oldugunda hangi olcumler yapilir",
+      "kontrol parametreleri yanlis montaj hatasi olabilir mi",
+      "kontrol parametreleri yanlis gorulurse servis sirasi ne olur",
+      "kontrol parametreleri yanlis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die reglerparameter falsch sind auf",
+      "worauf schaut man wenn die reglerparameter falsch sind auftritt",
+      "was prueft ein meister zuerst wenn die reglerparameter falsch sind da ist",
+      "wie beginnt die diagnose bei die reglerparameter falsch sind",
+      "wie loest man die reglerparameter falsch sind",
+      "warum kommt die reglerparameter falsch sind immer wieder",
+      "welche messungen macht man bei die reglerparameter falsch sind",
+      "kann montagefehler die reglerparameter falsch sind verursachen",
+      "wie ist die service reihenfolge bei die reglerparameter falsch sind",
+      "was ist der haeufigste fehler bei die reglerparameter falsch sind"
+    ],
+    "tr_answer": "kontrol parametreleri yanlis durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden set, diferans, fan gecikme veya defrost parametrelerinin uygulamaya uymamasi; bunun yaninda sensor, parametre ve cikis kontrol mantiginda olcum veya yazilim tarafli sapmalar bulunmasidir. Ilk kontrolde sensor degerleri, referans olcumler ve cikis role davranislari birlikte karsilastirilir. Bunun teknik sebebi dogru cihaz bile yanlis parametreyle sahada yanlis cihaz gibi davranir; ayrica yanlis bilgiyle beslenen kontrol mantigi saglam sistemi bile dengesiz gosterebilir. En sik hata ise tek bir ekrana bakip saha gercegini teyit etmemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die reglerparameter falsch sind auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Sollwert, Differenz, Fanverzoegerung oder Abtauparameter nicht zur Anwendung passen; zusaetzlich kommen an Sensorik, Parametern oder Ausgangslogik Mess- und Softwareabweichungen auftreten vor. Bei der Erstpruefung werden Sensorwerte, Referenzmessung und Ausgangsrelais gemeinsam abgeglichen. Der technische Hintergrund ist selbst richtige Hardware mit falschen Parametern wie eine falsche Anlage wirkt; ausserdem gilt eine Regelung mit falscher Information selbst eine gesunde Anlage unruhig wirken lassen kann. Ein sehr haeufiger Fehler besteht darin, dass nur auf einen Anzeigenwert zu schauen und die Feldrealitaet nicht zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "sensor nereye konur",
+      "kontrolor ayarlari neden onemli",
+      "defrost neden bozulur"
+    ]
+  },
+  {
+    "id": "electrical_output_relay_stuck",
+    "tr_subject": "kontrolor cikis rolesi yapisik kaliyor",
+    "de_subject": "das ausgangsrelais haengen bleibt",
+    "keywords": [
+      "kontrolor cikis rolesi yapisik kaliyor",
+      "das ausgangsrelais haengen bleibt",
+      "output relay",
+      "relay stuck"
+    ],
+    "tr_questions": [
+      "kontrolor cikis rolesi yapisik kaliyor neden olur",
+      "kontrolor cikis rolesi yapisik kaliyor olursa neye bakilir",
+      "kontrolor cikis rolesi yapisik kaliyor varsa usta once ne kontrol eder",
+      "kontrolor cikis rolesi yapisik kaliyor arizasinda teshis nasil baslar",
+      "kontrolor cikis rolesi yapisik kaliyor sorunu nasil cozulur",
+      "kontrolor cikis rolesi yapisik kaliyor neden tekrar eder",
+      "kontrolor cikis rolesi yapisik kaliyor oldugunda hangi olcumler yapilir",
+      "kontrolor cikis rolesi yapisik kaliyor montaj hatasi olabilir mi",
+      "kontrolor cikis rolesi yapisik kaliyor gorulurse servis sirasi ne olur",
+      "kontrolor cikis rolesi yapisik kaliyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das ausgangsrelais haengen bleibt auf",
+      "worauf schaut man wenn das ausgangsrelais haengen bleibt auftritt",
+      "was prueft ein meister zuerst wenn das ausgangsrelais haengen bleibt da ist",
+      "wie beginnt die diagnose bei das ausgangsrelais haengen bleibt",
+      "wie loest man das ausgangsrelais haengen bleibt",
+      "warum kommt das ausgangsrelais haengen bleibt immer wieder",
+      "welche messungen macht man bei das ausgangsrelais haengen bleibt",
+      "kann montagefehler das ausgangsrelais haengen bleibt verursachen",
+      "wie ist die service reihenfolge bei das ausgangsrelais haengen bleibt",
+      "was ist der haeufigste fehler bei das ausgangsrelais haengen bleibt"
+    ],
+    "tr_answer": "kontrolor cikis rolesi yapisik kaliyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden cikis role kontaklarinin yapismasi veya gecikmeli dusmesi; bunun yaninda sensor, parametre ve cikis kontrol mantiginda olcum veya yazilim tarafli sapmalar bulunmasidir. Ilk kontrolde sensor degerleri, referans olcumler ve cikis role davranislari birlikte karsilastirilir. Bunun teknik sebebi cikis rolu yapisinca kompresor, fan veya rezistans komutsuz kalmaz; ayrica yanlis bilgiyle beslenen kontrol mantigi saglam sistemi bile dengesiz gosterebilir. En sik hata ise tek bir ekrana bakip saha gercegini teyit etmemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das ausgangsrelais haengen bleibt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Ausgangsrelais kleben oder zu spaet abfallen; zusaetzlich kommen an Sensorik, Parametern oder Ausgangslogik Mess- und Softwareabweichungen auftreten vor. Bei der Erstpruefung werden Sensorwerte, Referenzmessung und Ausgangsrelais gemeinsam abgeglichen. Der technische Hintergrund ist ein klebendes Ausgangsrelais Lasten ohne saubere Freigabe eingeschaltet halten kann; ausserdem gilt eine Regelung mit falscher Information selbst eine gesunde Anlage unruhig wirken lassen kann. Ein sehr haeufiger Fehler besteht darin, dass nur auf einen Anzeigenwert zu schauen und die Feldrealitaet nicht zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "sensor nereye konur",
+      "kontrolor ayarlari neden onemli",
+      "defrost neden bozulur"
+    ]
+  },
+  {
+    "id": "electrical_loose_terminal",
+    "tr_subject": "gevsek klemens isiniyor",
+    "de_subject": "eine lose klemme heiss wird",
+    "keywords": [
+      "gevsek klemens isiniyor",
+      "eine lose klemme heiss wird",
+      "loose terminal",
+      "klemens gevsek"
+    ],
+    "tr_questions": [
+      "gevsek klemens isiniyor neden olur",
+      "gevsek klemens isiniyor olursa neye bakilir",
+      "gevsek klemens isiniyor varsa usta once ne kontrol eder",
+      "gevsek klemens isiniyor arizasinda teshis nasil baslar",
+      "gevsek klemens isiniyor sorunu nasil cozulur",
+      "gevsek klemens isiniyor neden tekrar eder",
+      "gevsek klemens isiniyor oldugunda hangi olcumler yapilir",
+      "gevsek klemens isiniyor montaj hatasi olabilir mi",
+      "gevsek klemens isiniyor gorulurse servis sirasi ne olur",
+      "gevsek klemens isiniyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt eine lose klemme heiss wird auf",
+      "worauf schaut man wenn eine lose klemme heiss wird auftritt",
+      "was prueft ein meister zuerst wenn eine lose klemme heiss wird da ist",
+      "wie beginnt die diagnose bei eine lose klemme heiss wird",
+      "wie loest man eine lose klemme heiss wird",
+      "warum kommt eine lose klemme heiss wird immer wieder",
+      "welche messungen macht man bei eine lose klemme heiss wird",
+      "kann montagefehler eine lose klemme heiss wird verursachen",
+      "wie ist die service reihenfolge bei eine lose klemme heiss wird",
+      "was ist der haeufigste fehler bei eine lose klemme heiss wird"
+    ],
+    "tr_answer": "gevsek klemens isiniyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden vida sikiliginin zamanla kaybolmasi; bunun yaninda pano ici montaj, kablolama ve topraklama disiplininin zayif olmasidir. Ilk kontrolde klemensler, topraklama, soketler, etiketleme ve kablo guzergahi birlikte incelenir. Bunun teknik sebebi gevsek klemens yuk altinda gerilim dusurup yanik izine gider; ayrica duzensiz pano zamanla hem ariza hem de yanlis teshis kaynagi olur. En sik hata ise gorsel olarak duzgun sandigi kablolamayi olcuyle dogrulamamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn eine lose klemme heiss wird auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Schraubverbindung mit der Zeit locker wird; zusaetzlich kommen Schaltschrankaufbau, Verdrahtung und Erdung nicht sauber ausgefuehrt sind vor. Bei der Erstpruefung werden Klemmen, Erdung, Stecker, Beschriftung und Kabelfuehrung zusammen geprueft. Der technische Hintergrund ist eine lose Klemme unter Last Spannung verliert und bis zu Brandspuren fuehrt; ausserdem gilt ein unordentlicher Schaltschrank mit der Zeit sowohl Fehler als auch Fehldiagnosen erzeugt. Ein sehr haeufiger Fehler besteht darin, dass eine optisch ordentliche Verdrahtung nicht messtechnisch zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "gevsek klemens ne yapar",
+      "topraklama neden onemli",
+      "nem panoya girerse ne olur"
+    ]
+  },
+  {
+    "id": "electrical_panel_moisture",
+    "tr_subject": "pano icine nem giriyor",
+    "de_subject": "feuchtigkeit in den schaltschrank gelangt",
+    "keywords": [
+      "pano icine nem giriyor",
+      "feuchtigkeit in den schaltschrank gelangt",
+      "panel moisture",
+      "schaltschrank feucht"
+    ],
+    "tr_questions": [
+      "pano icine nem giriyor neden olur",
+      "pano icine nem giriyor olursa neye bakilir",
+      "pano icine nem giriyor varsa usta once ne kontrol eder",
+      "pano icine nem giriyor arizasinda teshis nasil baslar",
+      "pano icine nem giriyor sorunu nasil cozulur",
+      "pano icine nem giriyor neden tekrar eder",
+      "pano icine nem giriyor oldugunda hangi olcumler yapilir",
+      "pano icine nem giriyor montaj hatasi olabilir mi",
+      "pano icine nem giriyor gorulurse servis sirasi ne olur",
+      "pano icine nem giriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt feuchtigkeit in den schaltschrank gelangt auf",
+      "worauf schaut man wenn feuchtigkeit in den schaltschrank gelangt auftritt",
+      "was prueft ein meister zuerst wenn feuchtigkeit in den schaltschrank gelangt da ist",
+      "wie beginnt die diagnose bei feuchtigkeit in den schaltschrank gelangt",
+      "wie loest man feuchtigkeit in den schaltschrank gelangt",
+      "warum kommt feuchtigkeit in den schaltschrank gelangt immer wieder",
+      "welche messungen macht man bei feuchtigkeit in den schaltschrank gelangt",
+      "kann montagefehler feuchtigkeit in den schaltschrank gelangt verursachen",
+      "wie ist die service reihenfolge bei feuchtigkeit in den schaltschrank gelangt",
+      "was ist der haeufigste fehler bei feuchtigkeit in den schaltschrank gelangt"
+    ],
+    "tr_answer": "pano icine nem giriyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden yikama, terleme veya conta zaafiyetiyle panoya nem tasinmasi; bunun yaninda pano ici montaj, kablolama ve topraklama disiplininin zayif olmasidir. Ilk kontrolde klemensler, topraklama, soketler, etiketleme ve kablo guzergahi birlikte incelenir. Bunun teknik sebebi nem korozyon ve kacaga giden yavas ama sinsi bir ariza baslatir; ayrica duzensiz pano zamanla hem ariza hem de yanlis teshis kaynagi olur. En sik hata ise gorsel olarak duzgun sandigi kablolamayi olcuyle dogrulamamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn feuchtigkeit in den schaltschrank gelangt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Reinigung, Schwitzwasser oder schlechte Dichtungen Feuchte in den Schaltschrank gelangt; zusaetzlich kommen Schaltschrankaufbau, Verdrahtung und Erdung nicht sauber ausgefuehrt sind vor. Bei der Erstpruefung werden Klemmen, Erdung, Stecker, Beschriftung und Kabelfuehrung zusammen geprueft. Der technische Hintergrund ist Feuchte eine langsame, aber gefaehrliche Kette aus Korrosion und Leckstroemen startet; ausserdem gilt ein unordentlicher Schaltschrank mit der Zeit sowohl Fehler als auch Fehldiagnosen erzeugt. Ein sehr haeufiger Fehler besteht darin, dass eine optisch ordentliche Verdrahtung nicht messtechnisch zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "gevsek klemens ne yapar",
+      "topraklama neden onemli",
+      "nem panoya girerse ne olur"
+    ]
+  },
+  {
+    "id": "electrical_corroded_terminals",
+    "tr_subject": "terminal ve soketler oksitleniyor",
+    "de_subject": "klemmen und stecker korrodieren",
+    "keywords": [
+      "terminal ve soketler oksitleniyor",
+      "klemmen und stecker korrodieren",
+      "corrosion",
+      "oksit"
+    ],
+    "tr_questions": [
+      "terminal ve soketler oksitleniyor neden olur",
+      "terminal ve soketler oksitleniyor olursa neye bakilir",
+      "terminal ve soketler oksitleniyor varsa usta once ne kontrol eder",
+      "terminal ve soketler oksitleniyor arizasinda teshis nasil baslar",
+      "terminal ve soketler oksitleniyor sorunu nasil cozulur",
+      "terminal ve soketler oksitleniyor neden tekrar eder",
+      "terminal ve soketler oksitleniyor oldugunda hangi olcumler yapilir",
+      "terminal ve soketler oksitleniyor montaj hatasi olabilir mi",
+      "terminal ve soketler oksitleniyor gorulurse servis sirasi ne olur",
+      "terminal ve soketler oksitleniyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt klemmen und stecker korrodieren auf",
+      "worauf schaut man wenn klemmen und stecker korrodieren auftritt",
+      "was prueft ein meister zuerst wenn klemmen und stecker korrodieren da ist",
+      "wie beginnt die diagnose bei klemmen und stecker korrodieren",
+      "wie loest man klemmen und stecker korrodieren",
+      "warum kommt klemmen und stecker korrodieren immer wieder",
+      "welche messungen macht man bei klemmen und stecker korrodieren",
+      "kann montagefehler klemmen und stecker korrodieren verursachen",
+      "wie ist die service reihenfolge bei klemmen und stecker korrodieren",
+      "was ist der haeufigste fehler bei klemmen und stecker korrodieren"
+    ],
+    "tr_answer": "terminal ve soketler oksitleniyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden nemli ve agresif ortam nedeniyle baglanti yuzeylerinin bozulmasi; bunun yaninda pano ici montaj, kablolama ve topraklama disiplininin zayif olmasidir. Ilk kontrolde klemensler, topraklama, soketler, etiketleme ve kablo guzergahi birlikte incelenir. Bunun teknik sebebi oksit temiz gorunup yine de gerilim kaybi yaratabilir; ayrica duzensiz pano zamanla hem ariza hem de yanlis teshis kaynagi olur. En sik hata ise gorsel olarak duzgun sandigi kablolamayi olcuyle dogrulamamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn klemmen und stecker korrodieren auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist in feuchter oder aggressiver Umgebung Kontaktflaechen korrodieren; zusaetzlich kommen Schaltschrankaufbau, Verdrahtung und Erdung nicht sauber ausgefuehrt sind vor. Bei der Erstpruefung werden Klemmen, Erdung, Stecker, Beschriftung und Kabelfuehrung zusammen geprueft. Der technische Hintergrund ist Korrosion auch bei scheinbar intaktem Stecker erheblichen Uebergangswiderstand verursachen kann; ausserdem gilt ein unordentlicher Schaltschrank mit der Zeit sowohl Fehler als auch Fehldiagnosen erzeugt. Ein sehr haeufiger Fehler besteht darin, dass eine optisch ordentliche Verdrahtung nicht messtechnisch zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "gevsek klemens ne yapar",
+      "topraklama neden onemli",
+      "nem panoya girerse ne olur"
+    ]
+  },
+  {
+    "id": "electrical_cross_wiring",
+    "tr_subject": "kablolama capraz veya yanlis etiketli",
+    "de_subject": "die verdrahtung vertauscht oder falsch beschriftet ist",
+    "keywords": [
+      "kablolama capraz veya yanlis etiketli",
+      "die verdrahtung vertauscht oder falsch beschriftet ist",
+      "cross wiring",
+      "yanlis etiket"
+    ],
+    "tr_questions": [
+      "kablolama capraz veya yanlis etiketli neden olur",
+      "kablolama capraz veya yanlis etiketli olursa neye bakilir",
+      "kablolama capraz veya yanlis etiketli varsa usta once ne kontrol eder",
+      "kablolama capraz veya yanlis etiketli arizasinda teshis nasil baslar",
+      "kablolama capraz veya yanlis etiketli sorunu nasil cozulur",
+      "kablolama capraz veya yanlis etiketli neden tekrar eder",
+      "kablolama capraz veya yanlis etiketli oldugunda hangi olcumler yapilir",
+      "kablolama capraz veya yanlis etiketli montaj hatasi olabilir mi",
+      "kablolama capraz veya yanlis etiketli gorulurse servis sirasi ne olur",
+      "kablolama capraz veya yanlis etiketli icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die verdrahtung vertauscht oder falsch beschriftet ist auf",
+      "worauf schaut man wenn die verdrahtung vertauscht oder falsch beschriftet ist auftritt",
+      "was prueft ein meister zuerst wenn die verdrahtung vertauscht oder falsch beschriftet ist da ist",
+      "wie beginnt die diagnose bei die verdrahtung vertauscht oder falsch beschriftet ist",
+      "wie loest man die verdrahtung vertauscht oder falsch beschriftet ist",
+      "warum kommt die verdrahtung vertauscht oder falsch beschriftet ist immer wieder",
+      "welche messungen macht man bei die verdrahtung vertauscht oder falsch beschriftet ist",
+      "kann montagefehler die verdrahtung vertauscht oder falsch beschriftet ist verursachen",
+      "wie ist die service reihenfolge bei die verdrahtung vertauscht oder falsch beschriftet ist",
+      "was ist der haeufigste fehler bei die verdrahtung vertauscht oder falsch beschriftet ist"
+    ],
+    "tr_answer": "kablolama capraz veya yanlis etiketli durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden montaj veya servis sonrasi kablolarin dogru yere donmemesi; bunun yaninda pano ici montaj, kablolama ve topraklama disiplininin zayif olmasidir. Ilk kontrolde klemensler, topraklama, soketler, etiketleme ve kablo guzergahi birlikte incelenir. Bunun teknik sebebi capraz baglanti sahada mantiksiz gibi duran arizalar uretir; ayrica duzensiz pano zamanla hem ariza hem de yanlis teshis kaynagi olur. En sik hata ise gorsel olarak duzgun sandigi kablolamayi olcuyle dogrulamamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die verdrahtung vertauscht oder falsch beschriftet ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Leitungen nach Montage oder Service nicht an die richtigen Punkte zurueckgefuehrt wurden; zusaetzlich kommen Schaltschrankaufbau, Verdrahtung und Erdung nicht sauber ausgefuehrt sind vor. Bei der Erstpruefung werden Klemmen, Erdung, Stecker, Beschriftung und Kabelfuehrung zusammen geprueft. Der technische Hintergrund ist vertauschte Leitungen scheinbar unlogische Fehlerbilder erzeugen; ausserdem gilt ein unordentlicher Schaltschrank mit der Zeit sowohl Fehler als auch Fehldiagnosen erzeugt. Ein sehr haeufiger Fehler besteht darin, dass eine optisch ordentliche Verdrahtung nicht messtechnisch zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "gevsek klemens ne yapar",
+      "topraklama neden onemli",
+      "nem panoya girerse ne olur"
+    ]
+  },
+  {
+    "id": "electrical_bad_grounding",
+    "tr_subject": "topraklama zayif oldugu icin garip arizalar cikiyor",
+    "de_subject": "eine schlechte erdung seltsame stoerungen verursacht",
+    "keywords": [
+      "topraklama zayif oldugu icin garip arizalar cikiyor",
+      "eine schlechte erdung seltsame stoerungen verursacht",
+      "bad grounding",
+      "topraklama zayif"
+    ],
+    "tr_questions": [
+      "topraklama zayif oldugu icin garip arizalar cikiyor neden olur",
+      "topraklama zayif oldugu icin garip arizalar cikiyor olursa neye bakilir",
+      "topraklama zayif oldugu icin garip arizalar cikiyor varsa usta once ne kontrol eder",
+      "topraklama zayif oldugu icin garip arizalar cikiyor arizasinda teshis nasil baslar",
+      "topraklama zayif oldugu icin garip arizalar cikiyor sorunu nasil cozulur",
+      "topraklama zayif oldugu icin garip arizalar cikiyor neden tekrar eder",
+      "topraklama zayif oldugu icin garip arizalar cikiyor oldugunda hangi olcumler yapilir",
+      "topraklama zayif oldugu icin garip arizalar cikiyor montaj hatasi olabilir mi",
+      "topraklama zayif oldugu icin garip arizalar cikiyor gorulurse servis sirasi ne olur",
+      "topraklama zayif oldugu icin garip arizalar cikiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt eine schlechte erdung seltsame stoerungen verursacht auf",
+      "worauf schaut man wenn eine schlechte erdung seltsame stoerungen verursacht auftritt",
+      "was prueft ein meister zuerst wenn eine schlechte erdung seltsame stoerungen verursacht da ist",
+      "wie beginnt die diagnose bei eine schlechte erdung seltsame stoerungen verursacht",
+      "wie loest man eine schlechte erdung seltsame stoerungen verursacht",
+      "warum kommt eine schlechte erdung seltsame stoerungen verursacht immer wieder",
+      "welche messungen macht man bei eine schlechte erdung seltsame stoerungen verursacht",
+      "kann montagefehler eine schlechte erdung seltsame stoerungen verursacht verursachen",
+      "wie ist die service reihenfolge bei eine schlechte erdung seltsame stoerungen verursacht",
+      "was ist der haeufigste fehler bei eine schlechte erdung seltsame stoerungen verursacht"
+    ],
+    "tr_answer": "topraklama zayif oldugu icin garip arizalar cikiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden toprak referansinin yuksek empedansli veya kopuk olmasi; bunun yaninda pano ici montaj, kablolama ve topraklama disiplininin zayif olmasidir. Ilk kontrolde klemensler, topraklama, soketler, etiketleme ve kablo guzergahi birlikte incelenir. Bunun teknik sebebi zayif topraklama hem guvenlik hem olcum kalitesi icin sorun yaratir; ayrica duzensiz pano zamanla hem ariza hem de yanlis teshis kaynagi olur. En sik hata ise gorsel olarak duzgun sandigi kablolamayi olcuyle dogrulamamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn eine schlechte erdung seltsame stoerungen verursacht auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Erdungsbezug hochohmig oder unterbrochen ist; zusaetzlich kommen Schaltschrankaufbau, Verdrahtung und Erdung nicht sauber ausgefuehrt sind vor. Bei der Erstpruefung werden Klemmen, Erdung, Stecker, Beschriftung und Kabelfuehrung zusammen geprueft. Der technische Hintergrund ist schlechte Erdung sowohl Sicherheit als auch Messstabilitaet zerstoert; ausserdem gilt ein unordentlicher Schaltschrank mit der Zeit sowohl Fehler als auch Fehldiagnosen erzeugt. Ein sehr haeufiger Fehler besteht darin, dass eine optisch ordentliche Verdrahtung nicht messtechnisch zu bestaetigen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "gevsek klemens ne yapar",
+      "topraklama neden onemli",
+      "nem panoya girerse ne olur"
+    ]
+  },
+  {
+    "id": "electrical_crankcase_heater_power",
+    "tr_subject": "krankcase isiticisina enerji gelmiyor",
+    "de_subject": "die sumpfheizung keine spannung hat",
+    "keywords": [
+      "krankcase isiticisina enerji gelmiyor",
+      "die sumpfheizung keine spannung hat",
+      "crankcase heater",
+      "sumpfheizung"
+    ],
+    "tr_questions": [
+      "krankcase isiticisina enerji gelmiyor neden olur",
+      "krankcase isiticisina enerji gelmiyor olursa neye bakilir",
+      "krankcase isiticisina enerji gelmiyor varsa usta once ne kontrol eder",
+      "krankcase isiticisina enerji gelmiyor arizasinda teshis nasil baslar",
+      "krankcase isiticisina enerji gelmiyor sorunu nasil cozulur",
+      "krankcase isiticisina enerji gelmiyor neden tekrar eder",
+      "krankcase isiticisina enerji gelmiyor oldugunda hangi olcumler yapilir",
+      "krankcase isiticisina enerji gelmiyor montaj hatasi olabilir mi",
+      "krankcase isiticisina enerji gelmiyor gorulurse servis sirasi ne olur",
+      "krankcase isiticisina enerji gelmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die sumpfheizung keine spannung hat auf",
+      "worauf schaut man wenn die sumpfheizung keine spannung hat auftritt",
+      "was prueft ein meister zuerst wenn die sumpfheizung keine spannung hat da ist",
+      "wie beginnt die diagnose bei die sumpfheizung keine spannung hat",
+      "wie loest man die sumpfheizung keine spannung hat",
+      "warum kommt die sumpfheizung keine spannung hat immer wieder",
+      "welche messungen macht man bei die sumpfheizung keine spannung hat",
+      "kann montagefehler die sumpfheizung keine spannung hat verursachen",
+      "wie ist die service reihenfolge bei die sumpfheizung keine spannung hat",
+      "was ist der haeufigste fehler bei die sumpfheizung keine spannung hat"
+    ],
+    "tr_answer": "krankcase isiticisina enerji gelmiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kompresor karter isiticisinin beslemesinin kesik olmasi; bunun yaninda isitici devreleri ve yardimci rezistanslarda kopukluk, kacaga gitme veya kumanda eksigi olmasidir. Ilk kontrolde rezistans direnci, izolasyon durumu, role cikisi ve gerçek akim cekisi birlikte kontrol edilir. Bunun teknik sebebi isitici olmazsa sogutucu akiskan kartere goc ederek ilk kalkisi bozar; ayrica yardimci isiticilar soguk oda sisteminde konfor degil, isletme guvenligi icin de gereklidir. En sik hata ise rezistansi sadece omik okuyup yuk altinda cekip cekmedigine bakmamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die sumpfheizung keine spannung hat auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Versorgung der Oelsumpfheizung unterbrochen ist; zusaetzlich kommen Heizkreise und Zusatzheizungen unterbrochen, undicht oder falsch angesteuert sind vor. Bei der Erstpruefung werden Heizungswiderstand, Isolation, Relaisausgang und reale Stromaufnahme gemeinsam geprueft. Der technische Hintergrund ist ohne Heizung Kaeltemittel ins Oel wandert und den Start verschlechtert; ausserdem gilt Hilfsheizungen im Kuehlraum nicht Luxus, sondern oft betriebliche Notwendigkeit sind. Ein sehr haeufiger Fehler besteht darin, dass die Heizung nur ohmisch zu pruefen und den Betrieb unter Last nicht zu kontrollieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "defrost neden calismiyor",
+      "kapi rezistansi ne ise yarar",
+      "kacak akim neden atar"
+    ]
+  },
+  {
+    "id": "electrical_defrost_heater_leakage",
+    "tr_subject": "defrost rezistansi kacak yapiyor",
+    "de_subject": "die abtauheizung ableitstrom hat",
+    "keywords": [
+      "defrost rezistansi kacak yapiyor",
+      "die abtauheizung ableitstrom hat",
+      "defrost heater leakage",
+      "rezistans kacak"
+    ],
+    "tr_questions": [
+      "defrost rezistansi kacak yapiyor neden olur",
+      "defrost rezistansi kacak yapiyor olursa neye bakilir",
+      "defrost rezistansi kacak yapiyor varsa usta once ne kontrol eder",
+      "defrost rezistansi kacak yapiyor arizasinda teshis nasil baslar",
+      "defrost rezistansi kacak yapiyor sorunu nasil cozulur",
+      "defrost rezistansi kacak yapiyor neden tekrar eder",
+      "defrost rezistansi kacak yapiyor oldugunda hangi olcumler yapilir",
+      "defrost rezistansi kacak yapiyor montaj hatasi olabilir mi",
+      "defrost rezistansi kacak yapiyor gorulurse servis sirasi ne olur",
+      "defrost rezistansi kacak yapiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die abtauheizung ableitstrom hat auf",
+      "worauf schaut man wenn die abtauheizung ableitstrom hat auftritt",
+      "was prueft ein meister zuerst wenn die abtauheizung ableitstrom hat da ist",
+      "wie beginnt die diagnose bei die abtauheizung ableitstrom hat",
+      "wie loest man die abtauheizung ableitstrom hat",
+      "warum kommt die abtauheizung ableitstrom hat immer wieder",
+      "welche messungen macht man bei die abtauheizung ableitstrom hat",
+      "kann montagefehler die abtauheizung ableitstrom hat verursachen",
+      "wie ist die service reihenfolge bei die abtauheizung ableitstrom hat",
+      "was ist der haeufigste fehler bei die abtauheizung ableitstrom hat"
+    ],
+    "tr_answer": "defrost rezistansi kacak yapiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden rezistans izolasyonunun bozulmasi; bunun yaninda isitici devreleri ve yardimci rezistanslarda kopukluk, kacaga gitme veya kumanda eksigi olmasidir. Ilk kontrolde rezistans direnci, izolasyon durumu, role cikisi ve gerçek akim cekisi birlikte kontrol edilir. Bunun teknik sebebi kacakli rezistans hem yetersiz isitma hem RCD atmasi yapabilir; ayrica yardimci isiticilar soguk oda sisteminde konfor degil, isletme guvenligi icin de gereklidir. En sik hata ise rezistansi sadece omik okuyup yuk altinda cekip cekmedigine bakmamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die abtauheizung ableitstrom hat auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Isolation der Abtauheizung beschaedigt ist; zusaetzlich kommen Heizkreise und Zusatzheizungen unterbrochen, undicht oder falsch angesteuert sind vor. Bei der Erstpruefung werden Heizungswiderstand, Isolation, Relaisausgang und reale Stromaufnahme gemeinsam geprueft. Der technische Hintergrund ist eine undichte Heizung sowohl zu schwacher Leistung als auch FI-Ausloesung fuehren kann; ausserdem gilt Hilfsheizungen im Kuehlraum nicht Luxus, sondern oft betriebliche Notwendigkeit sind. Ein sehr haeufiger Fehler besteht darin, dass die Heizung nur ohmisch zu pruefen und den Betrieb unter Last nicht zu kontrollieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "defrost neden calismiyor",
+      "kapi rezistansi ne ise yarar",
+      "kacak akim neden atar"
+    ]
+  },
+  {
+    "id": "electrical_anti_sweat_heater_dead",
+    "tr_subject": "anti sweat rezistansi calismiyor",
+    "de_subject": "die anti-schwitz-heizung ausfaellt",
+    "keywords": [
+      "anti sweat rezistansi calismiyor",
+      "die anti-schwitz-heizung ausfaellt",
+      "anti sweat heater",
+      "terleme rezistansi"
+    ],
+    "tr_questions": [
+      "anti sweat rezistansi calismiyor neden olur",
+      "anti sweat rezistansi calismiyor olursa neye bakilir",
+      "anti sweat rezistansi calismiyor varsa usta once ne kontrol eder",
+      "anti sweat rezistansi calismiyor arizasinda teshis nasil baslar",
+      "anti sweat rezistansi calismiyor sorunu nasil cozulur",
+      "anti sweat rezistansi calismiyor neden tekrar eder",
+      "anti sweat rezistansi calismiyor oldugunda hangi olcumler yapilir",
+      "anti sweat rezistansi calismiyor montaj hatasi olabilir mi",
+      "anti sweat rezistansi calismiyor gorulurse servis sirasi ne olur",
+      "anti sweat rezistansi calismiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die anti-schwitz-heizung ausfaellt auf",
+      "worauf schaut man wenn die anti-schwitz-heizung ausfaellt auftritt",
+      "was prueft ein meister zuerst wenn die anti-schwitz-heizung ausfaellt da ist",
+      "wie beginnt die diagnose bei die anti-schwitz-heizung ausfaellt",
+      "wie loest man die anti-schwitz-heizung ausfaellt",
+      "warum kommt die anti-schwitz-heizung ausfaellt immer wieder",
+      "welche messungen macht man bei die anti-schwitz-heizung ausfaellt",
+      "kann montagefehler die anti-schwitz-heizung ausfaellt verursachen",
+      "wie ist die service reihenfolge bei die anti-schwitz-heizung ausfaellt",
+      "was ist der haeufigste fehler bei die anti-schwitz-heizung ausfaellt"
+    ],
+    "tr_answer": "anti sweat rezistansi calismiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kapı veya kasa etrafindaki yardimci isiticinin devre disi kalmasi; bunun yaninda isitici devreleri ve yardimci rezistanslarda kopukluk, kacaga gitme veya kumanda eksigi olmasidir. Ilk kontrolde rezistans direnci, izolasyon durumu, role cikisi ve gerçek akim cekisi birlikte kontrol edilir. Bunun teknik sebebi bu hat bozulursa yogusma, buzlanma ve zor kapanan kapilar baslar; ayrica yardimci isiticilar soguk oda sisteminde konfor degil, isletme guvenligi icin de gereklidir. En sik hata ise rezistansi sadece omik okuyup yuk altinda cekip cekmedigine bakmamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die anti-schwitz-heizung ausfaellt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Hilfsheizung an Tuer oder Rahmen ausfaellt; zusaetzlich kommen Heizkreise und Zusatzheizungen unterbrochen, undicht oder falsch angesteuert sind vor. Bei der Erstpruefung werden Heizungswiderstand, Isolation, Relaisausgang und reale Stromaufnahme gemeinsam geprueft. Der technische Hintergrund ist ohne diese Heizung Kondensat, Vereisung und schlecht schliessende Tueren entstehen; ausserdem gilt Hilfsheizungen im Kuehlraum nicht Luxus, sondern oft betriebliche Notwendigkeit sind. Ein sehr haeufiger Fehler besteht darin, dass die Heizung nur ohmisch zu pruefen und den Betrieb unter Last nicht zu kontrollieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "defrost neden calismiyor",
+      "kapi rezistansi ne ise yarar",
+      "kacak akim neden atar"
+    ]
+  },
+  {
+    "id": "electrical_door_heater_fault",
+    "tr_subject": "kapi rezistansi bozuk",
+    "de_subject": "die tuerheizung defekt ist",
+    "keywords": [
+      "kapi rezistansi bozuk",
+      "die tuerheizung defekt ist",
+      "door heater",
+      "tuerheizung"
+    ],
+    "tr_questions": [
+      "kapi rezistansi bozuk neden olur",
+      "kapi rezistansi bozuk olursa neye bakilir",
+      "kapi rezistansi bozuk varsa usta once ne kontrol eder",
+      "kapi rezistansi bozuk arizasinda teshis nasil baslar",
+      "kapi rezistansi bozuk sorunu nasil cozulur",
+      "kapi rezistansi bozuk neden tekrar eder",
+      "kapi rezistansi bozuk oldugunda hangi olcumler yapilir",
+      "kapi rezistansi bozuk montaj hatasi olabilir mi",
+      "kapi rezistansi bozuk gorulurse servis sirasi ne olur",
+      "kapi rezistansi bozuk icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die tuerheizung defekt ist auf",
+      "worauf schaut man wenn die tuerheizung defekt ist auftritt",
+      "was prueft ein meister zuerst wenn die tuerheizung defekt ist da ist",
+      "wie beginnt die diagnose bei die tuerheizung defekt ist",
+      "wie loest man die tuerheizung defekt ist",
+      "warum kommt die tuerheizung defekt ist immer wieder",
+      "welche messungen macht man bei die tuerheizung defekt ist",
+      "kann montagefehler die tuerheizung defekt ist verursachen",
+      "wie ist die service reihenfolge bei die tuerheizung defekt ist",
+      "was ist der haeufigste fehler bei die tuerheizung defekt ist"
+    ],
+    "tr_answer": "kapi rezistansi bozuk durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden esik veya kasa rezistansinin kopuk ya da enerjisiz olmasi; bunun yaninda isitici devreleri ve yardimci rezistanslarda kopukluk, kacaga gitme veya kumanda eksigi olmasidir. Ilk kontrolde rezistans direnci, izolasyon durumu, role cikisi ve gerçek akim cekisi birlikte kontrol edilir. Bunun teknik sebebi ozellikle negatif odada kapi cevresi isitilmezse buz kilidi olusur; ayrica yardimci isiticilar soguk oda sisteminde konfor degil, isletme guvenligi icin de gereklidir. En sik hata ise rezistansi sadece omik okuyup yuk altinda cekip cekmedigine bakmamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die tuerheizung defekt ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Schwellen- oder Rahmenheizung unterbrochen oder spannungslos ist; zusaetzlich kommen Heizkreise und Zusatzheizungen unterbrochen, undicht oder falsch angesteuert sind vor. Bei der Erstpruefung werden Heizungswiderstand, Isolation, Relaisausgang und reale Stromaufnahme gemeinsam geprueft. Der technische Hintergrund ist besonders im Tiefkuehlraum ohne Türheizung schnell Eisbildung entsteht; ausserdem gilt Hilfsheizungen im Kuehlraum nicht Luxus, sondern oft betriebliche Notwendigkeit sind. Ein sehr haeufiger Fehler besteht darin, dass die Heizung nur ohmisch zu pruefen und den Betrieb unter Last nicht zu kontrollieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "defrost neden calismiyor",
+      "kapi rezistansi ne ise yarar",
+      "kacak akim neden atar"
+    ]
+  },
+  {
+    "id": "electrical_heater_output_no_voltage",
+    "tr_subject": "isitici cikisinda voltaj yok",
+    "de_subject": "am heizausgang keine spannung anliegt",
+    "keywords": [
+      "isitici cikisinda voltaj yok",
+      "am heizausgang keine spannung anliegt",
+      "heater output",
+      "rezistans cikisi"
+    ],
+    "tr_questions": [
+      "isitici cikisinda voltaj yok neden olur",
+      "isitici cikisinda voltaj yok olursa neye bakilir",
+      "isitici cikisinda voltaj yok varsa usta once ne kontrol eder",
+      "isitici cikisinda voltaj yok arizasinda teshis nasil baslar",
+      "isitici cikisinda voltaj yok sorunu nasil cozulur",
+      "isitici cikisinda voltaj yok neden tekrar eder",
+      "isitici cikisinda voltaj yok oldugunda hangi olcumler yapilir",
+      "isitici cikisinda voltaj yok montaj hatasi olabilir mi",
+      "isitici cikisinda voltaj yok gorulurse servis sirasi ne olur",
+      "isitici cikisinda voltaj yok icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt am heizausgang keine spannung anliegt auf",
+      "worauf schaut man wenn am heizausgang keine spannung anliegt auftritt",
+      "was prueft ein meister zuerst wenn am heizausgang keine spannung anliegt da ist",
+      "wie beginnt die diagnose bei am heizausgang keine spannung anliegt",
+      "wie loest man am heizausgang keine spannung anliegt",
+      "warum kommt am heizausgang keine spannung anliegt immer wieder",
+      "welche messungen macht man bei am heizausgang keine spannung anliegt",
+      "kann montagefehler am heizausgang keine spannung anliegt verursachen",
+      "wie ist die service reihenfolge bei am heizausgang keine spannung anliegt",
+      "was ist der haeufigste fehler bei am heizausgang keine spannung anliegt"
+    ],
+    "tr_answer": "isitici cikisinda voltaj yok durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden role, SSR veya kontrol karti cikisinin yuk tasimamasidir; bunun yaninda isitici devreleri ve yardimci rezistanslarda kopukluk, kacaga gitme veya kumanda eksigi olmasidir. Ilk kontrolde rezistans direnci, izolasyon durumu, role cikisi ve gerçek akim cekisi birlikte kontrol edilir. Bunun teknik sebebi isitici saglam olsa da cikis komutu gelmezse sistem defrost veya anti-fog gorevini yapamaz; ayrica yardimci isiticilar soguk oda sisteminde konfor degil, isletme guvenligi icin de gereklidir. En sik hata ise rezistansi sadece omik okuyup yuk altinda cekip cekmedigine bakmamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn am heizausgang keine spannung anliegt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Relais, SSR oder Karten-Ausgang die Last nicht freigeben; zusaetzlich kommen Heizkreise und Zusatzheizungen unterbrochen, undicht oder falsch angesteuert sind vor. Bei der Erstpruefung werden Heizungswiderstand, Isolation, Relaisausgang und reale Stromaufnahme gemeinsam geprueft. Der technische Hintergrund ist selbst eine intakte Heizung ohne Ausgangsfreigabe keine Funktion erfuellt; ausserdem gilt Hilfsheizungen im Kuehlraum nicht Luxus, sondern oft betriebliche Notwendigkeit sind. Ein sehr haeufiger Fehler besteht darin, dass die Heizung nur ohmisch zu pruefen und den Betrieb unter Last nicht zu kontrollieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "defrost neden calismiyor",
+      "kapi rezistansi ne ise yarar",
+      "kacak akim neden atar"
+    ]
+  },
+  {
+    "id": "electrical_inverter_fault",
+    "tr_subject": "surucu genel hata veriyor",
+    "de_subject": "der frequenzumrichter eine allgemeine stoerung zeigt",
+    "keywords": [
+      "surucu genel hata veriyor",
+      "der frequenzumrichter eine allgemeine stoerung zeigt",
+      "inverter fault",
+      "surucu hata"
+    ],
+    "tr_questions": [
+      "surucu genel hata veriyor neden olur",
+      "surucu genel hata veriyor olursa neye bakilir",
+      "surucu genel hata veriyor varsa usta once ne kontrol eder",
+      "surucu genel hata veriyor arizasinda teshis nasil baslar",
+      "surucu genel hata veriyor sorunu nasil cozulur",
+      "surucu genel hata veriyor neden tekrar eder",
+      "surucu genel hata veriyor oldugunda hangi olcumler yapilir",
+      "surucu genel hata veriyor montaj hatasi olabilir mi",
+      "surucu genel hata veriyor gorulurse servis sirasi ne olur",
+      "surucu genel hata veriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der frequenzumrichter eine allgemeine stoerung zeigt auf",
+      "worauf schaut man wenn der frequenzumrichter eine allgemeine stoerung zeigt auftritt",
+      "was prueft ein meister zuerst wenn der frequenzumrichter eine allgemeine stoerung zeigt da ist",
+      "wie beginnt die diagnose bei der frequenzumrichter eine allgemeine stoerung zeigt",
+      "wie loest man der frequenzumrichter eine allgemeine stoerung zeigt",
+      "warum kommt der frequenzumrichter eine allgemeine stoerung zeigt immer wieder",
+      "welche messungen macht man bei der frequenzumrichter eine allgemeine stoerung zeigt",
+      "kann montagefehler der frequenzumrichter eine allgemeine stoerung zeigt verursachen",
+      "wie ist die service reihenfolge bei der frequenzumrichter eine allgemeine stoerung zeigt",
+      "was ist der haeufigste fehler bei der frequenzumrichter eine allgemeine stoerung zeigt"
+    ],
+    "tr_answer": "surucu genel hata veriyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden surucu kendi koruma kodlarindan biriyle cikisa gecmiyor; bunun yaninda surucu, haberlesme ve elektronik moduller asiri akim, isi veya EMC etkisiyle bozulmasidir. Ilk kontrolde surucu hata kodu, fan sogutmasi, kablo ekranlamasi ve haberlesme hatti birlikte okunur. Bunun teknik sebebi surucu kodu yorumlanmadan mekanik ariza tespiti eksik kalir; ayrica modern sogutma sisteminde elektronik katman sagliksizsa mekanik kisim da yanlis gorunur. En sik hata ise kod gormeden modulu degistirmek veya ekranlamayi onemsiz sanmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der frequenzumrichter eine allgemeine stoerung zeigt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Frequenzumrichter wegen eines eigenen Schutzcodes nicht freigibt; zusaetzlich kommen Frequenzumrichter, Kommunikation und Elektronik durch Strom, Temperatur oder EMV belastet werden vor. Bei der Erstpruefung werden Umrichtercode, Eigenkuehlung, Schirmung und Kommunikationsleitung gemeinsam bewertet werden. Der technische Hintergrund ist ohne Deutung des Umrichtercodes die mechanische Diagnose unvollstaendig bleibt; ausserdem gilt in modernen Anlagen die Elektronikschicht ueber die Sicht auf den mechanischen Zustand mitentscheidet. Ein sehr haeufiger Fehler besteht darin, dass ohne Fehlercode Module zu tauschen oder EMV/Schirmung zu unterschaetzen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "surucu arizasi nasil okunur",
+      "haberlesme neden kopar",
+      "emc gürültüsü ne yapar"
+    ]
+  },
+  {
+    "id": "electrical_inverter_overcurrent",
+    "tr_subject": "surucu asiri akim alarmi veriyor",
+    "de_subject": "der umrichter ueberstrom meldet",
+    "keywords": [
+      "surucu asiri akim alarmi veriyor",
+      "der umrichter ueberstrom meldet",
+      "inverter overcurrent",
+      "overcurrent drive"
+    ],
+    "tr_questions": [
+      "surucu asiri akim alarmi veriyor neden olur",
+      "surucu asiri akim alarmi veriyor olursa neye bakilir",
+      "surucu asiri akim alarmi veriyor varsa usta once ne kontrol eder",
+      "surucu asiri akim alarmi veriyor arizasinda teshis nasil baslar",
+      "surucu asiri akim alarmi veriyor sorunu nasil cozulur",
+      "surucu asiri akim alarmi veriyor neden tekrar eder",
+      "surucu asiri akim alarmi veriyor oldugunda hangi olcumler yapilir",
+      "surucu asiri akim alarmi veriyor montaj hatasi olabilir mi",
+      "surucu asiri akim alarmi veriyor gorulurse servis sirasi ne olur",
+      "surucu asiri akim alarmi veriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der umrichter ueberstrom meldet auf",
+      "worauf schaut man wenn der umrichter ueberstrom meldet auftritt",
+      "was prueft ein meister zuerst wenn der umrichter ueberstrom meldet da ist",
+      "wie beginnt die diagnose bei der umrichter ueberstrom meldet",
+      "wie loest man der umrichter ueberstrom meldet",
+      "warum kommt der umrichter ueberstrom meldet immer wieder",
+      "welche messungen macht man bei der umrichter ueberstrom meldet",
+      "kann montagefehler der umrichter ueberstrom meldet verursachen",
+      "wie ist die service reihenfolge bei der umrichter ueberstrom meldet",
+      "was ist der haeufigste fehler bei der umrichter ueberstrom meldet"
+    ],
+    "tr_answer": "surucu asiri akim alarmi veriyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden motor yukunun, hizlanma rampasinin veya kisa devre riskinin fazla olmasi; bunun yaninda surucu, haberlesme ve elektronik moduller asiri akim, isi veya EMC etkisiyle bozulmasidir. Ilk kontrolde surucu hata kodu, fan sogutmasi, kablo ekranlamasi ve haberlesme hatti birlikte okunur. Bunun teknik sebebi surucu akim korumasi motoru ve modulu birlikte korur; ayrica modern sogutma sisteminde elektronik katman sagliksizsa mekanik kisim da yanlis gorunur. En sik hata ise kod gormeden modulu degistirmek veya ekranlamayi onemsiz sanmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der umrichter ueberstrom meldet auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Motorlast, Rampenzeit oder Kurzschlussnaehe zu hoch sind; zusaetzlich kommen Frequenzumrichter, Kommunikation und Elektronik durch Strom, Temperatur oder EMV belastet werden vor. Bei der Erstpruefung werden Umrichtercode, Eigenkuehlung, Schirmung und Kommunikationsleitung gemeinsam bewertet werden. Der technische Hintergrund ist die Ueberstromschutzfunktion sowohl Motor als auch Elektronik schuetzt; ausserdem gilt in modernen Anlagen die Elektronikschicht ueber die Sicht auf den mechanischen Zustand mitentscheidet. Ein sehr haeufiger Fehler besteht darin, dass ohne Fehlercode Module zu tauschen oder EMV/Schirmung zu unterschaetzen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "surucu arizasi nasil okunur",
+      "haberlesme neden kopar",
+      "emc gürültüsü ne yapar"
+    ]
+  },
+  {
+    "id": "electrical_inverter_overheat",
+    "tr_subject": "surucu asiri isinma yapiyor",
+    "de_subject": "der umrichter ueberhitzt",
+    "keywords": [
+      "surucu asiri isinma yapiyor",
+      "der umrichter ueberhitzt",
+      "inverter overheat",
+      "drive overtemp"
+    ],
+    "tr_questions": [
+      "surucu asiri isinma yapiyor neden olur",
+      "surucu asiri isinma yapiyor olursa neye bakilir",
+      "surucu asiri isinma yapiyor varsa usta once ne kontrol eder",
+      "surucu asiri isinma yapiyor arizasinda teshis nasil baslar",
+      "surucu asiri isinma yapiyor sorunu nasil cozulur",
+      "surucu asiri isinma yapiyor neden tekrar eder",
+      "surucu asiri isinma yapiyor oldugunda hangi olcumler yapilir",
+      "surucu asiri isinma yapiyor montaj hatasi olabilir mi",
+      "surucu asiri isinma yapiyor gorulurse servis sirasi ne olur",
+      "surucu asiri isinma yapiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der umrichter ueberhitzt auf",
+      "worauf schaut man wenn der umrichter ueberhitzt auftritt",
+      "was prueft ein meister zuerst wenn der umrichter ueberhitzt da ist",
+      "wie beginnt die diagnose bei der umrichter ueberhitzt",
+      "wie loest man der umrichter ueberhitzt",
+      "warum kommt der umrichter ueberhitzt immer wieder",
+      "welche messungen macht man bei der umrichter ueberhitzt",
+      "kann montagefehler der umrichter ueberhitzt verursachen",
+      "wie ist die service reihenfolge bei der umrichter ueberhitzt",
+      "was ist der haeufigste fehler bei der umrichter ueberhitzt"
+    ],
+    "tr_answer": "surucu asiri isinma yapiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden havalandirma yetersizligi veya panel ici isi birikmesi; bunun yaninda surucu, haberlesme ve elektronik moduller asiri akim, isi veya EMC etkisiyle bozulmasidir. Ilk kontrolde surucu hata kodu, fan sogutmasi, kablo ekranlamasi ve haberlesme hatti birlikte okunur. Bunun teknik sebebi surucu sicakligi yukseldikce elektronik omur ve stabilite duser; ayrica modern sogutma sisteminde elektronik katman sagliksizsa mekanik kisim da yanlis gorunur. En sik hata ise kod gormeden modulu degistirmek veya ekranlamayi onemsiz sanmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der umrichter ueberhitzt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist mangelnde Belueftung oder Waermestau im Schaltschrank; zusaetzlich kommen Frequenzumrichter, Kommunikation und Elektronik durch Strom, Temperatur oder EMV belastet werden vor. Bei der Erstpruefung werden Umrichtercode, Eigenkuehlung, Schirmung und Kommunikationsleitung gemeinsam bewertet werden. Der technische Hintergrund ist mit steigender Umrichtertemperatur Lebensdauer und Stabilitaet sinken; ausserdem gilt in modernen Anlagen die Elektronikschicht ueber die Sicht auf den mechanischen Zustand mitentscheidet. Ein sehr haeufiger Fehler besteht darin, dass ohne Fehlercode Module zu tauschen oder EMV/Schirmung zu unterschaetzen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "surucu arizasi nasil okunur",
+      "haberlesme neden kopar",
+      "emc gürültüsü ne yapar"
+    ]
+  },
+  {
+    "id": "electrical_bus_communication_fault",
+    "tr_subject": "haberlesme hatti kopuyor",
+    "de_subject": "die bus-kommunikation ausfaellt",
+    "keywords": [
+      "haberlesme hatti kopuyor",
+      "die bus-kommunikation ausfaellt",
+      "communication bus",
+      "modbus",
+      "haberlesme"
+    ],
+    "tr_questions": [
+      "haberlesme hatti kopuyor neden olur",
+      "haberlesme hatti kopuyor olursa neye bakilir",
+      "haberlesme hatti kopuyor varsa usta once ne kontrol eder",
+      "haberlesme hatti kopuyor arizasinda teshis nasil baslar",
+      "haberlesme hatti kopuyor sorunu nasil cozulur",
+      "haberlesme hatti kopuyor neden tekrar eder",
+      "haberlesme hatti kopuyor oldugunda hangi olcumler yapilir",
+      "haberlesme hatti kopuyor montaj hatasi olabilir mi",
+      "haberlesme hatti kopuyor gorulurse servis sirasi ne olur",
+      "haberlesme hatti kopuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die bus-kommunikation ausfaellt auf",
+      "worauf schaut man wenn die bus-kommunikation ausfaellt auftritt",
+      "was prueft ein meister zuerst wenn die bus-kommunikation ausfaellt da ist",
+      "wie beginnt die diagnose bei die bus-kommunikation ausfaellt",
+      "wie loest man die bus-kommunikation ausfaellt",
+      "warum kommt die bus-kommunikation ausfaellt immer wieder",
+      "welche messungen macht man bei die bus-kommunikation ausfaellt",
+      "kann montagefehler die bus-kommunikation ausfaellt verursachen",
+      "wie ist die service reihenfolge bei die bus-kommunikation ausfaellt",
+      "was ist der haeufigste fehler bei die bus-kommunikation ausfaellt"
+    ],
+    "tr_answer": "haberlesme hatti kopuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden iletisim kablosu, terminasyon veya adresleme sorunlari; bunun yaninda surucu, haberlesme ve elektronik moduller asiri akim, isi veya EMC etkisiyle bozulmasidir. Ilk kontrolde surucu hata kodu, fan sogutmasi, kablo ekranlamasi ve haberlesme hatti birlikte okunur. Bunun teknik sebebi haberlesme kopunca sahadaki bircok parca saglam olsa bile sistem kontrolu bozulur; ayrica modern sogutma sisteminde elektronik katman sagliksizsa mekanik kisim da yanlis gorunur. En sik hata ise kod gormeden modulu degistirmek veya ekranlamayi onemsiz sanmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die bus-kommunikation ausfaellt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Kommunikationsleitung, Terminierung oder Adressierung fehlerhaft sind; zusaetzlich kommen Frequenzumrichter, Kommunikation und Elektronik durch Strom, Temperatur oder EMV belastet werden vor. Bei der Erstpruefung werden Umrichtercode, Eigenkuehlung, Schirmung und Kommunikationsleitung gemeinsam bewertet werden. Der technische Hintergrund ist bei Kommunikationsausfall intakte Feldgeraete trotzdem falsch oder gar nicht angesteuert werden; ausserdem gilt in modernen Anlagen die Elektronikschicht ueber die Sicht auf den mechanischen Zustand mitentscheidet. Ein sehr haeufiger Fehler besteht darin, dass ohne Fehlercode Module zu tauschen oder EMV/Schirmung zu unterschaetzen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "surucu arizasi nasil okunur",
+      "haberlesme neden kopar",
+      "emc gürültüsü ne yapar"
+    ]
+  },
+  {
+    "id": "electrical_emc_noise",
+    "tr_subject": "elektrik gürültüsü sahayi bozuyor",
+    "de_subject": "elektrische stoerimpulse die anlage beeinflussen",
+    "keywords": [
+      "elektrik gürültüsü sahayi bozuyor",
+      "elektrische stoerimpulse die anlage beeinflussen",
+      "emc noise",
+      "gurultu",
+      "interference"
+    ],
+    "tr_questions": [
+      "elektrik gürültüsü sahayi bozuyor neden olur",
+      "elektrik gürültüsü sahayi bozuyor olursa neye bakilir",
+      "elektrik gürültüsü sahayi bozuyor varsa usta once ne kontrol eder",
+      "elektrik gürültüsü sahayi bozuyor arizasinda teshis nasil baslar",
+      "elektrik gürültüsü sahayi bozuyor sorunu nasil cozulur",
+      "elektrik gürültüsü sahayi bozuyor neden tekrar eder",
+      "elektrik gürültüsü sahayi bozuyor oldugunda hangi olcumler yapilir",
+      "elektrik gürültüsü sahayi bozuyor montaj hatasi olabilir mi",
+      "elektrik gürültüsü sahayi bozuyor gorulurse servis sirasi ne olur",
+      "elektrik gürültüsü sahayi bozuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt elektrische stoerimpulse die anlage beeinflussen auf",
+      "worauf schaut man wenn elektrische stoerimpulse die anlage beeinflussen auftritt",
+      "was prueft ein meister zuerst wenn elektrische stoerimpulse die anlage beeinflussen da ist",
+      "wie beginnt die diagnose bei elektrische stoerimpulse die anlage beeinflussen",
+      "wie loest man elektrische stoerimpulse die anlage beeinflussen",
+      "warum kommt elektrische stoerimpulse die anlage beeinflussen immer wieder",
+      "welche messungen macht man bei elektrische stoerimpulse die anlage beeinflussen",
+      "kann montagefehler elektrische stoerimpulse die anlage beeinflussen verursachen",
+      "wie ist die service reihenfolge bei elektrische stoerimpulse die anlage beeinflussen",
+      "was ist der haeufigste fehler bei elektrische stoerimpulse die anlage beeinflussen"
+    ],
+    "tr_answer": "elektrik gürültüsü sahayi bozuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden surucu, uzun kablo veya topraklama eksigi yuzunden parazit tasinmasi; bunun yaninda surucu, haberlesme ve elektronik moduller asiri akim, isi veya EMC etkisiyle bozulmasidir. Ilk kontrolde surucu hata kodu, fan sogutmasi, kablo ekranlamasi ve haberlesme hatti birlikte okunur. Bunun teknik sebebi parazit sensor ve haberlesmeyi bozup yalanci ariza uretebilir; ayrica modern sogutma sisteminde elektronik katman sagliksizsa mekanik kisim da yanlis gorunur. En sik hata ise kod gormeden modulu degistirmek veya ekranlamayi onemsiz sanmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn elektrische stoerimpulse die anlage beeinflussen auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Umrichter, lange Leitungen oder schlechte Erdung Stoerimpulse eingekoppelt werden; zusaetzlich kommen Frequenzumrichter, Kommunikation und Elektronik durch Strom, Temperatur oder EMV belastet werden vor. Bei der Erstpruefung werden Umrichtercode, Eigenkuehlung, Schirmung und Kommunikationsleitung gemeinsam bewertet werden. Der technische Hintergrund ist EMV-Stoerungen Sensorik und Kommunikation verfaelschen koennen; ausserdem gilt in modernen Anlagen die Elektronikschicht ueber die Sicht auf den mechanischen Zustand mitentscheidet. Ein sehr haeufiger Fehler besteht darin, dass ohne Fehlercode Module zu tauschen oder EMV/Schirmung zu unterschaetzen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "surucu arizasi nasil okunur",
+      "haberlesme neden kopar",
+      "emc gürültüsü ne yapar"
+    ]
+  },
+  {
+    "id": "electrical_door_switch_fault",
+    "tr_subject": "kapi switchi yanlis durum okuyor",
+    "de_subject": "der tuerschalter falsche zustande meldet",
+    "keywords": [
+      "kapi switchi yanlis durum okuyor",
+      "der tuerschalter falsche zustande meldet",
+      "door switch",
+      "tuerschalter"
+    ],
+    "tr_questions": [
+      "kapi switchi yanlis durum okuyor neden olur",
+      "kapi switchi yanlis durum okuyor olursa neye bakilir",
+      "kapi switchi yanlis durum okuyor varsa usta once ne kontrol eder",
+      "kapi switchi yanlis durum okuyor arizasinda teshis nasil baslar",
+      "kapi switchi yanlis durum okuyor sorunu nasil cozulur",
+      "kapi switchi yanlis durum okuyor neden tekrar eder",
+      "kapi switchi yanlis durum okuyor oldugunda hangi olcumler yapilir",
+      "kapi switchi yanlis durum okuyor montaj hatasi olabilir mi",
+      "kapi switchi yanlis durum okuyor gorulurse servis sirasi ne olur",
+      "kapi switchi yanlis durum okuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der tuerschalter falsche zustande meldet auf",
+      "worauf schaut man wenn der tuerschalter falsche zustande meldet auftritt",
+      "was prueft ein meister zuerst wenn der tuerschalter falsche zustande meldet da ist",
+      "wie beginnt die diagnose bei der tuerschalter falsche zustande meldet",
+      "wie loest man der tuerschalter falsche zustande meldet",
+      "warum kommt der tuerschalter falsche zustande meldet immer wieder",
+      "welche messungen macht man bei der tuerschalter falsche zustande meldet",
+      "kann montagefehler der tuerschalter falsche zustande meldet verursachen",
+      "wie ist die service reihenfolge bei der tuerschalter falsche zustande meldet",
+      "was ist der haeufigste fehler bei der tuerschalter falsche zustande meldet"
+    ],
+    "tr_answer": "kapi switchi yanlis durum okuyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kapinin kapali olmasina ragmen switchin acik bilgisi vermesi; bunun yaninda saha emniyet, switch ve yardimci girislerde yanlis durum bilgisi uretilmesidir. Ilk kontrolde switch zinciri, kapi kontagi, acil stop ve uzaktan enable hatlari tek tek dogrulanir. Bunun teknik sebebi yanlis kapi bilgisi fan ve alarm lojigini gereksiz degistirir; ayrica yanlis bilgi veren bir emniyet girisi saglam sistemi bos yere kilitleyebilir. En sik hata ise tek bir bypass ile sistemi gecici calistirip kok nedeni kaybetmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der tuerschalter falsche zustande meldet auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Schalter trotz geschlossener Tuer einen offenen Zustand meldet; zusaetzlich kommen Sicherheitsschalter und Hilfseingaenge im Feld falsche Zustandsinformationen liefern vor. Bei der Erstpruefung werden Schalterkette, Tuerkontakt, Not-Aus und Freigabeeingaenge einzeln verifiziert werden. Der technische Hintergrund ist eine falsche Tuerinfo Ventilator- und Alarmlogik unnötig veraendert; ausserdem gilt ein falsches Sicherheitssignal eine gesunde Anlage unnoetig verriegeln kann. Ein sehr haeufiger Fehler besteht darin, dass mit einem schnellen Bypass die Anlage kurz zu starten und dabei die Grundursache zu verlieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "emniyet zinciri nasil okunur",
+      "door switch ne yapar",
+      "alarm sadece gece neden gelir"
+    ]
+  },
+  {
+    "id": "electrical_emergency_stop_fault",
+    "tr_subject": "acil stop devresi problemli",
+    "de_subject": "der not-aus-kreis fehlerhaft ist",
+    "keywords": [
+      "acil stop devresi problemli",
+      "der not-aus-kreis fehlerhaft ist",
+      "emergency stop",
+      "not aus"
+    ],
+    "tr_questions": [
+      "acil stop devresi problemli neden olur",
+      "acil stop devresi problemli olursa neye bakilir",
+      "acil stop devresi problemli varsa usta once ne kontrol eder",
+      "acil stop devresi problemli arizasinda teshis nasil baslar",
+      "acil stop devresi problemli sorunu nasil cozulur",
+      "acil stop devresi problemli neden tekrar eder",
+      "acil stop devresi problemli oldugunda hangi olcumler yapilir",
+      "acil stop devresi problemli montaj hatasi olabilir mi",
+      "acil stop devresi problemli gorulurse servis sirasi ne olur",
+      "acil stop devresi problemli icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der not-aus-kreis fehlerhaft ist auf",
+      "worauf schaut man wenn der not-aus-kreis fehlerhaft ist auftritt",
+      "was prueft ein meister zuerst wenn der not-aus-kreis fehlerhaft ist da ist",
+      "wie beginnt die diagnose bei der not-aus-kreis fehlerhaft ist",
+      "wie loest man der not-aus-kreis fehlerhaft ist",
+      "warum kommt der not-aus-kreis fehlerhaft ist immer wieder",
+      "welche messungen macht man bei der not-aus-kreis fehlerhaft ist",
+      "kann montagefehler der not-aus-kreis fehlerhaft ist verursachen",
+      "wie ist die service reihenfolge bei der not-aus-kreis fehlerhaft ist",
+      "was ist der haeufigste fehler bei der not-aus-kreis fehlerhaft ist"
+    ],
+    "tr_answer": "acil stop devresi problemli durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden acil stop hatti oksitli, gevsek veya yarim kontakli; bunun yaninda saha emniyet, switch ve yardimci girislerde yanlis durum bilgisi uretilmesidir. Ilk kontrolde switch zinciri, kapi kontagi, acil stop ve uzaktan enable hatlari tek tek dogrulanir. Bunun teknik sebebi emniyet devresinde yarim kontak anlik dur-kalklara yol acar; ayrica yanlis bilgi veren bir emniyet girisi saglam sistemi bos yere kilitleyebilir. En sik hata ise tek bir bypass ile sistemi gecici calistirip kok nedeni kaybetmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der not-aus-kreis fehlerhaft ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Not-Aus-Kreis oxidiert, locker oder nur halb schliessend ist; zusaetzlich kommen Sicherheitsschalter und Hilfseingaenge im Feld falsche Zustandsinformationen liefern vor. Bei der Erstpruefung werden Schalterkette, Tuerkontakt, Not-Aus und Freigabeeingaenge einzeln verifiziert werden. Der technische Hintergrund ist Teilkontakt im Sicherheitskreis zu sporadischen Stopps fuehren kann; ausserdem gilt ein falsches Sicherheitssignal eine gesunde Anlage unnoetig verriegeln kann. Ein sehr haeufiger Fehler besteht darin, dass mit einem schnellen Bypass die Anlage kurz zu starten und dabei die Grundursache zu verlieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "emniyet zinciri nasil okunur",
+      "door switch ne yapar",
+      "alarm sadece gece neden gelir"
+    ]
+  },
+  {
+    "id": "electrical_remote_enable_missing",
+    "tr_subject": "uzaktan calis izni gelmiyor",
+    "de_subject": "die fernfreigabe fehlt",
+    "keywords": [
+      "uzaktan calis izni gelmiyor",
+      "die fernfreigabe fehlt",
+      "remote enable",
+      "extern freigabe"
+    ],
+    "tr_questions": [
+      "uzaktan calis izni gelmiyor neden olur",
+      "uzaktan calis izni gelmiyor olursa neye bakilir",
+      "uzaktan calis izni gelmiyor varsa usta once ne kontrol eder",
+      "uzaktan calis izni gelmiyor arizasinda teshis nasil baslar",
+      "uzaktan calis izni gelmiyor sorunu nasil cozulur",
+      "uzaktan calis izni gelmiyor neden tekrar eder",
+      "uzaktan calis izni gelmiyor oldugunda hangi olcumler yapilir",
+      "uzaktan calis izni gelmiyor montaj hatasi olabilir mi",
+      "uzaktan calis izni gelmiyor gorulurse servis sirasi ne olur",
+      "uzaktan calis izni gelmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die fernfreigabe fehlt auf",
+      "worauf schaut man wenn die fernfreigabe fehlt auftritt",
+      "was prueft ein meister zuerst wenn die fernfreigabe fehlt da ist",
+      "wie beginnt die diagnose bei die fernfreigabe fehlt",
+      "wie loest man die fernfreigabe fehlt",
+      "warum kommt die fernfreigabe fehlt immer wieder",
+      "welche messungen macht man bei die fernfreigabe fehlt",
+      "kann montagefehler die fernfreigabe fehlt verursachen",
+      "wie ist die service reihenfolge bei die fernfreigabe fehlt",
+      "was ist der haeufigste fehler bei die fernfreigabe fehlt"
+    ],
+    "tr_answer": "uzaktan calis izni gelmiyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden BMS, PLC veya harici kuru kontagin izin sinyali gelmemesi; bunun yaninda saha emniyet, switch ve yardimci girislerde yanlis durum bilgisi uretilmesidir. Ilk kontrolde switch zinciri, kapi kontagi, acil stop ve uzaktan enable hatlari tek tek dogrulanir. Bunun teknik sebebi saha cihazi saglam olsa da ust sistem izni olmadan devreye girmez; ayrica yanlis bilgi veren bir emniyet girisi saglam sistemi bos yere kilitleyebilir. En sik hata ise tek bir bypass ile sistemi gecici calistirip kok nedeni kaybetmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die fernfreigabe fehlt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Freigabe von BMS, SPS oder externem Kontakt ausbleibt; zusaetzlich kommen Sicherheitsschalter und Hilfseingaenge im Feld falsche Zustandsinformationen liefern vor. Bei der Erstpruefung werden Schalterkette, Tuerkontakt, Not-Aus und Freigabeeingaenge einzeln verifiziert werden. Der technische Hintergrund ist auch eine gesunde Anlage ohne Freigabe des Leitsystems nicht anlaufen darf; ausserdem gilt ein falsches Sicherheitssignal eine gesunde Anlage unnoetig verriegeln kann. Ein sehr haeufiger Fehler besteht darin, dass mit einem schnellen Bypass die Anlage kurz zu starten und dabei die Grundursache zu verlieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "emniyet zinciri nasil okunur",
+      "door switch ne yapar",
+      "alarm sadece gece neden gelir"
+    ]
+  },
+  {
+    "id": "electrical_night_mode_input_stuck",
+    "tr_subject": "gece modu girisi takili kaliyor",
+    "de_subject": "der nachtschalt-eingang haengen bleibt",
+    "keywords": [
+      "gece modu girisi takili kaliyor",
+      "der nachtschalt-eingang haengen bleibt",
+      "night mode input",
+      "nachtschaltung"
+    ],
+    "tr_questions": [
+      "gece modu girisi takili kaliyor neden olur",
+      "gece modu girisi takili kaliyor olursa neye bakilir",
+      "gece modu girisi takili kaliyor varsa usta once ne kontrol eder",
+      "gece modu girisi takili kaliyor arizasinda teshis nasil baslar",
+      "gece modu girisi takili kaliyor sorunu nasil cozulur",
+      "gece modu girisi takili kaliyor neden tekrar eder",
+      "gece modu girisi takili kaliyor oldugunda hangi olcumler yapilir",
+      "gece modu girisi takili kaliyor montaj hatasi olabilir mi",
+      "gece modu girisi takili kaliyor gorulurse servis sirasi ne olur",
+      "gece modu girisi takili kaliyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der nachtschalt-eingang haengen bleibt auf",
+      "worauf schaut man wenn der nachtschalt-eingang haengen bleibt auftritt",
+      "was prueft ein meister zuerst wenn der nachtschalt-eingang haengen bleibt da ist",
+      "wie beginnt die diagnose bei der nachtschalt-eingang haengen bleibt",
+      "wie loest man der nachtschalt-eingang haengen bleibt",
+      "warum kommt der nachtschalt-eingang haengen bleibt immer wieder",
+      "welche messungen macht man bei der nachtschalt-eingang haengen bleibt",
+      "kann montagefehler der nachtschalt-eingang haengen bleibt verursachen",
+      "wie ist die service reihenfolge bei der nachtschalt-eingang haengen bleibt",
+      "was ist der haeufigste fehler bei der nachtschalt-eingang haengen bleibt"
+    ],
+    "tr_answer": "gece modu girisi takili kaliyor durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden harici girisin kalici aktif kalmasi yuzunden cihazin yanlis modda kalmasi; bunun yaninda saha emniyet, switch ve yardimci girislerde yanlis durum bilgisi uretilmesidir. Ilk kontrolde switch zinciri, kapi kontagi, acil stop ve uzaktan enable hatlari tek tek dogrulanir. Bunun teknik sebebi mod sinyali takili kalirsa kullanici cihaz arizali sanabilir; ayrica yanlis bilgi veren bir emniyet girisi saglam sistemi bos yere kilitleyebilir. En sik hata ise tek bir bypass ile sistemi gecici calistirip kok nedeni kaybetmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der nachtschalt-eingang haengen bleibt auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist ein externer Eingang dauerhaft aktiv bleibt und den Regler im falschen Modus haelt; zusaetzlich kommen Sicherheitsschalter und Hilfseingaenge im Feld falsche Zustandsinformationen liefern vor. Bei der Erstpruefung werden Schalterkette, Tuerkontakt, Not-Aus und Freigabeeingaenge einzeln verifiziert werden. Der technische Hintergrund ist ein haengender Moduseingang wie ein Geraetefehler wirken kann; ausserdem gilt ein falsches Sicherheitssignal eine gesunde Anlage unnoetig verriegeln kann. Ein sehr haeufiger Fehler besteht darin, dass mit einem schnellen Bypass die Anlage kurz zu starten und dabei die Grundursache zu verlieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "emniyet zinciri nasil okunur",
+      "door switch ne yapar",
+      "alarm sadece gece neden gelir"
+    ]
+  },
+  {
+    "id": "electrical_interlock_wiring_fault",
+    "tr_subject": "interlock kablolamasi yanlis",
+    "de_subject": "die verriegelungsverdrahtung falsch ist",
+    "keywords": [
+      "interlock kablolamasi yanlis",
+      "die verriegelungsverdrahtung falsch ist",
+      "interlock wiring",
+      "verriegelung"
+    ],
+    "tr_questions": [
+      "interlock kablolamasi yanlis neden olur",
+      "interlock kablolamasi yanlis olursa neye bakilir",
+      "interlock kablolamasi yanlis varsa usta once ne kontrol eder",
+      "interlock kablolamasi yanlis arizasinda teshis nasil baslar",
+      "interlock kablolamasi yanlis sorunu nasil cozulur",
+      "interlock kablolamasi yanlis neden tekrar eder",
+      "interlock kablolamasi yanlis oldugunda hangi olcumler yapilir",
+      "interlock kablolamasi yanlis montaj hatasi olabilir mi",
+      "interlock kablolamasi yanlis gorulurse servis sirasi ne olur",
+      "interlock kablolamasi yanlis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die verriegelungsverdrahtung falsch ist auf",
+      "worauf schaut man wenn die verriegelungsverdrahtung falsch ist auftritt",
+      "was prueft ein meister zuerst wenn die verriegelungsverdrahtung falsch ist da ist",
+      "wie beginnt die diagnose bei die verriegelungsverdrahtung falsch ist",
+      "wie loest man die verriegelungsverdrahtung falsch ist",
+      "warum kommt die verriegelungsverdrahtung falsch ist immer wieder",
+      "welche messungen macht man bei die verriegelungsverdrahtung falsch ist",
+      "kann montagefehler die verriegelungsverdrahtung falsch ist verursachen",
+      "wie ist die service reihenfolge bei die verriegelungsverdrahtung falsch ist",
+      "was ist der haeufigste fehler bei die verriegelungsverdrahtung falsch ist"
+    ],
+    "tr_answer": "interlock kablolamasi yanlis durumunda elektrik ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden seri-paralel emniyet baglantilarinin sahada hatali kurulmasi; bunun yaninda saha emniyet, switch ve yardimci girislerde yanlis durum bilgisi uretilmesidir. Ilk kontrolde switch zinciri, kapi kontagi, acil stop ve uzaktan enable hatlari tek tek dogrulanir. Bunun teknik sebebi yanlis interlock bazen hic baslamayan bazen de kontrolsuz calisan sistem yaratir; ayrica yanlis bilgi veren bir emniyet girisi saglam sistemi bos yere kilitleyebilir. En sik hata ise tek bir bypass ile sistemi gecici calistirip kok nedeni kaybetmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die verriegelungsverdrahtung falsch ist auftritt, trennt ein Kuehlhaus-Elektrikmeister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Sicherheitsverriegelungen im Feld falsch in Serie oder Parallel verdrahtet wurden; zusaetzlich kommen Sicherheitsschalter und Hilfseingaenge im Feld falsche Zustandsinformationen liefern vor. Bei der Erstpruefung werden Schalterkette, Tuerkontakt, Not-Aus und Freigabeeingaenge einzeln verifiziert werden. Der technische Hintergrund ist eine falsche Verriegelung je nach Fehlerbild Sperren oder unkontrollierten Betrieb erzeugt; ausserdem gilt ein falsches Sicherheitssignal eine gesunde Anlage unnoetig verriegeln kann. Ein sehr haeufiger Fehler besteht darin, dass mit einem schnellen Bypass die Anlage kurz zu starten und dabei die Grundursache zu verlieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN soguk oda elektrik ustasi egitimi",
+    "suggestions": [
+      "emniyet zinciri nasil okunur",
+      "door switch ne yapar",
+      "alarm sadece gece neden gelir"
+    ]
+  }
+]

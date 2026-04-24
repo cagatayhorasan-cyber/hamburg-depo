@@ -77,6 +77,21 @@ const ADMIN_MESSAGE_BODY_LIMIT = 3000;
 const SALE_PRICE_MULTIPLIER = 1.22;
 const BOOTSTRAP_ITEM_LIMIT = Math.max(30, Number(process.env.BOOTSTRAP_ITEM_LIMIT || 60));
 const TROUBLESHOOTING_BANK_CACHE_TTL_MS = 2 * 60 * 1000;
+
+// DRC MAN toplu FAQ yükleme manifesti.
+// Her dosya scripts/ altında; assistant_troubleshooting_bank tablosuna
+// context_id=<slug> altında yazılır. UI'den "Eğitimi Yükle" ile tetiklenir.
+const DRC_MAN_FAQ_MANIFEST = [
+  { file: "drc_man_product_faq.json", slug: "product", defaultSummary: "DRC MAN urun egitimi" },
+  { file: "drc_man_training_faq.json", slug: "training", defaultSummary: "DRC MAN temel egitim" },
+  { file: "drc_man_troubleshooting_faq.json", slug: "troubleshooting", defaultSummary: "DRC MAN ariza bankasi" },
+  { file: "drc_man_electrical_faq.json", slug: "electrical", defaultSummary: "DRC MAN elektrik bankasi" },
+  { file: "drc_man_gases_faq.json", slug: "gases", defaultSummary: "DRC MAN gaz bankasi" },
+  { file: "drc_man_master_components_faq.json", slug: "master_components", defaultSummary: "DRC MAN master bilesenleri" },
+  { file: "drc_man_master_field_faq.json", slug: "master_field", defaultSummary: "DRC MAN master saha" },
+  { file: "drc_man_pt_superheat_faq.json", slug: "pt_superheat", defaultSummary: "DRC MAN PT / superheat" },
+  { file: "drc_man_refrigeration_faq.json", slug: "refrigeration", defaultSummary: "DRC MAN sogutma teorisi" },
+];
 const TROUBLESHOOTING_STRONG_HINTS = [
   "ariza",
   "sorun",
@@ -933,6 +948,173 @@ function createApp() {
     });
 
     return res.json({ ok: true });
+  });
+
+  // ---------------------------------------------------------------------------
+  // DRC MAN toplu FAQ importu (Vercel'de çalışır; scripts/drc_man_*_faq.json
+  // dosyalarını assistant_troubleshooting_bank tablosuna upsert eder).
+  // Lokalde .env şifresi eskimiş olsa bile admin bu endpoint'le live DB'ye
+  // eğitim yükleyebilir çünkü Vercel'in DATABASE_URL'i güncel.
+  // ---------------------------------------------------------------------------
+  app.post("/api/admin/drc-man/import", requireAdmin, async (req, res) => {
+    const dryRun = req.body?.dryRun === true || req.body?.dryRun === "true";
+    const scriptsDir = path.join(__dirname, "..", "scripts");
+    const manifest = DRC_MAN_FAQ_MANIFEST;
+    const isActiveValue = dbClient === "postgres" ? true : 1;
+    const results = [];
+    let totalInserted = 0;
+    let totalDeleted = 0;
+    let totalSkipped = 0;
+
+    for (const entry of manifest) {
+      const filePath = path.join(scriptsDir, entry.file);
+      if (!fs.existsSync(filePath)) {
+        results.push({ file: entry.file, status: "missing" });
+        continue;
+      }
+
+      let parsed;
+      try {
+        parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
+      } catch (error) {
+        results.push({ file: entry.file, status: "parse_error", error: String(error.message || error).slice(0, 200) });
+        continue;
+      }
+
+      if (!Array.isArray(parsed) || !parsed.length) {
+        results.push({ file: entry.file, status: "empty" });
+        continue;
+      }
+
+      const mapped = [];
+      const seenBankKeys = new Set();
+      let skippedLocal = 0;
+      for (const row of parsed) {
+        const rawId = String(row?.id || "").trim();
+        if (!rawId) { skippedLocal += 1; continue; }
+        const bankKey = `${entry.slug}:${rawId}`.slice(0, 200);
+        if (seenBankKeys.has(bankKey)) { skippedLocal += 1; continue; }
+
+        const trQuestions = Array.isArray(row.tr_questions)
+          ? row.tr_questions.map((item) => String(item || "").trim()).filter(Boolean)
+          : [];
+        const deQuestions = Array.isArray(row.de_questions)
+          ? row.de_questions.map((item) => String(item || "").trim()).filter(Boolean)
+          : [];
+        const keywords = Array.isArray(row.keywords)
+          ? row.keywords.map((item) => String(item || "").trim()).filter(Boolean)
+          : [];
+        const suggestions = Array.isArray(row.suggestions)
+          ? row.suggestions.map((item) => String(item || "").trim()).filter(Boolean).slice(0, 6)
+          : [];
+
+        const trSubject = String(row.tr_subject || trQuestions[0] || rawId).trim().slice(0, 400);
+        const deSubject = String(row.de_subject || deQuestions[0] || trSubject).trim().slice(0, 400);
+        const trAnswer = String(row.tr_answer || "").trim();
+        const deAnswer = String(row.de_answer || "").trim();
+
+        if (!trSubject || !trAnswer) { skippedLocal += 1; continue; }
+
+        mapped.push({
+          bankKey,
+          contextId: entry.slug,
+          familyId: String(row.family_id || entry.slug).trim().slice(0, 120),
+          sourceSummary: String(row.source_summary || entry.defaultSummary || "DRC MAN").trim().slice(0, 400),
+          keywords: JSON.stringify(keywords),
+          trSubject,
+          deSubject,
+          trQuestions: JSON.stringify(trQuestions),
+          deQuestions: JSON.stringify(deQuestions),
+          trAnswer,
+          deAnswer,
+          suggestions: JSON.stringify(suggestions),
+        });
+        seenBankKeys.add(bankKey);
+      }
+
+      if (dryRun) {
+        results.push({ file: entry.file, status: "dry_run", prepared: mapped.length, skipped: skippedLocal });
+        continue;
+      }
+
+      try {
+        const summary = await withTransaction(async (tx) => {
+          const deleted = await tx.execute(
+            "DELETE FROM assistant_troubleshooting_bank WHERE context_id = ?",
+            [entry.slug]
+          );
+
+          let inserted = 0;
+          const BATCH = 80;
+          for (let offset = 0; offset < mapped.length; offset += BATCH) {
+            const slice = mapped.slice(offset, offset + BATCH);
+            if (!slice.length) break;
+            const placeholders = slice.map(() => "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)").join(",\n");
+            const params = [];
+            for (const item of slice) {
+              params.push(
+                item.bankKey,
+                item.contextId,
+                item.familyId,
+                item.sourceSummary,
+                item.keywords,
+                item.trSubject,
+                item.deSubject,
+                item.trQuestions,
+                item.deQuestions,
+                item.trAnswer,
+                item.deAnswer,
+                item.suggestions,
+                isActiveValue
+              );
+            }
+            await tx.execute(
+              `
+                INSERT INTO assistant_troubleshooting_bank (
+                  bank_key, context_id, family_id, source_summary,
+                  keywords, tr_subject, de_subject, tr_questions, de_questions,
+                  tr_answer, de_answer, suggestions, is_active, updated_at
+                )
+                VALUES ${placeholders}
+              `,
+              params
+            );
+            inserted += slice.length;
+          }
+
+          return { deleted: Number(deleted.rowCount || 0), inserted };
+        });
+
+        totalInserted += summary.inserted;
+        totalDeleted += summary.deleted;
+        totalSkipped += skippedLocal;
+        results.push({ file: entry.file, status: "ok", inserted: summary.inserted, deleted: summary.deleted, skipped: skippedLocal });
+      } catch (error) {
+        results.push({ file: entry.file, status: "insert_error", error: String(error.message || error).slice(0, 300) });
+      }
+    }
+
+    if (!dryRun) {
+      // Cache'i sıfırla: bir sonraki /api/assistant/query taze veriyi okusun.
+      troubleshootingBankCache = { activeOnly: null, expiresAt: 0, entries: [] };
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "drc_man_bulk_import",
+        severity: "info",
+        details: { totalInserted, totalDeleted, totalSkipped, fileCount: results.length },
+      });
+    }
+
+    return res.json({
+      ok: true,
+      dryRun,
+      totalInserted,
+      totalDeleted,
+      totalSkipped,
+      fileCount: results.length,
+      results,
+    });
   });
 
   app.post("/api/users", requireAdmin, async (req, res) => {

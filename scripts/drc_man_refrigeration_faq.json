@@ -1,0 +1,2152 @@
+[
+  {
+    "id": "refrigeration_shortage",
+    "tr_subject": "gaz eksikligi var",
+    "de_subject": "kaeltemittelmangel vorliegt",
+    "keywords": [
+      "gaz eksikligi var",
+      "kaeltemittelmangel vorliegt",
+      "refrigerant shortage",
+      "gaz eksigi"
+    ],
+    "tr_questions": [
+      "gaz eksikligi var neden olur",
+      "gaz eksikligi var olursa neye bakilir",
+      "gaz eksikligi var varsa usta once ne kontrol eder",
+      "gaz eksikligi var arizasinda teshis nasil baslar",
+      "gaz eksikligi var sorunu nasil cozulur",
+      "gaz eksikligi var neden tekrar eder",
+      "gaz eksikligi var oldugunda hangi olcumler yapilir",
+      "gaz eksikligi var montaj hatasi olabilir mi",
+      "gaz eksikligi var gorulurse servis sirasi ne olur",
+      "gaz eksikligi var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt kaeltemittelmangel vorliegt auf",
+      "worauf schaut man wenn kaeltemittelmangel vorliegt auftritt",
+      "was prueft ein meister zuerst wenn kaeltemittelmangel vorliegt da ist",
+      "wie beginnt die diagnose bei kaeltemittelmangel vorliegt",
+      "wie loest man kaeltemittelmangel vorliegt",
+      "warum kommt kaeltemittelmangel vorliegt immer wieder",
+      "welche messungen macht man bei kaeltemittelmangel vorliegt",
+      "kann montagefehler kaeltemittelmangel vorliegt verursachen",
+      "wie ist die service reihenfolge bei kaeltemittelmangel vorliegt",
+      "was ist der haeufigste fehler bei kaeltemittelmangel vorliegt"
+    ],
+    "tr_answer": "gaz eksikligi var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kacak veya eksik sarj nedeniyle sistemin sivi tarafinin bos kalmasi; bunun yaninda sarj miktari ile likit kararliliginin sistem ihtiyacina uymamasidir. Ilk kontrolde subcool, sight glass, basma-emis degerleri ve etiket sarji birlikte okunur. Bunun teknik sebebi gaz eksiginde hem kapasite hem kompresor sogutmasi zarar gorur; ayrica gaz devresinde dogru sarj sadece kapasiteyi degil kompresor guvenligini de belirler. En sik hata ise manometreye bakip hemen gaz eklemek veya gaz bosaltmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn kaeltemittelmangel vorliegt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Leckage oder Unterfuellung die Fluessigkeitsseite zu wenig Reserve hat; zusaetzlich kommen Fuellmenge und Stabilitaet der Fluessigkeitsseite nicht zum System passen vor. Bei der Erstpruefung werden Subcooling, Schauglas, Hoch-/Niederdruck und Sollfuellung gemeinsam bewertet werden. Der technische Hintergrund ist bei Kaeltemittelmangel sowohl Leistung als auch Verdichterkuehlung leiden; ausserdem gilt die richtige Fuellung im Kaeltekreis nicht nur Leistung, sondern auch Verdichtersicherheit bestimmt. Ein sehr haeufiger Fehler besteht darin, dass nur auf den Druck zu schauen und sofort nachzufuellen oder abzulassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "subcool neden onemli",
+      "sight glass ne anlatir",
+      "gaz eksigi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_overcharge",
+    "tr_subject": "sistemde fazla gaz var",
+    "de_subject": "die anlage ueberfuellt ist",
+    "keywords": [
+      "sistemde fazla gaz var",
+      "die anlage ueberfuellt ist",
+      "overcharge",
+      "fazla gaz"
+    ],
+    "tr_questions": [
+      "sistemde fazla gaz var neden olur",
+      "sistemde fazla gaz var olursa neye bakilir",
+      "sistemde fazla gaz var varsa usta once ne kontrol eder",
+      "sistemde fazla gaz var arizasinda teshis nasil baslar",
+      "sistemde fazla gaz var sorunu nasil cozulur",
+      "sistemde fazla gaz var neden tekrar eder",
+      "sistemde fazla gaz var oldugunda hangi olcumler yapilir",
+      "sistemde fazla gaz var montaj hatasi olabilir mi",
+      "sistemde fazla gaz var gorulurse servis sirasi ne olur",
+      "sistemde fazla gaz var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die anlage ueberfuellt ist auf",
+      "worauf schaut man wenn die anlage ueberfuellt ist auftritt",
+      "was prueft ein meister zuerst wenn die anlage ueberfuellt ist da ist",
+      "wie beginnt die diagnose bei die anlage ueberfuellt ist",
+      "wie loest man die anlage ueberfuellt ist",
+      "warum kommt die anlage ueberfuellt ist immer wieder",
+      "welche messungen macht man bei die anlage ueberfuellt ist",
+      "kann montagefehler die anlage ueberfuellt ist verursachen",
+      "wie ist die service reihenfolge bei die anlage ueberfuellt ist",
+      "was ist der haeufigste fehler bei die anlage ueberfuellt ist"
+    ],
+    "tr_answer": "sistemde fazla gaz var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden gereginden fazla sarjla likit tarafa gereksiz yiginak yapilmasi; bunun yaninda sarj miktari ile likit kararliliginin sistem ihtiyacina uymamasidir. Ilk kontrolde subcool, sight glass, basma-emis degerleri ve etiket sarji birlikte okunur. Bunun teknik sebebi fazla gaz basinç ve enerji tuketimini sebepsiz yukseltir; ayrica gaz devresinde dogru sarj sadece kapasiteyi degil kompresor guvenligini de belirler. En sik hata ise manometreye bakip hemen gaz eklemek veya gaz bosaltmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die anlage ueberfuellt ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Ueberfuellung unnoetig viel Fluessigkeit im System gestaut wird; zusaetzlich kommen Fuellmenge und Stabilitaet der Fluessigkeitsseite nicht zum System passen vor. Bei der Erstpruefung werden Subcooling, Schauglas, Hoch-/Niederdruck und Sollfuellung gemeinsam bewertet werden. Der technische Hintergrund ist Ueberfuellung Druck und Energieverbrauch unnoetig erhoeht; ausserdem gilt die richtige Fuellung im Kaeltekreis nicht nur Leistung, sondern auch Verdichtersicherheit bestimmt. Ein sehr haeufiger Fehler besteht darin, dass nur auf den Druck zu schauen und sofort nachzufuellen oder abzulassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "subcool neden onemli",
+      "sight glass ne anlatir",
+      "gaz eksigi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_flash_gas",
+    "tr_subject": "likit hattinda flash gas olusuyor",
+    "de_subject": "in der fluessigkeitsleitung flash-gas entsteht",
+    "keywords": [
+      "likit hattinda flash gas olusuyor",
+      "in der fluessigkeitsleitung flash-gas entsteht",
+      "flash gas",
+      "likit hatti kabarcik"
+    ],
+    "tr_questions": [
+      "likit hattinda flash gas olusuyor neden olur",
+      "likit hattinda flash gas olusuyor olursa neye bakilir",
+      "likit hattinda flash gas olusuyor varsa usta once ne kontrol eder",
+      "likit hattinda flash gas olusuyor arizasinda teshis nasil baslar",
+      "likit hattinda flash gas olusuyor sorunu nasil cozulur",
+      "likit hattinda flash gas olusuyor neden tekrar eder",
+      "likit hattinda flash gas olusuyor oldugunda hangi olcumler yapilir",
+      "likit hattinda flash gas olusuyor montaj hatasi olabilir mi",
+      "likit hattinda flash gas olusuyor gorulurse servis sirasi ne olur",
+      "likit hattinda flash gas olusuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt in der fluessigkeitsleitung flash-gas entsteht auf",
+      "worauf schaut man wenn in der fluessigkeitsleitung flash-gas entsteht auftritt",
+      "was prueft ein meister zuerst wenn in der fluessigkeitsleitung flash-gas entsteht da ist",
+      "wie beginnt die diagnose bei in der fluessigkeitsleitung flash-gas entsteht",
+      "wie loest man in der fluessigkeitsleitung flash-gas entsteht",
+      "warum kommt in der fluessigkeitsleitung flash-gas entsteht immer wieder",
+      "welche messungen macht man bei in der fluessigkeitsleitung flash-gas entsteht",
+      "kann montagefehler in der fluessigkeitsleitung flash-gas entsteht verursachen",
+      "wie ist die service reihenfolge bei in der fluessigkeitsleitung flash-gas entsteht",
+      "was ist der haeufigste fehler bei in der fluessigkeitsleitung flash-gas entsteht"
+    ],
+    "tr_answer": "likit hattinda flash gas olusuyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden likit hattinda subcool kaybi veya isi kazanci olmasi; bunun yaninda sarj miktari ile likit kararliliginin sistem ihtiyacina uymamasidir. Ilk kontrolde subcool, sight glass, basma-emis degerleri ve etiket sarji birlikte okunur. Bunun teknik sebebi flash gas olursa genlesme elemanina temiz sivi gitmez; ayrica gaz devresinde dogru sarj sadece kapasiteyi degil kompresor guvenligini de belirler. En sik hata ise manometreye bakip hemen gaz eklemek veya gaz bosaltmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn in der fluessigkeitsleitung flash-gas entsteht auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist in der Fluessigkeitsleitung Subcooling verloren geht oder Waerme eingetragen wird; zusaetzlich kommen Fuellmenge und Stabilitaet der Fluessigkeitsseite nicht zum System passen vor. Bei der Erstpruefung werden Subcooling, Schauglas, Hoch-/Niederdruck und Sollfuellung gemeinsam bewertet werden. Der technische Hintergrund ist bei Flash-Gas das Expansionsorgan keine saubere Fluessigkeit mehr bekommt; ausserdem gilt die richtige Fuellung im Kaeltekreis nicht nur Leistung, sondern auch Verdichtersicherheit bestimmt. Ein sehr haeufiger Fehler besteht darin, dass nur auf den Druck zu schauen und sofort nachzufuellen oder abzulassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "subcool neden onemli",
+      "sight glass ne anlatir",
+      "gaz eksigi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_low_subcool",
+    "tr_subject": "subcool dusuk cikiyor",
+    "de_subject": "das subcooling zu niedrig ist",
+    "keywords": [
+      "subcool dusuk cikiyor",
+      "das subcooling zu niedrig ist",
+      "low subcool",
+      "subcool dusuk"
+    ],
+    "tr_questions": [
+      "subcool dusuk cikiyor neden olur",
+      "subcool dusuk cikiyor olursa neye bakilir",
+      "subcool dusuk cikiyor varsa usta once ne kontrol eder",
+      "subcool dusuk cikiyor arizasinda teshis nasil baslar",
+      "subcool dusuk cikiyor sorunu nasil cozulur",
+      "subcool dusuk cikiyor neden tekrar eder",
+      "subcool dusuk cikiyor oldugunda hangi olcumler yapilir",
+      "subcool dusuk cikiyor montaj hatasi olabilir mi",
+      "subcool dusuk cikiyor gorulurse servis sirasi ne olur",
+      "subcool dusuk cikiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das subcooling zu niedrig ist auf",
+      "worauf schaut man wenn das subcooling zu niedrig ist auftritt",
+      "was prueft ein meister zuerst wenn das subcooling zu niedrig ist da ist",
+      "wie beginnt die diagnose bei das subcooling zu niedrig ist",
+      "wie loest man das subcooling zu niedrig ist",
+      "warum kommt das subcooling zu niedrig ist immer wieder",
+      "welche messungen macht man bei das subcooling zu niedrig ist",
+      "kann montagefehler das subcooling zu niedrig ist verursachen",
+      "wie ist die service reihenfolge bei das subcooling zu niedrig ist",
+      "was ist der haeufigste fehler bei das subcooling zu niedrig ist"
+    ],
+    "tr_answer": "subcool dusuk cikiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kondenser cikisinda yeterli sivi kolonu olusmamasi; bunun yaninda sarj miktari ile likit kararliliginin sistem ihtiyacina uymamasidir. Ilk kontrolde subcool, sight glass, basma-emis degerleri ve etiket sarji birlikte okunur. Bunun teknik sebebi dusuk subcool sivi hattini kararsizlastirip beslemeyi bozar; ayrica gaz devresinde dogru sarj sadece kapasiteyi degil kompresor guvenligini de belirler. En sik hata ise manometreye bakip hemen gaz eklemek veya gaz bosaltmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das subcooling zu niedrig ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist am Verfluessigerausgang keine stabile Fluessigkeitssauele entsteht; zusaetzlich kommen Fuellmenge und Stabilitaet der Fluessigkeitsseite nicht zum System passen vor. Bei der Erstpruefung werden Subcooling, Schauglas, Hoch-/Niederdruck und Sollfuellung gemeinsam bewertet werden. Der technische Hintergrund ist niedriges Subcooling die Fluessigkeitsversorgung instabil macht; ausserdem gilt die richtige Fuellung im Kaeltekreis nicht nur Leistung, sondern auch Verdichtersicherheit bestimmt. Ein sehr haeufiger Fehler besteht darin, dass nur auf den Druck zu schauen und sofort nachzufuellen oder abzulassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "subcool neden onemli",
+      "sight glass ne anlatir",
+      "gaz eksigi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_high_subcool",
+    "tr_subject": "subcool gereksiz yuksek",
+    "de_subject": "das subcooling unnoetig hoch ist",
+    "keywords": [
+      "subcool gereksiz yuksek",
+      "das subcooling unnoetig hoch ist",
+      "high subcool",
+      "subcool yuksek"
+    ],
+    "tr_questions": [
+      "subcool gereksiz yuksek neden olur",
+      "subcool gereksiz yuksek olursa neye bakilir",
+      "subcool gereksiz yuksek varsa usta once ne kontrol eder",
+      "subcool gereksiz yuksek arizasinda teshis nasil baslar",
+      "subcool gereksiz yuksek sorunu nasil cozulur",
+      "subcool gereksiz yuksek neden tekrar eder",
+      "subcool gereksiz yuksek oldugunda hangi olcumler yapilir",
+      "subcool gereksiz yuksek montaj hatasi olabilir mi",
+      "subcool gereksiz yuksek gorulurse servis sirasi ne olur",
+      "subcool gereksiz yuksek icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das subcooling unnoetig hoch ist auf",
+      "worauf schaut man wenn das subcooling unnoetig hoch ist auftritt",
+      "was prueft ein meister zuerst wenn das subcooling unnoetig hoch ist da ist",
+      "wie beginnt die diagnose bei das subcooling unnoetig hoch ist",
+      "wie loest man das subcooling unnoetig hoch ist",
+      "warum kommt das subcooling unnoetig hoch ist immer wieder",
+      "welche messungen macht man bei das subcooling unnoetig hoch ist",
+      "kann montagefehler das subcooling unnoetig hoch ist verursachen",
+      "wie ist die service reihenfolge bei das subcooling unnoetig hoch ist",
+      "was ist der haeufigste fehler bei das subcooling unnoetig hoch ist"
+    ],
+    "tr_answer": "subcool gereksiz yuksek durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden likit tarafinda fazla stok veya tikanma benzeri birikim olmasi; bunun yaninda sarj miktari ile likit kararliliginin sistem ihtiyacina uymamasidir. Ilk kontrolde subcool, sight glass, basma-emis degerleri ve etiket sarji birlikte okunur. Bunun teknik sebebi asiri subcool bazen fazla sarj ya da akisa karsi direnç isareti olur; ayrica gaz devresinde dogru sarj sadece kapasiteyi degil kompresor guvenligini de belirler. En sik hata ise manometreye bakip hemen gaz eklemek veya gaz bosaltmaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das subcooling unnoetig hoch ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist in der Fluessigkeitsseite zu viel Reserve oder ein Stau entsteht; zusaetzlich kommen Fuellmenge und Stabilitaet der Fluessigkeitsseite nicht zum System passen vor. Bei der Erstpruefung werden Subcooling, Schauglas, Hoch-/Niederdruck und Sollfuellung gemeinsam bewertet werden. Der technische Hintergrund ist zu hohes Subcooling oft auf Ueberfuellung oder Widerstand im Kreislauf hinweist; ausserdem gilt die richtige Fuellung im Kaeltekreis nicht nur Leistung, sondern auch Verdichtersicherheit bestimmt. Ein sehr haeufiger Fehler besteht darin, dass nur auf den Druck zu schauen und sofort nachzufuellen oder abzulassen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "subcool neden onemli",
+      "sight glass ne anlatir",
+      "gaz eksigi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_noncondensables",
+    "tr_subject": "sistemde yogusmayan gazlar var",
+    "de_subject": "nichtkondensierbare gase im system sind",
+    "keywords": [
+      "sistemde yogusmayan gazlar var",
+      "nichtkondensierbare gase im system sind",
+      "non-condensables",
+      "hava kalmis"
+    ],
+    "tr_questions": [
+      "sistemde yogusmayan gazlar var neden olur",
+      "sistemde yogusmayan gazlar var olursa neye bakilir",
+      "sistemde yogusmayan gazlar var varsa usta once ne kontrol eder",
+      "sistemde yogusmayan gazlar var arizasinda teshis nasil baslar",
+      "sistemde yogusmayan gazlar var sorunu nasil cozulur",
+      "sistemde yogusmayan gazlar var neden tekrar eder",
+      "sistemde yogusmayan gazlar var oldugunda hangi olcumler yapilir",
+      "sistemde yogusmayan gazlar var montaj hatasi olabilir mi",
+      "sistemde yogusmayan gazlar var gorulurse servis sirasi ne olur",
+      "sistemde yogusmayan gazlar var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt nichtkondensierbare gase im system sind auf",
+      "worauf schaut man wenn nichtkondensierbare gase im system sind auftritt",
+      "was prueft ein meister zuerst wenn nichtkondensierbare gase im system sind da ist",
+      "wie beginnt die diagnose bei nichtkondensierbare gase im system sind",
+      "wie loest man nichtkondensierbare gase im system sind",
+      "warum kommt nichtkondensierbare gase im system sind immer wieder",
+      "welche messungen macht man bei nichtkondensierbare gase im system sind",
+      "kann montagefehler nichtkondensierbare gase im system sind verursachen",
+      "wie ist die service reihenfolge bei nichtkondensierbare gase im system sind",
+      "was ist der haeufigste fehler bei nichtkondensierbare gase im system sind"
+    ],
+    "tr_answer": "sistemde yogusmayan gazlar var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden vakum yetersizligi veya servis sirasinda hava karismasi; bunun yaninda sistem icinde hava, nem, asit veya yabanci partikuller kalmasidir. Ilk kontrolde vakum kalitesi, yag rengi, filter drier davranisi ve servis gecmisi birlikte sorgulanir. Bunun teknik sebebi yogusmayan gazlar kondenserde yer kaplayip basinç yukselmesine neden olur; ayrica gaz devresindeki kirlilik valf ve kompresor sorununu zamanla buyutur. En sik hata ise yalniz sarj miktarina bakip sistem temizligini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn nichtkondensierbare gase im system sind auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch schlechtes Vakuum oder Service Luft in den Kreis gelangt; zusaetzlich kommen im System Luft, Feuchtigkeit, Saeure oder Schmutz zurueckgeblieben sind vor. Bei der Erstpruefung werden Vakuumqualitaet, Oelzustand, Filtertrockner-Verhalten und Servicehistorie gemeinsam ausgewertet werden. Der technische Hintergrund ist nichtkondensierbare Gase Platz im Verfluessiger belegen und Hochdruck erzeugen; ausserdem gilt Verunreinigungen im Kaeltekreis Ventil- und Verdichterprobleme mit der Zeit vergroessern. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Fuellmenge zu schauen und die Systemreinheit zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "vakum neden onemli",
+      "filter drier neden tikanir",
+      "asidik yag nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_moisture_in_system",
+    "tr_subject": "sistemde nem var",
+    "de_subject": "feuchtigkeit im system ist",
+    "keywords": [
+      "sistemde nem var",
+      "feuchtigkeit im system ist",
+      "moisture in system",
+      "nem var"
+    ],
+    "tr_questions": [
+      "sistemde nem var neden olur",
+      "sistemde nem var olursa neye bakilir",
+      "sistemde nem var varsa usta once ne kontrol eder",
+      "sistemde nem var arizasinda teshis nasil baslar",
+      "sistemde nem var sorunu nasil cozulur",
+      "sistemde nem var neden tekrar eder",
+      "sistemde nem var oldugunda hangi olcumler yapilir",
+      "sistemde nem var montaj hatasi olabilir mi",
+      "sistemde nem var gorulurse servis sirasi ne olur",
+      "sistemde nem var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt feuchtigkeit im system ist auf",
+      "worauf schaut man wenn feuchtigkeit im system ist auftritt",
+      "was prueft ein meister zuerst wenn feuchtigkeit im system ist da ist",
+      "wie beginnt die diagnose bei feuchtigkeit im system ist",
+      "wie loest man feuchtigkeit im system ist",
+      "warum kommt feuchtigkeit im system ist immer wieder",
+      "welche messungen macht man bei feuchtigkeit im system ist",
+      "kann montagefehler feuchtigkeit im system ist verursachen",
+      "wie ist die service reihenfolge bei feuchtigkeit im system ist",
+      "was ist der haeufigste fehler bei feuchtigkeit im system ist"
+    ],
+    "tr_answer": "sistemde nem var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden hatlar acik kalmis veya vakum yeterince derin yapilmamis olmasi; bunun yaninda sistem icinde hava, nem, asit veya yabanci partikuller kalmasidir. Ilk kontrolde vakum kalitesi, yag rengi, filter drier davranisi ve servis gecmisi birlikte sorgulanir. Bunun teknik sebebi nem genlesme elemaninda buz ve kararsiz calisma uretir; ayrica gaz devresindeki kirlilik valf ve kompresor sorununu zamanla buyutur. En sik hata ise yalniz sarj miktarina bakip sistem temizligini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn feuchtigkeit im system ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Leitungen offen standen oder das Vakuum nicht tief genug war; zusaetzlich kommen im System Luft, Feuchtigkeit, Saeure oder Schmutz zurueckgeblieben sind vor. Bei der Erstpruefung werden Vakuumqualitaet, Oelzustand, Filtertrockner-Verhalten und Servicehistorie gemeinsam ausgewertet werden. Der technische Hintergrund ist Feuchtigkeit am Expansionsorgan zu Eis und instabilem Lauf fuehrt; ausserdem gilt Verunreinigungen im Kaeltekreis Ventil- und Verdichterprobleme mit der Zeit vergroessern. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Fuellmenge zu schauen und die Systemreinheit zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "vakum neden onemli",
+      "filter drier neden tikanir",
+      "asidik yag nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_acid_in_oil",
+    "tr_subject": "yag asitlenmis olabilir",
+    "de_subject": "das oel saeure gebildet hat",
+    "keywords": [
+      "yag asitlenmis olabilir",
+      "das oel saeure gebildet hat",
+      "acid oil",
+      "asitli yag"
+    ],
+    "tr_questions": [
+      "yag asitlenmis olabilir neden olur",
+      "yag asitlenmis olabilir olursa neye bakilir",
+      "yag asitlenmis olabilir varsa usta once ne kontrol eder",
+      "yag asitlenmis olabilir arizasinda teshis nasil baslar",
+      "yag asitlenmis olabilir sorunu nasil cozulur",
+      "yag asitlenmis olabilir neden tekrar eder",
+      "yag asitlenmis olabilir oldugunda hangi olcumler yapilir",
+      "yag asitlenmis olabilir montaj hatasi olabilir mi",
+      "yag asitlenmis olabilir gorulurse servis sirasi ne olur",
+      "yag asitlenmis olabilir icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das oel saeure gebildet hat auf",
+      "worauf schaut man wenn das oel saeure gebildet hat auftritt",
+      "was prueft ein meister zuerst wenn das oel saeure gebildet hat da ist",
+      "wie beginnt die diagnose bei das oel saeure gebildet hat",
+      "wie loest man das oel saeure gebildet hat",
+      "warum kommt das oel saeure gebildet hat immer wieder",
+      "welche messungen macht man bei das oel saeure gebildet hat",
+      "kann montagefehler das oel saeure gebildet hat verursachen",
+      "wie ist die service reihenfolge bei das oel saeure gebildet hat",
+      "was ist der haeufigste fehler bei das oel saeure gebildet hat"
+    ],
+    "tr_answer": "yag asitlenmis olabilir durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden nem, yanik motor veya uzun sureli kirli calisma sonucu asit olusmasi; bunun yaninda sistem icinde hava, nem, asit veya yabanci partikuller kalmasidir. Ilk kontrolde vakum kalitesi, yag rengi, filter drier davranisi ve servis gecmisi birlikte sorgulanir. Bunun teknik sebebi asitli yag kompresor ve sargilar icin sessiz ama ciddi bir tehdittir; ayrica gaz devresindeki kirlilik valf ve kompresor sorununu zamanla buyutur. En sik hata ise yalniz sarj miktarina bakip sistem temizligini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das oel saeure gebildet hat auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Feuchte, Motorbrand oder langes verschmutztes Arbeiten Saeure entsteht; zusaetzlich kommen im System Luft, Feuchtigkeit, Saeure oder Schmutz zurueckgeblieben sind vor. Bei der Erstpruefung werden Vakuumqualitaet, Oelzustand, Filtertrockner-Verhalten und Servicehistorie gemeinsam ausgewertet werden. Der technische Hintergrund ist saeurehaltiges Oel Verdichter und Wicklungen still, aber massiv schaedigt; ausserdem gilt Verunreinigungen im Kaeltekreis Ventil- und Verdichterprobleme mit der Zeit vergroessern. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Fuellmenge zu schauen und die Systemreinheit zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "vakum neden onemli",
+      "filter drier neden tikanir",
+      "asidik yag nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_dirty_oil",
+    "tr_subject": "kompresor yagi kirlenmis",
+    "de_subject": "das verdichteroel verschmutzt ist",
+    "keywords": [
+      "kompresor yagi kirlenmis",
+      "das verdichteroel verschmutzt ist",
+      "dirty oil",
+      "kirli yag"
+    ],
+    "tr_questions": [
+      "kompresor yagi kirlenmis neden olur",
+      "kompresor yagi kirlenmis olursa neye bakilir",
+      "kompresor yagi kirlenmis varsa usta once ne kontrol eder",
+      "kompresor yagi kirlenmis arizasinda teshis nasil baslar",
+      "kompresor yagi kirlenmis sorunu nasil cozulur",
+      "kompresor yagi kirlenmis neden tekrar eder",
+      "kompresor yagi kirlenmis oldugunda hangi olcumler yapilir",
+      "kompresor yagi kirlenmis montaj hatasi olabilir mi",
+      "kompresor yagi kirlenmis gorulurse servis sirasi ne olur",
+      "kompresor yagi kirlenmis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das verdichteroel verschmutzt ist auf",
+      "worauf schaut man wenn das verdichteroel verschmutzt ist auftritt",
+      "was prueft ein meister zuerst wenn das verdichteroel verschmutzt ist da ist",
+      "wie beginnt die diagnose bei das verdichteroel verschmutzt ist",
+      "wie loest man das verdichteroel verschmutzt ist",
+      "warum kommt das verdichteroel verschmutzt ist immer wieder",
+      "welche messungen macht man bei das verdichteroel verschmutzt ist",
+      "kann montagefehler das verdichteroel verschmutzt ist verursachen",
+      "wie ist die service reihenfolge bei das verdichteroel verschmutzt ist",
+      "was ist der haeufigste fehler bei das verdichteroel verschmutzt ist"
+    ],
+    "tr_answer": "kompresor yagi kirlenmis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden parcacik, oksit veya karbon benzeri kirlerin yaga karismasi; bunun yaninda sistem icinde hava, nem, asit veya yabanci partikuller kalmasidir. Ilk kontrolde vakum kalitesi, yag rengi, filter drier davranisi ve servis gecmisi birlikte sorgulanir. Bunun teknik sebebi kirli yag sadece yaglama degil valf ve yatak omrunu de bozar; ayrica gaz devresindeki kirlilik valf ve kompresor sorununu zamanla buyutur. En sik hata ise yalniz sarj miktarina bakip sistem temizligini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das verdichteroel verschmutzt ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Partikel, Oxid oder carbonartige Rueckstaende ins Oel gelangt sind; zusaetzlich kommen im System Luft, Feuchtigkeit, Saeure oder Schmutz zurueckgeblieben sind vor. Bei der Erstpruefung werden Vakuumqualitaet, Oelzustand, Filtertrockner-Verhalten und Servicehistorie gemeinsam ausgewertet werden. Der technische Hintergrund ist verschmutztes Oel nicht nur schmiert, sondern Ventile und Lager beschaedigt; ausserdem gilt Verunreinigungen im Kaeltekreis Ventil- und Verdichterprobleme mit der Zeit vergroessern. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Fuellmenge zu schauen und die Systemreinheit zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "vakum neden onemli",
+      "filter drier neden tikanir",
+      "asidik yag nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_bad_vacuum",
+    "tr_subject": "vakum iyi yapilmamis",
+    "de_subject": "das vakuum schlecht gezogen wurde",
+    "keywords": [
+      "vakum iyi yapilmamis",
+      "das vakuum schlecht gezogen wurde",
+      "bad vacuum",
+      "vakum kotu"
+    ],
+    "tr_questions": [
+      "vakum iyi yapilmamis neden olur",
+      "vakum iyi yapilmamis olursa neye bakilir",
+      "vakum iyi yapilmamis varsa usta once ne kontrol eder",
+      "vakum iyi yapilmamis arizasinda teshis nasil baslar",
+      "vakum iyi yapilmamis sorunu nasil cozulur",
+      "vakum iyi yapilmamis neden tekrar eder",
+      "vakum iyi yapilmamis oldugunda hangi olcumler yapilir",
+      "vakum iyi yapilmamis montaj hatasi olabilir mi",
+      "vakum iyi yapilmamis gorulurse servis sirasi ne olur",
+      "vakum iyi yapilmamis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das vakuum schlecht gezogen wurde auf",
+      "worauf schaut man wenn das vakuum schlecht gezogen wurde auftritt",
+      "was prueft ein meister zuerst wenn das vakuum schlecht gezogen wurde da ist",
+      "wie beginnt die diagnose bei das vakuum schlecht gezogen wurde",
+      "wie loest man das vakuum schlecht gezogen wurde",
+      "warum kommt das vakuum schlecht gezogen wurde immer wieder",
+      "welche messungen macht man bei das vakuum schlecht gezogen wurde",
+      "kann montagefehler das vakuum schlecht gezogen wurde verursachen",
+      "wie ist die service reihenfolge bei das vakuum schlecht gezogen wurde",
+      "was ist der haeufigste fehler bei das vakuum schlecht gezogen wurde"
+    ],
+    "tr_answer": "vakum iyi yapilmamis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden hizli gecilen servis nedeniyle sistemin derin vakuma inmemesi; bunun yaninda sistem icinde hava, nem, asit veya yabanci partikuller kalmasidir. Ilk kontrolde vakum kalitesi, yag rengi, filter drier davranisi ve servis gecmisi birlikte sorgulanir. Bunun teknik sebebi kotu vakum sonraki arizalari zincirleme sekilde baslatir; ayrica gaz devresindeki kirlilik valf ve kompresor sorununu zamanla buyutur. En sik hata ise yalniz sarj miktarina bakip sistem temizligini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das vakuum schlecht gezogen wurde auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist wegen zu schneller Arbeit kein tiefes und stabiles Vakuum erreicht wurde; zusaetzlich kommen im System Luft, Feuchtigkeit, Saeure oder Schmutz zurueckgeblieben sind vor. Bei der Erstpruefung werden Vakuumqualitaet, Oelzustand, Filtertrockner-Verhalten und Servicehistorie gemeinsam ausgewertet werden. Der technische Hintergrund ist schlechtes Vakuum spaetere Fehler kettenartig ausloest; ausserdem gilt Verunreinigungen im Kaeltekreis Ventil- und Verdichterprobleme mit der Zeit vergroessern. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Fuellmenge zu schauen und die Systemreinheit zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "vakum neden onemli",
+      "filter drier neden tikanir",
+      "asidik yag nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_filter_drier_restriction",
+    "tr_subject": "filter drier tikali",
+    "de_subject": "der filtertrockner verstopft ist",
+    "keywords": [
+      "filter drier tikali",
+      "der filtertrockner verstopft ist",
+      "filter drier blocked",
+      "tikali drier"
+    ],
+    "tr_questions": [
+      "filter drier tikali neden olur",
+      "filter drier tikali olursa neye bakilir",
+      "filter drier tikali varsa usta once ne kontrol eder",
+      "filter drier tikali arizasinda teshis nasil baslar",
+      "filter drier tikali sorunu nasil cozulur",
+      "filter drier tikali neden tekrar eder",
+      "filter drier tikali oldugunda hangi olcumler yapilir",
+      "filter drier tikali montaj hatasi olabilir mi",
+      "filter drier tikali gorulurse servis sirasi ne olur",
+      "filter drier tikali icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der filtertrockner verstopft ist auf",
+      "worauf schaut man wenn der filtertrockner verstopft ist auftritt",
+      "was prueft ein meister zuerst wenn der filtertrockner verstopft ist da ist",
+      "wie beginnt die diagnose bei der filtertrockner verstopft ist",
+      "wie loest man der filtertrockner verstopft ist",
+      "warum kommt der filtertrockner verstopft ist immer wieder",
+      "welche messungen macht man bei der filtertrockner verstopft ist",
+      "kann montagefehler der filtertrockner verstopft ist verursachen",
+      "wie ist die service reihenfolge bei der filtertrockner verstopft ist",
+      "was ist der haeufigste fehler bei der filtertrockner verstopft ist"
+    ],
+    "tr_answer": "filter drier tikali durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kir, lehim oksidi veya nemle drierin akisi bogmasi; bunun yaninda likit veya emiş hattinda akisi kisan mekanik bir daralma olmasidir. Ilk kontrolde hat uzeri sicaklik dusumleri, filtre oncesi-sonrasi fark ve servis vanasi konumu okunur. Bunun teknik sebebi tikanik drier genlesme valfi oncesi sivi beslemesini acar birakir; ayrica devredeki daralma basinç, superheat ve kapasiteyi birden etkiler. En sik hata ise daralmayi valf arizasi zannedip hatti incelememektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der filtertrockner verstopft ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Schmutz, Loetoxid oder Feuchte den Trockner zusetzen; zusaetzlich kommen eine mechanische Verengung in Fluessigkeits- oder Saugleitung den Massenstrom drosselt vor. Bei der Erstpruefung werden Temperaturabfaelle an Leitungen, Vor-/Nachdifferenzen und Serviceventilstellung geprueft werden. Der technische Hintergrund ist ein zugesetzter Trockner die Fluessigversorgung zum Ventil hungern laesst; ausserdem gilt eine Verengung gleichzeitig Druck, Superheat und Leistung verschiebt. Ein sehr haeufiger Fehler besteht darin, dass eine Verengung fuer einen reinen Ventilfehler zu halten und die Leitung nicht zu pruefen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "filter drier neden tikanir",
+      "sight glass kabarcigi ne anlatir",
+      "servis vanasi nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "refrigeration_liquid_line_restriction",
+    "tr_subject": "likit hattinda daralma var",
+    "de_subject": "die fluessigkeitsleitung eingeengt ist",
+    "keywords": [
+      "likit hattinda daralma var",
+      "die fluessigkeitsleitung eingeengt ist",
+      "liquid line restriction",
+      "likit daralma"
+    ],
+    "tr_questions": [
+      "likit hattinda daralma var neden olur",
+      "likit hattinda daralma var olursa neye bakilir",
+      "likit hattinda daralma var varsa usta once ne kontrol eder",
+      "likit hattinda daralma var arizasinda teshis nasil baslar",
+      "likit hattinda daralma var sorunu nasil cozulur",
+      "likit hattinda daralma var neden tekrar eder",
+      "likit hattinda daralma var oldugunda hangi olcumler yapilir",
+      "likit hattinda daralma var montaj hatasi olabilir mi",
+      "likit hattinda daralma var gorulurse servis sirasi ne olur",
+      "likit hattinda daralma var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die fluessigkeitsleitung eingeengt ist auf",
+      "worauf schaut man wenn die fluessigkeitsleitung eingeengt ist auftritt",
+      "was prueft ein meister zuerst wenn die fluessigkeitsleitung eingeengt ist da ist",
+      "wie beginnt die diagnose bei die fluessigkeitsleitung eingeengt ist",
+      "wie loest man die fluessigkeitsleitung eingeengt ist",
+      "warum kommt die fluessigkeitsleitung eingeengt ist immer wieder",
+      "welche messungen macht man bei die fluessigkeitsleitung eingeengt ist",
+      "kann montagefehler die fluessigkeitsleitung eingeengt ist verursachen",
+      "wie ist die service reihenfolge bei die fluessigkeitsleitung eingeengt ist",
+      "was ist der haeufigste fehler bei die fluessigkeitsleitung eingeengt ist"
+    ],
+    "tr_answer": "likit hattinda daralma var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ezilme, yarim kapali vana veya kirlilik nedeniyle likit akisinin daralmasi; bunun yaninda likit veya emiş hattinda akisi kisan mekanik bir daralma olmasidir. Ilk kontrolde hat uzeri sicaklik dusumleri, filtre oncesi-sonrasi fark ve servis vanasi konumu okunur. Bunun teknik sebebi likit daralmasi subcool var gibi gorunse bile valfe temiz besleme vermez; ayrica devredeki daralma basinç, superheat ve kapasiteyi birden etkiler. En sik hata ise daralmayi valf arizasi zannedip hatti incelememektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die fluessigkeitsleitung eingeengt ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Quetschung, halb offenes Ventil oder Schmutz die Fluessigkeit abgewuergt wird; zusaetzlich kommen eine mechanische Verengung in Fluessigkeits- oder Saugleitung den Massenstrom drosselt vor. Bei der Erstpruefung werden Temperaturabfaelle an Leitungen, Vor-/Nachdifferenzen und Serviceventilstellung geprueft werden. Der technische Hintergrund ist eine Fluessigverengung trotz scheinbar vorhandenem Subcooling keine saubere Einspeisung liefert; ausserdem gilt eine Verengung gleichzeitig Druck, Superheat und Leistung verschiebt. Ein sehr haeufiger Fehler besteht darin, dass eine Verengung fuer einen reinen Ventilfehler zu halten und die Leitung nicht zu pruefen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "filter drier neden tikanir",
+      "sight glass kabarcigi ne anlatir",
+      "servis vanasi nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "refrigeration_suction_restriction",
+    "tr_subject": "emis hattinda kisit var",
+    "de_subject": "die saugleitung eingeengt ist",
+    "keywords": [
+      "emis hattinda kisit var",
+      "die saugleitung eingeengt ist",
+      "suction restriction",
+      "emis daralma"
+    ],
+    "tr_questions": [
+      "emis hattinda kisit var neden olur",
+      "emis hattinda kisit var olursa neye bakilir",
+      "emis hattinda kisit var varsa usta once ne kontrol eder",
+      "emis hattinda kisit var arizasinda teshis nasil baslar",
+      "emis hattinda kisit var sorunu nasil cozulur",
+      "emis hattinda kisit var neden tekrar eder",
+      "emis hattinda kisit var oldugunda hangi olcumler yapilir",
+      "emis hattinda kisit var montaj hatasi olabilir mi",
+      "emis hattinda kisit var gorulurse servis sirasi ne olur",
+      "emis hattinda kisit var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die saugleitung eingeengt ist auf",
+      "worauf schaut man wenn die saugleitung eingeengt ist auftritt",
+      "was prueft ein meister zuerst wenn die saugleitung eingeengt ist da ist",
+      "wie beginnt die diagnose bei die saugleitung eingeengt ist",
+      "wie loest man die saugleitung eingeengt ist",
+      "warum kommt die saugleitung eingeengt ist immer wieder",
+      "welche messungen macht man bei die saugleitung eingeengt ist",
+      "kann montagefehler die saugleitung eingeengt ist verursachen",
+      "wie ist die service reihenfolge bei die saugleitung eingeengt ist",
+      "was ist der haeufigste fehler bei die saugleitung eingeengt ist"
+    ],
+    "tr_answer": "emis hattinda kisit var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden hatta tikanma, servis vanasi problemi veya buz/kirlilik kaynakli engel olmasi; bunun yaninda likit veya emiş hattinda akisi kisan mekanik bir daralma olmasidir. Ilk kontrolde hat uzeri sicaklik dusumleri, filtre oncesi-sonrasi fark ve servis vanasi konumu okunur. Bunun teknik sebebi emiş kisiti kompresoru ac birakir ve kapasiteyi dusurur; ayrica devredeki daralma basinç, superheat ve kapasiteyi birden etkiler. En sik hata ise daralmayi valf arizasi zannedip hatti incelememektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die saugleitung eingeengt ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist an der Saugleitung eine Verengung durch Ventil, Schmutz oder Vereisung besteht; zusaetzlich kommen eine mechanische Verengung in Fluessigkeits- oder Saugleitung den Massenstrom drosselt vor. Bei der Erstpruefung werden Temperaturabfaelle an Leitungen, Vor-/Nachdifferenzen und Serviceventilstellung geprueft werden. Der technische Hintergrund ist eine Saugverengung den Verdichter aushungert und die Leistung drueckt; ausserdem gilt eine Verengung gleichzeitig Druck, Superheat und Leistung verschiebt. Ein sehr haeufiger Fehler besteht darin, dass eine Verengung fuer einen reinen Ventilfehler zu halten und die Leitung nicht zu pruefen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "filter drier neden tikanir",
+      "sight glass kabarcigi ne anlatir",
+      "servis vanasi nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "refrigeration_service_valve_half_open",
+    "tr_subject": "servis vanasi yarim acik kalmis",
+    "de_subject": "das serviceventil halb offen steht",
+    "keywords": [
+      "servis vanasi yarim acik kalmis",
+      "das serviceventil halb offen steht",
+      "half open valve",
+      "servis vanasi yarim"
+    ],
+    "tr_questions": [
+      "servis vanasi yarim acik kalmis neden olur",
+      "servis vanasi yarim acik kalmis olursa neye bakilir",
+      "servis vanasi yarim acik kalmis varsa usta once ne kontrol eder",
+      "servis vanasi yarim acik kalmis arizasinda teshis nasil baslar",
+      "servis vanasi yarim acik kalmis sorunu nasil cozulur",
+      "servis vanasi yarim acik kalmis neden tekrar eder",
+      "servis vanasi yarim acik kalmis oldugunda hangi olcumler yapilir",
+      "servis vanasi yarim acik kalmis montaj hatasi olabilir mi",
+      "servis vanasi yarim acik kalmis gorulurse servis sirasi ne olur",
+      "servis vanasi yarim acik kalmis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das serviceventil halb offen steht auf",
+      "worauf schaut man wenn das serviceventil halb offen steht auftritt",
+      "was prueft ein meister zuerst wenn das serviceventil halb offen steht da ist",
+      "wie beginnt die diagnose bei das serviceventil halb offen steht",
+      "wie loest man das serviceventil halb offen steht",
+      "warum kommt das serviceventil halb offen steht immer wieder",
+      "welche messungen macht man bei das serviceventil halb offen steht",
+      "kann montagefehler das serviceventil halb offen steht verursachen",
+      "wie ist die service reihenfolge bei das serviceventil halb offen steht",
+      "was ist der haeufigste fehler bei das serviceventil halb offen steht"
+    ],
+    "tr_answer": "servis vanasi yarim acik kalmis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden servis sonrasi vananin tam pozisyona alinmamasi; bunun yaninda likit veya emiş hattinda akisi kisan mekanik bir daralma olmasidir. Ilk kontrolde hat uzeri sicaklik dusumleri, filtre oncesi-sonrasi fark ve servis vanasi konumu okunur. Bunun teknik sebebi yarim acik vana bazen daralma bazen yalanci basinç yorumu dogurur; ayrica devredeki daralma basinç, superheat ve kapasiteyi birden etkiler. En sik hata ise daralmayi valf arizasi zannedip hatti incelememektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das serviceventil halb offen steht auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist nach Service das Ventil nicht in Endstellung gebracht wurde; zusaetzlich kommen eine mechanische Verengung in Fluessigkeits- oder Saugleitung den Massenstrom drosselt vor. Bei der Erstpruefung werden Temperaturabfaelle an Leitungen, Vor-/Nachdifferenzen und Serviceventilstellung geprueft werden. Der technische Hintergrund ist ein halb offenes Ventil je nach Stelle wie Drossel und Fehlmessung wirkt; ausserdem gilt eine Verengung gleichzeitig Druck, Superheat und Leistung verschiebt. Ein sehr haeufiger Fehler besteht darin, dass eine Verengung fuer einen reinen Ventilfehler zu halten und die Leitung nicht zu pruefen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "filter drier neden tikanir",
+      "sight glass kabarcigi ne anlatir",
+      "servis vanasi nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "refrigeration_distributor_blocked",
+    "tr_subject": "distributor veya dagitici tikanik",
+    "de_subject": "der verteiler verstopft ist",
+    "keywords": [
+      "distributor veya dagitici tikanik",
+      "der verteiler verstopft ist",
+      "distributor blocked",
+      "dagitici tikanik"
+    ],
+    "tr_questions": [
+      "distributor veya dagitici tikanik neden olur",
+      "distributor veya dagitici tikanik olursa neye bakilir",
+      "distributor veya dagitici tikanik varsa usta once ne kontrol eder",
+      "distributor veya dagitici tikanik arizasinda teshis nasil baslar",
+      "distributor veya dagitici tikanik sorunu nasil cozulur",
+      "distributor veya dagitici tikanik neden tekrar eder",
+      "distributor veya dagitici tikanik oldugunda hangi olcumler yapilir",
+      "distributor veya dagitici tikanik montaj hatasi olabilir mi",
+      "distributor veya dagitici tikanik gorulurse servis sirasi ne olur",
+      "distributor veya dagitici tikanik icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der verteiler verstopft ist auf",
+      "worauf schaut man wenn der verteiler verstopft ist auftritt",
+      "was prueft ein meister zuerst wenn der verteiler verstopft ist da ist",
+      "wie beginnt die diagnose bei der verteiler verstopft ist",
+      "wie loest man der verteiler verstopft ist",
+      "warum kommt der verteiler verstopft ist immer wieder",
+      "welche messungen macht man bei der verteiler verstopft ist",
+      "kann montagefehler der verteiler verstopft ist verursachen",
+      "wie ist die service reihenfolge bei der verteiler verstopft ist",
+      "was ist der haeufigste fehler bei der verteiler verstopft ist"
+    ],
+    "tr_answer": "distributor veya dagitici tikanik durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ince dagitici yollarinda kir veya buz nedeniyle akis bozulmasi; bunun yaninda likit veya emiş hattinda akisi kisan mekanik bir daralma olmasidir. Ilk kontrolde hat uzeri sicaklik dusumleri, filtre oncesi-sonrasi fark ve servis vanasi konumu okunur. Bunun teknik sebebi dagitici tikanirsa evaporator bir bolgede calisir diger bolgede aclik yasar; ayrica devredeki daralma basinç, superheat ve kapasiteyi birden etkiler. En sik hata ise daralmayi valf arizasi zannedip hatti incelememektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der verteiler verstopft ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist an den feinen Verteilwegen Schmutz oder Eis den Fluss stoert; zusaetzlich kommen eine mechanische Verengung in Fluessigkeits- oder Saugleitung den Massenstrom drosselt vor. Bei der Erstpruefung werden Temperaturabfaelle an Leitungen, Vor-/Nachdifferenzen und Serviceventilstellung geprueft werden. Der technische Hintergrund ist ein blockierter Verteiler den Verdampfer ungleichmaessig versorgt; ausserdem gilt eine Verengung gleichzeitig Druck, Superheat und Leistung verschiebt. Ein sehr haeufiger Fehler besteht darin, dass eine Verengung fuer einen reinen Ventilfehler zu halten und die Leitung nicht zu pruefen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "filter drier neden tikanir",
+      "sight glass kabarcigi ne anlatir",
+      "servis vanasi nasil kontrol edilir"
+    ]
+  },
+  {
+    "id": "refrigeration_txv_too_closed",
+    "tr_subject": "genlesme valfi fazla kisik",
+    "de_subject": "das expansionsventil zu stark schliesst",
+    "keywords": [
+      "genlesme valfi fazla kisik",
+      "das expansionsventil zu stark schliesst",
+      "txv too closed",
+      "superheat yuksek"
+    ],
+    "tr_questions": [
+      "genlesme valfi fazla kisik neden olur",
+      "genlesme valfi fazla kisik olursa neye bakilir",
+      "genlesme valfi fazla kisik varsa usta once ne kontrol eder",
+      "genlesme valfi fazla kisik arizasinda teshis nasil baslar",
+      "genlesme valfi fazla kisik sorunu nasil cozulur",
+      "genlesme valfi fazla kisik neden tekrar eder",
+      "genlesme valfi fazla kisik oldugunda hangi olcumler yapilir",
+      "genlesme valfi fazla kisik montaj hatasi olabilir mi",
+      "genlesme valfi fazla kisik gorulurse servis sirasi ne olur",
+      "genlesme valfi fazla kisik icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das expansionsventil zu stark schliesst auf",
+      "worauf schaut man wenn das expansionsventil zu stark schliesst auftritt",
+      "was prueft ein meister zuerst wenn das expansionsventil zu stark schliesst da ist",
+      "wie beginnt die diagnose bei das expansionsventil zu stark schliesst",
+      "wie loest man das expansionsventil zu stark schliesst",
+      "warum kommt das expansionsventil zu stark schliesst immer wieder",
+      "welche messungen macht man bei das expansionsventil zu stark schliesst",
+      "kann montagefehler das expansionsventil zu stark schliesst verursachen",
+      "wie ist die service reihenfolge bei das expansionsventil zu stark schliesst",
+      "was ist der haeufigste fehler bei das expansionsventil zu stark schliesst"
+    ],
+    "tr_answer": "genlesme valfi fazla kisik durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden valfin evaporatore yeterli sivi gondermemesi; bunun yaninda genlesme valfi ve cevresindeki ayar-montaj mantiginin dogru kurulmamasidir. Ilk kontrolde superheat, ampul baglantisi, nozzle/orifis tipi ve equalizer hatti birlikte kontrol edilir. Bunun teknik sebebi fazla kisik valf superheat yukselterek kapasiteyi öldurur; ayrica valf tarafi dogru kurulmazsa evaporator ya acar kalir ya da ac kalir. En sik hata ise tek tur vida cevirip tum sorunu valfe baglamak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das expansionsventil zu stark schliesst auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist das Ventil den Verdampfer mit zu wenig Fluessigkeit versorgt; zusaetzlich kommen Expansionsventil und seine Einbindung falsch eingestellt oder montiert sind vor. Bei der Erstpruefung werden Superheat, Fuehlerbefestigung, Duese und Equalizerleitung gemeinsam geprueft werden. Der technische Hintergrund ist ein zu knappes Ventil Superheat hebt und Leistung vernichtet; ausserdem gilt eine falsche Ventilseite den Verdampfer entweder ueberfuettert oder aushungert. Ein sehr haeufiger Fehler besteht darin, dass mit einer Schraubendrehung das ganze Problem dem Ventil zuzuschreiben. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "superheat nasil dusunulur",
+      "valf ayari neden onemli",
+      "ampul nereye baglanir"
+    ]
+  },
+  {
+    "id": "refrigeration_txv_too_open",
+    "tr_subject": "genlesme valfi fazla acik",
+    "de_subject": "das expansionsventil zu weit offen ist",
+    "keywords": [
+      "genlesme valfi fazla acik",
+      "das expansionsventil zu weit offen ist",
+      "txv too open",
+      "superheat dusuk"
+    ],
+    "tr_questions": [
+      "genlesme valfi fazla acik neden olur",
+      "genlesme valfi fazla acik olursa neye bakilir",
+      "genlesme valfi fazla acik varsa usta once ne kontrol eder",
+      "genlesme valfi fazla acik arizasinda teshis nasil baslar",
+      "genlesme valfi fazla acik sorunu nasil cozulur",
+      "genlesme valfi fazla acik neden tekrar eder",
+      "genlesme valfi fazla acik oldugunda hangi olcumler yapilir",
+      "genlesme valfi fazla acik montaj hatasi olabilir mi",
+      "genlesme valfi fazla acik gorulurse servis sirasi ne olur",
+      "genlesme valfi fazla acik icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das expansionsventil zu weit offen ist auf",
+      "worauf schaut man wenn das expansionsventil zu weit offen ist auftritt",
+      "was prueft ein meister zuerst wenn das expansionsventil zu weit offen ist da ist",
+      "wie beginnt die diagnose bei das expansionsventil zu weit offen ist",
+      "wie loest man das expansionsventil zu weit offen ist",
+      "warum kommt das expansionsventil zu weit offen ist immer wieder",
+      "welche messungen macht man bei das expansionsventil zu weit offen ist",
+      "kann montagefehler das expansionsventil zu weit offen ist verursachen",
+      "wie ist die service reihenfolge bei das expansionsventil zu weit offen ist",
+      "was ist der haeufigste fehler bei das expansionsventil zu weit offen ist"
+    ],
+    "tr_answer": "genlesme valfi fazla acik durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden valfin evaporatore gereksiz fazla sivi gondermesi; bunun yaninda genlesme valfi ve cevresindeki ayar-montaj mantiginin dogru kurulmamasidir. Ilk kontrolde superheat, ampul baglantisi, nozzle/orifis tipi ve equalizer hatti birlikte kontrol edilir. Bunun teknik sebebi fazla acik valf sivi donusu ve kompresor riski yaratir; ayrica valf tarafi dogru kurulmazsa evaporator ya acar kalir ya da ac kalir. En sik hata ise tek tur vida cevirip tum sorunu valfe baglamak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das expansionsventil zu weit offen ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist das Ventil dem Verdampfer zu viel Fluessigkeit gibt; zusaetzlich kommen Expansionsventil und seine Einbindung falsch eingestellt oder montiert sind vor. Bei der Erstpruefung werden Superheat, Fuehlerbefestigung, Duese und Equalizerleitung gemeinsam geprueft werden. Der technische Hintergrund ist ein zu offenes Ventil Fluessigkeitsruecklauf und Verdichterrisiko erzeugt; ausserdem gilt eine falsche Ventilseite den Verdampfer entweder ueberfuettert oder aushungert. Ein sehr haeufiger Fehler besteht darin, dass mit einer Schraubendrehung das ganze Problem dem Ventil zuzuschreiben. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "superheat nasil dusunulur",
+      "valf ayari neden onemli",
+      "ampul nereye baglanir"
+    ]
+  },
+  {
+    "id": "refrigeration_txv_hunting",
+    "tr_subject": "genlesme valfi avlaniyor",
+    "de_subject": "das expansionsventil huntet",
+    "keywords": [
+      "genlesme valfi avlaniyor",
+      "das expansionsventil huntet",
+      "txv hunting",
+      "valf avlaniyor"
+    ],
+    "tr_questions": [
+      "genlesme valfi avlaniyor neden olur",
+      "genlesme valfi avlaniyor olursa neye bakilir",
+      "genlesme valfi avlaniyor varsa usta once ne kontrol eder",
+      "genlesme valfi avlaniyor arizasinda teshis nasil baslar",
+      "genlesme valfi avlaniyor sorunu nasil cozulur",
+      "genlesme valfi avlaniyor neden tekrar eder",
+      "genlesme valfi avlaniyor oldugunda hangi olcumler yapilir",
+      "genlesme valfi avlaniyor montaj hatasi olabilir mi",
+      "genlesme valfi avlaniyor gorulurse servis sirasi ne olur",
+      "genlesme valfi avlaniyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das expansionsventil huntet auf",
+      "worauf schaut man wenn das expansionsventil huntet auftritt",
+      "was prueft ein meister zuerst wenn das expansionsventil huntet da ist",
+      "wie beginnt die diagnose bei das expansionsventil huntet",
+      "wie loest man das expansionsventil huntet",
+      "warum kommt das expansionsventil huntet immer wieder",
+      "welche messungen macht man bei das expansionsventil huntet",
+      "kann montagefehler das expansionsventil huntet verursachen",
+      "wie ist die service reihenfolge bei das expansionsventil huntet",
+      "was ist der haeufigste fehler bei das expansionsventil huntet"
+    ],
+    "tr_answer": "genlesme valfi avlaniyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden valfin ac-kapa dengesinin kararsiz calismasi; bunun yaninda genlesme valfi ve cevresindeki ayar-montaj mantiginin dogru kurulmamasidir. Ilk kontrolde superheat, ampul baglantisi, nozzle/orifis tipi ve equalizer hatti birlikte kontrol edilir. Bunun teknik sebebi hunting durumunda basinç ve superheat duzgun okunmaz; ayrica valf tarafi dogru kurulmazsa evaporator ya acar kalir ya da ac kalir. En sik hata ise tek tur vida cevirip tum sorunu valfe baglamak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das expansionsventil huntet auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist das Ventil instabil zwischen zu und auf schwingt; zusaetzlich kommen Expansionsventil und seine Einbindung falsch eingestellt oder montiert sind vor. Bei der Erstpruefung werden Superheat, Fuehlerbefestigung, Duese und Equalizerleitung gemeinsam geprueft werden. Der technische Hintergrund ist bei Hunting Druecke und Superheat stark schwanken und schwer lesbar werden; ausserdem gilt eine falsche Ventilseite den Verdampfer entweder ueberfuettert oder aushungert. Ein sehr haeufiger Fehler besteht darin, dass mit einer Schraubendrehung das ganze Problem dem Ventil zuzuschreiben. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "superheat nasil dusunulur",
+      "valf ayari neden onemli",
+      "ampul nereye baglanir"
+    ]
+  },
+  {
+    "id": "refrigeration_wrong_nozzle",
+    "tr_subject": "valf nozzle veya orifis yanlis",
+    "de_subject": "duese oder orifice am ventil falsch ist",
+    "keywords": [
+      "valf nozzle veya orifis yanlis",
+      "duese oder orifice am ventil falsch ist",
+      "wrong nozzle",
+      "orifice wrong"
+    ],
+    "tr_questions": [
+      "valf nozzle veya orifis yanlis neden olur",
+      "valf nozzle veya orifis yanlis olursa neye bakilir",
+      "valf nozzle veya orifis yanlis varsa usta once ne kontrol eder",
+      "valf nozzle veya orifis yanlis arizasinda teshis nasil baslar",
+      "valf nozzle veya orifis yanlis sorunu nasil cozulur",
+      "valf nozzle veya orifis yanlis neden tekrar eder",
+      "valf nozzle veya orifis yanlis oldugunda hangi olcumler yapilir",
+      "valf nozzle veya orifis yanlis montaj hatasi olabilir mi",
+      "valf nozzle veya orifis yanlis gorulurse servis sirasi ne olur",
+      "valf nozzle veya orifis yanlis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt duese oder orifice am ventil falsch ist auf",
+      "worauf schaut man wenn duese oder orifice am ventil falsch ist auftritt",
+      "was prueft ein meister zuerst wenn duese oder orifice am ventil falsch ist da ist",
+      "wie beginnt die diagnose bei duese oder orifice am ventil falsch ist",
+      "wie loest man duese oder orifice am ventil falsch ist",
+      "warum kommt duese oder orifice am ventil falsch ist immer wieder",
+      "welche messungen macht man bei duese oder orifice am ventil falsch ist",
+      "kann montagefehler duese oder orifice am ventil falsch ist verursachen",
+      "wie ist die service reihenfolge bei duese oder orifice am ventil falsch ist",
+      "was ist der haeufigste fehler bei duese oder orifice am ventil falsch ist"
+    ],
+    "tr_answer": "valf nozzle veya orifis yanlis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kapasiteye uygun olmayan orifis kullanilmasi; bunun yaninda genlesme valfi ve cevresindeki ayar-montaj mantiginin dogru kurulmamasidir. Ilk kontrolde superheat, ampul baglantisi, nozzle/orifis tipi ve equalizer hatti birlikte kontrol edilir. Bunun teknik sebebi yanlis orifis ayarla duzelmeyecek besleme hatasi yaratir; ayrica valf tarafi dogru kurulmazsa evaporator ya acar kalir ya da ac kalir. En sik hata ise tek tur vida cevirip tum sorunu valfe baglamak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn duese oder orifice am ventil falsch ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist eine Duese verwendet wird, die nicht zur Leistung passt; zusaetzlich kommen Expansionsventil und seine Einbindung falsch eingestellt oder montiert sind vor. Bei der Erstpruefung werden Superheat, Fuehlerbefestigung, Duese und Equalizerleitung gemeinsam geprueft werden. Der technische Hintergrund ist eine falsche Duese einen Grundfehler erzeugt, den keine Einstellung sauber heilt; ausserdem gilt eine falsche Ventilseite den Verdampfer entweder ueberfuettert oder aushungert. Ein sehr haeufiger Fehler besteht darin, dass mit einer Schraubendrehung das ganze Problem dem Ventil zuzuschreiben. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "superheat nasil dusunulur",
+      "valf ayari neden onemli",
+      "ampul nereye baglanir"
+    ]
+  },
+  {
+    "id": "refrigeration_equalizer_blocked",
+    "tr_subject": "equalizer hatti tikali",
+    "de_subject": "die equalizerleitung blockiert ist",
+    "keywords": [
+      "equalizer hatti tikali",
+      "die equalizerleitung blockiert ist",
+      "equalizer blocked",
+      "equalizer tikali"
+    ],
+    "tr_questions": [
+      "equalizer hatti tikali neden olur",
+      "equalizer hatti tikali olursa neye bakilir",
+      "equalizer hatti tikali varsa usta once ne kontrol eder",
+      "equalizer hatti tikali arizasinda teshis nasil baslar",
+      "equalizer hatti tikali sorunu nasil cozulur",
+      "equalizer hatti tikali neden tekrar eder",
+      "equalizer hatti tikali oldugunda hangi olcumler yapilir",
+      "equalizer hatti tikali montaj hatasi olabilir mi",
+      "equalizer hatti tikali gorulurse servis sirasi ne olur",
+      "equalizer hatti tikali icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die equalizerleitung blockiert ist auf",
+      "worauf schaut man wenn die equalizerleitung blockiert ist auftritt",
+      "was prueft ein meister zuerst wenn die equalizerleitung blockiert ist da ist",
+      "wie beginnt die diagnose bei die equalizerleitung blockiert ist",
+      "wie loest man die equalizerleitung blockiert ist",
+      "warum kommt die equalizerleitung blockiert ist immer wieder",
+      "welche messungen macht man bei die equalizerleitung blockiert ist",
+      "kann montagefehler die equalizerleitung blockiert ist verursachen",
+      "wie ist die service reihenfolge bei die equalizerleitung blockiert ist",
+      "was ist der haeufigste fehler bei die equalizerleitung blockiert ist"
+    ],
+    "tr_answer": "equalizer hatti tikali durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden harici equalizer hattinin basinci saglikli tasimamasi; bunun yaninda genlesme valfi ve cevresindeki ayar-montaj mantiginin dogru kurulmamasidir. Ilk kontrolde superheat, ampul baglantisi, nozzle/orifis tipi ve equalizer hatti birlikte kontrol edilir. Bunun teknik sebebi equalizer bozulursa valf evaporator sonundaki gercegi gormez; ayrica valf tarafi dogru kurulmazsa evaporator ya acar kalir ya da ac kalir. En sik hata ise tek tur vida cevirip tum sorunu valfe baglamak. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die equalizerleitung blockiert ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die externe Equalizerleitung den Druck nicht sauber uebertraegt; zusaetzlich kommen Expansionsventil und seine Einbindung falsch eingestellt oder montiert sind vor. Bei der Erstpruefung werden Superheat, Fuehlerbefestigung, Duese und Equalizerleitung gemeinsam geprueft werden. Der technische Hintergrund ist ohne korrekte Equalizer-Info das Ventil den echten Verdampferzustand nicht kennt; ausserdem gilt eine falsche Ventilseite den Verdampfer entweder ueberfuettert oder aushungert. Ein sehr haeufiger Fehler besteht darin, dass mit einer Schraubendrehung das ganze Problem dem Ventil zuzuschreiben. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "superheat nasil dusunulur",
+      "valf ayari neden onemli",
+      "ampul nereye baglanir"
+    ]
+  },
+  {
+    "id": "refrigeration_bulb_loose",
+    "tr_subject": "valf ampulu gevsek",
+    "de_subject": "die fuehlerkugel lose sitzt",
+    "keywords": [
+      "valf ampulu gevsek",
+      "die fuehlerkugel lose sitzt",
+      "bulb loose",
+      "ampul gevsek"
+    ],
+    "tr_questions": [
+      "valf ampulu gevsek neden olur",
+      "valf ampulu gevsek olursa neye bakilir",
+      "valf ampulu gevsek varsa usta once ne kontrol eder",
+      "valf ampulu gevsek arizasinda teshis nasil baslar",
+      "valf ampulu gevsek sorunu nasil cozulur",
+      "valf ampulu gevsek neden tekrar eder",
+      "valf ampulu gevsek oldugunda hangi olcumler yapilir",
+      "valf ampulu gevsek montaj hatasi olabilir mi",
+      "valf ampulu gevsek gorulurse servis sirasi ne olur",
+      "valf ampulu gevsek icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die fuehlerkugel lose sitzt auf",
+      "worauf schaut man wenn die fuehlerkugel lose sitzt auftritt",
+      "was prueft ein meister zuerst wenn die fuehlerkugel lose sitzt da ist",
+      "wie beginnt die diagnose bei die fuehlerkugel lose sitzt",
+      "wie loest man die fuehlerkugel lose sitzt",
+      "warum kommt die fuehlerkugel lose sitzt immer wieder",
+      "welche messungen macht man bei die fuehlerkugel lose sitzt",
+      "kann montagefehler die fuehlerkugel lose sitzt verursachen",
+      "wie ist die service reihenfolge bei die fuehlerkugel lose sitzt",
+      "was ist der haeufigste fehler bei die fuehlerkugel lose sitzt"
+    ],
+    "tr_answer": "valf ampulu gevsek durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ampulun boruyu yeterli basiyla hissetmemesi; bunun yaninda ampul ve valf aksesuarlarinin montaj detaylarinin dogru uygulanmamasidir. Ilk kontrolde ampul konumu, siki baglantisi, izolasyonu ve equalizer baglama mantigi birlikte degerlendirilir. Bunun teknik sebebi gevsek ampul valfi gecikmeli ve yanlis bilgiyle hareket ettirir; ayrica kucuk montaj detayi valfin butun davranisini degistirebilir. En sik hata ise ampulu herhangi bir yere sarip gecmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die fuehlerkugel lose sitzt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Fuehlerkugel die Leitung nicht mit sauberem Druck abtastet; zusaetzlich kommen Fuehlerkugel und Ventilzubehoer montagebedingt falsch umgesetzt sind vor. Bei der Erstpruefung werden Fuehlerposition, fester Sitz, Daemmung und Equalizeranschluss zusammen bewertet werden. Der technische Hintergrund ist eine lose Kugel das Ventil traege und fehlerhaft steuert; ausserdem gilt ein kleines Montagedetail das gesamte Ventilverhalten veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass die Fuehlerkugel beliebig irgendwo anzulegen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "ampul nereye baglanir",
+      "superheat neden sasar",
+      "equalizer ne ise yarar"
+    ]
+  },
+  {
+    "id": "refrigeration_bulb_wrong_position",
+    "tr_subject": "valf ampulu yanlis pozisyonda",
+    "de_subject": "die fuehlerkugel falsch positioniert ist",
+    "keywords": [
+      "valf ampulu yanlis pozisyonda",
+      "die fuehlerkugel falsch positioniert ist",
+      "bulb wrong position",
+      "ampul yeri"
+    ],
+    "tr_questions": [
+      "valf ampulu yanlis pozisyonda neden olur",
+      "valf ampulu yanlis pozisyonda olursa neye bakilir",
+      "valf ampulu yanlis pozisyonda varsa usta once ne kontrol eder",
+      "valf ampulu yanlis pozisyonda arizasinda teshis nasil baslar",
+      "valf ampulu yanlis pozisyonda sorunu nasil cozulur",
+      "valf ampulu yanlis pozisyonda neden tekrar eder",
+      "valf ampulu yanlis pozisyonda oldugunda hangi olcumler yapilir",
+      "valf ampulu yanlis pozisyonda montaj hatasi olabilir mi",
+      "valf ampulu yanlis pozisyonda gorulurse servis sirasi ne olur",
+      "valf ampulu yanlis pozisyonda icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die fuehlerkugel falsch positioniert ist auf",
+      "worauf schaut man wenn die fuehlerkugel falsch positioniert ist auftritt",
+      "was prueft ein meister zuerst wenn die fuehlerkugel falsch positioniert ist da ist",
+      "wie beginnt die diagnose bei die fuehlerkugel falsch positioniert ist",
+      "wie loest man die fuehlerkugel falsch positioniert ist",
+      "warum kommt die fuehlerkugel falsch positioniert ist immer wieder",
+      "welche messungen macht man bei die fuehlerkugel falsch positioniert ist",
+      "kann montagefehler die fuehlerkugel falsch positioniert ist verursachen",
+      "wie ist die service reihenfolge bei die fuehlerkugel falsch positioniert ist",
+      "was ist der haeufigste fehler bei die fuehlerkugel falsch positioniert ist"
+    ],
+    "tr_answer": "valf ampulu yanlis pozisyonda durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ampulun emiş borusunda uygun saat pozisyonunda olmamasi; bunun yaninda ampul ve valf aksesuarlarinin montaj detaylarinin dogru uygulanmamasidir. Ilk kontrolde ampul konumu, siki baglantisi, izolasyonu ve equalizer baglama mantigi birlikte degerlendirilir. Bunun teknik sebebi yanlis pozisyon hava, yag veya sivi etkisiyle yanlis his uretir; ayrica kucuk montaj detayi valfin butun davranisini degistirebilir. En sik hata ise ampulu herhangi bir yere sarip gecmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die fuehlerkugel falsch positioniert ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Fuehlerkugel an der Saugleitung an unpassender Uhrposition sitzt; zusaetzlich kommen Fuehlerkugel und Ventilzubehoer montagebedingt falsch umgesetzt sind vor. Bei der Erstpruefung werden Fuehlerposition, fester Sitz, Daemmung und Equalizeranschluss zusammen bewertet werden. Der technische Hintergrund ist eine falsche Position durch Luft-, Oel- oder Fluessigkeitseinfluss falsche Werte liefert; ausserdem gilt ein kleines Montagedetail das gesamte Ventilverhalten veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass die Fuehlerkugel beliebig irgendwo anzulegen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "ampul nereye baglanir",
+      "superheat neden sasar",
+      "equalizer ne ise yarar"
+    ]
+  },
+  {
+    "id": "refrigeration_bulb_no_insulation",
+    "tr_subject": "valf ampulu izolesiz",
+    "de_subject": "die fuehlerkugel nicht isoliert ist",
+    "keywords": [
+      "valf ampulu izolesiz",
+      "die fuehlerkugel nicht isoliert ist",
+      "bulb no insulation",
+      "ampul izolesiz"
+    ],
+    "tr_questions": [
+      "valf ampulu izolesiz neden olur",
+      "valf ampulu izolesiz olursa neye bakilir",
+      "valf ampulu izolesiz varsa usta once ne kontrol eder",
+      "valf ampulu izolesiz arizasinda teshis nasil baslar",
+      "valf ampulu izolesiz sorunu nasil cozulur",
+      "valf ampulu izolesiz neden tekrar eder",
+      "valf ampulu izolesiz oldugunda hangi olcumler yapilir",
+      "valf ampulu izolesiz montaj hatasi olabilir mi",
+      "valf ampulu izolesiz gorulurse servis sirasi ne olur",
+      "valf ampulu izolesiz icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die fuehlerkugel nicht isoliert ist auf",
+      "worauf schaut man wenn die fuehlerkugel nicht isoliert ist auftritt",
+      "was prueft ein meister zuerst wenn die fuehlerkugel nicht isoliert ist da ist",
+      "wie beginnt die diagnose bei die fuehlerkugel nicht isoliert ist",
+      "wie loest man die fuehlerkugel nicht isoliert ist",
+      "warum kommt die fuehlerkugel nicht isoliert ist immer wieder",
+      "welche messungen macht man bei die fuehlerkugel nicht isoliert ist",
+      "kann montagefehler die fuehlerkugel nicht isoliert ist verursachen",
+      "wie ist die service reihenfolge bei die fuehlerkugel nicht isoliert ist",
+      "was ist der haeufigste fehler bei die fuehlerkugel nicht isoliert ist"
+    ],
+    "tr_answer": "valf ampulu izolesiz durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden ampulun dis ortamdan isi alip gercek boru sicakligini kaybetmesi; bunun yaninda ampul ve valf aksesuarlarinin montaj detaylarinin dogru uygulanmamasidir. Ilk kontrolde ampul konumu, siki baglantisi, izolasyonu ve equalizer baglama mantigi birlikte degerlendirilir. Bunun teknik sebebi izolesiz ampul superheat hesabini kaydirir; ayrica kucuk montaj detayi valfin butun davranisini degistirebilir. En sik hata ise ampulu herhangi bir yere sarip gecmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die fuehlerkugel nicht isoliert ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Kugel von der Umgebung beeinflusst wird und nicht mehr nur die Rohrtemperatur fuehlt; zusaetzlich kommen Fuehlerkugel und Ventilzubehoer montagebedingt falsch umgesetzt sind vor. Bei der Erstpruefung werden Fuehlerposition, fester Sitz, Daemmung und Equalizeranschluss zusammen bewertet werden. Der technische Hintergrund ist eine unisolierte Kugel die Superheat-Regelung verfaelscht; ausserdem gilt ein kleines Montagedetail das gesamte Ventilverhalten veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass die Fuehlerkugel beliebig irgendwo anzulegen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "ampul nereye baglanir",
+      "superheat neden sasar",
+      "equalizer ne ise yarar"
+    ]
+  },
+  {
+    "id": "refrigeration_equalizer_wrong_connection",
+    "tr_subject": "equalizer baglantisi yanlis yerde",
+    "de_subject": "der equalizer falsch angeschlossen ist",
+    "keywords": [
+      "equalizer baglantisi yanlis yerde",
+      "der equalizer falsch angeschlossen ist",
+      "equalizer wrong",
+      "equalizer baglanti"
+    ],
+    "tr_questions": [
+      "equalizer baglantisi yanlis yerde neden olur",
+      "equalizer baglantisi yanlis yerde olursa neye bakilir",
+      "equalizer baglantisi yanlis yerde varsa usta once ne kontrol eder",
+      "equalizer baglantisi yanlis yerde arizasinda teshis nasil baslar",
+      "equalizer baglantisi yanlis yerde sorunu nasil cozulur",
+      "equalizer baglantisi yanlis yerde neden tekrar eder",
+      "equalizer baglantisi yanlis yerde oldugunda hangi olcumler yapilir",
+      "equalizer baglantisi yanlis yerde montaj hatasi olabilir mi",
+      "equalizer baglantisi yanlis yerde gorulurse servis sirasi ne olur",
+      "equalizer baglantisi yanlis yerde icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der equalizer falsch angeschlossen ist auf",
+      "worauf schaut man wenn der equalizer falsch angeschlossen ist auftritt",
+      "was prueft ein meister zuerst wenn der equalizer falsch angeschlossen ist da ist",
+      "wie beginnt die diagnose bei der equalizer falsch angeschlossen ist",
+      "wie loest man der equalizer falsch angeschlossen ist",
+      "warum kommt der equalizer falsch angeschlossen ist immer wieder",
+      "welche messungen macht man bei der equalizer falsch angeschlossen ist",
+      "kann montagefehler der equalizer falsch angeschlossen ist verursachen",
+      "wie ist die service reihenfolge bei der equalizer falsch angeschlossen ist",
+      "was ist der haeufigste fehler bei der equalizer falsch angeschlossen ist"
+    ],
+    "tr_answer": "equalizer baglantisi yanlis yerde durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden equalizer hattinin gercek evaporator cikis basinç noktasindan alinmamasi; bunun yaninda ampul ve valf aksesuarlarinin montaj detaylarinin dogru uygulanmamasidir. Ilk kontrolde ampul konumu, siki baglantisi, izolasyonu ve equalizer baglama mantigi birlikte degerlendirilir. Bunun teknik sebebi yanlis equalizer noktasi valfin goruntusunu bozar; ayrica kucuk montaj detayi valfin butun davranisini degistirebilir. En sik hata ise ampulu herhangi bir yere sarip gecmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der equalizer falsch angeschlossen ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Equalizerleitung nicht am richtigen Austrittspunkt des Verdampfers sitzt; zusaetzlich kommen Fuehlerkugel und Ventilzubehoer montagebedingt falsch umgesetzt sind vor. Bei der Erstpruefung werden Fuehlerposition, fester Sitz, Daemmung und Equalizeranschluss zusammen bewertet werden. Der technische Hintergrund ist ein falscher Equalizerpunkt das Ventil mit einer falschen Druckrealitaet versorgt; ausserdem gilt ein kleines Montagedetail das gesamte Ventilverhalten veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass die Fuehlerkugel beliebig irgendwo anzulegen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "ampul nereye baglanir",
+      "superheat neden sasar",
+      "equalizer ne ise yarar"
+    ]
+  },
+  {
+    "id": "refrigeration_distributor_nozzle_mismatch",
+    "tr_subject": "dagitici ve valf birbiriyle uyumsuz",
+    "de_subject": "verteiler und ventil nicht zusammenpassen",
+    "keywords": [
+      "dagitici ve valf birbiriyle uyumsuz",
+      "verteiler und ventil nicht zusammenpassen",
+      "distributor mismatch",
+      "dagitici uyumsuz"
+    ],
+    "tr_questions": [
+      "dagitici ve valf birbiriyle uyumsuz neden olur",
+      "dagitici ve valf birbiriyle uyumsuz olursa neye bakilir",
+      "dagitici ve valf birbiriyle uyumsuz varsa usta once ne kontrol eder",
+      "dagitici ve valf birbiriyle uyumsuz arizasinda teshis nasil baslar",
+      "dagitici ve valf birbiriyle uyumsuz sorunu nasil cozulur",
+      "dagitici ve valf birbiriyle uyumsuz neden tekrar eder",
+      "dagitici ve valf birbiriyle uyumsuz oldugunda hangi olcumler yapilir",
+      "dagitici ve valf birbiriyle uyumsuz montaj hatasi olabilir mi",
+      "dagitici ve valf birbiriyle uyumsuz gorulurse servis sirasi ne olur",
+      "dagitici ve valf birbiriyle uyumsuz icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt verteiler und ventil nicht zusammenpassen auf",
+      "worauf schaut man wenn verteiler und ventil nicht zusammenpassen auftritt",
+      "was prueft ein meister zuerst wenn verteiler und ventil nicht zusammenpassen da ist",
+      "wie beginnt die diagnose bei verteiler und ventil nicht zusammenpassen",
+      "wie loest man verteiler und ventil nicht zusammenpassen",
+      "warum kommt verteiler und ventil nicht zusammenpassen immer wieder",
+      "welche messungen macht man bei verteiler und ventil nicht zusammenpassen",
+      "kann montagefehler verteiler und ventil nicht zusammenpassen verursachen",
+      "wie ist die service reihenfolge bei verteiler und ventil nicht zusammenpassen",
+      "was ist der haeufigste fehler bei verteiler und ventil nicht zusammenpassen"
+    ],
+    "tr_answer": "dagitici ve valf birbiriyle uyumsuz durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden dagitici tipi ile valf/nozzle kombinasyonunun uyumlu secilmemesi; bunun yaninda ampul ve valf aksesuarlarinin montaj detaylarinin dogru uygulanmamasidir. Ilk kontrolde ampul konumu, siki baglantisi, izolasyonu ve equalizer baglama mantigi birlikte degerlendirilir. Bunun teknik sebebi uyumsuzluk evaporatorun devreler arasi beslenmesini bozar; ayrica kucuk montaj detayi valfin butun davranisini degistirebilir. En sik hata ise ampulu herhangi bir yere sarip gecmektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn verteiler und ventil nicht zusammenpassen auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Verteiler und Ventil-/Duesenkombination nicht zueinander passen; zusaetzlich kommen Fuehlerkugel und Ventilzubehoer montagebedingt falsch umgesetzt sind vor. Bei der Erstpruefung werden Fuehlerposition, fester Sitz, Daemmung und Equalizeranschluss zusammen bewertet werden. Der technische Hintergrund ist eine Fehlpaarung die Verteilung auf die Verdampferkreise stoert; ausserdem gilt ein kleines Montagedetail das gesamte Ventilverhalten veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass die Fuehlerkugel beliebig irgendwo anzulegen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "ampul nereye baglanir",
+      "superheat neden sasar",
+      "equalizer ne ise yarar"
+    ]
+  },
+  {
+    "id": "refrigeration_solenoid_not_opening",
+    "tr_subject": "solenoid valf acmiyor",
+    "de_subject": "das magnetventil nicht oeffnet",
+    "keywords": [
+      "solenoid valf acmiyor",
+      "das magnetventil nicht oeffnet",
+      "solenoid not opening",
+      "magnetventil oeffnet nicht"
+    ],
+    "tr_questions": [
+      "solenoid valf acmiyor neden olur",
+      "solenoid valf acmiyor olursa neye bakilir",
+      "solenoid valf acmiyor varsa usta once ne kontrol eder",
+      "solenoid valf acmiyor arizasinda teshis nasil baslar",
+      "solenoid valf acmiyor sorunu nasil cozulur",
+      "solenoid valf acmiyor neden tekrar eder",
+      "solenoid valf acmiyor oldugunda hangi olcumler yapilir",
+      "solenoid valf acmiyor montaj hatasi olabilir mi",
+      "solenoid valf acmiyor gorulurse servis sirasi ne olur",
+      "solenoid valf acmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das magnetventil nicht oeffnet auf",
+      "worauf schaut man wenn das magnetventil nicht oeffnet auftritt",
+      "was prueft ein meister zuerst wenn das magnetventil nicht oeffnet da ist",
+      "wie beginnt die diagnose bei das magnetventil nicht oeffnet",
+      "wie loest man das magnetventil nicht oeffnet",
+      "warum kommt das magnetventil nicht oeffnet immer wieder",
+      "welche messungen macht man bei das magnetventil nicht oeffnet",
+      "kann montagefehler das magnetventil nicht oeffnet verursachen",
+      "wie ist die service reihenfolge bei das magnetventil nicht oeffnet",
+      "was ist der haeufigste fehler bei das magnetventil nicht oeffnet"
+    ],
+    "tr_answer": "solenoid valf acmiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden bobin komutu olsa bile govdenin mekanik olarak takili kalmasi; bunun yaninda solenoid, pump down ve dur-kalk sekansinin dogru islememesidir. Ilk kontrolde solenoid bobini, kapanma-acma davranisi, basinç esitlenmesi ve durus sonrasi kalkis birlikte izlenir. Bunun teknik sebebi acmayan solenoid evaporatori tamamen acliga itebilir; ayrica sekans hatalari basit valf arizasindan daha buyuk kompresor zorlanmasi yaratabilir. En sik hata ise yalniz bobine bakip kapanma mantigini okumamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das magnetventil nicht oeffnet auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist trotz Spulensignal der Ventilkern mechanisch nicht freigibt; zusaetzlich kommen Magnetventil, Pumpdown und Start-Stopp-Sequenz nicht sauber funktionieren vor. Bei der Erstpruefung werden Spule, Oeffnungs-/Schliessverhalten, Druckausgleich und Wiederstart gemeinsam beobachtet werden. Der technische Hintergrund ist ein nicht oeffnendes Magnetventil den Verdampfer komplett aushungert; ausserdem gilt Sequenzfehler mehr als nur ein Ventilproblem sein und Verdichter massiv belasten koennen. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Spule zu schauen und die Sequenzlogik zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "solenoid valf neden acmaz",
+      "zor kalkis neden olur",
+      "pump down nasil calisir"
+    ]
+  },
+  {
+    "id": "refrigeration_solenoid_leaking_through",
+    "tr_subject": "solenoid valf kapiyor gibi ama sizdiriyor",
+    "de_subject": "das magnetventil im geschlossenen zustand durchlaesst",
+    "keywords": [
+      "solenoid valf kapiyor gibi ama sizdiriyor",
+      "das magnetventil im geschlossenen zustand durchlaesst",
+      "solenoid leaking",
+      "valf sizdiriyor"
+    ],
+    "tr_questions": [
+      "solenoid valf kapiyor gibi ama sizdiriyor neden olur",
+      "solenoid valf kapiyor gibi ama sizdiriyor olursa neye bakilir",
+      "solenoid valf kapiyor gibi ama sizdiriyor varsa usta once ne kontrol eder",
+      "solenoid valf kapiyor gibi ama sizdiriyor arizasinda teshis nasil baslar",
+      "solenoid valf kapiyor gibi ama sizdiriyor sorunu nasil cozulur",
+      "solenoid valf kapiyor gibi ama sizdiriyor neden tekrar eder",
+      "solenoid valf kapiyor gibi ama sizdiriyor oldugunda hangi olcumler yapilir",
+      "solenoid valf kapiyor gibi ama sizdiriyor montaj hatasi olabilir mi",
+      "solenoid valf kapiyor gibi ama sizdiriyor gorulurse servis sirasi ne olur",
+      "solenoid valf kapiyor gibi ama sizdiriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt das magnetventil im geschlossenen zustand durchlaesst auf",
+      "worauf schaut man wenn das magnetventil im geschlossenen zustand durchlaesst auftritt",
+      "was prueft ein meister zuerst wenn das magnetventil im geschlossenen zustand durchlaesst da ist",
+      "wie beginnt die diagnose bei das magnetventil im geschlossenen zustand durchlaesst",
+      "wie loest man das magnetventil im geschlossenen zustand durchlaesst",
+      "warum kommt das magnetventil im geschlossenen zustand durchlaesst immer wieder",
+      "welche messungen macht man bei das magnetventil im geschlossenen zustand durchlaesst",
+      "kann montagefehler das magnetventil im geschlossenen zustand durchlaesst verursachen",
+      "wie ist die service reihenfolge bei das magnetventil im geschlossenen zustand durchlaesst",
+      "was ist der haeufigste fehler bei das magnetventil im geschlossenen zustand durchlaesst"
+    ],
+    "tr_answer": "solenoid valf kapiyor gibi ama sizdiriyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden oturma yuzeyi kirli veya hasarli oldugu icin tam kapanmama; bunun yaninda solenoid, pump down ve dur-kalk sekansinin dogru islememesidir. Ilk kontrolde solenoid bobini, kapanma-acma davranisi, basinç esitlenmesi ve durus sonrasi kalkis birlikte izlenir. Bunun teknik sebebi sızdiran solenoid pump down ve durus dengesini bozar; ayrica sekans hatalari basit valf arizasindan daha buyuk kompresor zorlanmasi yaratabilir. En sik hata ise yalniz bobine bakip kapanma mantigini okumamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn das magnetventil im geschlossenen zustand durchlaesst auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Sitzflaeche verschmutzt oder beschaedigt ist und nicht dicht schliesst; zusaetzlich kommen Magnetventil, Pumpdown und Start-Stopp-Sequenz nicht sauber funktionieren vor. Bei der Erstpruefung werden Spule, Oeffnungs-/Schliessverhalten, Druckausgleich und Wiederstart gemeinsam beobachtet werden. Der technische Hintergrund ist ein durchlassendes Magnetventil Pumpdown und Stillstandsverhalten stoert; ausserdem gilt Sequenzfehler mehr als nur ein Ventilproblem sein und Verdichter massiv belasten koennen. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Spule zu schauen und die Sequenzlogik zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "solenoid valf neden acmaz",
+      "zor kalkis neden olur",
+      "pump down nasil calisir"
+    ]
+  },
+  {
+    "id": "refrigeration_pumpdown_failure",
+    "tr_subject": "pump down calismiyor",
+    "de_subject": "pump-down nicht funktioniert",
+    "keywords": [
+      "pump down calismiyor",
+      "pump-down nicht funktioniert",
+      "pumpdown failure",
+      "pump down"
+    ],
+    "tr_questions": [
+      "pump down calismiyor neden olur",
+      "pump down calismiyor olursa neye bakilir",
+      "pump down calismiyor varsa usta once ne kontrol eder",
+      "pump down calismiyor arizasinda teshis nasil baslar",
+      "pump down calismiyor sorunu nasil cozulur",
+      "pump down calismiyor neden tekrar eder",
+      "pump down calismiyor oldugunda hangi olcumler yapilir",
+      "pump down calismiyor montaj hatasi olabilir mi",
+      "pump down calismiyor gorulurse servis sirasi ne olur",
+      "pump down calismiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt pump-down nicht funktioniert auf",
+      "worauf schaut man wenn pump-down nicht funktioniert auftritt",
+      "was prueft ein meister zuerst wenn pump-down nicht funktioniert da ist",
+      "wie beginnt die diagnose bei pump-down nicht funktioniert",
+      "wie loest man pump-down nicht funktioniert",
+      "warum kommt pump-down nicht funktioniert immer wieder",
+      "welche messungen macht man bei pump-down nicht funktioniert",
+      "kann montagefehler pump-down nicht funktioniert verursachen",
+      "wie ist die service reihenfolge bei pump-down nicht funktioniert",
+      "was ist der haeufigste fehler bei pump-down nicht funktioniert"
+    ],
+    "tr_answer": "pump down calismiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden solenoid, basinç switch veya kontrol sirasi yuzunden sistemin kendini cekememesi; bunun yaninda solenoid, pump down ve dur-kalk sekansinin dogru islememesidir. Ilk kontrolde solenoid bobini, kapanma-acma davranisi, basinç esitlenmesi ve durus sonrasi kalkis birlikte izlenir. Bunun teknik sebebi pump down bozuksa durus ve tekrar kalkis sekansi bozulur; ayrica sekans hatalari basit valf arizasindan daha buyuk kompresor zorlanmasi yaratabilir. En sik hata ise yalniz bobine bakip kapanma mantigini okumamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn pump-down nicht funktioniert auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch Magnetventil, Druckschalter oder Steuerlogik kein sauberes Abpumpen stattfindet; zusaetzlich kommen Magnetventil, Pumpdown und Start-Stopp-Sequenz nicht sauber funktionieren vor. Bei der Erstpruefung werden Spule, Oeffnungs-/Schliessverhalten, Druckausgleich und Wiederstart gemeinsam beobachtet werden. Der technische Hintergrund ist fehlerhaftes Pump-Down sowohl Stillstand als auch Neustart belastet; ausserdem gilt Sequenzfehler mehr als nur ein Ventilproblem sein und Verdichter massiv belasten koennen. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Spule zu schauen und die Sequenzlogik zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "solenoid valf neden acmaz",
+      "zor kalkis neden olur",
+      "pump down nasil calisir"
+    ]
+  },
+  {
+    "id": "refrigeration_pumpdown_sequence_wrong",
+    "tr_subject": "pump down sirasi yanlis",
+    "de_subject": "die pump-down-sequenz falsch ist",
+    "keywords": [
+      "pump down sirasi yanlis",
+      "die pump-down-sequenz falsch ist",
+      "pumpdown sequence",
+      "sekans yanlis"
+    ],
+    "tr_questions": [
+      "pump down sirasi yanlis neden olur",
+      "pump down sirasi yanlis olursa neye bakilir",
+      "pump down sirasi yanlis varsa usta once ne kontrol eder",
+      "pump down sirasi yanlis arizasinda teshis nasil baslar",
+      "pump down sirasi yanlis sorunu nasil cozulur",
+      "pump down sirasi yanlis neden tekrar eder",
+      "pump down sirasi yanlis oldugunda hangi olcumler yapilir",
+      "pump down sirasi yanlis montaj hatasi olabilir mi",
+      "pump down sirasi yanlis gorulurse servis sirasi ne olur",
+      "pump down sirasi yanlis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die pump-down-sequenz falsch ist auf",
+      "worauf schaut man wenn die pump-down-sequenz falsch ist auftritt",
+      "was prueft ein meister zuerst wenn die pump-down-sequenz falsch ist da ist",
+      "wie beginnt die diagnose bei die pump-down-sequenz falsch ist",
+      "wie loest man die pump-down-sequenz falsch ist",
+      "warum kommt die pump-down-sequenz falsch ist immer wieder",
+      "welche messungen macht man bei die pump-down-sequenz falsch ist",
+      "kann montagefehler die pump-down-sequenz falsch ist verursachen",
+      "wie ist die service reihenfolge bei die pump-down-sequenz falsch ist",
+      "was ist der haeufigste fehler bei die pump-down-sequenz falsch ist"
+    ],
+    "tr_answer": "pump down sirasi yanlis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kompresor ve solenoidin yanlis sira ile kapanip acilmasi; bunun yaninda solenoid, pump down ve dur-kalk sekansinin dogru islememesidir. Ilk kontrolde solenoid bobini, kapanma-acma davranisi, basinç esitlenmesi ve durus sonrasi kalkis birlikte izlenir. Bunun teknik sebebi yanlis sekans yalanci ariza ve sivi donusu riski yaratabilir; ayrica sekans hatalari basit valf arizasindan daha buyuk kompresor zorlanmasi yaratabilir. En sik hata ise yalniz bobine bakip kapanma mantigini okumamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die pump-down-sequenz falsch ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Verdichter und Magnetventil in falscher Reihenfolge schalten; zusaetzlich kommen Magnetventil, Pumpdown und Start-Stopp-Sequenz nicht sauber funktionieren vor. Bei der Erstpruefung werden Spule, Oeffnungs-/Schliessverhalten, Druckausgleich und Wiederstart gemeinsam beobachtet werden. Der technische Hintergrund ist eine falsche Sequenz Stoerungen und Fluessigkeitsrisiken erzeugt; ausserdem gilt Sequenzfehler mehr als nur ein Ventilproblem sein und Verdichter massiv belasten koennen. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Spule zu schauen und die Sequenzlogik zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "solenoid valf neden acmaz",
+      "zor kalkis neden olur",
+      "pump down nasil calisir"
+    ]
+  },
+  {
+    "id": "refrigeration_pressure_equalization_fault",
+    "tr_subject": "basinc esitlenmesi olmadan zor kalkiyor",
+    "de_subject": "ohne druckausgleich schwer anlaeuft",
+    "keywords": [
+      "basinc esitlenmesi olmadan zor kalkiyor",
+      "ohne druckausgleich schwer anlaeuft",
+      "pressure equalization",
+      "hard start pressure"
+    ],
+    "tr_questions": [
+      "basinc esitlenmesi olmadan zor kalkiyor neden olur",
+      "basinc esitlenmesi olmadan zor kalkiyor olursa neye bakilir",
+      "basinc esitlenmesi olmadan zor kalkiyor varsa usta once ne kontrol eder",
+      "basinc esitlenmesi olmadan zor kalkiyor arizasinda teshis nasil baslar",
+      "basinc esitlenmesi olmadan zor kalkiyor sorunu nasil cozulur",
+      "basinc esitlenmesi olmadan zor kalkiyor neden tekrar eder",
+      "basinc esitlenmesi olmadan zor kalkiyor oldugunda hangi olcumler yapilir",
+      "basinc esitlenmesi olmadan zor kalkiyor montaj hatasi olabilir mi",
+      "basinc esitlenmesi olmadan zor kalkiyor gorulurse servis sirasi ne olur",
+      "basinc esitlenmesi olmadan zor kalkiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt ohne druckausgleich schwer anlaeuft auf",
+      "worauf schaut man wenn ohne druckausgleich schwer anlaeuft auftritt",
+      "was prueft ein meister zuerst wenn ohne druckausgleich schwer anlaeuft da ist",
+      "wie beginnt die diagnose bei ohne druckausgleich schwer anlaeuft",
+      "wie loest man ohne druckausgleich schwer anlaeuft",
+      "warum kommt ohne druckausgleich schwer anlaeuft immer wieder",
+      "welche messungen macht man bei ohne druckausgleich schwer anlaeuft",
+      "kann montagefehler ohne druckausgleich schwer anlaeuft verursachen",
+      "wie ist die service reihenfolge bei ohne druckausgleich schwer anlaeuft",
+      "was ist der haeufigste fehler bei ohne druckausgleich schwer anlaeuft"
+    ],
+    "tr_answer": "basinc esitlenmesi olmadan zor kalkiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden durus sonrasi basincin rahatlayacak zamani bulmamasi; bunun yaninda solenoid, pump down ve dur-kalk sekansinin dogru islememesidir. Ilk kontrolde solenoid bobini, kapanma-acma davranisi, basinç esitlenmesi ve durus sonrasi kalkis birlikte izlenir. Bunun teknik sebebi yuk altinda start kompresoru elektrikten cok mekanik olarak yorar; ayrica sekans hatalari basit valf arizasindan daha buyuk kompresor zorlanmasi yaratabilir. En sik hata ise yalniz bobine bakip kapanma mantigini okumamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn ohne druckausgleich schwer anlaeuft auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist nach dem Stopp kein sauberer Druckausgleich zustande kommt; zusaetzlich kommen Magnetventil, Pumpdown und Start-Stopp-Sequenz nicht sauber funktionieren vor. Bei der Erstpruefung werden Spule, Oeffnungs-/Schliessverhalten, Druckausgleich und Wiederstart gemeinsam beobachtet werden. Der technische Hintergrund ist ein Start unter Drucklast den Verdichter mechanisch schwer belastet; ausserdem gilt Sequenzfehler mehr als nur ein Ventilproblem sein und Verdichter massiv belasten koennen. Ein sehr haeufiger Fehler besteht darin, dass nur auf die Spule zu schauen und die Sequenzlogik zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "solenoid valf neden acmaz",
+      "zor kalkis neden olur",
+      "pump down nasil calisir"
+    ]
+  },
+  {
+    "id": "refrigeration_oil_return_poor",
+    "tr_subject": "yag donusu zayif",
+    "de_subject": "der oelruecklauf schwach ist",
+    "keywords": [
+      "yag donusu zayif",
+      "der oelruecklauf schwach ist",
+      "oil return",
+      "yag donusu"
+    ],
+    "tr_questions": [
+      "yag donusu zayif neden olur",
+      "yag donusu zayif olursa neye bakilir",
+      "yag donusu zayif varsa usta once ne kontrol eder",
+      "yag donusu zayif arizasinda teshis nasil baslar",
+      "yag donusu zayif sorunu nasil cozulur",
+      "yag donusu zayif neden tekrar eder",
+      "yag donusu zayif oldugunda hangi olcumler yapilir",
+      "yag donusu zayif montaj hatasi olabilir mi",
+      "yag donusu zayif gorulurse servis sirasi ne olur",
+      "yag donusu zayif icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der oelruecklauf schwach ist auf",
+      "worauf schaut man wenn der oelruecklauf schwach ist auftritt",
+      "was prueft ein meister zuerst wenn der oelruecklauf schwach ist da ist",
+      "wie beginnt die diagnose bei der oelruecklauf schwach ist",
+      "wie loest man der oelruecklauf schwach ist",
+      "warum kommt der oelruecklauf schwach ist immer wieder",
+      "welche messungen macht man bei der oelruecklauf schwach ist",
+      "kann montagefehler der oelruecklauf schwach ist verursachen",
+      "wie ist die service reihenfolge bei der oelruecklauf schwach ist",
+      "was ist der haeufigste fehler bei der oelruecklauf schwach ist"
+    ],
+    "tr_answer": "yag donusu zayif durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden hat geometri ve hizlarin yagi kompresore geri tasiyamamasi; bunun yaninda yag ve geri donus geometrisinin kompresoru saglikli beslememesidir. Ilk kontrolde hat capi, egim, kot farki, akim hizi ve karter davranisi birlikte okunur. Bunun teknik sebebi zayif yag donusu kompresor omrunu sessizce kisaltir; ayrica kompresor yagi sadece karterde kalmaz; dogru tasarimla devreden geri gelmesi gerekir. En sik hata ise yag sorununu sadece yag ekleyerek cozmeye calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der oelruecklauf schwach ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Rohrfuehrung und Geschwindigkeiten das Oel nicht sauber zum Verdichter bringen; zusaetzlich kommen Oelmanagement und Ruecklaufgeometrie den Verdichter nicht sauber versorgen vor. Bei der Erstpruefung werden Rohrdurchmesser, Gefaelle, Hoehenunterschied, Gasgeschwindigkeit und Kurbelgehause gemeinsam bewertet werden. Der technische Hintergrund ist schwacher Oelruecklauf die Verdichterlebensdauer schleichend verkuerzt; ausserdem gilt Verdichteroel nicht nur im Sumpf bleibt, sondern ueber den Kreis sicher zurueckgefuehrt werden muss. Ein sehr haeufiger Fehler besteht darin, dass ein Oelproblem nur durch Nachfuellen loesen zu wollen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yag donusu neden onemli",
+      "boru capi nasil secilir",
+      "sivi donusu neden olur"
+    ]
+  },
+  {
+    "id": "refrigeration_missing_oil_trap",
+    "tr_subject": "yag cebi eksik",
+    "de_subject": "eine oelfalle fehlt",
+    "keywords": [
+      "yag cebi eksik",
+      "eine oelfalle fehlt",
+      "oil trap",
+      "yag cebi"
+    ],
+    "tr_questions": [
+      "yag cebi eksik neden olur",
+      "yag cebi eksik olursa neye bakilir",
+      "yag cebi eksik varsa usta once ne kontrol eder",
+      "yag cebi eksik arizasinda teshis nasil baslar",
+      "yag cebi eksik sorunu nasil cozulur",
+      "yag cebi eksik neden tekrar eder",
+      "yag cebi eksik oldugunda hangi olcumler yapilir",
+      "yag cebi eksik montaj hatasi olabilir mi",
+      "yag cebi eksik gorulurse servis sirasi ne olur",
+      "yag cebi eksik icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt eine oelfalle fehlt auf",
+      "worauf schaut man wenn eine oelfalle fehlt auftritt",
+      "was prueft ein meister zuerst wenn eine oelfalle fehlt da ist",
+      "wie beginnt die diagnose bei eine oelfalle fehlt",
+      "wie loest man eine oelfalle fehlt",
+      "warum kommt eine oelfalle fehlt immer wieder",
+      "welche messungen macht man bei eine oelfalle fehlt",
+      "kann montagefehler eine oelfalle fehlt verursachen",
+      "wie ist die service reihenfolge bei eine oelfalle fehlt",
+      "was ist der haeufigste fehler bei eine oelfalle fehlt"
+    ],
+    "tr_answer": "yag cebi eksik durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden dikey hatlarda gerekli oil trap detayinin bulunmamasi; bunun yaninda yag ve geri donus geometrisinin kompresoru saglikli beslememesidir. Ilk kontrolde hat capi, egim, kot farki, akim hizi ve karter davranisi birlikte okunur. Bunun teknik sebebi oil trap olmazsa dikey hatta yag asagi kalip geri donmez; ayrica kompresor yagi sadece karterde kalmaz; dogru tasarimla devreden geri gelmesi gerekir. En sik hata ise yag sorununu sadece yag ekleyerek cozmeye calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn eine oelfalle fehlt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist bei Steigleitungen die noetige Oelfalle fehlt; zusaetzlich kommen Oelmanagement und Ruecklaufgeometrie den Verdichter nicht sauber versorgen vor. Bei der Erstpruefung werden Rohrdurchmesser, Gefaelle, Hoehenunterschied, Gasgeschwindigkeit und Kurbelgehause gemeinsam bewertet werden. Der technische Hintergrund ist ohne Oelfalle Oel in der Steigleitung zurueckbleiben kann; ausserdem gilt Verdichteroel nicht nur im Sumpf bleibt, sondern ueber den Kreis sicher zurueckgefuehrt werden muss. Ein sehr haeufiger Fehler besteht darin, dass ein Oelproblem nur durch Nachfuellen loesen zu wollen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yag donusu neden onemli",
+      "boru capi nasil secilir",
+      "sivi donusu neden olur"
+    ]
+  },
+  {
+    "id": "refrigeration_suction_line_too_large",
+    "tr_subject": "emis borusu fazla buyuk",
+    "de_subject": "die saugleitung zu gross ist",
+    "keywords": [
+      "emis borusu fazla buyuk",
+      "die saugleitung zu gross ist",
+      "suction line too large",
+      "emis capi buyuk"
+    ],
+    "tr_questions": [
+      "emis borusu fazla buyuk neden olur",
+      "emis borusu fazla buyuk olursa neye bakilir",
+      "emis borusu fazla buyuk varsa usta once ne kontrol eder",
+      "emis borusu fazla buyuk arizasinda teshis nasil baslar",
+      "emis borusu fazla buyuk sorunu nasil cozulur",
+      "emis borusu fazla buyuk neden tekrar eder",
+      "emis borusu fazla buyuk oldugunda hangi olcumler yapilir",
+      "emis borusu fazla buyuk montaj hatasi olabilir mi",
+      "emis borusu fazla buyuk gorulurse servis sirasi ne olur",
+      "emis borusu fazla buyuk icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die saugleitung zu gross ist auf",
+      "worauf schaut man wenn die saugleitung zu gross ist auftritt",
+      "was prueft ein meister zuerst wenn die saugleitung zu gross ist da ist",
+      "wie beginnt die diagnose bei die saugleitung zu gross ist",
+      "wie loest man die saugleitung zu gross ist",
+      "warum kommt die saugleitung zu gross ist immer wieder",
+      "welche messungen macht man bei die saugleitung zu gross ist",
+      "kann montagefehler die saugleitung zu gross ist verursachen",
+      "wie ist die service reihenfolge bei die saugleitung zu gross ist",
+      "was ist der haeufigste fehler bei die saugleitung zu gross ist"
+    ],
+    "tr_answer": "emis borusu fazla buyuk durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden gaz hizinin yagi tasiyamayacak kadar dusmesi; bunun yaninda yag ve geri donus geometrisinin kompresoru saglikli beslememesidir. Ilk kontrolde hat capi, egim, kot farki, akim hizi ve karter davranisi birlikte okunur. Bunun teknik sebebi asiri buyuk emiş hatti sessiz ama kalici yag donus sorunu yaratir; ayrica kompresor yagi sadece karterde kalmaz; dogru tasarimla devreden geri gelmesi gerekir. En sik hata ise yag sorununu sadece yag ekleyerek cozmeye calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die saugleitung zu gross ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Gasgeschwindigkeit zu niedrig wird, um Oel mitzunehmen; zusaetzlich kommen Oelmanagement und Ruecklaufgeometrie den Verdichter nicht sauber versorgen vor. Bei der Erstpruefung werden Rohrdurchmesser, Gefaelle, Hoehenunterschied, Gasgeschwindigkeit und Kurbelgehause gemeinsam bewertet werden. Der technische Hintergrund ist eine zu grosse Saugleitung leise, aber dauerhaft Oelruecklaufprobleme verursacht; ausserdem gilt Verdichteroel nicht nur im Sumpf bleibt, sondern ueber den Kreis sicher zurueckgefuehrt werden muss. Ein sehr haeufiger Fehler besteht darin, dass ein Oelproblem nur durch Nachfuellen loesen zu wollen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yag donusu neden onemli",
+      "boru capi nasil secilir",
+      "sivi donusu neden olur"
+    ]
+  },
+  {
+    "id": "refrigeration_suction_line_too_small",
+    "tr_subject": "emis borusu fazla kucuk",
+    "de_subject": "die saugleitung zu klein ist",
+    "keywords": [
+      "emis borusu fazla kucuk",
+      "die saugleitung zu klein ist",
+      "suction line too small",
+      "emis capi kucuk"
+    ],
+    "tr_questions": [
+      "emis borusu fazla kucuk neden olur",
+      "emis borusu fazla kucuk olursa neye bakilir",
+      "emis borusu fazla kucuk varsa usta once ne kontrol eder",
+      "emis borusu fazla kucuk arizasinda teshis nasil baslar",
+      "emis borusu fazla kucuk sorunu nasil cozulur",
+      "emis borusu fazla kucuk neden tekrar eder",
+      "emis borusu fazla kucuk oldugunda hangi olcumler yapilir",
+      "emis borusu fazla kucuk montaj hatasi olabilir mi",
+      "emis borusu fazla kucuk gorulurse servis sirasi ne olur",
+      "emis borusu fazla kucuk icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die saugleitung zu klein ist auf",
+      "worauf schaut man wenn die saugleitung zu klein ist auftritt",
+      "was prueft ein meister zuerst wenn die saugleitung zu klein ist da ist",
+      "wie beginnt die diagnose bei die saugleitung zu klein ist",
+      "wie loest man die saugleitung zu klein ist",
+      "warum kommt die saugleitung zu klein ist immer wieder",
+      "welche messungen macht man bei die saugleitung zu klein ist",
+      "kann montagefehler die saugleitung zu klein ist verursachen",
+      "wie ist die service reihenfolge bei die saugleitung zu klein ist",
+      "was ist der haeufigste fehler bei die saugleitung zu klein ist"
+    ],
+    "tr_answer": "emis borusu fazla kucuk durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden hatta asiri basinç kaybi olusturacak kadar dar cap secimi; bunun yaninda yag ve geri donus geometrisinin kompresoru saglikli beslememesidir. Ilk kontrolde hat capi, egim, kot farki, akim hizi ve karter davranisi birlikte okunur. Bunun teknik sebebi kucuk emiş hatti kompresoru aclik ve sicaklik stresiyle zorlar; ayrica kompresor yagi sadece karterde kalmaz; dogru tasarimla devreden geri gelmesi gerekir. En sik hata ise yag sorununu sadece yag ekleyerek cozmeye calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die saugleitung zu klein ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist ein zu kleiner Durchmesser starke Druckverluste in der Saugleitung erzeugt; zusaetzlich kommen Oelmanagement und Ruecklaufgeometrie den Verdichter nicht sauber versorgen vor. Bei der Erstpruefung werden Rohrdurchmesser, Gefaelle, Hoehenunterschied, Gasgeschwindigkeit und Kurbelgehause gemeinsam bewertet werden. Der technische Hintergrund ist eine zu kleine Saugleitung den Verdichter mit Hunger und Temperaturstress belastet; ausserdem gilt Verdichteroel nicht nur im Sumpf bleibt, sondern ueber den Kreis sicher zurueckgefuehrt werden muss. Ein sehr haeufiger Fehler besteht darin, dass ein Oelproblem nur durch Nachfuellen loesen zu wollen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yag donusu neden onemli",
+      "boru capi nasil secilir",
+      "sivi donusu neden olur"
+    ]
+  },
+  {
+    "id": "refrigeration_crankcase_dilution",
+    "tr_subject": "karterde sogutucu akiskan birikiyor",
+    "de_subject": "kaeltemittel das kurbelgehause verduennt",
+    "keywords": [
+      "karterde sogutucu akiskan birikiyor",
+      "kaeltemittel das kurbelgehause verduennt",
+      "crankcase dilution",
+      "karter seyrelmesi"
+    ],
+    "tr_questions": [
+      "karterde sogutucu akiskan birikiyor neden olur",
+      "karterde sogutucu akiskan birikiyor olursa neye bakilir",
+      "karterde sogutucu akiskan birikiyor varsa usta once ne kontrol eder",
+      "karterde sogutucu akiskan birikiyor arizasinda teshis nasil baslar",
+      "karterde sogutucu akiskan birikiyor sorunu nasil cozulur",
+      "karterde sogutucu akiskan birikiyor neden tekrar eder",
+      "karterde sogutucu akiskan birikiyor oldugunda hangi olcumler yapilir",
+      "karterde sogutucu akiskan birikiyor montaj hatasi olabilir mi",
+      "karterde sogutucu akiskan birikiyor gorulurse servis sirasi ne olur",
+      "karterde sogutucu akiskan birikiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt kaeltemittel das kurbelgehause verduennt auf",
+      "worauf schaut man wenn kaeltemittel das kurbelgehause verduennt auftritt",
+      "was prueft ein meister zuerst wenn kaeltemittel das kurbelgehause verduennt da ist",
+      "wie beginnt die diagnose bei kaeltemittel das kurbelgehause verduennt",
+      "wie loest man kaeltemittel das kurbelgehause verduennt",
+      "warum kommt kaeltemittel das kurbelgehause verduennt immer wieder",
+      "welche messungen macht man bei kaeltemittel das kurbelgehause verduennt",
+      "kann montagefehler kaeltemittel das kurbelgehause verduennt verursachen",
+      "wie ist die service reihenfolge bei kaeltemittel das kurbelgehause verduennt",
+      "was ist der haeufigste fehler bei kaeltemittel das kurbelgehause verduennt"
+    ],
+    "tr_answer": "karterde sogutucu akiskan birikiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden stop halinde gazin kartere goc etmesi ve yagi seyreltmesi; bunun yaninda yag ve geri donus geometrisinin kompresoru saglikli beslememesidir. Ilk kontrolde hat capi, egim, kot farki, akim hizi ve karter davranisi birlikte okunur. Bunun teknik sebebi seyrelmis yag ilk kalkista koruma ve yaglama zaafiyeti yaratir; ayrica kompresor yagi sadece karterde kalmaz; dogru tasarimla devreden geri gelmesi gerekir. En sik hata ise yag sorununu sadece yag ekleyerek cozmeye calismaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn kaeltemittel das kurbelgehause verduennt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist waehrend des Stillstands Kaeltemittel in den Sumpf wandert und das Oel verduennt; zusaetzlich kommen Oelmanagement und Ruecklaufgeometrie den Verdichter nicht sauber versorgen vor. Bei der Erstpruefung werden Rohrdurchmesser, Gefaelle, Hoehenunterschied, Gasgeschwindigkeit und Kurbelgehause gemeinsam bewertet werden. Der technische Hintergrund ist verduenntes Oel beim Start Schmierung und Schutz schwächt; ausserdem gilt Verdichteroel nicht nur im Sumpf bleibt, sondern ueber den Kreis sicher zurueckgefuehrt werden muss. Ein sehr haeufiger Fehler besteht darin, dass ein Oelproblem nur durch Nachfuellen loesen zu wollen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yag donusu neden onemli",
+      "boru capi nasil secilir",
+      "sivi donusu neden olur"
+    ]
+  },
+  {
+    "id": "refrigeration_liquid_slugging",
+    "tr_subject": "kompresore sivi vuruyor",
+    "de_subject": "fluessigkeit auf den verdichter schlaegt",
+    "keywords": [
+      "kompresore sivi vuruyor",
+      "fluessigkeit auf den verdichter schlaegt",
+      "liquid slugging",
+      "sivi vuruyor"
+    ],
+    "tr_questions": [
+      "kompresore sivi vuruyor neden olur",
+      "kompresore sivi vuruyor olursa neye bakilir",
+      "kompresore sivi vuruyor varsa usta once ne kontrol eder",
+      "kompresore sivi vuruyor arizasinda teshis nasil baslar",
+      "kompresore sivi vuruyor sorunu nasil cozulur",
+      "kompresore sivi vuruyor neden tekrar eder",
+      "kompresore sivi vuruyor oldugunda hangi olcumler yapilir",
+      "kompresore sivi vuruyor montaj hatasi olabilir mi",
+      "kompresore sivi vuruyor gorulurse servis sirasi ne olur",
+      "kompresore sivi vuruyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt fluessigkeit auf den verdichter schlaegt auf",
+      "worauf schaut man wenn fluessigkeit auf den verdichter schlaegt auftritt",
+      "was prueft ein meister zuerst wenn fluessigkeit auf den verdichter schlaegt da ist",
+      "wie beginnt die diagnose bei fluessigkeit auf den verdichter schlaegt",
+      "wie loest man fluessigkeit auf den verdichter schlaegt",
+      "warum kommt fluessigkeit auf den verdichter schlaegt immer wieder",
+      "welche messungen macht man bei fluessigkeit auf den verdichter schlaegt",
+      "kann montagefehler fluessigkeit auf den verdichter schlaegt verursachen",
+      "wie ist die service reihenfolge bei fluessigkeit auf den verdichter schlaegt",
+      "was ist der haeufigste fehler bei fluessigkeit auf den verdichter schlaegt"
+    ],
+    "tr_answer": "kompresore sivi vuruyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kompresore gaz yerine sivi ulasmasi; bunun yaninda kompresorun beslenme, valfleme ve mekanik sagliginin bozulmasidir. Ilk kontrolde ses, akim, superheat, basma sicakligi ve yag davranisi birlikte degerlendirilir. Bunun teknik sebebi sivi vuruntusu mekanik kirilma ve yatak hasarina gidebilir; ayrica kompresor arizalari genelde tek veriyle degil birden fazla belirtinin birlikte okunmasiyla anlasilir. En sik hata ise kompresoru hemen mahkum edip onu bu hale getiren sebebi aramamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn fluessigkeit auf den verdichter schlaegt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist den Verdichter Fluessigkeit statt Gas erreicht; zusaetzlich kommen Versorgung, Ventile und mechanischer Zustand des Verdichters ungesund sind vor. Bei der Erstpruefung werden Geraeusch, Strom, Superheat, Druckgastemperatur und Oelverhalten gemeinsam bewertet werden. Der technische Hintergrund ist Fluessigkeitsschlaege zu mechanischen Schaeden und Lagerproblemen fuehren koennen; ausserdem gilt Verdichterfehler meist erst ueber das Zusammenspiel mehrerer Symptome klar werden. Ein sehr haeufiger Fehler besteht darin, dass den Verdichter sofort zu verurteilen und die verursachende Kette nicht zu suchen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "kompresore sivi neden doner",
+      "basma sicakligi neden yukselir",
+      "mekanik kompresor arizasi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_floodback_after_defrost",
+    "tr_subject": "defrost sonrasi kompresore fazla sivi donuyor",
+    "de_subject": "nach der abtauung zu viel fluessigkeit zurueckkommt",
+    "keywords": [
+      "defrost sonrasi kompresore fazla sivi donuyor",
+      "nach der abtauung zu viel fluessigkeit zurueckkommt",
+      "floodback after defrost",
+      "defrost sonrasi sivi"
+    ],
+    "tr_questions": [
+      "defrost sonrasi kompresore fazla sivi donuyor neden olur",
+      "defrost sonrasi kompresore fazla sivi donuyor olursa neye bakilir",
+      "defrost sonrasi kompresore fazla sivi donuyor varsa usta once ne kontrol eder",
+      "defrost sonrasi kompresore fazla sivi donuyor arizasinda teshis nasil baslar",
+      "defrost sonrasi kompresore fazla sivi donuyor sorunu nasil cozulur",
+      "defrost sonrasi kompresore fazla sivi donuyor neden tekrar eder",
+      "defrost sonrasi kompresore fazla sivi donuyor oldugunda hangi olcumler yapilir",
+      "defrost sonrasi kompresore fazla sivi donuyor montaj hatasi olabilir mi",
+      "defrost sonrasi kompresore fazla sivi donuyor gorulurse servis sirasi ne olur",
+      "defrost sonrasi kompresore fazla sivi donuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt nach der abtauung zu viel fluessigkeit zurueckkommt auf",
+      "worauf schaut man wenn nach der abtauung zu viel fluessigkeit zurueckkommt auftritt",
+      "was prueft ein meister zuerst wenn nach der abtauung zu viel fluessigkeit zurueckkommt da ist",
+      "wie beginnt die diagnose bei nach der abtauung zu viel fluessigkeit zurueckkommt",
+      "wie loest man nach der abtauung zu viel fluessigkeit zurueckkommt",
+      "warum kommt nach der abtauung zu viel fluessigkeit zurueckkommt immer wieder",
+      "welche messungen macht man bei nach der abtauung zu viel fluessigkeit zurueckkommt",
+      "kann montagefehler nach der abtauung zu viel fluessigkeit zurueckkommt verursachen",
+      "wie ist die service reihenfolge bei nach der abtauung zu viel fluessigkeit zurueckkommt",
+      "was ist der haeufigste fehler bei nach der abtauung zu viel fluessigkeit zurueckkommt"
+    ],
+    "tr_answer": "defrost sonrasi kompresore fazla sivi donuyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden defrost cikisinda evaporatorun kontrolsuz sekilde tasmasi; bunun yaninda kompresorun beslenme, valfleme ve mekanik sagliginin bozulmasidir. Ilk kontrolde ses, akim, superheat, basma sicakligi ve yag davranisi birlikte degerlendirilir. Bunun teknik sebebi defrost sonrasi floodback sik tekrar eden kompresor hasari sebebidir; ayrica kompresor arizalari genelde tek veriyle degil birden fazla belirtinin birlikte okunmasiyla anlasilir. En sik hata ise kompresoru hemen mahkum edip onu bu hale getiren sebebi aramamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn nach der abtauung zu viel fluessigkeit zurueckkommt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist nach der Abtauung der Verdampfer unkontrolliert ueberfuettert wird; zusaetzlich kommen Versorgung, Ventile und mechanischer Zustand des Verdichters ungesund sind vor. Bei der Erstpruefung werden Geraeusch, Strom, Superheat, Druckgastemperatur und Oelverhalten gemeinsam bewertet werden. Der technische Hintergrund ist Floodback nach der Abtauung eine haeufige Ursache wiederkehrender Verdichterschaeden ist; ausserdem gilt Verdichterfehler meist erst ueber das Zusammenspiel mehrerer Symptome klar werden. Ein sehr haeufiger Fehler besteht darin, dass den Verdichter sofort zu verurteilen und die verursachende Kette nicht zu suchen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "kompresore sivi neden doner",
+      "basma sicakligi neden yukselir",
+      "mekanik kompresor arizasi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_high_discharge_temp",
+    "tr_subject": "basma sicakligi cok yuksek",
+    "de_subject": "die druckgastemperatur sehr hoch ist",
+    "keywords": [
+      "basma sicakligi cok yuksek",
+      "die druckgastemperatur sehr hoch ist",
+      "high discharge temp",
+      "basma sicakligi"
+    ],
+    "tr_questions": [
+      "basma sicakligi cok yuksek neden olur",
+      "basma sicakligi cok yuksek olursa neye bakilir",
+      "basma sicakligi cok yuksek varsa usta once ne kontrol eder",
+      "basma sicakligi cok yuksek arizasinda teshis nasil baslar",
+      "basma sicakligi cok yuksek sorunu nasil cozulur",
+      "basma sicakligi cok yuksek neden tekrar eder",
+      "basma sicakligi cok yuksek oldugunda hangi olcumler yapilir",
+      "basma sicakligi cok yuksek montaj hatasi olabilir mi",
+      "basma sicakligi cok yuksek gorulurse servis sirasi ne olur",
+      "basma sicakligi cok yuksek icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die druckgastemperatur sehr hoch ist auf",
+      "worauf schaut man wenn die druckgastemperatur sehr hoch ist auftritt",
+      "was prueft ein meister zuerst wenn die druckgastemperatur sehr hoch ist da ist",
+      "wie beginnt die diagnose bei die druckgastemperatur sehr hoch ist",
+      "wie loest man die druckgastemperatur sehr hoch ist",
+      "warum kommt die druckgastemperatur sehr hoch ist immer wieder",
+      "welche messungen macht man bei die druckgastemperatur sehr hoch ist",
+      "kann montagefehler die druckgastemperatur sehr hoch ist verursachen",
+      "wie ist die service reihenfolge bei die druckgastemperatur sehr hoch ist",
+      "was ist der haeufigste fehler bei die druckgastemperatur sehr hoch ist"
+    ],
+    "tr_answer": "basma sicakligi cok yuksek durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden yüksek superheat, aclik veya yetersiz sogutma nedeniyle kompresorun asiri isinmasi; bunun yaninda kompresorun beslenme, valfleme ve mekanik sagliginin bozulmasidir. Ilk kontrolde ses, akim, superheat, basma sicakligi ve yag davranisi birlikte degerlendirilir. Bunun teknik sebebi yuksek basma sicakligi yag yapisini bozup motoru yorar; ayrica kompresor arizalari genelde tek veriyle degil birden fazla belirtinin birlikte okunmasiyla anlasilir. En sik hata ise kompresoru hemen mahkum edip onu bu hale getiren sebebi aramamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die druckgastemperatur sehr hoch ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch hohen Superheat, Hunger oder schlechte Kuehlung der Verdichter thermisch ueberlastet wird; zusaetzlich kommen Versorgung, Ventile und mechanischer Zustand des Verdichters ungesund sind vor. Bei der Erstpruefung werden Geraeusch, Strom, Superheat, Druckgastemperatur und Oelverhalten gemeinsam bewertet werden. Der technische Hintergrund ist eine hohe Druckgastemperatur Oel und Motor stark belastet; ausserdem gilt Verdichterfehler meist erst ueber das Zusammenspiel mehrerer Symptome klar werden. Ein sehr haeufiger Fehler besteht darin, dass den Verdichter sofort zu verurteilen und die verursachende Kette nicht zu suchen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "kompresore sivi neden doner",
+      "basma sicakligi neden yukselir",
+      "mekanik kompresor arizasi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_worn_valves",
+    "tr_subject": "kompresor valfleri kaciriyor",
+    "de_subject": "die verdichterventile undicht sind",
+    "keywords": [
+      "kompresor valfleri kaciriyor",
+      "die verdichterventile undicht sind",
+      "worn valves",
+      "valf kacagi"
+    ],
+    "tr_questions": [
+      "kompresor valfleri kaciriyor neden olur",
+      "kompresor valfleri kaciriyor olursa neye bakilir",
+      "kompresor valfleri kaciriyor varsa usta once ne kontrol eder",
+      "kompresor valfleri kaciriyor arizasinda teshis nasil baslar",
+      "kompresor valfleri kaciriyor sorunu nasil cozulur",
+      "kompresor valfleri kaciriyor neden tekrar eder",
+      "kompresor valfleri kaciriyor oldugunda hangi olcumler yapilir",
+      "kompresor valfleri kaciriyor montaj hatasi olabilir mi",
+      "kompresor valfleri kaciriyor gorulurse servis sirasi ne olur",
+      "kompresor valfleri kaciriyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die verdichterventile undicht sind auf",
+      "worauf schaut man wenn die verdichterventile undicht sind auftritt",
+      "was prueft ein meister zuerst wenn die verdichterventile undicht sind da ist",
+      "wie beginnt die diagnose bei die verdichterventile undicht sind",
+      "wie loest man die verdichterventile undicht sind",
+      "warum kommt die verdichterventile undicht sind immer wieder",
+      "welche messungen macht man bei die verdichterventile undicht sind",
+      "kann montagefehler die verdichterventile undicht sind verursachen",
+      "wie ist die service reihenfolge bei die verdichterventile undicht sind",
+      "was ist der haeufigste fehler bei die verdichterventile undicht sind"
+    ],
+    "tr_answer": "kompresor valfleri kaciriyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden kompresor ic valflerinin asinarak geri kacirmasi; bunun yaninda kompresorun beslenme, valfleme ve mekanik sagliginin bozulmasidir. Ilk kontrolde ses, akim, superheat, basma sicakligi ve yag davranisi birlikte degerlendirilir. Bunun teknik sebebi valf kacakli kompresor basinç farki uretmekte zorlanir; ayrica kompresor arizalari genelde tek veriyle degil birden fazla belirtinin birlikte okunmasiyla anlasilir. En sik hata ise kompresoru hemen mahkum edip onu bu hale getiren sebebi aramamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die verdichterventile undicht sind auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die inneren Verdichterventile verschlissen sind und zurueckblasen; zusaetzlich kommen Versorgung, Ventile und mechanischer Zustand des Verdichters ungesund sind vor. Bei der Erstpruefung werden Geraeusch, Strom, Superheat, Druckgastemperatur und Oelverhalten gemeinsam bewertet werden. Der technische Hintergrund ist ein Verdichter mit undichten Ventilen keine saubere Druckdifferenz aufbaut; ausserdem gilt Verdichterfehler meist erst ueber das Zusammenspiel mehrerer Symptome klar werden. Ein sehr haeufiger Fehler besteht darin, dass den Verdichter sofort zu verurteilen und die verursachende Kette nicht zu suchen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "kompresore sivi neden doner",
+      "basma sicakligi neden yukselir",
+      "mekanik kompresor arizasi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_mechanical_wear",
+    "tr_subject": "kompresorde mekanik yorgunluk var",
+    "de_subject": "der verdichter mechanisch verschlissen ist",
+    "keywords": [
+      "kompresorde mekanik yorgunluk var",
+      "der verdichter mechanisch verschlissen ist",
+      "mechanical wear",
+      "kompresor yorgun"
+    ],
+    "tr_questions": [
+      "kompresorde mekanik yorgunluk var neden olur",
+      "kompresorde mekanik yorgunluk var olursa neye bakilir",
+      "kompresorde mekanik yorgunluk var varsa usta once ne kontrol eder",
+      "kompresorde mekanik yorgunluk var arizasinda teshis nasil baslar",
+      "kompresorde mekanik yorgunluk var sorunu nasil cozulur",
+      "kompresorde mekanik yorgunluk var neden tekrar eder",
+      "kompresorde mekanik yorgunluk var oldugunda hangi olcumler yapilir",
+      "kompresorde mekanik yorgunluk var montaj hatasi olabilir mi",
+      "kompresorde mekanik yorgunluk var gorulurse servis sirasi ne olur",
+      "kompresorde mekanik yorgunluk var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der verdichter mechanisch verschlissen ist auf",
+      "worauf schaut man wenn der verdichter mechanisch verschlissen ist auftritt",
+      "was prueft ein meister zuerst wenn der verdichter mechanisch verschlissen ist da ist",
+      "wie beginnt die diagnose bei der verdichter mechanisch verschlissen ist",
+      "wie loest man der verdichter mechanisch verschlissen ist",
+      "warum kommt der verdichter mechanisch verschlissen ist immer wieder",
+      "welche messungen macht man bei der verdichter mechanisch verschlissen ist",
+      "kann montagefehler der verdichter mechanisch verschlissen ist verursachen",
+      "wie ist die service reihenfolge bei der verdichter mechanisch verschlissen ist",
+      "was ist der haeufigste fehler bei der verdichter mechanisch verschlissen ist"
+    ],
+    "tr_answer": "kompresorde mekanik yorgunluk var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden yatak, scroll veya piston gruplarinda omur sonu yorgunluk olusmasi; bunun yaninda kompresorun beslenme, valfleme ve mekanik sagliginin bozulmasidir. Ilk kontrolde ses, akim, superheat, basma sicakligi ve yag davranisi birlikte degerlendirilir. Bunun teknik sebebi mekanik yorgunluk akim, ses ve performans dususuyle birlikte okunur; ayrica kompresor arizalari genelde tek veriyle degil birden fazla belirtinin birlikte okunmasiyla anlasilir. En sik hata ise kompresoru hemen mahkum edip onu bu hale getiren sebebi aramamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der verdichter mechanisch verschlissen ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Lager, Scroll oder Kolbengruppe mechanisch ermuedet sind; zusaetzlich kommen Versorgung, Ventile und mechanischer Zustand des Verdichters ungesund sind vor. Bei der Erstpruefung werden Geraeusch, Strom, Superheat, Druckgastemperatur und Oelverhalten gemeinsam bewertet werden. Der technische Hintergrund ist mechanischer Verschleiss sich ueber Strom, Geraeusch und Leistung gemeinsam zeigt; ausserdem gilt Verdichterfehler meist erst ueber das Zusammenspiel mehrerer Symptome klar werden. Ein sehr haeufiger Fehler besteht darin, dass den Verdichter sofort zu verurteilen und die verursachende Kette nicht zu suchen. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "kompresore sivi neden doner",
+      "basma sicakligi neden yukselir",
+      "mekanik kompresor arizasi nasil anlasilir"
+    ]
+  },
+  {
+    "id": "refrigeration_head_pressure_control_wrong",
+    "tr_subject": "head pressure kontrolu yanlis",
+    "de_subject": "die hochdruckregelung falsch arbeitet",
+    "keywords": [
+      "head pressure kontrolu yanlis",
+      "die hochdruckregelung falsch arbeitet",
+      "head pressure control",
+      "basma kontrol"
+    ],
+    "tr_questions": [
+      "head pressure kontrolu yanlis neden olur",
+      "head pressure kontrolu yanlis olursa neye bakilir",
+      "head pressure kontrolu yanlis varsa usta once ne kontrol eder",
+      "head pressure kontrolu yanlis arizasinda teshis nasil baslar",
+      "head pressure kontrolu yanlis sorunu nasil cozulur",
+      "head pressure kontrolu yanlis neden tekrar eder",
+      "head pressure kontrolu yanlis oldugunda hangi olcumler yapilir",
+      "head pressure kontrolu yanlis montaj hatasi olabilir mi",
+      "head pressure kontrolu yanlis gorulurse servis sirasi ne olur",
+      "head pressure kontrolu yanlis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die hochdruckregelung falsch arbeitet auf",
+      "worauf schaut man wenn die hochdruckregelung falsch arbeitet auftritt",
+      "was prueft ein meister zuerst wenn die hochdruckregelung falsch arbeitet da ist",
+      "wie beginnt die diagnose bei die hochdruckregelung falsch arbeitet",
+      "wie loest man die hochdruckregelung falsch arbeitet",
+      "warum kommt die hochdruckregelung falsch arbeitet immer wieder",
+      "welche messungen macht man bei die hochdruckregelung falsch arbeitet",
+      "kann montagefehler die hochdruckregelung falsch arbeitet verursachen",
+      "wie ist die service reihenfolge bei die hochdruckregelung falsch arbeitet",
+      "was ist der haeufigste fehler bei die hochdruckregelung falsch arbeitet"
+    ],
+    "tr_answer": "head pressure kontrolu yanlis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden fan veya valf mantiginin basinç hedefini dogru tutamamasi; bunun yaninda kondensasyon ve basinç kontrol mantiginin ortama uygun olmamasidir. Ilk kontrolde kondenser fan sekansi, head pressure kontrolu, receiver seviyesi ve ortam sartlari birlikte okunur. Bunun teknik sebebi head pressure saparsa valf beslenmesi ve verim birlikte bozulur; ayrica basma tarafi sagliksizsa tum gaz devresi zincirleme etkilenir. En sik hata ise yalniz gaz sarjina odaklanip head pressure mantigini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die hochdruckregelung falsch arbeitet auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Luefter oder Ventile den Verfluessigungsdruck nicht sauber halten; zusaetzlich kommen Verfluessigung und Druckregelung nicht zur Umgebung und Last passen vor. Bei der Erstpruefung werden Verfluessigerfans, Hochdruckregelung, Receiverstand und Umgebungsbedingungen gemeinsam bewertet werden. Der technische Hintergrund ist schwankender KopfdrucK sowohl Ventilversorgung als auch Effizienz stoert; ausserdem gilt eine ungesunde Hochdruckseite den ganzen Kaeltekreis in Kette beeinflusst. Ein sehr haeufiger Fehler besteht darin, dass sich nur auf die Fuellmenge zu konzentrieren und die Hochdruckregelung zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "receiver ne yapar",
+      "fan sekansi nasil okunur"
+    ]
+  },
+  {
+    "id": "refrigeration_fan_cycling_wrong",
+    "tr_subject": "kondenser fan sekansi yanlis",
+    "de_subject": "die ventilatorstufung am verfluessiger falsch ist",
+    "keywords": [
+      "kondenser fan sekansi yanlis",
+      "die ventilatorstufung am verfluessiger falsch ist",
+      "fan cycling wrong",
+      "fan sekansi"
+    ],
+    "tr_questions": [
+      "kondenser fan sekansi yanlis neden olur",
+      "kondenser fan sekansi yanlis olursa neye bakilir",
+      "kondenser fan sekansi yanlis varsa usta once ne kontrol eder",
+      "kondenser fan sekansi yanlis arizasinda teshis nasil baslar",
+      "kondenser fan sekansi yanlis sorunu nasil cozulur",
+      "kondenser fan sekansi yanlis neden tekrar eder",
+      "kondenser fan sekansi yanlis oldugunda hangi olcumler yapilir",
+      "kondenser fan sekansi yanlis montaj hatasi olabilir mi",
+      "kondenser fan sekansi yanlis gorulurse servis sirasi ne olur",
+      "kondenser fan sekansi yanlis icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die ventilatorstufung am verfluessiger falsch ist auf",
+      "worauf schaut man wenn die ventilatorstufung am verfluessiger falsch ist auftritt",
+      "was prueft ein meister zuerst wenn die ventilatorstufung am verfluessiger falsch ist da ist",
+      "wie beginnt die diagnose bei die ventilatorstufung am verfluessiger falsch ist",
+      "wie loest man die ventilatorstufung am verfluessiger falsch ist",
+      "warum kommt die ventilatorstufung am verfluessiger falsch ist immer wieder",
+      "welche messungen macht man bei die ventilatorstufung am verfluessiger falsch ist",
+      "kann montagefehler die ventilatorstufung am verfluessiger falsch ist verursachen",
+      "wie ist die service reihenfolge bei die ventilatorstufung am verfluessiger falsch ist",
+      "was ist der haeufigste fehler bei die ventilatorstufung am verfluessiger falsch ist"
+    ],
+    "tr_answer": "kondenser fan sekansi yanlis durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden fanlarin devreye giris cikis basinc araliklarinin uygun olmamasi; bunun yaninda kondensasyon ve basinç kontrol mantiginin ortama uygun olmamasidir. Ilk kontrolde kondenser fan sekansi, head pressure kontrolu, receiver seviyesi ve ortam sartlari birlikte okunur. Bunun teknik sebebi yanlis sekans basinç dalgalanmasi ve gereksiz termik stres yaratir; ayrica basma tarafi sagliksizsa tum gaz devresi zincirleme etkilenir. En sik hata ise yalniz gaz sarjina odaklanip head pressure mantigini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die ventilatorstufung am verfluessiger falsch ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Schaltpunkte der Ventilatoren nicht zum Betriebsdruck passen; zusaetzlich kommen Verfluessigung und Druckregelung nicht zur Umgebung und Last passen vor. Bei der Erstpruefung werden Verfluessigerfans, Hochdruckregelung, Receiverstand und Umgebungsbedingungen gemeinsam bewertet werden. Der technische Hintergrund ist falsche Stufung Druckjagd und thermischen Stress erzeugt; ausserdem gilt eine ungesunde Hochdruckseite den ganzen Kaeltekreis in Kette beeinflusst. Ein sehr haeufiger Fehler besteht darin, dass sich nur auf die Fuellmenge zu konzentrieren und die Hochdruckregelung zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "receiver ne yapar",
+      "fan sekansi nasil okunur"
+    ]
+  },
+  {
+    "id": "refrigeration_receiver_level_issue",
+    "tr_subject": "receiver seviyesi sorunlu",
+    "de_subject": "der receiverstand problematisch ist",
+    "keywords": [
+      "receiver seviyesi sorunlu",
+      "der receiverstand problematisch ist",
+      "receiver level",
+      "receiver sorun"
+    ],
+    "tr_questions": [
+      "receiver seviyesi sorunlu neden olur",
+      "receiver seviyesi sorunlu olursa neye bakilir",
+      "receiver seviyesi sorunlu varsa usta once ne kontrol eder",
+      "receiver seviyesi sorunlu arizasinda teshis nasil baslar",
+      "receiver seviyesi sorunlu sorunu nasil cozulur",
+      "receiver seviyesi sorunlu neden tekrar eder",
+      "receiver seviyesi sorunlu oldugunda hangi olcumler yapilir",
+      "receiver seviyesi sorunlu montaj hatasi olabilir mi",
+      "receiver seviyesi sorunlu gorulurse servis sirasi ne olur",
+      "receiver seviyesi sorunlu icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der receiverstand problematisch ist auf",
+      "worauf schaut man wenn der receiverstand problematisch ist auftritt",
+      "was prueft ein meister zuerst wenn der receiverstand problematisch ist da ist",
+      "wie beginnt die diagnose bei der receiverstand problematisch ist",
+      "wie loest man der receiverstand problematisch ist",
+      "warum kommt der receiverstand problematisch ist immer wieder",
+      "welche messungen macht man bei der receiverstand problematisch ist",
+      "kann montagefehler der receiverstand problematisch ist verursachen",
+      "wie ist die service reihenfolge bei der receiverstand problematisch ist",
+      "was ist der haeufigste fehler bei der receiverstand problematisch ist"
+    ],
+    "tr_answer": "receiver seviyesi sorunlu durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden receiverde gereksiz sivi birikimi veya yetersiz tampon olmasi; bunun yaninda kondensasyon ve basinç kontrol mantiginin ortama uygun olmamasidir. Ilk kontrolde kondenser fan sekansi, head pressure kontrolu, receiver seviyesi ve ortam sartlari birlikte okunur. Bunun teknik sebebi receiver davranisi sistemin mevsimsel ve yuk degisimine cevabini etkiler; ayrica basma tarafi sagliksizsa tum gaz devresi zincirleme etkilenir. En sik hata ise yalniz gaz sarjina odaklanip head pressure mantigini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der receiverstand problematisch ist auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist im Receiver zu viel oder zu wenig nutzbare Fluessigkeitsreserve vorhanden ist; zusaetzlich kommen Verfluessigung und Druckregelung nicht zur Umgebung und Last passen vor. Bei der Erstpruefung werden Verfluessigerfans, Hochdruckregelung, Receiverstand und Umgebungsbedingungen gemeinsam bewertet werden. Der technische Hintergrund ist der Receiver das saisonale und lastbedingte Verhalten der Anlage praegt; ausserdem gilt eine ungesunde Hochdruckseite den ganzen Kaeltekreis in Kette beeinflusst. Ein sehr haeufiger Fehler besteht darin, dass sich nur auf die Fuellmenge zu konzentrieren und die Hochdruckregelung zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "receiver ne yapar",
+      "fan sekansi nasil okunur"
+    ]
+  },
+  {
+    "id": "refrigeration_hot_gas_line_anomaly",
+    "tr_subject": "sicak gaz hattinda anormallik var",
+    "de_subject": "an der heissgasleitung eine unregelmaessigkeit besteht",
+    "keywords": [
+      "sicak gaz hattinda anormallik var",
+      "an der heissgasleitung eine unregelmaessigkeit besteht",
+      "hot gas line",
+      "heissgas"
+    ],
+    "tr_questions": [
+      "sicak gaz hattinda anormallik var neden olur",
+      "sicak gaz hattinda anormallik var olursa neye bakilir",
+      "sicak gaz hattinda anormallik var varsa usta once ne kontrol eder",
+      "sicak gaz hattinda anormallik var arizasinda teshis nasil baslar",
+      "sicak gaz hattinda anormallik var sorunu nasil cozulur",
+      "sicak gaz hattinda anormallik var neden tekrar eder",
+      "sicak gaz hattinda anormallik var oldugunda hangi olcumler yapilir",
+      "sicak gaz hattinda anormallik var montaj hatasi olabilir mi",
+      "sicak gaz hattinda anormallik var gorulurse servis sirasi ne olur",
+      "sicak gaz hattinda anormallik var icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt an der heissgasleitung eine unregelmaessigkeit besteht auf",
+      "worauf schaut man wenn an der heissgasleitung eine unregelmaessigkeit besteht auftritt",
+      "was prueft ein meister zuerst wenn an der heissgasleitung eine unregelmaessigkeit besteht da ist",
+      "wie beginnt die diagnose bei an der heissgasleitung eine unregelmaessigkeit besteht",
+      "wie loest man an der heissgasleitung eine unregelmaessigkeit besteht",
+      "warum kommt an der heissgasleitung eine unregelmaessigkeit besteht immer wieder",
+      "welche messungen macht man bei an der heissgasleitung eine unregelmaessigkeit besteht",
+      "kann montagefehler an der heissgasleitung eine unregelmaessigkeit besteht verursachen",
+      "wie ist die service reihenfolge bei an der heissgasleitung eine unregelmaessigkeit besteht",
+      "was ist der haeufigste fehler bei an der heissgasleitung eine unregelmaessigkeit besteht"
+    ],
+    "tr_answer": "sicak gaz hattinda anormallik var durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden basma hattinin beklenenden asiri sicak veya dengesiz olmasi; bunun yaninda kondensasyon ve basinç kontrol mantiginin ortama uygun olmamasidir. Ilk kontrolde kondenser fan sekansi, head pressure kontrolu, receiver seviyesi ve ortam sartlari birlikte okunur. Bunun teknik sebebi sicak gaz davranisi kompresorun ne kadar zorlandigini dogrudan anlatir; ayrica basma tarafi sagliksizsa tum gaz devresi zincirleme etkilenir. En sik hata ise yalniz gaz sarjina odaklanip head pressure mantigini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn an der heissgasleitung eine unregelmaessigkeit besteht auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Heissgasleitung ungewollt zu heiss oder instabil ist; zusaetzlich kommen Verfluessigung und Druckregelung nicht zur Umgebung und Last passen vor. Bei der Erstpruefung werden Verfluessigerfans, Hochdruckregelung, Receiverstand und Umgebungsbedingungen gemeinsam bewertet werden. Der technische Hintergrund ist die Heissgasleitung direkt zeigt, wie hart der Verdichter arbeitet; ausserdem gilt eine ungesunde Hochdruckseite den ganzen Kaeltekreis in Kette beeinflusst. Ein sehr haeufiger Fehler besteht darin, dass sich nur auf die Fuellmenge zu konzentrieren und die Hochdruckregelung zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "receiver ne yapar",
+      "fan sekansi nasil okunur"
+    ]
+  },
+  {
+    "id": "refrigeration_ambient_condensing_load",
+    "tr_subject": "dis ortam basma tarafini cok zorluyor",
+    "de_subject": "die umgebung die hochdruckseite stark belastet",
+    "keywords": [
+      "dis ortam basma tarafini cok zorluyor",
+      "die umgebung die hochdruckseite stark belastet",
+      "ambient heat",
+      "dis ortam sicak"
+    ],
+    "tr_questions": [
+      "dis ortam basma tarafini cok zorluyor neden olur",
+      "dis ortam basma tarafini cok zorluyor olursa neye bakilir",
+      "dis ortam basma tarafini cok zorluyor varsa usta once ne kontrol eder",
+      "dis ortam basma tarafini cok zorluyor arizasinda teshis nasil baslar",
+      "dis ortam basma tarafini cok zorluyor sorunu nasil cozulur",
+      "dis ortam basma tarafini cok zorluyor neden tekrar eder",
+      "dis ortam basma tarafini cok zorluyor oldugunda hangi olcumler yapilir",
+      "dis ortam basma tarafini cok zorluyor montaj hatasi olabilir mi",
+      "dis ortam basma tarafini cok zorluyor gorulurse servis sirasi ne olur",
+      "dis ortam basma tarafini cok zorluyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die umgebung die hochdruckseite stark belastet auf",
+      "worauf schaut man wenn die umgebung die hochdruckseite stark belastet auftritt",
+      "was prueft ein meister zuerst wenn die umgebung die hochdruckseite stark belastet da ist",
+      "wie beginnt die diagnose bei die umgebung die hochdruckseite stark belastet",
+      "wie loest man die umgebung die hochdruckseite stark belastet",
+      "warum kommt die umgebung die hochdruckseite stark belastet immer wieder",
+      "welche messungen macht man bei die umgebung die hochdruckseite stark belastet",
+      "kann montagefehler die umgebung die hochdruckseite stark belastet verursachen",
+      "wie ist die service reihenfolge bei die umgebung die hochdruckseite stark belastet",
+      "was ist der haeufigste fehler bei die umgebung die hochdruckseite stark belastet"
+    ],
+    "tr_answer": "dis ortam basma tarafini cok zorluyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden sicak dis hava, geri donen hava veya gunes yuzunden kondenserin zorlanmasi; bunun yaninda kondensasyon ve basinç kontrol mantiginin ortama uygun olmamasidir. Ilk kontrolde kondenser fan sekansi, head pressure kontrolu, receiver seviyesi ve ortam sartlari birlikte okunur. Bunun teknik sebebi kotu ortam sartlari gaz devresi arizasi gibi gorunen basinç sorunlari yaratabilir; ayrica basma tarafi sagliksizsa tum gaz devresi zincirleme etkilenir. En sik hata ise yalniz gaz sarjina odaklanip head pressure mantigini atlamaktir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die umgebung die hochdruckseite stark belastet auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist durch heisse Aussenluft, Rueckansaugung oder Sonne der Verfluessiger ueberlastet wird; zusaetzlich kommen Verfluessigung und Druckregelung nicht zur Umgebung und Last passen vor. Bei der Erstpruefung werden Verfluessigerfans, Hochdruckregelung, Receiverstand und Umgebungsbedingungen gemeinsam bewertet werden. Der technische Hintergrund ist schlechte Umgebungsbedingungen druckseitige Symptome wie einen Kaeltekreisfehler erzeugen koennen; ausserdem gilt eine ungesunde Hochdruckseite den ganzen Kaeltekreis in Kette beeinflusst. Ein sehr haeufiger Fehler besteht darin, dass sich nur auf die Fuellmenge zu konzentrieren und die Hochdruckregelung zu ignorieren. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "yuksek basinc neden olur",
+      "receiver ne yapar",
+      "fan sekansi nasil okunur"
+    ]
+  },
+  {
+    "id": "refrigeration_short_cycle_low_load",
+    "tr_subject": "dusuk yukte sistem sik devreye girip cikiyor",
+    "de_subject": "die anlage bei geringer last stark taktet",
+    "keywords": [
+      "dusuk yukte sistem sik devreye girip cikiyor",
+      "die anlage bei geringer last stark taktet",
+      "short cycle low load",
+      "dusuk yuk takti"
+    ],
+    "tr_questions": [
+      "dusuk yukte sistem sik devreye girip cikiyor neden olur",
+      "dusuk yukte sistem sik devreye girip cikiyor olursa neye bakilir",
+      "dusuk yukte sistem sik devreye girip cikiyor varsa usta once ne kontrol eder",
+      "dusuk yukte sistem sik devreye girip cikiyor arizasinda teshis nasil baslar",
+      "dusuk yukte sistem sik devreye girip cikiyor sorunu nasil cozulur",
+      "dusuk yukte sistem sik devreye girip cikiyor neden tekrar eder",
+      "dusuk yukte sistem sik devreye girip cikiyor oldugunda hangi olcumler yapilir",
+      "dusuk yukte sistem sik devreye girip cikiyor montaj hatasi olabilir mi",
+      "dusuk yukte sistem sik devreye girip cikiyor gorulurse servis sirasi ne olur",
+      "dusuk yukte sistem sik devreye girip cikiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die anlage bei geringer last stark taktet auf",
+      "worauf schaut man wenn die anlage bei geringer last stark taktet auftritt",
+      "was prueft ein meister zuerst wenn die anlage bei geringer last stark taktet da ist",
+      "wie beginnt die diagnose bei die anlage bei geringer last stark taktet",
+      "wie loest man die anlage bei geringer last stark taktet",
+      "warum kommt die anlage bei geringer last stark taktet immer wieder",
+      "welche messungen macht man bei die anlage bei geringer last stark taktet",
+      "kann montagefehler die anlage bei geringer last stark taktet verursachen",
+      "wie ist die service reihenfolge bei die anlage bei geringer last stark taktet",
+      "was ist der haeufigste fehler bei die anlage bei geringer last stark taktet"
+    ],
+    "tr_answer": "dusuk yukte sistem sik devreye girip cikiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden mevcut kapasitenin o anki yuke fazla gelmesi; bunun yaninda dusuk yuk, yanlis uygulama veya urun tarafi ihtiyacinin gaz devresiyle uyumsuz olmasidir. Ilk kontrolde urun tipi, cekirdek soguma hedefi, oda tipi ve yuk dalgalanmasi birlikte degerlendirilir. Bunun teknik sebebi dusuk yukta takting gaz devresi okumalarini da kararsizlastirir; ayrica bazen ariza gaz devresinde degil uygulamanin secim mantigindadir. En sik hata ise muhafaza odasindan sok oda performansi beklemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die anlage bei geringer last stark taktet auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die installierte Leistung fuer die momentane Last zu gross ist; zusaetzlich kommen geringe Last, falsche Anwendung oder Produktanforderung nicht zum Kaeltekreis passen vor. Bei der Erstpruefung werden Produkttyp, Kernabkuehlziel, Raumtyp und Lastschwankung gemeinsam bewertet werden. Der technische Hintergrund ist Takten bei geringer Last auch die Kaeltekreiswerte schwer interpretierbar macht; ausserdem gilt manchmal liegt die Stoerung nicht im Kreis, sondern in der Auswahl der Anwendung. Ein sehr haeufiger Fehler besteht darin, dass von einem Lagerraum die Leistung eines Schockraums zu erwarten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "sok oda ile muhafaza odasi farki",
+      "cekirdek soguma neden gecikir",
+      "dusuk yukta sistem neden avlanir"
+    ]
+  },
+  {
+    "id": "refrigeration_product_freezing_plus_room",
+    "tr_subject": "arti odada urun donuyor",
+    "de_subject": "ware im plusraum einfriert",
+    "keywords": [
+      "arti odada urun donuyor",
+      "ware im plusraum einfriert",
+      "plus room freezing",
+      "arti oda donma"
+    ],
+    "tr_questions": [
+      "arti odada urun donuyor neden olur",
+      "arti odada urun donuyor olursa neye bakilir",
+      "arti odada urun donuyor varsa usta once ne kontrol eder",
+      "arti odada urun donuyor arizasinda teshis nasil baslar",
+      "arti odada urun donuyor sorunu nasil cozulur",
+      "arti odada urun donuyor neden tekrar eder",
+      "arti odada urun donuyor oldugunda hangi olcumler yapilir",
+      "arti odada urun donuyor montaj hatasi olabilir mi",
+      "arti odada urun donuyor gorulurse servis sirasi ne olur",
+      "arti odada urun donuyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt ware im plusraum einfriert auf",
+      "worauf schaut man wenn ware im plusraum einfriert auftritt",
+      "was prueft ein meister zuerst wenn ware im plusraum einfriert da ist",
+      "wie beginnt die diagnose bei ware im plusraum einfriert",
+      "wie loest man ware im plusraum einfriert",
+      "warum kommt ware im plusraum einfriert immer wieder",
+      "welche messungen macht man bei ware im plusraum einfriert",
+      "kann montagefehler ware im plusraum einfriert verursachen",
+      "wie ist die service reihenfolge bei ware im plusraum einfriert",
+      "was ist der haeufigste fehler bei ware im plusraum einfriert"
+    ],
+    "tr_answer": "arti odada urun donuyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden hava karakteri ve lokal sicaklik urune ortalama odadan daha sert vuruyor; bunun yaninda dusuk yuk, yanlis uygulama veya urun tarafi ihtiyacinin gaz devresiyle uyumsuz olmasidir. Ilk kontrolde urun tipi, cekirdek soguma hedefi, oda tipi ve yuk dalgalanmasi birlikte degerlendirilir. Bunun teknik sebebi dogru gaz devresi bile yanlis uygulamada urunu bozabilir; ayrica bazen ariza gaz devresinde degil uygulamanin secim mantigindadir. En sik hata ise muhafaza odasindan sok oda performansi beklemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn ware im plusraum einfriert auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist Luftcharakter und lokale Temperatur die Ware haerter treffen als den Raumdurchschnitt; zusaetzlich kommen geringe Last, falsche Anwendung oder Produktanforderung nicht zum Kaeltekreis passen vor. Bei der Erstpruefung werden Produkttyp, Kernabkuehlziel, Raumtyp und Lastschwankung gemeinsam bewertet werden. Der technische Hintergrund ist selbst ein sauberer Kaeltekreis bei falscher Anwendung die Ware schaedigen kann; ausserdem gilt manchmal liegt die Stoerung nicht im Kreis, sondern in der Auswahl der Anwendung. Ein sehr haeufiger Fehler besteht darin, dass von einem Lagerraum die Leistung eines Schockraums zu erwarten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "sok oda ile muhafaza odasi farki",
+      "cekirdek soguma neden gecikir",
+      "dusuk yukta sistem neden avlanir"
+    ]
+  },
+  {
+    "id": "refrigeration_product_not_reaching_core_temp",
+    "tr_subject": "urun cekirdek sicakliga inmiyor",
+    "de_subject": "die ware ihre kerntemperatur nicht erreicht",
+    "keywords": [
+      "urun cekirdek sicakliga inmiyor",
+      "die ware ihre kerntemperatur nicht erreicht",
+      "core temp",
+      "cekirdek sicaklik"
+    ],
+    "tr_questions": [
+      "urun cekirdek sicakliga inmiyor neden olur",
+      "urun cekirdek sicakliga inmiyor olursa neye bakilir",
+      "urun cekirdek sicakliga inmiyor varsa usta once ne kontrol eder",
+      "urun cekirdek sicakliga inmiyor arizasinda teshis nasil baslar",
+      "urun cekirdek sicakliga inmiyor sorunu nasil cozulur",
+      "urun cekirdek sicakliga inmiyor neden tekrar eder",
+      "urun cekirdek sicakliga inmiyor oldugunda hangi olcumler yapilir",
+      "urun cekirdek sicakliga inmiyor montaj hatasi olabilir mi",
+      "urun cekirdek sicakliga inmiyor gorulurse servis sirasi ne olur",
+      "urun cekirdek sicakliga inmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die ware ihre kerntemperatur nicht erreicht auf",
+      "worauf schaut man wenn die ware ihre kerntemperatur nicht erreicht auftritt",
+      "was prueft ein meister zuerst wenn die ware ihre kerntemperatur nicht erreicht da ist",
+      "wie beginnt die diagnose bei die ware ihre kerntemperatur nicht erreicht",
+      "wie loest man die ware ihre kerntemperatur nicht erreicht",
+      "warum kommt die ware ihre kerntemperatur nicht erreicht immer wieder",
+      "welche messungen macht man bei die ware ihre kerntemperatur nicht erreicht",
+      "kann montagefehler die ware ihre kerntemperatur nicht erreicht verursachen",
+      "wie ist die service reihenfolge bei die ware ihre kerntemperatur nicht erreicht",
+      "was ist der haeufigste fehler bei die ware ihre kerntemperatur nicht erreicht"
+    ],
+    "tr_answer": "urun cekirdek sicakliga inmiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden oda sicagi ile urun merkezi arasindaki farkin goz ardi edilmesi; bunun yaninda dusuk yuk, yanlis uygulama veya urun tarafi ihtiyacinin gaz devresiyle uyumsuz olmasidir. Ilk kontrolde urun tipi, cekirdek soguma hedefi, oda tipi ve yuk dalgalanmasi birlikte degerlendirilir. Bunun teknik sebebi cekirdek soguma hava sicagindan daha yavas ve farkli bir problemdir; ayrica bazen ariza gaz devresinde degil uygulamanin secim mantigindadir. En sik hata ise muhafaza odasindan sok oda performansi beklemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die ware ihre kerntemperatur nicht erreicht auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist der Unterschied zwischen Raumluft und Produktkern unterschaetzt wird; zusaetzlich kommen geringe Last, falsche Anwendung oder Produktanforderung nicht zum Kaeltekreis passen vor. Bei der Erstpruefung werden Produkttyp, Kernabkuehlziel, Raumtyp und Lastschwankung gemeinsam bewertet werden. Der technische Hintergrund ist Kernabkuehlung ein anderes und langsameres Problem als reine Raumluftkuehlung ist; ausserdem gilt manchmal liegt die Stoerung nicht im Kreis, sondern in der Auswahl der Anwendung. Ein sehr haeufiger Fehler besteht darin, dass von einem Lagerraum die Leistung eines Schockraums zu erwarten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "sok oda ile muhafaza odasi farki",
+      "cekirdek soguma neden gecikir",
+      "dusuk yukta sistem neden avlanir"
+    ]
+  },
+  {
+    "id": "refrigeration_long_line_imbalance",
+    "tr_subject": "uzun hat nedeniyle devre dengesiz",
+    "de_subject": "die lange leitung den kreislauf aus dem gleichgewicht bringt",
+    "keywords": [
+      "uzun hat nedeniyle devre dengesiz",
+      "die lange leitung den kreislauf aus dem gleichgewicht bringt",
+      "long line",
+      "uzun hat"
+    ],
+    "tr_questions": [
+      "uzun hat nedeniyle devre dengesiz neden olur",
+      "uzun hat nedeniyle devre dengesiz olursa neye bakilir",
+      "uzun hat nedeniyle devre dengesiz varsa usta once ne kontrol eder",
+      "uzun hat nedeniyle devre dengesiz arizasinda teshis nasil baslar",
+      "uzun hat nedeniyle devre dengesiz sorunu nasil cozulur",
+      "uzun hat nedeniyle devre dengesiz neden tekrar eder",
+      "uzun hat nedeniyle devre dengesiz oldugunda hangi olcumler yapilir",
+      "uzun hat nedeniyle devre dengesiz montaj hatasi olabilir mi",
+      "uzun hat nedeniyle devre dengesiz gorulurse servis sirasi ne olur",
+      "uzun hat nedeniyle devre dengesiz icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt die lange leitung den kreislauf aus dem gleichgewicht bringt auf",
+      "worauf schaut man wenn die lange leitung den kreislauf aus dem gleichgewicht bringt auftritt",
+      "was prueft ein meister zuerst wenn die lange leitung den kreislauf aus dem gleichgewicht bringt da ist",
+      "wie beginnt die diagnose bei die lange leitung den kreislauf aus dem gleichgewicht bringt",
+      "wie loest man die lange leitung den kreislauf aus dem gleichgewicht bringt",
+      "warum kommt die lange leitung den kreislauf aus dem gleichgewicht bringt immer wieder",
+      "welche messungen macht man bei die lange leitung den kreislauf aus dem gleichgewicht bringt",
+      "kann montagefehler die lange leitung den kreislauf aus dem gleichgewicht bringt verursachen",
+      "wie ist die service reihenfolge bei die lange leitung den kreislauf aus dem gleichgewicht bringt",
+      "was ist der haeufigste fehler bei die lange leitung den kreislauf aus dem gleichgewicht bringt"
+    ],
+    "tr_answer": "uzun hat nedeniyle devre dengesiz durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden uzun borulamada sarj, yag ve basinç kaybinin birlikte buyumesi; bunun yaninda dusuk yuk, yanlis uygulama veya urun tarafi ihtiyacinin gaz devresiyle uyumsuz olmasidir. Ilk kontrolde urun tipi, cekirdek soguma hedefi, oda tipi ve yuk dalgalanmasi birlikte degerlendirilir. Bunun teknik sebebi uzun hatlar standart kisa hat mantigiyla okunursa hata kacirilir; ayrica bazen ariza gaz devresinde degil uygulamanin secim mantigindadir. En sik hata ise muhafaza odasindan sok oda performansi beklemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn die lange leitung den kreislauf aus dem gleichgewicht bringt auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist bei langer Leitung Fuellung, Oel und Druckverlust gemeinsam wachsen; zusaetzlich kommen geringe Last, falsche Anwendung oder Produktanforderung nicht zum Kaeltekreis passen vor. Bei der Erstpruefung werden Produkttyp, Kernabkuehlziel, Raumtyp und Lastschwankung gemeinsam bewertet werden. Der technische Hintergrund ist lange Leitungen nicht mit der gleichen Logik wie kurze Leitungen bewertet werden duerfen; ausserdem gilt manchmal liegt die Stoerung nicht im Kreis, sondern in der Auswahl der Anwendung. Ein sehr haeufiger Fehler besteht darin, dass von einem Lagerraum die Leistung eines Schockraums zu erwarten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "sok oda ile muhafaza odasi farki",
+      "cekirdek soguma neden gecikir",
+      "dusuk yukta sistem neden avlanir"
+    ]
+  },
+  {
+    "id": "refrigeration_suction_accumulator_issue",
+    "tr_subject": "suction accumulator gorevini yapmiyor",
+    "de_subject": "der saugakkumulator nicht richtig arbeitet",
+    "keywords": [
+      "suction accumulator gorevini yapmiyor",
+      "der saugakkumulator nicht richtig arbeitet",
+      "suction accumulator",
+      "akkumulator"
+    ],
+    "tr_questions": [
+      "suction accumulator gorevini yapmiyor neden olur",
+      "suction accumulator gorevini yapmiyor olursa neye bakilir",
+      "suction accumulator gorevini yapmiyor varsa usta once ne kontrol eder",
+      "suction accumulator gorevini yapmiyor arizasinda teshis nasil baslar",
+      "suction accumulator gorevini yapmiyor sorunu nasil cozulur",
+      "suction accumulator gorevini yapmiyor neden tekrar eder",
+      "suction accumulator gorevini yapmiyor oldugunda hangi olcumler yapilir",
+      "suction accumulator gorevini yapmiyor montaj hatasi olabilir mi",
+      "suction accumulator gorevini yapmiyor gorulurse servis sirasi ne olur",
+      "suction accumulator gorevini yapmiyor icin en sik hata nedir"
+    ],
+    "de_questions": [
+      "warum tritt der saugakkumulator nicht richtig arbeitet auf",
+      "worauf schaut man wenn der saugakkumulator nicht richtig arbeitet auftritt",
+      "was prueft ein meister zuerst wenn der saugakkumulator nicht richtig arbeitet da ist",
+      "wie beginnt die diagnose bei der saugakkumulator nicht richtig arbeitet",
+      "wie loest man der saugakkumulator nicht richtig arbeitet",
+      "warum kommt der saugakkumulator nicht richtig arbeitet immer wieder",
+      "welche messungen macht man bei der saugakkumulator nicht richtig arbeitet",
+      "kann montagefehler der saugakkumulator nicht richtig arbeitet verursachen",
+      "wie ist die service reihenfolge bei der saugakkumulator nicht richtig arbeitet",
+      "was ist der haeufigste fehler bei der saugakkumulator nicht richtig arbeitet"
+    ],
+    "tr_answer": "suction accumulator gorevini yapmiyor durumunda gaz devresi ustasi once semptomu temiz ayirir. Bu konuda tipik kok neden sivi tutma ve geri besleme davranisinin bozulmasi; bunun yaninda dusuk yuk, yanlis uygulama veya urun tarafi ihtiyacinin gaz devresiyle uyumsuz olmasidir. Ilk kontrolde urun tipi, cekirdek soguma hedefi, oda tipi ve yuk dalgalanmasi birlikte degerlendirilir. Bunun teknik sebebi akkumulator arizasi kompresoru korumasiz birakabilir; ayrica bazen ariza gaz devresinde degil uygulamanin secim mantigindadir. En sik hata ise muhafaza odasindan sok oda performansi beklemektir. Saglam servis mantigi parcayi ezbere degistirmek yerine olcu, gozlem ve isletme senaryosunu birlikte okumaktir.",
+    "de_answer": "Wenn der saugakkumulator nicht richtig arbeitet auftritt, trennt ein Kaeltekreis-Meister zuerst das Symptom sauber von der Ursache. Eine typische Kernursache ist die Rueckhaltung und dosierte Rueckgabe von Fluessigkeit nicht sauber klappt; zusaetzlich kommen geringe Last, falsche Anwendung oder Produktanforderung nicht zum Kaeltekreis passen vor. Bei der Erstpruefung werden Produkttyp, Kernabkuehlziel, Raumtyp und Lastschwankung gemeinsam bewertet werden. Der technische Hintergrund ist ein fehlerhafter Akkumulator den Verdichter ungeschuetzt laesst; ausserdem gilt manchmal liegt die Stoerung nicht im Kreis, sondern in der Auswahl der Anwendung. Ein sehr haeufiger Fehler besteht darin, dass von einem Lagerraum die Leistung eines Schockraums zu erwarten. Saubere Servicearbeit bedeutet hier, nicht blind Teile zu tauschen, sondern Messwerte, Beobachtung und Betriebssituation logisch zusammenzufuehren.",
+    "source_summary": "DRC MAN kompresor valf ve gaz devresi ustasi egitimi",
+    "suggestions": [
+      "sok oda ile muhafaza odasi farki",
+      "cekirdek soguma neden gecikir",
+      "dusuk yukta sistem neden avlanir"
+    ]
+  }
+]

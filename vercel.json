@@ -135,7 +135,8 @@
       "config": {
         "includeFiles": [
           "public/**",
-          "public/**/*"
+          "public/**/*",
+          "scripts/drc_man_*_faq.json"
         ]
       }
     },

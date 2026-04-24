@@ -1,0 +1,2153 @@
+[
+  {
+    "id": "gas_choice_plus_room",
+    "tr_subject": "arti muhafaza odasi icin gaz secimi",
+    "de_subject": "die kaeltemittelwahl fuer plus-kuehlraeume",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "arti muhafaza odasi icin gaz secimi",
+      "die kaeltemittelwahl fuer plus-kuehlraeume",
+      "plus room refrigerant",
+      "arti oda gaz secimi"
+    ],
+    "tr_questions": [
+      "arti muhafaza odasi icin gaz secimi nasil dusunulur",
+      "arti muhafaza odasi icin gaz secimi neye gore secilir",
+      "arti muhafaza odasi icin gaz secimi neden onemli",
+      "arti muhafaza odasi icin gaz secimi ile ilgili usta neye bakar",
+      "arti muhafaza odasi icin gaz secimi konusunda en sik hata nedir",
+      "arti muhafaza odasi icin gaz secimi kullanilirsa nelere dikkat edilir",
+      "arti muhafaza odasi icin gaz secimi ariza ve performansi nasil etkiler",
+      "arti muhafaza odasi icin gaz secimi sahada nasil yorumlanir",
+      "arti muhafaza odasi icin gaz secimi icin servis sirasi ne olur",
+      "arti muhafaza odasi icin gaz secimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die kaeltemittelwahl fuer plus-kuehlraeume",
+      "wonach waehlt man die kaeltemittelwahl fuer plus-kuehlraeume aus",
+      "warum ist die kaeltemittelwahl fuer plus-kuehlraeume wichtig",
+      "worauf achtet ein meister bei die kaeltemittelwahl fuer plus-kuehlraeume",
+      "was ist der haeufigste fehler bei die kaeltemittelwahl fuer plus-kuehlraeume",
+      "worauf muss man bei die kaeltemittelwahl fuer plus-kuehlraeume achten",
+      "wie beeinflusst die kaeltemittelwahl fuer plus-kuehlraeume stoerung und leistung",
+      "wie interpretiert man die kaeltemittelwahl fuer plus-kuehlraeume im feld",
+      "wie ist die service reihenfolge bei die kaeltemittelwahl fuer plus-kuehlraeume",
+      "erklaere die kaeltemittelwahl fuer plus-kuehlraeume im detail"
+    ],
+    "tr_answer": "arti muhafaza odasi icin gaz secimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta orta sicaklik uygulamasinda verim, servis kolayligi ve guvenligin dengelenmesi; bunun yaninda her sogutucu akiskanin her oda tipi ve her kompresor icin uygun olmamasidir. Ilk kontrolde oda tipi, hedef sicaklik, kapasite, kompresor tipi ve servis guvenligi birlikte okunur. Bunun teknik sebebi arti odada hedef yalniz sogutmak degil, urunu sabit ve kontrollu muhafaza etmektir; ayrica gaz secimi yalniz katalog degil, uygulamanin butun karakterini belirler. En sik hata ise hangi gaz daha ucuzsa onu uygulamaya uydurmaya calismaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die kaeltemittelwahl fuer plus-kuehlraeume klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier im Plusbereich Effizienz, Servicefreundlichkeit und Sicherheit ausbalanciert werden; zusaetzlich gilt nicht jedes Kaeltemittel zu jeder Anwendung und jedem Verdichter passt. In der Erstpruefung werden Raumtyp, Zieltemperatur, Leistung, Verdichterbauart und Servicesicherheit gemeinsam bewertet werden. Der technische Hintergrund ist im Plusraum nicht nur Kaelte, sondern stabile und kontrollierte Lagerung entscheidend ist; ausserdem gilt die Wahl des Kaeltemittels nicht nur Katalogwerte, sondern den gesamten Anwendungscharakter bestimmt. Ein sehr haeufiger Fehler besteht darin, dass das billigste Kaeltemittel in eine unpassende Anwendung pressen zu wollen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "A1 A2L A3 farki nedir",
+      "yag uyumu neden onemli",
+      "retrofit nasil planlanir"
+    ]
+  },
+  {
+    "id": "gas_choice_negative_room",
+    "tr_subject": "negatif depo icin gaz secimi",
+    "de_subject": "die kaeltemittelwahl fuer tiefkuehlraeume",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "negatif depo icin gaz secimi",
+      "die kaeltemittelwahl fuer tiefkuehlraeume",
+      "negative room refrigerant",
+      "negatif oda gaz"
+    ],
+    "tr_questions": [
+      "negatif depo icin gaz secimi nasil dusunulur",
+      "negatif depo icin gaz secimi neye gore secilir",
+      "negatif depo icin gaz secimi neden onemli",
+      "negatif depo icin gaz secimi ile ilgili usta neye bakar",
+      "negatif depo icin gaz secimi konusunda en sik hata nedir",
+      "negatif depo icin gaz secimi kullanilirsa nelere dikkat edilir",
+      "negatif depo icin gaz secimi ariza ve performansi nasil etkiler",
+      "negatif depo icin gaz secimi sahada nasil yorumlanir",
+      "negatif depo icin gaz secimi icin servis sirasi ne olur",
+      "negatif depo icin gaz secimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die kaeltemittelwahl fuer tiefkuehlraeume",
+      "wonach waehlt man die kaeltemittelwahl fuer tiefkuehlraeume aus",
+      "warum ist die kaeltemittelwahl fuer tiefkuehlraeume wichtig",
+      "worauf achtet ein meister bei die kaeltemittelwahl fuer tiefkuehlraeume",
+      "was ist der haeufigste fehler bei die kaeltemittelwahl fuer tiefkuehlraeume",
+      "worauf muss man bei die kaeltemittelwahl fuer tiefkuehlraeume achten",
+      "wie beeinflusst die kaeltemittelwahl fuer tiefkuehlraeume stoerung und leistung",
+      "wie interpretiert man die kaeltemittelwahl fuer tiefkuehlraeume im feld",
+      "wie ist die service reihenfolge bei die kaeltemittelwahl fuer tiefkuehlraeume",
+      "erklaere die kaeltemittelwahl fuer tiefkuehlraeume im detail"
+    ],
+    "tr_answer": "negatif depo icin gaz secimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta dusuk evaporasyon sicakliginda basinc, yag donusu ve kapasitenin korunmasi; bunun yaninda her sogutucu akiskanin her oda tipi ve her kompresor icin uygun olmamasidir. Ilk kontrolde oda tipi, hedef sicaklik, kapasite, kompresor tipi ve servis guvenligi birlikte okunur. Bunun teknik sebebi negatif depoda gazin dusuk sicaklik davranisi kompresor omrunu dogrudan etkiler; ayrica gaz secimi yalniz katalog degil, uygulamanin butun karakterini belirler. En sik hata ise hangi gaz daha ucuzsa onu uygulamaya uydurmaya calismaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die kaeltemittelwahl fuer tiefkuehlraeume klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei tiefer Verdampfung Druckniveau, Oelruecklauf und Leistung stabil bleiben muessen; zusaetzlich gilt nicht jedes Kaeltemittel zu jeder Anwendung und jedem Verdichter passt. In der Erstpruefung werden Raumtyp, Zieltemperatur, Leistung, Verdichterbauart und Servicesicherheit gemeinsam bewertet werden. Der technische Hintergrund ist im Tiefkuehlbereich das Tieftemperaturverhalten des Kaeltemittels direkt den Verdichter belastet; ausserdem gilt die Wahl des Kaeltemittels nicht nur Katalogwerte, sondern den gesamten Anwendungscharakter bestimmt. Ein sehr haeufiger Fehler besteht darin, dass das billigste Kaeltemittel in eine unpassende Anwendung pressen zu wollen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "A1 A2L A3 farki nedir",
+      "yag uyumu neden onemli",
+      "retrofit nasil planlanir"
+    ]
+  },
+  {
+    "id": "gas_choice_shock_room",
+    "tr_subject": "sok oda icin gaz secimi",
+    "de_subject": "die kaeltemittelwahl fuer schockfrostanlagen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "sok oda icin gaz secimi",
+      "die kaeltemittelwahl fuer schockfrostanlagen",
+      "shock room refrigerant",
+      "sok oda gaz"
+    ],
+    "tr_questions": [
+      "sok oda icin gaz secimi nasil dusunulur",
+      "sok oda icin gaz secimi neye gore secilir",
+      "sok oda icin gaz secimi neden onemli",
+      "sok oda icin gaz secimi ile ilgili usta neye bakar",
+      "sok oda icin gaz secimi konusunda en sik hata nedir",
+      "sok oda icin gaz secimi kullanilirsa nelere dikkat edilir",
+      "sok oda icin gaz secimi ariza ve performansi nasil etkiler",
+      "sok oda icin gaz secimi sahada nasil yorumlanir",
+      "sok oda icin gaz secimi icin servis sirasi ne olur",
+      "sok oda icin gaz secimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die kaeltemittelwahl fuer schockfrostanlagen",
+      "wonach waehlt man die kaeltemittelwahl fuer schockfrostanlagen aus",
+      "warum ist die kaeltemittelwahl fuer schockfrostanlagen wichtig",
+      "worauf achtet ein meister bei die kaeltemittelwahl fuer schockfrostanlagen",
+      "was ist der haeufigste fehler bei die kaeltemittelwahl fuer schockfrostanlagen",
+      "worauf muss man bei die kaeltemittelwahl fuer schockfrostanlagen achten",
+      "wie beeinflusst die kaeltemittelwahl fuer schockfrostanlagen stoerung und leistung",
+      "wie interpretiert man die kaeltemittelwahl fuer schockfrostanlagen im feld",
+      "wie ist die service reihenfolge bei die kaeltemittelwahl fuer schockfrostanlagen",
+      "erklaere die kaeltemittelwahl fuer schockfrostanlagen im detail"
+    ],
+    "tr_answer": "sok oda icin gaz secimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yuksek ani yukte kapasiteyi ve kompresor guvenligini koruyacak secim yapmak; bunun yaninda her sogutucu akiskanin her oda tipi ve her kompresor icin uygun olmamasidir. Ilk kontrolde oda tipi, hedef sicaklik, kapasite, kompresor tipi ve servis guvenligi birlikte okunur. Bunun teknik sebebi sok oda gaz secimi normal muhafaza odasindan daha agresif kosullara gore dusunulur; ayrica gaz secimi yalniz katalog degil, uygulamanin butun karakterini belirler. En sik hata ise hangi gaz daha ucuzsa onu uygulamaya uydurmaya calismaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die kaeltemittelwahl fuer schockfrostanlagen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei hoher Spitzenlast Leistung und Verdichtersicherheit gleichzeitig sicherzustellen; zusaetzlich gilt nicht jedes Kaeltemittel zu jeder Anwendung und jedem Verdichter passt. In der Erstpruefung werden Raumtyp, Zieltemperatur, Leistung, Verdichterbauart und Servicesicherheit gemeinsam bewertet werden. Der technische Hintergrund ist Schockraumanlagen unter deutlich haerteren Bedingungen als Lagerraeume arbeiten; ausserdem gilt die Wahl des Kaeltemittels nicht nur Katalogwerte, sondern den gesamten Anwendungscharakter bestimmt. Ein sehr haeufiger Fehler besteht darin, dass das billigste Kaeltemittel in eine unpassende Anwendung pressen zu wollen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "A1 A2L A3 farki nedir",
+      "yag uyumu neden onemli",
+      "retrofit nasil planlanir"
+    ]
+  },
+  {
+    "id": "gas_choice_small_split",
+    "tr_subject": "kucuk split sogutma grubu icin gaz secimi",
+    "de_subject": "die kaeltemittelwahl fuer kleine split-kuehlgruppen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "kucuk split sogutma grubu icin gaz secimi",
+      "die kaeltemittelwahl fuer kleine split-kuehlgruppen",
+      "split refrigerant",
+      "split gaz secimi"
+    ],
+    "tr_questions": [
+      "kucuk split sogutma grubu icin gaz secimi nasil dusunulur",
+      "kucuk split sogutma grubu icin gaz secimi neye gore secilir",
+      "kucuk split sogutma grubu icin gaz secimi neden onemli",
+      "kucuk split sogutma grubu icin gaz secimi ile ilgili usta neye bakar",
+      "kucuk split sogutma grubu icin gaz secimi konusunda en sik hata nedir",
+      "kucuk split sogutma grubu icin gaz secimi kullanilirsa nelere dikkat edilir",
+      "kucuk split sogutma grubu icin gaz secimi ariza ve performansi nasil etkiler",
+      "kucuk split sogutma grubu icin gaz secimi sahada nasil yorumlanir",
+      "kucuk split sogutma grubu icin gaz secimi icin servis sirasi ne olur",
+      "kucuk split sogutma grubu icin gaz secimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die kaeltemittelwahl fuer kleine split-kuehlgruppen",
+      "wonach waehlt man die kaeltemittelwahl fuer kleine split-kuehlgruppen aus",
+      "warum ist die kaeltemittelwahl fuer kleine split-kuehlgruppen wichtig",
+      "worauf achtet ein meister bei die kaeltemittelwahl fuer kleine split-kuehlgruppen",
+      "was ist der haeufigste fehler bei die kaeltemittelwahl fuer kleine split-kuehlgruppen",
+      "worauf muss man bei die kaeltemittelwahl fuer kleine split-kuehlgruppen achten",
+      "wie beeinflusst die kaeltemittelwahl fuer kleine split-kuehlgruppen stoerung und leistung",
+      "wie interpretiert man die kaeltemittelwahl fuer kleine split-kuehlgruppen im feld",
+      "wie ist die service reihenfolge bei die kaeltemittelwahl fuer kleine split-kuehlgruppen",
+      "erklaere die kaeltemittelwahl fuer kleine split-kuehlgruppen im detail"
+    ],
+    "tr_answer": "kucuk split sogutma grubu icin gaz secimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta kompakt sistemlerde servis kolayligi, sarj miktari ve guvenlik sinifinin dogru kurulmasi; bunun yaninda her sogutucu akiskanin her oda tipi ve her kompresor icin uygun olmamasidir. Ilk kontrolde oda tipi, hedef sicaklik, kapasite, kompresor tipi ve servis guvenligi birlikte okunur. Bunun teknik sebebi kucuk sistemde sarj ve kurulum detaylari buyuk sistemden daha hassas olabilir; ayrica gaz secimi yalniz katalog degil, uygulamanin butun karakterini belirler. En sik hata ise hangi gaz daha ucuzsa onu uygulamaya uydurmaya calismaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die kaeltemittelwahl fuer kleine split-kuehlgruppen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei kompakten Systemen Servicefreundlichkeit, Fuellmenge und Sicherheitsklasse passend zu waehlen; zusaetzlich gilt nicht jedes Kaeltemittel zu jeder Anwendung und jedem Verdichter passt. In der Erstpruefung werden Raumtyp, Zieltemperatur, Leistung, Verdichterbauart und Servicesicherheit gemeinsam bewertet werden. Der technische Hintergrund ist in kleinen Anlagen Fuellmenge und Einbau oft noch empfindlicher sind als in grossen Systemen; ausserdem gilt die Wahl des Kaeltemittels nicht nur Katalogwerte, sondern den gesamten Anwendungscharakter bestimmt. Ein sehr haeufiger Fehler besteht darin, dass das billigste Kaeltemittel in eine unpassende Anwendung pressen zu wollen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "A1 A2L A3 farki nedir",
+      "yag uyumu neden onemli",
+      "retrofit nasil planlanir"
+    ]
+  },
+  {
+    "id": "gas_choice_retrofit_project",
+    "tr_subject": "mevcut sisteme yerine gececek gaz secimi",
+    "de_subject": "die ersatzwahl fuer ein bestehendes system",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "mevcut sisteme yerine gececek gaz secimi",
+      "die ersatzwahl fuer ein bestehendes system",
+      "retrofit refrigerant choice",
+      "yerine gececek gaz"
+    ],
+    "tr_questions": [
+      "mevcut sisteme yerine gececek gaz secimi nasil dusunulur",
+      "mevcut sisteme yerine gececek gaz secimi neye gore secilir",
+      "mevcut sisteme yerine gececek gaz secimi neden onemli",
+      "mevcut sisteme yerine gececek gaz secimi ile ilgili usta neye bakar",
+      "mevcut sisteme yerine gececek gaz secimi konusunda en sik hata nedir",
+      "mevcut sisteme yerine gececek gaz secimi kullanilirsa nelere dikkat edilir",
+      "mevcut sisteme yerine gececek gaz secimi ariza ve performansi nasil etkiler",
+      "mevcut sisteme yerine gececek gaz secimi sahada nasil yorumlanir",
+      "mevcut sisteme yerine gececek gaz secimi icin servis sirasi ne olur",
+      "mevcut sisteme yerine gececek gaz secimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die ersatzwahl fuer ein bestehendes system",
+      "wonach waehlt man die ersatzwahl fuer ein bestehendes system aus",
+      "warum ist die ersatzwahl fuer ein bestehendes system wichtig",
+      "worauf achtet ein meister bei die ersatzwahl fuer ein bestehendes system",
+      "was ist der haeufigste fehler bei die ersatzwahl fuer ein bestehendes system",
+      "worauf muss man bei die ersatzwahl fuer ein bestehendes system achten",
+      "wie beeinflusst die ersatzwahl fuer ein bestehendes system stoerung und leistung",
+      "wie interpretiert man die ersatzwahl fuer ein bestehendes system im feld",
+      "wie ist die service reihenfolge bei die ersatzwahl fuer ein bestehendes system",
+      "erklaere die ersatzwahl fuer ein bestehendes system im detail"
+    ],
+    "tr_answer": "mevcut sisteme yerine gececek gaz secimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta eski sisteme en az mekanik riskle uyacak alternatifin secilmesi; bunun yaninda her sogutucu akiskanin her oda tipi ve her kompresor icin uygun olmamasidir. Ilk kontrolde oda tipi, hedef sicaklik, kapasite, kompresor tipi ve servis guvenligi birlikte okunur. Bunun teknik sebebi retrofitte kagit uzerindeki uyum kadar saha montaj ve yag uyumu da kritiktir; ayrica gaz secimi yalniz katalog degil, uygulamanin butun karakterini belirler. En sik hata ise hangi gaz daha ucuzsa onu uygulamaya uydurmaya calismaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die ersatzwahl fuer ein bestehendes system klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier fuer ein bestehendes System ein moeglichst risikoarmer Ersatz gefunden wird; zusaetzlich gilt nicht jedes Kaeltemittel zu jeder Anwendung und jedem Verdichter passt. In der Erstpruefung werden Raumtyp, Zieltemperatur, Leistung, Verdichterbauart und Servicesicherheit gemeinsam bewertet werden. Der technische Hintergrund ist beim Retrofit neben Datenblattwerten besonders Oel, Ventil und Feldbedingungen entscheidend sind; ausserdem gilt die Wahl des Kaeltemittels nicht nur Katalogwerte, sondern den gesamten Anwendungscharakter bestimmt. Ein sehr haeufiger Fehler besteht darin, dass das billigste Kaeltemittel in eine unpassende Anwendung pressen zu wollen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "A1 A2L A3 farki nedir",
+      "yag uyumu neden onemli",
+      "retrofit nasil planlanir"
+    ]
+  },
+  {
+    "id": "gas_safety_a1",
+    "tr_subject": "A1 sinifi gazlarin mantigi",
+    "de_subject": "die logik von A1-kaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "A1 sinifi gazlarin mantigi",
+      "die logik von A1-kaeltemitteln",
+      "A1 refrigerants",
+      "A1 sinifi"
+    ],
+    "tr_questions": [
+      "A1 sinifi gazlarin mantigi nasil dusunulur",
+      "A1 sinifi gazlarin mantigi neye gore secilir",
+      "A1 sinifi gazlarin mantigi neden onemli",
+      "A1 sinifi gazlarin mantigi ile ilgili usta neye bakar",
+      "A1 sinifi gazlarin mantigi konusunda en sik hata nedir",
+      "A1 sinifi gazlarin mantigi kullanilirsa nelere dikkat edilir",
+      "A1 sinifi gazlarin mantigi ariza ve performansi nasil etkiler",
+      "A1 sinifi gazlarin mantigi sahada nasil yorumlanir",
+      "A1 sinifi gazlarin mantigi icin servis sirasi ne olur",
+      "A1 sinifi gazlarin mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik von A1-kaeltemitteln",
+      "wonach waehlt man die logik von A1-kaeltemitteln aus",
+      "warum ist die logik von A1-kaeltemitteln wichtig",
+      "worauf achtet ein meister bei die logik von A1-kaeltemitteln",
+      "was ist der haeufigste fehler bei die logik von A1-kaeltemitteln",
+      "worauf muss man bei die logik von A1-kaeltemitteln achten",
+      "wie beeinflusst die logik von A1-kaeltemitteln stoerung und leistung",
+      "wie interpretiert man die logik von A1-kaeltemitteln im feld",
+      "wie ist die service reihenfolge bei die logik von A1-kaeltemitteln",
+      "erklaere die logik von A1-kaeltemitteln im detail"
+    ],
+    "tr_answer": "A1 sinifi gazlarin mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yanicilik dusuk oldugu icin servis kolay ama cevresel ve uygulama kriterleri yine onemli kalir; bunun yaninda gaz guvenlik sinifinin sahadaki montaj ve servis davranisini belirlemesidir. Ilk kontrolde A1, A2L, A3 veya toksik/ozel sinif mantigi, ortam havalandirmasi ve atesleme riski birlikte degerlendirilir. Bunun teknik sebebi A1 guvenli gorunse de her sahaya otomatik dogru secim demek degildir; ayrica ayni kapasiteyi veren iki gazin servis riski ayni olmayabilir. En sik hata ise basinca veya verime bakip guvenlik sinifini arka plana atmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik von A1-kaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier durch geringe Entflammbarkeit Service einfacher ist, aber Anwendung und Umweltaspekte weiter wichtig bleiben; zusaetzlich gilt die Sicherheitsklasse des Kaeltemittels Montage und Service im Feld direkt bestimmt. In der Erstpruefung werden A1, A2L, A3 oder Sonderklassen zusammen mit Belueftung und Zundrisiko bewertet werden. Der technische Hintergrund ist A1 nicht automatisch bedeutet, dass das Mittel fuer jede Anlage ideal ist; ausserdem gilt zwei Kaeltemittel koennen aehnliche Leistung, aber sehr unterschiedliche Service-Risiken haben. Ein sehr haeufiger Fehler besteht darin, dass nur auf Leistung und Druck zu schauen und die Sicherheitsklasse zu vernachlaessigen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 kullanirken neye dikkat edilir",
+      "A2L ile A3 farki nedir",
+      "silindir guvenligi nasil saglanir"
+    ]
+  },
+  {
+    "id": "gas_safety_a2l",
+    "tr_subject": "A2L gazlarla calisma mantigi",
+    "de_subject": "das arbeiten mit A2L-kaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "A2L gazlarla calisma mantigi",
+      "das arbeiten mit A2L-kaeltemitteln",
+      "A2L refrigerants",
+      "hafif yanici gaz"
+    ],
+    "tr_questions": [
+      "A2L gazlarla calisma mantigi nasil dusunulur",
+      "A2L gazlarla calisma mantigi neye gore secilir",
+      "A2L gazlarla calisma mantigi neden onemli",
+      "A2L gazlarla calisma mantigi ile ilgili usta neye bakar",
+      "A2L gazlarla calisma mantigi konusunda en sik hata nedir",
+      "A2L gazlarla calisma mantigi kullanilirsa nelere dikkat edilir",
+      "A2L gazlarla calisma mantigi ariza ve performansi nasil etkiler",
+      "A2L gazlarla calisma mantigi sahada nasil yorumlanir",
+      "A2L gazlarla calisma mantigi icin servis sirasi ne olur",
+      "A2L gazlarla calisma mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das arbeiten mit A2L-kaeltemitteln",
+      "wonach waehlt man das arbeiten mit A2L-kaeltemitteln aus",
+      "warum ist das arbeiten mit A2L-kaeltemitteln wichtig",
+      "worauf achtet ein meister bei das arbeiten mit A2L-kaeltemitteln",
+      "was ist der haeufigste fehler bei das arbeiten mit A2L-kaeltemitteln",
+      "worauf muss man bei das arbeiten mit A2L-kaeltemitteln achten",
+      "wie beeinflusst das arbeiten mit A2L-kaeltemitteln stoerung und leistung",
+      "wie interpretiert man das arbeiten mit A2L-kaeltemitteln im feld",
+      "wie ist die service reihenfolge bei das arbeiten mit A2L-kaeltemitteln",
+      "erklaere das arbeiten mit A2L-kaeltemitteln im detail"
+    ],
+    "tr_answer": "A2L gazlarla calisma mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta dusuk ama gercek bir yanicilik riskinin servis disiplinine yansitilmasi; bunun yaninda gaz guvenlik sinifinin sahadaki montaj ve servis davranisini belirlemesidir. Ilk kontrolde A1, A2L, A3 veya toksik/ozel sinif mantigi, ortam havalandirmasi ve atesleme riski birlikte degerlendirilir. Bunun teknik sebebi A2L grubunda alet, kacagi kontrol etme ve havalandirma daha sistemli dusunulur; ayrica ayni kapasiteyi veren iki gazin servis riski ayni olmayabilir. En sik hata ise basinca veya verime bakip guvenlik sinifini arka plana atmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das arbeiten mit A2L-kaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier eine geringe, aber reale Entzuendbarkeit sauber in Serviceprozesse zu uebersetzen; zusaetzlich gilt die Sicherheitsklasse des Kaeltemittels Montage und Service im Feld direkt bestimmt. In der Erstpruefung werden A1, A2L, A3 oder Sonderklassen zusammen mit Belueftung und Zundrisiko bewertet werden. Der technische Hintergrund ist bei A2L Werkzeug, Lecksuche und Belueftung systematischer geplant werden muessen; ausserdem gilt zwei Kaeltemittel koennen aehnliche Leistung, aber sehr unterschiedliche Service-Risiken haben. Ein sehr haeufiger Fehler besteht darin, dass nur auf Leistung und Druck zu schauen und die Sicherheitsklasse zu vernachlaessigen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 kullanirken neye dikkat edilir",
+      "A2L ile A3 farki nedir",
+      "silindir guvenligi nasil saglanir"
+    ]
+  },
+  {
+    "id": "gas_safety_a3",
+    "tr_subject": "A3 gazlarla calisma mantigi",
+    "de_subject": "das arbeiten mit A3-kaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "A3 gazlarla calisma mantigi",
+      "das arbeiten mit A3-kaeltemitteln",
+      "A3 refrigerants",
+      "yuksek yanici gaz",
+      "yuksek yanici gaz"
+    ],
+    "tr_questions": [
+      "A3 gazlarla calisma mantigi nasil dusunulur",
+      "A3 gazlarla calisma mantigi neye gore secilir",
+      "A3 gazlarla calisma mantigi neden onemli",
+      "A3 gazlarla calisma mantigi ile ilgili usta neye bakar",
+      "A3 gazlarla calisma mantigi konusunda en sik hata nedir",
+      "A3 gazlarla calisma mantigi kullanilirsa nelere dikkat edilir",
+      "A3 gazlarla calisma mantigi ariza ve performansi nasil etkiler",
+      "A3 gazlarla calisma mantigi sahada nasil yorumlanir",
+      "A3 gazlarla calisma mantigi icin servis sirasi ne olur",
+      "A3 gazlarla calisma mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das arbeiten mit A3-kaeltemitteln",
+      "wonach waehlt man das arbeiten mit A3-kaeltemitteln aus",
+      "warum ist das arbeiten mit A3-kaeltemitteln wichtig",
+      "worauf achtet ein meister bei das arbeiten mit A3-kaeltemitteln",
+      "was ist der haeufigste fehler bei das arbeiten mit A3-kaeltemitteln",
+      "worauf muss man bei das arbeiten mit A3-kaeltemitteln achten",
+      "wie beeinflusst das arbeiten mit A3-kaeltemitteln stoerung und leistung",
+      "wie interpretiert man das arbeiten mit A3-kaeltemitteln im feld",
+      "wie ist die service reihenfolge bei das arbeiten mit A3-kaeltemitteln",
+      "erklaere das arbeiten mit A3-kaeltemitteln im detail"
+    ],
+    "tr_answer": "A3 gazlarla calisma mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yuksek yanicilik sebebiyle montaj, servis ve dolumda daha sert disiplin kurmak; bunun yaninda gaz guvenlik sinifinin sahadaki montaj ve servis davranisini belirlemesidir. Ilk kontrolde A1, A2L, A3 veya toksik/ozel sinif mantigi, ortam havalandirmasi ve atesleme riski birlikte degerlendirilir. Bunun teknik sebebi A3 gazlarda kucuk bir ihmal bile buyuk saha riskine donebilir; ayrica ayni kapasiteyi veren iki gazin servis riski ayni olmayabilir. En sik hata ise basinca veya verime bakip guvenlik sinifini arka plana atmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das arbeiten mit A3-kaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier wegen hoher Entflammbarkeit Montage, Service und Fuellung deutlich strenger zu fuehren; zusaetzlich gilt die Sicherheitsklasse des Kaeltemittels Montage und Service im Feld direkt bestimmt. In der Erstpruefung werden A1, A2L, A3 oder Sonderklassen zusammen mit Belueftung und Zundrisiko bewertet werden. Der technische Hintergrund ist bei A3-Kaeltemitteln schon kleine Nachlaessigkeiten zu ernsten Feldrisiken werden koennen; ausserdem gilt zwei Kaeltemittel koennen aehnliche Leistung, aber sehr unterschiedliche Service-Risiken haben. Ein sehr haeufiger Fehler besteht darin, dass nur auf Leistung und Druck zu schauen und die Sicherheitsklasse zu vernachlaessigen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 kullanirken neye dikkat edilir",
+      "A2L ile A3 farki nedir",
+      "silindir guvenligi nasil saglanir"
+    ]
+  },
+  {
+    "id": "gas_safety_flammability_workflow",
+    "tr_subject": "yanici gazlarda servis sirasi",
+    "de_subject": "die service-reihenfolge bei brennbaren kaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "yanici gazlarda servis sirasi",
+      "die service-reihenfolge bei brennbaren kaeltemitteln",
+      "flammable workflow",
+      "yanici gaz servis"
+    ],
+    "tr_questions": [
+      "yanici gazlarda servis sirasi nasil dusunulur",
+      "yanici gazlarda servis sirasi neye gore secilir",
+      "yanici gazlarda servis sirasi neden onemli",
+      "yanici gazlarda servis sirasi ile ilgili usta neye bakar",
+      "yanici gazlarda servis sirasi konusunda en sik hata nedir",
+      "yanici gazlarda servis sirasi kullanilirsa nelere dikkat edilir",
+      "yanici gazlarda servis sirasi ariza ve performansi nasil etkiler",
+      "yanici gazlarda servis sirasi sahada nasil yorumlanir",
+      "yanici gazlarda servis sirasi icin servis sirasi ne olur",
+      "yanici gazlarda servis sirasi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die service-reihenfolge bei brennbaren kaeltemitteln",
+      "wonach waehlt man die service-reihenfolge bei brennbaren kaeltemitteln aus",
+      "warum ist die service-reihenfolge bei brennbaren kaeltemitteln wichtig",
+      "worauf achtet ein meister bei die service-reihenfolge bei brennbaren kaeltemitteln",
+      "was ist der haeufigste fehler bei die service-reihenfolge bei brennbaren kaeltemitteln",
+      "worauf muss man bei die service-reihenfolge bei brennbaren kaeltemitteln achten",
+      "wie beeinflusst die service-reihenfolge bei brennbaren kaeltemitteln stoerung und leistung",
+      "wie interpretiert man die service-reihenfolge bei brennbaren kaeltemitteln im feld",
+      "wie ist die service reihenfolge bei die service-reihenfolge bei brennbaren kaeltemitteln",
+      "erklaere die service-reihenfolge bei brennbaren kaeltemitteln im detail"
+    ],
+    "tr_answer": "yanici gazlarda servis sirasi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta atesleme kaynaklarini dislayip havalandirma ve geri kazanimi planli yapmak; bunun yaninda gaz guvenlik sinifinin sahadaki montaj ve servis davranisini belirlemesidir. Ilk kontrolde A1, A2L, A3 veya toksik/ozel sinif mantigi, ortam havalandirmasi ve atesleme riski birlikte degerlendirilir. Bunun teknik sebebi servis sirasi dogru kurulmazsa teknik hata olmasa bile guvenlik problemi dogar; ayrica ayni kapasiteyi veren iki gazin servis riski ayni olmayabilir. En sik hata ise basinca veya verime bakip guvenlik sinifini arka plana atmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die service-reihenfolge bei brennbaren kaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Zundquellen auszuschliessen und Belueftung plus Rueckgewinnung planvoll zu organisieren; zusaetzlich gilt die Sicherheitsklasse des Kaeltemittels Montage und Service im Feld direkt bestimmt. In der Erstpruefung werden A1, A2L, A3 oder Sonderklassen zusammen mit Belueftung und Zundrisiko bewertet werden. Der technische Hintergrund ist ohne klare Service-Reihenfolge auch bei technisch richtiger Arbeit ein Sicherheitsproblem entstehen kann; ausserdem gilt zwei Kaeltemittel koennen aehnliche Leistung, aber sehr unterschiedliche Service-Risiken haben. Ein sehr haeufiger Fehler besteht darin, dass nur auf Leistung und Druck zu schauen und die Sicherheitsklasse zu vernachlaessigen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 kullanirken neye dikkat edilir",
+      "A2L ile A3 farki nedir",
+      "silindir guvenligi nasil saglanir"
+    ]
+  },
+  {
+    "id": "gas_safety_cylinder_handling",
+    "tr_subject": "gaz tupu ve silindir guvenligi",
+    "de_subject": "die sicherheit von flaschen und zylindern",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "gaz tupu ve silindir guvenligi",
+      "die sicherheit von flaschen und zylindern",
+      "cylinder handling",
+      "gaz tupu",
+      "silindir guvenligi"
+    ],
+    "tr_questions": [
+      "gaz tupu ve silindir guvenligi nasil dusunulur",
+      "gaz tupu ve silindir guvenligi neye gore secilir",
+      "gaz tupu ve silindir guvenligi neden onemli",
+      "gaz tupu ve silindir guvenligi ile ilgili usta neye bakar",
+      "gaz tupu ve silindir guvenligi konusunda en sik hata nedir",
+      "gaz tupu ve silindir guvenligi kullanilirsa nelere dikkat edilir",
+      "gaz tupu ve silindir guvenligi ariza ve performansi nasil etkiler",
+      "gaz tupu ve silindir guvenligi sahada nasil yorumlanir",
+      "gaz tupu ve silindir guvenligi icin servis sirasi ne olur",
+      "gaz tupu ve silindir guvenligi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die sicherheit von flaschen und zylindern",
+      "wonach waehlt man die sicherheit von flaschen und zylindern aus",
+      "warum ist die sicherheit von flaschen und zylindern wichtig",
+      "worauf achtet ein meister bei die sicherheit von flaschen und zylindern",
+      "was ist der haeufigste fehler bei die sicherheit von flaschen und zylindern",
+      "worauf muss man bei die sicherheit von flaschen und zylindern achten",
+      "wie beeinflusst die sicherheit von flaschen und zylindern stoerung und leistung",
+      "wie interpretiert man die sicherheit von flaschen und zylindern im feld",
+      "wie ist die service reihenfolge bei die sicherheit von flaschen und zylindern",
+      "erklaere die sicherheit von flaschen und zylindern im detail"
+    ],
+    "tr_answer": "gaz tupu ve silindir guvenligi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta silindiri depolama, tasima, tarti ve baglanti sirasinda guvenli yonetmek; bunun yaninda gaz guvenlik sinifinin sahadaki montaj ve servis davranisini belirlemesidir. Ilk kontrolde A1, A2L, A3 veya toksik/ozel sinif mantigi, ortam havalandirmasi ve atesleme riski birlikte degerlendirilir. Bunun teknik sebebi dogru olmayan silindir kullanimi saha kazasina ve yanlis sarja yol acar; ayrica ayni kapasiteyi veren iki gazin servis riski ayni olmayabilir. En sik hata ise basinca veya verime bakip guvenlik sinifini arka plana atmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die sicherheit von flaschen und zylindern klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Flaschen bei Lagerung, Transport, Waegung und Anschluss sicher zu handhaben; zusaetzlich gilt die Sicherheitsklasse des Kaeltemittels Montage und Service im Feld direkt bestimmt. In der Erstpruefung werden A1, A2L, A3 oder Sonderklassen zusammen mit Belueftung und Zundrisiko bewertet werden. Der technische Hintergrund ist falsche Flaschenhandhabung sowohl Sicherheitsprobleme als auch Fehlfuellungen erzeugen kann; ausserdem gilt zwei Kaeltemittel koennen aehnliche Leistung, aber sehr unterschiedliche Service-Risiken haben. Ein sehr haeufiger Fehler besteht darin, dass nur auf Leistung und Druck zu schauen und die Sicherheitsklasse zu vernachlaessigen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 kullanirken neye dikkat edilir",
+      "A2L ile A3 farki nedir",
+      "silindir guvenligi nasil saglanir"
+    ]
+  },
+  {
+    "id": "gas_oil_poe",
+    "tr_subject": "POE yag ile gaz uyumu",
+    "de_subject": "die vertraeglichkeit von POE-oel und kaeltemittel",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "POE yag ile gaz uyumu",
+      "die vertraeglichkeit von POE-oel und kaeltemittel",
+      "POE oil",
+      "POE yag"
+    ],
+    "tr_questions": [
+      "POE yag ile gaz uyumu nasil dusunulur",
+      "POE yag ile gaz uyumu neye gore secilir",
+      "POE yag ile gaz uyumu neden onemli",
+      "POE yag ile gaz uyumu ile ilgili usta neye bakar",
+      "POE yag ile gaz uyumu konusunda en sik hata nedir",
+      "POE yag ile gaz uyumu kullanilirsa nelere dikkat edilir",
+      "POE yag ile gaz uyumu ariza ve performansi nasil etkiler",
+      "POE yag ile gaz uyumu sahada nasil yorumlanir",
+      "POE yag ile gaz uyumu icin servis sirasi ne olur",
+      "POE yag ile gaz uyumu hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die vertraeglichkeit von POE-oel und kaeltemittel",
+      "wonach waehlt man die vertraeglichkeit von POE-oel und kaeltemittel aus",
+      "warum ist die vertraeglichkeit von POE-oel und kaeltemittel wichtig",
+      "worauf achtet ein meister bei die vertraeglichkeit von POE-oel und kaeltemittel",
+      "was ist der haeufigste fehler bei die vertraeglichkeit von POE-oel und kaeltemittel",
+      "worauf muss man bei die vertraeglichkeit von POE-oel und kaeltemittel achten",
+      "wie beeinflusst die vertraeglichkeit von POE-oel und kaeltemittel stoerung und leistung",
+      "wie interpretiert man die vertraeglichkeit von POE-oel und kaeltemittel im feld",
+      "wie ist die service reihenfolge bei die vertraeglichkeit von POE-oel und kaeltemittel",
+      "erklaere die vertraeglichkeit von POE-oel und kaeltemittel im detail"
+    ],
+    "tr_answer": "POE yag ile gaz uyumu konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta ozellikle HFC ve HFO tabanli sistemlerde POE yag davranisinin dogru kurulmasi; bunun yaninda gaz ile yag uyumunun kompresor guvenligi icin belirleyici olmasidir. Ilk kontrolde mevcut yag tipi, kompresor tavsiyesi, retrofit gecmisi ve donus davranisi birlikte okunur. Bunun teknik sebebi POE higroskopiktir; nemle iliskisi servis kalitesini direkt etkiler; ayrica uyumsuz yag sadece yaglama degil, valf ve donus davranisini da bozar. En sik hata ise gazi degistirip yagi sorgulamamaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die vertraeglichkeit von POE-oel und kaeltemittel klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier vor allem bei HFC- und HFO-Systemen das Verhalten von POE-Oel sauber zu beruecksichtigen; zusaetzlich gilt die Oelvertraeglichkeit mit dem Kaeltemittel fuer die Verdichtersicherheit entscheidend ist. In der Erstpruefung werden vorhandenes Oel, Verdichterfreigabe, Retrofit-Historie und Ruecklaufverhalten gemeinsam bewertet werden. Der technische Hintergrund ist POE hygroskopisch ist und Feuchte deshalb direkt zur Servicequalitaet gehoert; ausserdem gilt unpassendes Oel nicht nur Schmierung, sondern auch Ventil- und Ruecklaufverhalten stoert. Ein sehr haeufiger Fehler besteht darin, dass das Kaeltemittel zu wechseln, ohne das Oel ernsthaft zu pruefen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "POE neden kullanilir",
+      "mineral yag ne zaman sorun olur",
+      "retrofitte yag nasil dusunulur"
+    ]
+  },
+  {
+    "id": "gas_oil_mineral",
+    "tr_subject": "mineral yag hangi gazlarda mantiklidir",
+    "de_subject": "wann minerales oel sinnvoll ist",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "mineral yag hangi gazlarda mantiklidir",
+      "wann minerales oel sinnvoll ist",
+      "mineral oil",
+      "mineral yag"
+    ],
+    "tr_questions": [
+      "mineral yag hangi gazlarda mantiklidir nasil dusunulur",
+      "mineral yag hangi gazlarda mantiklidir neye gore secilir",
+      "mineral yag hangi gazlarda mantiklidir neden onemli",
+      "mineral yag hangi gazlarda mantiklidir ile ilgili usta neye bakar",
+      "mineral yag hangi gazlarda mantiklidir konusunda en sik hata nedir",
+      "mineral yag hangi gazlarda mantiklidir kullanilirsa nelere dikkat edilir",
+      "mineral yag hangi gazlarda mantiklidir ariza ve performansi nasil etkiler",
+      "mineral yag hangi gazlarda mantiklidir sahada nasil yorumlanir",
+      "mineral yag hangi gazlarda mantiklidir icin servis sirasi ne olur",
+      "mineral yag hangi gazlarda mantiklidir hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber wann minerales oel sinnvoll ist",
+      "wonach waehlt man wann minerales oel sinnvoll ist aus",
+      "warum ist wann minerales oel sinnvoll ist wichtig",
+      "worauf achtet ein meister bei wann minerales oel sinnvoll ist",
+      "was ist der haeufigste fehler bei wann minerales oel sinnvoll ist",
+      "worauf muss man bei wann minerales oel sinnvoll ist achten",
+      "wie beeinflusst wann minerales oel sinnvoll ist stoerung und leistung",
+      "wie interpretiert man wann minerales oel sinnvoll ist im feld",
+      "wie ist die service reihenfolge bei wann minerales oel sinnvoll ist",
+      "erklaere wann minerales oel sinnvoll ist im detail"
+    ],
+    "tr_answer": "mineral yag hangi gazlarda mantiklidir konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta eski nesil veya belirli uygulamalarda mineral yagin halen gecerli olmasi; bunun yaninda gaz ile yag uyumunun kompresor guvenligi icin belirleyici olmasidir. Ilk kontrolde mevcut yag tipi, kompresor tavsiyesi, retrofit gecmisi ve donus davranisi birlikte okunur. Bunun teknik sebebi mineral yag uyumsuz gazla kullanilirsa donus ve kapasite sorunu baslar; ayrica uyumsuz yag sadece yaglama degil, valf ve donus davranisini da bozar. En sik hata ise gazi degistirip yagi sorgulamamaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema wann minerales oel sinnvoll ist klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier in aelteren oder speziellen Anwendungen Mineraloel weiter relevant sein kann; zusaetzlich gilt die Oelvertraeglichkeit mit dem Kaeltemittel fuer die Verdichtersicherheit entscheidend ist. In der Erstpruefung werden vorhandenes Oel, Verdichterfreigabe, Retrofit-Historie und Ruecklaufverhalten gemeinsam bewertet werden. Der technische Hintergrund ist Mineraloel mit unpassendem Kaeltemittel Ruecklauf- und Leistungsprobleme erzeugt; ausserdem gilt unpassendes Oel nicht nur Schmierung, sondern auch Ventil- und Ruecklaufverhalten stoert. Ein sehr haeufiger Fehler besteht darin, dass das Kaeltemittel zu wechseln, ohne das Oel ernsthaft zu pruefen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "POE neden kullanilir",
+      "mineral yag ne zaman sorun olur",
+      "retrofitte yag nasil dusunulur"
+    ]
+  },
+  {
+    "id": "gas_oil_ab",
+    "tr_subject": "alkylbenzene yag ne zaman dusunulur",
+    "de_subject": "wann alkylbenzol-oel in frage kommt",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "alkylbenzene yag ne zaman dusunulur",
+      "wann alkylbenzol-oel in frage kommt",
+      "alkylbenzene oil",
+      "AB oil",
+      "alkylbenzene yag"
+    ],
+    "tr_questions": [
+      "alkylbenzene yag ne zaman dusunulur nasil dusunulur",
+      "alkylbenzene yag ne zaman dusunulur neye gore secilir",
+      "alkylbenzene yag ne zaman dusunulur neden onemli",
+      "alkylbenzene yag ne zaman dusunulur ile ilgili usta neye bakar",
+      "alkylbenzene yag ne zaman dusunulur konusunda en sik hata nedir",
+      "alkylbenzene yag ne zaman dusunulur kullanilirsa nelere dikkat edilir",
+      "alkylbenzene yag ne zaman dusunulur ariza ve performansi nasil etkiler",
+      "alkylbenzene yag ne zaman dusunulur sahada nasil yorumlanir",
+      "alkylbenzene yag ne zaman dusunulur icin servis sirasi ne olur",
+      "alkylbenzene yag ne zaman dusunulur hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber wann alkylbenzol-oel in frage kommt",
+      "wonach waehlt man wann alkylbenzol-oel in frage kommt aus",
+      "warum ist wann alkylbenzol-oel in frage kommt wichtig",
+      "worauf achtet ein meister bei wann alkylbenzol-oel in frage kommt",
+      "was ist der haeufigste fehler bei wann alkylbenzol-oel in frage kommt",
+      "worauf muss man bei wann alkylbenzol-oel in frage kommt achten",
+      "wie beeinflusst wann alkylbenzol-oel in frage kommt stoerung und leistung",
+      "wie interpretiert man wann alkylbenzol-oel in frage kommt im feld",
+      "wie ist die service reihenfolge bei wann alkylbenzol-oel in frage kommt",
+      "erklaere wann alkylbenzol-oel in frage kommt im detail"
+    ],
+    "tr_answer": "alkylbenzene yag ne zaman dusunulur konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta belirli retrofit ve gecis projelerinde AB yagin ara cozum mantigi; bunun yaninda gaz ile yag uyumunun kompresor guvenligi icin belirleyici olmasidir. Ilk kontrolde mevcut yag tipi, kompresor tavsiyesi, retrofit gecmisi ve donus davranisi birlikte okunur. Bunun teknik sebebi AB yag bazen gecis mantiginda ise yarar ama her projeye genellenemez; ayrica uyumsuz yag sadece yaglama degil, valf ve donus davranisini da bozar. En sik hata ise gazi degistirip yagi sorgulamamaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema wann alkylbenzol-oel in frage kommt klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier in bestimmten Retrofit- oder Uebergangsprojekten Alkylbenzol als Zwischenloesung zu bewerten; zusaetzlich gilt die Oelvertraeglichkeit mit dem Kaeltemittel fuer die Verdichtersicherheit entscheidend ist. In der Erstpruefung werden vorhandenes Oel, Verdichterfreigabe, Retrofit-Historie und Ruecklaufverhalten gemeinsam bewertet werden. Der technische Hintergrund ist AB-Oel in Uebergangsfaellen hilfreich sein kann, aber nicht pauschal passt; ausserdem gilt unpassendes Oel nicht nur Schmierung, sondern auch Ventil- und Ruecklaufverhalten stoert. Ein sehr haeufiger Fehler besteht darin, dass das Kaeltemittel zu wechseln, ohne das Oel ernsthaft zu pruefen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "POE neden kullanilir",
+      "mineral yag ne zaman sorun olur",
+      "retrofitte yag nasil dusunulur"
+    ]
+  },
+  {
+    "id": "gas_oil_return_behavior",
+    "tr_subject": "gaz degisince yag donusu neden degisir",
+    "de_subject": "warum sich der oelruecklauf beim kaeltemittelwechsel aendert",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "gaz degisince yag donusu neden degisir",
+      "warum sich der oelruecklauf beim kaeltemittelwechsel aendert",
+      "oil return with refrigerant change",
+      "gaz degisince yag donusu"
+    ],
+    "tr_questions": [
+      "gaz degisince yag donusu neden degisir nasil dusunulur",
+      "gaz degisince yag donusu neden degisir neye gore secilir",
+      "gaz degisince yag donusu neden degisir neden onemli",
+      "gaz degisince yag donusu neden degisir ile ilgili usta neye bakar",
+      "gaz degisince yag donusu neden degisir konusunda en sik hata nedir",
+      "gaz degisince yag donusu neden degisir kullanilirsa nelere dikkat edilir",
+      "gaz degisince yag donusu neden degisir ariza ve performansi nasil etkiler",
+      "gaz degisince yag donusu neden degisir sahada nasil yorumlanir",
+      "gaz degisince yag donusu neden degisir icin servis sirasi ne olur",
+      "gaz degisince yag donusu neden degisir hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber warum sich der oelruecklauf beim kaeltemittelwechsel aendert",
+      "wonach waehlt man warum sich der oelruecklauf beim kaeltemittelwechsel aendert aus",
+      "warum ist warum sich der oelruecklauf beim kaeltemittelwechsel aendert wichtig",
+      "worauf achtet ein meister bei warum sich der oelruecklauf beim kaeltemittelwechsel aendert",
+      "was ist der haeufigste fehler bei warum sich der oelruecklauf beim kaeltemittelwechsel aendert",
+      "worauf muss man bei warum sich der oelruecklauf beim kaeltemittelwechsel aendert achten",
+      "wie beeinflusst warum sich der oelruecklauf beim kaeltemittelwechsel aendert stoerung und leistung",
+      "wie interpretiert man warum sich der oelruecklauf beim kaeltemittelwechsel aendert im feld",
+      "wie ist die service reihenfolge bei warum sich der oelruecklauf beim kaeltemittelwechsel aendert",
+      "erklaere warum sich der oelruecklauf beim kaeltemittelwechsel aendert im detail"
+    ],
+    "tr_answer": "gaz degisince yag donusu neden degisir konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yag cozulurlugu ve akiskan hizinin gazla birlikte farkli davranmasi; bunun yaninda gaz ile yag uyumunun kompresor guvenligi icin belirleyici olmasidir. Ilk kontrolde mevcut yag tipi, kompresor tavsiyesi, retrofit gecmisi ve donus davranisi birlikte okunur. Bunun teknik sebebi ayni kompresor farkli gazla ayni yag davranisini vermeyebilir; ayrica uyumsuz yag sadece yaglama degil, valf ve donus davranisini da bozar. En sik hata ise gazi degistirip yagi sorgulamamaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema warum sich der oelruecklauf beim kaeltemittelwechsel aendert klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Oelloeslichkeit und Stroemungsverhalten sich mit dem Kaeltemittel veraendern; zusaetzlich gilt die Oelvertraeglichkeit mit dem Kaeltemittel fuer die Verdichtersicherheit entscheidend ist. In der Erstpruefung werden vorhandenes Oel, Verdichterfreigabe, Retrofit-Historie und Ruecklaufverhalten gemeinsam bewertet werden. Der technische Hintergrund ist derselbe Verdichter mit anderem Kaeltemittel nicht denselben Oelruecklauf zeigt; ausserdem gilt unpassendes Oel nicht nur Schmierung, sondern auch Ventil- und Ruecklaufverhalten stoert. Ein sehr haeufiger Fehler besteht darin, dass das Kaeltemittel zu wechseln, ohne das Oel ernsthaft zu pruefen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "POE neden kullanilir",
+      "mineral yag ne zaman sorun olur",
+      "retrofitte yag nasil dusunulur"
+    ]
+  },
+  {
+    "id": "gas_oil_retrofit_flush",
+    "tr_subject": "retrofitte yag degisimi ve flushing",
+    "de_subject": "oelwechsel und spuelen beim retrofit",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "retrofitte yag degisimi ve flushing",
+      "oelwechsel und spuelen beim retrofit",
+      "retrofit oil change",
+      "flush retrofit"
+    ],
+    "tr_questions": [
+      "retrofitte yag degisimi ve flushing nasil dusunulur",
+      "retrofitte yag degisimi ve flushing neye gore secilir",
+      "retrofitte yag degisimi ve flushing neden onemli",
+      "retrofitte yag degisimi ve flushing ile ilgili usta neye bakar",
+      "retrofitte yag degisimi ve flushing konusunda en sik hata nedir",
+      "retrofitte yag degisimi ve flushing kullanilirsa nelere dikkat edilir",
+      "retrofitte yag degisimi ve flushing ariza ve performansi nasil etkiler",
+      "retrofitte yag degisimi ve flushing sahada nasil yorumlanir",
+      "retrofitte yag degisimi ve flushing icin servis sirasi ne olur",
+      "retrofitte yag degisimi ve flushing hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber oelwechsel und spuelen beim retrofit",
+      "wonach waehlt man oelwechsel und spuelen beim retrofit aus",
+      "warum ist oelwechsel und spuelen beim retrofit wichtig",
+      "worauf achtet ein meister bei oelwechsel und spuelen beim retrofit",
+      "was ist der haeufigste fehler bei oelwechsel und spuelen beim retrofit",
+      "worauf muss man bei oelwechsel und spuelen beim retrofit achten",
+      "wie beeinflusst oelwechsel und spuelen beim retrofit stoerung und leistung",
+      "wie interpretiert man oelwechsel und spuelen beim retrofit im feld",
+      "wie ist die service reihenfolge bei oelwechsel und spuelen beim retrofit",
+      "erklaere oelwechsel und spuelen beim retrofit im detail"
+    ],
+    "tr_answer": "retrofitte yag degisimi ve flushing konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta eski yag ve yeni gaz arasindaki geciste ne kadar temizlik ve degisim gerektigini dusunmek; bunun yaninda gaz ile yag uyumunun kompresor guvenligi icin belirleyici olmasidir. Ilk kontrolde mevcut yag tipi, kompresor tavsiyesi, retrofit gecmisi ve donus davranisi birlikte okunur. Bunun teknik sebebi eksik yag gecisi sonraki arizalari sessizce buyutebilir; ayrica uyumsuz yag sadece yaglama degil, valf ve donus davranisini da bozar. En sik hata ise gazi degistirip yagi sorgulamamaktir. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema oelwechsel und spuelen beim retrofit klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier beim Wechsel von altem Oel zu neuem Kaeltemittel den Reinigungs- und Wechselbedarf sauber abzuschaetzen; zusaetzlich gilt die Oelvertraeglichkeit mit dem Kaeltemittel fuer die Verdichtersicherheit entscheidend ist. In der Erstpruefung werden vorhandenes Oel, Verdichterfreigabe, Retrofit-Historie und Ruecklaufverhalten gemeinsam bewertet werden. Der technische Hintergrund ist ein unvollstaendiger Oelwechsel spaetere Probleme schleichend vergroessern kann; ausserdem gilt unpassendes Oel nicht nur Schmierung, sondern auch Ventil- und Ruecklaufverhalten stoert. Ein sehr haeufiger Fehler besteht darin, dass das Kaeltemittel zu wechseln, ohne das Oel ernsthaft zu pruefen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "POE neden kullanilir",
+      "mineral yag ne zaman sorun olur",
+      "retrofitte yag nasil dusunulur"
+    ]
+  },
+  {
+    "id": "gas_charging_blend_liquid",
+    "tr_subject": "karisim gazlarda likit sarj mantigi",
+    "de_subject": "das fluessigfuellen von mischkaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "karisim gazlarda likit sarj mantigi",
+      "das fluessigfuellen von mischkaeltemitteln",
+      "blend liquid charge",
+      "likit sarj karisim"
+    ],
+    "tr_questions": [
+      "karisim gazlarda likit sarj mantigi nasil dusunulur",
+      "karisim gazlarda likit sarj mantigi neye gore secilir",
+      "karisim gazlarda likit sarj mantigi neden onemli",
+      "karisim gazlarda likit sarj mantigi ile ilgili usta neye bakar",
+      "karisim gazlarda likit sarj mantigi konusunda en sik hata nedir",
+      "karisim gazlarda likit sarj mantigi kullanilirsa nelere dikkat edilir",
+      "karisim gazlarda likit sarj mantigi ariza ve performansi nasil etkiler",
+      "karisim gazlarda likit sarj mantigi sahada nasil yorumlanir",
+      "karisim gazlarda likit sarj mantigi icin servis sirasi ne olur",
+      "karisim gazlarda likit sarj mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das fluessigfuellen von mischkaeltemitteln",
+      "wonach waehlt man das fluessigfuellen von mischkaeltemitteln aus",
+      "warum ist das fluessigfuellen von mischkaeltemitteln wichtig",
+      "worauf achtet ein meister bei das fluessigfuellen von mischkaeltemitteln",
+      "was ist der haeufigste fehler bei das fluessigfuellen von mischkaeltemitteln",
+      "worauf muss man bei das fluessigfuellen von mischkaeltemitteln achten",
+      "wie beeinflusst das fluessigfuellen von mischkaeltemitteln stoerung und leistung",
+      "wie interpretiert man das fluessigfuellen von mischkaeltemitteln im feld",
+      "wie ist die service reihenfolge bei das fluessigfuellen von mischkaeltemitteln",
+      "erklaere das fluessigfuellen von mischkaeltemitteln im detail"
+    ],
+    "tr_answer": "karisim gazlarda likit sarj mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta karisim gazda fraksiyon ayrilmasini onlemek icin likit taraftan sarj yapmak; bunun yaninda saf gaz ile karisim gazlarin dolum davranisinin farkli olmasidir. Ilk kontrolde gaz saf mi karisim mi, silindir pozisyonu, tarti ve sarj sekli birlikte dusunulur. Bunun teknik sebebi karisim gaz buhar fazinda kompozisyon kaybedebilir; ayrica yanlis dolum yontemi gaz kompozisyonunu bile bozabilir. En sik hata ise her gazi ayni sekilde doldurmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das fluessigfuellen von mischkaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei Gemischen Fluessigfuellung zu nutzen, um Fraktionierung zu vermeiden; zusaetzlich gilt reine Kaeltemittel und Mischungen sich beim Fuellen unterschiedlich verhalten. In der Erstpruefung werden reines Kaeltemittel oder Gemisch, Flaschenlage, Waage und Fuellmethode zusammen betrachtet werden. Der technische Hintergrund ist ein Gemisch in der Gasphase seine Zusammensetzung veraendern kann; ausserdem gilt eine falsche Fuellmethode sogar die Zusammensetzung des Gemischs veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass jedes Kaeltemittel gleich zu fuellen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "karisim gazlar neden likit sarj edilir",
+      "saf gaz buhar sarj edilir mi",
+      "glide nedir"
+    ]
+  },
+  {
+    "id": "gas_charging_pure_refrigerant",
+    "tr_subject": "saf gazlarda sarj mantigi",
+    "de_subject": "das fuellverhalten bei reinen kaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "saf gazlarda sarj mantigi",
+      "das fuellverhalten bei reinen kaeltemitteln",
+      "pure refrigerant charging",
+      "saf gaz sarj"
+    ],
+    "tr_questions": [
+      "saf gazlarda sarj mantigi nasil dusunulur",
+      "saf gazlarda sarj mantigi neye gore secilir",
+      "saf gazlarda sarj mantigi neden onemli",
+      "saf gazlarda sarj mantigi ile ilgili usta neye bakar",
+      "saf gazlarda sarj mantigi konusunda en sik hata nedir",
+      "saf gazlarda sarj mantigi kullanilirsa nelere dikkat edilir",
+      "saf gazlarda sarj mantigi ariza ve performansi nasil etkiler",
+      "saf gazlarda sarj mantigi sahada nasil yorumlanir",
+      "saf gazlarda sarj mantigi icin servis sirasi ne olur",
+      "saf gazlarda sarj mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das fuellverhalten bei reinen kaeltemitteln",
+      "wonach waehlt man das fuellverhalten bei reinen kaeltemitteln aus",
+      "warum ist das fuellverhalten bei reinen kaeltemitteln wichtig",
+      "worauf achtet ein meister bei das fuellverhalten bei reinen kaeltemitteln",
+      "was ist der haeufigste fehler bei das fuellverhalten bei reinen kaeltemitteln",
+      "worauf muss man bei das fuellverhalten bei reinen kaeltemitteln achten",
+      "wie beeinflusst das fuellverhalten bei reinen kaeltemitteln stoerung und leistung",
+      "wie interpretiert man das fuellverhalten bei reinen kaeltemitteln im feld",
+      "wie ist die service reihenfolge bei das fuellverhalten bei reinen kaeltemitteln",
+      "erklaere das fuellverhalten bei reinen kaeltemitteln im detail"
+    ],
+    "tr_answer": "saf gazlarda sarj mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta tek bilesenli gazlarda kompozisyon kaygisinin olmamasi ama yine de kontrollu sarj gerekmesi; bunun yaninda saf gaz ile karisim gazlarin dolum davranisinin farkli olmasidir. Ilk kontrolde gaz saf mi karisim mi, silindir pozisyonu, tarti ve sarj sekli birlikte dusunulur. Bunun teknik sebebi saf gaz kolay gibi gorunse de yine tarti ve sistem mantigi ister; ayrica yanlis dolum yontemi gaz kompozisyonunu bile bozabilir. En sik hata ise her gazi ayni sekilde doldurmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das fuellverhalten bei reinen kaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei reinen Stoffen keine Fraktionierung droht, aber trotzdem kontrolliertes Fuellen noetig ist; zusaetzlich gilt reine Kaeltemittel und Mischungen sich beim Fuellen unterschiedlich verhalten. In der Erstpruefung werden reines Kaeltemittel oder Gemisch, Flaschenlage, Waage und Fuellmethode zusammen betrachtet werden. Der technische Hintergrund ist auch reines Kaeltemittel trotz einfacherem Verhalten exakt eingewogen werden muss; ausserdem gilt eine falsche Fuellmethode sogar die Zusammensetzung des Gemischs veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass jedes Kaeltemittel gleich zu fuellen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "karisim gazlar neden likit sarj edilir",
+      "saf gaz buhar sarj edilir mi",
+      "glide nedir"
+    ]
+  },
+  {
+    "id": "gas_charging_cylinder_position",
+    "tr_subject": "silindirin dik veya ters kullanimi",
+    "de_subject": "die richtige flaschenposition beim fuellen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "silindirin dik veya ters kullanimi",
+      "die richtige flaschenposition beim fuellen",
+      "cylinder upright",
+      "silindir pozisyonu"
+    ],
+    "tr_questions": [
+      "silindirin dik veya ters kullanimi nasil dusunulur",
+      "silindirin dik veya ters kullanimi neye gore secilir",
+      "silindirin dik veya ters kullanimi neden onemli",
+      "silindirin dik veya ters kullanimi ile ilgili usta neye bakar",
+      "silindirin dik veya ters kullanimi konusunda en sik hata nedir",
+      "silindirin dik veya ters kullanimi kullanilirsa nelere dikkat edilir",
+      "silindirin dik veya ters kullanimi ariza ve performansi nasil etkiler",
+      "silindirin dik veya ters kullanimi sahada nasil yorumlanir",
+      "silindirin dik veya ters kullanimi icin servis sirasi ne olur",
+      "silindirin dik veya ters kullanimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die richtige flaschenposition beim fuellen",
+      "wonach waehlt man die richtige flaschenposition beim fuellen aus",
+      "warum ist die richtige flaschenposition beim fuellen wichtig",
+      "worauf achtet ein meister bei die richtige flaschenposition beim fuellen",
+      "was ist der haeufigste fehler bei die richtige flaschenposition beim fuellen",
+      "worauf muss man bei die richtige flaschenposition beim fuellen achten",
+      "wie beeinflusst die richtige flaschenposition beim fuellen stoerung und leistung",
+      "wie interpretiert man die richtige flaschenposition beim fuellen im feld",
+      "wie ist die service reihenfolge bei die richtige flaschenposition beim fuellen",
+      "erklaere die richtige flaschenposition beim fuellen im detail"
+    ],
+    "tr_answer": "silindirin dik veya ters kullanimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta hangi gazda silindirin dik, hangi durumda kontrollu likit cekisle kullanilacagini bilmek; bunun yaninda saf gaz ile karisim gazlarin dolum davranisinin farkli olmasidir. Ilk kontrolde gaz saf mi karisim mi, silindir pozisyonu, tarti ve sarj sekli birlikte dusunulur. Bunun teknik sebebi yanlis silindir pozisyonu sarj davranisini ve guvenligi etkiler; ayrica yanlis dolum yontemi gaz kompozisyonunu bile bozabilir. En sik hata ise her gazi ayni sekilde doldurmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die richtige flaschenposition beim fuellen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier zu wissen, wann die Flasche aufrecht und wann kontrolliert fluessig genutzt wird; zusaetzlich gilt reine Kaeltemittel und Mischungen sich beim Fuellen unterschiedlich verhalten. In der Erstpruefung werden reines Kaeltemittel oder Gemisch, Flaschenlage, Waage und Fuellmethode zusammen betrachtet werden. Der technische Hintergrund ist eine falsche Flaschenlage Fuellung und Sicherheit beeinflusst; ausserdem gilt eine falsche Fuellmethode sogar die Zusammensetzung des Gemischs veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass jedes Kaeltemittel gleich zu fuellen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "karisim gazlar neden likit sarj edilir",
+      "saf gaz buhar sarj edilir mi",
+      "glide nedir"
+    ]
+  },
+  {
+    "id": "gas_charging_by_weight",
+    "tr_subject": "gaz sarjinda tarti kullanma mantigi",
+    "de_subject": "das fuellen nach gewicht",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "gaz sarjinda tarti kullanma mantigi",
+      "das fuellen nach gewicht",
+      "charge by weight",
+      "tarti ile sarj"
+    ],
+    "tr_questions": [
+      "gaz sarjinda tarti kullanma mantigi nasil dusunulur",
+      "gaz sarjinda tarti kullanma mantigi neye gore secilir",
+      "gaz sarjinda tarti kullanma mantigi neden onemli",
+      "gaz sarjinda tarti kullanma mantigi ile ilgili usta neye bakar",
+      "gaz sarjinda tarti kullanma mantigi konusunda en sik hata nedir",
+      "gaz sarjinda tarti kullanma mantigi kullanilirsa nelere dikkat edilir",
+      "gaz sarjinda tarti kullanma mantigi ariza ve performansi nasil etkiler",
+      "gaz sarjinda tarti kullanma mantigi sahada nasil yorumlanir",
+      "gaz sarjinda tarti kullanma mantigi icin servis sirasi ne olur",
+      "gaz sarjinda tarti kullanma mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das fuellen nach gewicht",
+      "wonach waehlt man das fuellen nach gewicht aus",
+      "warum ist das fuellen nach gewicht wichtig",
+      "worauf achtet ein meister bei das fuellen nach gewicht",
+      "was ist der haeufigste fehler bei das fuellen nach gewicht",
+      "worauf muss man bei das fuellen nach gewicht achten",
+      "wie beeinflusst das fuellen nach gewicht stoerung und leistung",
+      "wie interpretiert man das fuellen nach gewicht im feld",
+      "wie ist die service reihenfolge bei das fuellen nach gewicht",
+      "erklaere das fuellen nach gewicht im detail"
+    ],
+    "tr_answer": "gaz sarjinda tarti kullanma mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta gaz dolumunda tartiyi temel referans almak; bunun yaninda saf gaz ile karisim gazlarin dolum davranisinin farkli olmasidir. Ilk kontrolde gaz saf mi karisim mi, silindir pozisyonu, tarti ve sarj sekli birlikte dusunulur. Bunun teknik sebebi basinc yalanci yorum verebilir ama tarti gercek aktarilan miktari gosterir; ayrica yanlis dolum yontemi gaz kompozisyonunu bile bozabilir. En sik hata ise her gazi ayni sekilde doldurmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das fuellen nach gewicht klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei der Fuellung das Gewicht als Primaerreferenz zu benutzen; zusaetzlich gilt reine Kaeltemittel und Mischungen sich beim Fuellen unterschiedlich verhalten. In der Erstpruefung werden reines Kaeltemittel oder Gemisch, Flaschenlage, Waage und Fuellmethode zusammen betrachtet werden. Der technische Hintergrund ist Druckwerte koennen taeuschen, das Gewicht zeigt aber die reale eingefuellte Menge; ausserdem gilt eine falsche Fuellmethode sogar die Zusammensetzung des Gemischs veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass jedes Kaeltemittel gleich zu fuellen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "karisim gazlar neden likit sarj edilir",
+      "saf gaz buhar sarj edilir mi",
+      "glide nedir"
+    ]
+  },
+  {
+    "id": "gas_charging_topup_risk",
+    "tr_subject": "karisim gaza sadece ustune ekleme riski",
+    "de_subject": "das risiko des einfachen nachfuellens bei gemischen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "karisim gaza sadece ustune ekleme riski",
+      "das risiko des einfachen nachfuellens bei gemischen",
+      "top up blend",
+      "ustune gaz ekleme"
+    ],
+    "tr_questions": [
+      "karisim gaza sadece ustune ekleme riski nasil dusunulur",
+      "karisim gaza sadece ustune ekleme riski neye gore secilir",
+      "karisim gaza sadece ustune ekleme riski neden onemli",
+      "karisim gaza sadece ustune ekleme riski ile ilgili usta neye bakar",
+      "karisim gaza sadece ustune ekleme riski konusunda en sik hata nedir",
+      "karisim gaza sadece ustune ekleme riski kullanilirsa nelere dikkat edilir",
+      "karisim gaza sadece ustune ekleme riski ariza ve performansi nasil etkiler",
+      "karisim gaza sadece ustune ekleme riski sahada nasil yorumlanir",
+      "karisim gaza sadece ustune ekleme riski icin servis sirasi ne olur",
+      "karisim gaza sadece ustune ekleme riski hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das risiko des einfachen nachfuellens bei gemischen",
+      "wonach waehlt man das risiko des einfachen nachfuellens bei gemischen aus",
+      "warum ist das risiko des einfachen nachfuellens bei gemischen wichtig",
+      "worauf achtet ein meister bei das risiko des einfachen nachfuellens bei gemischen",
+      "was ist der haeufigste fehler bei das risiko des einfachen nachfuellens bei gemischen",
+      "worauf muss man bei das risiko des einfachen nachfuellens bei gemischen achten",
+      "wie beeinflusst das risiko des einfachen nachfuellens bei gemischen stoerung und leistung",
+      "wie interpretiert man das risiko des einfachen nachfuellens bei gemischen im feld",
+      "wie ist die service reihenfolge bei das risiko des einfachen nachfuellens bei gemischen",
+      "erklaere das risiko des einfachen nachfuellens bei gemischen im detail"
+    ],
+    "tr_answer": "karisim gaza sadece ustune ekleme riski konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta kacakli veya fraksiyon bozulmus karisim gaza rastgele ekleme yapmanin riski; bunun yaninda saf gaz ile karisim gazlarin dolum davranisinin farkli olmasidir. Ilk kontrolde gaz saf mi karisim mi, silindir pozisyonu, tarti ve sarj sekli birlikte dusunulur. Bunun teknik sebebi ustune ekleme bazen sistemde ilk karisimi geri getirmez; ayrica yanlis dolum yontemi gaz kompozisyonunu bile bozabilir. En sik hata ise her gazi ayni sekilde doldurmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das risiko des einfachen nachfuellens bei gemischen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei leckenden oder fraktionierten Gemischen einfach nur nachzufuellen; zusaetzlich gilt reine Kaeltemittel und Mischungen sich beim Fuellen unterschiedlich verhalten. In der Erstpruefung werden reines Kaeltemittel oder Gemisch, Flaschenlage, Waage und Fuellmethode zusammen betrachtet werden. Der technische Hintergrund ist Nachfuellen nicht immer die urspruengliche Mischung wiederherstellt; ausserdem gilt eine falsche Fuellmethode sogar die Zusammensetzung des Gemischs veraendern kann. Ein sehr haeufiger Fehler besteht darin, dass jedes Kaeltemittel gleich zu fuellen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "karisim gazlar neden likit sarj edilir",
+      "saf gaz buhar sarj edilir mi",
+      "glide nedir"
+    ]
+  },
+  {
+    "id": "gas_glide_concept",
+    "tr_subject": "temperature glide mantigi",
+    "de_subject": "das prinzip des temperaturgleits",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "temperature glide mantigi",
+      "das prinzip des temperaturgleits",
+      "temperature glide",
+      "glide nedir"
+    ],
+    "tr_questions": [
+      "temperature glide mantigi nasil dusunulur",
+      "temperature glide mantigi neye gore secilir",
+      "temperature glide mantigi neden onemli",
+      "temperature glide mantigi ile ilgili usta neye bakar",
+      "temperature glide mantigi konusunda en sik hata nedir",
+      "temperature glide mantigi kullanilirsa nelere dikkat edilir",
+      "temperature glide mantigi ariza ve performansi nasil etkiler",
+      "temperature glide mantigi sahada nasil yorumlanir",
+      "temperature glide mantigi icin servis sirasi ne olur",
+      "temperature glide mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das prinzip des temperaturgleits",
+      "wonach waehlt man das prinzip des temperaturgleits aus",
+      "warum ist das prinzip des temperaturgleits wichtig",
+      "worauf achtet ein meister bei das prinzip des temperaturgleits",
+      "was ist der haeufigste fehler bei das prinzip des temperaturgleits",
+      "worauf muss man bei das prinzip des temperaturgleits achten",
+      "wie beeinflusst das prinzip des temperaturgleits stoerung und leistung",
+      "wie interpretiert man das prinzip des temperaturgleits im feld",
+      "wie ist die service reihenfolge bei das prinzip des temperaturgleits",
+      "erklaere das prinzip des temperaturgleits im detail"
+    ],
+    "tr_answer": "temperature glide mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta ayni basincta tek bir sicaklik degil aralik davranisinin olmasi; bunun yaninda glide ve karisim davranisinin basinc-isi yorumunu degistirmesidir. Ilk kontrolde gazin azeotrop mu zeotrop mu oldugu, bubble/dew mantigi ve tablolarin dogru okunmasi kontrol edilir. Bunun teknik sebebi glide mantigi bilinmezse sahadaki yorumlar kayar; ayrica glide olan gazda nokta secimi hataliysa superheat ve subcool yanlis hesaplanir. En sik hata ise karisim gazi saf gaz gibi okumak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das prinzip des temperaturgleits klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier dass bei gleitenden Gemischen zu einem Druck ein Temperaturbereich gehoert; zusaetzlich gilt Temperaturgleit und Mischungsverhalten die Druck-Temperatur-Deutung veraendern. In der Erstpruefung werden azeotropes oder zeotropes Verhalten, Bubble-/Dew-Punkte und korrekte Tabellenanwendung geprueft werden. Der technische Hintergrund ist ohne Gleitverstaendnis Feldmessungen falsch interpretiert werden; ausserdem gilt bei Gleitgemischen falsche Bezugspunkte Superheat und Subcooling verfaelschen. Ein sehr haeufiger Fehler besteht darin, dass ein Gemisch wie ein reines Kaeltemittel auszuwerten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "glide nedir",
+      "dew ve bubble farki",
+      "R448A neden farkli okunur"
+    ]
+  },
+  {
+    "id": "gas_bubble_dew",
+    "tr_subject": "bubble ve dew farki",
+    "de_subject": "der unterschied zwischen bubble und dew",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "bubble ve dew farki",
+      "der unterschied zwischen bubble und dew",
+      "bubble dew",
+      "dew point",
+      "bubble point"
+    ],
+    "tr_questions": [
+      "bubble ve dew farki nasil dusunulur",
+      "bubble ve dew farki neye gore secilir",
+      "bubble ve dew farki neden onemli",
+      "bubble ve dew farki ile ilgili usta neye bakar",
+      "bubble ve dew farki konusunda en sik hata nedir",
+      "bubble ve dew farki kullanilirsa nelere dikkat edilir",
+      "bubble ve dew farki ariza ve performansi nasil etkiler",
+      "bubble ve dew farki sahada nasil yorumlanir",
+      "bubble ve dew farki icin servis sirasi ne olur",
+      "bubble ve dew farki hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber der unterschied zwischen bubble und dew",
+      "wonach waehlt man der unterschied zwischen bubble und dew aus",
+      "warum ist der unterschied zwischen bubble und dew wichtig",
+      "worauf achtet ein meister bei der unterschied zwischen bubble und dew",
+      "was ist der haeufigste fehler bei der unterschied zwischen bubble und dew",
+      "worauf muss man bei der unterschied zwischen bubble und dew achten",
+      "wie beeinflusst der unterschied zwischen bubble und dew stoerung und leistung",
+      "wie interpretiert man der unterschied zwischen bubble und dew im feld",
+      "wie ist die service reihenfolge bei der unterschied zwischen bubble und dew",
+      "erklaere der unterschied zwischen bubble und dew im detail"
+    ],
+    "tr_answer": "bubble ve dew farki konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta sivi ve buhar referans sicakligini ayni sanmamak; bunun yaninda glide ve karisim davranisinin basinc-isi yorumunu degistirmesidir. Ilk kontrolde gazin azeotrop mu zeotrop mu oldugu, bubble/dew mantigi ve tablolarin dogru okunmasi kontrol edilir. Bunun teknik sebebi superheat ve subcool icin farkli referanslar gerekir; ayrica glide olan gazda nokta secimi hataliysa superheat ve subcool yanlis hesaplanir. En sik hata ise karisim gazi saf gaz gibi okumak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema der unterschied zwischen bubble und dew klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Fluessig- und Dampfreferenz nicht miteinander zu verwechseln; zusaetzlich gilt Temperaturgleit und Mischungsverhalten die Druck-Temperatur-Deutung veraendern. In der Erstpruefung werden azeotropes oder zeotropes Verhalten, Bubble-/Dew-Punkte und korrekte Tabellenanwendung geprueft werden. Der technische Hintergrund ist Superheat und Subcooling unterschiedliche Referenzen brauchen; ausserdem gilt bei Gleitgemischen falsche Bezugspunkte Superheat und Subcooling verfaelschen. Ein sehr haeufiger Fehler besteht darin, dass ein Gemisch wie ein reines Kaeltemittel auszuwerten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "glide nedir",
+      "dew ve bubble farki",
+      "R448A neden farkli okunur"
+    ]
+  },
+  {
+    "id": "gas_glide_superheat",
+    "tr_subject": "glide olan gazda superheat yorumu",
+    "de_subject": "die superheat-auswertung bei gleitenden gemischen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "glide olan gazda superheat yorumu",
+      "die superheat-auswertung bei gleitenden gemischen",
+      "glide superheat",
+      "superheat glide"
+    ],
+    "tr_questions": [
+      "glide olan gazda superheat yorumu nasil dusunulur",
+      "glide olan gazda superheat yorumu neye gore secilir",
+      "glide olan gazda superheat yorumu neden onemli",
+      "glide olan gazda superheat yorumu ile ilgili usta neye bakar",
+      "glide olan gazda superheat yorumu konusunda en sik hata nedir",
+      "glide olan gazda superheat yorumu kullanilirsa nelere dikkat edilir",
+      "glide olan gazda superheat yorumu ariza ve performansi nasil etkiler",
+      "glide olan gazda superheat yorumu sahada nasil yorumlanir",
+      "glide olan gazda superheat yorumu icin servis sirasi ne olur",
+      "glide olan gazda superheat yorumu hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die superheat-auswertung bei gleitenden gemischen",
+      "wonach waehlt man die superheat-auswertung bei gleitenden gemischen aus",
+      "warum ist die superheat-auswertung bei gleitenden gemischen wichtig",
+      "worauf achtet ein meister bei die superheat-auswertung bei gleitenden gemischen",
+      "was ist der haeufigste fehler bei die superheat-auswertung bei gleitenden gemischen",
+      "worauf muss man bei die superheat-auswertung bei gleitenden gemischen achten",
+      "wie beeinflusst die superheat-auswertung bei gleitenden gemischen stoerung und leistung",
+      "wie interpretiert man die superheat-auswertung bei gleitenden gemischen im feld",
+      "wie ist die service reihenfolge bei die superheat-auswertung bei gleitenden gemischen",
+      "erklaere die superheat-auswertung bei gleitenden gemischen im detail"
+    ],
+    "tr_answer": "glide olan gazda superheat yorumu konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta superheat hesaplarken dogru dew referansini kullanmak; bunun yaninda glide ve karisim davranisinin basinc-isi yorumunu degistirmesidir. Ilk kontrolde gazin azeotrop mu zeotrop mu oldugu, bubble/dew mantigi ve tablolarin dogru okunmasi kontrol edilir. Bunun teknik sebebi yanlis referans valf ayarini bile yanlis yone iter; ayrica glide olan gazda nokta secimi hataliysa superheat ve subcool yanlis hesaplanir. En sik hata ise karisim gazi saf gaz gibi okumak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die superheat-auswertung bei gleitenden gemischen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei der Superheat-Berechnung den korrekten Dew-Bezug zu nehmen; zusaetzlich gilt Temperaturgleit und Mischungsverhalten die Druck-Temperatur-Deutung veraendern. In der Erstpruefung werden azeotropes oder zeotropes Verhalten, Bubble-/Dew-Punkte und korrekte Tabellenanwendung geprueft werden. Der technische Hintergrund ist ein falscher Bezugspunkt sogar Ventileinstellungen in die falsche Richtung treiben kann; ausserdem gilt bei Gleitgemischen falsche Bezugspunkte Superheat und Subcooling verfaelschen. Ein sehr haeufiger Fehler besteht darin, dass ein Gemisch wie ein reines Kaeltemittel auszuwerten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "glide nedir",
+      "dew ve bubble farki",
+      "R448A neden farkli okunur"
+    ]
+  },
+  {
+    "id": "gas_glide_subcool",
+    "tr_subject": "glide olan gazda subcool yorumu",
+    "de_subject": "die subcool-auswertung bei gleitenden gemischen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "glide olan gazda subcool yorumu",
+      "die subcool-auswertung bei gleitenden gemischen",
+      "glide subcool",
+      "subcool glide"
+    ],
+    "tr_questions": [
+      "glide olan gazda subcool yorumu nasil dusunulur",
+      "glide olan gazda subcool yorumu neye gore secilir",
+      "glide olan gazda subcool yorumu neden onemli",
+      "glide olan gazda subcool yorumu ile ilgili usta neye bakar",
+      "glide olan gazda subcool yorumu konusunda en sik hata nedir",
+      "glide olan gazda subcool yorumu kullanilirsa nelere dikkat edilir",
+      "glide olan gazda subcool yorumu ariza ve performansi nasil etkiler",
+      "glide olan gazda subcool yorumu sahada nasil yorumlanir",
+      "glide olan gazda subcool yorumu icin servis sirasi ne olur",
+      "glide olan gazda subcool yorumu hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die subcool-auswertung bei gleitenden gemischen",
+      "wonach waehlt man die subcool-auswertung bei gleitenden gemischen aus",
+      "warum ist die subcool-auswertung bei gleitenden gemischen wichtig",
+      "worauf achtet ein meister bei die subcool-auswertung bei gleitenden gemischen",
+      "was ist der haeufigste fehler bei die subcool-auswertung bei gleitenden gemischen",
+      "worauf muss man bei die subcool-auswertung bei gleitenden gemischen achten",
+      "wie beeinflusst die subcool-auswertung bei gleitenden gemischen stoerung und leistung",
+      "wie interpretiert man die subcool-auswertung bei gleitenden gemischen im feld",
+      "wie ist die service reihenfolge bei die subcool-auswertung bei gleitenden gemischen",
+      "erklaere die subcool-auswertung bei gleitenden gemischen im detail"
+    ],
+    "tr_answer": "glide olan gazda subcool yorumu konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta subcool hesaplarken dogru bubble referansini kullanmak; bunun yaninda glide ve karisim davranisinin basinc-isi yorumunu degistirmesidir. Ilk kontrolde gazin azeotrop mu zeotrop mu oldugu, bubble/dew mantigi ve tablolarin dogru okunmasi kontrol edilir. Bunun teknik sebebi bubble yerine yanlis sicaklik secmek kondens tarafi yorumunu bozar; ayrica glide olan gazda nokta secimi hataliysa superheat ve subcool yanlis hesaplanir. En sik hata ise karisim gazi saf gaz gibi okumak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die subcool-auswertung bei gleitenden gemischen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei der Subcool-Berechnung den korrekten Bubble-Bezug zu nutzen; zusaetzlich gilt Temperaturgleit und Mischungsverhalten die Druck-Temperatur-Deutung veraendern. In der Erstpruefung werden azeotropes oder zeotropes Verhalten, Bubble-/Dew-Punkte und korrekte Tabellenanwendung geprueft werden. Der technische Hintergrund ist ein falscher Temperaturbezug die Verfluessigerdeutung verfaelscht; ausserdem gilt bei Gleitgemischen falsche Bezugspunkte Superheat und Subcooling verfaelschen. Ein sehr haeufiger Fehler besteht darin, dass ein Gemisch wie ein reines Kaeltemittel auszuwerten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "glide nedir",
+      "dew ve bubble farki",
+      "R448A neden farkli okunur"
+    ]
+  },
+  {
+    "id": "gas_glide_field_mistake",
+    "tr_subject": "karisim gazda tablo okuma hatasi",
+    "de_subject": "fehler beim tabellenlesen von mischkaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "karisim gazda tablo okuma hatasi",
+      "fehler beim tabellenlesen von mischkaeltemitteln",
+      "reading PT chart blends",
+      "tablo hatasi karisim"
+    ],
+    "tr_questions": [
+      "karisim gazda tablo okuma hatasi nasil dusunulur",
+      "karisim gazda tablo okuma hatasi neye gore secilir",
+      "karisim gazda tablo okuma hatasi neden onemli",
+      "karisim gazda tablo okuma hatasi ile ilgili usta neye bakar",
+      "karisim gazda tablo okuma hatasi konusunda en sik hata nedir",
+      "karisim gazda tablo okuma hatasi kullanilirsa nelere dikkat edilir",
+      "karisim gazda tablo okuma hatasi ariza ve performansi nasil etkiler",
+      "karisim gazda tablo okuma hatasi sahada nasil yorumlanir",
+      "karisim gazda tablo okuma hatasi icin servis sirasi ne olur",
+      "karisim gazda tablo okuma hatasi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber fehler beim tabellenlesen von mischkaeltemitteln",
+      "wonach waehlt man fehler beim tabellenlesen von mischkaeltemitteln aus",
+      "warum ist fehler beim tabellenlesen von mischkaeltemitteln wichtig",
+      "worauf achtet ein meister bei fehler beim tabellenlesen von mischkaeltemitteln",
+      "was ist der haeufigste fehler bei fehler beim tabellenlesen von mischkaeltemitteln",
+      "worauf muss man bei fehler beim tabellenlesen von mischkaeltemitteln achten",
+      "wie beeinflusst fehler beim tabellenlesen von mischkaeltemitteln stoerung und leistung",
+      "wie interpretiert man fehler beim tabellenlesen von mischkaeltemitteln im feld",
+      "wie ist die service reihenfolge bei fehler beim tabellenlesen von mischkaeltemitteln",
+      "erklaere fehler beim tabellenlesen von mischkaeltemitteln im detail"
+    ],
+    "tr_answer": "karisim gazda tablo okuma hatasi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta uygulamada dogru PT tablosu ve dogru kolonun secilmemesi; bunun yaninda glide ve karisim davranisinin basinc-isi yorumunu degistirmesidir. Ilk kontrolde gazin azeotrop mu zeotrop mu oldugu, bubble/dew mantigi ve tablolarin dogru okunmasi kontrol edilir. Bunun teknik sebebi tablo hatasi butun teshis zincirini basktan sona kaydirir; ayrica glide olan gazda nokta secimi hataliysa superheat ve subcool yanlis hesaplanir. En sik hata ise karisim gazi saf gaz gibi okumak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema fehler beim tabellenlesen von mischkaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier in der Praxis die falsche PT-Tabelle oder falsche Spalte benutzt wird; zusaetzlich gilt Temperaturgleit und Mischungsverhalten die Druck-Temperatur-Deutung veraendern. In der Erstpruefung werden azeotropes oder zeotropes Verhalten, Bubble-/Dew-Punkte und korrekte Tabellenanwendung geprueft werden. Der technische Hintergrund ist ein Tabellenfehler die gesamte Diagnosekette von Anfang an verschiebt; ausserdem gilt bei Gleitgemischen falsche Bezugspunkte Superheat und Subcooling verfaelschen. Ein sehr haeufiger Fehler besteht darin, dass ein Gemisch wie ein reines Kaeltemittel auszuwerten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "glide nedir",
+      "dew ve bubble farki",
+      "R448A neden farkli okunur"
+    ]
+  },
+  {
+    "id": "gas_family_r134a",
+    "tr_subject": "R134a karakteri",
+    "de_subject": "die charakteristik von R134a",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R134a karakteri",
+      "die charakteristik von R134a",
+      "R134a"
+    ],
+    "tr_questions": [
+      "R134a karakteri nasil dusunulur",
+      "R134a karakteri neye gore secilir",
+      "R134a karakteri neden onemli",
+      "R134a karakteri ile ilgili usta neye bakar",
+      "R134a karakteri konusunda en sik hata nedir",
+      "R134a karakteri kullanilirsa nelere dikkat edilir",
+      "R134a karakteri ariza ve performansi nasil etkiler",
+      "R134a karakteri sahada nasil yorumlanir",
+      "R134a karakteri icin servis sirasi ne olur",
+      "R134a karakteri hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die charakteristik von R134a",
+      "wonach waehlt man die charakteristik von R134a aus",
+      "warum ist die charakteristik von R134a wichtig",
+      "worauf achtet ein meister bei die charakteristik von R134a",
+      "was ist der haeufigste fehler bei die charakteristik von R134a",
+      "worauf muss man bei die charakteristik von R134a achten",
+      "wie beeinflusst die charakteristik von R134a stoerung und leistung",
+      "wie interpretiert man die charakteristik von R134a im feld",
+      "wie ist die service reihenfolge bei die charakteristik von R134a",
+      "erklaere die charakteristik von R134a im detail"
+    ],
+    "tr_answer": "R134a karakteri konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta orta sicaklik ve belirli uygulamalarda daha yumusak basinc yapisinin dusunulmesi; bunun yaninda belirli gaz ailelerinin basinc ve uygulama karakteri farkli olmasidir. Ilk kontrolde gaz ailesi, hedef sicaklik, kompresor toleransi ve saha guvenligi birlikte okunur. Bunun teknik sebebi R134a sahada farkli hissettiren bir basinc ve servis karakteri verir; ayrica R134a, R404A veya R290 ayni mantikla okunmaz. En sik hata ise bir gazin basinc karakterini digerine kopyalamak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die charakteristik von R134a klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier im Mitteltemperaturbereich sein eher ruhiges Druckniveau zu verstehen; zusaetzlich gilt verschiedene Kaeltemittelfamilien sich in Druckniveau und Anwendung deutlich unterscheiden. In der Erstpruefung werden Kaeltemittelfamilie, Zieltemperatur, Verdichtergrenzen und Feldsicherheit zusammen bewertet werden. Der technische Hintergrund ist R134a im Feld ein eigenes Druck- und Servicegefuehl erzeugt; ausserdem gilt R134a, R404A oder R290 nicht mit derselben Logik bewertet werden duerfen. Ein sehr haeufiger Fehler besteht darin, dass das Druckbild eines Kaeltemittels auf ein anderes zu uebertragen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 nasil dusunulur",
+      "R404A yerine ne kullanilir",
+      "R134a hangi sahada mantiklidir"
+    ]
+  },
+  {
+    "id": "gas_family_r404a",
+    "tr_subject": "R404A karakteri",
+    "de_subject": "die charakteristik von R404A",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R404A karakteri",
+      "die charakteristik von R404A",
+      "R404A"
+    ],
+    "tr_questions": [
+      "R404A karakteri nasil dusunulur",
+      "R404A karakteri neye gore secilir",
+      "R404A karakteri neden onemli",
+      "R404A karakteri ile ilgili usta neye bakar",
+      "R404A karakteri konusunda en sik hata nedir",
+      "R404A karakteri kullanilirsa nelere dikkat edilir",
+      "R404A karakteri ariza ve performansi nasil etkiler",
+      "R404A karakteri sahada nasil yorumlanir",
+      "R404A karakteri icin servis sirasi ne olur",
+      "R404A karakteri hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die charakteristik von R404A",
+      "wonach waehlt man die charakteristik von R404A aus",
+      "warum ist die charakteristik von R404A wichtig",
+      "worauf achtet ein meister bei die charakteristik von R404A",
+      "was ist der haeufigste fehler bei die charakteristik von R404A",
+      "worauf muss man bei die charakteristik von R404A achten",
+      "wie beeinflusst die charakteristik von R404A stoerung und leistung",
+      "wie interpretiert man die charakteristik von R404A im feld",
+      "wie ist die service reihenfolge bei die charakteristik von R404A",
+      "erklaere die charakteristik von R404A im detail"
+    ],
+    "tr_answer": "R404A karakteri konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta dusuk sicaklik tarafinda legacy ama hala referans kabul edilen bir davranis profili; bunun yaninda belirli gaz ailelerinin basinc ve uygulama karakteri farkli olmasidir. Ilk kontrolde gaz ailesi, hedef sicaklik, kompresor toleransi ve saha guvenligi birlikte okunur. Bunun teknik sebebi R404A hala bircok retrofit kararinin referans noktasi olarak dusunulur; ayrica R134a, R404A veya R290 ayni mantikla okunmaz. En sik hata ise bir gazin basinc karakterini digerine kopyalamak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die charakteristik von R404A klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier im Tiefkuehlbereich ein historisch praegendes, aber heute kritisch bewertetes Profil; zusaetzlich gilt verschiedene Kaeltemittelfamilien sich in Druckniveau und Anwendung deutlich unterscheiden. In der Erstpruefung werden Kaeltemittelfamilie, Zieltemperatur, Verdichtergrenzen und Feldsicherheit zusammen bewertet werden. Der technische Hintergrund ist R404A fuer viele Retrofit-Entscheidungen noch immer ein Vergleichspunkt ist; ausserdem gilt R134a, R404A oder R290 nicht mit derselben Logik bewertet werden duerfen. Ein sehr haeufiger Fehler besteht darin, dass das Druckbild eines Kaeltemittels auf ein anderes zu uebertragen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 nasil dusunulur",
+      "R404A yerine ne kullanilir",
+      "R134a hangi sahada mantiklidir"
+    ]
+  },
+  {
+    "id": "gas_family_r448a_r449a",
+    "tr_subject": "R448A ve R449A gibi alternatif gazlar",
+    "de_subject": "alternative kaeltemittel wie R448A und R449A",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R448A ve R449A gibi alternatif gazlar",
+      "alternative kaeltemittel wie R448A und R449A",
+      "R448A",
+      "R449A"
+    ],
+    "tr_questions": [
+      "R448A ve R449A gibi alternatif gazlar nasil dusunulur",
+      "R448A ve R449A gibi alternatif gazlar neye gore secilir",
+      "R448A ve R449A gibi alternatif gazlar neden onemli",
+      "R448A ve R449A gibi alternatif gazlar ile ilgili usta neye bakar",
+      "R448A ve R449A gibi alternatif gazlar konusunda en sik hata nedir",
+      "R448A ve R449A gibi alternatif gazlar kullanilirsa nelere dikkat edilir",
+      "R448A ve R449A gibi alternatif gazlar ariza ve performansi nasil etkiler",
+      "R448A ve R449A gibi alternatif gazlar sahada nasil yorumlanir",
+      "R448A ve R449A gibi alternatif gazlar icin servis sirasi ne olur",
+      "R448A ve R449A gibi alternatif gazlar hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber alternative kaeltemittel wie R448A und R449A",
+      "wonach waehlt man alternative kaeltemittel wie R448A und R449A aus",
+      "warum ist alternative kaeltemittel wie R448A und R449A wichtig",
+      "worauf achtet ein meister bei alternative kaeltemittel wie R448A und R449A",
+      "was ist der haeufigste fehler bei alternative kaeltemittel wie R448A und R449A",
+      "worauf muss man bei alternative kaeltemittel wie R448A und R449A achten",
+      "wie beeinflusst alternative kaeltemittel wie R448A und R449A stoerung und leistung",
+      "wie interpretiert man alternative kaeltemittel wie R448A und R449A im feld",
+      "wie ist die service reihenfolge bei alternative kaeltemittel wie R448A und R449A",
+      "erklaere alternative kaeltemittel wie R448A und R449A im detail"
+    ],
+    "tr_answer": "R448A ve R449A gibi alternatif gazlar konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta alternatif karisim gazlarin glide ve retrofit davranisini birlikte okumak; bunun yaninda belirli gaz ailelerinin basinc ve uygulama karakteri farkli olmasidir. Ilk kontrolde gaz ailesi, hedef sicaklik, kompresor toleransi ve saha guvenligi birlikte okunur. Bunun teknik sebebi alternatif gaz kararinda yalniz GWP degil saha davranisi da onemlidir; ayrica R134a, R404A veya R290 ayni mantikla okunmaz. En sik hata ise bir gazin basinc karakterini digerine kopyalamak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema alternative kaeltemittel wie R448A und R449A klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei Alternativgemischen Glide und Retrofit-Verhalten gemeinsam zu bewerten; zusaetzlich gilt verschiedene Kaeltemittelfamilien sich in Druckniveau und Anwendung deutlich unterscheiden. In der Erstpruefung werden Kaeltemittelfamilie, Zieltemperatur, Verdichtergrenzen und Feldsicherheit zusammen bewertet werden. Der technische Hintergrund ist bei Alternativen nicht nur GWP, sondern Feldverhalten entscheidend ist; ausserdem gilt R134a, R404A oder R290 nicht mit derselben Logik bewertet werden duerfen. Ein sehr haeufiger Fehler besteht darin, dass das Druckbild eines Kaeltemittels auf ein anderes zu uebertragen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 nasil dusunulur",
+      "R404A yerine ne kullanilir",
+      "R134a hangi sahada mantiklidir"
+    ]
+  },
+  {
+    "id": "gas_family_r452a",
+    "tr_subject": "R452A gibi dusuk sicaklik alternatifleri",
+    "de_subject": "tiefkuehl-alternativen wie R452A",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R452A gibi dusuk sicaklik alternatifleri",
+      "tiefkuehl-alternativen wie R452A",
+      "R452A"
+    ],
+    "tr_questions": [
+      "R452A gibi dusuk sicaklik alternatifleri nasil dusunulur",
+      "R452A gibi dusuk sicaklik alternatifleri neye gore secilir",
+      "R452A gibi dusuk sicaklik alternatifleri neden onemli",
+      "R452A gibi dusuk sicaklik alternatifleri ile ilgili usta neye bakar",
+      "R452A gibi dusuk sicaklik alternatifleri konusunda en sik hata nedir",
+      "R452A gibi dusuk sicaklik alternatifleri kullanilirsa nelere dikkat edilir",
+      "R452A gibi dusuk sicaklik alternatifleri ariza ve performansi nasil etkiler",
+      "R452A gibi dusuk sicaklik alternatifleri sahada nasil yorumlanir",
+      "R452A gibi dusuk sicaklik alternatifleri icin servis sirasi ne olur",
+      "R452A gibi dusuk sicaklik alternatifleri hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber tiefkuehl-alternativen wie R452A",
+      "wonach waehlt man tiefkuehl-alternativen wie R452A aus",
+      "warum ist tiefkuehl-alternativen wie R452A wichtig",
+      "worauf achtet ein meister bei tiefkuehl-alternativen wie R452A",
+      "was ist der haeufigste fehler bei tiefkuehl-alternativen wie R452A",
+      "worauf muss man bei tiefkuehl-alternativen wie R452A achten",
+      "wie beeinflusst tiefkuehl-alternativen wie R452A stoerung und leistung",
+      "wie interpretiert man tiefkuehl-alternativen wie R452A im feld",
+      "wie ist die service reihenfolge bei tiefkuehl-alternativen wie R452A",
+      "erklaere tiefkuehl-alternativen wie R452A im detail"
+    ],
+    "tr_answer": "R452A gibi dusuk sicaklik alternatifleri konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta negatif depo karakteri icin secilen alternatifin basinc ve kapasite dengesini okumak; bunun yaninda belirli gaz ailelerinin basinc ve uygulama karakteri farkli olmasidir. Ilk kontrolde gaz ailesi, hedef sicaklik, kompresor toleransi ve saha guvenligi birlikte okunur. Bunun teknik sebebi dusuk sicaklikta alternatif gaz secimi kompresor stresiyle dogrudan baglidir; ayrica R134a, R404A veya R290 ayni mantikla okunmaz. En sik hata ise bir gazin basinc karakterini digerine kopyalamak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema tiefkuehl-alternativen wie R452A klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei Tiefkuehlalternativen das Zusammenspiel von Druck und Leistung richtig einzuordnen; zusaetzlich gilt verschiedene Kaeltemittelfamilien sich in Druckniveau und Anwendung deutlich unterscheiden. In der Erstpruefung werden Kaeltemittelfamilie, Zieltemperatur, Verdichtergrenzen und Feldsicherheit zusammen bewertet werden. Der technische Hintergrund ist im Tiefkuehlbereich die Gaswahl direkt mit Verdichterstress verbunden ist; ausserdem gilt R134a, R404A oder R290 nicht mit derselben Logik bewertet werden duerfen. Ein sehr haeufiger Fehler besteht darin, dass das Druckbild eines Kaeltemittels auf ein anderes zu uebertragen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 nasil dusunulur",
+      "R404A yerine ne kullanilir",
+      "R134a hangi sahada mantiklidir"
+    ]
+  },
+  {
+    "id": "gas_family_r290",
+    "tr_subject": "R290 karakteri",
+    "de_subject": "die charakteristik von R290",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R290 karakteri",
+      "die charakteristik von R290",
+      "R290",
+      "propan"
+    ],
+    "tr_questions": [
+      "R290 karakteri nasil dusunulur",
+      "R290 karakteri neye gore secilir",
+      "R290 karakteri neden onemli",
+      "R290 karakteri ile ilgili usta neye bakar",
+      "R290 karakteri konusunda en sik hata nedir",
+      "R290 karakteri kullanilirsa nelere dikkat edilir",
+      "R290 karakteri ariza ve performansi nasil etkiler",
+      "R290 karakteri sahada nasil yorumlanir",
+      "R290 karakteri icin servis sirasi ne olur",
+      "R290 karakteri hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die charakteristik von R290",
+      "wonach waehlt man die charakteristik von R290 aus",
+      "warum ist die charakteristik von R290 wichtig",
+      "worauf achtet ein meister bei die charakteristik von R290",
+      "was ist der haeufigste fehler bei die charakteristik von R290",
+      "worauf muss man bei die charakteristik von R290 achten",
+      "wie beeinflusst die charakteristik von R290 stoerung und leistung",
+      "wie interpretiert man die charakteristik von R290 im feld",
+      "wie ist die service reihenfolge bei die charakteristik von R290",
+      "erklaere die charakteristik von R290 im detail"
+    ],
+    "tr_answer": "R290 karakteri konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yuksek yanicilikla birlikte guzel termodinamik davranisi birlikte dusunmek; bunun yaninda belirli gaz ailelerinin basinc ve uygulama karakteri farkli olmasidir. Ilk kontrolde gaz ailesi, hedef sicaklik, kompresor toleransi ve saha guvenligi birlikte okunur. Bunun teknik sebebi R290 teknik olarak guclu ama servis disiplini isteyen bir gazdir; ayrica R134a, R404A veya R290 ayni mantikla okunmaz. En sik hata ise bir gazin basinc karakterini digerine kopyalamak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die charakteristik von R290 klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier sehr gute Thermodynamik zusammen mit hoher Entflammbarkeit gemeinsam zu bewerten; zusaetzlich gilt verschiedene Kaeltemittelfamilien sich in Druckniveau und Anwendung deutlich unterscheiden. In der Erstpruefung werden Kaeltemittelfamilie, Zieltemperatur, Verdichtergrenzen und Feldsicherheit zusammen bewertet werden. Der technische Hintergrund ist R290 technisch stark, aber im Service sehr disziplinfordernd ist; ausserdem gilt R134a, R404A oder R290 nicht mit derselben Logik bewertet werden duerfen. Ein sehr haeufiger Fehler besteht darin, dass das Druckbild eines Kaeltemittels auf ein anderes zu uebertragen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 nasil dusunulur",
+      "R404A yerine ne kullanilir",
+      "R134a hangi sahada mantiklidir"
+    ]
+  },
+  {
+    "id": "gas_retrofit_r404a_to_r448a",
+    "tr_subject": "R404A sistemini R448A ya cevirme mantigi",
+    "de_subject": "die logik beim retrofit von R404A auf R448A",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R404A sistemini R448A ya cevirme mantigi",
+      "die logik beim retrofit von R404A auf R448A",
+      "R404A to R448A retrofit"
+    ],
+    "tr_questions": [
+      "R404A sistemini R448A ya cevirme mantigi nasil dusunulur",
+      "R404A sistemini R448A ya cevirme mantigi neye gore secilir",
+      "R404A sistemini R448A ya cevirme mantigi neden onemli",
+      "R404A sistemini R448A ya cevirme mantigi ile ilgili usta neye bakar",
+      "R404A sistemini R448A ya cevirme mantigi konusunda en sik hata nedir",
+      "R404A sistemini R448A ya cevirme mantigi kullanilirsa nelere dikkat edilir",
+      "R404A sistemini R448A ya cevirme mantigi ariza ve performansi nasil etkiler",
+      "R404A sistemini R448A ya cevirme mantigi sahada nasil yorumlanir",
+      "R404A sistemini R448A ya cevirme mantigi icin servis sirasi ne olur",
+      "R404A sistemini R448A ya cevirme mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik beim retrofit von R404A auf R448A",
+      "wonach waehlt man die logik beim retrofit von R404A auf R448A aus",
+      "warum ist die logik beim retrofit von R404A auf R448A wichtig",
+      "worauf achtet ein meister bei die logik beim retrofit von R404A auf R448A",
+      "was ist der haeufigste fehler bei die logik beim retrofit von R404A auf R448A",
+      "worauf muss man bei die logik beim retrofit von R404A auf R448A achten",
+      "wie beeinflusst die logik beim retrofit von R404A auf R448A stoerung und leistung",
+      "wie interpretiert man die logik beim retrofit von R404A auf R448A im feld",
+      "wie ist die service reihenfolge bei die logik beim retrofit von R404A auf R448A",
+      "erklaere die logik beim retrofit von R404A auf R448A im detail"
+    ],
+    "tr_answer": "R404A sistemini R448A ya cevirme mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta eski dusuk sicaklik sistemini yeni glide karakterine gore yeniden dusunmek; bunun yaninda retrofitle gelen degisikliklerin sadece gaz degisimiyle sinirli olmamasidir. Ilk kontrolde kompresor, yag, valf, etiket, ayar ve saha kosullari bir paket olarak degerlendirilir. Bunun teknik sebebi retrofit sadece sarj degil valf ve yag okumasini da etkiler; ayrica yerine gaz koymak kolay, ama sistemi saglikli geri vermek ayridir. En sik hata ise retrofitte yalniz basinca bakip gerisini ayni birakmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik beim retrofit von R404A auf R448A klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier ein altes Tiefkuehlsystem an ein neues Gleitgemisch anzupassen; zusaetzlich gilt ein Retrofit weit mehr als nur den Kaeltemitteltausch umfasst. In der Erstpruefung werden Verdichter, Oel, Ventil, Kennzeichnung, Parameter und Feldbedingungen als Gesamtpaket bewertet werden. Der technische Hintergrund ist ein Retrofit nicht nur die Fuellung, sondern auch Ventil- und Oelthemen betrifft; ausserdem gilt ein anderes Kaeltemittel einzufuellen ist leicht, eine saubere Gesamtanlage zurueckzugeben nicht. Ein sehr haeufiger Fehler besteht darin, dass beim Retrofit nur den Druck anzusehen und den Rest unveraendert zu lassen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "retrofitte yag neden onemli",
+      "etiket neden guncellenmeli",
+      "valf ayari tekrar neden bakilir"
+    ]
+  },
+  {
+    "id": "gas_retrofit_r404a_to_r449a",
+    "tr_subject": "R404A sistemini R449A ya cevirme mantigi",
+    "de_subject": "die logik beim retrofit von R404A auf R449A",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R404A sistemini R449A ya cevirme mantigi",
+      "die logik beim retrofit von R404A auf R449A",
+      "R404A to R449A retrofit"
+    ],
+    "tr_questions": [
+      "R404A sistemini R449A ya cevirme mantigi nasil dusunulur",
+      "R404A sistemini R449A ya cevirme mantigi neye gore secilir",
+      "R404A sistemini R449A ya cevirme mantigi neden onemli",
+      "R404A sistemini R449A ya cevirme mantigi ile ilgili usta neye bakar",
+      "R404A sistemini R449A ya cevirme mantigi konusunda en sik hata nedir",
+      "R404A sistemini R449A ya cevirme mantigi kullanilirsa nelere dikkat edilir",
+      "R404A sistemini R449A ya cevirme mantigi ariza ve performansi nasil etkiler",
+      "R404A sistemini R449A ya cevirme mantigi sahada nasil yorumlanir",
+      "R404A sistemini R449A ya cevirme mantigi icin servis sirasi ne olur",
+      "R404A sistemini R449A ya cevirme mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik beim retrofit von R404A auf R449A",
+      "wonach waehlt man die logik beim retrofit von R404A auf R449A aus",
+      "warum ist die logik beim retrofit von R404A auf R449A wichtig",
+      "worauf achtet ein meister bei die logik beim retrofit von R404A auf R449A",
+      "was ist der haeufigste fehler bei die logik beim retrofit von R404A auf R449A",
+      "worauf muss man bei die logik beim retrofit von R404A auf R449A achten",
+      "wie beeinflusst die logik beim retrofit von R404A auf R449A stoerung und leistung",
+      "wie interpretiert man die logik beim retrofit von R404A auf R449A im feld",
+      "wie ist die service reihenfolge bei die logik beim retrofit von R404A auf R449A",
+      "erklaere die logik beim retrofit von R404A auf R449A im detail"
+    ],
+    "tr_answer": "R404A sistemini R449A ya cevirme mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta alternatif secenekte saha davranisi, glide ve ayar tekrarini birlikte planlamak; bunun yaninda retrofitle gelen degisikliklerin sadece gaz degisimiyle sinirli olmamasidir. Ilk kontrolde kompresor, yag, valf, etiket, ayar ve saha kosullari bir paket olarak degerlendirilir. Bunun teknik sebebi benzer gorunen alternatiflerin saha hissi ayni olmayabilir; ayrica yerine gaz koymak kolay, ama sistemi saglikli geri vermek ayridir. En sik hata ise retrofitte yalniz basinca bakip gerisini ayni birakmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik beim retrofit von R404A auf R449A klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei dieser Alternative Feldverhalten, Glide und Neueinstellung gemeinsam zu planen; zusaetzlich gilt ein Retrofit weit mehr als nur den Kaeltemitteltausch umfasst. In der Erstpruefung werden Verdichter, Oel, Ventil, Kennzeichnung, Parameter und Feldbedingungen als Gesamtpaket bewertet werden. Der technische Hintergrund ist auch aehnliche Alternativen im Feld unterschiedlich wirken koennen; ausserdem gilt ein anderes Kaeltemittel einzufuellen ist leicht, eine saubere Gesamtanlage zurueckzugeben nicht. Ein sehr haeufiger Fehler besteht darin, dass beim Retrofit nur den Druck anzusehen und den Rest unveraendert zu lassen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "retrofitte yag neden onemli",
+      "etiket neden guncellenmeli",
+      "valf ayari tekrar neden bakilir"
+    ]
+  },
+  {
+    "id": "gas_retrofit_r22_replacement_logic",
+    "tr_subject": "eski R22 mantikli sistemde yerine gaz secimi",
+    "de_subject": "die ersatzlogik fuer aeltere R22-systeme",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "eski R22 mantikli sistemde yerine gaz secimi",
+      "die ersatzlogik fuer aeltere R22-systeme",
+      "R22 replacement",
+      "R22 yerine gaz"
+    ],
+    "tr_questions": [
+      "eski R22 mantikli sistemde yerine gaz secimi nasil dusunulur",
+      "eski R22 mantikli sistemde yerine gaz secimi neye gore secilir",
+      "eski R22 mantikli sistemde yerine gaz secimi neden onemli",
+      "eski R22 mantikli sistemde yerine gaz secimi ile ilgili usta neye bakar",
+      "eski R22 mantikli sistemde yerine gaz secimi konusunda en sik hata nedir",
+      "eski R22 mantikli sistemde yerine gaz secimi kullanilirsa nelere dikkat edilir",
+      "eski R22 mantikli sistemde yerine gaz secimi ariza ve performansi nasil etkiler",
+      "eski R22 mantikli sistemde yerine gaz secimi sahada nasil yorumlanir",
+      "eski R22 mantikli sistemde yerine gaz secimi icin servis sirasi ne olur",
+      "eski R22 mantikli sistemde yerine gaz secimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die ersatzlogik fuer aeltere R22-systeme",
+      "wonach waehlt man die ersatzlogik fuer aeltere R22-systeme aus",
+      "warum ist die ersatzlogik fuer aeltere R22-systeme wichtig",
+      "worauf achtet ein meister bei die ersatzlogik fuer aeltere R22-systeme",
+      "was ist der haeufigste fehler bei die ersatzlogik fuer aeltere R22-systeme",
+      "worauf muss man bei die ersatzlogik fuer aeltere R22-systeme achten",
+      "wie beeinflusst die ersatzlogik fuer aeltere R22-systeme stoerung und leistung",
+      "wie interpretiert man die ersatzlogik fuer aeltere R22-systeme im feld",
+      "wie ist die service reihenfolge bei die ersatzlogik fuer aeltere R22-systeme",
+      "erklaere die ersatzlogik fuer aeltere R22-systeme im detail"
+    ],
+    "tr_answer": "eski R22 mantikli sistemde yerine gaz secimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta eski sistemlerin yag ve komponent sinirlarini dikkate alarak gecis yapmak; bunun yaninda retrofitle gelen degisikliklerin sadece gaz degisimiyle sinirli olmamasidir. Ilk kontrolde kompresor, yag, valf, etiket, ayar ve saha kosullari bir paket olarak degerlendirilir. Bunun teknik sebebi yasli sistemler kagit uzerindeki uyumu sahada kaldirmayabilir; ayrica yerine gaz koymak kolay, ama sistemi saglikli geri vermek ayridir. En sik hata ise retrofitte yalniz basinca bakip gerisini ayni birakmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die ersatzlogik fuer aeltere R22-systeme klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei alten Anlagen die Oel- und Bauteilgrenzen besonders ernst zu nehmen; zusaetzlich gilt ein Retrofit weit mehr als nur den Kaeltemitteltausch umfasst. In der Erstpruefung werden Verdichter, Oel, Ventil, Kennzeichnung, Parameter und Feldbedingungen als Gesamtpaket bewertet werden. Der technische Hintergrund ist alte Systeme selbst bei scheinbarer Datenblattnahe im Feld empfindlich reagieren koennen; ausserdem gilt ein anderes Kaeltemittel einzufuellen ist leicht, eine saubere Gesamtanlage zurueckzugeben nicht. Ein sehr haeufiger Fehler besteht darin, dass beim Retrofit nur den Druck anzusehen und den Rest unveraendert zu lassen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "retrofitte yag neden onemli",
+      "etiket neden guncellenmeli",
+      "valf ayari tekrar neden bakilir"
+    ]
+  },
+  {
+    "id": "gas_retrofit_labeling_and_documentation",
+    "tr_subject": "retrofitte etiket ve dokumantasyon guncelleme",
+    "de_subject": "kennzeichnung und dokumentation beim retrofit",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "retrofitte etiket ve dokumantasyon guncelleme",
+      "kennzeichnung und dokumentation beim retrofit",
+      "retrofit labeling",
+      "dokumantasyon retrofit"
+    ],
+    "tr_questions": [
+      "retrofitte etiket ve dokumantasyon guncelleme nasil dusunulur",
+      "retrofitte etiket ve dokumantasyon guncelleme neye gore secilir",
+      "retrofitte etiket ve dokumantasyon guncelleme neden onemli",
+      "retrofitte etiket ve dokumantasyon guncelleme ile ilgili usta neye bakar",
+      "retrofitte etiket ve dokumantasyon guncelleme konusunda en sik hata nedir",
+      "retrofitte etiket ve dokumantasyon guncelleme kullanilirsa nelere dikkat edilir",
+      "retrofitte etiket ve dokumantasyon guncelleme ariza ve performansi nasil etkiler",
+      "retrofitte etiket ve dokumantasyon guncelleme sahada nasil yorumlanir",
+      "retrofitte etiket ve dokumantasyon guncelleme icin servis sirasi ne olur",
+      "retrofitte etiket ve dokumantasyon guncelleme hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber kennzeichnung und dokumentation beim retrofit",
+      "wonach waehlt man kennzeichnung und dokumentation beim retrofit aus",
+      "warum ist kennzeichnung und dokumentation beim retrofit wichtig",
+      "worauf achtet ein meister bei kennzeichnung und dokumentation beim retrofit",
+      "was ist der haeufigste fehler bei kennzeichnung und dokumentation beim retrofit",
+      "worauf muss man bei kennzeichnung und dokumentation beim retrofit achten",
+      "wie beeinflusst kennzeichnung und dokumentation beim retrofit stoerung und leistung",
+      "wie interpretiert man kennzeichnung und dokumentation beim retrofit im feld",
+      "wie ist die service reihenfolge bei kennzeichnung und dokumentation beim retrofit",
+      "erklaere kennzeichnung und dokumentation beim retrofit im detail"
+    ],
+    "tr_answer": "retrofitte etiket ve dokumantasyon guncelleme konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta sistemin artik hangi gaz ve hangi sarjla calistiginin net kayda alinmasi; bunun yaninda retrofitle gelen degisikliklerin sadece gaz degisimiyle sinirli olmamasidir. Ilk kontrolde kompresor, yag, valf, etiket, ayar ve saha kosullari bir paket olarak degerlendirilir. Bunun teknik sebebi etiket guncellenmezse sonraki servis teshisi yanlis temelden baslar; ayrica yerine gaz koymak kolay, ama sistemi saglikli geri vermek ayridir. En sik hata ise retrofitte yalniz basinca bakip gerisini ayni birakmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema kennzeichnung und dokumentation beim retrofit klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier klar zu dokumentieren, welches Kaeltemittel und welche Fuellung jetzt in der Anlage ist; zusaetzlich gilt ein Retrofit weit mehr als nur den Kaeltemitteltausch umfasst. In der Erstpruefung werden Verdichter, Oel, Ventil, Kennzeichnung, Parameter und Feldbedingungen als Gesamtpaket bewertet werden. Der technische Hintergrund ist ohne neue Kennzeichnung der naechste Service auf falschen Annahmen startet; ausserdem gilt ein anderes Kaeltemittel einzufuellen ist leicht, eine saubere Gesamtanlage zurueckzugeben nicht. Ein sehr haeufiger Fehler besteht darin, dass beim Retrofit nur den Druck anzusehen und den Rest unveraendert zu lassen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "retrofitte yag neden onemli",
+      "etiket neden guncellenmeli",
+      "valf ayari tekrar neden bakilir"
+    ]
+  },
+  {
+    "id": "gas_retrofit_recommissioning",
+    "tr_subject": "retrofit sonrasi devreye alma mantigi",
+    "de_subject": "die wiederinbetriebnahme nach einem retrofit",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "retrofit sonrasi devreye alma mantigi",
+      "die wiederinbetriebnahme nach einem retrofit",
+      "retrofit recommissioning",
+      "retrofit devreye alma"
+    ],
+    "tr_questions": [
+      "retrofit sonrasi devreye alma mantigi nasil dusunulur",
+      "retrofit sonrasi devreye alma mantigi neye gore secilir",
+      "retrofit sonrasi devreye alma mantigi neden onemli",
+      "retrofit sonrasi devreye alma mantigi ile ilgili usta neye bakar",
+      "retrofit sonrasi devreye alma mantigi konusunda en sik hata nedir",
+      "retrofit sonrasi devreye alma mantigi kullanilirsa nelere dikkat edilir",
+      "retrofit sonrasi devreye alma mantigi ariza ve performansi nasil etkiler",
+      "retrofit sonrasi devreye alma mantigi sahada nasil yorumlanir",
+      "retrofit sonrasi devreye alma mantigi icin servis sirasi ne olur",
+      "retrofit sonrasi devreye alma mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die wiederinbetriebnahme nach einem retrofit",
+      "wonach waehlt man die wiederinbetriebnahme nach einem retrofit aus",
+      "warum ist die wiederinbetriebnahme nach einem retrofit wichtig",
+      "worauf achtet ein meister bei die wiederinbetriebnahme nach einem retrofit",
+      "was ist der haeufigste fehler bei die wiederinbetriebnahme nach einem retrofit",
+      "worauf muss man bei die wiederinbetriebnahme nach einem retrofit achten",
+      "wie beeinflusst die wiederinbetriebnahme nach einem retrofit stoerung und leistung",
+      "wie interpretiert man die wiederinbetriebnahme nach einem retrofit im feld",
+      "wie ist die service reihenfolge bei die wiederinbetriebnahme nach einem retrofit",
+      "erklaere die wiederinbetriebnahme nach einem retrofit im detail"
+    ],
+    "tr_answer": "retrofit sonrasi devreye alma mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yeni gazla superheat, subcool ve emniyetleri tekrar dogrulamak; bunun yaninda retrofitle gelen degisikliklerin sadece gaz degisimiyle sinirli olmamasidir. Ilk kontrolde kompresor, yag, valf, etiket, ayar ve saha kosullari bir paket olarak degerlendirilir. Bunun teknik sebebi retrofitten sonra eski ayarlarla devam etmek ciddi hata dogurabilir; ayrica yerine gaz koymak kolay, ama sistemi saglikli geri vermek ayridir. En sik hata ise retrofitte yalniz basinca bakip gerisini ayni birakmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die wiederinbetriebnahme nach einem retrofit klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier mit dem neuen Kaeltemittel Superheat, Subcooling und Schutze neu zu verifizieren; zusaetzlich gilt ein Retrofit weit mehr als nur den Kaeltemitteltausch umfasst. In der Erstpruefung werden Verdichter, Oel, Ventil, Kennzeichnung, Parameter und Feldbedingungen als Gesamtpaket bewertet werden. Der technische Hintergrund ist nach einem Retrofit alte Einstellungen unveraendert zu lassen ein schwerer Fehler sein kann; ausserdem gilt ein anderes Kaeltemittel einzufuellen ist leicht, eine saubere Gesamtanlage zurueckzugeben nicht. Ein sehr haeufiger Fehler besteht darin, dass beim Retrofit nur den Druck anzusehen und den Rest unveraendert zu lassen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "retrofitte yag neden onemli",
+      "etiket neden guncellenmeli",
+      "valf ayari tekrar neden bakilir"
+    ]
+  },
+  {
+    "id": "gas_pressure_saturation",
+    "tr_subject": "basinc ve saturation sicakligi iliskisi",
+    "de_subject": "der zusammenhang von druck und saettigungstemperatur",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "basinc ve saturation sicakligi iliskisi",
+      "der zusammenhang von druck und saettigungstemperatur",
+      "saturation temperature",
+      "saturasyon sicakligi"
+    ],
+    "tr_questions": [
+      "basinc ve saturation sicakligi iliskisi nasil dusunulur",
+      "basinc ve saturation sicakligi iliskisi neye gore secilir",
+      "basinc ve saturation sicakligi iliskisi neden onemli",
+      "basinc ve saturation sicakligi iliskisi ile ilgili usta neye bakar",
+      "basinc ve saturation sicakligi iliskisi konusunda en sik hata nedir",
+      "basinc ve saturation sicakligi iliskisi kullanilirsa nelere dikkat edilir",
+      "basinc ve saturation sicakligi iliskisi ariza ve performansi nasil etkiler",
+      "basinc ve saturation sicakligi iliskisi sahada nasil yorumlanir",
+      "basinc ve saturation sicakligi iliskisi icin servis sirasi ne olur",
+      "basinc ve saturation sicakligi iliskisi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber der zusammenhang von druck und saettigungstemperatur",
+      "wonach waehlt man der zusammenhang von druck und saettigungstemperatur aus",
+      "warum ist der zusammenhang von druck und saettigungstemperatur wichtig",
+      "worauf achtet ein meister bei der zusammenhang von druck und saettigungstemperatur",
+      "was ist der haeufigste fehler bei der zusammenhang von druck und saettigungstemperatur",
+      "worauf muss man bei der zusammenhang von druck und saettigungstemperatur achten",
+      "wie beeinflusst der zusammenhang von druck und saettigungstemperatur stoerung und leistung",
+      "wie interpretiert man der zusammenhang von druck und saettigungstemperatur im feld",
+      "wie ist die service reihenfolge bei der zusammenhang von druck und saettigungstemperatur",
+      "erklaere der zusammenhang von druck und saettigungstemperatur im detail"
+    ],
+    "tr_answer": "basinc ve saturation sicakligi iliskisi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta olculen basinctan ilgili gaz icin saturation sicakligini dogru okumak; bunun yaninda dogru basinc-isi yorumunun gaza gore degismesidir. Ilk kontrolde gaz tipi, PT tablo mantigi, ortam kosulu ve olculen hat sicakliklari birlikte okunur. Bunun teknik sebebi saturation mantigi olmadan superheat ve subcool kurulamaz; ayrica her basinc ayni anlama gelmez; gazi bilmeden yoruma gidilmez. En sik hata ise baska gazin tablosuyla yorum yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema der zusammenhang von druck und saettigungstemperatur klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier aus dem gemessenen Druck die passende Saettigungstemperatur des Kaeltemittels abzuleiten; zusaetzlich gilt die Druck-Temperatur-Auswertung je nach Kaeltemittel anders funktioniert. In der Erstpruefung werden Kaeltemitteltyp, PT-Tabelle, Umgebungsbedingung und Leitungswerte zusammen ausgewertet werden. Der technische Hintergrund ist ohne Saettigungslogik weder Superheat noch Subcooling sauber bestimmt werden kann; ausserdem gilt derselbe Druck ohne Kenntnis des Kaeltemittels nichts Sinnvolles bedeutet. Ein sehr haeufiger Fehler besteht darin, dass mit der Tabelle eines anderen Kaeltemittels zu rechnen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "saturation nedir",
+      "superheat nasil hesaplanir",
+      "subcool nasil hesaplanir"
+    ]
+  },
+  {
+    "id": "gas_pressure_superheat_logic",
+    "tr_subject": "superheat mantigi gaza gore nasil okunur",
+    "de_subject": "wie superheat kaeltemittelbezogen gelesen wird",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "superheat mantigi gaza gore nasil okunur",
+      "wie superheat kaeltemittelbezogen gelesen wird",
+      "superheat logic",
+      "superheat gaz"
+    ],
+    "tr_questions": [
+      "superheat mantigi gaza gore nasil okunur nasil dusunulur",
+      "superheat mantigi gaza gore nasil okunur neye gore secilir",
+      "superheat mantigi gaza gore nasil okunur neden onemli",
+      "superheat mantigi gaza gore nasil okunur ile ilgili usta neye bakar",
+      "superheat mantigi gaza gore nasil okunur konusunda en sik hata nedir",
+      "superheat mantigi gaza gore nasil okunur kullanilirsa nelere dikkat edilir",
+      "superheat mantigi gaza gore nasil okunur ariza ve performansi nasil etkiler",
+      "superheat mantigi gaza gore nasil okunur sahada nasil yorumlanir",
+      "superheat mantigi gaza gore nasil okunur icin servis sirasi ne olur",
+      "superheat mantigi gaza gore nasil okunur hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber wie superheat kaeltemittelbezogen gelesen wird",
+      "wonach waehlt man wie superheat kaeltemittelbezogen gelesen wird aus",
+      "warum ist wie superheat kaeltemittelbezogen gelesen wird wichtig",
+      "worauf achtet ein meister bei wie superheat kaeltemittelbezogen gelesen wird",
+      "was ist der haeufigste fehler bei wie superheat kaeltemittelbezogen gelesen wird",
+      "worauf muss man bei wie superheat kaeltemittelbezogen gelesen wird achten",
+      "wie beeinflusst wie superheat kaeltemittelbezogen gelesen wird stoerung und leistung",
+      "wie interpretiert man wie superheat kaeltemittelbezogen gelesen wird im feld",
+      "wie ist die service reihenfolge bei wie superheat kaeltemittelbezogen gelesen wird",
+      "erklaere wie superheat kaeltemittelbezogen gelesen wird im detail"
+    ],
+    "tr_answer": "superheat mantigi gaza gore nasil okunur konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta gaz ve tablo mantigina gore superheatin dogru referansla hesaplanmasi; bunun yaninda dogru basinc-isi yorumunun gaza gore degismesidir. Ilk kontrolde gaz tipi, PT tablo mantigi, ortam kosulu ve olculen hat sicakliklari birlikte okunur. Bunun teknik sebebi yanlis superheat kompresor ve valf kararini bozar; ayrica her basinc ayni anlama gelmez; gazi bilmeden yoruma gidilmez. En sik hata ise baska gazin tablosuyla yorum yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema wie superheat kaeltemittelbezogen gelesen wird klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Superheat mit dem korrekten Kaeltemittel- und Tabellenbezug zu berechnen; zusaetzlich gilt die Druck-Temperatur-Auswertung je nach Kaeltemittel anders funktioniert. In der Erstpruefung werden Kaeltemitteltyp, PT-Tabelle, Umgebungsbedingung und Leitungswerte zusammen ausgewertet werden. Der technische Hintergrund ist ein falsch gelesener Superheat Ventil- und Verdichterentscheidungen verfaelscht; ausserdem gilt derselbe Druck ohne Kenntnis des Kaeltemittels nichts Sinnvolles bedeutet. Ein sehr haeufiger Fehler besteht darin, dass mit der Tabelle eines anderen Kaeltemittels zu rechnen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "saturation nedir",
+      "superheat nasil hesaplanir",
+      "subcool nasil hesaplanir"
+    ]
+  },
+  {
+    "id": "gas_pressure_subcool_logic",
+    "tr_subject": "subcool mantigi gaza gore nasil okunur",
+    "de_subject": "wie subcool kaeltemittelbezogen gelesen wird",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "subcool mantigi gaza gore nasil okunur",
+      "wie subcool kaeltemittelbezogen gelesen wird",
+      "subcool logic",
+      "subcool gaz"
+    ],
+    "tr_questions": [
+      "subcool mantigi gaza gore nasil okunur nasil dusunulur",
+      "subcool mantigi gaza gore nasil okunur neye gore secilir",
+      "subcool mantigi gaza gore nasil okunur neden onemli",
+      "subcool mantigi gaza gore nasil okunur ile ilgili usta neye bakar",
+      "subcool mantigi gaza gore nasil okunur konusunda en sik hata nedir",
+      "subcool mantigi gaza gore nasil okunur kullanilirsa nelere dikkat edilir",
+      "subcool mantigi gaza gore nasil okunur ariza ve performansi nasil etkiler",
+      "subcool mantigi gaza gore nasil okunur sahada nasil yorumlanir",
+      "subcool mantigi gaza gore nasil okunur icin servis sirasi ne olur",
+      "subcool mantigi gaza gore nasil okunur hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber wie subcool kaeltemittelbezogen gelesen wird",
+      "wonach waehlt man wie subcool kaeltemittelbezogen gelesen wird aus",
+      "warum ist wie subcool kaeltemittelbezogen gelesen wird wichtig",
+      "worauf achtet ein meister bei wie subcool kaeltemittelbezogen gelesen wird",
+      "was ist der haeufigste fehler bei wie subcool kaeltemittelbezogen gelesen wird",
+      "worauf muss man bei wie subcool kaeltemittelbezogen gelesen wird achten",
+      "wie beeinflusst wie subcool kaeltemittelbezogen gelesen wird stoerung und leistung",
+      "wie interpretiert man wie subcool kaeltemittelbezogen gelesen wird im feld",
+      "wie ist die service reihenfolge bei wie subcool kaeltemittelbezogen gelesen wird",
+      "erklaere wie subcool kaeltemittelbezogen gelesen wird im detail"
+    ],
+    "tr_answer": "subcool mantigi gaza gore nasil okunur konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta gaz tipine gore kondens tarafinda gercek subcool yorumunu dogru kurmak; bunun yaninda dogru basinc-isi yorumunun gaza gore degismesidir. Ilk kontrolde gaz tipi, PT tablo mantigi, ortam kosulu ve olculen hat sicakliklari birlikte okunur. Bunun teknik sebebi subcool yanlis okunursa sarj ve likit hatti yorumu kayar; ayrica her basinc ayni anlama gelmez; gazi bilmeden yoruma gidilmez. En sik hata ise baska gazin tablosuyla yorum yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema wie subcool kaeltemittelbezogen gelesen wird klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier je nach Kaeltemittel auf der Verfluessigerseite echtes Subcooling sauber zu lesen; zusaetzlich gilt die Druck-Temperatur-Auswertung je nach Kaeltemittel anders funktioniert. In der Erstpruefung werden Kaeltemitteltyp, PT-Tabelle, Umgebungsbedingung und Leitungswerte zusammen ausgewertet werden. Der technische Hintergrund ist falsch interpretiertes Subcooling Fuellung und Fluessigkeitsseite verfaelscht; ausserdem gilt derselbe Druck ohne Kenntnis des Kaeltemittels nichts Sinnvolles bedeutet. Ein sehr haeufiger Fehler besteht darin, dass mit der Tabelle eines anderen Kaeltemittels zu rechnen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "saturation nedir",
+      "superheat nasil hesaplanir",
+      "subcool nasil hesaplanir"
+    ]
+  },
+  {
+    "id": "gas_pressure_condensing_level",
+    "tr_subject": "kondensasyon basinci gaz secimiyle nasil degisir",
+    "de_subject": "wie sich das verfluessigungsniveau je nach kaeltemittel aendert",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "kondensasyon basinci gaz secimiyle nasil degisir",
+      "wie sich das verfluessigungsniveau je nach kaeltemittel aendert",
+      "condensing pressure by refrigerant",
+      "kondensasyon seviyesi"
+    ],
+    "tr_questions": [
+      "kondensasyon basinci gaz secimiyle nasil degisir nasil dusunulur",
+      "kondensasyon basinci gaz secimiyle nasil degisir neye gore secilir",
+      "kondensasyon basinci gaz secimiyle nasil degisir neden onemli",
+      "kondensasyon basinci gaz secimiyle nasil degisir ile ilgili usta neye bakar",
+      "kondensasyon basinci gaz secimiyle nasil degisir konusunda en sik hata nedir",
+      "kondensasyon basinci gaz secimiyle nasil degisir kullanilirsa nelere dikkat edilir",
+      "kondensasyon basinci gaz secimiyle nasil degisir ariza ve performansi nasil etkiler",
+      "kondensasyon basinci gaz secimiyle nasil degisir sahada nasil yorumlanir",
+      "kondensasyon basinci gaz secimiyle nasil degisir icin servis sirasi ne olur",
+      "kondensasyon basinci gaz secimiyle nasil degisir hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber wie sich das verfluessigungsniveau je nach kaeltemittel aendert",
+      "wonach waehlt man wie sich das verfluessigungsniveau je nach kaeltemittel aendert aus",
+      "warum ist wie sich das verfluessigungsniveau je nach kaeltemittel aendert wichtig",
+      "worauf achtet ein meister bei wie sich das verfluessigungsniveau je nach kaeltemittel aendert",
+      "was ist der haeufigste fehler bei wie sich das verfluessigungsniveau je nach kaeltemittel aendert",
+      "worauf muss man bei wie sich das verfluessigungsniveau je nach kaeltemittel aendert achten",
+      "wie beeinflusst wie sich das verfluessigungsniveau je nach kaeltemittel aendert stoerung und leistung",
+      "wie interpretiert man wie sich das verfluessigungsniveau je nach kaeltemittel aendert im feld",
+      "wie ist die service reihenfolge bei wie sich das verfluessigungsniveau je nach kaeltemittel aendert",
+      "erklaere wie sich das verfluessigungsniveau je nach kaeltemittel aendert im detail"
+    ],
+    "tr_answer": "kondensasyon basinci gaz secimiyle nasil degisir konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta ayni ortamda farkli gazin farkli basinc seviyesi olabilecegini bilmek; bunun yaninda dogru basinc-isi yorumunun gaza gore degismesidir. Ilk kontrolde gaz tipi, PT tablo mantigi, ortam kosulu ve olculen hat sicakliklari birlikte okunur. Bunun teknik sebebi baska gazin normal saydigi basinc digerinde ariza olabilir; ayrica her basinc ayni anlama gelmez; gazi bilmeden yoruma gidilmez. En sik hata ise baska gazin tablosuyla yorum yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema wie sich das verfluessigungsniveau je nach kaeltemittel aendert klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier zu wissen, dass verschiedene Kaeltemittel bei gleicher Umgebung andere Druckniveaus haben; zusaetzlich gilt die Druck-Temperatur-Auswertung je nach Kaeltemittel anders funktioniert. In der Erstpruefung werden Kaeltemitteltyp, PT-Tabelle, Umgebungsbedingung und Leitungswerte zusammen ausgewertet werden. Der technische Hintergrund ist ein bei einem Mittel normaler Druck beim anderen bereits eine Stoerung bedeuten kann; ausserdem gilt derselbe Druck ohne Kenntnis des Kaeltemittels nichts Sinnvolles bedeutet. Ein sehr haeufiger Fehler besteht darin, dass mit der Tabelle eines anderen Kaeltemittels zu rechnen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "saturation nedir",
+      "superheat nasil hesaplanir",
+      "subcool nasil hesaplanir"
+    ]
+  },
+  {
+    "id": "gas_pressure_evaporating_level",
+    "tr_subject": "evaporasyon basinci gaz secimiyle nasil degisir",
+    "de_subject": "wie sich das verdampfungsniveau je nach kaeltemittel aendert",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "evaporasyon basinci gaz secimiyle nasil degisir",
+      "wie sich das verdampfungsniveau je nach kaeltemittel aendert",
+      "evaporating pressure by refrigerant",
+      "evaporasyon seviyesi"
+    ],
+    "tr_questions": [
+      "evaporasyon basinci gaz secimiyle nasil degisir nasil dusunulur",
+      "evaporasyon basinci gaz secimiyle nasil degisir neye gore secilir",
+      "evaporasyon basinci gaz secimiyle nasil degisir neden onemli",
+      "evaporasyon basinci gaz secimiyle nasil degisir ile ilgili usta neye bakar",
+      "evaporasyon basinci gaz secimiyle nasil degisir konusunda en sik hata nedir",
+      "evaporasyon basinci gaz secimiyle nasil degisir kullanilirsa nelere dikkat edilir",
+      "evaporasyon basinci gaz secimiyle nasil degisir ariza ve performansi nasil etkiler",
+      "evaporasyon basinci gaz secimiyle nasil degisir sahada nasil yorumlanir",
+      "evaporasyon basinci gaz secimiyle nasil degisir icin servis sirasi ne olur",
+      "evaporasyon basinci gaz secimiyle nasil degisir hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber wie sich das verdampfungsniveau je nach kaeltemittel aendert",
+      "wonach waehlt man wie sich das verdampfungsniveau je nach kaeltemittel aendert aus",
+      "warum ist wie sich das verdampfungsniveau je nach kaeltemittel aendert wichtig",
+      "worauf achtet ein meister bei wie sich das verdampfungsniveau je nach kaeltemittel aendert",
+      "was ist der haeufigste fehler bei wie sich das verdampfungsniveau je nach kaeltemittel aendert",
+      "worauf muss man bei wie sich das verdampfungsniveau je nach kaeltemittel aendert achten",
+      "wie beeinflusst wie sich das verdampfungsniveau je nach kaeltemittel aendert stoerung und leistung",
+      "wie interpretiert man wie sich das verdampfungsniveau je nach kaeltemittel aendert im feld",
+      "wie ist die service reihenfolge bei wie sich das verdampfungsniveau je nach kaeltemittel aendert",
+      "erklaere wie sich das verdampfungsniveau je nach kaeltemittel aendert im detail"
+    ],
+    "tr_answer": "evaporasyon basinci gaz secimiyle nasil degisir konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta dusuk taraf okumasinda gazin kendi karakterini hesaba katmak; bunun yaninda dogru basinc-isi yorumunun gaza gore degismesidir. Ilk kontrolde gaz tipi, PT tablo mantigi, ortam kosulu ve olculen hat sicakliklari birlikte okunur. Bunun teknik sebebi gaz karakteri bilinmezse dusuk basinc arizasi yalanci gorunebilir; ayrica her basinc ayni anlama gelmez; gazi bilmeden yoruma gidilmez. En sik hata ise baska gazin tablosuyla yorum yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema wie sich das verdampfungsniveau je nach kaeltemittel aendert klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei der Saugseite die Eigencharakteristik des Kaeltemittels mitzurechnen; zusaetzlich gilt die Druck-Temperatur-Auswertung je nach Kaeltemittel anders funktioniert. In der Erstpruefung werden Kaeltemitteltyp, PT-Tabelle, Umgebungsbedingung und Leitungswerte zusammen ausgewertet werden. Der technische Hintergrund ist ohne Kenntnis des Kaeltemittels ein vermeintlicher Niederdruckfehler falsch gedeutet werden kann; ausserdem gilt derselbe Druck ohne Kenntnis des Kaeltemittels nichts Sinnvolles bedeutet. Ein sehr haeufiger Fehler besteht darin, dass mit der Tabelle eines anderen Kaeltemittels zu rechnen. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "saturation nedir",
+      "superheat nasil hesaplanir",
+      "subcool nasil hesaplanir"
+    ]
+  },
+  {
+    "id": "gas_leak_search_logic",
+    "tr_subject": "gaz kacagi arama mantigi",
+    "de_subject": "die logik der lecksuche",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "gaz kacagi arama mantigi",
+      "die logik der lecksuche",
+      "leak search",
+      "gaz kacagi arama"
+    ],
+    "tr_questions": [
+      "gaz kacagi arama mantigi nasil dusunulur",
+      "gaz kacagi arama mantigi neye gore secilir",
+      "gaz kacagi arama mantigi neden onemli",
+      "gaz kacagi arama mantigi ile ilgili usta neye bakar",
+      "gaz kacagi arama mantigi konusunda en sik hata nedir",
+      "gaz kacagi arama mantigi kullanilirsa nelere dikkat edilir",
+      "gaz kacagi arama mantigi ariza ve performansi nasil etkiler",
+      "gaz kacagi arama mantigi sahada nasil yorumlanir",
+      "gaz kacagi arama mantigi icin servis sirasi ne olur",
+      "gaz kacagi arama mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik der lecksuche",
+      "wonach waehlt man die logik der lecksuche aus",
+      "warum ist die logik der lecksuche wichtig",
+      "worauf achtet ein meister bei die logik der lecksuche",
+      "was ist der haeufigste fehler bei die logik der lecksuche",
+      "worauf muss man bei die logik der lecksuche achten",
+      "wie beeinflusst die logik der lecksuche stoerung und leistung",
+      "wie interpretiert man die logik der lecksuche im feld",
+      "wie ist die service reihenfolge bei die logik der lecksuche",
+      "erklaere die logik der lecksuche im detail"
+    ],
+    "tr_answer": "gaz kacagi arama mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta kacak aramada semptom, basinc ve riskli noktalari birlikte okumak; bunun yaninda kacak arama ve gaz geri kazaniminin servis kalitesinin temeli olmasidir. Ilk kontrolde azot testi, kacak taramasi, geri kazanim tupu ve vakum sirasi birlikte planlanir. Bunun teknik sebebi kacak aramasi rastgele degil, sistemli senaryo ile yapildiginda sonuc verir; ayrica sisteme gaz eklemek kadar gazi dogru bosaltmak ve geri almak da ustalik ister. En sik hata ise kacagi bulmadan ustune sarj yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik der lecksuche klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier bei der Lecksuche Symptom, Druckbild und typische Schwachstellen zusammen zu lesen; zusaetzlich gilt Lecksuche und Rueckgewinnung die Basis guter Servicearbeit sind. In der Erstpruefung werden Stickstofftest, Lecksuche, Rueckgewinnungsflasche und Vakuumabfolge gemeinsam geplant werden. Der technische Hintergrund ist Lecksuche nur als systematischer Ablauf wirklich effektiv ist; ausserdem gilt saubere Rueckgewinnung genauso meisterlich ist wie das korrekte Einfuellen. Ein sehr haeufiger Fehler besteht darin, dass nachzufuellen, ohne das Leck wirklich zu finden. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "azot testi nasil yapilir",
+      "geri kazanim neden onemli",
+      "vakum ne zaman cekilir"
+    ]
+  },
+  {
+    "id": "gas_nitrogen_test_logic",
+    "tr_subject": "azot basinc testi mantigi",
+    "de_subject": "die logik des stickstoff-drucktests",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "azot basinc testi mantigi",
+      "die logik des stickstoff-drucktests",
+      "nitrogen pressure test",
+      "azot testi"
+    ],
+    "tr_questions": [
+      "azot basinc testi mantigi nasil dusunulur",
+      "azot basinc testi mantigi neye gore secilir",
+      "azot basinc testi mantigi neden onemli",
+      "azot basinc testi mantigi ile ilgili usta neye bakar",
+      "azot basinc testi mantigi konusunda en sik hata nedir",
+      "azot basinc testi mantigi kullanilirsa nelere dikkat edilir",
+      "azot basinc testi mantigi ariza ve performansi nasil etkiler",
+      "azot basinc testi mantigi sahada nasil yorumlanir",
+      "azot basinc testi mantigi icin servis sirasi ne olur",
+      "azot basinc testi mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik des stickstoff-drucktests",
+      "wonach waehlt man die logik des stickstoff-drucktests aus",
+      "warum ist die logik des stickstoff-drucktests wichtig",
+      "worauf achtet ein meister bei die logik des stickstoff-drucktests",
+      "was ist der haeufigste fehler bei die logik des stickstoff-drucktests",
+      "worauf muss man bei die logik des stickstoff-drucktests achten",
+      "wie beeinflusst die logik des stickstoff-drucktests stoerung und leistung",
+      "wie interpretiert man die logik des stickstoff-drucktests im feld",
+      "wie ist die service reihenfolge bei die logik des stickstoff-drucktests",
+      "erklaere die logik des stickstoff-drucktests im detail"
+    ],
+    "tr_answer": "azot basinc testi mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta sistemi inert gazla guvenli sekilde basinc altina alip sizdirmazligi kontrol etmek; bunun yaninda kacak arama ve gaz geri kazaniminin servis kalitesinin temeli olmasidir. Ilk kontrolde azot testi, kacak taramasi, geri kazanim tupu ve vakum sirasi birlikte planlanir. Bunun teknik sebebi azot testi hem kacagi bulur hem nemli hava basmayi onler; ayrica sisteme gaz eklemek kadar gazi dogru bosaltmak ve geri almak da ustalik ister. En sik hata ise kacagi bulmadan ustune sarj yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik des stickstoff-drucktests klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier das System mit inertem Gas sicher unter Druck zu setzen und auf Dichtheit zu pruefen; zusaetzlich gilt Lecksuche und Rueckgewinnung die Basis guter Servicearbeit sind. In der Erstpruefung werden Stickstofftest, Lecksuche, Rueckgewinnungsflasche und Vakuumabfolge gemeinsam geplant werden. Der technische Hintergrund ist ein Stickstofftest Lecksuche und saubere Systemhygiene verbindet; ausserdem gilt saubere Rueckgewinnung genauso meisterlich ist wie das korrekte Einfuellen. Ein sehr haeufiger Fehler besteht darin, dass nachzufuellen, ohne das Leck wirklich zu finden. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "azot testi nasil yapilir",
+      "geri kazanim neden onemli",
+      "vakum ne zaman cekilir"
+    ]
+  },
+  {
+    "id": "gas_recovery_cylinder_logic",
+    "tr_subject": "geri kazanim tupunun dogru kullanimi",
+    "de_subject": "der richtige umgang mit rueckgewinnungsflaschen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "geri kazanim tupunun dogru kullanimi",
+      "der richtige umgang mit rueckgewinnungsflaschen",
+      "recovery cylinder",
+      "geri kazanim tupu"
+    ],
+    "tr_questions": [
+      "geri kazanim tupunun dogru kullanimi nasil dusunulur",
+      "geri kazanim tupunun dogru kullanimi neye gore secilir",
+      "geri kazanim tupunun dogru kullanimi neden onemli",
+      "geri kazanim tupunun dogru kullanimi ile ilgili usta neye bakar",
+      "geri kazanim tupunun dogru kullanimi konusunda en sik hata nedir",
+      "geri kazanim tupunun dogru kullanimi kullanilirsa nelere dikkat edilir",
+      "geri kazanim tupunun dogru kullanimi ariza ve performansi nasil etkiler",
+      "geri kazanim tupunun dogru kullanimi sahada nasil yorumlanir",
+      "geri kazanim tupunun dogru kullanimi icin servis sirasi ne olur",
+      "geri kazanim tupunun dogru kullanimi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber der richtige umgang mit rueckgewinnungsflaschen",
+      "wonach waehlt man der richtige umgang mit rueckgewinnungsflaschen aus",
+      "warum ist der richtige umgang mit rueckgewinnungsflaschen wichtig",
+      "worauf achtet ein meister bei der richtige umgang mit rueckgewinnungsflaschen",
+      "was ist der haeufigste fehler bei der richtige umgang mit rueckgewinnungsflaschen",
+      "worauf muss man bei der richtige umgang mit rueckgewinnungsflaschen achten",
+      "wie beeinflusst der richtige umgang mit rueckgewinnungsflaschen stoerung und leistung",
+      "wie interpretiert man der richtige umgang mit rueckgewinnungsflaschen im feld",
+      "wie ist die service reihenfolge bei der richtige umgang mit rueckgewinnungsflaschen",
+      "erklaere der richtige umgang mit rueckgewinnungsflaschen im detail"
+    ],
+    "tr_answer": "geri kazanim tupunun dogru kullanimi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta geri alinan gazi tarti, etiket ve doluluk disipliniyle yonetmek; bunun yaninda kacak arama ve gaz geri kazaniminin servis kalitesinin temeli olmasidir. Ilk kontrolde azot testi, kacak taramasi, geri kazanim tupu ve vakum sirasi birlikte planlanir. Bunun teknik sebebi geri kazanim tupunde hata hem guvenlik hem saflik sorunu yaratir; ayrica sisteme gaz eklemek kadar gazi dogru bosaltmak ve geri almak da ustalik ister. En sik hata ise kacagi bulmadan ustune sarj yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema der richtige umgang mit rueckgewinnungsflaschen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier zurueckgewonnenes Kaeltemittel mit Waage, Kennzeichnung und Fuellgrenzen sauber zu fuehren; zusaetzlich gilt Lecksuche und Rueckgewinnung die Basis guter Servicearbeit sind. In der Erstpruefung werden Stickstofftest, Lecksuche, Rueckgewinnungsflasche und Vakuumabfolge gemeinsam geplant werden. Der technische Hintergrund ist Fehler an der Rueckgewinnungsflasche Sicherheits- und Reinheitsprobleme erzeugen; ausserdem gilt saubere Rueckgewinnung genauso meisterlich ist wie das korrekte Einfuellen. Ein sehr haeufiger Fehler besteht darin, dass nachzufuellen, ohne das Leck wirklich zu finden. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "azot testi nasil yapilir",
+      "geri kazanim neden onemli",
+      "vakum ne zaman cekilir"
+    ]
+  },
+  {
+    "id": "gas_recovery_machine_logic",
+    "tr_subject": "geri kazanim cihazi ile calisma mantigi",
+    "de_subject": "das arbeiten mit dem rueckgewinnungsgeraet",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "geri kazanim cihazi ile calisma mantigi",
+      "das arbeiten mit dem rueckgewinnungsgeraet",
+      "recovery machine",
+      "geri kazanim cihazi"
+    ],
+    "tr_questions": [
+      "geri kazanim cihazi ile calisma mantigi nasil dusunulur",
+      "geri kazanim cihazi ile calisma mantigi neye gore secilir",
+      "geri kazanim cihazi ile calisma mantigi neden onemli",
+      "geri kazanim cihazi ile calisma mantigi ile ilgili usta neye bakar",
+      "geri kazanim cihazi ile calisma mantigi konusunda en sik hata nedir",
+      "geri kazanim cihazi ile calisma mantigi kullanilirsa nelere dikkat edilir",
+      "geri kazanim cihazi ile calisma mantigi ariza ve performansi nasil etkiler",
+      "geri kazanim cihazi ile calisma mantigi sahada nasil yorumlanir",
+      "geri kazanim cihazi ile calisma mantigi icin servis sirasi ne olur",
+      "geri kazanim cihazi ile calisma mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber das arbeiten mit dem rueckgewinnungsgeraet",
+      "wonach waehlt man das arbeiten mit dem rueckgewinnungsgeraet aus",
+      "warum ist das arbeiten mit dem rueckgewinnungsgeraet wichtig",
+      "worauf achtet ein meister bei das arbeiten mit dem rueckgewinnungsgeraet",
+      "was ist der haeufigste fehler bei das arbeiten mit dem rueckgewinnungsgeraet",
+      "worauf muss man bei das arbeiten mit dem rueckgewinnungsgeraet achten",
+      "wie beeinflusst das arbeiten mit dem rueckgewinnungsgeraet stoerung und leistung",
+      "wie interpretiert man das arbeiten mit dem rueckgewinnungsgeraet im feld",
+      "wie ist die service reihenfolge bei das arbeiten mit dem rueckgewinnungsgeraet",
+      "erklaere das arbeiten mit dem rueckgewinnungsgeraet im detail"
+    ],
+    "tr_answer": "geri kazanim cihazi ile calisma mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta geri kazanim cihazinin sira, hortum ve tup yonetimiyle dogru kullanilmasi; bunun yaninda kacak arama ve gaz geri kazaniminin servis kalitesinin temeli olmasidir. Ilk kontrolde azot testi, kacak taramasi, geri kazanim tupu ve vakum sirasi birlikte planlanir. Bunun teknik sebebi geri kazanim cihazi yanlis kullanilinca sure uzar ve saflik bozulur; ayrica sisteme gaz eklemek kadar gazi dogru bosaltmak ve geri almak da ustalik ister. En sik hata ise kacagi bulmadan ustune sarj yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema das arbeiten mit dem rueckgewinnungsgeraet klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Rueckgewinnungsgeraet, Schlaeuche und Flaschenreihenfolge sauber zu fuehren; zusaetzlich gilt Lecksuche und Rueckgewinnung die Basis guter Servicearbeit sind. In der Erstpruefung werden Stickstofftest, Lecksuche, Rueckgewinnungsflasche und Vakuumabfolge gemeinsam geplant werden. Der technische Hintergrund ist falscher Einsatz des Rueckgewinnungsgeraets Zeitverlust und Reinheitsprobleme erzeugt; ausserdem gilt saubere Rueckgewinnung genauso meisterlich ist wie das korrekte Einfuellen. Ein sehr haeufiger Fehler besteht darin, dass nachzufuellen, ohne das Leck wirklich zu finden. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "azot testi nasil yapilir",
+      "geri kazanim neden onemli",
+      "vakum ne zaman cekilir"
+    ]
+  },
+  {
+    "id": "gas_vacuum_after_opening",
+    "tr_subject": "sistemi actiktan sonra vakum sirasi",
+    "de_subject": "die vakuum-reihenfolge nach systemoeffnung",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "sistemi actiktan sonra vakum sirasi",
+      "die vakuum-reihenfolge nach systemoeffnung",
+      "vacuum after opening",
+      "sistem acildiktan sonra vakum"
+    ],
+    "tr_questions": [
+      "sistemi actiktan sonra vakum sirasi nasil dusunulur",
+      "sistemi actiktan sonra vakum sirasi neye gore secilir",
+      "sistemi actiktan sonra vakum sirasi neden onemli",
+      "sistemi actiktan sonra vakum sirasi ile ilgili usta neye bakar",
+      "sistemi actiktan sonra vakum sirasi konusunda en sik hata nedir",
+      "sistemi actiktan sonra vakum sirasi kullanilirsa nelere dikkat edilir",
+      "sistemi actiktan sonra vakum sirasi ariza ve performansi nasil etkiler",
+      "sistemi actiktan sonra vakum sirasi sahada nasil yorumlanir",
+      "sistemi actiktan sonra vakum sirasi icin servis sirasi ne olur",
+      "sistemi actiktan sonra vakum sirasi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die vakuum-reihenfolge nach systemoeffnung",
+      "wonach waehlt man die vakuum-reihenfolge nach systemoeffnung aus",
+      "warum ist die vakuum-reihenfolge nach systemoeffnung wichtig",
+      "worauf achtet ein meister bei die vakuum-reihenfolge nach systemoeffnung",
+      "was ist der haeufigste fehler bei die vakuum-reihenfolge nach systemoeffnung",
+      "worauf muss man bei die vakuum-reihenfolge nach systemoeffnung achten",
+      "wie beeinflusst die vakuum-reihenfolge nach systemoeffnung stoerung und leistung",
+      "wie interpretiert man die vakuum-reihenfolge nach systemoeffnung im feld",
+      "wie ist die service reihenfolge bei die vakuum-reihenfolge nach systemoeffnung",
+      "erklaere die vakuum-reihenfolge nach systemoeffnung im detail"
+    ],
+    "tr_answer": "sistemi actiktan sonra vakum sirasi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta gaz bosaltimi ve onarimdan sonra derin vakuma dogru sirayla gitmek; bunun yaninda kacak arama ve gaz geri kazaniminin servis kalitesinin temeli olmasidir. Ilk kontrolde azot testi, kacak taramasi, geri kazanim tupu ve vakum sirasi birlikte planlanir. Bunun teknik sebebi acilan sistemde vakum eksik kalirsa sonraki sarj ne kadar dogru olsa da sorun cikabilir; ayrica sisteme gaz eklemek kadar gazi dogru bosaltmak ve geri almak da ustalik ister. En sik hata ise kacagi bulmadan ustune sarj yapmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die vakuum-reihenfolge nach systemoeffnung klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier nach Entleerung und Reparatur in sauberer Reihenfolge ins tiefe Vakuum zu gehen; zusaetzlich gilt Lecksuche und Rueckgewinnung die Basis guter Servicearbeit sind. In der Erstpruefung werden Stickstofftest, Lecksuche, Rueckgewinnungsflasche und Vakuumabfolge gemeinsam geplant werden. Der technische Hintergrund ist bei geoeffnetem System ein schlechtes Vakuum spaetere Probleme trotz korrekter Fuellung ausloest; ausserdem gilt saubere Rueckgewinnung genauso meisterlich ist wie das korrekte Einfuellen. Ein sehr haeufiger Fehler besteht darin, dass nachzufuellen, ohne das Leck wirklich zu finden. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "azot testi nasil yapilir",
+      "geri kazanim neden onemli",
+      "vakum ne zaman cekilir"
+    ]
+  },
+  {
+    "id": "gas_r290_service_logic",
+    "tr_subject": "R290 ile servis mantigi",
+    "de_subject": "die service-logik bei R290",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R290 ile servis mantigi",
+      "die service-logik bei R290",
+      "R290 service",
+      "propan servis"
+    ],
+    "tr_questions": [
+      "R290 ile servis mantigi nasil dusunulur",
+      "R290 ile servis mantigi neye gore secilir",
+      "R290 ile servis mantigi neden onemli",
+      "R290 ile servis mantigi ile ilgili usta neye bakar",
+      "R290 ile servis mantigi konusunda en sik hata nedir",
+      "R290 ile servis mantigi kullanilirsa nelere dikkat edilir",
+      "R290 ile servis mantigi ariza ve performansi nasil etkiler",
+      "R290 ile servis mantigi sahada nasil yorumlanir",
+      "R290 ile servis mantigi icin servis sirasi ne olur",
+      "R290 ile servis mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die service-logik bei R290",
+      "wonach waehlt man die service-logik bei R290 aus",
+      "warum ist die service-logik bei R290 wichtig",
+      "worauf achtet ein meister bei die service-logik bei R290",
+      "was ist der haeufigste fehler bei die service-logik bei R290",
+      "worauf muss man bei die service-logik bei R290 achten",
+      "wie beeinflusst die service-logik bei R290 stoerung und leistung",
+      "wie interpretiert man die service-logik bei R290 im feld",
+      "wie ist die service reihenfolge bei die service-logik bei R290",
+      "erklaere die service-logik bei R290 im detail"
+    ],
+    "tr_answer": "R290 ile servis mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta yanicilik yuzunden alet, ortam ve kacagi yonetmeyi one almak; bunun yaninda yanici ve dogal gazlarda saha guvenliginin daha sert disiplin istemesidir. Ilk kontrolde havalandirma, atesleme kaynagi, personel bilgisi ve servis aletleri birlikte degerlendirilir. Bunun teknik sebebi R290 teknik olarak guclu ama disiplin istemeyen servis kabul etmez; ayrica dogal gazlar teknik olarak iyi olabilir ama servis guvenligiyle birlikte dusunulmelidir. En sik hata ise dogal gaz oldugu icin otomatik guvenli sanmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die service-logik bei R290 klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier aufgrund der Entflammbarkeit Werkzeug, Umgebung und Leckmanagement konsequent vorzuziehen; zusaetzlich gilt brennbare und natuerliche Kaeltemittel im Feld deutlich strengere Disziplin verlangen. In der Erstpruefung werden Belueftung, Zundquellen, Personalwissen und Servicewerkzeuge gemeinsam bewertet werden. Der technische Hintergrund ist R290 technisch stark ist, aber unsauberen Service nicht verzeiht; ausserdem gilt natuerliche Kaeltemittel technisch stark sein koennen, aber immer zusammen mit der Sicherheit gedacht werden muessen. Ein sehr haeufiger Fehler besteht darin, dass natuerliche Kaeltemittel automatisch fuer einfach oder sicher zu halten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 servis mantigi",
+      "CO2 sistemi neden farkli",
+      "amonyakla calisirken ne dusunulur"
+    ]
+  },
+  {
+    "id": "gas_r600a_logic",
+    "tr_subject": "R600a mantigi",
+    "de_subject": "die logik von R600a",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "R600a mantigi",
+      "die logik von R600a",
+      "R600a",
+      "isobutane"
+    ],
+    "tr_questions": [
+      "R600a mantigi nasil dusunulur",
+      "R600a mantigi neye gore secilir",
+      "R600a mantigi neden onemli",
+      "R600a mantigi ile ilgili usta neye bakar",
+      "R600a mantigi konusunda en sik hata nedir",
+      "R600a mantigi kullanilirsa nelere dikkat edilir",
+      "R600a mantigi ariza ve performansi nasil etkiler",
+      "R600a mantigi sahada nasil yorumlanir",
+      "R600a mantigi icin servis sirasi ne olur",
+      "R600a mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik von R600a",
+      "wonach waehlt man die logik von R600a aus",
+      "warum ist die logik von R600a wichtig",
+      "worauf achtet ein meister bei die logik von R600a",
+      "was ist der haeufigste fehler bei die logik von R600a",
+      "worauf muss man bei die logik von R600a achten",
+      "wie beeinflusst die logik von R600a stoerung und leistung",
+      "wie interpretiert man die logik von R600a im feld",
+      "wie ist die service reihenfolge bei die logik von R600a",
+      "erklaere die logik von R600a im detail"
+    ],
+    "tr_answer": "R600a mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta kucuk sarjli sistemlerde yanicilik ve servis sinirini dogru okumak; bunun yaninda yanici ve dogal gazlarda saha guvenliginin daha sert disiplin istemesidir. Ilk kontrolde havalandirma, atesleme kaynagi, personel bilgisi ve servis aletleri birlikte degerlendirilir. Bunun teknik sebebi R600a ozellikle kompakt sistemlerde farkli saha aliskanligi ister; ayrica dogal gazlar teknik olarak iyi olabilir ama servis guvenligiyle birlikte dusunulmelidir. En sik hata ise dogal gaz oldugu icin otomatik guvenli sanmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik von R600a klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier in kleineren Fuellungen Entflammbarkeit und Servicegrenzen richtig einzuordnen; zusaetzlich gilt brennbare und natuerliche Kaeltemittel im Feld deutlich strengere Disziplin verlangen. In der Erstpruefung werden Belueftung, Zundquellen, Personalwissen und Servicewerkzeuge gemeinsam bewertet werden. Der technische Hintergrund ist R600a in kompakten Systemen andere Servicegewohnheiten verlangt; ausserdem gilt natuerliche Kaeltemittel technisch stark sein koennen, aber immer zusammen mit der Sicherheit gedacht werden muessen. Ein sehr haeufiger Fehler besteht darin, dass natuerliche Kaeltemittel automatisch fuer einfach oder sicher zu halten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 servis mantigi",
+      "CO2 sistemi neden farkli",
+      "amonyakla calisirken ne dusunulur"
+    ]
+  },
+  {
+    "id": "gas_co2_high_pressure_logic",
+    "tr_subject": "CO2 sistemlerde basinc mantigi",
+    "de_subject": "die drucklogik bei CO2-systemen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "CO2 sistemlerde basinc mantigi",
+      "die drucklogik bei CO2-systemen",
+      "CO2 refrigerant",
+      "R744",
+      "CO2 system"
+    ],
+    "tr_questions": [
+      "CO2 sistemlerde basinc mantigi nasil dusunulur",
+      "CO2 sistemlerde basinc mantigi neye gore secilir",
+      "CO2 sistemlerde basinc mantigi neden onemli",
+      "CO2 sistemlerde basinc mantigi ile ilgili usta neye bakar",
+      "CO2 sistemlerde basinc mantigi konusunda en sik hata nedir",
+      "CO2 sistemlerde basinc mantigi kullanilirsa nelere dikkat edilir",
+      "CO2 sistemlerde basinc mantigi ariza ve performansi nasil etkiler",
+      "CO2 sistemlerde basinc mantigi sahada nasil yorumlanir",
+      "CO2 sistemlerde basinc mantigi icin servis sirasi ne olur",
+      "CO2 sistemlerde basinc mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die drucklogik bei CO2-systemen",
+      "wonach waehlt man die drucklogik bei CO2-systemen aus",
+      "warum ist die drucklogik bei CO2-systemen wichtig",
+      "worauf achtet ein meister bei die drucklogik bei CO2-systemen",
+      "was ist der haeufigste fehler bei die drucklogik bei CO2-systemen",
+      "worauf muss man bei die drucklogik bei CO2-systemen achten",
+      "wie beeinflusst die drucklogik bei CO2-systemen stoerung und leistung",
+      "wie interpretiert man die drucklogik bei CO2-systemen im feld",
+      "wie ist die service reihenfolge bei die drucklogik bei CO2-systemen",
+      "erklaere die drucklogik bei CO2-systemen im detail"
+    ],
+    "tr_answer": "CO2 sistemlerde basinc mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta CO2 nin yuksek basinc karakterini klasik HFC mantigindan ayirmak; bunun yaninda yanici ve dogal gazlarda saha guvenliginin daha sert disiplin istemesidir. Ilk kontrolde havalandirma, atesleme kaynagi, personel bilgisi ve servis aletleri birlikte degerlendirilir. Bunun teknik sebebi CO2 yi klasik gaz gibi okumak sahada buyuk hata yaratir; ayrica dogal gazlar teknik olarak iyi olabilir ama servis guvenligiyle birlikte dusunulmelidir. En sik hata ise dogal gaz oldugu icin otomatik guvenli sanmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die drucklogik bei CO2-systemen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier das hohe Druckniveau von CO2 klar von klassischer HFC-Logik zu trennen; zusaetzlich gilt brennbare und natuerliche Kaeltemittel im Feld deutlich strengere Disziplin verlangen. In der Erstpruefung werden Belueftung, Zundquellen, Personalwissen und Servicewerkzeuge gemeinsam bewertet werden. Der technische Hintergrund ist CO2 wie ein klassisches HFC zu lesen im Feld schwere Fehler erzeugt; ausserdem gilt natuerliche Kaeltemittel technisch stark sein koennen, aber immer zusammen mit der Sicherheit gedacht werden muessen. Ein sehr haeufiger Fehler besteht darin, dass natuerliche Kaeltemittel automatisch fuer einfach oder sicher zu halten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 servis mantigi",
+      "CO2 sistemi neden farkli",
+      "amonyakla calisirken ne dusunulur"
+    ]
+  },
+  {
+    "id": "gas_ammonia_logic",
+    "tr_subject": "amonyak sistem mantigi",
+    "de_subject": "die logik von ammoniak-systemen",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "amonyak sistem mantigi",
+      "die logik von ammoniak-systemen",
+      "ammonia",
+      "NH3",
+      "R717"
+    ],
+    "tr_questions": [
+      "amonyak sistem mantigi nasil dusunulur",
+      "amonyak sistem mantigi neye gore secilir",
+      "amonyak sistem mantigi neden onemli",
+      "amonyak sistem mantigi ile ilgili usta neye bakar",
+      "amonyak sistem mantigi konusunda en sik hata nedir",
+      "amonyak sistem mantigi kullanilirsa nelere dikkat edilir",
+      "amonyak sistem mantigi ariza ve performansi nasil etkiler",
+      "amonyak sistem mantigi sahada nasil yorumlanir",
+      "amonyak sistem mantigi icin servis sirasi ne olur",
+      "amonyak sistem mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die logik von ammoniak-systemen",
+      "wonach waehlt man die logik von ammoniak-systemen aus",
+      "warum ist die logik von ammoniak-systemen wichtig",
+      "worauf achtet ein meister bei die logik von ammoniak-systemen",
+      "was ist der haeufigste fehler bei die logik von ammoniak-systemen",
+      "worauf muss man bei die logik von ammoniak-systemen achten",
+      "wie beeinflusst die logik von ammoniak-systemen stoerung und leistung",
+      "wie interpretiert man die logik von ammoniak-systemen im feld",
+      "wie ist die service reihenfolge bei die logik von ammoniak-systemen",
+      "erklaere die logik von ammoniak-systemen im detail"
+    ],
+    "tr_answer": "amonyak sistem mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta verim avantajini toksisite ve profesyonel saha disipliniyle birlikte dusunmek; bunun yaninda yanici ve dogal gazlarda saha guvenliginin daha sert disiplin istemesidir. Ilk kontrolde havalandirma, atesleme kaynagi, personel bilgisi ve servis aletleri birlikte degerlendirilir. Bunun teknik sebebi amonyak yuksek profesyonellik isteyen bir sahadir; ayrica dogal gazlar teknik olarak iyi olabilir ama servis guvenligiyle birlikte dusunulmelidir. En sik hata ise dogal gaz oldugu icin otomatik guvenli sanmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die logik von ammoniak-systemen klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier Effizienzvorteile immer zusammen mit Toxizitaet und hoher Betriebsdisziplin zu bewerten; zusaetzlich gilt brennbare und natuerliche Kaeltemittel im Feld deutlich strengere Disziplin verlangen. In der Erstpruefung werden Belueftung, Zundquellen, Personalwissen und Servicewerkzeuge gemeinsam bewertet werden. Der technische Hintergrund ist Ammoniak ein Bereich mit hoher professioneller Anforderung ist; ausserdem gilt natuerliche Kaeltemittel technisch stark sein koennen, aber immer zusammen mit der Sicherheit gedacht werden muessen. Ein sehr haeufiger Fehler besteht darin, dass natuerliche Kaeltemittel automatisch fuer einfach oder sicher zu halten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 servis mantigi",
+      "CO2 sistemi neden farkli",
+      "amonyakla calisirken ne dusunulur"
+    ]
+  },
+  {
+    "id": "gas_natural_refrigerant_safety",
+    "tr_subject": "dogal sogutucu gazlarda genel guvenlik mantigi",
+    "de_subject": "die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln",
+    "source_summary": "DRC MAN sogutucu gaz uzmani egitimi",
+    "keywords": [
+      "dogal sogutucu gazlarda genel guvenlik mantigi",
+      "die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln",
+      "natural refrigerants safety",
+      "dogal gaz guvenlik"
+    ],
+    "tr_questions": [
+      "dogal sogutucu gazlarda genel guvenlik mantigi nasil dusunulur",
+      "dogal sogutucu gazlarda genel guvenlik mantigi neye gore secilir",
+      "dogal sogutucu gazlarda genel guvenlik mantigi neden onemli",
+      "dogal sogutucu gazlarda genel guvenlik mantigi ile ilgili usta neye bakar",
+      "dogal sogutucu gazlarda genel guvenlik mantigi konusunda en sik hata nedir",
+      "dogal sogutucu gazlarda genel guvenlik mantigi kullanilirsa nelere dikkat edilir",
+      "dogal sogutucu gazlarda genel guvenlik mantigi ariza ve performansi nasil etkiler",
+      "dogal sogutucu gazlarda genel guvenlik mantigi sahada nasil yorumlanir",
+      "dogal sogutucu gazlarda genel guvenlik mantigi icin servis sirasi ne olur",
+      "dogal sogutucu gazlarda genel guvenlik mantigi hakkinda detayli acikla"
+    ],
+    "de_questions": [
+      "wie denkt man ueber die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln",
+      "wonach waehlt man die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln aus",
+      "warum ist die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln wichtig",
+      "worauf achtet ein meister bei die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln",
+      "was ist der haeufigste fehler bei die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln",
+      "worauf muss man bei die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln achten",
+      "wie beeinflusst die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln stoerung und leistung",
+      "wie interpretiert man die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln im feld",
+      "wie ist die service reihenfolge bei die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln",
+      "erklaere die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln im detail"
+    ],
+    "tr_answer": "dogal sogutucu gazlarda genel guvenlik mantigi konusunda sogutucu gaz uzmani once uygulamayi netlestirir. Bu baslikta tipik ana nokta her dogal gazin farkli risk profilini servis disiplinine cevirmek; bunun yaninda yanici ve dogal gazlarda saha guvenliginin daha sert disiplin istemesidir. Ilk kontrolde havalandirma, atesleme kaynagi, personel bilgisi ve servis aletleri birlikte degerlendirilir. Bunun teknik sebebi dogal gaz denince tek tip kural yoktur; gazin karakteri kurali belirler; ayrica dogal gazlar teknik olarak iyi olabilir ama servis guvenligiyle birlikte dusunulmelidir. En sik hata ise dogal gaz oldugu icin otomatik guvenli sanmak. Saglam saha mantigi, gazi ismine gore degil; guvenlik, uygulama, yag uyumu, basinc seviyesi ve servis kosuluna gore degerlendirmektir.",
+    "de_answer": "Beim Thema die allgemeine sicherheitslogik bei natuerlichen kaeltemitteln klaert ein Kaeltemittel-Spezialist zuerst die Anwendung. Der zentrale Punkt ist hier die jeweils andere Risikostruktur natuerlicher Kaeltemittel in saubere Serviceprozesse zu uebersetzen; zusaetzlich gilt brennbare und natuerliche Kaeltemittel im Feld deutlich strengere Disziplin verlangen. In der Erstpruefung werden Belueftung, Zundquellen, Personalwissen und Servicewerkzeuge gemeinsam bewertet werden. Der technische Hintergrund ist bei natuerlichen Kaeltemitteln keine Einheitsregel gilt, sondern die Stoffcharakteristik den Ablauf bestimmt; ausserdem gilt natuerliche Kaeltemittel technisch stark sein koennen, aber immer zusammen mit der Sicherheit gedacht werden muessen. Ein sehr haeufiger Fehler besteht darin, dass natuerliche Kaeltemittel automatisch fuer einfach oder sicher zu halten. Saubere Feldarbeit bewertet Kaeltemittel nicht nur nach Namen, sondern nach Sicherheit, Anwendung, Oelvertraeglichkeit, Druckniveau und Servicebedingungen.",
+    "suggestions": [
+      "R290 servis mantigi",
+      "CO2 sistemi neden farkli",
+      "amonyakla calisirken ne dusunulur"
+    ]
+  }
+]

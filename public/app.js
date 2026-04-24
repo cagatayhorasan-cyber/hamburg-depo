@@ -2179,6 +2179,8 @@ function bindEvents() {
     refs.assistantTrainingForm.addEventListener("submit", handleAssistantTrainingSubmit);
   }
   refs.assistantTrainingCancelButton?.addEventListener("click", resetAssistantTrainingForm);
+  document.getElementById("drcManBulkImportButton")?.addEventListener("click", () => handleDrcManBulkImport(false));
+  document.getElementById("drcManBulkImportDryRunButton")?.addEventListener("click", () => handleDrcManBulkImport(true));
   refs.retrofitChecklistForm?.addEventListener("submit", handleRetrofitChecklistGenerate);
   refs.retrofitChecklistCopyButton?.addEventListener("click", copyRetrofitChecklist);
 
@@ -2564,6 +2566,75 @@ async function handleAssistantTrainingSubmit(event) {
   resetAssistantTrainingForm();
   activateTab("training");
   await loadAssistantTraining(true);
+}
+
+async function handleDrcManBulkImport(dryRun) {
+  const resultBox = document.getElementById("drcManBulkImportResult");
+  const mainBtn = document.getElementById("drcManBulkImportButton");
+  const dryBtn = document.getElementById("drcManBulkImportDryRunButton");
+  if (!resultBox) return;
+
+  if (!dryRun && !window.confirm(langText(
+    "Tum FAQ dosyalari canli Postgres'e yazilacak. Mevcut ayni kaynak satirlari silinip yeniden eklenir. Devam edilsin mi?",
+    "Alle FAQ-Dateien werden in die Live-Postgres geschrieben. Bestehende Zeilen mit derselben Quelle werden geloescht und neu eingefuegt. Fortfahren?"
+  ))) {
+    return;
+  }
+
+  if (mainBtn) mainBtn.disabled = true;
+  if (dryBtn) dryBtn.disabled = true;
+  resultBox.textContent = dryRun
+    ? langText("On izleme calisiyor...", "Vorschau laeuft...")
+    : langText("Yukleme calisiyor, lutfen bekleyin...", "Import laeuft, bitte warten...");
+
+  try {
+    const response = await request("/api/admin/drc-man/import", {
+      method: "POST",
+      body: JSON.stringify({ dryRun: dryRun === true }),
+    });
+
+    if (response?.error) {
+      resultBox.innerHTML = `<span style="color:#b42318;">${response.error}</span>`;
+      return;
+    }
+
+    const headline = dryRun
+      ? langText(
+          `On izleme: ${response.fileCount} dosya, ${response.totalInserted || 0} satir hazir.`,
+          `Vorschau: ${response.fileCount} Dateien, ${response.totalInserted || 0} Zeilen bereit.`
+        )
+      : langText(
+          `Yukleme tamam: ${response.totalInserted || 0} satir yazildi, ${response.totalDeleted || 0} eski satir silindi (${response.fileCount} dosya).`,
+          `Import fertig: ${response.totalInserted || 0} Zeilen geschrieben, ${response.totalDeleted || 0} alte Zeilen geloescht (${response.fileCount} Dateien).`
+        );
+
+    const rows = Array.isArray(response.results) ? response.results : [];
+    const rowHtml = rows.map((row) => {
+      if (row.status === "ok") {
+        return `<li>${row.file}: <strong>${row.inserted}</strong> eklendi, ${row.deleted} eski silindi, ${row.skipped || 0} atlandi.</li>`;
+      }
+      if (row.status === "dry_run") {
+        return `<li>${row.file}: ${row.prepared} satir haz\u0131r, ${row.skipped || 0} atlandi.</li>`;
+      }
+      if (row.status === "missing") {
+        return `<li style="color:#b54708;">${row.file}: deployda bulunamadi.</li>`;
+      }
+      if (row.status === "parse_error") {
+        return `<li style="color:#b42318;">${row.file}: JSON parse hatasi - ${row.error}</li>`;
+      }
+      if (row.status === "insert_error") {
+        return `<li style="color:#b42318;">${row.file}: insert hatasi - ${row.error}</li>`;
+      }
+      return `<li>${row.file}: ${row.status}</li>`;
+    }).join("");
+
+    resultBox.innerHTML = `<div><strong>${headline}</strong></div><ul style="margin:6px 0 0 18px;padding:0;">${rowHtml}</ul>`;
+  } catch (error) {
+    resultBox.innerHTML = `<span style="color:#b42318;">${error?.message || error}</span>`;
+  } finally {
+    if (mainBtn) mainBtn.disabled = false;
+    if (dryBtn) dryBtn.disabled = false;
+  }
 }
 
 async function deleteAssistantTraining(trainingId) {

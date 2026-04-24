@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "admin_yetki",
+    "keywords": ["admin", "yetki", "yonetici", "ne yapar"],
+    "tr_questions": [
+      "admin ne yapar",
+      "admin yetkileri neler",
+      "yonetici hangi islemleri yapabilir"
+    ],
+    "de_questions": [
+      "was kann der admin machen",
+      "welche rechte hat der admin"
+    ],
+    "tr_answer": "Admin tum alanlara erisir. Kullanici acar, malzeme ekler-gunceller-siler, stok giris-cikis yapar, masraf ve kasa kaydi isler, teklif olusturur, rapor alir ve siparis durumlarini yonetir.",
+    "de_answer": "Der Admin hat Vollzugriff. Er kann Benutzer anlegen, Artikel verwalten, Lagerbewegungen buchen, Ausgaben und Kasse bearbeiten, Angebote erstellen, Berichte abrufen und Bestellstatus verwalten.",
+    "suggestions": ["personel ne yapar", "musteri ne gorur", "stok girisi nasil yapilir"]
+  },
+  {
+    "id": "staff_yetki",
+    "keywords": ["personel", "staff", "yetki", "ne yapar"],
+    "tr_questions": [
+      "personel ne yapar",
+      "staff ne yapar",
+      "personel yetkileri neler"
+    ],
+    "de_questions": [
+      "was kann das personal machen",
+      "welche rechte hat staff"
+    ],
+    "tr_answer": "Personel stok, satis, teklif, siparis ve kasa alanlarini kullanir. Urun karti acma, hareket yapma, teklif ve direkt satis olusturma gibi islemleri yapabilir ama kullanici yonetimi ve masraf ekleme gibi admin islemlerine giremez.",
+    "de_answer": "Das Personal nutzt Lager, Verkauf, Angebot, Bestellungen und Kasse. Es kann Artikelbewegungen buchen, Angebote und Direktverkaeufe erstellen, aber keine Benutzerverwaltung oder reine Admin-Funktionen ausfuehren.",
+    "suggestions": ["admin ne yapar", "musteri ne gorur", "direkt satis nasil yapilir"]
+  },
+  {
+    "id": "customer_yetki",
+    "keywords": ["musteri", "customer", "ne gorur", "siparis"],
+    "tr_questions": [
+      "musteri ne gorur",
+      "musteri panelinde ne var",
+      "musteri ne yapabilir"
+    ],
+    "de_questions": [
+      "was sieht der kunde",
+      "was kann der kunde machen"
+    ],
+    "tr_answer": "Musteri stoklu ve aktif urunleri gorur. Satis fiyatini, stok adedini ve temel urun bilgisini inceleyebilir; siparis verir, kendi siparis gecmisini izler ve kendi sifresini yenileyebilir. Yonetim ekranlari ve diger kullanicilara ait bilgiler bu gorunume dahil edilmez.",
+    "de_answer": "Der Kunde sieht aktive Artikel mit Bestand. Er kann Verkaufspreis, Lagerbestand und Basis-Produktinfo sehen, Bestellungen senden, den eigenen Bestellverlauf verfolgen und das eigene Passwort erneuern. Verwaltungsbereiche und Daten anderer Nutzer gehoeren nicht zu dieser Ansicht.",
+    "suggestions": ["musteri siparisi nasil verilir", "sifre sifirlama nasil olur", "stokta olmayan urunler"]
+  },
+  {
+    "id": "stok_girisi",
+    "keywords": ["stok girisi", "malzeme girisi", "entry", "giris"],
+    "tr_questions": [
+      "stok girisi nasil yapilir",
+      "malzeme girisi nasil yapilir",
+      "mevcut urune giris nasil yapilir"
+    ],
+    "de_questions": [
+      "wie buche ich wareneingang",
+      "wie mache ich einen lagerezugang"
+    ],
+    "tr_answer": "Stok sekmesinde mevcut urun icin hareket formunu kullanin. Urunu secin, turu Giris yapin, miktar, birim alis ve tarihi girip kaydedin. Bu islem stogu artirir ve hareket gecmisine yazilir.",
+    "de_answer": "Im Lager-Tab fuer vorhandene Artikel das Bewegungsformular nutzen. Artikel auswaehlen, Typ Eingang setzen, Menge, Einkaufspreis und Datum eingeben und speichern. Dadurch steigt der Bestand und die Bewegung wird protokolliert.",
+    "suggestions": ["yeni urun nasil eklenir", "stok cikisi nasil yapilir", "hareket iptali nasil yapilir"]
+  },
+  {
+    "id": "yeni_urun_ilk_stok",
+    "keywords": ["yeni urun", "ilk stok", "yeni marka", "kart ac"],
+    "tr_questions": [
+      "yeni urun nasil eklenir",
+      "ilk stokla yeni kart nasil acilir",
+      "yeni marka urun girisi nasil yapilir"
+    ],
+    "de_questions": [
+      "wie lege ich einen neuen artikel an",
+      "wie erfasse ich einen neuen artikel mit erstbestand"
+    ],
+    "tr_answer": "Stok sekmesindeki Yeni Urun + Ilk Stok Girisi bolumunu kullanin. Urun bilgilerini doldurun, miktar ve birim alisi girin. Sistem once karti olusturur, sonra ilk stok hareketini yazar.",
+    "de_answer": "Im Lager-Tab den Bereich Neuer Artikel + Erstbestand nutzen. Artikeldaten sowie Menge und Einkauf eingeben. Das System legt zuerst den Artikel an und schreibt danach die erste Lagerbewegung.",
+    "suggestions": ["stok girisi nasil yapilir", "ayni urun tekrar eklenir mi", "stok cikisi nasil yapilir"]
+  },
+  {
+    "id": "stok_cikisi",
+    "keywords": ["stok cikisi", "cikis", "urun cikis", "exit"],
+    "tr_questions": [
+      "stok cikisi nasil yapilir",
+      "urun cikisi nasil islenir"
+    ],
+    "de_questions": [
+      "wie buche ich warenausgang",
+      "wie mache ich einen lagerausgang"
+    ],
+    "tr_answer": "Stok sekmesinde urunu secip hareket turunu Cikis yapin. Miktar mevcut stogu asamaz. Kaydedince stok duser ve hareket kaydi olusur.",
+    "de_answer": "Im Lager-Tab den Artikel auswaehlen und den Typ Ausgang setzen. Die Menge darf den aktuellen Bestand nicht ueberschreiten. Nach dem Speichern sinkt der Bestand und die Bewegung wird protokolliert.",
+    "suggestions": ["stok girisi nasil yapilir", "hareket iptali nasil yapilir", "direkt satis nasil yapilir"]
+  },
+  {
+    "id": "hareket_iptali",
+    "keywords": ["hareket iptal", "iptal et", "reverse", "geri al"],
+    "tr_questions": [
+      "hareket iptali nasil yapilir",
+      "stok hareketini nasil geri alirim",
+      "iptal et ne yapar"
+    ],
+    "de_questions": [
+      "wie storniere ich eine lagerbewegung",
+      "was macht storno bei bewegungen"
+    ],
+    "tr_answer": "Stok hareketlerinde Sil yerine Iptal Et kullanilir. Sistem hareketi silmez; ters yonlu yeni bir hareket olusturur. Boylece stok gecmisi korunur. Ayni hareket ikinci kez iptal edilemez.",
+    "de_answer": "Bei Lagerbewegungen wird nicht geloescht, sondern storniert. Das System legt eine Gegenbewegung an, damit die Historie erhalten bleibt. Dieselbe Bewegung kann nicht zweimal storniert werden.",
+    "suggestions": ["stok cikisi nasil yapilir", "hareketi olan urun silinir mi", "arsiv ne ise yarar"]
+  },
+  {
+    "id": "arsiv",
+    "keywords": ["arsiv", "pasif", "geri al", "restore"],
+    "tr_questions": [
+      "arsiv ne ise yarar",
+      "urunu nasil arsivlerim",
+      "arsivden geri alma nasil olur"
+    ],
+    "de_questions": [
+      "wozu dient archiv",
+      "wie archiviere ich einen artikel",
+      "wie hole ich einen artikel aus dem archiv zurueck"
+    ],
+    "tr_answer": "Arsiv, urunu listeden kaldirir ama gecmis kayitlari korur. Admin urunu arsivleyebilir ve daha sonra geri alabilir. Arsivli urun musterinin siparis ekranina dusmez.",
+    "de_answer": "Das Archiv nimmt einen Artikel aus der aktiven Liste, ohne die Historie zu loeschen. Der Admin kann archivieren und spaeter wiederherstellen. Archivierte Artikel erscheinen nicht in der Kundenbestellung.",
+    "suggestions": ["hareketi olan urun silinir mi", "musteri ne gorur", "stokta olmayan urunler"]
+  },
+  {
+    "id": "masraf",
+    "keywords": ["masraf", "gider", "expense"],
+    "tr_questions": [
+      "masraf nasil eklenir",
+      "gider nasil yazilir",
+      "masrafi kim ekleyebilir"
+    ],
+    "de_questions": [
+      "wie erfasse ich eine ausgabe",
+      "wer darf ausgaben anlegen"
+    ],
+    "tr_answer": "Masraf sekmesinde baslik, kategori, tutar, tarih ve odeme tipi ile kayit acilir. Bu alana sadece admin erisir. Kayit gerekirse sonradan silinebilir.",
+    "de_answer": "Im Ausgaben-Tab wird ein Eintrag mit Titel, Kategorie, Betrag, Datum und Zahlungsart angelegt. Dieser Bereich ist nur fuer Admin. Eintraege koennen spaeter geloescht werden.",
+    "suggestions": ["kasa girisi nasil yapilir", "personel ne yapar", "kasa kaydi silinir mi"]
+  },
+  {
+    "id": "kasa",
+    "keywords": ["kasa", "cashbook", "nakit", "tahsilat"],
+    "tr_questions": [
+      "kasa girisi nasil yapilir",
+      "kasa cikisi nasil yapilir",
+      "kasa kaydi nasil silinir"
+    ],
+    "de_questions": [
+      "wie mache ich einen kassenzugang",
+      "wie mache ich einen kassenausgang",
+      "wie loesche ich einen kasseneintrag"
+    ],
+    "tr_answer": "Kasa sekmesinde islem turunu Giris, Cikis veya Faturasiz Satis olarak secin. Baslik, tutar ve tarihi girin. Kayit olustuktan sonra satir bazli silme yapilabilir.",
+    "de_answer": "Im Kassen-Tab den Typ Eingang, Ausgang oder unberechneter Verkauf waehlen. Titel, Betrag und Datum eingeben. Eintraege koennen danach zeilenweise geloescht werden.",
+    "suggestions": ["faturasiz satis nasil yapilir", "direkt satis nasil yapilir", "masraf nasil eklenir"]
+  },
+  {
+    "id": "teklif",
+    "keywords": ["teklif", "angebot", "pdf teklif"],
+    "tr_questions": [
+      "teklif nasil hazirlanir",
+      "pdf teklif nasil alinir",
+      "teklif kaydetme nasil olur"
+    ],
+    "de_questions": [
+      "wie erstelle ich ein angebot",
+      "wie lade ich das angebot als pdf herunter"
+    ],
+    "tr_answer": "Hizli Satis veya teklif alaninda urunleri sepete ekleyin, musteri bilgilerini girin ve teklifi kaydedin. Kaydedilen kayit icin TR veya DE PDF indirebilirsiniz.",
+    "de_answer": "Im Schnellverkauf bzw. Angebot Produkte in den Warenkorb legen, Kundendaten eingeben und speichern. Fuer das gespeicherte Angebot kann ein TR- oder DE-PDF heruntergeladen werden.",
+    "suggestions": ["direkt satis nasil yapilir", "faturasiz satis nasil yapilir", "pdf teklif dili"]
+  },
+  {
+    "id": "direkt_satis",
+    "keywords": ["direkt satis", "hizli satis", "checkout"],
+    "tr_questions": [
+      "direkt satis nasil yapilir",
+      "hizli satis nasil tamamlanir"
+    ],
+    "de_questions": [
+      "wie mache ich einen direktverkauf",
+      "wie schliesse ich schnellverkauf ab"
+    ],
+    "tr_answer": "Hizli Satis ekraninda urunleri sepete ekleyin, musteri ve tahsilat bilgisini girin, sonra Direkt Satis Yap kullanin. Sistem stoktan dusurur, teklif kaydi olusturur ve tahsilat varsa kasaya yazar.",
+    "de_answer": "Im Schnellverkauf Produkte in den Warenkorb legen, Kundendaten und Zahlung eingeben und danach Direktverkauf ausfuehren. Das System reduziert den Bestand, erzeugt einen Angebots-/Verkaufseintrag und schreibt die Zahlung in die Kasse.",
+    "suggestions": ["faturasiz satis nasil yapilir", "teklif nasil hazirlanir", "stok cikisi nasil yapilir"]
+  },
+  {
+    "id": "faturasiz_satis",
+    "keywords": ["faturasiz", "perakende", "unbilled"],
+    "tr_questions": [
+      "faturasiz satis nasil yapilir",
+      "perakende satis nasil olur"
+    ],
+    "de_questions": [
+      "wie funktioniert verkauf ohne rechnung",
+      "wie geht barverkauf ohne angebot"
+    ],
+    "tr_answer": "Faturasiz Satis akisi perakende mantigiyla calisir. Hızlı Satis ekraninda faturasiz butonunu kullanabilir ya da Kasa sekmesinde Faturasiz Satis kaydi acabilirsiniz. Tahsil edilen tutar dogrudan kasaya yazilir.",
+    "de_answer": "Der Verkauf ohne Rechnung laeuft als Einzel-/Barverkauf. Im Schnellverkauf kann der Button fuer unberechneten Verkauf genutzt werden, alternativ im Kassen-Tab. Der kassierte Betrag wird direkt in die Kasse geschrieben.",
+    "suggestions": ["direkt satis nasil yapilir", "kasa girisi nasil yapilir", "teklif nasil hazirlanir"]
+  },
+  {
+    "id": "siparis",
+    "keywords": ["siparis", "order", "musteri siparis"],
+    "tr_questions": [
+      "musteri siparisi nasil verir",
+      "siparis akisi nasil calisir",
+      "siparis durumu kim degistirir"
+    ],
+    "de_questions": [
+      "wie gibt der kunde eine bestellung auf",
+      "wer aendert den bestellstatus"
+    ],
+    "tr_answer": "Musteri sadece stoklu ve aktif urunlerden siparis verir. Siparis once beklemede acilir. Personel veya admin durumu approved, preparing, completed ya da cancelled olarak guncelleyebilir.",
+    "de_answer": "Der Kunde bestellt nur aktive Artikel mit Bestand. Die Bestellung startet als pending. Personal oder Admin kann den Status auf approved, preparing, completed oder cancelled setzen.",
+    "suggestions": ["musteri ne gorur", "personel ne yapar", "stokta olmayan urunler"]
+  },
+  {
+    "id": "sifre_sifirlama",
+    "keywords": ["sifre", "sifremi unuttum", "reset", "whatsapp"],
+    "tr_questions": [
+      "sifre sifirlama nasil olur",
+      "sifremi unuttum ne yapmaliyim",
+      "whatsapp ile sifre yenileme nasil calisir"
+    ],
+    "de_questions": [
+      "wie funktioniert passwort reset",
+      "passwort vergessen was tun",
+      "wie funktioniert passwort link per whatsapp"
+    ],
+    "tr_answer": "Sifremi Unuttum alanina kullanici adi veya e-posta yazilir. Sistem kayitli telefon varsa WhatsApp icin bir sifre yenileme linki uretir. Kullanici bu linkten yeni sifresini belirler.",
+    "de_answer": "Im Feld Passwort vergessen Benutzername oder E-Mail eingeben. Wenn eine Telefonnummer hinterlegt ist, erzeugt das System einen WhatsApp-Link zur Passworterneuerung. Ueber den Link kann ein neues Passwort gesetzt werden.",
+    "suggestions": ["musteri ne yapabilir", "whatsapp mesaji nasil gider", "giris nasil yapilir"]
+  },
+  {
+    "id": "drc_man",
+    "keywords": ["drc man", "ajan", "ne ise yarar"],
+    "tr_questions": [
+      "drc man ne ise yarar",
+      "ajan ne yapar",
+      "drc man bana ne cevap verir"
+    ],
+    "de_questions": [
+      "was macht drc man",
+      "wofuer ist der agent da"
+    ],
+    "tr_answer": "DRC MAN stok, urun, fiyat, kategori, is akisi ve operasyon sorularina cevap verir. Yerel ajan bagliyken daha teknik ve egitimli cevaplar verir; gerekirse stok sisteminden gelen veriyi de kullanir.",
+    "de_answer": "DRC MAN beantwortet Fragen zu Bestand, Produkten, Preisen, Kategorien, Prozessen und Betriebsablaeufen. Wenn der lokale Agent verbunden ist, liefert er technischere und trainierte Antworten und nutzt bei Bedarf die Lagerdaten mit.",
+    "suggestions": ["admin ne yapar", "stok girisi nasil yapilir", "r290 nasil aranir"]
+  },
+  {
+    "id": "dis_erisim",
+    "keywords": ["dis erisim", "uzaktan", "link", "macbook"],
+    "tr_questions": [
+      "disaridan nasil girerler",
+      "macbook acik kalmali mi",
+      "uzaktan kullanim nasil olur"
+    ],
+    "de_questions": [
+      "wie erfolgt externer zugriff",
+      "muss das macbook an bleiben"
+    ],
+    "tr_answer": "Gercek yerel DRC MAN kullaniliyorsa bu Mac ana sunucu gibi davranir. Bu durumda Mac acik kalmali, uykuya gecmemeli ve tünel aktif olmalidir. Dis link uzerinden gelen kullanicilar sisteme ve DRC MAN'e ulasir.",
+    "de_answer": "Wenn der echte lokale DRC MAN verwendet wird, arbeitet dieses Mac wie der Hauptserver. Dann muss das Mac eingeschaltet bleiben, darf nicht schlafen und der Tunnel muss aktiv sein. Externe Benutzer erreichen darueber System und DRC MAN.",
+    "suggestions": ["drc man ne ise yarar", "admin ne yapar", "musteri ne gorur"]
+  },
+  {
+    "id": "r290",
+    "keywords": ["r290", "propan", "gaz"],
+    "tr_questions": [
+      "r290 nerede",
+      "r290 gazi var mi",
+      "propan karti hangisi"
+    ],
+    "de_questions": [
+      "gibt es r290",
+      "welcher artikel ist propan"
+    ],
+    "tr_answer": "R290 icin genel stok karti mevcut: R290 Gazı (Soğutucu Gaz / Propan). Kategori sogutucu akiskanlar tarafindadir. Marka veya kg bilgisi netlesirse bu kart daha detayli alt urunlere ayrilabilir.",
+    "de_answer": "Fuer R290 gibt es eine allgemeine Lagerkarte: R290 Gas (Kaeltemittel / Propan). Sie liegt in der Kategorie Kaeltemittel. Wenn Marke oder kg-Wert klar sind, kann diese Karte spaeter in detailliertere Unterartikel aufgeteilt werden.",
+    "suggestions": ["r290 fiyat", "sogutucu gazlar", "stoklu urunler"]
+  },
+  {
+    "id": "soguk_oda_kurulum_genel",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["soguk oda kurulum", "kurulum", "montaj sirasi", "cold room installation", "kuehlraum montage"],
+    "tr_questions": [
+      "soguk oda nasil kurulur",
+      "soguk oda kurulum sirasi nedir",
+      "usta gibi soguk oda kurulumu anlat"
+    ],
+    "de_questions": [
+      "wie baut man einen kuehlraum auf",
+      "wie ist die montage reihenfolge fuer einen kuehlraum",
+      "erklaere die kuehlraum montage wie ein meister"
+    ],
+    "tr_answer": "Soguk oda kurulumu sadece panel birlestirmek degildir; once yuk hesabini, kullanim amacini ve oda hacmini netlestirmek gerekir. Cunku cihaz secimi yanlis yapilirsa oda ya gec sogur ya da kisa devre yapar. Usta kurulum sirasi genelde soyledir: zemin ve kot kontrolu, panel yerlesim plani, taban veya zemin izolasyonu, duvar ve tavan panellerinin dogru kilitlenmesi, kapi montaji, cihaz ayak ve konsollarinin yerlestirilmesi, evaporator-kondenser yerlesimi, bakir borulama, elektrik ve otomasyon baglantisi, azot basinc testi, vakum, gaz ve devreye alma. Burada her adimin sebebi vardir. Ornegin panelde kaciklik birakirsan hava ve nem girer; bu da buzlanma, terleme ve enerji kaybi yapar. Borulama acele yapilirsa yag donusu bozulur, kompresor omru kisalir. Devreye alma yapmadan sistem teslim edilirse superheat, fan yonu, defrost ve basinc kontrol edilmedigi icin ariza kacinilmaz olur. Usta mantigi su olur: once yapisal dogruluk, sonra sogutma devresi, en son ince ayar ve test.",
+    "de_answer": "Der Aufbau eines Kuehlraums bedeutet nicht nur Paneele zusammenzusetzen. Zuerst muessen Lastberechnung, Nutzungszweck und Raumvolumen klar sein. Wenn das Geraet falsch ausgelegt wird, kuehlt der Raum entweder zu spaet herunter oder arbeitet im Kurzzyklus. Die Meister-Reihenfolge ist meist: Boden und Hoehenkontrolle, Verlegeplan der Paneele, Boden- oder Bodenisolierung, sauberes Verriegeln von Wand- und Deckenpaneelen, Tuermontage, Montage von Konsolen und Geraetehaltern, Platzierung von Verdampfer und Verfluessiger, Kupferrohrleitung, Elektro- und Regelanschluss, Stickstoff-Druckprobe, Vakuum, Kaeltemittel und Inbetriebnahme. Jeder Schritt hat einen technischen Grund. Wenn Paneele schief stehen, dringt Luft und Feuchtigkeit ein; dadurch entstehen Vereisung, Schwitzwasser und hoher Energieverbrauch. Wird die Rohrleitung unsauber gebaut, leidet der Oelruecklauf und die Lebensdauer des Verdichters sinkt. Ohne saubere Inbetriebnahme bleiben Superheat, Ventilatorlaufrichtung, Abtauung und Druckwerte ungeprueft. Meisterlogik heisst deshalb: zuerst die bauliche Genauigkeit, danach der Kaeltekreis, zuletzt Feinabstimmung und Test.",
+    "suggestions": ["yuk hesabi nasil yapilir", "panel kalinligi nasil secilir", "devreye alma sirasinda ne kontrol edilir"]
+  },
+  {
+    "id": "soguk_oda_yuk_hesabi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["yuk hesabi", "kapasite secimi", "isitma yuk", "load calculation", "kaeltelast"],
+    "tr_questions": [
+      "soguk oda yuk hesabi nasil yapilir",
+      "kapasite secimi nasil yapilir",
+      "soguk oda cihazini neye gore seceriz"
+    ],
+    "de_questions": [
+      "wie berechnet man die kuehllast",
+      "wie waehlt man die leistung fuer einen kuehlraum",
+      "wovon haengt die geraeteauswahl ab"
+    ],
+    "tr_answer": "Kapasite secimi sadece metrekup bakilarak yapilmaz. Usta once oda ic hacmini, hedef sicakligi, ortam sicakligini, urunun odaya giris sicakligini, gunluk mal girisini, kapi acilis sikligini, aydinlatma ve insan yukunu dusunur. Cunku soguk oda icindeki gercek yuk sadece duvar kaybi degil; kapidan giren sicak hava, yeni gelen urunun icindeki isi ve cihazlarin yaydigi isi da toplar. Yanlis secimde kucuk cihaz oda sicakligini tutamaz; buyuk cihaz ise hizli stop-start yapar, nem kontrolu bozulur ve kompresor yorulur. Usta burada emniyet payini abartmaz. Cok fazla kapasite koymak iyi is degildir; dogru kapasite, dogru evaporasyon sicakligi ve dogru hava debisi ile gelir. Ozellikle muhafaza odasi ile sok oda ayni mantikla secilmez. Sok odada cekis gucu ve hava hizi daha agresif gerekir, muhafaza odasinda ise urunu kurutmayacak, dengeli calisacak bir karakter lazimdir.",
+    "de_answer": "Die Leistungswahl erfolgt nicht nur nach Kubikmetern. Ein Meister betrachtet zunaechst Raumvolumen, Solltemperatur, Umgebungstemperatur, Eintrittstemperatur der Ware, taeglichen Wareneintrag, Tueroeffnungen sowie Lasten durch Licht und Personen. Denn die reale Last im Kuehlraum besteht nicht nur aus Wandverlusten, sondern auch aus warmer Luft beim Oeffnen, aus der in der Ware gespeicherten Waerme und aus internen Quellen. Bei zu kleiner Leistung wird die Solltemperatur nicht gehalten; bei zu grosser Leistung entstehen kurze Taktzeiten, schlechte Feuchteregelung und hohe Verdichterbelastung. Ein guter Fachmann uebertreibt die Reserve nicht. Zu viel Leistung ist kein Qualitaetsmerkmal. Richtige Auslegung bedeutet passende Leistung, passende Verdampfungstemperatur und passender Luftvolumenstrom. Besonders Lagerraum und Schockraum duerfen nicht gleich ausgelegt werden. Im Schockraum braucht man deutlich aggressivere Entzugsleistung und Luftgeschwindigkeit, im Lagerraum dagegen ein ruhigeres System, das das Produkt nicht austrocknet.",
+    "suggestions": ["muhafaza odasi ile sok oda farki nedir", "evaporator nasil secilir", "kondenser yeri neden onemlidir"]
+  },
+  {
+    "id": "panel_izolasyon_secimi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["panel", "izolasyon", "panel kalinligi", "thermal bridge", "soguk koprusu"],
+    "tr_questions": [
+      "panel kalinligi nasil secilir",
+      "izolasyon neden onemli",
+      "soguk oda panelinde nelere dikkat edilir"
+    ],
+    "de_questions": [
+      "wie waehlt man die paneldicke",
+      "warum ist die isolierung so wichtig",
+      "worauf achtet man bei kuehlraumpaneelen"
+    ],
+    "tr_answer": "Panel kalinligi hedef sicakliga ve dis ortam yukune gore secilir. Dondurma odasinda ince panel kullanmak ilk bakista maliyet dusurur gibi gorunur ama sonradan terleme, buzlanma ve yuksek elektrik olarak geri doner. Usta panelde sadece kalinliga degil, kilitlerin siki oturmasina, birlesim yerlerinde bosluk kalmamasina ve zemin detayina bakar. Cunku en buyuk sorunlardan biri soguk koprusu olusmasidir. Kapi kasasi, zemin kenari, kolon donusu veya eksik silikon uygulamasi, sistemin genel performansini panel markasindan daha fazla etkileyebilir. Oda sogutmada 'cihaz guclu olsun kapatir' mantigi yanlistir. Izolasyon zayifsa cihaz daha cok calisir ama sorunu cozmez; sadece enerji tuketir. Usta isin basinda panel yerlesimini terazili ve kareli yapar, cunku ilk panel egri ise tavan ve kapi da egri biter.",
+    "de_answer": "Die Paneldicke wird nach Solltemperatur und Aussentemperaturlast gewaehlt. In Tiefkuehlraeumen ein zu duennes Panel zu nehmen wirkt zunaechst guenstig, fuehrt spaeter aber zu Schwitzwasser, Vereisung und hohem Stromverbrauch. Ein Meister schaut nicht nur auf die Dicke, sondern auf sauber schliessende Schlösser, fugenfreie Verbindungen und die Bodendetails. Denn eines der groessten Probleme ist die Waermebruecke. Tuerzarge, Bodenrand, Stuetzecken oder fehlende Abdichtung beeinflussen die Gesamtleistung oft staerker als die Panelmarke. Die Denkweise 'das Aggregat ist stark genug, das schafft es schon' ist falsch. Ist die Isolierung schwach, laeuft die Anlage nur laenger und verbraucht mehr Energie, ohne die Ursache zu beheben. Deshalb beginnt ein guter Monteur mit lot- und fluchtgerechter Paneelmontage; wenn das erste Paneel schief ist, enden auch Decke und Tuer schief.",
+    "suggestions": ["kapi ve sizdirmazlik neden onemli", "zemin izolasyonu ne zaman gerekir", "soguk koprusu nasil onlenir"]
+  },
+  {
+    "id": "kapi_sizdirmazlik",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["kapi", "sizdirmazlik", "kapi rezistansi", "conta", "door heater"],
+    "tr_questions": [
+      "soguk oda kapisinda nelere dikkat edilir",
+      "kapi sizdirmazligi neden onemli",
+      "kapi rezistansi ne zaman gerekir"
+    ],
+    "de_questions": [
+      "worauf achtet man bei der kuehlraumtuer",
+      "warum ist die tuerabdichtung wichtig",
+      "wann braucht man eine tuerheizung"
+    ],
+    "tr_answer": "Kapi, soguk odanin en cok zorlanan noktasidir cunku hava kacagi en fazla burada olur. Conta zayifsa veya kasa tam oturmuyorsa evaporator ne kadar iyi olursa olsun oda surekli nem ceker. Bu da buzlanmayi arttirir, defrost yukunu buyutur ve enerji tuketimini yukselttir. Usta kapida uc seye bakar: kasa duz mu, conta tum cevrede esit basiyor mu, kapinin kapanma ayari dogru mu. Negatif derecelerde kapi kasasi ve esik bolgesinde rezistans detayi onem kazanir; aksi halde buz yapip kapinin oturmasini bozar. Ayrica kapi acilis yonu ve acilis alani da yanlis secilirse operasyon yavaslar, forklift veya el arabasi paneli vurur. Yani kapi sadece gecis parcasi degildir; hava kacagi, is guvenligi ve gunluk operasyon hizi uzerinde dogrudan etkilidir.",
+    "de_answer": "Die Tuer ist einer der kritischsten Punkte eines Kuehlraums, weil hier die meisten Luftverluste auftreten. Ist die Dichtung schwach oder sitzt die Zarge nicht sauber, zieht der Raum staendig Feuchtigkeit nach innen, egal wie gut der Verdampfer ist. Das fuehrt zu mehr Vereisung, hoeherer Abtaulast und mehr Energieverbrauch. Ein Meister achtet bei der Tuer vor allem auf drei Dinge: sitzt die Zarge gerade, drueckt die Dichtung rundum gleichmaessig an, und ist die Schliessung richtig eingestellt. Bei Minusraeumen wird zusaetzlich die Tuer- und Schwellenheizung wichtig; sonst friert die Tuer an und schliesst nicht sauber. Auch Oeffnungsrichtung und Bewegungsflaeche muessen zur Nutzung passen. Eine falsch geplante Tuer verlangsamt die Arbeit und fuehrt schnell zu Beschaedigungen an Paneel und Beschlag. Die Tuer ist also nicht nur ein Durchgangsteil, sondern entscheidend fuer Dichtigkeit, Betriebssicherheit und Arbeitsfluss.",
+    "suggestions": ["panel kalinligi nasil secilir", "defrost neden bozulur", "evaporator nereye konur"]
+  },
+  {
+    "id": "evaporator_yerlesim",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["evaporator", "evaporator yerlesim", "hava sirkulasyonu", "air throw", "coil position"],
+    "tr_questions": [
+      "evaporator nereye konur",
+      "evaporator secimi ve yerlesimi nasil olur",
+      "hava sirkulasyonu neden onemli"
+    ],
+    "de_questions": [
+      "wo setzt man den verdampfer",
+      "wie waehlt und positioniert man den verdampfer",
+      "warum ist die luftzirkulation wichtig"
+    ],
+    "tr_answer": "Evaporator sadece tavana asilan bir parca degildir; odanin ic hava dagilimini belirler. Usta evaporatoru kapiyi direkt vurmayacak, urunun ustune olu nokta birakmayacak ve hava akisini devridaim yaptiracak sekilde yerlestirir. Cok buyuk evaporator yakin bolgeyi fazla sogutup uzak noktayi sicak birakir; cok kucuk evaporator ise fanla bagirsaniz da isi homojen dagitamaz. Hava cikisi urune dogrudan siddetli vurursa ozellikle et, sebze veya ambalajsiz urun kurur. Hava cok yavas kalirsa ust raf ve alt raf farki buyur. Bu yuzden yerlesim, fan adedi, hava hizi ve serpantin yuzeyi birlikte dusunulur. Drenaj egimi de burada kritik; evaporatorun tavasinda su beklerse buz yapar ve fanlara kadar tasar. Usta montajda hem sogutma mantigina hem servis kolayligina bakar; yarin fan motoru degisecekse adam nasil ulasacak, bunu da bugunden hesaplar.",
+    "de_answer": "Der Verdampfer ist nicht einfach nur ein Bauteil an der Decke, sondern bestimmt die Luftverteilung im Raum. Ein Meister setzt ihn so, dass die Tuerzone nicht direkt getroffen wird, keine Totzonen ueber der Ware entstehen und eine saubere Umluft entsteht. Ein zu grosser Verdampfer kuehlt den Nahbereich zu stark und laesst entferntere Zonen waermer; ein zu kleiner schafft trotz hoher Ventilatordrehzahl keine gleichmaessige Temperatur. Trifft der Luftstrahl direkt und hart auf empfindliche Ware, trocknen Fleisch, Gemuese oder unverpackte Produkte aus. Ist die Luft zu trage, wachsen die Temperaturunterschiede zwischen oben und unten. Darum muessen Position, Ventilatorzahl, Luftgeschwindigkeit und Lamellenflaeche gemeinsam betrachtet werden. Auch das Gefaelle des Kondensatablaufs ist kritisch: bleibt Wasser in der Wanne stehen, entstehen Eisaufbau und Spaetschaeden bis in den Ventilatorbereich. Ein erfahrener Monteur denkt deshalb immer auch an die spaetere Wartung und Erreichbarkeit.",
+    "suggestions": ["defrost ve drenaj neden onemli", "kondenser nereye konur", "hava akisi urunu neden kurutur"]
+  },
+  {
+    "id": "kondenser_yerlesim",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["kondenser", "dis unite", "havalandirma", "verfluessiger", "outdoor unit"],
+    "tr_questions": [
+      "kondenser nereye konur",
+      "dis unite yerlesimi nasil olmalidir",
+      "kondenser etrafinda neden bosluk birakilir"
+    ],
+    "de_questions": [
+      "wo setzt man den verfluessiger",
+      "wie sollte die ausseneinheit stehen",
+      "warum braucht der verfluessiger freiraum"
+    ],
+    "tr_answer": "Kondenser tarafi ne kadar saglikli nefes alirsa sistem o kadar rahat calisir. Usta dis uniteyi sicak havayi tekrar emmeyecek, servis yapilabilecek ve gunes-ruzgar etkisi dusunulmus bir yere koyar. Kondenser onune arkasina ve yanlarina bosluk birakilmasinin sebebi sadece montaj rahatligi degildir; fanin attigi sicak havanin geri donup basma basincini yukseltmesini onlemektir. Kotu yerde duran kondenser kompresoru bos yere zorlar, elektrik cekisini arttirir ve yazin yuksek basinc arizalari getirir. Ayrica titreşim, su akisi ve kar tutma riski de dikkate alinmalidir. Usta mantigi sudur: cihaz sadece bugun calissin degil, temmuz sicaginda da servis kapagi acilabilsin ve serpantin yikanabilsin.",
+    "de_answer": "Je besser der Verfluessiger atmen kann, desto entspannter arbeitet die gesamte Anlage. Ein Meister stellt die Ausseneinheit so auf, dass die abgeblasene Warmluft nicht wieder angesaugt wird, Wartung moeglich bleibt und Sonne, Wind sowie Aufstellort sinnvoll beruecksichtigt werden. Freiraum vor, hinter und neben dem Verfluessiger dient nicht nur der Montage, sondern verhindert die Rueckfuehrung der heissen Abluft und damit hohe Verfluessigungsdruecke. Ein schlecht platzierter Verfluessiger belastet den Verdichter unnoetig, erhoeht den Stromverbrauch und fuehrt im Sommer schnell zu Hochdruckstoerungen. Auch Vibrationen, Wasserablauf und Schneebelastung muessen beachtet werden. Meisterdenken heisst: Das Geraet soll nicht nur heute laufen, sondern auch im Hochsommer wartbar bleiben und sauber gereinigt werden koennen.",
+    "suggestions": ["bakir boru ve yag donusu neden onemli", "yuksek basinc neden olur", "evaporator nereye konur"]
+  },
+  {
+    "id": "borulama_yag_donusu",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["bakir boru", "yag donusu", "suction line", "liquid line", "borulama"],
+    "tr_questions": [
+      "bakir borulama nasil yapilir",
+      "yag donusu neden onemli",
+      "emiş ve sivi hattinda nelere dikkat edilir"
+    ],
+    "de_questions": [
+      "wie wird die kupferrohrleitung gebaut",
+      "warum ist der oelruecklauf wichtig",
+      "worauf achtet man bei saug- und fluessigkeitsleitung"
+    ],
+    "tr_answer": "Borulama sogutma sisteminin damari gibidir. Usta burada sadece boruyu baglamaz; cap secimini, hat uzunlugunu, kot farkini, yag kapanini ve izolasyonu birlikte dusunur. Emiş hattinda cap gereksiz buyurse gaz hizi duser ve yag geri donmez; bu da zamanla kompresoru yagsiz birakir. Cok kucuk secilirse de basinclar bozulur ve kapasite duser. Sivi hattinda filtre, sight glass gerekiyorsa yerleri dogru secilmeli; lehim esnasinda azot kullanilmazsa boru ici oksit dolar ve valf-oncesi tikanma yapar. Usta, boruyu duvara guzel gorunsun diye degil, servis edilebilir ve saglikli calisacak sekilde ceker. Yatay hatlarda egim, dikey cikislarda yag donusu ve izolasyonun kesintisizligi uzun omur icin temel konudur.",
+    "de_answer": "Die Rohrleitung ist das Gefaesssystem der Kaelteanlage. Ein Meister verbindet nicht einfach nur Rohre, sondern betrachtet Durchmesser, Leitungslange, Hoehenunterschied, Oelfallen und Daemmung zusammen. Ist die Saugleitung unnoetig gross, sinkt die Gasgeschwindigkeit und das Oel kehrt nicht sicher zurueck; dadurch laeuft der Verdichter spaeter unter Oelmangel. Ist sie zu klein, steigen Druckverluste und die Leistung sinkt. In der Fluessigkeitsleitung muessen Filter und Schauglas, falls vorgesehen, technisch sinnvoll platziert werden. Wird beim Loeten kein Stickstoff verwendet, entstehen Oxide in der Leitung und spaeter Drossel- oder Magnetventilprobleme. Ein guter Monteur verlegt Rohre nicht nur optisch sauber, sondern so, dass sie wartbar, gut abgestuetzt und betriebssicher sind. Gerade bei horizontalen Strecken, Steigleitungen und Isolationsunterbrechungen entscheidet sich, ob eine Anlage spaeter ruhig und langlebig laeuft.",
+    "suggestions": ["vakum ve azot testi nasil yapilir", "kondenser nereye konur", "yuksek basinc neden olur"]
+  },
+  {
+    "id": "vakum_azot_testi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["vakum", "azot", "kacak test", "pressure test", "nitrogen"],
+    "tr_questions": [
+      "vakum neden yapilir",
+      "azot basinc testi nasil yapilir",
+      "kacak testi ve vakum sirasiyla ne yapilir"
+    ],
+    "de_questions": [
+      "warum macht man vakuum",
+      "wie macht man die stickstoff druckprobe",
+      "wie ist die reihenfolge von lecktest und vakuum"
+    ],
+    "tr_answer": "Usta icin azot testi ve vakum atlamak degil, isin sigortasidir. Azotla once kacak aranir; cunku sistem gazla calismadan once mekanik olarak saglam oldugu gorulmelidir. Sonra vakum ile sistemin icindeki hava ve nem cekilir. Nem kalirsa genlesme elemaninda buz yapar, yag yapisini bozar ve asit olusumuna kadar giden zararlar verebilir. Yani 'gaz bastik calisiyor' demek dogru devreye alma sayilmaz. Vakumun derinligi, surekliligi ve sistemin vakum tutmasi onemlidir. Usta burada manometreye bir kez bakip gecmez; test basincinin dusup dusmedigini, vakumdan sonra sistemin geri yukselip yukselmedigini de izler. En cok ihmal edilen ama en pahaliya patlayan kisimlardan biri budur.",
+    "de_answer": "Fuer einen Meister sind Stickstoffpruefung und Vakuum keine Formalitaet, sondern die Versicherung der ganzen Arbeit. Mit Stickstoff wird zuerst auf Dichtheit geprueft, denn vor dem Befuellen muss klar sein, dass der Kreis mechanisch dicht ist. Danach entfernt das Vakuum Luft und Feuchtigkeit aus dem System. Bleibt Feuchtigkeit im Kreis, entstehen spaeter Eisbildung im Expansionsorgan, Oelprobleme und im schlimmsten Fall chemische Schaeden bis hin zur Saeurebildung. Darum ist 'wir haben Kaeltemittel eingefuellt und es laeuft' keine saubere Inbetriebnahme. Entscheidend sind Vakuumtiefe, Halteverhalten und die Beobachtung, ob das System nach dem Evakuieren wieder ansteigt. Genau dieser Schritt wird oft vernachlaessigt und verursacht spaeter die teuersten Reklamationen.",
+    "suggestions": ["devreye alma sirasinda ne kontrol edilir", "bakir boru ve yag donusu neden onemli", "ariza teshisine nereden baslanir"]
+  },
+  {
+    "id": "elektrik_koruma_kontrol",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["elektrik", "kontaktör", "termik", "faz sirasi", "protection"],
+    "tr_questions": [
+      "soguk oda elektriginde nelere dikkat edilir",
+      "faz sirasi ve koruma neden onemli",
+      "elektrik panosunda ne kontrol edilir"
+    ],
+    "de_questions": [
+      "worauf achtet man bei der elektrik im kuehlraum",
+      "warum sind phasenfolge und schutz wichtig",
+      "was prueft man im schaltschrank"
+    ],
+    "tr_answer": "Soguk oda elektrigi sadece cihaz enerjisini vermek degildir; kompresoru, fanlari, defrostu ve emniyet elemanlarini dogru sirada calistirmaktir. Usta pano tarafinda uygun sigorta, kontaktor, termik, faz koruma rolesi, basinç emniyetleri ve defrost cikislarini kontrol eder. Faz sirasi yanlissa scroll kompresor ters donebilir; bu da ses, isinma ve arizaya kadar gider. Gevsek klemensler ise ilk gun degil, yukte calisirken sorun cikarir. Bu yüzden usta sadece enerji geldi mi diye bakmaz; akim cekisini, fan yonunu, termik ayarini ve kablo kesitini de kontrol eder. Soguk oda arizalarinin bir kismi mekanik gibi gorunse de kokeni elektrik kalitesidir.",
+    "de_answer": "Die Elektrik eines Kuehlraums bedeutet nicht nur Strom auf das Geraet zu geben, sondern Verdichter, Ventilatoren, Abtauung und Sicherheitseinrichtungen in der richtigen Reihenfolge arbeiten zu lassen. Ein Meister prueft im Schaltschrank passende Sicherungen, Schuetze, Motorschutz, Phasenueberwachung, Drucksicherheiten und Abtauausgaenge. Ist die Phasenfolge falsch, kann ein Scrollverdichter rueckwaerts anlaufen; daraus folgen Geraeusche, Ueberhitzung und stoerungsanfälliger Betrieb. Lockere Klemmen fallen oft nicht im Leerlauf auf, sondern erst unter Last. Darum schaut ein Fachmann nicht nur, ob Spannung da ist, sondern prueft Stromaufnahme, Ventilatorlaufrichtung, Schutzschaltereinstellung und Leitungsquerschnitt. Viele scheinbar mechanische Kuehlraumstoerungen haben in Wahrheit ihren Ursprung in der Elektroseite.",
+    "suggestions": ["devreye alma sirasinda ne kontrol edilir", "defrost neden onemli", "ariza teshisine nereden baslanir"]
+  },
+  {
+    "id": "defrost_drenaj",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["defrost", "drenaj", "su tahliye", "drain", "abtauung"],
+    "tr_questions": [
+      "defrost neden onemli",
+      "drenaj hatti nasil yapilir",
+      "soguk odada su neden donar"
+    ],
+    "de_questions": [
+      "warum ist abtauung wichtig",
+      "wie baut man die kondensatleitung",
+      "warum friert wasser im kuehlraum ein"
+    ],
+    "tr_answer": "Defrost, evaporatoru buzdan temizleyip tekrar verimli hale getiren prosestir. Ayari yanlis olursa oda yeterince sogumaz ya da urun gereksiz isinma gorur. Usta defrost tipini oda sicakligina gore dusunur: pozitif odada hava defrost bazen yeterliyken negatif odada elektrikli veya sicak gazli cozum gerekir. Drenaj hatti ise en az defrost kadar kritiktir. Hat egimsiz, sifonsuz veya soguk bolgeden korumasiz gecerse su donup tikanir. Sonra tava tasar, fan buz tutar ve musteri 'cihaz bozuk' sanir. Aslinda sorun cogu zaman drenaj detayidir. Usta burada sadece rezistans var mi diye bakmaz; hatin nereye dustugunu, disari cikista donma riski olup olmadigini ve tava rezistansi ile boru rezistansinin birlikte calisip calismadigini kontrol eder.",
+    "de_answer": "Die Abtauung reinigt den Verdampfer von Eis und stellt seine Leistung wieder her. Ist sie falsch eingestellt, kuehlt der Raum nicht sauber oder die Ware wird unnoetig erwaermt. Ein Meister waehlt die Abtauart passend zur Raumtemperatur: im Plusbereich reicht oft Luftabtauung, im Minusbereich braucht es haeufig elektrische oder Heissgas-Abtauung. Genauso kritisch ist die Kondensatableitung. Ist die Leitung ohne Gefaelle, ohne Geruchsverschluss oder ohne Frostschutz in kalten Zonen verlegt, friert das Wasser ein und blockiert. Dann laeuft die Wanne ueber, die Ventilatoren vereisen und der Kunde vermutet einen Geraetedefekt. In Wahrheit liegt die Ursache oft in der Ablaufkonstruktion. Ein guter Monteur prueft deshalb nicht nur die Heizung an sich, sondern den gesamten Wasserweg, die Frostgefahr ausserhalb des Raums und das Zusammenspiel von Wannen- und Rohrbegleitheizung.",
+    "suggestions": ["evaporator nereye konur", "elektrik panosunda ne kontrol edilir", "ariza teshisine nereden baslanir"]
+  },
+  {
+    "id": "devreye_alma_checklist",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["devreye alma", "ilk calistirma", "commissioning", "checklist"],
+    "tr_questions": [
+      "devreye alma sirasinda ne kontrol edilir",
+      "ilk calistirmada nelere bakilir",
+      "soguk oda teslim etmeden once ne test edilir"
+    ],
+    "de_questions": [
+      "was prueft man bei der inbetriebnahme",
+      "worauf achtet man beim ersten start",
+      "was testet man vor der uebergabe"
+    ],
+    "tr_answer": "Devreye alma, montajin gercekten dogru bitip bitmedigini gosteren asamadir. Usta burada oda sicakligi dusuyor mu diye bakmakla yetinmez. Once elektriksel guvenlik, faz sirasi, fan yonu ve kontaktor calismasi kontrol edilir. Sonra basma-emis basinci, superheat-subcool, sight glass durumu, kompresor akimi ve kondenser hava akisi izlenir. Evaporator tarafinda fanlar, defrost giris-cikis davranisi, sensör yerleri ve drenaj kontrol edilir. Kapinin kapanmasi, conta, alarm, aydinlatma ve panel kacagi da teslim oncesi bakilacak islerdendir. Cunku sistemin ilk calismasi sirasinda gorulen ufak bir anormallik ileride buyuk ariza olur. Usta teslim ederken sadece 'calisiyor' demez; hangi ayarlarda teslim ettigini, hangi sicakliga gore kurguladigini ve kullaniciya hangi hatalari yapmamasi gerektigini de anlatir.",
+    "de_answer": "Die Inbetriebnahme zeigt, ob die Montage wirklich fachgerecht abgeschlossen wurde. Ein Meister schaut nicht nur darauf, ob die Raumtemperatur sinkt. Zuerst werden elektrische Sicherheit, Phasenfolge, Ventilatorlaufrichtung und Schaltfunktion geprueft. Danach beobachtet man Hoch- und Niederdruck, Superheat und Subcooling, den Zustand des Schauglases, die Stromaufnahme des Verdichters und die Luftseite des Verfluessigers. Auf der Verdampferseite werden Ventilatoren, Abtauverhalten, Fuehlerposition und Ablauf kontrolliert. Auch Tuerschluss, Dichtung, Alarm, Licht und eventuelle Paneelundichtigkeiten gehoeren vor die Uebergabe. Kleine Auffaelligkeiten beim ersten Start werden spaeter oft zu grossen Stoerungen. Ein Meister uebergibt daher nicht nur eine 'laufende Anlage', sondern dokumentiert auch die Einstellungen und erklaert dem Betreiber, welche Bedienfehler spaeter Probleme verursachen koennen.",
+    "suggestions": ["ariza teshisine nereden baslanir", "vakum neden yapilir", "elektrik panosunda ne kontrol edilir"]
+  },
+  {
+    "id": "ariza_teshis_baslangic",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["ariza", "teshis", "sogutmuyor", "problem", "fault finding"],
+    "tr_questions": [
+      "soguk oda arizasina nereden baslanir",
+      "oda sogutmuyorsa neye bakilir",
+      "usta gibi ariza teshisi nasil yapilir"
+    ],
+    "de_questions": [
+      "wo beginnt man bei einer kuehlraum stoerung",
+      "worauf schaut man wenn der raum nicht kuehlt",
+      "wie findet ein meister den fehler"
+    ],
+    "tr_answer": "Usta ariza ararken parca degistirmekten once belirtiyi okur. Oda sogutmuyorsa once sicaklik gercekten yuksek mi, kapi acik mi, evaporator buzlu mu, kondenser kirli mi, fanlar donuyor mu diye bakar. Sonra elektrik mi sogutma devresi mi karar verir. Kontaktor cekiyor ama kompresor yoksa elektrik ve koruma tarafina; kompresor calisiyor ama sogutmuyorsa gaz devresi, hava akisi ve kontrol tarafina yonelir. Basinc degerleri, fan yonu, termostat emri, defrostta takili kalma, likit hattinda sorun veya kacak ihtimali sirasiyla daraltilir. Usta mantigi su dur: once en cok ariza yapan ve en hizli kontrol edilen noktalar, sonra daha derin ihtimaller. Boylece hem zaman kaybetmez hem de saglam parcayi bos yere degistirmez.",
+    "de_answer": "Ein Meister tauscht bei der Stoerungssuche nicht zuerst Teile, sondern liest zuerst das Symptom. Wenn der Raum nicht kuehlt, schaut er zunaechst: ist die Temperatur wirklich zu hoch, steht die Tuer offen, ist der Verdampfer vereist, ist der Verfluessiger verschmutzt, drehen die Ventilatoren? Danach trennt er zwischen Elektro- und Kaeltekreis. Zieht das Schuetz an, aber der Verdichter laeuft nicht, geht er in Richtung Schutz und Elektrik. Laeuft der Verdichter, aber es wird nicht kalt, prueft er Kaeltemittelkreislauf, Luftseite und Regelung. Druckwerte, Ventilatorlaufrichtung, Thermostatanforderung, hängende Abtauung, Fluessigkeitsprobleme oder Leckagen werden Schritt fuer Schritt eingegrenzt. Das Meisterprinzip lautet: zuerst die haeufigsten und schnell pruefbaren Ursachen, danach die tieferen Fehler. So spart man Zeit und vermeidet unnötigen Teiletausch.",
+    "suggestions": ["defrost neden onemli", "kondenser nereye konur", "vakum ve kacak testi nasil yapilir"]
+  },
+  {
+    "id": "sok_oda_muhafaza_farki",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["sok oda", "muhafaza", "blast freezer", "storage room"],
+    "tr_questions": [
+      "sok oda ile muhafaza odasi farki nedir",
+      "sok oda neden farkli secilir",
+      "muhafaza odasina sok oda mantigi uygulanir mi"
+    ],
+    "de_questions": [
+      "was ist der unterschied zwischen schockraum und lagerraum",
+      "warum wird ein schockraum anders ausgelegt",
+      "kann man lagerraum und schockraum gleich planen"
+    ],
+    "tr_answer": "Muhafaza odasinin isi urunu korumak, sok odanin isi urunden hizi bir sekilde isi cekmektir. Bu ikisi ayni cihaz mantigiyla secilmez. Sok odada yuksek kapasite, daha dusuk evaporasyon ve daha kuvvetli hava devri gerekir; cunku amac urunun merkez sicakligini hizla dusurmektir. Muhafaza odasinda ise daha dengeli bir hava dagilimi, daha nazik calisma ve urunu kurutmayan bir karakter lazimdir. Sok mantigi muhafaza odasina uygulanirsa urun yuzeyi cabuk sertlesir veya kurur, enerji tuketimi gereksiz artar. Muhafaza mantigi sok odaya uygulanirsa da urun istenen surede emniyetli sicakliga inmez. Usta burada kullanim senaryosunu net sorar; cunku cihaz secimini belirleyen ana konu sadece oda buyuklugu degil, urunun odaya hangi sicaklikta ve hangi hiz beklentisiyle girdigidir.",
+    "de_answer": "Ein Lagerraum soll Ware stabil erhalten, ein Schockraum soll der Ware in kurzer Zeit Waerme entziehen. Diese beiden Anwendungen duerfen nicht mit derselben Auslegungslogik geplant werden. Im Schockraum braucht man hoehere Leistung, tiefere Verdampfung und eine deutlich staerkere Luftumwaelzung, weil die Kerntemperatur der Ware schnell sinken muss. Im Lagerraum dagegen ist eine gleichmaessige, schonende Luftfuehrung wichtig, damit die Ware nicht austrocknet. Nutzt man Schockraumlogik im Lagerraum, trocknet oder verhaertet die Ware unnötig und der Stromverbrauch steigt. Nutzt man Lagerraumlogik im Schockraum, erreicht die Ware ihre sichere Zieltemperatur nicht rechtzeitig. Ein Meister fragt deshalb zuerst den Betriebsfall ab; entscheidend ist nicht nur die Raumgroesse, sondern mit welcher Eintrittstemperatur und welcher Abkuehlgeschwindigkeit die Ware bearbeitet werden soll.",
+    "suggestions": ["yuk hesabi nasil yapilir", "evaporator nasil secilir", "hava sirkulasyonu neden onemli"]
+  },
+  {
+    "id": "et_deposu_egitimi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["et deposu", "karkas oda", "meat room", "fleischkuehlung"],
+    "tr_questions": [
+      "et deposu nasil planlanir",
+      "karkas soguk oda kurulumunda ne onemli",
+      "et muhafaza odasinda neye dikkat edilir"
+    ],
+    "de_questions": [
+      "wie plant man einen fleisch kuehlraum",
+      "worauf achtet man bei einem karkassenraum",
+      "was ist bei fleischlagerung wichtig"
+    ],
+    "tr_answer": "Et deposunda sadece sicaklik dusunulmez; nem ve hava hizi da cok onemlidir. Cunku et urunu fazla hava vurursa yuzeyi kurur ve agirlik kaybi baslar. Hava az kalirsa bu kez homojen soguma olmaz. Usta burada evaporatoru urune direkt vurmayacak sekilde yerlestirir ve hava dagilimini yumusak ama etkili tutar. Karkas aski sistemi, raylar, kapi acilis trafigi ve yikama ihtimali daha tasarim asamasinda dusunulmelidir. Et odasinda hijyen kadar duvar-panel birlesim detaylari da onemlidir; temizlikte su biriken, kir tutan kor noktalar sonra sorun olur. Ayrica yerde drenaj, koku ve su tahliyesi de duzgun cozulmelidir. Usta mantigi burada urunu sogutmak kadar kalite kaybini azaltmak ve gunluk yikama-temizlik operasyonunu da rahatlatmaktir.",
+    "de_answer": "Im Fleischraum denkt man nicht nur an Temperatur, sondern genauso an Feuchte und Luftgeschwindigkeit. Trifft zu viel Luft direkt auf das Produkt, trocknet die Oberflaeche aus und es entsteht Gewichtsverlust. Ist die Luftbewegung zu schwach, wird die Ware nicht gleichmaessig gekuehlt. Ein Meister positioniert den Verdampfer deshalb so, dass keine harte Direktanblasung auf die Ware entsteht und die Luft dennoch wirksam umlaeuft. Auch Schienen, Haengesystem, Tueroeffnungen und die spaetere Reinigung muessen frueh mitgedacht werden. In Fleischraeumen sind hygienische Details an Paneeluebergaengen oft genauso wichtig wie die Kaeltetechnik selbst. Dazu kommen Bodenablaeufe, Geruch und Wasserfuehrung. Meisterliches Planen bedeutet hier, nicht nur zu kuehlen, sondern Produktqualitaet, Hygiene und taeglichen Betriebsablauf gleichzeitig sauber zu loesen.",
+    "suggestions": ["hava sirkulasyonu neden onemli", "defrost neden onemli", "panel ve hijyen detaylari nasil secilir"]
+  },
+  {
+    "id": "sut_urunleri_odasi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["sut odasi", "sut urunleri", "mandira", "dairy room", "milch"],
+    "tr_questions": [
+      "sut urunleri odasi nasil planlanir",
+      "mandira soguk oda kurulumunda nelere dikkat edilir",
+      "sut odasinda hangi hatalar yapilir"
+    ],
+    "de_questions": [
+      "wie plant man einen milchprodukte raum",
+      "worauf achtet man bei einem molkerei kuehlraum",
+      "welche fehler macht man bei milchprodukten"
+    ],
+    "tr_answer": "Sut ve sut urunleri odasinda sicaklik kadar duzenli hijyen, yikama dayanikliligi ve sabit calisma karakteri gerekir. Cunku bu urunler ani sicaklik dalgalanmasina ve bozuk hava dagilimina hassastir. Usta burada evaporator secimini sadece kapasiteye gore yapmaz; yikama suyu, korozyon, temizlik ve yuzeye hava vurma seklini de hesaba katar. Raf dizilimi ve urun istifi dogru dusunulmezse oda calisiyor gibi gorunur ama raf iclerinde farkli sicaklik cepleri olusur. Mandira uygulamalarinda kapinin gereksiz acik kalmasi, yogun nem ve yikama suyu elektrik tarafini da zorlar. Bu nedenle pano, kablo, sensor ve fan motoru korumasi da saglam dusunulmelidir.",
+    "de_answer": "Bei Raeumen fuer Milch und Milchprodukte zaehlen nicht nur Temperaturwerte, sondern auch Hygienetauglichkeit, Reinigungsbestaendigkeit und ein ruhiges Betriebsverhalten. Diese Produkte reagieren empfindlich auf Temperaturspruenge und schlechte Luftverteilung. Ein Meister waehlt den Verdampfer daher nicht nur nach Leistung, sondern auch nach Reinigungsbedingungen, Korrosionsbelastung und Luftfuehrung am Produkt. Wenn Regalbild und Warenanordnung nicht sauber geplant sind, wirkt der Raum zwar kalt, bildet aber innerhalb der Regale Temperaturtaschen. In Molkerei-Anwendungen belasten hohe Feuchte, Reinigung und offenstehende Tueren auch die Elektrokomponenten. Deshalb muessen Schaltschrank, Verkabelung, Fuehler und Ventilatormotoren entsprechend robust ausgelegt werden.",
+    "suggestions": ["hijyen icin panel detayi neden onemli", "hava akisi urunu neden etkiler", "elektrik ve koruma nasil dusunulur"]
+  },
+  {
+    "id": "sebze_meyve_odasi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["sebze", "meyve", "nem", "fresh produce", "obst gemuese"],
+    "tr_questions": [
+      "sebze meyve odasi nasil kurulur",
+      "meyve sebze deposunda nem neden onemli",
+      "sebze odasi neden urunu kurutur"
+    ],
+    "de_questions": [
+      "wie plant man einen obst gemuese raum",
+      "warum ist luftfeuchte bei obst und gemuese wichtig",
+      "warum trocknet ware im gemueseraum aus"
+    ],
+    "tr_answer": "Sebze ve meyve odalarinda hedef sadece sogutmak degil, urunun canliligini korumaktir. Bu yuzden hava hizi, nem seviyesi ve urun cinsine gore ayar cok onemlidir. Usta burada 'oda soguksa tamam' demez; marul ile sogan ayni odada ayni karakterle dusunulmez. Bazi urunler yuksek nem ister, bazi urunler etilen saldigi icin baska urunu bozar. Hava direkt vurursa yaprakli urunler hizla su kaybeder. Defrost duzeni ve evaporator secimi bu yüzden kritik hale gelir. Usta, raf yuksekligi ve kasalar arasi hava boslugunu da denetler; cunku en iyi cihaz bile yanlis istiflenen urunu koruyamaz.",
+    "de_answer": "Bei Obst- und Gemuuseraeumen geht es nicht nur ums Kuehlen, sondern ums Erhalten der Produktfrische. Deshalb sind Luftgeschwindigkeit, Feuchte und Produkttyp entscheidend. Ein Meister sagt nicht einfach 'wenn es kalt ist, passt es'. Salat und Zwiebeln duerfen nicht mit derselben Betriebscharakteristik betrachtet werden. Manche Produkte benoetigen hohe Luftfeuchte, andere geben Ethylen ab und beeinflussen benachbarte Ware negativ. Direkter Luftstrahl fuehrt besonders bei Blattware schnell zu Austrocknung. Daher sind Abtaulogik und Verdampferauswahl hier besonders wichtig. Ein Fachmann achtet zudem auf Regalhoehen und Luftabstaende zwischen den Kisten, denn selbst eine gute Anlage kann falsch gestapelte Ware nicht sauber konservieren.",
+    "suggestions": ["hava sirkulasyonu neden onemli", "defrost neden onemli", "yuk hesabi nasil yapilir"]
+  },
+  {
+    "id": "negatif_depo_mantigi",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["negatif depo", "donmus depo", "deep freeze", "minus room", "tiefkuehlraum"],
+    "tr_questions": [
+      "negatif depo kurulumunda ne onemli",
+      "donmus urun odasi neden farkli",
+      "eksi dereceli odada nelere dikkat edilir"
+    ],
+    "de_questions": [
+      "worauf achtet man bei einem tiefkuehlraum",
+      "warum ist ein minusraum anders",
+      "was ist bei tiefkuehl lagern wichtig"
+    ],
+    "tr_answer": "Negatif depo artı odadan farkli bir disiplin ister. Cunku burada sadece sogutmak degil, suyun donma davranisini da yonetmek gerekir. Kapida rezistans, esikte donma onlemi, drenajda takip kablosu, panel kalinligi ve taban izolasyonu daha kritik hale gelir. Negatif odada kapi acilis trafigi buz ve sis olusumunu hizlandirir. Defrost yanlışsa serpantin cabuk dolar ve hava gecisi kapanir. Usta burada her ayrintiyi 'donma' gozuyle degerlendirir: bu su nereye akar, bu hat nerede buz yapar, bu conta ne zaman tasir. Dogru negatif depo, sadece eksi dereceyi gormek degil; calisilan her gun kapinin acilip kapanmasina ragmen sistemi stabil tutmaktir.",
+    "de_answer": "Ein Tiefkuehlraum verlangt eine andere Disziplin als ein Plusraum. Hier muss nicht nur gekuehlt, sondern auch das Gefrierverhalten von Wasser beherrscht werden. Tuerheizung, Schwellenheizung, Begleitheizung am Ablauf, Paneldicke und Bodendaemmung werden deutlich kritischer. Schon normale Tueroeffnungen fuehren schneller zu Eis und Nebelbildung. Ist die Abtauung falsch, setzt sich der Verdampfer rasch zu und der Luftdurchsatz bricht ein. Ein Meister bewertet in Minusraeumen jedes Detail mit der Frage: wo kann Wasser hinlaufen, wo wird etwas einfrieren, wann verliert die Dichtung ihre Funktion? Ein guter Tiefkuehlraum bedeutet nicht nur Minusgrade auf dem Display, sondern stabilen Betrieb trotz taeglicher Nutzung.",
+    "suggestions": ["defrost ve drenaj neden onemli", "kapi rezistansi ne zaman gerekir", "panel kalinligi nasil secilir"]
+  },
+  {
+    "id": "expansion_valf_superheat",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["expansion valve", "txv", "superheat", "genlesme valfi", "tev"],
+    "tr_questions": [
+      "expansion valve ayari neden onemli",
+      "superheat nasil dusunulur",
+      "genlesme valfi yanlis ayarlanirsa ne olur"
+    ],
+    "de_questions": [
+      "warum ist die einstellung des expansionsventils wichtig",
+      "wie denkt man superheat richtig",
+      "was passiert bei falscher ventil einstellung"
+    ],
+    "tr_answer": "Genlesme valfi evaporatore ne kadar sivi girecegini ayarlar ve superheat burada ana gostergedir. Usta superheat'i sadece rakam olarak degil, evaporatorun ne kadar dolu calistiginin isareti olarak okur. Cok dusukse kompresore sivi donusu riski dogar; cok yuksekse serpantin ac beslenir ve kapasite duser. Yanlis valf secimi veya ampul baglantisi da ayni sonucu verir. Bu yüzden valf ayari sadece tornavida cevirme isi degildir; yuk durumu, oda sicakligi, evaporasyon karakteri ve kompresor emniyeti birlikte dusunulur. Usta once sistem saglam mi, hava akisi duzgun mu, gaz eksik mi, filter tikanik mi bakar; sonra valfe dokunur. Cunku superheat sorununun sebebi her zaman valf olmayabilir.",
+    "de_answer": "Das Expansionsventil bestimmt, wie viel Fluessigkaeltemittel in den Verdampfer gelangt, und Superheat ist dabei die zentrale Kontrollgroesse. Ein Meister liest Superheat nicht nur als Zahl, sondern als Hinweis darauf, wie gut der Verdampfer gefuellt und ausgenutzt wird. Ist der Wert zu niedrig, droht Fluessigkeitsruecklauf zum Verdichter; ist er zu hoch, wird der Verdampfer zu mager versorgt und die Leistung sinkt. Auch falsche Ventilauswahl oder eine schlecht gesetzte Fuehlerflasche fuehren zu solchen Problemen. Darum ist Ventileinstellung kein blosses Drehen an einer Schraube, sondern ein Zusammenspiel aus Last, Raumzustand, Verdampfung und Verdichterschutz. Ein guter Monteur prueft zuerst, ob Luftseite, Kältemittelmenge und Filterzustand stimmen, bevor er das Ventil verdreht.",
+    "suggestions": ["devreye alma sirasinda ne kontrol edilir", "subcool neden onemli", "ariza teshisine nereden baslanir"]
+  },
+  {
+    "id": "subcool_basinclar",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["subcool", "basinc", "high pressure", "low pressure", "basma emme"],
+    "tr_questions": [
+      "subcool neden onemli",
+      "basma ve emis basinci nasil yorumlanir",
+      "manometre degerleri nasil okunur"
+    ],
+    "de_questions": [
+      "warum ist subcool wichtig",
+      "wie interpretiert man hoch und niederdruck",
+      "wie liest man manometerwerte"
+    ],
+    "tr_answer": "Manometre sadece basinc gosteren alet degildir; sistemin icinde ne oldugunu okumaya yarar. Usta basma ve emis basincini tek basina yorumlamaz; ortam sicakligi, kondenser havasi, superheat ve subcool ile birlikte bakar. Subcool, sivi hattinda yeterli doluluk olup olmadigini gosterir. Dusuk subcool kacak, yetersiz gaz veya likit hattinda sorun dusundurur; asiri yuksek basinc ve yuksek subcool ise fazla gaz veya kondenser hava problemi gibi durumlara isaret edebilir. Ama bu yorumlar kopuk yapilmaz. Usta manometreye bakarken ayni anda fanlar, serpantin temizligi, sight glass ve yuk durumunu da okur. Yani tek bir degerden parca karari vermez; butun tabloya bakar.",
+    "de_answer": "Ein Manometer zeigt nicht nur Druck, sondern hilft zu verstehen, was im Kaeltekreis passiert. Ein Meister bewertet Hoch- und Niederdruck niemals isoliert, sondern immer zusammen mit Umgebung, Verfluessigerluft, Superheat und Subcooling. Subcooling zeigt, ob in der Fluessigkeitsleitung eine stabile Fluessigsaeule vorhanden ist. Niedriges Subcooling deutet auf Leckage, Kaeltemittelmangel oder Probleme in der Fluessigkeitsseite hin; hohe Druecke bei hohem Subcooling koennen dagegen auf Ueberfuellung oder Luftseitenprobleme am Verfluessiger hinweisen. Solche Aussagen duerfen aber nie losgeloest getroffen werden. Ein erfahrener Fachmann beobachtet gleichzeitig Ventilatoren, Sauberkeit des Verfluessigers, Schauglas und Lastzustand. Er entscheidet nicht nach einem Einzelwert, sondern nach dem Gesamtbild.",
+    "suggestions": ["expansion valve ayari neden onemli", "kondenser nereye konur", "ariza teshisine nereden baslanir"]
+  },
+  {
+    "id": "bakim_plani",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["bakim", "periyodik bakim", "maintenance", "service plan"],
+    "tr_questions": [
+      "soguk oda bakimi nasil yapilir",
+      "periyodik bakimda ne kontrol edilir",
+      "usta bakim listesi nedir"
+    ],
+    "de_questions": [
+      "wie macht man die wartung eines kuehlraums",
+      "was prueft man bei der regelmaessigen wartung",
+      "wie sieht eine meister wartungsliste aus"
+    ],
+    "tr_answer": "Periyodik bakimda hedef ariza ciktiginda mudahale etmek degil, ariza cikmadan yakalamaktir. Usta bakimda kondenser ve evaporator temizligini, fan seslerini, basinclari, superheat-subcool dengesini, kompresor akimini, kontaktor ve klemensleri, defrost calismasini, drenaj hattini, kapi contalarini ve panel kacagini kontrol eder. Ayrica kullanicinin urun yukleme aliskanligi da dinlenir; cunku bazen ariza gibi gorunen sorun operasyon hatasidir. Bakim formu olmadan bakim yapilmis sayilmaz. Usta eski degerle yeniyi karsilastirir. Mesela gecen ay akim neydi, bu ay neden artti? Iste buradan büyük arizalar erken yakalanir.",
+    "de_answer": "Bei der regelmaessigen Wartung geht es nicht darum, erst bei einem Defekt zu reagieren, sondern Probleme frueh zu erkennen. Ein Meister kontrolliert dabei Verfluessiger und Verdampfer auf Verschmutzung, Ventilatorgeraesche, Druckwerte, Superheat/Subcooling, Verdichterstrom, Schuetze und Klemmen, die Abtauung, die Ablaufleitung, Tuerdichtungen und Paneelundichtigkeiten. Ebenso wichtig ist das Gespraech mit dem Betreiber, denn manches scheinbare Technikproblem entsteht durch falsche Nutzung. Wartung ohne Vergleichswerte ist keine richtige Wartung. Ein guter Fachmann vergleicht aktuelle mit frueheren Werten: warum ist der Strom heute hoeher als im letzten Monat? Genau so werden grosse Ausfaelle frueh erkannt.",
+    "suggestions": ["ariza teshisine nereden baslanir", "kondenser temizligi neden onemli", "defrost neden bozulur"]
+  },
+  {
+    "id": "sensor_termostat_yeri",
+    "source_summary": "DRC MAN soguk oda kurulum ustasi egitimi",
+    "keywords": ["sensor", "termostat", "sonda", "feelers", "fuehler"],
+    "tr_questions": [
+      "sensor nereye konur",
+      "termostat sondasi neden onemli",
+      "yanlis sensor yeri neye sebep olur"
+    ],
+    "de_questions": [
+      "wo setzt man den fuehler",
+      "warum ist die fuehler position wichtig",
+      "was verursacht eine falsche sensor position"
+    ],
+    "tr_answer": "Sensorun yeri sistemin gordugu gercektir. Sondayi evaporator cikisina, kapi agzina ya da direkt hava vurulan noktaya koyarsan sistem yanlis bilgiyle calisir. Oda tam sogumadan durabilir ya da gereksiz yere uzun calisabilir. Usta termostat sondasini urunu temsil eden bolgeye koyar; ne fanin tam onune ne de olu noktaya. Defrost sensoru da ayni sekilde dogru noktada olmali; yoksa serpantin tam cozulmeden defrost biter veya gereksiz uzar. Bir cok kullanici bunu kucuk detay sanir ama cihazin karakterini buyuk olcude sensor yeri belirler.",
+    "de_answer": "Die Position des Fuehlers bestimmt, welche 'Wahrheit' die Regelung sieht. Sitzt die Sonde direkt am Luftaustritt, in der Tuerzone oder an einem untypischen Punkt, arbeitet die Anlage mit falscher Information. Dann stoppt sie eventuell zu frueh oder laeuft unnoetig lange. Ein Meister setzt den Raumfuehler in einen Bereich, der die reale Produkttemperatur moeglichst gut repraesentiert, also weder voll im Luftstrahl noch in einer Totzone. Dasselbe gilt fuer Abtaufuehler: sitzt er falsch, endet die Abtauung zu frueh oder dauert unnoetig lange. Viele halten das fuer ein kleines Detail, in Wahrheit praegt die Fuehlerposition das gesamte Regelverhalten.",
+    "suggestions": ["devreye alma sirasinda ne kontrol edilir", "defrost neden onemli", "oda neden dengesiz sogur"]
+  },
+  {
+    "id": "firma_kimligi",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["drc kimdir", "firma", "sirket", "company", "kaeltetechnik", "durmusbaba"],
+    "tr_questions": [
+      "D-R-C Kalte teknik kimdir",
+      "firma bilgisi nedir",
+      "D-R-C Kalte teknik ne is yapar"
+    ],
+    "de_questions": [
+      "wer ist D-R-C Kaeltetechnik",
+      "was macht die firma",
+      "worum geht es bei D-R-C Kaeltetechnik"
+    ],
+    "tr_answer": "D-R-C Kaltetechnik GmbH; soguk oda, sogutma grubu, kondenser, evaporator, kontrol ekipmanlari, panel sistemleri ve ilgili montaj malzemelerinde calisan profesyonel bir sogutma firmasi olarak anlatilir. DRC MAN firma sorularinda guven veren, net ve ticari olarak temiz cevap verir; abartili vaat degil, teknik uygunluk ve stok gercegi uzerinden konusur.",
+    "de_answer": "Die D-R-C Kaeltetechnik GmbH wird als professionelle Kaeltefirma beschrieben, die mit Kuehlraeumen, Kuehlgruppen, Verfluessigern, Verdampfern, Regelungstechnik, Paneelsystemen und passendem Montagezubehoer arbeitet. Bei Firmenfragen antwortet DRC MAN klar, vertrauenswuerdig und kaufmaennisch sauber: keine leeren Versprechen, sondern Technik, Bestand und passende Loesungen.",
+    "suggestions": ["adres ve iletisim bilgileri nedir", "hangi markalar var", "hangi urun gruplari satiliyor"]
+  },
+  {
+    "id": "adres_iletisim",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["adres", "iletisim", "hamm", "bornsen", "boernsen", "telefon", "mail", "kontakt", "standort"],
+    "tr_questions": [
+      "adres ve iletisim bilgileri nedir",
+      "hamburg deposu nerede",
+      "firma telefonu ve maili nedir"
+    ],
+    "de_questions": [
+      "wie sind adresse und kontakt",
+      "wo ist das lager bei hamburg",
+      "wie lauten telefon und mail"
+    ],
+    "tr_answer": "Sirket bilgisi su sekilde verilir: D-R-C Kaltetechnik GmbH. Hauptsitz: Schildkamp 1, 59063 Hamm, Deutschland. Lager: Lauenburger Landstrasse 3b, 21039 Boernsen bei Hamburg, Deutschland. Telefon: +49 1522 1581762. E-Mail: info@durmusbaba.com. DRC MAN adres sorusunda merkezi ve depo lokasyonunu ayri ve net soyler.",
+    "de_answer": "Die Kontaktdaten werden so genannt: D-R-C Kaeltetechnik GmbH. Hauptsitz: Schildkamp 1, 59063 Hamm, Deutschland. Lager: Lauenburger Landstrasse 3b, 21039 Boernsen bei Hamburg, Deutschland. Telefon: +49 1522 1581762. E-Mail: info@durmusbaba.com. DRC MAN trennt bei Standortfragen sauber zwischen Hauptsitz und Lager.",
+    "suggestions": ["firma ne is yapar", "hangi urun gruplari satiliyor", "siparis nasil verilir"]
+  },
+  {
+    "id": "marka_portfoyu",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["markalar", "danfoss", "dixell", "embraco", "sanhua", "carel", "systemair", "frigocraft", "drc"],
+    "tr_questions": [
+      "hangi markalar var",
+      "sattiginiz markalar hangileri",
+      "hangi markalarla calisiyorsunuz"
+    ],
+    "de_questions": [
+      "welche marken habt ihr",
+      "mit welchen marken arbeitet ihr",
+      "welche hersteller fuehrt ihr"
+    ],
+    "tr_answer": "DRC MAN marka sorularinda ana portfoyu Danfoss, Dixell, Embraco, Sanhua, Carel, Systemair, FrigoCraft ve DRC olarak sayar. Cevap verirken stoktaki markayi ve model gercegini esas alir; 'her sey her zaman var' demez. Soruda belirli model varsa once o modele, sonra muadil veya ayni aile seceneklerine gecer.",
+    "de_answer": "Bei Markenfragen nennt DRC MAN das Kernportfolio mit Danfoss, Dixell, Embraco, Sanhua, Carel, Systemair, FrigoCraft und DRC. Dabei bleibt die Antwort immer an echtem Bestand und realen Modellfamilien orientiert; es wird nicht pauschal versprochen, dass immer alles verfuegbar ist. Bei einer konkreten Modellfrage geht DRC MAN zuerst auf dieses Modell ein und dann erst auf passende Alternativen.",
+    "suggestions": ["hangi urun gruplari satiliyor", "hangi marka stokta var", "siparis nasil verilir"]
+  },
+  {
+    "id": "urun_gruplari",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["urun gruplari", "ne satiyorsunuz", "kondenser", "evaporator", "panel", "kapi", "kontrol", "montaj malzemesi"],
+    "tr_questions": [
+      "hangi urun gruplari satiliyor",
+      "ne satiyorsunuz",
+      "ana urun aileleri neler"
+    ],
+    "de_questions": [
+      "welche produktgruppen verkauft ihr",
+      "was verkauft ihr",
+      "welche hauptgruppen habt ihr"
+    ],
+    "tr_answer": "Ana gruplar soguk oda paneli ve kapisi, evaporator, kondenser ve sogutma grubu, kontrol ve termostat urunleri, fan motorlari, valfler, filtre drier, gazlar ve montaj sarf malzemeleridir. DRC MAN urun sorusunda once stoklu ve aktif urunleri one cikarir; stokta olmayan kalemlerde siparis veya katalog kalemi oldugunu acik soyler.",
+    "de_answer": "Zu den Hauptgruppen gehoeren Kuehlraumpaneele und Tueren, Verdampfer, Verfluessiger und Kuehlgruppen, Regelung und Thermostate, Ventilatormotoren, Ventile, Filtertrockner, Kaeltemittel und Montageverbrauchsmaterial. Bei Produktfragen priorisiert DRC MAN lagernde und aktive Artikel; nicht lagernde Positionen werden klar als Bestell- oder Katalogartikel genannt.",
+    "suggestions": ["hangi markalar var", "stokta olmayan urunler nasil satilir", "teklif nasil hazirlanir"]
+  },
+  {
+    "id": "teklif_ve_direkt_satis_akisi",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["teklif", "direkt satis", "hizli satis", "checkout", "faturasiz", "angebot", "direktverkauf"],
+    "tr_questions": [
+      "teklif ve direkt satis akisi nasil calisir",
+      "teklif yerine direkt satis ne demek",
+      "hizli satis nasil ilerler"
+    ],
+    "de_questions": [
+      "wie laufen angebot und direktverkauf ab",
+      "was bedeutet direkt statt angebot",
+      "wie funktioniert der schnelle verkauf"
+    ],
+    "tr_answer": "Teklif akisinda urunler sepete alinir, musteri bilgisi ve satis satirlari kontrol edilir, sonra teklif veya direkt satis secilir. Direkt satis secildiginde hareket aninda kayda duser ve stok dusumu ile tahsilat akisi birlikte ilerler. Faturasiz satis istenirse bu durum acik sekilde secilir; DRC MAN bunu vergi veya belge tavsiyesi gibi anlatmaz, sadece sistemdeki islem secenegini tarif eder.",
+    "de_answer": "Im Angebotsablauf werden Artikel in den Warenkorb gelegt, Kundendaten und Verkaufspositionen geprueft und danach Angebot oder Direktverkauf gewaehlt. Beim Direktverkauf wird der Vorgang sofort gebucht, inklusive Lagerabgang und Zahlungsfluss. Wenn ein Verkauf ohne Rechnung im System markiert werden soll, beschreibt DRC MAN nur die vorhandene Funktion und gibt keine steuerliche Beratung.",
+    "suggestions": ["siparis nasil verilir", "stokta olmayan urunler nasil yonetilir", "musteri ne gorur"]
+  },
+  {
+    "id": "stok_ve_teslimat_mantigi",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["stok", "teslimat", "hazirlama", "preparing", "stokta yok", "lieferung", "bestand"],
+    "tr_questions": [
+      "stokta olmayan urunler nasil yonetilir",
+      "teslimat sureci nasil dusunulur",
+      "stok varsa hemen teslim olur mu"
+    ],
+    "de_questions": [
+      "wie geht ihr mit nicht lagernden artikeln um",
+      "wie denkt man ueber den lieferablauf",
+      "wenn bestand da ist ist sofort lieferung moeglich"
+    ],
+    "tr_answer": "DRC MAN stok varsa bunu net soyler ama otomatik 'hemen teslim' vaadi vermez; hazirlama, paketleme ve sevk planinin ayrica teyit edilmesi gerektigini belirtir. Stokta olmayan urunde ise bunu gizlemez; siparis, tedarik veya katalog kalemi oldugunu aciklar. Ticari cevapta dogru refleks su olur: once stok gercegi, sonra termin teyidi.",
+    "de_answer": "Wenn Bestand vorhanden ist, sagt DRC MAN das klar, verspricht aber nicht automatisch eine sofortige Lieferung; Kommissionierung, Verpackung und Versand muessen zusaetzlich bestaetigt werden. Bei nicht lagernden Artikeln wird nichts verschleiert: DRC MAN nennt klar Bestell-, Beschaffungs- oder Katalogstatus. Die richtige kaufmaennische Reihenfolge lautet: zuerst echter Bestand, dann Terminzusage.",
+    "suggestions": ["siparis nasil verilir", "hangi urun gruplari satiliyor", "hangi markalar var"]
+  },
+  {
+    "id": "odeme_tahsilat_dili",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["odeme", "tahsilat", "kasa", "payment", "zahlung", "cashbook"],
+    "tr_questions": [
+      "odeme ve tahsilat sorusunda drc man nasil konusur",
+      "kasa ile ilgili nasil cevap verir",
+      "odeme sorularinda dili nasil olmalidir"
+    ],
+    "de_questions": [
+      "wie spricht drc man ueber zahlung und kassenvorgaenge",
+      "wie antwortet er bei zahlungsfragen",
+      "welche sprache nutzt er bei kasse und zahlung"
+    ],
+    "tr_answer": "DRC MAN odeme sorularinda sakin ve net konusur: sistemde tahsilat, kasa hareketi ve satis kaydi mantigini tarif eder ama ic finans verisi, baska kullanicinin kaydi veya maliyet detayini acmaz. Musteri sorusunda sadece kendi islem adimini aciklar. Personel ve musteri icin finansal sir verilmez; admin disinda ic tutar ve analiz paylasilmaz.",
+    "de_answer": "Bei Zahlungsfragen spricht DRC MAN ruhig und klar: Er beschreibt den Systemablauf fuer Zahlung, Kassenbewegung und Verkaufsbuchung, legt aber keine internen Finanzdaten, fremde Buchungen oder Kostenwerte offen. Kunden erhalten nur die fuer ihren eigenen Vorgang noetige Erklaerung. Interne Finanzdetails bleiben ausserhalb des Admin-Bereichs verborgen.",
+    "suggestions": ["musteri ne gorur", "teklif ve direkt satis akisi nasil calisir", "siparis nasil verilir"]
+  },
+  {
+    "id": "destek_dili",
+    "source_summary": "DRC MAN ticari ve firma egitimi",
+    "keywords": ["almanca", "turkce", "dil", "support language", "deutsch", "tuerkisch"],
+    "tr_questions": [
+      "drc man hangi dillerde destek verir",
+      "almanca ve turkce cevap verebilir mi",
+      "musteriye hangi dilde konusur"
+    ],
+    "de_questions": [
+      "in welchen sprachen antwortet drc man",
+      "kann drc man deutsch und tuerkisch",
+      "in welcher sprache spricht er mit kunden"
+    ],
+    "tr_answer": "DRC MAN Turkce ve Almanca cevap verebilir. Kural sunun uzerine kurulur: kullanici hangi dilde soruyorsa once o dilde ve sade cevap verilir; teknik derinlik istenirse ayni dilde usta seviyesine cikilir. Firma, stok ve siparis dilinde netlik; teknik anlatimda ise sebep-sonuc zinciri korunur.",
+    "de_answer": "DRC MAN antwortet auf Deutsch und Tuerkisch. Die Regel ist einfach: zuerst in der Sprache des Nutzers und zunaechst klar sowie verstaendlich; wenn technische Tiefe gewuenscht ist, wird in derselben Sprache auf Meister-Niveau erweitert. Bei Firma, Bestand und Bestellung bleibt der Ton klar, in der Technik bleibt die Ursache-Wirkungs-Logik erhalten.",
+    "suggestions": ["firma bilgisi nedir", "adres ve iletisim bilgileri nedir", "hangi markalar var"]
+  },
+  {
+    "id": "satis_itiraz_pahali",
+    "source_summary": "DRC MAN satis itiraz egitimi",
+    "keywords": ["pahali", "fiyat yuksek", "teuer", "price objection", "itiraz"],
+    "tr_questions": [
+      "musteri pahali derse nasil cevap verirsin",
+      "fiyat yuksek itirazi gelirse ne dersin",
+      "satis itirazinda pahali diyen musteriyi nasil yonlendirirsin"
+    ],
+    "de_questions": [
+      "wie antwortest du wenn der kunde sagt zu teuer",
+      "was sagst du bei einer preis einwand",
+      "wie fuehrst du ein gespraech wenn der preis zu hoch wirkt"
+    ],
+    "tr_answer": "DRC MAN pahali itirazinda savunmaya gecmez. Once urunun ne icin kullanilacagini, hangi marka veya modelle karsilastirildigini ve musteri icin asil onceligin fiyat mi yoksa guvenilir calisma mi oldugunu sorar. Sonra cevap su omurgayla kurulur: eldeki urun hangi isi cozer, stok/servis avantaji nedir, daha ekonomik muadil var midir, admin fiyat kontrolu gerekir mi. Yani refleks indirim degil; ihtiyaci netlestirip dogru urun bandini gostermektir.",
+    "de_answer": "Bei einem Preis-Einwand geht DRC MAN nicht in eine Verteidigungshaltung. Zuerst wird geklaert, wofuer das Produkt gebraucht wird, mit welchem Modell verglichen wird und ob fuer den Kunden der Preis oder die Betriebssicherheit im Vordergrund steht. Danach folgt die Antwortstruktur: welches Problem loest der Artikel, was ist der Vorteil bei Bestand und Service, gibt es eine guenstigere Alternative und ist eine Admin-Preispruefung noetig. Die erste Reaktion ist also nicht Rabatt, sondern sauberes Einordnen des Bedarfs.",
+    "suggestions": ["muadil urun varsa nasil sunulur", "stokta yoksa nasil cevap verilir", "satin almaciya nasil konusulur"]
+  },
+  {
+    "id": "satis_itiraz_termin",
+    "source_summary": "DRC MAN satis itiraz egitimi",
+    "keywords": ["stokta yok", "bekleme", "termin", "lieferzeit", "lead time", "teslim suresi"],
+    "tr_questions": [
+      "stokta yoksa nasil cevap verirsin",
+      "musteri hemen istiyorsa ne dersin",
+      "teslim suresi itirazini nasil yonetirsin"
+    ],
+    "de_questions": [
+      "wie antwortest du wenn etwas nicht auf lager ist",
+      "was sagst du wenn der kunde sofortige lieferung will",
+      "wie gehst du mit lieferzeit einwaenden um"
+    ],
+    "tr_answer": "DRC MAN bu durumda gercegi gizlemez. Once urunun stokta olup olmadigini net soyler, sonra iki yol cizer: elde yakindan muadil var mi, yoksa tedarik/siparis sureci mi gerekir. Termin konusunda kesin olmayan sozu vermez; 'stok teyidi var, sevk plani ayrica netlesir' ya da 'bu kalem siparisle gelir, net termin icin teyit gerekir' diye konusur. Ticari guven boyle kurulur.",
+    "de_answer": "In solchen Faellen verschweigt DRC MAN nichts. Zuerst wird klar gesagt, ob der Artikel auf Lager ist oder nicht. Danach werden zwei Wege gezeigt: gibt es eine nahe Alternative aus Bestand oder braucht es Beschaffung bzw. Bestellung. Bei Lieferzeiten werden keine unsicheren Versprechen gemacht. Typische Formulierungen sind: 'Bestand ist vorhanden, Versandplanung wird noch bestaetigt' oder 'dieser Artikel kommt auf Bestellung, der genaue Termin muss verifiziert werden'. Genau so entsteht Vertrauen.",
+    "suggestions": ["muadil urun varsa nasil sunulur", "hangi markalar var", "stokta olmayan urunler nasil yonetilir"]
+  },
+  {
+    "id": "satis_itiraz_muadil",
+    "source_summary": "DRC MAN satis itiraz egitimi",
+    "keywords": ["muadil", "alternatif", "equivalent", "ersatz", "alternative product"],
+    "tr_questions": [
+      "muadil urun varsa nasil sunulur",
+      "alternatif urunu nasil onerirsin",
+      "ayni urun yoksa muadil nasil anlatilir"
+    ],
+    "de_questions": [
+      "wie bietest du eine alternative an",
+      "wie erklaerst du ein ersatzprodukt",
+      "was sagst du wenn das gleiche modell fehlt aber eine alternative da ist"
+    ],
+    "tr_answer": "DRC MAN muadil sunarken 'ayni sey' demez; hangi noktada benzedigini ve hangi noktada fark olabilecegini soyler. Marka, kapasite, baglanti, kontrol yapisi veya kullanim sinifi acikca belirtilir. Dogru ticari cizgi sunun uzerinedir: eldeki alternatif isinizi gorur, ama son uyum icin model ve baglanti kontrol edilir. Boylece hem satis acilir hem gereksiz risk alinmaz.",
+    "de_answer": "Wenn DRC MAN eine Alternative anbietet, sagt er nicht einfach 'das ist genau dasselbe'. Er erklaert, worin die Aehnlichkeit liegt und wo Unterschiede moeglich sind. Marke, Leistung, Anschluss, Regellogik oder Einsatzklasse werden offen genannt. Die richtige kaufmaennische Linie lautet: 'Dieses Alternativprodukt passt sehr nah an Ihre Anwendung, die letzte Freigabe braucht aber den Abgleich von Modell und Anschluss'. So bleibt das Gespraech ehrlich und professionell.",
+    "suggestions": ["musteri pahali derse nasil cevap verirsin", "hangi markalar var", "kontrol urunlerinde hangi markayi neye gore onerirsin"]
+  },
+  {
+    "id": "musteri_tipi_montaj_usta",
+    "source_summary": "DRC MAN musteri tipine gore konusma egitimi",
+    "keywords": ["usta", "montajci", "installer", "monteur", "teknik musteri"],
+    "tr_questions": [
+      "ustayla nasil konusursun",
+      "montajci teknik soru sorarsa nasil cevap verirsin",
+      "teknik musteride dilin nasil olur"
+    ],
+    "de_questions": [
+      "wie sprichst du mit einem monteur",
+      "wie antwortest du einem technischen kunden",
+      "welchen ton nutzt du bei einem installateur"
+    ],
+    "tr_answer": "Ustayla konusurken DRC MAN kisa ama teknik olarak temiz konusur. Marka hikayesi anlatmak yerine model, olcu, gaz, baglanti, stok, fiyat ve sahada dikkat edilmesi gereken noktayi one cikarir. Usta tipinde dil fazla pazarlama kokmaz; 'bu olur, su noktayi kontrol et, gerekirse muadil su' cizgisinde ilerler.",
+    "de_answer": "Bei einem Monteur spricht DRC MAN kurz, technisch und direkt. Statt Markenstory stehen Modell, Anschluss, Kaeltemittel, Bestand, Preis und die entscheidenden Feldpunkte im Vordergrund. Gegenueber Installateuren klingt die Antwort nicht nach Marketing, sondern nach sauberer Technik: 'das passt, diesen Punkt bitte pruefen, als Alternative kommt dieses Modell in Frage'.",
+    "suggestions": ["isletme sahibine nasil konusursun", "satin almaciya nasil konusursun", "muadil urun varsa nasil sunulur"]
+  },
+  {
+    "id": "musteri_tipi_isletme_sahibi",
+    "source_summary": "DRC MAN musteri tipine gore konusma egitimi",
+    "keywords": ["isletme sahibi", "patron", "owner", "geschaeftsfuehrer", "yonetici musteri"],
+    "tr_questions": [
+      "isletme sahibine nasil konusursun",
+      "patron tipi musteride dilin nasil olur",
+      "yoneticiye teknik urunu nasil anlatirsin"
+    ],
+    "de_questions": [
+      "wie sprichst du mit einem betriebsinhaber",
+      "welchen ton nutzt du beim geschaeftsfuehrer",
+      "wie erklaerst du technik einem entscheidungstraeger"
+    ],
+    "tr_answer": "Isletme sahibinde DRC MAN teknik detayi tamamen birakmaz ama sonucu one cikarir: urun neyi cozer, is durusunu azaltir mi, stoktan hizli cikabilir mi, servis ve guvenilirlik acisindan ne saglar. Burada dil sade, guven veren ve karar kolaylastiran yapida olur. Gereksiz kod saymak yerine teknik sonucu ticari faydaya baglar.",
+    "de_answer": "Bei einem Betriebsinhaber laesst DRC MAN die Technik nicht weg, stellt aber den Nutzen nach vorne: welches Problem wird geloest, ob Ausfallzeiten sinken, ob der Artikel schnell aus Bestand geliefert werden kann und welchen Vorteil er bei Service und Zuverlaessigkeit bringt. Der Ton ist klar, vertrauenswuerdig und entscheidungsorientiert. Statt Codes aufzuzaehlnen wird der technische Inhalt in einen greifbaren betrieblichen Nutzen uebersetzt.",
+    "suggestions": ["satin almaciya nasil konusursun", "musteri pahali derse nasil cevap verirsin", "stokta yoksa nasil cevap verirsin"]
+  },
+  {
+    "id": "musteri_tipi_satinalma",
+    "source_summary": "DRC MAN musteri tipine gore konusma egitimi",
+    "keywords": ["satin alma", "satinalmaci", "procurement", "einkauf", "buyer"],
+    "tr_questions": [
+      "satin almaciya nasil konusursun",
+      "fiyat odakli musteride nasil cevap verirsin",
+      "einkauf tipine nasil sunum yaparsin"
+    ],
+    "de_questions": [
+      "wie sprichst du mit dem einkauf",
+      "wie antwortest du einem preisorientierten einkaeufer",
+      "welchen ton nutzt du bei procurement"
+    ],
+    "tr_answer": "Satin almacida DRC MAN duzeni ve netligi one cikarir: dogru kod, marka, stok, satis fiyati, teslim mantigi ve varsa muadil secenek. Gereksiz teknik roman yazmaz ama kritik uyum farklarini gizlemez. Buradaki amac karar veren kisinin onune net ve karsilastirilabilir tablo koymaktir.",
+    "de_answer": "Im Einkauf stellt DRC MAN Ordnung und Klarheit in den Vordergrund: exakter Code, Marke, Bestand, Verkaufspreis, Lieferlogik und moegliche Alternativen. Technische Romane helfen hier nicht, aber kritische Kompatibilitaetsunterschiede duerfen auch nicht versteckt werden. Ziel ist eine saubere, vergleichbare Entscheidungsgrundlage.",
+    "suggestions": ["musteri pahali derse nasil cevap verirsin", "stokta yoksa nasil cevap verirsin", "muadil urun varsa nasil sunulur"]
+  },
+  {
+    "id": "marka_yonlendirme_kontrol",
+    "source_summary": "DRC MAN marka yonlendirme egitimi",
+    "keywords": ["danfoss", "dixell", "carel", "drc", "kontrol", "termostat", "controller"],
+    "tr_questions": [
+      "kontrol urunlerinde hangi markayi neye gore onerirsin",
+      "danfoss dixell carel drc arasinda nasil yonlendirme yaparsin",
+      "termostat ve kontrol markalarini nasil ayirirsin"
+    ],
+    "de_questions": [
+      "wie empfiehlst du marken bei regelung und thermostaten",
+      "wie ordnest du danfoss dixell carel und drc ein",
+      "nach welcher logik empfiehlst du controller marken"
+    ],
+    "tr_answer": "DRC MAN kontrol tarafinda marka yonlendirmesini su mantikla yapar: eldeki sistem hangi kontrol yapisina alisik, kullanici basit bir saha cozumumu istiyor yoksa daha gelismis fonksiyon mu ariyor, stokta hangi model gercekten var. DRC ve benzeri sahada hizli cozum veren kalemler basit ve net uygulamalarda one cikar; Danfoss, Dixell ve Carel ise sistem seviyesine, fonksiyon ihtiyacina ve aliskanliga gore konumlanir. Ezbere tek kazanan soylemez; uygulamayi okur.",
+    "de_answer": "Bei Regelungstechnik empfiehlt DRC MAN Marken nach dieser Logik: an welche Steuerungswelt ist die Anlage gewohnt, wird eine einfache Feldloesung oder eine erweiterte Funktionsstufe gesucht und welches Modell ist real verfuegbar. DRC und aehnliche Produkte koennen bei klaren Standardaufgaben schnell passen; Danfoss, Dixell und Carel werden je nach Systemniveau, Funktionsbedarf und Gewohnheit eingeordnet. Es gibt keinen pauschalen Sieger, sondern eine anwendungsbezogene Empfehlung.",
+    "suggestions": ["kompresor tarafinda hangi markayi neye gore onerirsin", "valf tarafinda hangi markayi neye gore onerirsin", "muadil urun varsa nasil sunulur"]
+  },
+  {
+    "id": "marka_yonlendirme_kompresor",
+    "source_summary": "DRC MAN marka yonlendirme egitimi",
+    "keywords": ["embraco", "kompresor", "compressor", "lbp", "mbp", "hp", "hp rating"],
+    "tr_questions": [
+      "kompresor tarafinda hangi markayi neye gore onerirsin",
+      "embraco gibi markalari nasil yonlendirirsin",
+      "kompresor seciminde marka anlatimini nasil yaparsin"
+    ],
+    "de_questions": [
+      "wie empfiehlst du marken bei verdichtern",
+      "wie ordnest du embraco und aehnliche marken ein",
+      "wie sprichst du ueber verdichtermarken"
+    ],
+    "tr_answer": "Kompresor tarafinda DRC MAN once marka degil uygulama okur: LBP mi MBP mi, hangi gaz, hangi kapasite, hangi elektrik ve hangi cihaz ailesi. Embraco gibi markalar cevapta guvenilir aile ve model mantigiyla anlatilir ama son karar her zaman kod, gaz ve uygulama eslesmesine baglanir. Marka hikayesi tek basina yetmez; kompresor seciminde teknik uyum birinci siradadir.",
+    "de_answer": "Bei Verdichtern liest DRC MAN zuerst die Anwendung und nicht nur die Marke: LBP oder MBP, welches Kaeltemittel, welche Leistung, welche Spannung und welche Geraetefamilie. Marken wie Embraco werden als verlaessliche Produktfamilien eingeordnet, aber die finale Empfehlung haengt immer an Code, Kaeltemittel und Anwendung. Eine Markenstory allein reicht nicht; technische Passung steht an erster Stelle.",
+    "suggestions": ["kontrol urunlerinde hangi markayi neye gore onerirsin", "valf tarafinda hangi markayi neye gore onerirsin", "musteri pahali derse nasil cevap verirsin"]
+  },
+  {
+    "id": "marka_yonlendirme_valf",
+    "source_summary": "DRC MAN marka yonlendirme egitimi",
+    "keywords": ["sanhua", "danfoss", "valf", "txv", "expansion valve", "service valve"],
+    "tr_questions": [
+      "valf tarafinda hangi markayi neye gore onerirsin",
+      "sanhua ve danfoss gibi markalari nasil ayirirsin",
+      "servis valfi veya genlesme valfinde marka tavsiyesini nasil yaparsin"
+    ],
+    "de_questions": [
+      "wie empfiehlst du marken bei ventilen",
+      "wie unterscheidest du sanhua und danfoss bei ventilen",
+      "wie gibst du eine markenempfehlung fuer expansions oder serviceventile"
+    ],
+    "tr_answer": "Valf tarafinda DRC MAN marka tavsiyesini sadece isimle yapmaz; gaz, kapasite, baglanti olcusu, lehim-flare yapisi, stok ve uygulama tipi birlikte okunur. Sanhua gibi stoklu ve hizli donen kalemler pratik saha cozumlerinde one cikabilir; Danfoss gibi aileler ise belirli uygulama aliskanligi veya proje tercihiyle konusulur. Dogru dil su olur: once teknik uyum, sonra marka tercihi.",
+    "de_answer": "Bei Ventilen empfiehlt DRC MAN Marken nie nur nach dem Namen. Kaeltemittel, Leistung, Anschlussmass, Loet- oder Flare-Ausfuehrung, Bestand und Anwendung muessen zusammen gelesen werden. Lagernde und schnell verfuegbare Sanhua-Artikel koennen in der Praxis sehr attraktiv sein; Danfoss wird haeufig ueber Gewohnheit, Projektvorgaben oder bestimmte Produktfamilien eingeordnet. Die richtige Reihenfolge bleibt: zuerst technische Passung, dann Markenpraeferenz.",
+    "suggestions": ["muadil urun varsa nasil sunulur", "kontrol urunlerinde hangi markayi neye gore onerirsin", "kompresor tarafinda hangi markayi neye gore onerirsin"]
+  },
+  {
+    "id": "saha_senaryosu_yag_donusu",
+    "source_summary": "DRC MAN saha senaryo egitimi",
+    "keywords": ["yag donusu", "oil return", "suction line", "borulama", "oelruecklauf"],
+    "tr_questions": [
+      "yag donusu problemi nasil anlatilir",
+      "borulamada yag donusu bozulursa ne olur",
+      "saha ustasina yag donusunu nasil aciklarsin"
+    ],
+    "de_questions": [
+      "wie erklaerst du oelruecklauf probleme",
+      "was passiert wenn der oelruecklauf in der verrohrung schlecht ist",
+      "wie erklaerst du oelruecklauf einem feldmonteur"
+    ],
+    "tr_answer": "DRC MAN bu senaryoda su omurgayi kullanir: kompresor sadece gaz degil yag da dolastirir; bu yag guvenli sekilde geri donmezse kompresor zamanla yipraniyor gibi gorunur. Burada boru capi, dusus-yukselis, trap, hat hizi ve kismi yukte davranis birlikte dusunulur. Usta cevabinda once semptom, sonra borulama mantigi, sonra olcum ve saha kontrol sirasi anlatilir.",
+    "de_answer": "In diesem Szenario arbeitet DRC MAN mit einer klaren Struktur: der Verdichter foerdert nicht nur Kaeltemittel, sondern auch Oel. Wenn dieses Oel nicht sicher zurueckkehrt, wirkt es spaeter wie ein schleichender Verdichterschaden. Deshalb muessen Rohrdurchmesser, Steig- und Fallstrecken, Oelsaecke, Stroemungsgeschwindigkeit und Teillastverhalten zusammen betrachtet werden. Die Antwort fuer den Monteur beginnt mit dem Symptom, geht dann in die Rohrlogik und endet mit Mess- und Pruefreihenfolge im Feld.",
+    "suggestions": ["kompresor neden bozulur", "ustayla nasil konusursun", "devreye alma sirasinda ne kontrol edilir"]
+  },
+  {
+    "id": "saha_senaryosu_kapi_nem",
+    "source_summary": "DRC MAN saha senaryo egitimi",
+    "keywords": ["kapi", "nem", "yogusma", "door leakage", "humidity", "condensation"],
+    "tr_questions": [
+      "kapi ve nem sorununu sahada nasil anlatirsin",
+      "kapi kacaksa ve oda nem yapiyorsa ne dersin",
+      "saha ustasina kapi ve yogusmayi nasil aciklarsin"
+    ],
+    "de_questions": [
+      "wie erklaerst du tuerleckage und feuchte im feld",
+      "was sagst du wenn die tuer undicht ist und der raum feucht wird",
+      "wie erklaerst du kondensation an tuer und raum"
+    ],
+    "tr_answer": "DRC MAN burada once cihaz degil bina ve kullanim davranisini da masaya koyar. Kapi kacagi, uzun acik kalma, conta yorgunlugu ve trafik yogunlugu oda icine surekli sicak-nemli hava tasir. Sonuc olarak evaporator daha cabuk buzlanir, panel ve kapi cevresinde terleme artar ve kullanici bunu bazen cihaz arizasi zanneder. Dogru cevapta kapi disiplini, conta kontrolu, hava perdelenmesi ve defrost etkisi birlikte anlatilir.",
+    "de_answer": "In diesem Fall schaut DRC MAN nicht nur auf das Geraet, sondern auch auf Gebaeude und Nutzung. Undichte Tueren, lange Offenhaltezeiten, ermuedete Dichtungen und hoher Verkehr bringen dauernd warme und feuchte Luft in den Raum. Dadurch vereist der Verdampfer schneller, an Paneelen und Tuerbereichen steigt die Kondensation und der Betreiber haelt es oft fuer einen reinen Geraetefehler. Die richtige Antwort verbindet Tuerdisziplin, Dichtungszustand, Luftabschirmung und Abtaulogik.",
+    "suggestions": ["evaporator buz tutuyor", "isletme sahibine nasil konusursun", "stokta yoksa nasil cevap verirsin"]
+  }
+]
