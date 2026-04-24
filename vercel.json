@@ -136,7 +136,15 @@
         "includeFiles": [
           "public/**",
           "public/**/*",
-          "scripts/drc_man_*_faq.json"
+          "scripts/drc_man_product_faq.json",
+          "scripts/drc_man_training_faq.json",
+          "scripts/drc_man_troubleshooting_faq.json",
+          "scripts/drc_man_electrical_faq.json",
+          "scripts/drc_man_gases_faq.json",
+          "scripts/drc_man_master_components_faq.json",
+          "scripts/drc_man_master_field_faq.json",
+          "scripts/drc_man_pt_superheat_faq.json",
+          "scripts/drc_man_refrigeration_faq.json"
         ]
       }
     },
