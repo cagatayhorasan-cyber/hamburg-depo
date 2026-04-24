@@ -6294,10 +6294,22 @@ function hasAssistantRoleplayIntent(normalizedMessage) {
 // ürün adı catalog match'ını tetikliyor. Bu fonksiyon diagnostic/fault/service
 // niyetli soruları yakalar; şuan çağıran shouldPreferAssistantCatalogReply bu
 // durumda catalog'u atlayıp troubleshooting_bank'a öncelik verir.
+// 40-tur alternatif test (2026-04-24): "calisma mantigi nasil dusunulur" gibi
+// "working principle" soruları kaçmıştı; regex'e eklendi.
 function hasAssistantTroubleshootingIntent(normalizedMessage) {
-  const trDiagnostic = /(calismiyor|calismiyorsa|donmuyor|buz tutuyor|buzlaniyor|kisa devre|termige|termik atiyor|neden olur|neden olabilir|neyi kontrol|kontrol eder|servis sirasi|hangi olcum|en sik hata|montaj hatas|montajdan olabilir|tekrar ediyorsa|koken ne olabilir|hangi tarafta|semptom|aldatici|acik kaldig|sorun nerede|sorun hangi|durumunda|olursa|oldugunda|varsa sorun|rezistans calismiyor|pump down|emniyet zinciri|valf.*zayif|valf.*uyumsuz|ariza|arizasi|arizanin|alarm verir|defrost calismiyor|fan donmuyor|kontakt|role atiyor|hava tarafi|gaz devresi|gaz kacak|gaz kacagi|yag donusu|yag geri donmuyor|superheat|subcool|alcak basinc|yuksek basinc|motor koruma|kontrolor ayarlari|kontrol ayarlari|sensor dogrulugu|uzaktan calis izni|drenaj hatti|kapi rezistansi|usta once|usta nasil|usta ne yapar|usta mantigi|fazla gaz|eksik gaz|gaz sarji sonrasi|gaz sarji|retrofit)/;
-  const deDiagnostic = /(prueft man|was prueft|welche.*ursache|welcher.*fehler|welche messwerte|wie loest man|warum kommt es|warum laeuft|warum geht|stoerung|stoert|ausloest|vereist|schwitzt|montagefehler|fluessigkeit zum verdichter|ungewoehnliche geraeusche|motorschutz|hochdruck|niederdruck|abtaubilanz|immer wieder auftritt|kaeltekreis|luftseite|rueckkehr|zurueckkehrt|meister zuerst|verdampfer vereist|boden vereist|ventilator.*nicht|verdichter.*geht|abtauung|zu viel kaeltemittel|zu wenig kaeltemittel|kaeltemittel.*im system)/;
+  const trDiagnostic = /(calismiyor|calismiyorsa|donmuyor|buz tutuyor|buzlaniyor|kisa devre|termige|termik atiyor|neden olur|neden olabilir|neyi kontrol|kontrol eder|servis sirasi|hangi olcum|en sik hata|montaj hatas|montajdan olabilir|tekrar ediyorsa|koken ne olabilir|hangi tarafta|semptom|aldatici|acik kaldig|sorun nerede|sorun hangi|durumunda|olursa|oldugunda|varsa sorun|rezistans calismiyor|pump down|emniyet zinciri|valf.*zayif|valf.*uyumsuz|ariza|arizasi|arizanin|alarm verir|defrost calismiyor|fan donmuyor|kontakt|role atiyor|hava tarafi|gaz devresi|gaz kacak|gaz kacagi|yag donusu|yag geri donmuyor|superheat|subcool|alcak basinc|yuksek basinc|motor koruma|kontrolor ayarlari|kontrol ayarlari|sensor dogrulugu|uzaktan calis izni|drenaj hatti|kapi rezistansi|usta once|usta nasil|usta ne yapar|usta mantigi|fazla gaz|eksik gaz|gaz sarji sonrasi|gaz sarji|retrofit|calisma mantigi|calisma prensibi|calisma sekli|nasil dusunulur|nasil calisir|nasil calistirilir|nasil yapilir|nasil test edilir|nasil devreye|nasil servis|nasil olcum|nasil bulunur|nasil tespit)/;
+  const deDiagnostic = /(prueft man|was prueft|welche.*ursache|welcher.*fehler|welche messwerte|wie loest man|warum kommt es|warum laeuft|warum geht|stoerung|stoert|ausloest|vereist|schwitzt|montagefehler|fluessigkeit zum verdichter|ungewoehnliche geraeusche|motorschutz|hochdruck|niederdruck|abtaubilanz|immer wieder auftritt|kaeltekreis|luftseite|rueckkehr|zurueckkehrt|meister zuerst|verdampfer vereist|boden vereist|ventilator.*nicht|verdichter.*geht|abtauung|zu viel kaeltemittel|zu wenig kaeltemittel|kaeltemittel.*im system|funktionsweise|funktionsprinzip|arbeitsweise|wie funktioniert|wie testet man|wie misst man|wie findet man|wie inbetrieb)/;
   return trDiagnostic.test(normalizedMessage) || deDiagnostic.test(normalizedMessage);
+}
+
+// 40-tur alternatif test (2026-04-24): "PANETS/PPWP-150 Soguk Oda Duvar Paneli
+// stok var mi" gibi sorularda ürün adının içindeki "soguk oda|kaelteraum"
+// advisoryIntent'ı tetikliyor, catalog atlanıyor, drc_man advisory cevap
+// veriyordu. Explicit stok/ürün sorgusu (stok var mi, auf lager, kac adet,
+// lagerbestand, verfuegbar) görülürse advisory bastırılır; catalog'da ürün
+// varsa direkt cevaplanır.
+function hasAssistantStockQueryIntent(normalizedMessage) {
+  return /(stok var mi|stokta var mi|stokta mi|stokta bulunur|stokta mevcut|kac adet var|kac adet mevcut|kac adet kaldi|kac tane var|kac tane mevcut|auf lager|am lager|im lager|lagerbestand|bestand hat|bestand von|verfuegbar|verfugbar|vorraetig|wie viele.*lager|wie viel.*bestand|mevcut mu)/.test(normalizedMessage);
 }
 
 function shouldPreferAssistantCatalogReply(message, items) {
@@ -6313,6 +6325,12 @@ function shouldPreferAssistantCatalogReply(message, items) {
   }
   if (hasAssistantCatalogListIntent(normalized)) {
     return true;
+  }
+  // Ürün adında "soguk oda/kaelteraum" geçen panel/aksesuarlar gibi durumlarda
+  // advisoryIntent false pozitif veriyor. Açık stok sorusu varsa advisory'yi
+  // bastır, adayla eşleşme varsa catalog'dan cevap ver.
+  if (hasAssistantStockQueryIntent(normalized)) {
+    return findAssistantCandidates(normalized, items).length > 0;
   }
   if (hasAssistantAdvisoryIntent(normalized)) {
     return false;
