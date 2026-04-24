@@ -3326,14 +3326,18 @@ function renderOverviewPanels() {
     minute: "2-digit",
   }).format(new Date());
 
-  refs.heroFocusPill.textContent = isCustomerUser()
-    ? langText(`Stokta ${numberFormat.format(signals.stockedItems)} urun acik`, `${numberFormat.format(signals.stockedItems)} Artikel auf Lager`)
-    : signals.criticalCount > 0
-      ? langText(`${numberFormat.format(signals.criticalCount)} kritik stok takibi`, `${numberFormat.format(signals.criticalCount)} kritische Bestandskarte(n)`)
-      : langText("Operasyon ritmi dengeli", "Stabiler Betriebsrhythmus");
-  refs.heroIotPill.textContent = signals.iotAlarmCount > 0
-    ? langText(`DRC IoT ${numberFormat.format(signals.iotAlarmCount)} alarm izliyor`, `DRC IoT beobachtet ${numberFormat.format(signals.iotAlarmCount)} Alarm(e)`)
-    : langText("DRC IoT tum odalarda online", "DRC IoT in allen Raeumen online");
+  if (refs.heroFocusPill) {
+    refs.heroFocusPill.textContent = isCustomerUser()
+      ? langText(`Stokta ${numberFormat.format(signals.stockedItems)} urun acik`, `${numberFormat.format(signals.stockedItems)} Artikel auf Lager`)
+      : signals.criticalCount > 0
+        ? langText(`${numberFormat.format(signals.criticalCount)} kritik stok takibi`, `${numberFormat.format(signals.criticalCount)} kritische Bestandskarte(n)`)
+        : langText("Operasyon ritmi dengeli", "Stabiler Betriebsrhythmus");
+  }
+  if (refs.heroIotPill) {
+    refs.heroIotPill.textContent = signals.iotAlarmCount > 0
+      ? langText(`DRC IoT ${numberFormat.format(signals.iotAlarmCount)} alarm izliyor`, `DRC IoT beobachtet ${numberFormat.format(signals.iotAlarmCount)} Alarm(e)`)
+      : langText("DRC IoT tum odalarda online", "DRC IoT in allen Raeumen online");
+  }
 
   refs.opsOverview.innerHTML = `
     <div class="overview-head">
