@@ -1,0 +1,189 @@
+[
+  {
+    "id": "hamburg_sales_instinct_001",
+    "keywords": [
+      "satis",
+      "sureci",
+      "POS",
+      "teklif",
+      "siparis",
+      "hizli satis",
+      "direkt satis",
+      "quote",
+      "bestellung",
+      "angebot",
+      "verkaufsprozess",
+      "kasa",
+      "tahsilat"
+    ],
+    "tr_questions": [
+      "Satis sureci nasil isler?",
+      "Bir siparisi baslatmak icin ne yapmaliyim?",
+      "Teklifi nasil siparise cevirebilirim?",
+      "Direkt satis ile teklif arasindaki fark nedir?",
+      "POS sekmesinde hangi adimlari izlerim?"
+    ],
+    "de_questions": [
+      "Wie laeuft der Verkaufsprozess ab?",
+      "Wie starte ich eine Bestellung?",
+      "Wie wandle ich ein Angebot in eine Bestellung um?",
+      "Worin unterscheiden sich Direktverkauf und Angebot?",
+      "Welche Schritte befolge ich im POS-Tab?"
+    ],
+    "tr_answer": "Satis sureci net ve kisa: 1) POS (Hizli Satis) sekmesini ac. 2) Soldaki katalogtan urunu ara, adedi gir, sepete ekle. 3) Sagdaki formda musteriyi sec (staff icin dropdown), KDV/ihracat toggle'ini ayarla, iletim notunu yaz. 4) 'Direkt Satis' butonuyla siparise cevir (stok hemen dusurulur) veya 'Teklifi Kaydet' ile PDF teklif olustur (stok dusmez, musteri onayini bekler). 5) Teklif onaylaninca POS uzerinden siparise cevir. Alis fiyatini asla musteri ekraninda gosterme; sadece admin gorebilir. Musteri fiyat itirazi yaparsa once satis fiyatini net tut, internet karsilastirmasi varsa belirt, gerekirse admin fiyat kontrolu iste.",
+    "de_answer": "Der Verkaufsprozess ist klar und kurz: 1) POS-Tab (Schnellverkauf) oeffnen. 2) Links Produkt suchen, Menge eingeben, in den Warenkorb legen. 3) Rechts Kunde auswaehlen (Staff-Dropdown), MwSt./Export-Schalter einstellen, Liefernotiz schreiben. 4) 'Direktverkauf' reduziert den Bestand sofort; 'Angebot speichern' erstellt ein PDF-Angebot ohne Bestandsabzug und wartet auf Kundenfreigabe. 5) Nach Freigabe kann das Angebot ueber POS in eine Bestellung umgewandelt werden. Einkaufspreis niemals in der Kundenansicht zeigen; nur Admin. Bei Preiseinwand zuerst den Verkaufspreis klar halten, vorhandenen Internetvergleich nennen und bei Bedarf Admin-Preispruefung empfehlen.",
+    "suggestions": [
+      "Teklifi nasil hazirlarim?",
+      "Direkt satis ne zaman kullanilir?",
+      "Musteri fiyat itirazinda ne yaparim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_002",
+    "keywords": [
+      "alis fiyati",
+      "maliyet",
+      "admin",
+      "musteri",
+      "einkaufspreis",
+      "cost",
+      "marge",
+      "kar marji",
+      "sizinti",
+      "gizli"
+    ],
+    "tr_questions": [
+      "Alis fiyatini kime soyleyebilirim?",
+      "Maliyet bilgisi musteriye acilmali mi?",
+      "Kar marjini musteriye gosterebilir miyim?",
+      "Staff alis fiyatini gorur mu?",
+      "Customer fiyat goruyor mu?"
+    ],
+    "de_questions": [
+      "Wem darf ich den Einkaufspreis nennen?",
+      "Soll die Kostenbasis dem Kunden offengelegt werden?",
+      "Kann ich die Marge dem Kunden zeigen?",
+      "Sieht ein Staff den Einkaufspreis?",
+      "Sieht ein Kunde den Preis?"
+    ],
+    "tr_answer": "Alis fiyati ve kar marji sadece admin ekraninda gorunur. Staff (personel), operator ve customer ekraninda kesinlikle gosterilmez. Bir musteri veya personel fiyat sorunca cevap verilecek tek rakam satis fiyatidir. Musteri goruyor: satis fiyati + stok durumu + teklif butonu. Staff goruyor: satis fiyati + stok + teklif/POS butonlari, ama maliyet yok. Admin goruyor: alis + satis + maliyet + kar marji. Bu kural asla bozulmaz; sanhua valfinde bile 'maliyet X, kar Y' gibi rakamlar musteri ekraninda gosterilmez. Eger cevapta alis gibi bir rakam sizarsa drc_man guvenlik olay kaydi olusturur ve cevap policy'ye cekilir.",
+    "de_answer": "Einkaufspreis und Marge sind nur in der Admin-Ansicht sichtbar. Staff (Personal), Operator und Kunde sehen sie niemals. Wenn Kunde oder Personal nach einem Preis fragt, ist die einzige zulaessige Zahl der Verkaufspreis. Kunde sieht: Verkaufspreis + Bestand + Bestellung-Button. Staff sieht: Verkaufspreis + Bestand + POS/Angebot-Buttons, aber keine Kostenbasis. Admin sieht: Einkauf + Verkauf + Kosten + Marge. Diese Regel ist unveraenderlich; auch beim Sanhua-Ventil werden 'Kosten X, Marge Y' in der Kundenansicht nicht gezeigt. Falls eine Einkaufszahl versehentlich im Text auftaucht, erzeugt drc_man ein Sicherheitsereignis und zieht die Antwort auf die Policy zurueck.",
+    "suggestions": [
+      "Hangi rollere hangi rakam gosteriliyor?",
+      "Fiyat sizintisi olursa ne olur?",
+      "Customer icin ne gorunur?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_003",
+    "keywords": [
+      "internet",
+      "karsilastirma",
+      "dusuk fiyat",
+      "pahali",
+      "online",
+      "idealo",
+      "preisvergleich",
+      "marktpreis",
+      "admin kontrolu"
+    ],
+    "tr_questions": [
+      "Internet fiyat karsilastirmasi ne zaman istenir?",
+      "Fiyat dusuk gorunuyorsa ne yapmaliyim?",
+      "Bir urunun online fiyati bizimkinden dusukse nasil cevaplanir?",
+      "Rekabetci fiyat notu nasil eklenir?",
+      "Musteri internet fiyatini gosterdi, cevap nasil olmali?"
+    ],
+    "de_questions": [
+      "Wann ist ein Internet-Preisvergleich noetig?",
+      "Was mache ich, wenn der Preis zu niedrig erscheint?",
+      "Wie antworte ich, wenn der Online-Preis niedriger ist als unserer?",
+      "Wie fuege ich einen Wettbewerbspreis-Hinweis hinzu?",
+      "Kunde zeigt Internetpreis, wie antworte ich?"
+    ],
+    "tr_answer": "Internet karsilastirmasi su durumlarda zorunlu: (a) Bir urun kaleminde 'listenpreis' veya 'internet fiyati' notu varsa cevapta mutlaka belirtilir. (b) Satis fiyati bizim tipik kar marjinin altinda gorunuyorsa admin fiyat kontrolu istenir; drc_man kendi basina satis fiyatini dusurmez. (c) Musteri internetten bulduğu daha dusuk fiyati soylerse cevap: 'Teslimat suresini, menseyi ve garanti kapsamini birlikte degerlendirelim, Hamburg stogumuzdan ayni gun gonderim ve Almanya ici fatura ile teslim ediyoruz. Internet fiyati notunuzu Anil'a iletebilirim, gerekiyorsa ozel teklif hazirlanir.' Ham fiyati hemen indirmek yerine degeri anlat. Dusuk gelen fiyatlarda admin (Anil / Cagatay / Ramazan) onaylamadan tasarruf/indirim vaadedilmez.",
+    "de_answer": "Ein Internetvergleich ist in folgenden Faellen Pflicht: (a) Wenn auf einer Artikelzeile ein 'Listenpreis' oder 'Internetpreis'-Hinweis steht, wird er in der Antwort genannt. (b) Wenn unser Verkaufspreis unter der typischen Marge liegt, wird eine Admin-Preispruefung angefordert; drc_man senkt den Preis nicht eigenmaechtig. (c) Wenn der Kunde einen niedrigeren Online-Preis zeigt, antworte: 'Lassen Sie uns Lieferzeit, Herkunft und Gewaehrleistung gemeinsam bewerten. Wir liefern aus Hamburg am gleichen Tag mit Deutschland-Rechnung. Ich leite Ihren Internetvergleich an Anil weiter; bei Bedarf bereiten wir ein individuelles Angebot vor.' Nicht sofort den Preis senken, sondern den Wert erklaeren. Rabatte werden ohne Admin-Freigabe (Anil / Cagatay / Ramazan) nicht versprochen.",
+    "suggestions": [
+      "Kim fiyat kontrolu yapar?",
+      "Hangi notlar otomatik okunur?",
+      "Ozel teklif nasil hazirlanir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_004",
+    "keywords": [
+      "stokta yok",
+      "tedarik",
+      "ne zaman gelir",
+      "bekleme",
+      "siparis verdik",
+      "fabrika",
+      "tedarikci",
+      "lieferzeit",
+      "backorder",
+      "beschaffung"
+    ],
+    "tr_questions": [
+      "Stokta yok dedigin urun ne zaman gelir?",
+      "Tukenen urunun tedarik suresi nedir?",
+      "Bir urun depoda 0 ise musteriye ne denmeli?",
+      "Kritik seviyeye dusen urun icin ne yapmaliyim?",
+      "Backorder bilgisini nereden aliyoruz?"
+    ],
+    "de_questions": [
+      "Wann kommt ein nicht vorraetiger Artikel?",
+      "Wie lang ist die Lieferzeit bei Restbestand 0?",
+      "Was sage ich dem Kunden, wenn ein Artikel aus ist?",
+      "Was mache ich bei Artikeln auf Mindestbestand?",
+      "Woher kommt die Backorder-Information?"
+    ],
+    "tr_answer": "Stokta yok veya kritik seviyede olan urun icin drc_man kesin 'ne zaman gelir' diye vaat vermez. Kurallar: 1) Canli veride 'expectedRestockDate' veya satinalma siparis notu varsa onu aktarir. 2) Yoksa cevap: 'Su an Hamburg'da X adet gorunuyor, kritik seviyenin altinda. Ramazan (satinalma) ve Anil tedarik kaynagini kontrol eder; 1 is gunu icinde size tedarik suresini paylasiriz. Bu arada alternatif marka veya benzer modeli teklif edebilirim.' 3) Backorder iste: asistan 'Anil'a bilgi birak' ile admin panelinde uyari ekler. 4) Asla 'yarin gelir' / 'hafta icinde gelir' gibi tarih vaadinde bulunma; vaad sadece admin onayiyla verilir.",
+    "de_answer": "Fuer Artikel mit Bestand 0 oder im kritischen Bereich gibt drc_man keine verbindlichen Liefertermine. Regeln: 1) Wenn im Datensatz 'expectedRestockDate' oder eine Bestellnotiz steht, wird diese weitergegeben. 2) Sonst lautet die Antwort: 'Aktuell X Stueck in Hamburg, unter dem kritischen Schwellenwert. Ramazan (Einkauf) und Anil pruefen die Beschaffungsquelle; innerhalb von einem Arbeitstag teilen wir Ihnen die Lieferzeit mit. Zwischenzeitlich kann ich eine alternative Marke oder ein Aehnliches Modell anbieten.' 3) Backorder anfragen: der Assistent hinterlaesst im Admin-Panel einen Hinweis via 'Anil benachrichtigen'. 4) Niemals 'morgen verfuegbar' oder 'diese Woche verfuegbar' versprechen; Terminzusagen nur mit Admin-Freigabe.",
+    "suggestions": [
+      "Alternatif urun nasil onerilir?",
+      "Tedarik suresini kim sifrliyor?",
+      "Kritik seviyenin anlami nedir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_005",
+    "keywords": [
+      "KDV",
+      "MwSt",
+      "net",
+      "brut",
+      "ihracat",
+      "export",
+      "fatura",
+      "rechnung",
+      "kdv orani",
+      "yurtdisi"
+    ],
+    "tr_questions": [
+      "Fiyatlar KDV dahil mi?",
+      "Ihracat siparisinde KDV sifir mi?",
+      "Yurt disi musteriye fatura nasil kesilir?",
+      "POS'ta KDV toggle ne ise yarar?",
+      "Net ile brut fiyat farki nedir?"
+    ],
+    "de_questions": [
+      "Sind die Preise inklusive MwSt.?",
+      "Ist die MwSt. bei Exportauftraegen Null?",
+      "Wie wird die Rechnung fuer Auslandskunden erstellt?",
+      "Wozu dient der MwSt.-Schalter im POS?",
+      "Wo liegt der Unterschied zwischen Netto- und Bruttopreis?"
+    ],
+    "tr_answer": "KDV kurallari: 1) Katalog'daki satis fiyati NET (KDV haric) olarak tutulur. 2) POS sekmesinde 'Ihracat' toggle'i AKTIFSE KDV %0 uygulanir, fatura ihracat olarak kesilir (yurtdisi Almanya disi musteriler). 3) 'Ihracat' toggle'i KAPALIYSA Almanya ici satis icin %19 KDV eklenir; drc_man cevabinda 'satis X EUR + %19 KDV = Y EUR brut' seklinde net ve brut birlikte verir. 4) AB ici B2B musteride VAT-ID girilirse reverse charge uygulanir (toggle acildigi anda gosterilir). Musteri 'fiyatlar KDV dahil mi' sordugunda once 'net fiyat X, KDV dahil Y' olarak net cevapla; ihracat ise '%0 KDV (export)' diye belirt.",
+    "de_answer": "MwSt.-Regeln: 1) Der Verkaufspreis im Katalog ist NETTO (ohne MwSt.). 2) Wenn der 'Export'-Schalter im POS AKTIV ist, gilt 0 % MwSt., die Rechnung wird als Export ausgestellt (Kunden ausserhalb Deutschlands). 3) Wenn 'Export' DEAKTIVIERT ist, werden 19 % MwSt. fuer Deutschland-Verkauf aufgeschlagen; drc_man gibt die Antwort als 'Verkauf X EUR + 19 % MwSt. = Y EUR brutto' an. 4) Bei EU-B2B-Kunden mit USt-IdNr. gilt Reverse Charge (erscheint, sobald der Schalter gesetzt ist). Wenn der Kunde fragt 'sind die Preise inkl. MwSt.', antworte mit 'Nettopreis X, brutto Y'; bei Export: '0 % MwSt. (Export)'.",
+    "suggestions": [
+      "Ihracat toggle nasil acilir?",
+      "VAT-ID girildiginde ne degisir?",
+      "Net vs brut farki gorsel olarak nasil?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  }
+]

@@ -144,7 +144,8 @@
           "scripts/drc_man_master_components_faq.json",
           "scripts/drc_man_master_field_faq.json",
           "scripts/drc_man_pt_superheat_faq.json",
-          "scripts/drc_man_refrigeration_faq.json"
+          "scripts/drc_man_refrigeration_faq.json",
+          "scripts/drc_man_sales_instinct_faq.json"
         ]
       }
     },

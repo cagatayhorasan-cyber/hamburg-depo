@@ -91,6 +91,7 @@ const DRC_MAN_FAQ_MANIFEST = [
   { file: "drc_man_master_field_faq.json", slug: "master_field", defaultSummary: "DRC MAN master saha" },
   { file: "drc_man_pt_superheat_faq.json", slug: "pt_superheat", defaultSummary: "DRC MAN PT / superheat" },
   { file: "drc_man_refrigeration_faq.json", slug: "refrigeration", defaultSummary: "DRC MAN sogutma teorisi" },
+  { file: "drc_man_sales_instinct_faq.json", slug: "sales_instinct", defaultSummary: "DRC MAN satis refleksi" },
 ];
 const TROUBLESHOOTING_STRONG_HINTS = [
   "ariza",
@@ -6263,8 +6264,11 @@ function isDirectPriceQuestion(message) {
   if (hasAssistantPreferredTrainingIntent(normalized)) {
     return false;
   }
-  return /€|\beur\b/i.test(text)
-    || /(fiyat|ucret|ücret|tutar|satis fiyati|satış fiyatı|liste fiyati|liste fiyatı|net fiyat|preis|verkaufspreis|listenpreis)/.test(normalized);
+  // Faz A (2026-04-24): fiyat sorusu varyasyonlari genisletildi.
+  // TR: kac para|ne kadar|kaca|bedeli|ucreti|paha|kac euro|kac eur|kac avro|fiyati ne|kac tl.
+  // DE: wie teuer|was kostet|kostet|kosten|betrag|preise|wie viel eur|was zahlt man.
+  return /€|\beur\b|\beuro\b/i.test(text)
+    || /(fiyat|ucret|tutar|satis fiyati|liste fiyati|net fiyat|preis|verkaufspreis|listenpreis|kac para|ne kadar|kaca|bedel|bedeli|ucreti|paha|kac euro|kac eur|kac avro|kac tl|fiyati ne|fiyati nedir|wie teuer|was kostet|wie viel kostet|kostet|kosten|betrag|preise|was zahlt)/.test(normalized);
 }
 
 function customerRestrictedPurchaseAnswer(language = "tr") {
@@ -6309,7 +6313,10 @@ function hasAssistantTroubleshootingIntent(normalizedMessage) {
 // lagerbestand, verfuegbar) görülürse advisory bastırılır; catalog'da ürün
 // varsa direkt cevaplanır.
 function hasAssistantStockQueryIntent(normalizedMessage) {
-  return /(stok var mi|stokta var mi|stokta mi|stokta bulunur|stokta mevcut|kac adet var|kac adet mevcut|kac adet kaldi|kac tane var|kac tane mevcut|auf lager|am lager|im lager|lagerbestand|bestand hat|bestand von|verfuegbar|verfugbar|vorraetig|wie viele.*lager|wie viel.*bestand|mevcut mu)/.test(normalizedMessage);
+  // Faz A (2026-04-24): stok sorgusu varyasyonlari.
+  // TR: stok var mi|kaldi mi|var mi|elinizde|depoda var|mevcut mu|elimde|stokumuz.
+  // DE: auf lager|lagerbestand|verfuegbar|vorraetig|noch da|noch vorhanden|habt ihr|haben sie.
+  return /(stok var mi|stokta var mi|stokta mi|stokta bulunur|stokta mevcut|stokta kac|kac adet var|kac adet mevcut|kac adet kaldi|kac tane var|kac tane mevcut|kac tane kaldi|kaldi mi|elinizde var|elimizde var|elinizde mevcut|elimizde mevcut|depoda var|depoda kac|elimde var|stokumuz var|stokumuzda|mevcut mu|mevcut var|auf lager|am lager|im lager|lagerbestand|bestand hat|bestand von|verfuegbar|verfugbar|vorraetig|wie viele.*lager|wie viel.*bestand|noch da|noch vorhanden|habt ihr|haben sie.*lager|wie viele stueck|wie viele stueck|verfugbar auf|on stock|in stock)/.test(normalizedMessage);
 }
 
 function shouldPreferAssistantCatalogReply(message, items) {
@@ -6493,35 +6500,48 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
     };
   }
 
-  if (/(stok|kac adet|mevcut|bestand|lager|lagerbestand|auf lager|wie viel|verfugbar)/.test(normalized) && candidates[0]) {
-    const item = candidates[0];
-    return {
-      reply: language === "de"
-        ? `${item.name} hat aktuell ${formatAssistantQuantity(item.currentStock, item.unit, language)} auf Lager. Kritischer Bestand: ${formatAssistantQuantity(item.minStock, item.unit, language)}.`
-        : `${item.name} stokta ${item.currentStock} ${item.unit} gorunuyor. Kritik seviye ${item.minStock} ${item.unit}.`,
-      suggestions: [`${item.name} ${t.priceWord}`, `${item.name} ${t.categoryWord}`],
-    };
-  }
+  // Faz A (2026-04-24): stok + fiyat birlesik cevap. Stok sorusu da fiyati,
+  // fiyat sorusu da stogu dondurur. Kritik seviyenin altindaysa uyari eklenir.
+  // Admin alis+satis gorur; staff/customer sadece satis.
+  const stockQuestionHit = /(stok|kac adet|mevcut|bestand|lager|lagerbestand|auf lager|wie viel|verfugbar|verfuegbar|kaldi mi|var mi|elinizde|elimizde|depoda|stokumuz|noch da|noch vorhanden|habt ihr|haben sie)/.test(normalized) && candidates[0];
+  const priceQuestionHit = /(fiyat|satis|alis|ucret|preis|verkauf|einkauf|kac para|ne kadar|kaca|bedel|paha|kac euro|kac eur|kac tl|wie teuer|was kostet|kostet|kosten|betrag|preise)/.test(normalized) && candidates[0];
 
-  if (/(fiyat|satis|alis|ucret|preis|verkauf|einkauf)/.test(normalized) && candidates[0]) {
+  if (stockQuestionHit || priceQuestionHit) {
     const item = candidates[0];
+    const stockNum = Number(item.currentStock || 0);
+    const minNum = Number(item.minStock || 0);
+    const isCritical = stockNum <= minNum;
+    const stockText = `${item.currentStock} ${item.unit}`;
+    const stockTextDe = formatAssistantQuantity(item.currentStock, item.unit, language);
+    const criticalNoteTr = isCritical ? ` Stok kritik seviyede (esik ${minNum} ${item.unit}).` : ` Kritik seviye ${minNum} ${item.unit}.`;
+    const criticalNoteDe = isCritical ? ` Bestand kritisch (Schwelle ${formatAssistantQuantity(minNum, item.unit, language)}).` : ` Kritischer Bestand ${formatAssistantQuantity(minNum, item.unit, language)}.`;
+
     if (!canViewSale) {
       return {
         reply: language === "de"
-          ? `${item.name} ist mit ${formatAssistantQuantity(item.currentStock, item.unit, language)} verfuegbar. Preise werden in der Kundenansicht nicht angezeigt; bitte senden Sie eine Bestellung zur Bestaetigung.`
-          : `${item.name} stokta ${item.currentStock} ${item.unit} gorunuyor. Musteri ekraninda fiyat gosterilmez; teyit icin siparis talebi gonderin.`,
+          ? `${item.name} ist mit ${stockTextDe} verfuegbar.${criticalNoteDe} Preise werden in der Kundenansicht nicht angezeigt; bitte senden Sie eine Bestellung zur Bestaetigung.`
+          : `${item.name} stokta ${stockText} gorunuyor.${criticalNoteTr} Musteri ekraninda fiyat gosterilmez; teyit icin siparis talebi gonderin.`,
         suggestions: [`${item.name} ${t.stockWord}`, t.customerOrderSuggestion],
       };
     }
+
+    const salePriceText = formatEur(visibleSalePriceForRole(item, canViewPurchase));
+    const purchasePriceText = formatEur(item.defaultPrice || item.lastPurchasePrice);
+
+    if (canViewPurchase) {
+      return {
+        reply: language === "de"
+          ? `${item.name}: Einkauf ${purchasePriceText}, Verkauf ${salePriceText}, Bestand ${stockTextDe}.${criticalNoteDe} Fuer ein verbindliches Angebot den POS-Tab oeffnen.`
+          : `${item.name}: alis ${purchasePriceText}, satis ${salePriceText}, stokta ${stockText}.${criticalNoteTr} Baglayici teklif icin POS sekmesini acin.`,
+        suggestions: [`${item.name} ${t.categoryWord}`, t.customerOrderSuggestion],
+      };
+    }
+
     return {
-      reply: canViewPurchase
-        ? (language === "de"
-          ? `Fuer ${item.name} betraegt der Einkauf ${formatEur(item.defaultPrice || item.lastPurchasePrice)} und der Verkauf ${formatEur(visibleSalePriceForRole(item, true))}.`
-          : `${item.name} icin alis ${formatEur(item.defaultPrice || item.lastPurchasePrice)} ve satis ${formatEur(visibleSalePriceForRole(item, true))}.`)
-        : (language === "de"
-          ? `Fuer ${item.name} betraegt der Verkauf ${formatEur(visibleSalePriceForRole(item, false))}.`
-          : `${item.name} icin satis fiyati ${formatEur(visibleSalePriceForRole(item, false))}.`),
-      suggestions: [`${item.name} ${t.stockWord}`, `${item.name} ${t.categoryWord}`],
+      reply: language === "de"
+        ? `${item.name}: Verkauf ${salePriceText}, Bestand ${stockTextDe}.${criticalNoteDe} Fuer ein verbindliches Angebot den POS-Tab oeffnen.`
+        : `${item.name}: satis ${salePriceText}, stokta ${stockText}.${criticalNoteTr} Baglayici teklif icin POS sekmesini acin.`,
+      suggestions: [`${item.name} ${t.categoryWord}`, t.customerOrderSuggestion],
     };
   }
 
@@ -6652,10 +6672,13 @@ function findAssistantCandidates(normalizedMessage, items) {
 }
 
 function extractAssistantQuery(normalizedMessage) {
+  // Faz A (2026-04-24): fiyat/stok soru kaliplarinda kullanilan stop-words
+  // genisletildi; urun adi/kodu daha temiz kalir.
+  // TR: kaldi|var|elinizde|elimizde|depoda|para|paha|bedel|tutar|ne|tl|euro|avro|eur
+  // DE: teuer|kostet|kosten|betrag|preise|noch|vorhanden|habt|haben|ihr|sie|stueck
   return normalizedMessage
     .replace(
-      /\b(kritik|az|stok|dusuk|minimum|en|pahali|yuksek|fiyat|satis|alis|ucret|kategori|sinif|grup|kodu|nedir|barkod|kac|adet|mevcut|nasil|teklif|yap|direkt|tahsilat|kritisch|wenig|bestand|mindestbestand|teuerste|hochste|preis|verkauf|einkauf|kategorie|gruppe|artikelcode|lagernummer|code|wie|viel|verfugbar|angebot|direktverkauf|zahlung)\b/g,
-      /\b(kritik|az|stok|dusuk|minimum|en|pahali|yuksek|fiyat|satis|alis|ucret|kategori|sinif|grup|kodu|nedir|barkod|kac|adet|mevcut|nasil|teklif|yap|direkt|tahsilat|kritisch|wenig|bestand|lager|lagerbestand|mindestbestand|teuerste|hochste|preis|verkauf|einkauf|kategorie|gruppe|artikelcode|lagernummer|code|wie|viel|verfugbar|angebot|direktverkauf|zahlung)\b/g,
+      /\b(kritik|az|stok|stokta|stokumuz|stoklu|dusuk|minimum|en|pahali|yuksek|fiyat|fiyati|fiyatin|fiyatini|satis|alis|ucret|ucreti|bedel|bedeli|tutar|paha|tl|euro|avro|eur|kategori|sinif|grup|kodu|kodun|nedir|ne|barkod|kac|kaca|adet|tane|mevcut|kaldi|var|yok|mi|mu|mı|mü|nasil|nasıl|teklif|yap|direkt|tahsilat|elinizde|elimizde|depoda|elimde|urun|urunu|urunun|urunler|urunleri|product|products|kritisch|wenig|bestand|mindestbestand|teuerste|hochste|teuer|preis|preise|kostet|kosten|betrag|verkauf|einkauf|kategorie|gruppe|artikelcode|lagernummer|code|wie|viel|viele|verfugbar|verfuegbar|vorraetig|angebot|direktverkauf|zahlung|noch|vorhanden|habt|haben|ihr|sie|stueck|stuck|lager)\b/g,
       " "
     )
     .replace(/\s+/g, " ")
@@ -6669,11 +6692,16 @@ function tokenizeAssistantText(value) {
 }
 
 function normalizeAssistantText(value) {
+  // Faz A (2026-04-24): "KP5" <-> "KP 5", "150mm" <-> "150 mm" eslesebilsin diye
+  // harf-rakam sinirinda bosluk acilir. Hem query hem item ayni transformdan gecer.
   return String(value || "")
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9/.-]+/g, " ")
+    .replace(/([a-z])(\d)/g, "$1 $2")
+    .replace(/(\d)([a-z])/g, "$1 $2")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
