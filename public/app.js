@@ -786,7 +786,7 @@ const refs = {
   itemDetailEyebrow: document.getElementById("itemDetailEyebrow"),
   itemDetailCode: document.getElementById("itemDetailCode"),
   itemDetailBrandLogo: document.getElementById("itemDetailBrandLogo"),
-  itemDetailVisual: document.getElementById("itemDetailVisual"),
+  // itemDetailVisual kaldirildi (v2026-04-25): marka seridi ile sadelestirildi
   itemDetailTitle: document.getElementById("itemDetailTitle"),
   itemDetailSubtitle: document.getElementById("itemDetailSubtitle"),
   itemDetailStock: document.getElementById("itemDetailStock"),
@@ -1105,18 +1105,14 @@ function openItemDetailModal(item) {
       refs.itemDetailBrandLogo.alt = `${item.brand || "DRC"} logo`;
       refs.itemDetailBrandLogo.style.display = "";
     } else {
-      // Logo asset'i yok → renkli metin rozeti
+      // Logo asset'i yok → renkli metin rozeti (stil CSS'ten gelir)
       refs.itemDetailBrandLogo.style.display = "none";
       const badge = document.createElement("span");
       badge.className = "product-detail-brand-badge";
       badge.textContent = item.brand || "—";
-      badge.style.cssText = `display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:999px;background:${getBrandBadgeColor(item)};color:#fff;font-weight:600;font-size:13px;letter-spacing:0.02em;`;
+      badge.style.background = getBrandBadgeColor(item);
       logoWrap?.appendChild(badge);
     }
-  }
-  if (refs.itemDetailVisual) {
-    refs.itemDetailVisual.src = media.visual;
-    refs.itemDetailVisual.alt = resolveLocalizedName(item) || "Urun gorseli";
   }
   setText(refs.itemDetailTitle, resolveLocalizedName(item) || langText("Urun Detayi", "Artikeldetail"));
   setText(refs.itemDetailSubtitle, `${item.brand || "-"} · ${getDisplayCategory(item.category)}`);

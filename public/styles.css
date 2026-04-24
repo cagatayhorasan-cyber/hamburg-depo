@@ -2210,45 +2210,87 @@ label {
   margin-bottom: 14px;
 }
 
-.product-detail-hero {
-  display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 16px;
+.product-detail-brandstrip {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 20px;
   margin-bottom: 20px;
-}
-
-.product-detail-brandbox,
-.product-detail-visualbox {
-  border-radius: 22px;
+  border-radius: 20px;
   border: 1px solid rgba(15, 39, 72, 0.08);
-  background: rgba(255,255,255,0.86);
+  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(245,248,252,0.92));
   box-shadow: 0 12px 28px rgba(15, 39, 72, 0.07);
 }
 
-.product-detail-brandbox {
+.product-detail-brandstrip-logo {
+  flex: 0 0 auto;
   display: grid;
   place-items: center;
-  min-height: 136px;
-  padding: 20px;
+  width: 96px;
+  height: 72px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 39, 72, 0.06);
 }
 
-.product-detail-visualbox {
-  min-height: 136px;
+.product-detail-brandstrip-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-detail-brandstrip-title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--surface-dark);
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-detail-brandstrip-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .product-detail-brand-logo {
   max-width: 100%;
-  max-height: 84px;
+  max-height: 56px;
   object-fit: contain;
+  display: block;
 }
 
-.product-detail-visual {
-  width: 100%;
-  height: 100%;
-  min-height: 136px;
-  object-fit: cover;
-  display: block;
+.product-detail-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .product-detail-brandstrip {
+    gap: 12px;
+    padding: 12px 14px;
+  }
+  .product-detail-brandstrip-logo {
+    width: 72px;
+    height: 56px;
+    padding: 6px 10px;
+  }
+  .product-detail-brand-logo {
+    max-height: 44px;
+  }
 }
 
 .product-detail-eyebrow {
