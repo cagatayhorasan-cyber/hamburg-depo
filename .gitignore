@@ -14,9 +14,29 @@ data/*.sqlite-wal
 
 # Backup/working files
 *.bak
+*.bak.*
 public/*.bak
 public/styles (*).css
 scripts/__pycache__/
+
+# Lokal launchd plist'leri (her makinede ayri olabilir)
+launchd/
+
+# Buyuk veri dump'lari ve raporlar (yerelde tutulur)
+data/reports/
+data/import-malzeme-invalid.log
+data/coldroompro-price-sync-report.json
+
+# DRC MAN training datalari (~215 MB, GitHub tek dosya limit'ini asar)
+# Bunlar yerelde tutulur, prod'a deploy mekanizmasi ile (Supabase storage / CDN)
+# ayrica tasinir.
+scripts/drc_man_product_faq.json
+scripts/drc_man_product_faq.part1.json
+scripts/drc_man_product_faq.part2.json
+scripts/drc_man_training_faq.json
+scripts/drc_man_troubleshooting_faq.json
+scripts/drc_man_electrical_faq.json
+scripts/drc_man_*_faq.json
 
 # Handoff notes (manuel kalir, repoda degil)
 DEVIR_NOTLARI_*.md

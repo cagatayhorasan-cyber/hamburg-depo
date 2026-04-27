@@ -11,6 +11,7 @@ const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const XLSX = require("xlsx");
 const { dbPath, dbClient, initDatabase, query, get, execute, withTransaction } = require("./db");
+const { getSupplierCatalogRefsForItem } = require("./supplier-catalog");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -51,6 +52,7 @@ const GMAIL_APP_PASSWORD = cleanOptional(process.env.GMAIL_APP_PASSWORD) || "";
 const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir(), "Desktop", "DRC_MAN"));
 const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
 const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
+const SUPPLIER_CATALOG_RAW_DIR = path.join(__dirname, "..", "data", "supplier-catalogs", "raw");
 const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
 // Herkese (auth'lu tüm rollere) açık araçlar — customer da ColdRoomPro ile proje hesaplayabilsin diye.
 // Bu sette olmayan her tool sadece admin erişebilir.
@@ -77,12 +79,17 @@ const ADMIN_MESSAGE_BODY_LIMIT = 3000;
 const SALE_PRICE_MULTIPLIER = 1.22;
 const BOOTSTRAP_ITEM_LIMIT = Math.max(30, Number(process.env.BOOTSTRAP_ITEM_LIMIT || 60));
 const TROUBLESHOOTING_BANK_CACHE_TTL_MS = 2 * 60 * 1000;
+const AGENT_TRAINING_CACHE_TTL_MS = 2 * 60 * 1000;
 
 // DRC MAN toplu FAQ yükleme manifesti.
 // Her dosya scripts/ altında; assistant_troubleshooting_bank tablosuna
 // context_id=<slug> altında yazılır. UI'den "Eğitimi Yükle" ile tetiklenir.
 const DRC_MAN_FAQ_MANIFEST = [
-  { file: "drc_man_product_faq.json", slug: "product", defaultSummary: "DRC MAN urun egitimi" },
+  {
+    files: ["drc_man_product_faq.part1.json", "drc_man_product_faq.part2.json"],
+    slug: "product",
+    defaultSummary: "DRC MAN urun egitimi",
+  },
   { file: "drc_man_training_faq.json", slug: "training", defaultSummary: "DRC MAN temel egitim" },
   { file: "drc_man_troubleshooting_faq.json", slug: "troubleshooting", defaultSummary: "DRC MAN ariza bankasi" },
   { file: "drc_man_electrical_faq.json", slug: "electrical", defaultSummary: "DRC MAN elektrik bankasi" },
@@ -225,7 +232,12 @@ const TROUBLESHOOTING_ANCHOR_TOKENS = new Set([
 
 let gmailTransporter = null;
 let mailHealthCache = { key: "", expiresAt: 0, result: null };
+let agentTrainingCache = { activeOnly: null, expiresAt: 0, entries: [] };
 let troubleshootingBankCache = { activeOnly: null, expiresAt: 0, entries: [] };
+
+function resetAgentTrainingCache() {
+  agentTrainingCache = { activeOnly: null, expiresAt: 0, entries: [] };
+}
 
 async function handleItemIntake(req, res) {
   const {
@@ -235,6 +247,7 @@ async function handleItemIntake(req, res) {
     unit,
     minStock,
     barcode,
+    imageUrl,
     notes,
     listPrice,
     salePrice,
@@ -281,8 +294,8 @@ async function handleItemIntake(req, res) {
 
       const itemResult = await tx.execute(
         `
-          INSERT INTO items (name, brand, category, unit, min_stock, barcode, notes, default_price, list_price, sale_price)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO items (name, brand, category, unit, min_stock, barcode, image_url, notes, default_price, list_price, sale_price)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
           RETURNING id
         `,
         [
@@ -292,6 +305,7 @@ async function handleItemIntake(req, res) {
           unit.trim(),
           minStockValue,
           cleanOptional(barcode) || null,
+          normalizeItemImageUrl(imageUrl),
           cleanOptional(notes),
           unitPriceValue,
           listPriceValue,
@@ -769,9 +783,19 @@ function createApp() {
       return res.json(policyReply);
     }
 
+    const catalogItems = await getAssistantItems();
+    const productOverviewMatch = await matchAssistantProductOverview(message, language, req.session.user, catalogItems);
+    if (productOverviewMatch?.answer) {
+      return sendAssistantReply({
+        answer: adaptAssistantTrainingAnswer(productOverviewMatch.answer, language, answerLevel),
+        suggestions: productOverviewMatch.suggestions || [],
+        provider: "drc_man",
+        sourceSummary: localizeAssistantSourceSummary(productOverviewMatch.sourceSummary, language, "troubleshooting"),
+      }, "product_overview");
+    }
+
     if (isDirectPriceQuestion(message)) {
-      const items = await getAssistantItems();
-      const answer = answerAssistantQuestion(message, items, language, req.session.user);
+      const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
       return sendAssistantReply({
         answer: answer.reply,
         suggestions: answer.suggestions || [],
@@ -779,7 +803,6 @@ function createApp() {
       }, "built_in_price");
     }
 
-    const catalogItems = await getAssistantItems();
     if (shouldPreferAssistantCatalogReply(message, catalogItems)) {
       const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
       return sendAssistantReply({
@@ -804,6 +827,25 @@ function createApp() {
       }
     }
 
+    // Bug fix (2026-04-26): Diagnostic intent yoksa MALZEME training (urun
+    // SSS, garanti, kargo, kurulum, bakim, siparis variantlari) once denenir;
+    // 'fan motor garantisi' gibi sorularda SORUN bank dump'tan once MALZEME
+    // variant cevabini yakalamak icin. Diagnostic intent varsa eski sira
+    // korunur (troubleshooting once).
+    const hasDiagnosticIntent = hasAssistantTroubleshootingIntent(normalizedMessage);
+
+    if (!hasDiagnosticIntent) {
+      const trainingMatchEarly = await matchAssistantTraining(message, language, req.session.user);
+      if (trainingMatchEarly?.answer) {
+        return sendAssistantReply({
+          answer: adaptAssistantTrainingAnswer(trainingMatchEarly.answer, language, answerLevel),
+          suggestions: trainingMatchEarly.suggestions || [],
+          provider: "drc_man",
+          sourceSummary: localizeAssistantSourceSummary(trainingMatchEarly.sourceSummary, language, "training"),
+        }, "training_no_diag");
+      }
+    }
+
     const troubleshootingMatch = await matchAssistantTroubleshootingBank(message, language, req.session.user, history);
     if (troubleshootingMatch?.answer) {
       return sendAssistantReply({
@@ -814,7 +856,10 @@ function createApp() {
       }, "troubleshooting");
     }
 
-    const trainingMatch = await matchAssistantTraining(message, language, req.session.user);
+    // Diagnostic intent vardi ama troubleshooting eslesmedi -> training fallback
+    const trainingMatch = hasDiagnosticIntent
+      ? await matchAssistantTraining(message, language, req.session.user)
+      : null;
     if (trainingMatch?.answer) {
       return sendAssistantReply({
         answer: adaptAssistantTrainingAnswer(trainingMatch.answer, language, answerLevel),
@@ -875,6 +920,8 @@ function createApp() {
       ]
     );
 
+    resetAgentTrainingCache();
+
     queueSecurityEvent(req, {
       user: req.session.user,
       eventType: "training_created",
@@ -920,6 +967,8 @@ function createApp() {
       return res.status(404).json({ error: "Egitim kaydi bulunamadi." });
     }
 
+    resetAgentTrainingCache();
+
     queueSecurityEvent(req, {
       user: req.session.user,
       eventType: "training_updated",
@@ -940,6 +989,8 @@ function createApp() {
     if (!result.rowCount) {
       return res.status(404).json({ error: "Egitim kaydi bulunamadi." });
     }
+
+    resetAgentTrainingCache();
 
     queueSecurityEvent(req, {
       user: req.session.user,
@@ -968,22 +1019,38 @@ function createApp() {
     let totalSkipped = 0;
 
     for (const entry of manifest) {
-      const filePath = path.join(scriptsDir, entry.file);
-      if (!fs.existsSync(filePath)) {
-        results.push({ file: entry.file, status: "missing" });
+      const fileNames = Array.isArray(entry.files) && entry.files.length ? entry.files : [entry.file];
+      const resultLabel = fileNames.join(" + ");
+      const parsed = [];
+      const missingFiles = [];
+
+      for (const fileName of fileNames) {
+        const filePath = path.join(scriptsDir, fileName);
+        if (!fs.existsSync(filePath)) {
+          missingFiles.push(fileName);
+          continue;
+        }
+
+        try {
+          const chunk = JSON.parse(fs.readFileSync(filePath, "utf8"));
+          if (Array.isArray(chunk) && chunk.length) {
+            parsed.push(...chunk);
+          }
+        } catch (error) {
+          results.push({ file: resultLabel, status: "parse_error", error: String(error.message || error).slice(0, 200) });
+          missingFiles.length = 0;
+          parsed.length = 0;
+          break;
+        }
+      }
+
+      if (missingFiles.length) {
+        results.push({ file: resultLabel, status: "missing", missingFiles });
         continue;
       }
 
-      let parsed;
-      try {
-        parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
-      } catch (error) {
-        results.push({ file: entry.file, status: "parse_error", error: String(error.message || error).slice(0, 200) });
-        continue;
-      }
-
-      if (!Array.isArray(parsed) || !parsed.length) {
-        results.push({ file: entry.file, status: "empty" });
+      if (!parsed.length) {
+        results.push({ file: resultLabel, status: "empty" });
         continue;
       }
 
@@ -1034,7 +1101,7 @@ function createApp() {
       }
 
       if (dryRun) {
-        results.push({ file: entry.file, status: "dry_run", prepared: mapped.length, skipped: skippedLocal });
+        results.push({ file: resultLabel, status: "dry_run", prepared: mapped.length, skipped: skippedLocal });
         continue;
       }
 
@@ -1046,7 +1113,11 @@ function createApp() {
           );
 
           let inserted = 0;
-          const BATCH = 80;
+          // Buyuk DRC MAN urun FAQ dosyalarinda Vercel timeout riskini azaltmak icin
+          // Postgres tarafinda daha genis batch kullan.
+          const BATCH = dbClient === "postgres"
+            ? (mapped.length > 10000 ? 500 : 200)
+            : 80;
           for (let offset = 0; offset < mapped.length; offset += BATCH) {
             const slice = mapped.slice(offset, offset + BATCH);
             if (!slice.length) break;
@@ -1089,9 +1160,9 @@ function createApp() {
         totalInserted += summary.inserted;
         totalDeleted += summary.deleted;
         totalSkipped += skippedLocal;
-        results.push({ file: entry.file, status: "ok", inserted: summary.inserted, deleted: summary.deleted, skipped: skippedLocal });
+        results.push({ file: resultLabel, status: "ok", inserted: summary.inserted, deleted: summary.deleted, skipped: skippedLocal });
       } catch (error) {
-        results.push({ file: entry.file, status: "insert_error", error: String(error.message || error).slice(0, 300) });
+        results.push({ file: resultLabel, status: "insert_error", error: String(error.message || error).slice(0, 300) });
       }
     }
 
@@ -1395,7 +1466,7 @@ function createApp() {
   app.post("/api/item-intake", requireStaffOrAdmin, handleItemIntake);
 
   app.post("/api/items", requireAdmin, async (req, res) => {
-    const { name, nameDe, brand, category, unit, minStock, barcode, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
+    const { name, nameDe, brand, category, unit, minStock, barcode, imageUrl, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
@@ -1407,8 +1478,8 @@ function createApp() {
     try {
       const result = await execute(
         `
-          INSERT INTO items (name, name_de, brand, category, unit, min_stock, barcode, notes, notes_de, default_price, list_price, sale_price)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO items (name, name_de, brand, category, unit, min_stock, barcode, image_url, notes, notes_de, default_price, list_price, sale_price)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
           RETURNING id
         `,
         [
@@ -1419,6 +1490,7 @@ function createApp() {
           unit.trim(),
           numericFields.minStock,
           cleanOptional(barcode) || null,
+          normalizeItemImageUrl(imageUrl),
           cleanOptional(notes),
           cleanOptional(notesDe),
           numericFields.defaultPrice,
@@ -1441,7 +1513,7 @@ function createApp() {
   });
 
   app.put("/api/items/:id", requireAdmin, async (req, res) => {
-    const { name, nameDe, brand, category, unit, minStock, barcode, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
+    const { name, nameDe, brand, category, unit, minStock, barcode, imageUrl, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
       return res.status(400).json({ error: "Malzeme bilgileri eksik." });
     }
@@ -1454,7 +1526,7 @@ function createApp() {
       const result = await execute(
         `
           UPDATE items
-          SET name = ?, name_de = ?, brand = ?, category = ?, unit = ?, min_stock = ?, barcode = ?, notes = ?, notes_de = ?, default_price = ?, list_price = ?, sale_price = ?
+          SET name = ?, name_de = ?, brand = ?, category = ?, unit = ?, min_stock = ?, barcode = ?, image_url = ?, notes = ?, notes_de = ?, default_price = ?, list_price = ?, sale_price = ?
           WHERE id = ?
         `,
         [
@@ -1465,6 +1537,7 @@ function createApp() {
           unit.trim(),
           numericFields.minStock,
           cleanOptional(barcode) || null,
+          normalizeItemImageUrl(imageUrl),
           cleanOptional(notes),
           cleanOptional(notesDe),
           numericFields.defaultPrice,
@@ -3412,6 +3485,48 @@ function createApp() {
       });
   });
 
+  app.get("/api/items/:id/documents", requireAuth, async (req, res) => {
+    const itemId = Number(req.params.id);
+    if (!Number.isFinite(itemId) || itemId <= 0) {
+      return res.status(400).json({ error: "Gecersiz malzeme id." });
+    }
+
+    const activeValue = dbClient === "postgres" ? true : 1;
+    const item = await get(
+      "SELECT id, name, brand FROM items WHERE id = ? AND COALESCE(is_active, TRUE) = ?",
+      [itemId, activeValue]
+    );
+    if (!item) {
+      return res.status(404).json({ error: "Malzeme bulunamadi." });
+    }
+
+    const documents = getSupplierCatalogRefsForItem(itemId)
+      .slice(0, 12)
+      .map((ref, index) => ({
+        id: `${itemId}-${index + 1}`,
+        kind: "catalog",
+        category: "Tedarikci Katalogu",
+        title: [ref.supplierBrand, ref.code].filter(Boolean).join(" "),
+        matchReason: [
+          ref.sourceDocumentLabel || ref.sourceDocument,
+          ref.matchType === "exact" ? "exact match" : "catalog match",
+          ref.snippets?.[0] || "",
+        ].filter(Boolean).join(" · "),
+        openUrl: ref.sourceFile ? `/api/supplier-catalogs/raw/${encodeURIComponent(ref.sourceFile)}` : "#",
+      }));
+
+    return res.json({ documents });
+  });
+
+  app.get("/api/supplier-catalogs/raw/:fileName", requireAuth, async (req, res) => {
+    const filePath = resolveSupplierCatalogRawPath(req.params.fileName);
+    if (!filePath) {
+      return res.status(404).json({ error: "Tedarikci katalogu bulunamadi." });
+    }
+
+    res.type("text/plain; charset=utf-8").send(fs.readFileSync(filePath, "utf8"));
+  });
+
   app.get("/api/reports/xlsx", requireAdmin, async (req, res) => {
     const bootstrap = await buildBootstrap(req.session.user);
     const workbook = XLSX.utils.book_new();
@@ -3801,6 +3916,11 @@ async function activateSecurityBlock(req, options = {}) {
 }
 
 async function findActiveSecurityBlock(ipAddress) {
+  // Test moda (1000-soruluk regression sirasinda DB sturated): security_blocks
+  // kontrolu atla. Production veya normal kullanimda env yok, eski davranis.
+  if (process.env.SKIP_SECURITY_BLOCK === "1") {
+    return null;
+  }
   const block = await get(
     `
       SELECT
@@ -4148,6 +4268,33 @@ async function resolveCustomerUserId(rawValue) {
 
 function cleanOptional(value) {
   return value ? String(value).trim() : "";
+}
+
+function normalizeItemImageUrl(value) {
+  const raw = cleanOptional(value);
+  if (!raw || raw.length > 1000) {
+    return "";
+  }
+  if (/^https?:\/\//i.test(raw) || raw.startsWith("/")) {
+    return raw;
+  }
+  if (/:\/\//.test(raw)) {
+    return "";
+  }
+
+  const cleaned = raw.replace(/^\.?\/*/, "");
+  if (!cleaned || cleaned.includes("..")) {
+    return "";
+  }
+  if (/^(assets|images|img|uploads)\//i.test(cleaned)) {
+    return `/${cleaned}`;
+  }
+  if (!/^[a-z0-9][a-z0-9/_\-.]*\.(png|jpe?g|webp|gif|svg)$/i.test(cleaned)) {
+    return "";
+  }
+  return cleaned.includes("/")
+    ? `/${cleaned}`
+    : `/assets/products/${cleaned}`;
 }
 
 function isNonNegativeFinite(value) {
@@ -4845,7 +4992,9 @@ async function queryCustomerItems(options = {}) {
         items.category,
         items.unit,
         items.min_stock,
+        items.product_code AS "productCode",
         items.barcode,
+        items.image_url,
         items.notes,
         items.notes_de,
         items.default_price,
@@ -4871,6 +5020,17 @@ async function queryCustomerItems(options = {}) {
 function mapItemRow(row, options = {}) {
   const includePrices = options.includePrices !== false;
   const salePrice = includePrices ? resolveEffectiveSalePrice(row) : 0;
+  const supplierCatalogRefs = getSupplierCatalogRefsForItem(row.id);
+  const supplierCatalogCodes = [...new Set(
+    supplierCatalogRefs
+      .map((ref) => String(ref.code || "").trim())
+      .filter(Boolean)
+  )];
+  const supplierCatalogBrands = [...new Set(
+    supplierCatalogRefs
+      .map((ref) => String(ref.supplierBrand || "").trim())
+      .filter(Boolean)
+  )];
   return {
     id: Number(row.id),
     name: row.name,
@@ -4879,7 +5039,9 @@ function mapItemRow(row, options = {}) {
     category: row.category,
     unit: row.unit,
     minStock: Number(row.min_stock || 0),
+    productCode: row.product_code || row.productCode || "",
     barcode: row.barcode || `ITEM-${String(row.id).padStart(5, "0")}`,
+    imageUrl: normalizeItemImageUrl(row.image_url || row.imageUrl || ""),
     notes: row.notes,
     notesDe: row.notes_de || "",
     currentStock: Number(row.current_stock || 0),
@@ -4888,6 +5050,9 @@ function mapItemRow(row, options = {}) {
     salePrice,
     lastPurchasePrice: includePrices ? Number(row.last_purchase_price || 0) : 0,
     averagePurchasePrice: includePrices ? Number(row.average_purchase_price || 0) : 0,
+    supplierCatalogRefs,
+    supplierCatalogCodes,
+    supplierCatalogBrands,
   };
 }
 
@@ -5097,6 +5262,15 @@ async function querySecurityBlocks() {
 }
 
 async function queryAgentTrainingEntries(activeOnly = true) {
+  const now = Date.now();
+  if (
+    agentTrainingCache.activeOnly === activeOnly
+    && agentTrainingCache.expiresAt > now
+    && Array.isArray(agentTrainingCache.entries)
+  ) {
+    return agentTrainingCache.entries;
+  }
+
   const rows = await query(
     `
       SELECT
@@ -5118,24 +5292,56 @@ async function queryAgentTrainingEntries(activeOnly = true) {
       ${activeOnly ? "WHERE agent_training.is_active = ?" : ""}
       ORDER BY agent_training.updated_at DESC, agent_training.id DESC
     `,
-    activeOnly ? [1] : []
+    activeOnly ? [dbClient === "postgres" ? true : 1] : []
   );
 
-  return rows.map((row) => ({
-    id: Number(row.id),
-    topic: row.topic || "",
-    audience: row.audience || "all",
-    keywords: row.keywords || "",
-    trQuestion: row.trQuestion || "",
-    trAnswer: row.trAnswer || "",
-    deQuestion: row.deQuestion || "",
-    deAnswer: row.deAnswer || "",
-    suggestions: parseTrainingSuggestions(row.suggestions),
-    isActive: toBoolean(row.isActive),
-    createdAt: row.createdAt,
-    updatedAt: row.updatedAt,
-    createdByName: row.createdByName || "-",
-  }));
+  const entries = rows.map((row) => {
+    const promptValues = [
+      row.trQuestion,
+      row.deQuestion,
+      row.topic,
+    ]
+      .filter(Boolean)
+      .map((value) => normalizeAssistantText(value));
+    const preparedPrompts = [...new Set(promptValues)]
+      .filter(Boolean)
+      .map((prompt) => ({
+        prompt,
+        tokens: tokenizeAssistantText(prompt),
+      }));
+    const keywordTokens = [...new Set(
+      normalizeAssistantText(row.keywords)
+        .split(/\s+/)
+        .filter(Boolean)
+    )].slice(0, 48);
+
+    return {
+      id: Number(row.id),
+      topic: row.topic || "",
+      audience: row.audience || "all",
+      keywords: row.keywords || "",
+      trQuestion: row.trQuestion || "",
+      trAnswer: row.trAnswer || "",
+      deQuestion: row.deQuestion || "",
+      deAnswer: row.deAnswer || "",
+      suggestions: parseTrainingSuggestions(row.suggestions),
+      isActive: toBoolean(row.isActive),
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+      createdByName: row.createdByName || "-",
+      normalizedTopic: normalizeAssistantText(row.topic),
+      keywordTokens,
+      preparedPrompts,
+    };
+  });
+
+  agentTrainingCache = {
+    activeOnly,
+    expiresAt: now + AGENT_TRAINING_CACHE_TTL_MS,
+    entries,
+  };
+
+  return entries;
 }
 
 async function queryTroubleshootingBankEntries(activeOnly = true) {
@@ -5359,6 +5565,15 @@ function sanitizeMovementsForRole(movements, role) {
   }));
 }
 
+function resolveSupplierCatalogRawPath(fileName) {
+  const safeFileName = path.basename(String(fileName || "").trim());
+  if (!safeFileName || !safeFileName.toLowerCase().endsWith(".txt")) {
+    return "";
+  }
+  const filePath = path.join(SUPPLIER_CATALOG_RAW_DIR, safeFileName);
+  return fs.existsSync(filePath) ? filePath : "";
+}
+
 async function buildBootstrap(user) {
   const normalizedRole = normalizeRole(user?.role);
   const assistantStatus = getAssistantStatus();
@@ -5545,7 +5760,232 @@ function isTroubleshootingAssistantQuestion(message, history = []) {
     return true;
   }
 
+  if (hasAssistantProductIntent(normalizedConversation)) {
+    return true;
+  }
+
   return TROUBLESHOOTING_STRONG_HINTS.some((hint) => normalizedConversation.includes(hint));
+}
+
+function hasAssistantProductIntent(normalizedConversation) {
+  if (!normalizedConversation) {
+    return false;
+  }
+
+  const hasProductKeyword = /(fiyat|stok|kullanim|kullanilir|ne ise yarar|muadil|alternatif|usta|nerede)/.test(normalizedConversation);
+  if (!hasProductKeyword) {
+    return false;
+  }
+
+  return buildAssistantCodePhrases(normalizedConversation).length > 0
+    || tokenizeAssistantText(normalizedConversation).some((token) => /\d/.test(token) && token.length >= 4);
+}
+
+function buildAssistantCodePhrases(normalizedConversation) {
+  const tokens = tokenizeAssistantText(normalizedConversation);
+  const phrases = [];
+
+  for (let index = 0; index < tokens.length - 1; index += 1) {
+    const current = tokens[index];
+    const next = tokens[index + 1];
+    if (/^[a-z]{2,}$/.test(current) && /\d/.test(next)) {
+      phrases.push(`${current} ${next}`);
+    }
+  }
+
+  return [...new Set(phrases)];
+}
+
+function sanitizeAssistantIdentifier(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80);
+}
+
+function hasAssistantProductOverviewIntent(normalizedConversation) {
+  if (!normalizedConversation || !hasAssistantProductIntent(normalizedConversation)) {
+    return false;
+  }
+
+  const aspectCount = [
+    /(fiyat|ucret|bedel|kac para|ne kadar|preis|kosten|verkauf)/,
+    /(stok|stokta|kac adet|mevcut|bestand|lager|auf lager|verfugbar|verfuegbar)/,
+    /(nerede kullanilir|ne ise yarar|kullanim|uygulama|wo wird|wofuer|einsatz)/,
+    /(muadil|alternatif|yerine ne|ersatz|equivalent|alternative)/,
+    /(usta|usta cozum|pratik cozum|sahada|meister|praxis)/,
+  ].reduce((count, pattern) => count + (pattern.test(normalizedConversation) ? 1 : 0), 0);
+
+  return aspectCount >= 3 || /\bozet(le)?\b/.test(normalizedConversation);
+}
+
+function extractAssistantAnswerLead(answer) {
+  const lines = String(answer || "")
+    .split("\n")
+    .map((line) => cleanOptional(line))
+    .filter(Boolean);
+  return lines[0] || "";
+}
+
+function detectAssistantProductEntryKind(entry) {
+  const bankKey = normalizeAssistantText(entry?.bankKey || "");
+  if (bankKey.endsWith("price")) {
+    return "price";
+  }
+  if (bankKey.endsWith("stock")) {
+    return "stock";
+  }
+  if (bankKey.endsWith("usage")) {
+    return "usage";
+  }
+  if (bankKey.endsWith("equivalent")) {
+    return "equivalent";
+  }
+  if (bankKey.endsWith("technician")) {
+    return "technician";
+  }
+
+  const prompts = normalizeAssistantText([
+    entry?.trSubject,
+    ...(Array.isArray(entry?.trQuestions) ? entry.trQuestions : []),
+    entry?.deSubject,
+    ...(Array.isArray(entry?.deQuestions) ? entry.deQuestions : []),
+  ].join(" "));
+
+  if (/(nerede kullanilir|ne ise yarar|kullanim alani|wo wird|wofuer|einsatzbereich)/.test(prompts)) {
+    return "usage";
+  }
+  if (/(muadili var mi|yerine ne kullanilir|alternatif var mi|gibt es eine alternative|ersatz|alternative)/.test(prompts)) {
+    return "equivalent";
+  }
+  if (/(usta olarak ne yapariz|usta alternatifi|pratik cozum|meisterlich|praxisloesung|meister alternative)/.test(prompts)) {
+    return "technician";
+  }
+  if (/(stokta var mi|kac adet var|auf lager|lagerbestand)/.test(prompts)) {
+    return "stock";
+  }
+  if (/(fiyati nedir|satis fiyati|was kostet|verkaufspreis)/.test(prompts)) {
+    return "price";
+  }
+  return "";
+}
+
+function findAssistantProductCandidate(normalizedMessage, items) {
+  const codePhrases = buildAssistantCodePhrases(normalizedMessage);
+  if (codePhrases.length) {
+    const scoredCodeMatches = items
+      .map((item) => {
+        const itemCode = normalizeAssistantText(item?.productCode || item?.barcode || "");
+        if (!itemCode) {
+          return { item, score: 0 };
+        }
+
+        let score = 0;
+        codePhrases.forEach((phrase) => {
+          if (itemCode === phrase) {
+            score = Math.max(score, 220);
+          } else if (itemCode.startsWith(`${phrase}-`) || itemCode.startsWith(`${phrase} `) || itemCode.startsWith(`${phrase}/`)) {
+            score = Math.max(score, 120 - Math.max(0, itemCode.length - phrase.length));
+          } else if (itemCode.startsWith(phrase)) {
+            score = Math.max(score, 92 - Math.max(0, itemCode.length - phrase.length));
+          } else if (itemCode.includes(phrase)) {
+            score = Math.max(score, 68 - Math.max(0, itemCode.length - phrase.length));
+          } else if (phrase.includes(itemCode)) {
+            score = Math.max(score, 54 - Math.max(0, phrase.length - itemCode.length));
+          }
+        });
+
+        return { item, score };
+      })
+      .filter((entry) => entry.score > 0)
+      .sort((left, right) =>
+        right.score - left.score
+        || String(left.item.productCode || left.item.barcode || "").length - String(right.item.productCode || right.item.barcode || "").length
+        || String(left.item.name || "").localeCompare(String(right.item.name || ""), "tr")
+      );
+
+    if (scoredCodeMatches[0]?.item) {
+      return scoredCodeMatches[0].item;
+    }
+  }
+
+  return findAssistantCandidates(normalizedMessage, items)[0] || null;
+}
+
+async function matchAssistantProductOverview(message, language, user, items) {
+  const normalizedMessage = normalizeAssistantText(message);
+  if (!hasAssistantProductOverviewIntent(normalizedMessage)) {
+    return null;
+  }
+
+  const item = findAssistantProductCandidate(normalizedMessage, items || []);
+  if (!item) {
+    return null;
+  }
+
+  const code = String(item.productCode || item.barcode || "").trim();
+  const familyId = `product_${sanitizeAssistantIdentifier(code)}`;
+  const familyIdNormalized = normalizeAssistantText(familyId);
+  const entries = await queryTroubleshootingBankEntries(true);
+  const productEntries = entries.filter((entry) => entry.normalizedContextId === "product"
+    && normalizeAssistantText(entry.familyId) === familyIdNormalized);
+
+  const entryByKind = new Map();
+  productEntries.forEach((entry) => {
+    const kind = detectAssistantProductEntryKind(entry);
+    if (kind && !entryByKind.has(kind)) {
+      entryByKind.set(kind, entry);
+    }
+  });
+
+  const role = normalizeRole(user?.role);
+  const canViewPurchase = role === "admin";
+  const salePrice = formatEur(visibleSalePriceForRole(item, canViewPurchase));
+  const purchasePrice = formatEur(item.defaultPrice || item.lastPurchasePrice);
+  const stockText = formatAssistantQuantity(item.currentStock, item.unit, language);
+  const minText = formatAssistantQuantity(item.minStock, item.unit, language);
+  const criticalNote = Number(item.currentStock || 0) <= Number(item.minStock || 0)
+    ? (language === "de" ? `Bestand kritisch (Schwelle ${minText}).` : `Stok kritik seviyede (esik ${minText}).`)
+    : (language === "de" ? `Kritischer Bestand ${minText}.` : `Kritik seviye ${minText}.`);
+  const usageLead = extractAssistantAnswerLead(language === "de"
+    ? entryByKind.get("usage")?.deAnswer || entryByKind.get("usage")?.trAnswer
+    : entryByKind.get("usage")?.trAnswer || entryByKind.get("usage")?.deAnswer);
+  const equivalentLead = extractAssistantAnswerLead(language === "de"
+    ? entryByKind.get("equivalent")?.deAnswer || entryByKind.get("equivalent")?.trAnswer
+    : entryByKind.get("equivalent")?.trAnswer || entryByKind.get("equivalent")?.deAnswer);
+  const technicianLead = extractAssistantAnswerLead(language === "de"
+    ? entryByKind.get("technician")?.deAnswer || entryByKind.get("technician")?.trAnswer
+    : entryByKind.get("technician")?.trAnswer || entryByKind.get("technician")?.deAnswer);
+
+  const answer = language === "de"
+    ? [
+        `${item.name} (${code || item.barcode}) Kurzuebersicht:`,
+        `Preis: ${salePrice}.${canViewPurchase ? ` Einkauf intern: ${purchasePrice}.` : ""}`,
+        `Bestand: ${stockText}. ${criticalNote}`,
+        `Einsatz: ${usageLead || `${item.name} ist als ${localizeAssistantItemCategory(item.category, language)} zu lesen.`}`,
+        `Alternative: ${equivalentLead || "Nahe Lager-Alternative wurde nicht sicher gefunden; zuerst Kategorie und Anschlussdaten pruefen."}`,
+        `Meisterloesung: ${technicianLead || "Vor Ort zuerst Versorgung, Anschlussmass und Funktionsgleichheit pruefen; dann einen nahen Lagerkandidaten testen."}`,
+      ].join("\n")
+    : [
+        `${item.name} (${code || item.barcode}) ozeti:`,
+        `Fiyat: ${salePrice}.${canViewPurchase ? ` Alis ic referans: ${purchasePrice}.` : ""}`,
+        `Stok: ${stockText}. ${criticalNote}`,
+        `Kullanim: ${usageLead || `${item.name} urunu ${item.category || "genel"} kategorisinde degerlendirilir.`}`,
+        `Muadil: ${equivalentLead || "Net bir stoklu muadil bulunamadi; once kategori ve baglanti uyumu kontrol edilir."}`,
+        `Usta cozum: ${technicianLead || "Sahada once besleme, baglanti ve fonksiyon uyumu kontrol edilir; sonra en yakin stoklu aday denenir."}`,
+      ].join("\n");
+
+  return {
+    answer,
+    suggestions: [
+      `${code || item.name} fiyati nedir?`,
+      `${code || item.name} stokta var mi?`,
+      `${code || item.name} nerede kullanilir?`,
+      `${code || item.name} muadili var mi?`,
+    ],
+    sourceSummary: "DRC MAN urun egitimi",
+  };
 }
 
 function buildTroubleshootingSuggestions(entry, language = "tr") {
@@ -5570,6 +6010,23 @@ function troubleshootingEntryMatchesToken(entry, token) {
   }
 
   return entry.preparedPrompts.some(({ prompt }) => prompt.includes(token));
+}
+
+function trainingEntryMatchesToken(entry, token) {
+  if (!token) {
+    return false;
+  }
+
+  if (entry.normalizedTopic && entry.normalizedTopic.includes(token)) {
+    return true;
+  }
+
+  if (Array.isArray(entry.keywordTokens) && entry.keywordTokens.some((keyword) => keyword.includes(token))) {
+    return true;
+  }
+
+  return Array.isArray(entry.preparedPrompts)
+    && entry.preparedPrompts.some(({ prompt }) => prompt.includes(token));
 }
 
 function detectTroubleshootingPreferredPack(normalizedMessage) {
@@ -5632,17 +6089,29 @@ async function matchAssistantTroubleshootingBank(message, language, user, histor
   const tokens = buildTroubleshootingTokens(normalizedMessage);
   const precisionTokens = tokens.filter((token) => token.length >= 4 || /\d/.test(token));
   const anchorTokens = tokens.filter((token) => /\d/.test(token) || TROUBLESHOOTING_ANCHOR_TOKENS.has(token));
+  const productIntent = hasAssistantProductIntent(normalizedMessage);
+  const codePhrases = buildAssistantCodePhrases(normalizedMessage);
   const entries = await queryTroubleshootingBankEntries(true);
   const anchoredEntries = anchorTokens.length
     ? entries.filter((entry) => anchorTokens.some((token) => troubleshootingEntryMatchesToken(entry, token)))
     : entries;
-  const candidateEntries = anchoredEntries.length ? anchoredEntries : entries;
+  const productScopedEntries = productIntent && precisionTokens.length
+    ? entries.filter((entry) =>
+        precisionTokens.some((token) => troubleshootingEntryMatchesToken(entry, token))
+        || codePhrases.some((phrase) => troubleshootingEntryMatchesToken(entry, phrase))
+      )
+    : [];
+  const candidateEntries = productScopedEntries.length
+    ? productScopedEntries
+    : anchoredEntries.length
+      ? anchoredEntries
+      : entries;
   const preferredPack = detectTroubleshootingPreferredPack(normalizedMessage);
   const packScopedEntries = preferredPack
     ? candidateEntries.filter((entry) => normalizeAssistantText(entry.sourceSummary).includes(preferredPack))
     : [];
   const scoredEntries = packScopedEntries.length ? packScopedEntries : candidateEntries;
-  const minimumScore = packScopedEntries.length ? 34 : 52;
+  const minimumScore = productIntent ? 34 : packScopedEntries.length ? 34 : 52;
   let bestEntry = null;
   let bestScore = 0;
 
@@ -5665,12 +6134,24 @@ async function matchAssistantTroubleshootingBank(message, language, user, histor
       const keywordHit = entry.keywordTokens.some((keyword) => keyword.includes(token));
       const promptHit = entry.preparedPrompts.some(({ prompt }) => prompt.includes(token));
       if (keywordHit || promptHit) {
-        score += 18;
+        score += productIntent ? 32 : 18;
       }
     });
 
     if (anchorTokens.length && normalizeAssistantText(entry.sourceSummary).includes("derin ariza bankasi")) {
       score += 24;
+    }
+
+    if (productIntent) {
+      if (codePhrases.some((phrase) => troubleshootingEntryMatchesToken(entry, phrase))) {
+        score += 44;
+      }
+      if (entry.normalizedContextId === "product") {
+        score += 36;
+      }
+      if (normalizeAssistantText(entry.sourceSummary).includes("urun egitimi")) {
+        score += 18;
+      }
     }
 
     if (score > bestScore) {
@@ -5705,33 +6186,35 @@ async function matchAssistantTraining(message, language, user) {
   }
 
   const tokens = tokenizeAssistantText(normalizedMessage);
+  const anchorTokens = [...new Set(
+    tokens.filter((token) => token.length >= 3 || /\d/.test(token))
+  )].slice(0, 10);
   const entries = await queryAgentTrainingEntries(true);
+  const anchoredEntries = anchorTokens.length
+    ? entries.filter((entry) => anchorTokens.some((token) => trainingEntryMatchesToken(entry, token)))
+    : entries;
+  const candidateEntries = anchoredEntries.length ? anchoredEntries : entries;
   let bestEntry = null;
   let bestScore = 0;
 
-  for (const entry of entries) {
+  for (const entry of candidateEntries) {
     if (!audienceAllowsRole(entry.audience, user?.role)) {
       continue;
     }
 
-    const prompts = [
-      language === "de" ? entry.deQuestion || entry.trQuestion : entry.trQuestion || entry.deQuestion,
-      language === "de" ? entry.trQuestion : entry.deQuestion,
-      entry.topic,
-    ]
-      .filter(Boolean)
-      .map((value) => normalizeAssistantText(value));
-
-    const keywords = normalizeAssistantText(entry.keywords).split(/\s+/).filter(Boolean);
     let score = 0;
 
-    prompts.forEach((prompt) => {
-      score += scoreAssistantPromptMatch(normalizedMessage, tokens, prompt);
+    entry.preparedPrompts.forEach(({ prompt, tokens: promptTokens }) => {
+      score += scorePreparedAssistantPromptMatch(normalizedMessage, tokens, prompt, promptTokens);
     });
 
-    keywords.forEach((keyword) => {
+    entry.keywordTokens.forEach((keyword) => {
       score += scoreAssistantKeywordMatch(normalizedMessage, tokens, keyword);
     });
+
+    if (anchorTokens.length && anchorTokens.some((token) => trainingEntryMatchesToken(entry, token))) {
+      score += 12;
+    }
 
     if (score > bestScore) {
       bestScore = score;
@@ -5784,20 +6267,22 @@ function findBestTrainingEntryByText(value, entries) {
   }
 
   const tokens = tokenizeAssistantText(normalizedValue);
+  const anchorTokens = [...new Set(
+    tokens.filter((token) => token.length >= 3 || /\d/.test(token))
+  )].slice(0, 8);
+  const candidateEntries = anchorTokens.length
+    ? entries.filter((entry) => anchorTokens.some((token) => trainingEntryMatchesToken(entry, token)))
+    : entries;
   let bestEntry = null;
   let bestScore = 0;
 
-  entries.forEach((entry) => {
-    const prompts = [
-      normalizeAssistantText(entry.trQuestion),
-      normalizeAssistantText(entry.deQuestion),
-      normalizeAssistantText(entry.topic),
-      normalizeAssistantText(entry.keywords),
-    ].filter(Boolean);
-
+  candidateEntries.forEach((entry) => {
     let score = 0;
-    prompts.forEach((prompt) => {
-      score += scoreAssistantPromptMatch(normalizedValue, tokens, prompt);
+    entry.preparedPrompts.forEach(({ prompt, tokens: promptTokens }) => {
+      score += scorePreparedAssistantPromptMatch(normalizedValue, tokens, prompt, promptTokens);
+    });
+    entry.keywordTokens.forEach((keyword) => {
+      score += scoreAssistantKeywordMatch(normalizedValue, tokens, keyword);
     });
 
     if (score > bestScore) {
@@ -6370,6 +6855,16 @@ function shouldPreferAssistantCatalogReply(message, items) {
   if (hasAssistantAdvisoryIntent(normalized)) {
     return false;
   }
+  // Bug fix (2026-04-26): "fan", "axial fan", "kompresor" gibi 1-2 kelimelik
+  // saf urun sorgulari catalogItemIntent regex'inde "fiyat/stok/kodu/marka"
+  // gibi anahtar kelime gormez ve troubleshooting_bank'a duser (SORUN_BANK_DUMP'a
+  // yanlis match). Eger soruda explicit troubleshooting/advisory intent yoksa
+  // ve catalog'da en az bir urun adayi varsa catalog'u tercih et. Cap 2 token:
+  // 3+ token sorularda (fan motor garantisi gibi) MALZEME training cevap versin.
+  const tokens = normalized.split(/\s+/).filter((token) => token.length > 1);
+  if (tokens.length > 0 && tokens.length <= 2 && findAssistantCandidates(normalized, items).length > 0) {
+    return true;
+  }
   if (!hasAssistantCatalogItemIntent(normalized)) {
     return false;
   }
@@ -6520,10 +7015,13 @@ function answerAssistantQuestion(message, items, language = "tr", user = null) {
 
   if (/(stok kodu|kodu|kodu nedir|barkod|artikelcode|lagernummer|code)/.test(normalized) && candidates[0]) {
     const item = candidates[0];
+    const referenceCodes = getAssistantReferenceCodes(item);
+    const stockCode = item.barcode || "-";
+    const productCode = String(item.productCode || "").trim();
     return {
       reply: language === "de"
-        ? `Der Lagercode fuer ${item.name} ist ${item.barcode}.`
-        : `${item.name} icin stok kodu: ${item.barcode}.`,
+        ? `Der Lagercode fuer ${item.name} ist ${stockCode}.${productCode && productCode !== stockCode ? ` Produktcode: ${productCode}.` : ""}${referenceCodes.length ? ` Lieferkatalog-Referenzen: ${referenceCodes.join(", ")}.` : ""}`
+        : `${item.name} icin stok kodu: ${stockCode}.${productCode && productCode !== stockCode ? ` Urun kodu: ${productCode}.` : ""}${referenceCodes.length ? ` Katalog referanslari: ${referenceCodes.join(", ")}.` : ""}`,
       suggestions: [`${item.name} ${t.priceWord}`, `${item.name} ${t.stockWord}`],
     };
   }
@@ -6600,6 +7098,21 @@ function visibleSalePriceForRole(item, canViewPurchase) {
   return resolveEffectiveSalePrice(item);
 }
 
+function getAssistantReferenceCodes(item, limit = 6) {
+  const values = new Set();
+  const barcode = String(item?.barcode || "").trim();
+  const productCode = String(item?.productCode || "").trim();
+  if (productCode && productCode !== barcode) {
+    values.add(productCode);
+  }
+  const supplierCodes = Array.isArray(item?.supplierCatalogCodes) ? item.supplierCatalogCodes : [];
+  supplierCodes.forEach((value) => {
+    const text = String(value || "").trim();
+    if (text && text !== barcode && text !== productCode) values.add(text);
+  });
+  return Array.from(values).slice(0, limit);
+}
+
 function createAssistantDictionary(language) {
   if (language === "de") {
     return {
@@ -6646,22 +7159,35 @@ function findAssistantCandidates(normalizedMessage, items) {
       const brand = normalizeAssistantText(item.brand);
       const category = normalizeAssistantText(item.category);
       const barcode = normalizeAssistantText(item.barcode);
+      const productCode = normalizeAssistantText(item.productCode);
+      const supplierCodes = normalizeAssistantText((Array.isArray(item.supplierCatalogCodes) ? item.supplierCatalogCodes : []).join(" "));
       const notes = normalizeAssistantText(item.notes);
-      const haystack = [name, brand, category, barcode, notes].filter(Boolean).join(" ");
+      const haystack = [name, brand, category, barcode, productCode, supplierCodes, notes].filter(Boolean).join(" ");
       const nameTokens = tokenizeAssistantText(name);
       const brandTokens = tokenizeAssistantText(brand);
       const barcodeTokens = tokenizeAssistantText(barcode);
+      const productCodeTokens = tokenizeAssistantText(productCode);
+      const supplierCodeTokens = tokenizeAssistantText(supplierCodes);
 
       let score = 0;
 
       if (barcode && queryText && barcode === queryText) {
         score += 100;
       }
+      if (productCode && queryText && productCode === queryText) {
+        score += 96;
+      }
       if (name && queryText && name.startsWith(queryText)) {
         score += 90;
       }
       if (barcode && queryTokens.some((token) => token === barcode || barcode.includes(token) || token.includes(barcode))) {
         score += 60;
+      }
+      if (productCode && queryTokens.some((token) => token === productCode || productCode.includes(token) || token.includes(productCode))) {
+        score += 58;
+      }
+      if (supplierCodes && queryTokens.some((token) => supplierCodes.includes(token) || token.includes(supplierCodes))) {
+        score += 38;
       }
       if (name && queryText && name.includes(queryText)) {
         score += 50;
@@ -6673,7 +7199,7 @@ function findAssistantCandidates(normalizedMessage, items) {
       queryTokens.forEach((token) => {
         if (nameTokens.includes(token)) {
           score += token.length >= 4 ? 42 : 24;
-        } else if (barcodeTokens.includes(token)) {
+        } else if (barcodeTokens.includes(token) || productCodeTokens.includes(token) || supplierCodeTokens.includes(token)) {
           score += 38;
         } else if (brandTokens.includes(token)) {
           score += 18;
@@ -6686,7 +7212,8 @@ function findAssistantCandidates(normalizedMessage, items) {
         }
       });
 
-      const strongTokenMatches = queryTokens.filter((token) => token.length >= 3 && (nameTokens.includes(token) || barcodeTokens.includes(token)));
+      const strongTokenMatches = queryTokens.filter((token) => token.length >= 3
+        && (nameTokens.includes(token) || barcodeTokens.includes(token) || productCodeTokens.includes(token) || supplierCodeTokens.includes(token)));
       if (strongTokenMatches.length >= Math.min(2, queryTokens.filter((token) => token.length >= 3).length)) {
         score += 55;
       }

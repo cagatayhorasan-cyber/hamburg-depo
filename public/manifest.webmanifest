@@ -1,0 +1,27 @@
+{
+  "name": "D-R-C Kältetechnik GmbH Portal",
+  "short_name": "DRC Portal",
+  "description": "DRC depo, siparis, satis ve proje yonetimi icin Android uyumlu kurulum paketi.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f2748",
+  "theme_color": "#0f2748",
+  "lang": "tr",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

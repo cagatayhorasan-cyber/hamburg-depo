@@ -1,0 +1,20 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#FBF7F4"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <circle cx="182" cy="204" r="72" fill="#C76839"/>
+  <circle cx="182" cy="204" r="40" fill="#F8D1C0"/>
+  <circle cx="316" cy="160" r="72" fill="#A44A27"/>
+  <circle cx="316" cy="160" r="40" fill="#F4C0A9"/>
+  <circle cx="442" cy="214" r="72" fill="#D27E53"/>
+  <circle cx="442" cy="214" r="40" fill="#FFD7C4"/>
+  <path d="M224 238L276 196" stroke="#A44A27" stroke-width="24" stroke-linecap="round"/>
+  <path d="M360 192L404 206" stroke="#A44A27" stroke-width="24" stroke-linecap="round"/>
+  <text x="66" y="328" fill="#8E4527" font-family="Arial, sans-serif" font-size="40" font-weight="700">BAKIR</text>
+  <text x="66" y="360" fill="#9D755F" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF1EA"/>
+    </linearGradient>
+  </defs>
+</svg>

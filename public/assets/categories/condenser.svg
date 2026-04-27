@@ -1,0 +1,21 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F7FBF4"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <rect x="96" y="94" width="448" height="212" rx="28" fill="#2C6B47"/>
+  <circle cx="224" cy="200" r="58" fill="#D7F7E0"/>
+  <circle cx="224" cy="200" r="24" fill="#6CC28E"/>
+  <circle cx="416" cy="200" r="58" fill="#D7F7E0"/>
+  <circle cx="416" cy="200" r="24" fill="#6CC28E"/>
+  <path d="M224 148V252" stroke="#2C6B47" stroke-width="10"/>
+  <path d="M172 200H276" stroke="#2C6B47" stroke-width="10"/>
+  <path d="M416 148V252" stroke="#2C6B47" stroke-width="10"/>
+  <path d="M364 200H468" stroke="#2C6B47" stroke-width="10"/>
+  <text x="66" y="328" fill="#2C6B47" font-family="Arial, sans-serif" font-size="38" font-weight="700">KONDENSER</text>
+  <text x="66" y="360" fill="#678B77" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEFFF2"/>
+    </linearGradient>
+  </defs>
+</svg>

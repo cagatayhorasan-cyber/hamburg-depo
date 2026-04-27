@@ -39,6 +39,7 @@ const sqliteSchema = `
     min_stock REAL NOT NULL DEFAULT 0,
     product_code TEXT DEFAULT '',
     barcode TEXT UNIQUE,
+    image_url TEXT DEFAULT '',
     notes TEXT DEFAULT '',
     notes_de TEXT DEFAULT '',
     is_active INTEGER NOT NULL DEFAULT 1,
@@ -561,12 +562,13 @@ async function initDatabase() {
       //   doluysa kullanıcıya hızlı hata dön, 30 saniye asılıp Vercel timeout'a
       //   girmektense.
       const poolMax = Number(process.env.PG_POOL_MAX || (process.env.VERCEL ? 3 : 10));
+      const connTimeout = Number(process.env.PG_CONN_TIMEOUT_MS) || 8_000;
       pgPool = new Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: process.env.PGSSL === "disable" ? false : { rejectUnauthorized: false },
         max: poolMax,
         idleTimeoutMillis: 10_000,
-        connectionTimeoutMillis: 8_000,
+        connectionTimeoutMillis: connTimeout,
         keepAlive: true,
       });
       pgPool.on("error", (err) => {
@@ -775,6 +777,9 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("product_code")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN product_code TEXT DEFAULT ''");
   }
+  if (!columns.includes("image_url")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN image_url TEXT DEFAULT ''");
+  }
   if (!columns.includes("default_price")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN default_price REAL NOT NULL DEFAULT 0");
   }
@@ -940,6 +945,25 @@ function ensureQuoteColumnsSqlite() {
   if (orderColumns.length && !orderColumns.includes("quote_id")) {
     sqliteDb.exec("ALTER TABLE orders ADD COLUMN quote_id INTEGER");
   }
+  if (orderColumns.length && !orderColumns.includes("payment_type")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN payment_type TEXT NOT NULL DEFAULT 'open_account'");
+  }
+  if (orderColumns.length && !orderColumns.includes("payment_status")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN payment_status TEXT NOT NULL DEFAULT 'unpaid'");
+  }
+  if (orderColumns.length && !orderColumns.includes("paid_amount")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN paid_amount REAL NOT NULL DEFAULT 0");
+  }
+  if (orderColumns.length && !orderColumns.includes("stock_deducted_at")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN stock_deducted_at TEXT");
+  }
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_orders_quote_id ON orders(quote_id)");
+  sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_orders_payment_status ON orders(payment_status)");
+
+  const orderItemColumns = sqliteDb.prepare("PRAGMA table_info(order_items)").all().map((column) => column.name);
+  if (orderItemColumns.length && !orderItemColumns.includes("unit_price")) {
+    sqliteDb.exec("ALTER TABLE order_items ADD COLUMN unit_price REAL NOT NULL DEFAULT 0");
+  }
 }
 
 async function ensureQuoteColumnsPostgres() {
@@ -1096,6 +1120,9 @@ async function ensureItemColumnsPostgres() {
   }
   if (!names.has("product_code")) {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN product_code TEXT DEFAULT ''");
+  }
+  if (!names.has("image_url")) {
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN image_url TEXT DEFAULT ''");
   }
   if (!names.has("default_price")) {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN default_price NUMERIC NOT NULL DEFAULT 0");

@@ -1,0 +1,19 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F6F7FB"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <circle cx="320" cy="188" r="104" fill="#173B68"/>
+  <circle cx="320" cy="188" r="28" fill="#EAF2FF"/>
+  <path d="M320 86C366 86 402 122 402 168C402 184 394 200 380 212L320 188V86Z" fill="#3A6EA5"/>
+  <path d="M234 164C234 118 270 82 316 82C332 82 348 90 360 102L320 188L234 164Z" fill="#8DB6F2"/>
+  <path d="M234 210C188 210 152 174 152 128C152 112 160 96 174 84L320 188L234 210Z" fill="#6C8FC7"/>
+  <path d="M320 292C274 292 238 256 238 210C238 194 246 178 260 166L320 188V292Z" fill="#92C7D8"/>
+  <path d="M406 212C406 258 370 294 324 294C308 294 292 286 280 274L320 188L406 212Z" fill="#4A7AB5"/>
+  <text x="66" y="328" fill="#173B68" font-family="Arial, sans-serif" font-size="38" font-weight="700">FAN MOTOR</text>
+  <text x="66" y="360" fill="#5C7794" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EDF3FF"/>
+    </linearGradient>
+  </defs>
+</svg>

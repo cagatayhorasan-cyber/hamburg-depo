@@ -1,0 +1,23 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F3F8FB"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <circle cx="512" cy="112" r="72" fill="#DFF5F3"/>
+  <path d="M146 118H338C363.405 118 384 138.595 384 164V230C384 255.405 363.405 276 338 276H146C120.595 276 100 255.405 100 230V164C100 138.595 120.595 118 146 118Z" fill="#184B59"/>
+  <rect x="120" y="138" width="224" height="118" rx="22" fill="#0F6B7A"/>
+  <path d="M428 154C446 154 460 168 460 186C460 204 446 218 428 218" stroke="#184B59" stroke-width="18" stroke-linecap="round"/>
+  <path d="M470 148V224" stroke="#184B59" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="196" cy="196" r="38" fill="#E4FBFF"/>
+  <circle cx="272" cy="196" r="38" fill="#E4FBFF"/>
+  <path d="M196 158V234" stroke="#0F6B7A" stroke-width="10"/>
+  <path d="M158 196H234" stroke="#0F6B7A" stroke-width="10"/>
+  <path d="M272 158V234" stroke="#0F6B7A" stroke-width="10"/>
+  <path d="M234 196H310" stroke="#0F6B7A" stroke-width="10"/>
+  <text x="66" y="328" fill="#184B59" font-family="Arial, sans-serif" font-size="34" font-weight="700">SOGUTMA MALZEMESI</text>
+  <text x="66" y="360" fill="#527A81" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9FBF9"/>
+    </linearGradient>
+  </defs>
+</svg>

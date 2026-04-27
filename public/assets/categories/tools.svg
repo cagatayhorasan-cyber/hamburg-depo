@@ -1,0 +1,16 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F7F5FB"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <path d="M172 270L284 158C298 144 320 144 334 158L350 174C364 188 364 210 350 224L238 336L172 270Z" fill="#4A3F8C"/>
+  <path d="M344 126L390 80C412 58 448 58 470 80L494 104C516 126 516 162 494 184L448 230L344 126Z" fill="#6D61C6"/>
+  <rect x="138" y="248" width="72" height="100" rx="24" transform="rotate(-45 138 248)" fill="#9B8DF2"/>
+  <circle cx="470" cy="118" r="18" fill="#EDE9FF"/>
+  <text x="66" y="328" fill="#4A3F8C" font-family="Arial, sans-serif" font-size="38" font-weight="700">SERVIS EKIPMANI</text>
+  <text x="66" y="360" fill="#766FA4" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3EFFF"/>
+    </linearGradient>
+  </defs>
+</svg>

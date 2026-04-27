@@ -1,0 +1,19 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F5F4FB"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <rect x="138" y="118" width="364" height="204" rx="24" fill="#3E3A72"/>
+  <rect x="126" y="102" width="388" height="52" rx="18" fill="#5E58A1"/>
+  <rect x="180" y="174" width="280" height="108" rx="18" fill="#EDEBFF"/>
+  <path d="M230 204H410" stroke="#8E89C8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M230 232H410" stroke="#8E89C8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M230 260H350" stroke="#8E89C8" stroke-width="10" stroke-linecap="round"/>
+  <rect x="284" y="80" width="72" height="30" rx="12" fill="#7B76C2"/>
+  <text x="66" y="328" fill="#3E3A72" font-family="Arial, sans-serif" font-size="38" font-weight="700">ARSIV / ITHALAT</text>
+  <text x="66" y="360" fill="#746F98" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F0EEFF"/>
+    </linearGradient>
+  </defs>
+</svg>

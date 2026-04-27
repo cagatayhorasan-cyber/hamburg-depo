@@ -1,0 +1,20 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F4F7F4"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <rect x="124" y="92" width="392" height="216" rx="34" fill="#183F2A"/>
+  <rect x="156" y="124" width="192" height="74" rx="18" fill="#B8FFB5"/>
+  <rect x="156" y="220" width="60" height="60" rx="16" fill="#2C6E49"/>
+  <rect x="232" y="220" width="60" height="60" rx="16" fill="#2C6E49"/>
+  <rect x="308" y="220" width="60" height="60" rx="16" fill="#2C6E49"/>
+  <rect x="388" y="136" width="90" height="20" rx="10" fill="#8BE28A"/>
+  <rect x="388" y="174" width="64" height="18" rx="9" fill="#6AD16F"/>
+  <circle cx="456" cy="236" r="26" fill="#8BE28A"/>
+  <text x="66" y="328" fill="#183F2A" font-family="Arial, sans-serif" font-size="38" font-weight="700">KONTROL</text>
+  <text x="66" y="360" fill="#5C7C6E" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#ECFFF0"/>
+    </linearGradient>
+  </defs>
+</svg>

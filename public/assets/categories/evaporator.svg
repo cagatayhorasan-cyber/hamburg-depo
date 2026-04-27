@@ -1,0 +1,21 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F4FAFF"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <rect x="108" y="102" width="424" height="190" rx="26" fill="#1A567A"/>
+  <path d="M152 142H486" stroke="#B7E8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M152 172H486" stroke="#B7E8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M152 202H486" stroke="#B7E8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M152 232H486" stroke="#B7E8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M152 262H486" stroke="#B7E8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M202 124V270" stroke="#8BD3F7" stroke-width="8"/>
+  <path d="M318 124V270" stroke="#8BD3F7" stroke-width="8"/>
+  <path d="M434 124V270" stroke="#8BD3F7" stroke-width="8"/>
+  <text x="66" y="328" fill="#1A567A" font-family="Arial, sans-serif" font-size="38" font-weight="700">EVAPORATOR</text>
+  <text x="66" y="360" fill="#62869A" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9F9FF"/>
+    </linearGradient>
+  </defs>
+</svg>

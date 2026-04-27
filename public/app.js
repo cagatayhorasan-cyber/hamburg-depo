@@ -561,7 +561,7 @@ const UI_TEXT = {
 const state = {
   user: null,
   summary: null,
-  activeTab: "items",
+  activeTab: "",
   itemsVersion: 0,
   items: [],
   archivedItems: [],
@@ -602,6 +602,7 @@ const state = {
   assistantUserId: null,
   assistantLanguage: "tr",
   assistantMessages: [],
+  deferredInstallPrompt: null,
   filterOptionsSignature: "",
   filterOptions: { brand: [], category: [] },
   itemSelectSignature: "",
@@ -679,7 +680,9 @@ const refs = {
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
   barcodeImage: document.getElementById("barcodeImage"),
   logoutButton: document.getElementById("logoutButton"),
+  pwaInstallButton: document.getElementById("pwaInstallButton"),
   helpLink: document.getElementById("helpLink"),
+  mobileHelpLink: document.getElementById("mobileHelpLink"),
   downloadXlsx: document.getElementById("downloadXlsx"),
   downloadPdf: document.getElementById("downloadPdf"),
   itemSearch: document.getElementById("itemSearch"),
@@ -782,11 +785,33 @@ const refs = {
   assistantMessages: document.getElementById("assistantMessages"),
   assistantForm: document.getElementById("assistantForm"),
   assistantInput: document.getElementById("assistantInput"),
+  mobileSalesBanner: document.getElementById("mobileSalesBanner"),
+  mobileSalesAssistantButton: document.getElementById("mobileSalesAssistantButton"),
+  mobileSalesAssistantTitle: document.getElementById("mobileSalesAssistantTitle"),
+  mobileSalesAssistantHint: document.getElementById("mobileSalesAssistantHint"),
+  mobileCurrentTabTitle: document.getElementById("mobileCurrentTabTitle"),
+  mobileCurrentTabHint: document.getElementById("mobileCurrentTabHint"),
+  mobileInstallButton: document.getElementById("mobileInstallButton"),
+  mobileMoreTopButton: document.getElementById("mobileMoreTopButton"),
+  mobilePrimaryNav: document.getElementById("mobilePrimaryNav"),
+  mobileMoreTrigger: document.getElementById("mobileMoreTrigger"),
+  mobileMoreTriggerLabel: document.getElementById("mobileMoreTriggerLabel"),
+  mobileMoreSheet: document.getElementById("mobileMoreSheet"),
+  mobileMoreBackdrop: document.getElementById("mobileMoreBackdrop"),
+  mobileMoreClose: document.getElementById("mobileMoreClose"),
+  mobileMoreKicker: document.getElementById("mobileMoreKicker"),
+  mobileMoreTitle: document.getElementById("mobileMoreTitle"),
+  mobileMoreNote: document.getElementById("mobileMoreNote"),
+  mobileMoreInstallButton: document.getElementById("mobileMoreInstallButton"),
+  mobileCashbookButton: document.getElementById("mobileCashbookButton"),
+  mobileAssistantButton: document.getElementById("mobileAssistantButton"),
+  mobileSalesAssistantShortcut: document.getElementById("mobileSalesAssistantShortcut"),
+  mobileLogoutButton: document.getElementById("mobileLogoutButton"),
   itemDetailModal: document.getElementById("itemDetailModal"),
   itemDetailEyebrow: document.getElementById("itemDetailEyebrow"),
   itemDetailCode: document.getElementById("itemDetailCode"),
   itemDetailBrandLogo: document.getElementById("itemDetailBrandLogo"),
-  // itemDetailVisual kaldirildi (v2026-04-25): marka seridi ile sadelestirildi
+  itemDetailImage: document.getElementById("itemDetailImage"),
   itemDetailTitle: document.getElementById("itemDetailTitle"),
   itemDetailSubtitle: document.getElementById("itemDetailSubtitle"),
   itemDetailStock: document.getElementById("itemDetailStock"),
@@ -799,6 +824,7 @@ const refs = {
   itemDetailNotes: document.getElementById("itemDetailNotes"),
   itemDetailDescription: document.getElementById("itemDetailDescription"),
   uiLanguageSelects: document.querySelectorAll(".ui-language-select"),
+  pwaInstallButtons: document.querySelectorAll("#pwaInstallButton, #mobileInstallButton, #mobileMoreInstallButton"),
 };
 
 function currentUiText() {
@@ -815,6 +841,213 @@ function t(path, ...args) {
 
 function langText(trText, deText) {
   return state.uiLanguage === "de" ? deText : trText;
+}
+
+function isCompactMobileViewport() {
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches;
+}
+
+function syncViewportMode() {
+  document.documentElement.classList.toggle("mobile-sales-mode", isCompactMobileViewport());
+}
+
+function openMobileMoreSheet() {
+  if (!refs.mobileMoreSheet) {
+    return;
+  }
+  refs.mobileMoreSheet.removeAttribute("hidden");
+  document.documentElement.classList.add("mobile-more-open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMobileMoreSheet() {
+  if (!refs.mobileMoreSheet) {
+    return;
+  }
+  refs.mobileMoreSheet.setAttribute("hidden", "");
+  document.documentElement.classList.remove("mobile-more-open");
+  document.body.style.overflow = "";
+}
+
+function openCashbookModal() {
+  document.getElementById("cashbookModal")?.classList.add("modal-open");
+  if (typeof renderCashbook === "function") {
+    renderCashbook();
+  }
+}
+
+function openAssistantPanelFromMobile(options = {}) {
+  refs.assistantWidget?.classList.remove("hidden");
+  if (refs.assistantLanguage && options.language && refs.assistantLanguage.value !== options.language) {
+    refs.assistantLanguage.value = options.language;
+    state.assistantLanguage = options.language;
+    if (state.assistantMessages.length <= 1) {
+      seedAssistantMessages();
+    }
+    renderAssistantStatus();
+    renderAssistantMessages();
+  }
+  if (!state.assistantMessages.length) {
+    seedAssistantMessages();
+    renderAssistantMessages();
+  }
+  if (!refs.assistantPanel) {
+    return;
+  }
+  refs.assistantPanel.classList.remove("hidden");
+  refs.assistantToggle?.setAttribute("aria-expanded", "true");
+  if (refs.assistantInput && typeof options.prompt === "string" && options.prompt.trim()) {
+    refs.assistantInput.placeholder = options.prompt;
+    if (!refs.assistantInput.value.trim()) {
+      refs.assistantInput.value = options.prompt;
+    }
+  }
+  refs.assistantInput?.focus();
+  refs.assistantInput?.select?.();
+}
+
+function updatePwaInstallButtons() {
+  const canInstall = Boolean(state.deferredInstallPrompt);
+  refs.pwaInstallButtons?.forEach((button) => {
+    button.classList.toggle("hidden", !canInstall);
+  });
+}
+
+async function handlePwaInstallClick() {
+  const promptEvent = state.deferredInstallPrompt;
+  if (!promptEvent) {
+    return;
+  }
+  promptEvent.prompt();
+  try {
+    await promptEvent.userChoice;
+  } catch (_error) {
+    // no-op
+  }
+  state.deferredInstallPrompt = null;
+  updatePwaInstallButtons();
+}
+
+function registerPwaSupport() {
+  if (typeof window === "undefined") {
+    return;
+  }
+  syncViewportMode();
+  window.addEventListener("resize", syncViewportMode);
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").catch(() => {
+        // ignore pwa registration issues on unsupported browsers
+      });
+    }, { once: true });
+  }
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    state.deferredInstallPrompt = event;
+    updatePwaInstallButtons();
+  });
+
+  window.addEventListener("appinstalled", () => {
+    state.deferredInstallPrompt = null;
+    updatePwaInstallButtons();
+  });
+
+  updatePwaInstallButtons();
+}
+
+function getMobileTabMeta(tab) {
+  const metaMap = {
+    quotes: {
+      title: t("tabQuotes"),
+      hint: langText("Mobilde teklif, sepet ve direkt satis akisi once gelir.", "Mobil zuerst: Angebot, Warenkorb und Direktverkauf."),
+    },
+    orders: {
+      title: isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"),
+      hint: isCustomerUser()
+        ? langText("Stoktaki urunleri secip siparis talebinizi hizli gonderin.", "Waehlen Sie Lagerartikel und senden Sie Ihre Bestellung schnell.")
+        : langText("Siparis onayi, durum takibi ve musteri donusu burada.", "Bestellfreigabe, Status und Kundenrueckmeldung laufen hier."),
+    },
+    items: {
+      title: t("tabItems"),
+      hint: langText("Satista en cok sorulan urun, stok ve fiyat aramasi burada.", "Hier finden Sie die haeufigsten Produkt-, Lager- und Preisabfragen."),
+    },
+    tools: {
+      title: t("tabTools"),
+      hint: langText("Sahada hizli proje ve hesap araclari burada.", "Schnelle Projekt- und Berechnungstools fuer unterwegs."),
+    },
+    projects: {
+      title: langText("Projeler", "Projekte"),
+      hint: langText("Detayli proje takibi bilgisayarda daha rahat; mobilde hizli bakis icin acik.", "Detaillierte Projektarbeit ist am Desktop besser; mobil bleibt der Schnellzugriff offen."),
+    },
+    messages: {
+      title: t("tabMessages"),
+      hint: langText("Musteri ve ekip yazismalari icin hizli kanal.", "Schneller Kanal fuer Nachrichten mit Kunde oder Team."),
+    },
+    movements: {
+      title: t("tabMovements"),
+      hint: langText("Stok giris-cikis ve detayli hareketler burada.", "Wareneingang, Ausgang und detaillierte Lagerbewegungen hier."),
+    },
+    training: {
+      title: t("tabTraining"),
+      hint: langText("DRC MAN egitim ve ileri ayarlar masaustu odaklidir.", "DRC MAN Training und erweiterte Einstellungen sind desktop-orientiert."),
+    },
+  };
+
+  return metaMap[tab] || {
+    title: langText("Satis Merkezi", "Verkaufszentrale"),
+    hint: langText("Android icin sade akista satis ve siparis once gelir.", "Auf Android stehen Verkauf und Bestellung im Vordergrund."),
+  };
+}
+
+function getMobileSalesAssistantMeta(tab = state.activeTab) {
+  const metaMap = {
+    quotes: {
+      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Fiyat, stok, muadil ve usta cozumunu tek mesajda sor.", "Preis, Bestand, Alternative und Meisterloesung in einer Nachricht fragen."),
+      prompt: langText("DCB31 fiyat stok kullanildigi yer muadil ve usta alternatifi ozetle", "DCB31 Preis Bestand Einsatz Alternative und Meisterloesung zusammenfassen"),
+    },
+    items: {
+      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Kod, stok, muadil ve katalog referansini hizli sor.", "Code, Bestand, Alternative und Katalogreferenz schnell abfragen."),
+      prompt: langText("DCB31 muadili var mi?", "Gibt es eine Alternative fuer DCB31?"),
+    },
+    orders: {
+      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Siparise uygun stoklu urunleri ve hizli sevk adaylarini sor.", "Nach lagernden Artikeln und schnell lieferbaren Kandidaten fragen."),
+      prompt: langText("Stokta hizli sevk edilebilecek kontrol cihazlari hangileri?", "Welche Steuergeraete sind lagernd und schnell lieferbar?"),
+    },
+    tools: {
+      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Proje icin uygun urun ve teknik adaylari sor.", "Geeignete Produkte und Technik-Kandidaten fuer das Projekt fragen."),
+      prompt: langText("Kucuk soguk oda icin uygun kontrol ve servis valfi oner", "Geeignete Regelung und Serviceventil fuer einen kleinen Kuehlraum vorschlagen"),
+    },
+  };
+
+  return metaMap[tab] || metaMap.quotes;
+}
+
+function openSalesAssistantFromMobile() {
+  const preferredTab = isCustomerUser() ? (state.activeTab || "orders") : "quotes";
+  if (preferredTab && state.activeTab !== preferredTab) {
+    activateTab(preferredTab);
+  }
+  const assistantMeta = getMobileSalesAssistantMeta(preferredTab || state.activeTab);
+  closeMobileMoreSheet();
+  openAssistantPanelFromMobile({
+    language: state.uiLanguage,
+    prompt: assistantMeta.prompt,
+  });
+}
+
+function syncMobileShell(tab = state.activeTab) {
+  const meta = getMobileTabMeta(tab);
+  setText(refs.mobileCurrentTabTitle, meta.title);
+  setText(refs.mobileCurrentTabHint, meta.hint);
+  const assistantMeta = getMobileSalesAssistantMeta(tab);
+  setText(refs.mobileSalesAssistantTitle, assistantMeta.title);
+  setText(refs.mobileSalesAssistantHint, assistantMeta.hint);
 }
 
 function setText(selector, value) {
@@ -839,6 +1072,9 @@ function buildItemDetailFacts(item) {
     [langText("Stok Kodu", "Lagercode"), item.barcode || item.productCode || "-"],
     [langText("Mevcut Stok", "Aktueller Bestand"), formatItemStock(item.currentStock, item.unit)],
   ];
+  if (item.productCode && item.productCode !== item.barcode) {
+    facts.splice(4, 0, [langText("Urun Kodu", "Produktcode"), item.productCode]);
+  }
   // Minimum stok iç envanter parametresi — müşteriye gösterme
   const minStock = Number(item?.minStock || 0);
   if (minStock > 0 && !isCustomer) {
@@ -847,6 +1083,10 @@ function buildItemDetailFacts(item) {
   const packaging = extractPackagingDetail(item);
   if (packaging) {
     facts.push([langText("Ambalaj", "Gebinde"), packaging]);
+  }
+  const supplierSummary = getSupplierCatalogSummary(item, 4);
+  if (supplierSummary) {
+    facts.push([langText("Katalog Ref.", "Katalog-Ref."), supplierSummary]);
   }
   const detail = getPublicItemDetail(item);
   if (detail) {
@@ -918,6 +1158,93 @@ function getBrandBadgeColor(item) {
   return palette[hash % palette.length];
 }
 
+function normalizeItemImageUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) {
+    return "";
+  }
+  if (/^https?:\/\//i.test(raw) || raw.startsWith("/")) {
+    return raw;
+  }
+  if (/:\/\//.test(raw)) {
+    return "";
+  }
+  const cleaned = raw.replace(/^\.?\/*/, "");
+  if (!cleaned || cleaned.includes("..")) {
+    return "";
+  }
+  if (/^(assets|images|img|uploads)\//i.test(cleaned)) {
+    return `/${cleaned}`;
+  }
+  if (!/^[a-z0-9][a-z0-9/_\-.]*\.(png|jpe?g|webp|gif|svg)$/i.test(cleaned)) {
+    return "";
+  }
+  return cleaned.includes("/")
+    ? `/${cleaned}`
+    : `/assets/products/${cleaned}`;
+}
+
+function getItemImageSources(item) {
+  const fallback = getBrandMedia(item).visual;
+  const src = normalizeItemImageUrl(item?.imageUrl || "") || fallback;
+  return { src, fallback };
+}
+
+function bindImageFallback(node) {
+  if (!node || node.dataset.fallbackBound === "1") {
+    return;
+  }
+  node.dataset.fallbackBound = "1";
+  node.addEventListener("error", () => {
+    const fallbackSrc = node.dataset.fallbackSrc || "";
+    if (!fallbackSrc || node.dataset.fallbackApplied === "1") {
+      return;
+    }
+    node.dataset.fallbackApplied = "1";
+    node.src = fallbackSrc;
+  });
+}
+
+function setImageWithFallback(node, src, fallbackSrc, alt) {
+  if (!node) {
+    return;
+  }
+  bindImageFallback(node);
+  node.dataset.fallbackSrc = fallbackSrc || "";
+  delete node.dataset.fallbackApplied;
+  node.alt = alt || "";
+  node.src = src || fallbackSrc || "";
+}
+
+function hydrateImageFallbacks(root = document) {
+  if (!root || typeof root.querySelectorAll !== "function") {
+    return;
+  }
+  root.querySelectorAll("img[data-fallback-src]").forEach((img) => {
+    bindImageFallback(img);
+  });
+}
+
+function getItemImageMarkup(item, options = {}) {
+  const wrapperClass = options.wrapperClass || "item-media";
+  const imageClass = options.imageClass || "item-media-image";
+  const eager = options.eager === true;
+  const { src, fallback } = getItemImageSources(item);
+  const alt = options.alt || resolveLocalizedName(item) || item?.name || "Urun";
+  return `
+    <div class="${escapeHtml(wrapperClass)}">
+      <img
+        class="${escapeHtml(imageClass)}"
+        src="${escapeHtml(src)}"
+        data-fallback-src="${escapeHtml(fallback)}"
+        alt="${escapeHtml(alt)}"
+        loading="${eager ? "eager" : "lazy"}"
+        decoding="async"
+      >
+    </div>
+  `;
+}
+
 function buildItemTechFacts(item) {
   const isCustomer = isCustomerUser();
   const detail = getPublicItemDetail(item);
@@ -943,6 +1270,13 @@ function buildItemTechFacts(item) {
   const packaging = extractPackagingDetail(item);
   if (packaging) {
     facts.push([langText("Ambalaj", "Gebinde"), packaging]);
+  }
+  const supplierRefs = getSupplierCatalogRefs(item).slice(0, 4);
+  if (supplierRefs.length) {
+    facts.push([langText("Tedarikci Katalogu", "Lieferkatalog"), getSupplierCatalogSummary(item, 6)]);
+    supplierRefs.forEach((ref, index) => {
+      facts.push([`${langText("Katalog Kaydi", "Katalogeintrag")} ${index + 1}`, formatSupplierCatalogRef(ref)]);
+    });
   }
   if (combined.length) {
     combined.slice(0, 20).forEach((entry, index) => {
@@ -980,6 +1314,9 @@ function buildItemPricingFacts(item) {
 
 function buildItemNotesFacts(item) {
   const isCustomer = isCustomerUser();
+  const supplierRows = getSupplierCatalogRefs(item)
+    .slice(0, 4)
+    .map((ref, index) => [`${langText("Katalog Notu", "Kataloghinweis")} ${index + 1}`, formatSupplierCatalogRef(ref)]);
   const rawNotes = String(resolveLocalizedNotes(item))
     .split("|")
     .map(cleanPublicDetailPart)
@@ -987,12 +1324,15 @@ function buildItemNotesFacts(item) {
   // Müşteri için iç operasyonel notları (tedarikçi, kaynak, fatura, arşiv) filtrele
   const notes = isCustomer ? rawNotes.filter(isPublicSafeNotePart) : rawNotes;
   if (!notes.length) {
-    return [[
+    return supplierRows.length ? supplierRows : [[
       langText("Not", "Notiz"),
       langText("Bu urun icin ozel not veya kullanim aciklamasi henuz girilmedi.", "Fuer diesen Artikel wurde noch keine spezielle Notiz hinterlegt."),
     ]];
   }
-  return notes.slice(0, 20).map((note, index) => [`${langText("Not", "Notiz")} ${index + 1}`, note]);
+  return [
+    ...supplierRows,
+    ...notes.slice(0, 20).map((note, index) => [`${langText("Not", "Notiz")} ${index + 1}`, note]),
+  ].slice(0, 20);
 }
 
 function renderItemDetailFactList(target, rows) {
@@ -1017,10 +1357,10 @@ function renderItemDocuments(target, documents) {
   if (!docs.length) {
     target.innerHTML = `
       <div class="product-detail-doc-empty">
-        <strong>${escapeHtml(langText("Hazir PDF bulunamadi", "Kein passendes PDF gefunden"))}</strong>
+        <strong>${escapeHtml(langText("Hazir katalog veya PDF bulunamadi", "Kein passender Katalog oder PDF gefunden"))}</strong>
         <p>${escapeHtml(langText(
-          "Bu urun icin yerel katalog veya datasheet daha sonra eklenecek.",
-          "Fuer diesen Artikel wird spaeter ein lokaler Katalog oder ein Datenblatt hinterlegt."
+          "Bu urun icin yerel katalog, OCR kaynagi veya datasheet daha sonra eklenecek.",
+          "Fuer diesen Artikel wird spaeter ein lokaler Katalog, eine OCR-Quelle oder ein Datenblatt hinterlegt."
         ))}</p>
       </div>
     `;
@@ -1038,7 +1378,7 @@ function renderItemDocuments(target, documents) {
         href="${escapeHtml(String(doc.openUrl || "#"))}"
         target="_blank"
         rel="noopener noreferrer"
-      >${escapeHtml(langText("PDF Ac", "PDF oeffnen"))}</a>
+      >${escapeHtml(doc.kind === "catalog" ? langText("Katalog Ac", "Katalog oeffnen") : langText("PDF Ac", "PDF oeffnen"))}</a>
     </article>
   `).join("");
 }
@@ -1051,8 +1391,8 @@ async function loadItemDocuments(item) {
     <div class="product-detail-doc-empty">
       <strong>${escapeHtml(langText("Dokumanlar taraniyor", "Dokumente werden geladen"))}</strong>
       <p>${escapeHtml(langText(
-        "Bu bilgisayardaki katalog ve PDF dosyalari urun koduna gore eslestiriliyor.",
-        "Die lokalen Kataloge und PDFs auf diesem Computer werden per Artikelcode abgeglichen."
+        "Bu bilgisayardaki katalog, OCR dosyasi ve PDF kaynaklari urun koduna gore eslestiriliyor.",
+        "Die lokalen Katalog-, OCR- und PDF-Quellen werden per Artikelcode abgeglichen."
       ))}</p>
     </div>
   `;
@@ -1094,6 +1434,7 @@ function openItemDetailModal(item) {
   state.itemDetailSelection = item;
   const detail = getPublicItemDetail(item);
   const media = getBrandMedia(item);
+  const imageMedia = getItemImageSources(item);
   setText(refs.itemDetailEyebrow, langText("Urun Karti", "Artikelkarte"));
   setText(refs.itemDetailCode, item.barcode || item.productCode || "-");
   if (refs.itemDetailBrandLogo) {
@@ -1114,6 +1455,12 @@ function openItemDetailModal(item) {
       logoWrap?.appendChild(badge);
     }
   }
+  setImageWithFallback(
+    refs.itemDetailImage,
+    imageMedia.src,
+    imageMedia.fallback,
+    `${resolveLocalizedName(item) || item.name || "Urun"} ${langText("gorseli", "Bild")}`
+  );
   setText(refs.itemDetailTitle, resolveLocalizedName(item) || langText("Urun Detayi", "Artikeldetail"));
   setText(refs.itemDetailSubtitle, `${item.brand || "-"} · ${getDisplayCategory(item.category)}`);
   setText(
@@ -1451,10 +1798,27 @@ function applyUiTranslations() {
   setText(refs.downloadXlsx, t("downloadXlsx"));
   setText(refs.downloadPdf, t("downloadPdf"));
   setText(refs.logoutButton, t("logout"));
+  setText(refs.pwaInstallButton, langText("Android'a Kur", "Auf Android installieren"));
+  setText(refs.mobileInstallButton, langText("Android'a Kur", "Auf Android installieren"));
+  setText(refs.mobileMoreInstallButton, langText("Android'a Kur", "Auf Android installieren"));
+  setText(refs.mobileMoreTriggerLabel, langText("Daha", "Mehr"));
+  setText(refs.mobileMoreTopButton, langText("Detay Menüsü", "Detailmenü"));
+  setText(refs.mobileMoreKicker, langText("Masaüstü ve ek araçlar", "Desktop und Zusatztools"));
+  setText(refs.mobileMoreTitle, langText("Detay Menüsü", "Detailmenü"));
+  setText(refs.mobileMoreNote, langText("Detaylı stok, yönetim ve eğitim ekranları masaüstünde daha rahattır. Burada hızlı erişim bırakıldı.", "Detaillierte Lager-, Verwaltungs- und Trainingsseiten sind am Desktop angenehmer. Hier bleibt nur der Schnellzugriff."));
+  setText("#mobileSalesBannerKicker", langText("Android Satis Modu", "Android Verkaufsmodus"));
+  setText(refs.mobileSalesAssistantShortcut, langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"));
+  setText(refs.mobileCashbookButton, t("tabCashbook"));
+  setText(refs.mobileAssistantButton, langText("DRC MAN Sor", "DRC MAN fragen"));
+  setText(refs.mobileLogoutButton, t("logout"));
+  if (refs.mobileHelpLink) {
+    refs.mobileHelpLink.textContent = state.uiLanguage === "de" ? "Hilfe" : "Yardım";
+  }
 
   [
     ["quotes", t("tabQuotes"), t("tabQuotesDesc")],
     ["items", t("tabItems"), t("tabItemsDesc")],
+    ["projects", langText("Projeler", "Projekte"), langText("Saha ve teklif projeleri", "Feld- und Angebotsprojekte")],
     ["archive", t("tabArchive"), t("tabArchiveDesc")],
     ["movements", t("tabMovements"), t("tabMovementsDesc")],
     ["expenses", t("tabExpenses"), t("tabExpensesDesc")],
@@ -1468,18 +1832,18 @@ function applyUiTranslations() {
     ["training", t("tabTraining"), t("tabTrainingDesc")],
   ].forEach(([tab, title, desc]) => {
     document.querySelectorAll(`[data-tab="${tab}"]`).forEach((button) => {
-      setText(button.querySelector(".tab-title"), title);
+      setText(button.querySelector(".tab-title") || button, title);
       setText(button.querySelector("small"), desc);
     });
   });
 
   // Orders tab: admin/staff ve customer için ayrı butonlar, farklı metinler
   document.querySelectorAll('[data-tab="orders"].admin-only, [data-tab="orders"].admin-staff-only').forEach((btn) => {
-    setText(btn.querySelector(".tab-title"), t("tabOrders"));
+    setText(btn.querySelector(".tab-title") || btn, t("tabOrders"));
     setText(btn.querySelector("small"), t("tabOrdersDesc"));
   });
   document.querySelectorAll('[data-tab="orders"].customer-only').forEach((btn) => {
-    setText(btn.querySelector(".tab-title"), t("tabCustomerOrders"));
+    setText(btn.querySelector(".tab-title") || btn, t("tabCustomerOrders"));
     setText(btn.querySelector("small"), t("tabCustomerOrdersDesc"));
   });
   setText(".tab-main-label", langText("Gunluk Islemler", "Taegliche Arbeit"));
@@ -1490,6 +1854,8 @@ function applyUiTranslations() {
   setText('[data-nav-label="projects"]', langText("Proje & Araçlar", "Projekte & Werkzeuge"));
   setText('[data-nav-label="admin"]', langText("Yönetim", "Verwaltung"));
   setText("[data-brand-sub]", langText("Depo & Stok Yönetimi", "Lager & Bestandsverwaltung"));
+  syncMobileShell();
+  updatePwaInstallButtons();
 
   if (refs.customerCatalogSearch) {
     const searchLabel = refs.customerCatalogSearch.closest("label");
@@ -1538,10 +1904,12 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.itemForm, "listPrice", langText("Liste Fiyati", "Listenpreis"));
   setFormFieldLabel(refs.itemForm, "salePrice", langText("Net/Satis Fiyati", "Netto-/Verkaufspreis"));
   setFormFieldLabel(refs.itemForm, "barcode", langText("Stok Kodu", "Lagercode"));
+  setFormFieldLabel(refs.itemForm, "imageUrl", langText("Urun Resmi", "Produktbild"));
   setFormFieldLabel(refs.itemForm, "notes", langText("Not (TR)", "Notiz (TR)"));
   setFormFieldLabel(refs.itemForm, "notesDe", langText("Not (DE)", "Notiz (DE)"));
   setFieldPlaceholder(refs.itemForm, "brand", langText("Orn. Embraco, Hisense", "z. B. Embraco, Hisense"));
   setFieldPlaceholder(refs.itemForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
+  setFieldPlaceholder(refs.itemForm, "imageUrl", langText("/assets/products/ornek.jpg veya https://...", "/assets/products/beispiel.jpg oder https://..."));
   setFieldPlaceholder(refs.itemForm, "notes", langText("Türkçe ürün notu — müşteri TR modunda bunu görür", "Tuerkische Notiz — wird Kunden im TR-Modus angezeigt"));
   setFieldPlaceholder(refs.itemForm, "notesDe", langText("Almanca ürün notu (boş bırakırsan TR gösterilir)", "Deutsche Artikelnotiz (leer = TR-Fallback)"));
   refs.itemSubmitButton.textContent = refs.itemForm?.elements?.id?.value
@@ -1606,12 +1974,14 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.stockIntakeForm, "minStock", langText("Kritik Stok", "Mindestbestand"));
   setFormFieldLabel(refs.stockIntakeForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.stockIntakeForm, "barcode", langText("Stok Kodu", "Lagercode"));
+  setFormFieldLabel(refs.stockIntakeForm, "imageUrl", langText("Urun Resmi", "Produktbild"));
   setFormFieldLabel(refs.stockIntakeForm, "notes", langText("Malzeme Notu", "Artikelnote"));
   setFormFieldLabel(refs.stockIntakeForm, "movementNote", langText("Hareket Notu", "Bewegungsnotiz"));
   setFieldPlaceholder(refs.stockIntakeForm, "name", langText("Orn. Embraco NJ 6220 Z", "z. B. Embraco NJ 6220 Z"));
   setFieldPlaceholder(refs.stockIntakeForm, "brand", langText("Orn. Embraco", "z. B. Embraco"));
   setFieldPlaceholder(refs.stockIntakeForm, "category", langText("Orn. Kompresor", "z. B. Kompressor"));
   setFieldPlaceholder(refs.stockIntakeForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
+  setFieldPlaceholder(refs.stockIntakeForm, "imageUrl", langText("/assets/products/ornek.jpg veya https://...", "/assets/products/beispiel.jpg oder https://..."));
   setFieldPlaceholder(refs.stockIntakeForm, "notes", langText("Raf, seri veya tedarik notu", "Regal-, Serien- oder Lieferantennotiz"));
   setFieldPlaceholder(refs.stockIntakeForm, "movementNote", langText("Ilk alis bilgisi", "Erste Einkaufsinfo"));
   setText("#stockIntakeForm button[type='submit']", langText("Yeni Urun ve Stok Girisi Kaydet", "Neuen Artikel mit Erstbestand speichern"));
@@ -2164,6 +2534,9 @@ function bindEvents() {
     if (e.key === "Escape" && refs.customerOrderReviewModal && !refs.customerOrderReviewModal.hasAttribute("hidden")) {
       closeCustomerOrderReview();
     }
+    if (e.key === "Escape") {
+      closeMobileMoreSheet();
+    }
   });
 
   if (refs.userForm) {
@@ -2216,6 +2589,27 @@ function bindEvents() {
   refs.assistantClose.addEventListener("click", closeAssistantPanel);
   refs.assistantLanguage.addEventListener("change", handleAssistantLanguageChange);
   refs.assistantForm.addEventListener("submit", handleAssistantSubmit);
+  refs.pwaInstallButton?.addEventListener("click", handlePwaInstallClick);
+  refs.mobileInstallButton?.addEventListener("click", handlePwaInstallClick);
+  refs.mobileMoreInstallButton?.addEventListener("click", handlePwaInstallClick);
+  refs.mobileMoreTrigger?.addEventListener("click", openMobileMoreSheet);
+  refs.mobileMoreTopButton?.addEventListener("click", openMobileMoreSheet);
+  refs.mobileMoreBackdrop?.addEventListener("click", closeMobileMoreSheet);
+  refs.mobileMoreClose?.addEventListener("click", closeMobileMoreSheet);
+  refs.mobileCashbookButton?.addEventListener("click", () => {
+    closeMobileMoreSheet();
+    openCashbookModal();
+  });
+  refs.mobileSalesAssistantButton?.addEventListener("click", openSalesAssistantFromMobile);
+  refs.mobileSalesAssistantShortcut?.addEventListener("click", openSalesAssistantFromMobile);
+  refs.mobileAssistantButton?.addEventListener("click", () => {
+    closeMobileMoreSheet();
+    openAssistantPanelFromMobile();
+  });
+  refs.mobileLogoutButton?.addEventListener("click", () => {
+    closeMobileMoreSheet();
+    logout();
+  });
   refs.uiLanguageSelects?.forEach((select) => {
     select.addEventListener("change", (event) => {
       setUiLanguage(event.currentTarget.value);
@@ -2244,6 +2638,7 @@ async function initialize() {
       document.body.appendChild(el);
     }
   });
+  registerPwaSupport();
   applyUiTranslations();
   showLogin();
   await handleAuthUrlActions();
@@ -2869,6 +3264,7 @@ function showLogin() {
   delete document.body.dataset.role;
   closeAssistantPanel();
   closeAuthModal();
+  closeMobileMoreSheet();
   applyUiTranslations();
 }
 
@@ -2998,8 +3394,12 @@ function showApp() {
     else if (isStaffUser()) helpTarget = "/help/admin.html"; // staff de admin kılavuzunu kullanır (satış/teklif/proje)
     else if (effectiveRole() === "operator") helpTarget = "/help/operator.html";
     refs.helpLink.setAttribute("href", helpTarget);
+    refs.mobileHelpLink?.setAttribute("href", helpTarget);
     const isDe = state.uiLanguage === "de";
     refs.helpLink.textContent = isDe ? "Hilfe" : "Yardım";
+    if (refs.mobileHelpLink) {
+      refs.mobileHelpLink.textContent = isDe ? "Hilfe" : "Yardım";
+    }
   }
   refs.customerVerificationBanner?.classList.toggle("hidden", !isCustomerUser() || Boolean(state.user?.emailVerified));
   if (refs.resendVerificationMessage) {
@@ -3011,6 +3411,7 @@ function showApp() {
   }
   applyUiTranslations();
   renderAssistantStatus();
+  syncMobileShell();
 }
 
 function setToolScopeCookie() {
@@ -3673,18 +4074,29 @@ function renderStockedItems(filteredItems) {
     const listPrice = visibleListPrice(item);
     const price = cartSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
+    const itemCode = item.barcode || item.productCode || "-";
     const card = document.createElement("article");
     card.className = "stocked-card";
     card.setAttribute("role", "button");
     card.setAttribute("tabindex", "0");
     card.dataset.itemDetailId = String(item.id);
     card.innerHTML = `
+      ${getItemImageMarkup(item, {
+        wrapperClass: "stocked-card-media",
+        imageClass: "stocked-card-image",
+      })}
       <div class="stocked-card-top">
-        <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
+        <div class="stocked-card-heading">
+          <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
+          <span class="stocked-card-code mono">${escapeHtml(itemCode)}</span>
+        </div>
         <button class="stocked-card-more" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
-      <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
-      <span class="stocked-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
+      <strong class="stocked-card-title">${escapeHtml(resolveLocalizedName(item))}</strong>
+      <div class="stocked-card-subline">
+        <span class="stocked-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
+        ${listPrice ? `<span class="stocked-card-list">${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
+      </div>
       ${itemDetail ? `<span class="stocked-card-detail">${langText("Kisa not", "Kurzinfo")}: ${escapeHtml(itemDetail)}</span>` : ""}
       <div class="stocked-card-footer">
         <div class="stocked-card-stock">
@@ -3696,11 +4108,8 @@ function renderStockedItems(filteredItems) {
           <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
         </div>
       </div>
-      <div class="stocked-card-meta">
-        <span class="mono">${escapeHtml(item.barcode || "-")}</span>
-        ${listPrice ? `<span>${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
-      </div>
     `;
+    hydrateImageFallbacks(card);
     refs.stockedItemsList.append(card);
   });
 
@@ -5404,27 +5813,34 @@ function renderPosCatalog() {
     const listPrice = visibleListPrice(item);
     const netPrice = visibleSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
+    const itemCode = item.barcode || item.productCode || "-";
     const canSell = cartSalePrice(item, 1) > 0;
     if (!canSell) {
       card.classList.add("is-disabled");
     }
     card.innerHTML = `
+      ${getItemImageMarkup(item, {
+        wrapperClass: "pos-card-media",
+        imageClass: "pos-card-image",
+      })}
       <div class="pos-card-head">
-        <div>
+        <div class="pos-card-heading">
+          <span class="pos-card-chip">${escapeHtml(item.brand || "-")}</span>
           <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
-          <span>${escapeHtml(item.brand || "-")}</span>
+          <span class="pos-card-code mono">${escapeHtml(itemCode)}</span>
         </div>
         <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
-      <div class="pos-card-meta">
-        <span>${escapeHtml(getDisplayCategory(item.category))}</span>
-        <span>${langText("Stok", "Bestand")}: ${escapeHtml(formatItemStock(item.currentStock, item.unit))}</span>
-        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</span>` : ""}
+      <div class="pos-card-kpis">
+        <span class="pos-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
+        <span class="pos-card-stock">${langText("Stok", "Bestand")}: ${escapeHtml(formatItemStock(item.currentStock, item.unit))}</span>
+        ${listPrice ? `<span class="pos-card-list">${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
       </div>
+      ${itemDetail ? `<div class="pos-card-note">${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</div>` : ""}
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : "-"}</div>
-      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span></div>` : ""}
       <button class="primary-button" type="button" data-add-quote-item="${item.id}" ${canSell ? "" : "disabled"} data-help="TR: Urunu satis sepetine ekler. DE: Legt den Artikel in den Verkaufswarenkorb.">${canSell ? t("common.addToCart") : langText("Fiyat Eksik", "Preis fehlt")}</button>
     `;
+    hydrateImageFallbacks(card);
     refs.posCatalogGrid.append(card);
   });
 
@@ -5927,7 +6343,7 @@ function getFilteredCustomerItems() {
   }
   if (termRaw) {
     items = items.filter((i) => {
-      const hay = normalizeSearchStr(`${i.name || ""} ${i.brand || ""} ${i.category || ""} ${i.barcode || ""} ${i.productCode || ""} ${i.notes || ""}`);
+      const hay = normalizeSearchStr(`${i.name || ""} ${i.brand || ""} ${i.category || ""} ${i.barcode || ""} ${i.productCode || ""} ${getSupplierCatalogSearchText(i)} ${i.notes || ""}`);
       const hayNoSpace = hay.replace(/\s+/g, "");
       return hay.includes(termRaw) || hayNoSpace.includes(termNoSpace);
     });
@@ -5976,24 +6392,30 @@ function renderCustomerCatalog() {
     const listPrice = visibleListPrice(item);
     const netPrice = visibleSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
+    const itemCode = item.barcode || item.productCode || "-";
     card.innerHTML = `
+      ${getItemImageMarkup(item, {
+        wrapperClass: "pos-card-media",
+        imageClass: "pos-card-image",
+      })}
       <div class="pos-card-head">
-        <div>
+        <div class="pos-card-heading">
+          <span class="pos-card-chip">${escapeHtml(item.brand || "-")}</span>
           <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
-          <span>${escapeHtml(item.brand || "-")}</span>
+          <span class="pos-card-code mono">${escapeHtml(itemCode)}</span>
         </div>
         <button class="ghost-button small-button" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
       </div>
-      <div class="pos-card-meta">
-        <span>${escapeHtml(getDisplayCategory(item.category))}</span>
-        <span>${langText("Stok", "Bestand")}: ${item.inStock === false || Number(item.currentStock) <= 0 ? langText("Tükendi", "Nicht verfügbar") : langText("Mevcut", "Verfügbar")}</span>
-        ${itemDetail ? `<span>${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</span>` : ""}
-        <span>${langText("Stok Kodu", "Lagercode")}: ${escapeHtml(item.barcode || "-")}</span>
+      <div class="pos-card-kpis">
+        <span class="pos-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
+        <span class="pos-card-stock">${langText("Stok", "Bestand")}: ${item.inStock === false || Number(item.currentStock) <= 0 ? langText("Tükendi", "Nicht verfügbar") : langText("Mevcut", "Verfügbar")}</span>
+        ${listPrice ? `<span class="pos-card-list">${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
       </div>
+      ${itemDetail ? `<div class="pos-card-note">${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</div>` : ""}
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : langText("Fiyat sorunuz", "Preis auf Anfrage")}</div>
-      ${listPrice ? `<div class="pos-card-meta"><span>${langText("1 adet liste", "Listenpreis 1 Stk.")}: ${currency.format(listPrice)}</span></div>` : ""}
       <button class="primary-button" type="button" data-add-order-item="${item.id}" data-help="TR: Urunu musteri siparis sepetine ekler. DE: Fuegt den Artikel dem Kundenwarenkorb hinzu.">${t("common.addToOrder")}</button>
     `;
+    hydrateImageFallbacks(card);
     refs.customerCatalogGrid.append(card);
   });
 
@@ -6383,11 +6805,17 @@ function activateTab(tab) {
   document.querySelectorAll("[data-tab-content]").forEach((panel) => {
     panel.classList.toggle("active", !panel.classList.contains("hidden") && panel.dataset.tabContent === nextTab);
   });
+  closeMobileMoreSheet();
+  syncMobileShell(nextTab);
   renderTabData(nextTab);
 }
 
 function isTabButtonVisible(button) {
-  return Boolean(button) && !button.classList.contains("hidden") && !button.closest(".hidden");
+  return Boolean(button)
+    && !button.classList.contains("hidden")
+    && !button.hidden
+    && !button.closest(".hidden")
+    && !button.closest("[hidden]");
 }
 
 function renderTabData(tab) {
@@ -6762,10 +7190,15 @@ function getItemSearchIndex(item) {
     item.brand,
     item.category,
     item.barcode,
+    item.productCode,
+    getSupplierCatalogSearchText(item),
     item.notes,
   ].filter(Boolean).join(" ");
   const extras = [];
   const raw = [item.name, item.category, item.notes].filter(Boolean).join(" ");
+  getSupplierCatalogCodes(item).forEach((code) => {
+    extras.push(code, String(code || "").replace(/[\s-]+/g, ""));
+  });
   const refrigerantCodes = raw.match(/\br[\s-]?\d{2,4}[a-z]?\b/gi) || [];
   refrigerantCodes.forEach((code) => {
     const compact = code.replace(/[\s-]+/g, "").toLowerCase();
@@ -6998,6 +7431,52 @@ function resolveLocalizedName(item) {
   return String(item.name || "");
 }
 
+function getSupplierCatalogRefs(item) {
+  return Array.isArray(item?.supplierCatalogRefs)
+    ? item.supplierCatalogRefs.filter(Boolean)
+    : [];
+}
+
+function getSupplierCatalogCodes(item) {
+  const values = new Set();
+  if (item?.productCode) {
+    values.add(String(item.productCode).trim());
+  }
+  (Array.isArray(item?.supplierCatalogCodes) ? item.supplierCatalogCodes : []).forEach((value) => {
+    const text = String(value || "").trim();
+    if (text) values.add(text);
+  });
+  getSupplierCatalogRefs(item).forEach((ref) => {
+    const text = String(ref.code || "").trim();
+    if (text) values.add(text);
+  });
+  return Array.from(values).filter(Boolean);
+}
+
+function getSupplierCatalogSearchText(item) {
+  return getSupplierCatalogRefs(item)
+    .map((ref) => [
+      ref.code,
+      ref.supplierBrand,
+      ref.sourceDocumentLabel || ref.sourceDocument,
+    ].filter(Boolean).join(" "))
+    .join(" ");
+}
+
+function getSupplierCatalogSummary(item, limit = 6) {
+  const barcode = String(item?.barcode || "").trim();
+  const codes = getSupplierCatalogCodes(item).filter((code) => code && code !== barcode);
+  return codes.slice(0, limit).join(", ");
+}
+
+function formatSupplierCatalogRef(ref) {
+  return [
+    ref?.supplierBrand,
+    ref?.code,
+    ref?.sourceDocumentLabel || ref?.sourceDocument,
+  ].filter(Boolean).join(" · ");
+}
+
 function getPublicItemDetail(item) {
   const note = resolveLocalizedNotes(item).trim();
   const noteParts = note
@@ -7117,7 +7596,8 @@ function renderItemSearchSuggestions() {
 
   const suggestions = new Set();
   state.items.forEach((item) => {
-    [item.name, item.brand, item.barcode, item.category].filter(Boolean).forEach((value) => suggestions.add(value));
+    [item.name, item.brand, item.barcode, item.category, item.productCode].filter(Boolean).forEach((value) => suggestions.add(value));
+    getSupplierCatalogCodes(item).forEach((value) => suggestions.add(value));
     const codes = String([item.name, item.notes].filter(Boolean).join(" ").match(/\br[\s-]?\d{2,4}[a-z]?\b/gi) || "")
       .split(",")
       .map((value) => value.replace(/[\s-]+/g, "").trim().toUpperCase())
@@ -7174,6 +7654,7 @@ function renderMovementItemSuggestions() {
   const suggestions = new Set();
   getMovementSelectableItems().forEach((item) => {
     [item.name, item.brand, item.barcode, item.category, item.productCode].filter(Boolean).forEach((value) => suggestions.add(value));
+    getSupplierCatalogCodes(item).forEach((value) => suggestions.add(value));
   });
 
   refs.movementItemSuggestions.innerHTML = "";
@@ -7373,6 +7854,9 @@ function startItemEdit(itemId) {
   refs.itemForm.elements.listPrice.value = item.listPrice || "";
   refs.itemForm.elements.salePrice.value = item.salePrice || "";
   refs.itemForm.elements.barcode.value = item.barcode.startsWith("ITEM-") ? "" : item.barcode;
+  if (refs.itemForm.elements.imageUrl) {
+    refs.itemForm.elements.imageUrl.value = item.imageUrl || "";
+  }
   refs.itemForm.elements.notes.value = item.notes || "";
   if (refs.itemForm.elements.notesDe) {
     refs.itemForm.elements.notesDe.value = item.notesDe || "";

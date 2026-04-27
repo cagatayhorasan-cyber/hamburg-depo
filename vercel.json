@@ -136,7 +136,8 @@
         "includeFiles": [
           "public/**",
           "public/**/*",
-          "scripts/drc_man_product_faq.json",
+          "scripts/drc_man_product_faq.part1.json",
+          "scripts/drc_man_product_faq.part2.json",
           "scripts/drc_man_training_faq.json",
           "scripts/drc_man_troubleshooting_faq.json",
           "scripts/drc_man_electrical_faq.json",

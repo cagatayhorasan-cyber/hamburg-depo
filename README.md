@@ -32,6 +32,7 @@ Temel komutlar:
 npm run db:report
 npm run db:sync-live
 npm run db:refresh-local
+npm run catalog:supplier-index
 ```
 
 Ne yaparlar:
@@ -39,7 +40,14 @@ Ne yaparlar:
 - `npm run db:report`: canli Postgres, yerel SQLite ve varsa snapshot dosyasini karsilastirir
 - `npm run db:sync-live`: canli Postgres verisini `data/hamburg-depo.live-postgres.sqlite` dosyasina indirir
 - `npm run db:refresh-local`: once canli snapshot alir, sonra yerel `data/hamburg-depo.sqlite` dosyasini birebir canli kopya ile degistirir
+- `npm run catalog:supplier-index`: `data/supplier-catalogs/raw` altindaki guncel tedarikci OCR kataloglarini tarar, model/kod indeksi ve stok eslesme raporu uretir
 - Raporlar `data/reports` altina JSON olarak yazilir
+
+Tedarikci kataloglari icin:
+
+- Ham OCR kaynaklari: `data/supplier-catalogs/raw`
+- Tam indeks: `data/supplier-catalogs/current/supplier-catalog-index.json`
+- Ozet raporlar: `data/reports/supplier-catalog-match-report-YYYY-MM-DD.json` ve `.md`
 
 ## Yerelde calistirma
 

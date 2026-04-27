@@ -1,0 +1,20 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#FBF6F3"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <circle cx="502" cy="106" r="70" fill="#FFE5D8"/>
+  <rect x="120" y="166" width="400" height="68" rx="30" fill="#7C3B1D"/>
+  <rect x="256" y="114" width="128" height="172" rx="28" fill="#B55A2D"/>
+  <circle cx="320" cy="200" r="40" fill="#FFD7C5"/>
+  <path d="M320 106V70" stroke="#7C3B1D" stroke-width="16" stroke-linecap="round"/>
+  <path d="M280 90L360 90" stroke="#7C3B1D" stroke-width="16" stroke-linecap="round"/>
+  <path d="M212 166L164 124" stroke="#A94C28" stroke-width="18" stroke-linecap="round"/>
+  <path d="M428 166L476 124" stroke="#A94C28" stroke-width="18" stroke-linecap="round"/>
+  <text x="66" y="328" fill="#7C3B1D" font-family="Arial, sans-serif" font-size="40" font-weight="700">VALF</text>
+  <text x="66" y="360" fill="#9A694E" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF0E7"/>
+    </linearGradient>
+  </defs>
+</svg>

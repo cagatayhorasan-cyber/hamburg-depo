@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f2748">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="DRC Portal">
   <!-- deploy-marker: 2026-04-09-vercel-app-domain -->
   <title>D-R-C Kältetechnik GmbH Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png">
   <link rel="stylesheet" href="/styles.css?v=20260424-name-de-cart">
 </head>
 <body>
@@ -129,12 +135,17 @@
               <span id="itemDetailCode" class="product-detail-code mono">-</span>
             </div>
             <div class="product-detail-brandstrip">
-              <div class="product-detail-brandstrip-logo">
-                <img id="itemDetailBrandLogo" class="product-detail-brand-logo" src="/assets/drc-logo.svg" alt="Marka logosu">
+              <div class="product-detail-brandstrip-main">
+                <div class="product-detail-brandstrip-logo">
+                  <img id="itemDetailBrandLogo" class="product-detail-brand-logo" src="/assets/drc-logo.svg" alt="Marka logosu">
+                </div>
+                <div class="product-detail-brandstrip-text">
+                  <h2 id="itemDetailTitle" class="product-detail-brandstrip-title">Urun Detayi</h2>
+                  <p id="itemDetailSubtitle" class="product-detail-brandstrip-sub muted">Marka ve kategori bilgisi</p>
+                </div>
               </div>
-              <div class="product-detail-brandstrip-text">
-                <h2 id="itemDetailTitle" class="product-detail-brandstrip-title">Urun Detayi</h2>
-                <p id="itemDetailSubtitle" class="product-detail-brandstrip-sub muted">Marka ve kategori bilgisi</p>
+              <div class="product-detail-visual-card">
+                <img id="itemDetailImage" class="product-detail-visual" src="/assets/drc-product-showcase.svg" alt="Urun gorseli">
               </div>
             </div>
 
@@ -248,6 +259,7 @@
                   <option value="de">DE</option>
                 </select>
               </div>
+              <button id="pwaInstallButton" class="erp-action-btn hidden" type="button">Android'a Kur</button>
               <button id="downloadXlsx" class="erp-action-btn admin-only" type="button">Excel</button>
               <button id="downloadPdf" class="erp-action-btn admin-only" type="button">PDF</button>
               <a id="helpLink" class="erp-action-btn" href="/help/customer.html" target="_blank" rel="noopener" data-tr="Yardım" data-de="Hilfe">Yardım</a>
@@ -258,6 +270,25 @@
         <div class="erp-main">
 
       <main class="dashboard">
+        <section class="mobile-sales-banner" id="mobileSalesBanner" aria-label="Mobil satis merkezi">
+          <div class="mobile-sales-banner-copy">
+            <span class="mobile-sales-banner-kicker" id="mobileSalesBannerKicker">Android Satis Modu</span>
+            <strong id="mobileCurrentTabTitle">Satış Merkezi</strong>
+            <p id="mobileCurrentTabHint">Sipariş, satış ve ürün arama mobilde önde. Detaylı yönetim ekranları bilgisayarda.</p>
+          </div>
+          <div class="mobile-sales-banner-actions">
+            <button id="mobileSalesAssistantButton" class="secondary-button mobile-sales-assistant-button admin-staff-only" type="button">
+              <span class="mobile-sales-assistant-icon">AI</span>
+              <span class="mobile-sales-assistant-copy">
+                <strong id="mobileSalesAssistantTitle">Hızlı Satış Asistanı</strong>
+                <small id="mobileSalesAssistantHint">Fiyat, stok, muadil ve usta çözümünü hızlı sor.</small>
+              </span>
+            </button>
+            <button id="mobileInstallButton" class="secondary-button hidden" type="button">Android'a Kur</button>
+            <button id="mobileMoreTopButton" class="secondary-button" type="button">Detay Menüsü</button>
+          </div>
+        </section>
+
         <section class="overview-grid">
           <article id="opsOverview" class="overview-card overview-card-ops"></article>
           <article id="carbonOverview" class="overview-card overview-card-carbon"></article>
@@ -338,6 +369,7 @@
                     <label>Liste Fiyati<input name="listPrice" type="number" min="0" step="0.01" placeholder="1 adet fiyat"></label>
                     <label>Net/Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="Normal musteri net"></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
+                    <label>Urun Resmi<input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://..."></label>
                     <label class="form-span-2">Not (TR)<textarea name="notes" rows="3" placeholder="Raf veya tedarik notu — TR içerik"></textarea></label>
                     <label class="form-span-2">Not (DE)<textarea name="notesDe" rows="3" placeholder="Deutsche Artikelnotiz (optional) — boş bırakırsan müşteri DE modunda TR notu görür"></textarea></label>
                     <button id="itemSubmitButton" class="primary-button" type="submit" data-help="TR: Yeni malzeme karti olusturur veya duzenlemeyi kaydeder. DE: Legt eine neue Artikelkarte an oder speichert die Bearbeitung.">Malzeme Ekle</button>
@@ -427,6 +459,7 @@
                     <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" value="0"></label>
                     <label>Tarih<input name="date" type="date" required></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
+                    <label>Urun Resmi<input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://..."></label>
                     <label>Malzeme Notu<input name="notes" type="text" placeholder="Raf, seri veya tedarik notu"></label>
                     <label>Hareket Notu<input name="movementNote" type="text" placeholder="Ilk alis bilgisi"></label>
                     <button class="primary-button" type="submit" data-help="TR: Yeni urun karti acip ilk stok girisini ayni anda kaydeder. DE: Legt einen neuen Artikel an und bucht gleichzeitig den Erstbestand.">Yeni Urun ve Stok Girisi Kaydet</button>
@@ -1261,6 +1294,72 @@
           </div>
         </section>
       </main>
+      </div>
+      <nav id="mobilePrimaryNav" class="mobile-primary-nav" aria-label="Mobil ana menü">
+        <button class="mobile-nav-button admin-staff-only" data-tab="quotes" type="button">
+          <span class="mobile-nav-icon">€</span>
+          <span class="tab-title">Satış</span>
+        </button>
+        <button class="mobile-nav-button admin-only" data-tab="orders" type="button">
+          <span class="mobile-nav-icon">SP</span>
+          <span class="tab-title">Siparişler</span>
+        </button>
+        <button class="mobile-nav-button customer-only" data-tab="orders" type="button">
+          <span class="mobile-nav-icon">SP</span>
+          <span class="tab-title">Sipariş Ver</span>
+        </button>
+        <button class="mobile-nav-button admin-staff-only" data-tab="items" type="button">
+          <span class="mobile-nav-icon">ST</span>
+          <span class="tab-title">Ürünler</span>
+        </button>
+        <button class="mobile-nav-button admin-staff-only" data-tab="tools" type="button">
+          <span class="mobile-nav-icon">AR</span>
+          <span class="tab-title">Araçlar</span>
+        </button>
+        <button class="mobile-nav-button customer-only" data-tab="messages" type="button">
+          <span class="mobile-nav-icon">MJ</span>
+          <span class="tab-title">Mesajlar</span>
+        </button>
+        <button id="mobileMoreTrigger" class="mobile-nav-button mobile-nav-button-more" type="button">
+          <span class="mobile-nav-icon">•••</span>
+          <span id="mobileMoreTriggerLabel">Daha</span>
+        </button>
+      </nav>
+
+      <div id="mobileMoreSheet" class="mobile-more-sheet" hidden>
+        <button id="mobileMoreBackdrop" class="mobile-more-backdrop" type="button" aria-label="Menüyü kapat"></button>
+        <section class="mobile-more-panel" role="dialog" aria-modal="true" aria-labelledby="mobileMoreTitle">
+          <header class="mobile-more-head">
+            <div>
+              <span class="mobile-more-kicker" id="mobileMoreKicker">Masaüstü ve ek araçlar</span>
+              <h2 id="mobileMoreTitle">Detay Menüsü</h2>
+            </div>
+            <button id="mobileMoreClose" class="mobile-more-close" type="button" aria-label="Kapat">×</button>
+          </header>
+          <p id="mobileMoreNote" class="mobile-more-note">Detaylı stok, yönetim ve eğitim ekranları masaüstünde daha rahattır. Burada hızlı erişim bırakıldı.</p>
+          <label class="ui-language-switch mobile-more-language">
+            <span class="ui-language-label">Dil</span>
+            <select class="ui-language-select" aria-label="Arayuz dili">
+              <option value="tr">TR</option>
+              <option value="de">DE</option>
+            </select>
+          </label>
+          <div class="mobile-more-grid">
+            <button id="mobileSalesAssistantShortcut" class="mobile-more-action mobile-more-action-primary admin-staff-only" type="button">Hızlı Satış Asistanı</button>
+            <button class="mobile-more-action admin-staff-only" data-tab="movements" type="button">Stok Hareketi</button>
+            <button id="mobileCashbookButton" class="mobile-more-action admin-staff-only" type="button">Kasa</button>
+            <button class="mobile-more-action" data-tab="projects" type="button">Projeler</button>
+            <button class="mobile-more-action non-admin-only" data-tab="messages" type="button">Mesajlar</button>
+            <button class="mobile-more-action admin-only" data-tab="archive" type="button">Arşiv</button>
+            <button class="mobile-more-action admin-only" data-tab="users" type="button">Kullanıcılar</button>
+            <button class="mobile-more-action admin-only" data-tab="security" type="button">Güvenlik</button>
+            <button class="mobile-more-action admin-only" data-tab="training" type="button">DRC MAN</button>
+            <button id="mobileAssistantButton" class="mobile-more-action" type="button">DRC MAN Sor</button>
+            <a id="mobileHelpLink" class="mobile-more-action mobile-more-link" href="/help/customer.html" target="_blank" rel="noopener">Yardım</a>
+            <button id="mobileMoreInstallButton" class="mobile-more-action hidden" type="button">Android'a Kur</button>
+            <button id="mobileLogoutButton" class="mobile-more-action mobile-more-danger" type="button">Çıkış Yap</button>
+          </div>
+        </section>
       </div>
       </div>
     </section>

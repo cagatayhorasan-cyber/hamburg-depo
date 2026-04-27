@@ -1,0 +1,19 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#FFF6F2"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <rect x="126" y="98" width="388" height="214" rx="26" fill="#A13720"/>
+  <path d="M204 258C204 232 226 218 226 196C226 170 208 156 208 134" stroke="#FFD4B8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M320 258C320 232 342 218 342 196C342 170 324 156 324 134" stroke="#FFD4B8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M436 258C436 232 458 218 458 196C458 170 440 156 440 134" stroke="#FFD4B8" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="234" cy="274" r="18" fill="#FFE3D2"/>
+  <circle cx="350" cy="274" r="18" fill="#FFE3D2"/>
+  <circle cx="466" cy="274" r="18" fill="#FFE3D2"/>
+  <text x="66" y="328" fill="#A13720" font-family="Arial, sans-serif" font-size="38" font-weight="700">ISITMA</text>
+  <text x="66" y="360" fill="#9B695E" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF0E7"/>
+    </linearGradient>
+  </defs>
+</svg>

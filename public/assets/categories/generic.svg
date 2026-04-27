@@ -1,0 +1,16 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F6F8FB"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <rect x="132" y="94" width="376" height="208" rx="32" fill="#27496D"/>
+  <rect x="168" y="130" width="304" height="50" rx="18" fill="#8FB6D9"/>
+  <rect x="168" y="200" width="136" height="68" rx="18" fill="#3D678F"/>
+  <rect x="320" y="200" width="152" height="68" rx="18" fill="#4F81B3"/>
+  <text x="66" y="328" fill="#27496D" font-family="Arial, sans-serif" font-size="38" font-weight="700">URUN KARTI</text>
+  <text x="66" y="360" fill="#6B7F96" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEF3FA"/>
+    </linearGradient>
+  </defs>
+</svg>

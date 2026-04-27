@@ -1,0 +1,20 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#F5F9FF"/>
+  <rect x="24" y="24" width="592" height="352" rx="28" fill="url(#bg)"/>
+  <path d="M142 286V120L304 88L496 126V286H142Z" fill="#2E5E9C"/>
+  <path d="M304 88V286" stroke="#CFE3FF" stroke-width="8"/>
+  <path d="M142 120L304 152L496 126" stroke="#CFE3FF" stroke-width="8"/>
+  <rect x="206" y="176" width="72" height="110" rx="12" fill="#EAF2FF"/>
+  <rect x="350" y="176" width="86" height="66" rx="12" fill="#D0E4FF"/>
+  <circle cx="420" cy="152" r="12" fill="#FFFFFF"/>
+  <path d="M420 126V178" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <path d="M394 152H446" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <text x="66" y="328" fill="#2E5E9C" font-family="Arial, sans-serif" font-size="38" font-weight="700">SOGUK ODA</text>
+  <text x="66" y="360" fill="#667D97" font-family="Arial, sans-serif" font-size="18">D-R-C stok karti gorseli</text>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="34" x2="610" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#ECF4FF"/>
+    </linearGradient>
+  </defs>
+</svg>
