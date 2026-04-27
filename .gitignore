@@ -40,3 +40,6 @@ scripts/drc_man_*_faq.json
 
 # Handoff notes (manuel kalir, repoda degil)
 DEVIR_NOTLARI_*.md
+
+# Supabase CLI local scaffolding
+supabase/

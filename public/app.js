@@ -187,6 +187,9 @@ const UI_TEXT = {
     leanPreviewKpiLabels: ["Stok kalemi", "Aktif sipariş", "Bekleyen teklif"],
     leanPreviewStockUnit: "stok",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "İletişim"],
+    leanBrandStripLabel: "Yetkili distribütör · Otorisierte Vertretung",
+    leanLegalImpressum: "Impressum",
+    leanLegalPrivacy: "Datenschutz",
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -400,6 +403,9 @@ const UI_TEXT = {
     leanPreviewKpiLabels: ["Artikel", "Aktive Bestellung", "Offene Angebote"],
     leanPreviewStockUnit: "Lager",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "Kontakt"],
+    leanBrandStripLabel: "Otorisierte Vertretung · Yetkili distribütör",
+    leanLegalImpressum: "Impressum",
+    leanLegalPrivacy: "Datenschutz",
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -1734,6 +1740,9 @@ function applyUiTranslations() {
     const idx = Number(node.getAttribute("data-lean-footer-label")) || 0;
     setText(node, leanFooterLabels[idx] || node.textContent);
   });
+  document.querySelectorAll("[data-lean-brandstrip-label]").forEach((node) => setText(node, t("leanBrandStripLabel")));
+  document.querySelectorAll("[data-lean-legal-impressum]").forEach((node) => setText(node, t("leanLegalImpressum")));
+  document.querySelectorAll("[data-lean-legal-privacy]").forEach((node) => setText(node, t("leanLegalPrivacy")));
   const leanStats = t("leanStats") || [];
   document.querySelectorAll("[data-lean-stat-value]").forEach((node) => {
     const idx = Number(node.getAttribute("data-lean-stat-value")) || 0;
