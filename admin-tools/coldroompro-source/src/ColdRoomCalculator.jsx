@@ -129,8 +129,10 @@ const PRODUCT_TYPES = {
   "Benutzerdefiniert": { temp: 0, rh: 85, heat: 3.0, breathRate: 0 },
 };
 
+// Default panel/door m² fiyatları — UI'dan roomData.panelPriceM2 ile override edilir.
+// 2026-05-08: tüm kalınlıklar için €50/m² varsayılan (kullanıcı isteği).
 const ROOM_ENVELOPE_PRICES = {
-  panelM2: { 60: 6.5, 80: 7.0, 100: 7.5, 120: 8.5, 150: 10.5, 200: 13.0 },
+  panelM2: { 60: 50, 80: 50, 100: 50, 120: 50, 150: 50, 200: 50 },
   door: { 60: 320, 80: 335, 100: 350, 120: 380, 150: 420, 200: 480 },
 };
 
@@ -277,8 +279,11 @@ function getRoomEnvelopeArea(roomData) {
 function buildRoomEnvelopeProducts(roomData, lang) {
   const panelArea = roundOfferValue(getRoomEnvelopeArea(roomData), 1);
   const panelThickness = Number(roomData.panelThickness) || 100;
-  const panelUnitPrice = getRoomPanelUnitPrice(panelThickness);
-  const doorUnitPrice = getRoomDoorUnitPrice(panelThickness);
+  // roomData.panelPriceM2 (UI'dan editable) → öncelikli; yoksa default tablodan
+  const customPanelPrice = Number(roomData.panelPriceM2);
+  const panelUnitPrice = customPanelPrice > 0 ? customPanelPrice : getRoomPanelUnitPrice(panelThickness);
+  const customDoorPrice = Number(roomData.doorPrice);
+  const doorUnitPrice = customDoorPrice > 0 ? customDoorPrice : getRoomDoorUnitPrice(panelThickness);
   const items = [];
 
   if (panelArea > 0) {
@@ -1141,6 +1146,8 @@ export default function ColdRoomCalculator() {
     ambientTemp: 32, productType: "Fleisch (frisch)", productWeight: 5000,
     dailyIntake: 1000, doorOpenings: 10, lighting: 12, personnel: 2,
     customTemp: 0, doorWidth: 1.0, doorHeight: 2.1,
+    panelPriceM2: 50, // €/m² — kullanıcı UI'dan değiştirebilir
+    doorPrice: 350,    // €/adet — kullanıcı UI'dan değiştirebilir
   });
   const [company, setCompany] = useState(INITIAL_COMPANY);
   const [customer, setCustomer] = useState({ name: "", company: "", address: "", phone: "", email: "" });
@@ -1793,6 +1800,30 @@ export default function ColdRoomCalculator() {
                 <div className="grid grid-cols-2 gap-3">
                   {numInput(t.room.doorWidth, roomData.doorWidth, v => updateRoom("doorWidth", v), t.units.m, 0.1, 0.6)}
                   {numInput(t.room.doorHeight, roomData.doorHeight, v => updateRoom("doorHeight", v), t.units.m, 0.1, 1.5)}
+                </div>
+                <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-white/10">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-semibold text-amber-300 tracking-wide uppercase">Panel m² Fiyatı (€)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.5"
+                      value={roomData.panelPriceM2}
+                      onChange={e => updateRoom("panelPriceM2", parseFloat(e.target.value) || 0)}
+                      className="w-full px-3 py-2 bg-white border border-amber-200 rounded-lg text-sm font-bold text-slate-800 focus:ring-2 focus:ring-amber-400 outline-none"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-semibold text-amber-300 tracking-wide uppercase">Kapı Birim Fiyatı (€)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="5"
+                      value={roomData.doorPrice}
+                      onChange={e => updateRoom("doorPrice", parseFloat(e.target.value) || 0)}
+                      className="w-full px-3 py-2 bg-white border border-amber-200 rounded-lg text-sm font-bold text-slate-800 focus:ring-2 focus:ring-amber-400 outline-none"
+                    />
+                  </div>
                 </div>
               </div>
 
