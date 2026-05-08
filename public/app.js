@@ -186,7 +186,7 @@ const UI_TEXT = {
     leanPreviewBadge: "Canlı",
     leanPreviewKpiLabels: ["Stok kalemi", "Aktif sipariş", "Bekleyen teklif"],
     leanPreviewStockUnit: "stok",
-    leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "İletişim"],
+    leanFooterLabels: ["Merkez Ofis (Hamm)", "Hamburg Deposu", "İletişim"],
     leanBrandStripLabel: "Sattığımız Markalar",
     leanLegalImpressum: "Impressum",
     leanLegalPrivacy: "Datenschutz",
