@@ -2285,6 +2285,20 @@ label {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+.pos-card-chip--logo {
+  gap: 6px;
+  padding: 3px 10px 3px 4px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 44, 87, 0.10);
+  box-shadow: 0 1px 2px rgba(7, 44, 87, 0.04);
+}
+.pos-card-chip-logo {
+  height: 18px;
+  width: auto;
+  max-width: 50px;
+  object-fit: contain;
+  display: block;
+}
 
 .cart-item-brand {
   display: inline-block;
@@ -4443,7 +4457,7 @@ html.auth-modal-open body {
 .auth-modal {
   position: fixed;
   inset: 0;
-  z-index: 900;
+  z-index: 9500;  /* fullscreen-modal (9000) üzerinde, üst seviye modal olarak */
   display: grid;
   place-items: center;
   padding: 20px;
@@ -5426,17 +5440,19 @@ h3 {
 }
 
 /* =========================================================================
-   Google-minimal landing — Tek ekran: logo + marka + giriş kartı + adresler
-   2026-04-23 redesign: hero copy, preview, value props ve brand strip kaldırıldı.
+   Tek-ekran fullscreen login — DRC brand palette (navy/teal/orange)
+   2026-05-08 sade redesign: hero/value-props/brand-strip/maps kaldırıldı.
+   Sadece: topbar + ortalanmış login kartı + 3 sütun adres + legal bar.
    ========================================================================= */
 .login-minimal {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto auto auto;
+  grid-template-rows: auto 1fr auto auto auto auto;
   background:
-    radial-gradient(circle at 12% 18%, rgba(0, 180, 216, 0.08), transparent 38%),
-    radial-gradient(circle at 88% 82%, rgba(0, 180, 216, 0.06), transparent 40%),
-    #f5f7fb;
+    radial-gradient(ellipse at 0% 0%, rgba(7, 44, 87, 0.10), transparent 45%),
+    radial-gradient(ellipse at 100% 0%, rgba(123, 194, 66, 0.07), transparent 45%),
+    radial-gradient(ellipse at 50% 100%, rgba(0, 142, 128, 0.05), transparent 40%),
+    #f6f8fb;
   color: #1a2a3d;
   font-family: "Inter", "Plus Jakarta Sans", sans-serif;
 }
@@ -5500,44 +5516,56 @@ h3 {
 .login-minimal-main {
   display: grid;
   place-items: center;
-  padding: clamp(28px, 6vw, 56px) clamp(16px, 4vw, 32px);
+  padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px) clamp(12px, 2vw, 20px);
 }
 .login-card {
   background: #ffffff;
   border-radius: 18px;
-  border: 1px solid rgba(26, 42, 61, 0.07);
-  box-shadow: 0 18px 50px rgba(18, 53, 91, 0.08), 0 1px 0 rgba(255, 255, 255, 0.6) inset;
-  padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 44px) clamp(24px, 4vw, 36px);
-  width: min(420px, 100%);
+  border: 1px solid rgba(7, 44, 87, 0.07);
+  box-shadow:
+    0 1px 2px rgba(7, 44, 87, 0.04),
+    0 12px 32px rgba(7, 44, 87, 0.10),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  padding: clamp(26px, 3.5vw, 36px) clamp(24px, 3.5vw, 38px) clamp(22px, 3.5vw, 30px);
+  width: min(400px, 100%);
   display: grid;
-  gap: 22px;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #072C57 0%, #008E80 50%, #FF8A00 100%);
 }
 .login-card-brandblock {
   display: grid;
-  gap: 8px;
+  gap: 4px;
   justify-items: center;
   text-align: center;
 }
 .login-card-logo {
-  width: 58px;
-  height: 58px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   background: #ffffff;
-  padding: 8px;
-  box-shadow: 0 2px 8px rgba(26, 42, 61, 0.1);
+  padding: 6px;
+  box-shadow: 0 2px 6px rgba(26, 42, 61, 0.08);
 }
 .login-card-title {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   font-family: "Outfit", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 17px;
   letter-spacing: -0.005em;
   color: #1a2a3d;
 }
 .login-card-tagline {
   margin: 0;
-  font-size: 12px;
-  color: rgba(26, 42, 61, 0.58);
+  font-size: 11px;
+  color: rgba(26, 42, 61, 0.55);
   letter-spacing: 0.04em;
 }
 
@@ -5668,40 +5696,265 @@ h3 {
   border-radius: 9px;
 }
 
-.login-minimal .login-addresses {
+/* =========================================================================
+   Tanıtım banner — DRC kurumsal kimlik
+   ========================================================================= */
+.login-promobanner {
+  padding: clamp(16px, 3vw, 28px) clamp(20px, 5vw, 48px);
+  background: linear-gradient(180deg, #f6f8fb 0%, rgba(247,250,253,0.85) 100%);
+  border-top: 1px solid rgba(7, 44, 87, 0.06);
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  padding: 18px clamp(20px, 5vw, 48px) 22px;
-  border-top: 1px solid rgba(26, 42, 61, 0.06);
+  justify-items: center;
+}
+.login-promobanner-img {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(7, 44, 87, 0.08), 0 1px 2px rgba(7, 44, 87, 0.04);
+}
+
+/* =========================================================================
+   Marka şeridi — yetkili distribütör tüm logolar
+   ========================================================================= */
+.login-brandstrip {
+  padding: 18px clamp(20px, 5vw, 48px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(247,250,253,0.92));
+  border-top: 1px solid rgba(7, 44, 87, 0.06);
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  text-align: center;
+}
+.login-brandstrip-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #008E80;
+}
+.login-brandstrip-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 4vw, 44px);
+  max-width: 1100px;
+}
+.login-brand-logo {
+  height: 38px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: 0.95;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.login-brand-logo:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* =========================================================================
+   Konum kartları — Hamm + Börnsen + harita
+   ========================================================================= */
+.login-locations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(14px, 2.5vw, 22px);
+  padding: clamp(18px, 3vw, 28px) clamp(20px, 5vw, 48px);
+  border-top: 1px solid rgba(7, 44, 87, 0.06);
   background: rgba(255, 255, 255, 0.85);
 }
-.login-address-col {
+.login-location-card {
   display: grid;
-  gap: 4px;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 44, 87, 0.08);
+  box-shadow: 0 1px 2px rgba(15, 39, 72, 0.04), 0 6px 18px rgba(15, 39, 72, 0.05);
 }
-.login-address-kicker {
-  letter-spacing: 0.06em;
-  font-size: 10.5px;
-  text-transform: uppercase;
-  color: rgba(26, 42, 61, 0.55);
-  font-weight: 600;
+.login-location-head {
+  display: grid;
+  gap: 8px;
 }
-.login-address-col strong {
+.login-location-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.login-location-logo {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 8px;
+}
+.login-location-head strong {
+  display: block;
   color: #1a2a3d;
-  font-size: 13px;
-  line-height: 1.5;
-  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-top: 2px;
+}
+.login-location-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(7, 44, 87, 0.05);
+}
+.login-location-contacts a {
+  color: rgba(26, 42, 61, 0.72);
+  font-size: 11.5px;
+  text-decoration: none;
   font-weight: 500;
 }
-.login-address-col a {
-  color: rgba(26, 42, 61, 0.82);
-  font-size: 13px;
-  text-decoration: none;
-}
-.login-address-col a:hover {
-  color: #0b6cd9;
+.login-location-contacts a:hover {
+  color: #FF8A00;
   text-decoration: underline;
+}
+.login-location-map,
+.login-location-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #eef2f6;
+  border: 1px solid rgba(7, 44, 87, 0.07);
+}
+.login-location-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.login-location-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.login-location-photo:hover img {
+  transform: scale(1.04);
+}
+.login-location-link {
+  justify-self: end;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #008E80;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.login-location-link:hover {
+  color: #FF8A00;
+  text-decoration: underline;
+}
+
+/* =========================================================================
+   Standalone legal bar (locations'ın altında)
+   ========================================================================= */
+.login-foot-legal--standalone {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f4f9 100%);
+  border-top: 1px solid rgba(7, 44, 87, 0.08);
+}
+
+/* =========================================================================
+   Eski footer (kullanılmıyor ama uyumluluk için kalıyor)
+   ========================================================================= */
+.login-foot {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f4f9 100%);
+  border-top: 1px solid rgba(7, 44, 87, 0.08);
+}
+.login-foot-addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: clamp(16px, 4vw, 36px);
+  padding: 18px clamp(20px, 5vw, 48px) 14px;
+  align-items: start;
+}
+.login-foot-addr {
+  display: grid;
+  gap: 4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(26, 42, 61, 0.78);
+}
+.login-foot-addr-kicker {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #008E80;
+}
+.login-foot-addr--contact {
+  text-align: right;
+  justify-self: end;
+}
+.login-foot-addr--contact a {
+  color: rgba(26, 42, 61, 0.78);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12.5px;
+}
+.login-foot-addr--contact a:hover {
+  color: #FF8A00;
+  text-decoration: underline;
+}
+.login-foot-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px clamp(20px, 5vw, 48px) 14px;
+  border-top: 1px solid rgba(7, 44, 87, 0.06);
+  font-size: 11.5px;
+  color: rgba(26, 42, 61, 0.55);
+}
+.login-foot-legal a {
+  color: rgba(26, 42, 61, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+}
+.login-foot-legal a:hover {
+  color: #008E80;
+  text-decoration: underline;
+}
+.login-foot-copy {
+  margin-left: auto;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: rgba(26, 42, 61, 0.45);
+}
+
+@media (max-width: 720px) {
+  .login-foot-addresses {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .login-foot-addr--contact {
+    text-align: left;
+    justify-self: start;
+  }
+  .login-foot-legal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .login-foot-copy {
+    margin-left: 0;
+  }
+  .login-locations {
+    grid-template-columns: 1fr;
+  }
+  .login-brand-logo {
+    height: 22px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -5709,196 +5962,40 @@ h3 {
     display: none;
   }
   .login-card {
-    padding: 24px 20px 20px;
+    padding: 22px 18px 20px;
     border-radius: 14px;
   }
   .login-card-title {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
 /* =========================================================================
-   Faz 6 — Sade B2B landing: hero + value props + brand strip + legal bar
+   Login butonu — DRC brand teal/orange accent
    ========================================================================= */
-.login-minimal-main {
-  align-content: center;
+.login-card .primary-button.login-submit {
+  background: linear-gradient(135deg, #008E80 0%, #0a7a73 100%);
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 18px rgba(0, 142, 128, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
 }
-.login-hero {
-  width: min(1180px, 100%);
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(28px, 5vw, 56px);
-  align-items: center;
+.login-card .primary-button.login-submit:hover {
+  background: linear-gradient(135deg, #00a395 0%, #008E80 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 142, 128, 0.32);
 }
-.login-hero-text {
-  display: grid;
-  gap: 18px;
-  max-width: 620px;
+.login-card .primary-button.login-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 142, 128, 0.20);
 }
-.login-hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #0b6cd9;
-  background: rgba(11, 108, 217, 0.08);
-  border: 1px solid rgba(11, 108, 217, 0.15);
-  border-radius: 999px;
-  padding: 6px 12px;
-  width: fit-content;
+.login-card .login-tab.is-active {
+  color: #008E80;
+  box-shadow: 0 1px 2px rgba(0, 142, 128, 0.14), 0 0 0 1px rgba(0, 142, 128, 0.18);
 }
-.login-hero-title {
-  margin: 0;
-  font-family: "Outfit", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: clamp(28px, 4.2vw, 44px);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  color: #0d2235;
-}
-.login-hero-sub {
-  margin: 0;
-  font-size: clamp(14.5px, 1.4vw, 16.5px);
-  line-height: 1.55;
-  color: rgba(26, 42, 61, 0.72);
-  max-width: 560px;
-}
-.login-value-props {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  margin-top: 6px;
-}
-.login-value-prop {
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid rgba(26, 42, 61, 0.07);
-  padding: 16px 16px 14px;
-  box-shadow: 0 8px 22px rgba(18, 53, 91, 0.05);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-.login-value-prop:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(18, 53, 91, 0.08);
-}
-.login-value-prop h3 {
-  margin: 0 0 6px;
-  font-family: "Outfit", "Inter", sans-serif;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #0d2235;
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-}
-.login-value-prop p {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
-  color: rgba(26, 42, 61, 0.7);
-}
-.login-hero-form {
-  display: flex;
-  justify-content: flex-end;
-}
-.login-hero-form .login-card {
-  width: min(420px, 100%);
-}
-
-.login-brandstrip {
-  padding: 18px clamp(20px, 5vw, 48px);
-  border-top: 1px solid rgba(26, 42, 61, 0.06);
-  background: rgba(255, 255, 255, 0.7);
-  display: grid;
-  gap: 12px;
-  justify-items: center;
-  text-align: center;
-}
-.login-brandstrip-label {
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(26, 42, 61, 0.55);
-}
-.login-brandstrip-logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(18px, 4vw, 38px);
-}
-.login-brand-logo {
-  height: 26px;
-  width: auto;
-  max-width: 110px;
-  object-fit: contain;
-  filter: grayscale(1) opacity(0.65);
-  transition: filter 0.2s ease;
-}
-.login-brand-logo:hover {
-  filter: grayscale(0) opacity(1);
-}
-
-.login-legal-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 12px clamp(20px, 5vw, 48px) 16px;
-  background: #ffffff;
-  border-top: 1px solid rgba(26, 42, 61, 0.06);
-  font-size: 12px;
-  color: rgba(26, 42, 61, 0.6);
-}
-.login-legal-bar a {
-  color: rgba(26, 42, 61, 0.78);
-  text-decoration: none;
-  font-weight: 500;
-}
-.login-legal-bar a:hover {
-  color: #0b6cd9;
-  text-decoration: underline;
-}
-.login-legal-copy {
-  margin-left: auto;
-  font-size: 11.5px;
-  letter-spacing: 0.02em;
-  color: rgba(26, 42, 61, 0.5);
-}
-
-@media (max-width: 980px) {
-  .login-hero {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    justify-items: stretch;
-  }
-  .login-hero-text {
-    max-width: none;
-  }
-  .login-hero-form {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 520px) {
-  .login-hero-title {
-    font-size: 26px;
-  }
-  .login-value-props {
-    grid-template-columns: 1fr;
-  }
-  .login-brand-logo {
-    height: 22px;
-  }
-  .login-legal-bar {
-    flex-direction: column;
-    gap: 6px;
-  }
-  .login-legal-copy {
-    margin-left: 0;
-  }
+.login-card .login-form input:focus {
+  border-color: #008E80;
+  box-shadow: 0 0 0 3px rgba(0, 142, 128, 0.14);
 }

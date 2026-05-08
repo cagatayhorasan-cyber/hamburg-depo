@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" role="img" aria-label="Daikin">
+  <title>Daikin</title>
+  <text x="100" y="42" text-anchor="middle"
+        font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+        font-weight="700" font-size="32" letter-spacing="-0.5"
+        fill="#0099CC">DAIKIN</text>
+  <path d="M30 22 Q35 14 42 22 L38 22 Q35 18 32 22 Z" fill="#0099CC"/>
+</svg>

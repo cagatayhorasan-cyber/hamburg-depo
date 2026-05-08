@@ -99,6 +99,13 @@ const DRC_MAN_FAQ_MANIFEST = [
   { file: "drc_man_pt_superheat_faq.json", slug: "pt_superheat", defaultSummary: "DRC MAN PT / superheat" },
   { file: "drc_man_refrigeration_faq.json", slug: "refrigeration", defaultSummary: "DRC MAN sogutma teorisi" },
   { file: "drc_man_sales_instinct_faq.json", slug: "sales_instinct", defaultSummary: "DRC MAN satis refleksi" },
+  { file: "drc_man_malzeme_vs_ustalik_faq.json", slug: "malzeme_vs_ustalik", defaultSummary: "DRC MAN malzeme/ustalık ayrımı" },
+  { file: "drc_man_stock_technical_faq.json", slug: "stock_technical", defaultSummary: "DRC MAN stoklu ürün teknik veri bankası" },
+  {
+    files: ["drc_man_all_products_faq.part1.json", "drc_man_all_products_faq.part2.json"],
+    slug: "all_products",
+    defaultSummary: "DRC MAN tüm aktif ürün katalog teknik bankası",
+  },
 ];
 const TROUBLESHOOTING_STRONG_HINTS = [
   "ariza",

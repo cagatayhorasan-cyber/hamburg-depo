@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" role="img" aria-label="Frigocraft">
+  <title>Frigocraft</title>
+  <!-- Snowflake icon -->
+  <g transform="translate(20,30)" stroke="#0099CC" stroke-width="2.2" fill="none">
+    <line x1="-12" y1="0" x2="12" y2="0"/>
+    <line x1="0" y1="-12" x2="0" y2="12"/>
+    <line x1="-9" y1="-9" x2="9" y2="9"/>
+    <line x1="-9" y1="9" x2="9" y2="-9"/>
+  </g>
+  <text x="135" y="42" text-anchor="middle"
+        font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+        font-weight="800" font-size="28" letter-spacing="-0.3"
+        fill="#0099CC">Frigo</text>
+  <text x="200" y="42" text-anchor="middle"
+        font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+        font-weight="800" font-size="28" letter-spacing="-0.3"
+        fill="#1A2A3D">craft</text>
+</svg>

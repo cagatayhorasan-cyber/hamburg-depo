@@ -38,7 +38,181 @@ FAQ_FILES = [
     Path(__file__).with_name("drc_man_electrical_faq.json"),
     Path(__file__).with_name("drc_man_refrigeration_faq.json"),
     Path(__file__).with_name("drc_man_gases_faq.json"),
+    Path(__file__).with_name("drc_man_malzeme_vs_ustalik_faq.json"),
+    Path(__file__).with_name("drc_man_stock_technical_faq.json"),
+    Path(__file__).with_name("drc_man_all_products_faq.part1.json"),
+    Path(__file__).with_name("drc_man_all_products_faq.part2.json"),
 ]
+
+# MALZEME vs USTALIK intent classification
+# Bu hint'ler bir sorgunun "ne sorulduğunu" netleştirir.
+# MALZEME → kart/stok/fiyat sorusu (cevap kart/katalogtan)
+# USTALIK → karar/sıra/sebep sorusu (cevap saha disiplininden)
+
+MATERIAL_INTENT_HINTS = (
+    "stok",
+    "stoq",
+    "lager",
+    "lagerstand",
+    "fiyat",
+    "fiyati",
+    "fiyatı",
+    "preis",
+    "kosten",
+    "kac para",
+    "kac euro",
+    "wieviel",
+    "was kostet",
+    "kac adet",
+    "wieviele",
+    "var mi",
+    "mevcut mu",
+    "verfuegbar",
+    "yedek arıyorum",
+    "yedek ariyorum",
+    "ersatz suchen",
+    "ersatzteil",
+    "alternatif",
+    "esdeger",
+    "muadil",
+    "katalog",
+    "katalogue",
+    "model",
+    "marka",
+    "marke",
+    "hangi model",
+    "welches modell",
+)
+
+EXPERTISE_INTENT_HINTS = (
+    # Soru kalıpları — Türkçe (ı dotless korunur, ş→s, ç→c, ğ→g, ö→o, ü→u)
+    "nasil",
+    "nasıl",
+    "wie",
+    "ne yapayim",
+    "ne yapayım",
+    "ne yapmaliyim",
+    "ne yapmalıyım",
+    "was tun",
+    "was soll ich",
+    "neden",
+    "niye",
+    "warum",
+    "nedeni",
+    "ursache",
+    "sira",
+    "sıra",
+    "sirayla",
+    "sırayla",
+    "reihenfolge",
+    "adim adim",
+    "adım adım",
+    "schrittweise",
+    "kontrol et",
+    "check",
+    "pruefen",
+    "monte et",
+    "montaj",
+    "montage",
+    "devreye al",
+    "inbetriebnahme",
+    "ayar",
+    "ayarla",
+    "einstellen",
+    "optimize",
+    # Semptom/arıza kalıpları
+    "atiyor",
+    "atıyor",
+    "loest aus",
+    "calismiyor",
+    "calısmıyor",
+    "çalışmıyor",
+    "geht nicht",
+    "sogumuyor",
+    "soğumuyor",
+    "kuehlt nicht",
+    "ariza",
+    "arıza",
+    "hata",
+    "fehler",
+    "stoerung",
+    "bozuluyor",
+    "yandi",
+    "yandı",
+    "verbrannt",
+    "zayıf",
+    "zayif",
+    "schwach",
+    "calisip duruyor",
+    "calısıp duruyor",
+    "çalışıp duruyor",
+    # Sıklık/karar
+    "ne sıklıkla",
+    "ne siklikla",
+    "wie oft",
+    "ne kadar surede",
+    "kac yilda",
+    "wie lange",
+    "hangi siray",
+    "hangi sıra",
+    # Karşılaştırma/karar (mi/mu/mı/mü)
+    "kullanmaliyim",
+    "kullanmalıyım",
+    "kullanayim",
+    "kullanayım",
+    "mi mu",
+    "mı mu",
+    " mi ",
+    " mu ",
+    " mi.",
+    "soll ich",
+    # Proje/hesap (USTALIK eylem)
+    "proje",
+    "alan hesap",
+    "kapasite",
+    "metre kare hesap",
+    "soguk oda",
+    "kuhlraum",
+    "malzeme listesi",
+    "kalem listesi",
+    "kac kalem",
+    "kac metre",
+    "ne kadar lazim",
+    "kuhlraum",
+    # Gaz değiştirme/retrofit (USTALIK karar)
+    "cevirebilir",
+    "çevirebilir",
+    "cevireyim",
+    "çevireyim",
+    "degistir",
+    "değiştir",
+    "umstellen",
+    "retrofit",
+    "yerine ne",
+    "alternatif gaz",
+    "hangi gaza",
+    "welches kaeltemittel",
+)
+
+
+def _classify_material_vs_expertise(text: str) -> str:
+    """Bir sorgunun ağırlıklı niyetini sınıflar.
+    Dönüşler:
+      - "MALZEME"  → ürün kart sorgusu (stok/fiyat/marka)
+      - "USTALIK"  → karar/sıra/neden sorgusu
+      - "KARMA"    → her ikisi de güçlü
+      - "BELIRSIZ" → ipucu yok
+    """
+    norm = _normalize_text(text)
+    mat_score = sum(1 for h in MATERIAL_INTENT_HINTS if h in norm)
+    exp_score = sum(1 for h in EXPERTISE_INTENT_HINTS if h in norm)
+    if mat_score > 0 and exp_score == 0:
+        return "MALZEME"
+    if exp_score > 0 and mat_score == 0:
+        return "USTALIK"
+    if mat_score > 0 and exp_score > 0:
+        return "KARMA"
+    return "BELIRSIZ"
 
 FAQ_CACHE: dict[tuple[str, ...], dict[str, object]] = {}
 

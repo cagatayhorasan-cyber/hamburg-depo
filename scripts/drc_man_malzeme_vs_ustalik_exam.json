@@ -1,0 +1,149 @@
+{
+  "title": "DRC MAN — Malzeme vs Ustalık Ayrım Sınavı",
+  "description": "Her soru bir senaryodur. Doğru cevap MALZEME, USTALIK veya KARMA (önce ustalık, sonra malzeme) olabilir. Sistem doğru intent'e mi gidiyor test edilir.",
+  "version": "1.0",
+  "date": "2026-05-08",
+  "total_questions": 20,
+  "questions": [
+    {
+      "id": 1,
+      "tr": "Embraco NJX2219GS stokta var mı?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["stok", "adet", "fiyat", "alternatif", "lager", "preis"],
+      "must_not_contain": ["sıra", "neden", "kontrol et", "önce", "reihenfolge"]
+    },
+    {
+      "id": 2,
+      "tr": "Kompresör çalışıp duruyor sürekli, ne yapayım?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["yüksek basınç", "düşük basınç", "termik", "kontaktör", "kontrol", "ölç", "neden", "hochdruck", "messung"],
+      "must_not_contain": ["şu modeli al", "stokta", "fiyat €"]
+    },
+    {
+      "id": 3,
+      "tr": "10cm Poly-Poly duvar paneli kaç para?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["€", "fiyat", "stok", "m²", "cost", "sale"],
+      "must_not_contain": ["sıra", "neden", "önce ölç"]
+    },
+    {
+      "id": 4,
+      "tr": "5×5 m soğuk oda projesi malzeme listesi.",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["alan", "metre kare", "kapasite", "T0", "iç ölçü", "kapı", "hesap"],
+      "must_not_contain": ["şu kalemleri al", "tek liste"]
+    },
+    {
+      "id": 5,
+      "tr": "R-404A 10 KG depozitolu tüp fiyatı?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["€", "stok", "fiyat", "depozit", "preis", "lager"],
+      "must_not_contain": ["retrofit", "glide kontrol"]
+    },
+    {
+      "id": 6,
+      "tr": "R-404A sistemini hangi gaza çevireyim?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["yağ", "POE", "MOP", "glide", "etiket", "kompresor", "kontrol", "retrofit"],
+      "must_not_contain": ["hemen al", "sadece bu"]
+    },
+    {
+      "id": 7,
+      "tr": "TXV'i hangi marka önerirsiniz?",
+      "expected_intent": "KARMA",
+      "must_contain_any": ["gaz", "kapasite", "MOP", "orifis", "kaeltemittel"],
+      "must_not_contain": []
+    },
+    {
+      "id": 8,
+      "tr": "Sürgülü soğuk oda kapısını nasıl monte ederim?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["sıra", "panel", "lento", "ray", "switch", "rezistans", "reihenfolge"],
+      "must_not_contain": ["fiyat €", "stok adet"]
+    },
+    {
+      "id": 9,
+      "tr": "100mm Poly-Poly soğuk hava deposu kapısı stok?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["adet", "stok", "fiyat", "€", "model"],
+      "must_not_contain": []
+    },
+    {
+      "id": 10,
+      "tr": "Evaporatörden hava akışı zayıf, ne yapayım?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["lameller", "buz", "fan", "kanat", "motor", "sarım", "kondens", "tıkalı", "ölç"],
+      "must_not_contain": ["fan motoru al", "şunu sipariş"]
+    },
+    {
+      "id": 11,
+      "tr": "Dixell XR60CX yedek arıyorum.",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["stok", "alternatif", "Carel", "Eliwell", "XR70CX", "fiyat", "€"],
+      "must_not_contain": []
+    },
+    {
+      "id": 12,
+      "tr": "Soğutma kontrolörünün defrost ayarını nasıl optimize ederim?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["yük", "kapı", "buz", "fan delay", "drain", "izle", "lastprofil"],
+      "must_not_contain": ["şu modeli al", "sadece bu marka"]
+    },
+    {
+      "id": 13,
+      "tr": "Pano içinde kontaktör atıyor sürekli.",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["termik", "akım", "gerilim", "yapışmış", "ölç", "faz", "messung"],
+      "must_not_contain": ["hemen kontaktör al"]
+    },
+    {
+      "id": 14,
+      "tr": "Çift kapı endüstriyel buzdolabı stok?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["adet", "stok", "Elektrosan", "fiyat", "€"],
+      "must_not_contain": []
+    },
+    {
+      "id": 15,
+      "tr": "Çift kapı dolabımda alt kompartman soğumuyor.",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["buharlaştırıcı", "termostat", "prob", "fan", "kanal", "kapı", "conta", "ölç"],
+      "must_not_contain": []
+    },
+    {
+      "id": 16,
+      "tr": "POE 32 yağ stokta?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["stok", "Lubreeze", "Errecom", "5L", "litre", "€"],
+      "must_not_contain": []
+    },
+    {
+      "id": 17,
+      "tr": "Kompresör yağı POE mi MO mu kullanmalıyım?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["gaz", "kompresor", "üretici", "etiket", "karışım", "tabela"],
+      "must_not_contain": ["hemen şunu al"]
+    },
+    {
+      "id": 18,
+      "tr": "Likit filtre dryer 1/4'' stok?",
+      "expected_intent": "MALZEME",
+      "must_contain_any": ["GVN", "Refnoks", "stok", "adet", "€"],
+      "must_not_contain": []
+    },
+    {
+      "id": 19,
+      "tr": "Filtre dryer ne sıklıkla değiştirilir?",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["nem", "moisture", "basınç", "sight glass", "kompresör değişim", "rutin"],
+      "must_not_contain": ["şu marka", "fiyat"]
+    },
+    {
+      "id": 20,
+      "tr": "Yüksek basınç koruması atıyor.",
+      "expected_intent": "USTALIK",
+      "must_contain_any": ["kondenser", "fan", "hava akışı", "şarj", "ölç", "yüzey sıcaklığı", "subcooling"],
+      "must_not_contain": ["hemen şunu al", "stok"]
+    }
+  ]
+}

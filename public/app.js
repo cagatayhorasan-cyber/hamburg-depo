@@ -187,9 +187,12 @@ const UI_TEXT = {
     leanPreviewKpiLabels: ["Stok kalemi", "Aktif sipariş", "Bekleyen teklif"],
     leanPreviewStockUnit: "stok",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "İletişim"],
-    leanBrandStripLabel: "Yetkili distribütör · Otorisierte Vertretung",
+    leanBrandStripLabel: "Sattığımız Markalar",
     leanLegalImpressum: "Impressum",
     leanLegalPrivacy: "Datenschutz",
+    leanMapLink: "Haritada Aç →",
+    leanTitle: "Endüstriyel Soğutma Portalı",
+    leanSub: "Stok, sipariş, teklif ve soğuk oda projesi tek hesapta.",
     uiLanguage: "Arayuz Dili",
     loginIdentifier: "Kullanici Adi veya E-Posta",
     password: "Sifre",
@@ -403,9 +406,12 @@ const UI_TEXT = {
     leanPreviewKpiLabels: ["Artikel", "Aktive Bestellung", "Offene Angebote"],
     leanPreviewStockUnit: "Lager",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "Kontakt"],
-    leanBrandStripLabel: "Otorisierte Vertretung · Yetkili distribütör",
+    leanBrandStripLabel: "Vertriebspartner führender Marken",
     leanLegalImpressum: "Impressum",
     leanLegalPrivacy: "Datenschutz",
+    leanMapLink: "Auf Karte öffnen →",
+    leanTitle: "Industrielle Kältetechnik Portal",
+    leanSub: "Bestand, Bestellung, Angebot und Kühlraumprojekt — alles in einem Konto.",
     uiLanguage: "Sprache",
     loginIdentifier: "Benutzername oder E-Mail",
     password: "Passwort",
@@ -1110,13 +1116,87 @@ function buildItemDetailFacts(item) {
 }
 
 const BRAND_MEDIA_MAP = {
+  // Mevcut + iyi kalite logoları olanlar
   danfoss: { logo: "/assets/brands/danfoss-logo.svg", visual: "/assets/brands/danfoss.png" },
-  embraco: { logo: "/assets/brands/embraco.png", visual: "/assets/brands/embraco.png" },
   sanhua: { logo: "/assets/brands/sanhua-logo.svg", visual: "/assets/brands/sanhua.png" },
-  frigocraft: { logo: "/assets/brands/frigocraft.png", visual: "/assets/brands/frigocraft.png" },
-  copeland: { logo: "/assets/brands/copeland.png", visual: "/assets/brands/copeland.png" },
-  bitzer: { logo: "/assets/brands/bitzer-logo.png", visual: "/assets/brands/bitzer-logo.png" },
   drc: { logo: "/assets/drc-logo.svg", visual: "/assets/drc-product-showcase.svg" },
+  // Yeni üretilen SVG wordmark'lar (61 marka)
+  embraco: { logo: "/assets/brands/embraco.svg", visual: "/assets/brands/embraco.png" },
+  frigocraft: { logo: "/assets/brands/frigocraft.svg", visual: "/assets/brands/frigocraft.png" },
+  copeland: { logo: "/assets/brands/copeland.svg", visual: "/assets/brands/copeland.png" },
+  bitzer: { logo: "/assets/brands/bitzer.svg", visual: "/assets/brands/bitzer.svg" },
+  daikin: { logo: "/assets/brands/daikin.svg", visual: "/assets/brands/daikin.svg" },
+  mespan: { logo: "/assets/brands/mespan.svg", visual: "/assets/brands/mespan.svg" },
+  tecumseh: { logo: "/assets/brands/tecumseh.svg", visual: "/assets/brands/tecumseh.svg" },
+  buzyapsan: { logo: "/assets/brands/buzyapsan.svg", visual: "/assets/brands/buzyapsan.svg" },
+  ets: { logo: "/assets/brands/ets.svg", visual: "/assets/brands/ets.svg" },
+  thermotrick: { logo: "/assets/brands/thermotrick.svg", visual: "/assets/brands/thermotrick.svg" },
+  ebmpapst: { logo: "/assets/brands/ebmpapst.svg", visual: "/assets/brands/ebmpapst.svg" },
+  "ebm-papst": { logo: "/assets/brands/ebmpapst.svg", visual: "/assets/brands/ebmpapst.svg" },
+  value: { logo: "/assets/brands/value.svg", visual: "/assets/brands/value.svg" },
+  blowtech: { logo: "/assets/brands/blowtech.svg", visual: "/assets/brands/blowtech.svg" },
+  gunay: { logo: "/assets/brands/gunay.svg", visual: "/assets/brands/gunay.svg" },
+  günay: { logo: "/assets/brands/gunay.svg", visual: "/assets/brands/gunay.svg" },
+  castel: { logo: "/assets/brands/castel.svg", visual: "/assets/brands/castel.svg" },
+  olefini: { logo: "/assets/brands/olefini.svg", visual: "/assets/brands/olefini.svg" },
+  alco: { logo: "/assets/brands/alco.svg", visual: "/assets/brands/alco.svg" },
+  thermotherm: { logo: "/assets/brands/thermotherm.svg", visual: "/assets/brands/thermotherm.svg" },
+  dorin: { logo: "/assets/brands/dorin.svg", visual: "/assets/brands/dorin.svg" },
+  olab: { logo: "/assets/brands/olab.svg", visual: "/assets/brands/olab.svg" },
+  refcomp: { logo: "/assets/brands/refcomp.svg", visual: "/assets/brands/refcomp.svg" },
+  carel: { logo: "/assets/brands/carel.svg", visual: "/assets/brands/carel.svg" },
+  typhoon: { logo: "/assets/brands/typhoon.svg", visual: "/assets/brands/typhoon.svg" },
+  lionball: { logo: "/assets/brands/lionball.svg", visual: "/assets/brands/lionball.svg" },
+  cubigel: { logo: "/assets/brands/cubigel.svg", visual: "/assets/brands/cubigel.svg" },
+  frascold: { logo: "/assets/brands/frascold.svg", visual: "/assets/brands/frascold.svg" },
+  refricomp: { logo: "/assets/brands/refricomp.svg", visual: "/assets/brands/refricomp.svg" },
+  gvn: { logo: "/assets/brands/gvn.svg", visual: "/assets/brands/gvn.svg" },
+  güven: { logo: "/assets/brands/gvn.svg", visual: "/assets/brands/gvn.svg" },
+  rothenberger: { logo: "/assets/brands/rothenberger.svg", visual: "/assets/brands/rothenberger.svg" },
+  srmtec: { logo: "/assets/brands/srmtec.svg", visual: "/assets/brands/srmtec.svg" },
+  sporlan: { logo: "/assets/brands/sporlan.svg", visual: "/assets/brands/sporlan.svg" },
+  hongsen: { logo: "/assets/brands/hongsen.svg", visual: "/assets/brands/hongsen.svg" },
+  refco: { logo: "/assets/brands/refco.svg", visual: "/assets/brands/refco.svg" },
+  panasonic: { logo: "/assets/brands/panasonic.svg", visual: "/assets/brands/panasonic.svg" },
+  honeywell: { logo: "/assets/brands/honeywell.svg", visual: "/assets/brands/honeywell.svg" },
+  schneider: { logo: "/assets/brands/schneider.svg", visual: "/assets/brands/schneider.svg" },
+  siemens: { logo: "/assets/brands/siemens.svg", visual: "/assets/brands/siemens.svg" },
+  mitsubishi: { logo: "/assets/brands/mitsubishi.svg", visual: "/assets/brands/mitsubishi.svg" },
+  samsung: { logo: "/assets/brands/samsung.svg", visual: "/assets/brands/samsung.svg" },
+  dixell: { logo: "/assets/brands/dixell.svg", visual: "/assets/brands/dixell.svg" },
+  systemair: { logo: "/assets/brands/systemair.svg", visual: "/assets/brands/systemair.svg" },
+  weiguang: { logo: "/assets/brands/weiguang.svg", visual: "/assets/brands/weiguang.svg" },
+  emerson: { logo: "/assets/brands/emerson.svg", visual: "/assets/brands/emerson.svg" },
+  elektrosan: { logo: "/assets/brands/elektrosan.svg", visual: "/assets/brands/elektrosan.svg" },
+  alfalaval: { logo: "/assets/brands/alfalaval.svg", visual: "/assets/brands/alfalaval.svg" },
+  guntner: { logo: "/assets/brands/guntner.svg", visual: "/assets/brands/guntner.svg" },
+  güntner: { logo: "/assets/brands/guntner.svg", visual: "/assets/brands/guntner.svg" },
+  luve: { logo: "/assets/brands/luve.svg", visual: "/assets/brands/luve.svg" },
+  ottocool: { logo: "/assets/brands/ottocool.svg", visual: "/assets/brands/ottocool.svg" },
+  esen: { logo: "/assets/brands/esen.svg", visual: "/assets/brands/esen.svg" },
+  secop: { logo: "/assets/brands/secop.svg", visual: "/assets/brands/secop.svg" },
+  ranco: { logo: "/assets/brands/ranco.svg", visual: "/assets/brands/ranco.svg" },
+  fstb: { logo: "/assets/brands/fstb.svg", visual: "/assets/brands/fstb.svg" },
+  gomax: { logo: "/assets/brands/gomax.svg", visual: "/assets/brands/gomax.svg" },
+  coldflex: { logo: "/assets/brands/coldflex.svg", visual: "/assets/brands/coldflex.svg" },
+  lubreeze: { logo: "/assets/brands/lubreeze.svg", visual: "/assets/brands/lubreeze.svg" },
+  errecom: { logo: "/assets/brands/errecom.svg", visual: "/assets/brands/errecom.svg" },
+  talos: { logo: "/assets/brands/talos.svg", visual: "/assets/brands/talos.svg" },
+  damla: { logo: "/assets/brands/damla.svg", visual: "/assets/brands/damla.svg" },
+  hisense: { logo: "/assets/brands/hisense.svg", visual: "/assets/brands/hisense.svg" },
+  zingfa: { logo: "/assets/brands/zingfa.svg", visual: "/assets/brands/zingfa.svg" },
+  refrigerant: { logo: "/assets/brands/refrigerant.svg", visual: "/assets/brands/refrigerant.svg" },
+  kontak: { logo: "/assets/brands/kontak.svg", visual: "/assets/brands/kontak.svg" },
+  sibax: { logo: "/assets/brands/sibax.svg", visual: "/assets/brands/sibax.svg" },
+  selsil: { logo: "/assets/brands/selsil.svg", visual: "/assets/brands/selsil.svg" },
+  siccom: { logo: "/assets/brands/siccom.svg", visual: "/assets/brands/siccom.svg" },
+  m2m: { logo: "/assets/brands/m2m.svg", visual: "/assets/brands/m2m.svg" },
+  act: { logo: "/assets/brands/act.svg", visual: "/assets/brands/act.svg" },
+  // Tanıtım banner markaları (logo dosyaları var)
+  lg: { logo: "/assets/brands/lg.svg", visual: "/assets/brands/lg.svg" },
+  gree: { logo: "/assets/brands/gree.svg", visual: "/assets/brands/gree.svg" },
+  kide: { logo: "/assets/brands/kide.svg", visual: "/assets/brands/kide.svg" },
+  kingspan: { logo: "/assets/brands/kingspan.svg", visual: "/assets/brands/kingspan.svg" },
 };
 
 // Logo asset'i olmayan ama sık görülen markaların rengi — metin rozeti için
@@ -1143,13 +1223,29 @@ const BRAND_BADGE_COLORS = {
 };
 
 function getBrandMedia(item) {
-  const brand = normalizeSearchText(item?.brand || "");
+  const brandRaw = (item?.brand || "").trim();
+  const brand = normalizeSearchText(brandRaw);
+  if (!brand) {
+    return { logo: "/assets/drc-logo.svg", visual: "/assets/drc-product-showcase.svg", fallback: true };
+  }
   for (const [key, media] of Object.entries(BRAND_MEDIA_MAP)) {
     if (brand.includes(key)) {
       return media;
     }
   }
-  return { logo: null, visual: "/assets/drc-product-showcase.svg", fallback: true };
+  // Bilinmeyen marka → inline SVG wordmark üret (renk = badge color)
+  const color = getBrandBadgeColor({ brand: brandRaw });
+  const dataUrl = generateBrandLogoDataUrl(brandRaw, color);
+  return { logo: dataUrl, visual: dataUrl, generated: true };
+}
+
+function generateBrandLogoDataUrl(brandText, color) {
+  const safe = String(brandText || "").trim().slice(0, 20);
+  const escaped = safe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const len = safe.length;
+  const fontSize = len <= 5 ? 34 : len <= 8 ? 28 : len <= 12 ? 22 : len <= 16 ? 18 : 15;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" role="img" aria-label="${escaped}"><title>${escaped}</title><text x="110" y="40" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="${fontSize}" letter-spacing="-0.3" fill="${color}">${escaped}</text></svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
 function getBrandBadgeColor(item) {
@@ -1721,6 +1817,8 @@ function applyUiTranslations() {
 
   // Lean landing (Faz 6 v2)
   document.querySelectorAll("[data-lean-eyebrow]").forEach((node) => setText(node, t("leanEyebrow")));
+  document.querySelectorAll("[data-lean-title]").forEach((node) => setText(node, t("leanTitle")));
+  document.querySelectorAll("[data-lean-sub]").forEach((node) => setText(node, t("leanSub")));
   document.querySelectorAll("[data-lean-title]").forEach((node) => setText(node, t("leanHeroTitle")));
   document.querySelectorAll("[data-lean-sub]").forEach((node) => setText(node, t("leanHeroSub")));
   document.querySelectorAll("[data-lean-cta-login]").forEach((node) => setText(node, t("leanCtaLogin")));
@@ -1743,6 +1841,7 @@ function applyUiTranslations() {
   document.querySelectorAll("[data-lean-brandstrip-label]").forEach((node) => setText(node, t("leanBrandStripLabel")));
   document.querySelectorAll("[data-lean-legal-impressum]").forEach((node) => setText(node, t("leanLegalImpressum")));
   document.querySelectorAll("[data-lean-legal-privacy]").forEach((node) => setText(node, t("leanLegalPrivacy")));
+  document.querySelectorAll("[data-lean-map-link]").forEach((node) => setText(node, t("leanMapLink")));
   const leanStats = t("leanStats") || [];
   document.querySelectorAll("[data-lean-stat-value]").forEach((node) => {
     const idx = Number(node.getAttribute("data-lean-stat-value")) || 0;
@@ -6402,6 +6501,10 @@ function renderCustomerCatalog() {
     const netPrice = visibleSalePrice(item);
     const itemDetail = getPublicItemDetail(item);
     const itemCode = item.barcode || item.productCode || "-";
+    const brandMedia = getBrandMedia(item);
+    const brandChipMarkup = brandMedia.logo
+      ? `<span class="pos-card-chip pos-card-chip--logo"><img src="${escapeHtml(brandMedia.logo)}" alt="${escapeHtml(item.brand || '')}" class="pos-card-chip-logo" loading="lazy">${escapeHtml(item.brand || "-")}</span>`
+      : `<span class="pos-card-chip">${escapeHtml(item.brand || "-")}</span>`;
     card.innerHTML = `
       ${getItemImageMarkup(item, {
         wrapperClass: "pos-card-media",
@@ -6409,7 +6512,7 @@ function renderCustomerCatalog() {
       })}
       <div class="pos-card-head">
         <div class="pos-card-heading">
-          <span class="pos-card-chip">${escapeHtml(item.brand || "-")}</span>
+          ${brandChipMarkup}
           <strong>${escapeHtml(resolveLocalizedName(item))}</strong>
           <span class="pos-card-code mono">${escapeHtml(itemCode)}</span>
         </div>

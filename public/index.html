@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png">
-  <link rel="stylesheet" href="/styles.css?v=20260424-name-de-cart">
+  <link rel="stylesheet" href="/styles.css?v=20260508-modal-zindex">
 </head>
 <body>
   <div class="page-shell">
@@ -39,27 +39,6 @@
       </header>
 
       <main class="login-minimal-main">
-        <div class="login-hero">
-          <div class="login-hero-text">
-            <span class="login-hero-eyebrow" data-lean-eyebrow>B2B Portal · Hamm &amp; Hamburg</span>
-            <h1 class="login-hero-title" data-lean-title>Endüstriyel Soğutma — Tedarik, Servis, Proje</h1>
-            <p class="login-hero-sub" data-lean-sub>Personel, bayi ve müşteri için tek portal: stok, sipariş, teklif, soğuk oda projesi ve fiyat yönetimi aynı ekranda.</p>
-            <div class="login-value-props">
-              <article class="login-value-prop">
-                <h3 data-lean-vp-title="0">Hamburg &amp; Hamm depodan hızlı tedarik</h3>
-                <p data-lean-vp-copy="0">Kompresör, kondenser, evaporatör, kontrol ve soğuk oda malzemeleri aynı gün sevkiyata hazır.</p>
-              </article>
-              <article class="login-value-prop">
-                <h3 data-lean-vp-title="1">B2B portal ile stok &amp; sipariş</h3>
-                <p data-lean-vp-copy="1">Canlı stok, net/brüt fiyat, sepet ve sipariş takibini kendi hesabınızdan yönetin.</p>
-              </article>
-              <article class="login-value-prop">
-                <h3 data-lean-vp-title="2">Proje destekli teklif</h3>
-                <p data-lean-vp-copy="2">ColdRoomPro destekli soğuk oda hesaplaması ile proje malzeme listesi ve teklif tek adımda.</p>
-              </article>
-            </div>
-          </div>
-          <div class="login-hero-form">
         <div class="login-card">
           <div class="login-card-brandblock">
             <img src="/assets/drc-logo.svg" alt="DRC" class="login-card-logo">
@@ -109,44 +88,78 @@
             </form>
           </section>
         </div>
-          </div>
-        </div>
       </main>
 
-      <section class="login-brandstrip" aria-label="Yetkili distribütör markaları">
-        <span class="login-brandstrip-label" data-lean-brandstrip-label>Yetkili distribütör · Otorisierte Vertretung</span>
+      <!-- Tanıtım şeridi — DRC kurumsal kimlik banner (ölçüsüz temiz versiyon) -->
+      <section class="login-promobanner" aria-label="DRC Kältetechnik tanıtım">
+        <img src="/assets/photos/drc-tanitim-banner-clean.png" alt="DRC Kältetechnik — Kälte- & Klimatechnik Fachhandel" class="login-promobanner-img" loading="lazy">
+      </section>
+
+      <!-- Marka şeridi — Türkiye faturalarındaki gerçek satılan markalar -->
+      <section class="login-brandstrip" aria-label="Sattığımız markalar">
+        <span class="login-brandstrip-label" data-lean-brandstrip-label>Sattığımız Markalar · Vertriebspartner führender Marken</span>
         <div class="login-brandstrip-logos">
-          <img src="/assets/drc-logo.svg" alt="DRC" class="login-brand-logo">
-          <img src="/assets/brands/danfoss-logo.svg" alt="Danfoss" class="login-brand-logo">
-          <img src="/assets/brands/sanhua-logo.svg" alt="Sanhua" class="login-brand-logo">
-          <img src="/assets/brands/embraco.png" alt="Embraco" class="login-brand-logo">
-          <img src="/assets/brands/frigocraft.png" alt="FrigoCraft" class="login-brand-logo">
-          <img src="/assets/brands/bitzer-logo.png" alt="Bitzer" class="login-brand-logo">
-          <img src="/assets/brands/copeland.png" alt="Copeland" class="login-brand-logo">
+          <img src="/assets/drc-logo.svg" alt="DRC" class="login-brand-logo" title="DRC Kältetechnik">
+          <img src="/assets/brands/embraco.svg" alt="Embraco" class="login-brand-logo" title="Embraco">
+          <img src="/assets/brands/tecumseh.svg" alt="Tecumseh" class="login-brand-logo" title="Tecumseh">
+          <img src="/assets/brands/danfoss-logo.svg" alt="Danfoss" class="login-brand-logo" title="Danfoss">
+          <img src="/assets/brands/sanhua-logo.svg" alt="Sanhua" class="login-brand-logo" title="Sanhua">
+          <img src="/assets/brands/frigocraft.svg" alt="Frigocraft" class="login-brand-logo" title="Frigocraft">
+          <img src="/assets/brands/buzyapsan.svg" alt="Buzyapsan / BYS" class="login-brand-logo" title="Buzyapsan / BYS">
+          <img src="/assets/brands/mespan.svg" alt="Mespan" class="login-brand-logo" title="Mespan">
+          <img src="/assets/brands/ets.svg" alt="ETS Mühendislik" class="login-brand-logo" title="ETS Mühendislik">
         </div>
       </section>
 
-      <footer class="login-addresses" aria-label="Adres ve iletişim">
-        <div class="login-address-col">
-          <span class="login-address-kicker" data-lean-footer-label="0">Hauptsitz</span>
-          <strong>Schildkamp 1 · 59063 Hamm · Deutschland</strong>
-        </div>
-        <div class="login-address-col">
-          <span class="login-address-kicker" data-lean-footer-label="1">Lager Hamburg</span>
-          <strong>Lauenburger Landstraße 3b · 21039 Börnsen · Deutschland</strong>
-        </div>
-        <div class="login-address-col">
-          <span class="login-address-kicker" data-lean-footer-label="2">İletişim</span>
-          <a href="tel:+4915221581762">+49 1522 1581762</a>
-          <a href="mailto:info@durmusbaba.com">info@durmusbaba.com</a>
-        </div>
-      </footer>
+      <!-- Konum kartları — Hamm + Börnsen + harita -->
+      <section class="login-locations" aria-label="DRC Kältetechnik konumları">
+        <article class="login-location-card">
+          <header class="login-location-head">
+            <div class="login-location-brand">
+              <img src="/assets/drc-logo.svg" alt="DRC" class="login-location-logo">
+              <div>
+                <span class="login-foot-addr-kicker" data-lean-footer-label="0">Hauptsitz</span>
+                <strong>Schildkamp 1 · 59063 Hamm · Deutschland</strong>
+              </div>
+            </div>
+            <div class="login-location-contacts">
+              <a href="tel:+4915221581762">+49 1522 1581762</a>
+              <a href="mailto:info@durmusbaba.com">info@durmusbaba.com</a>
+            </div>
+          </header>
+          <div class="login-location-photo">
+            <img src="/assets/photos/hamm-depo.jpg" alt="DRC Hauptsitz Hamm — Schildkamp 1" loading="lazy">
+          </div>
+          <a class="login-location-link" href="https://www.google.com/maps/dir/?api=1&destination=Schildkamp+1+59063+Hamm+Deutschland" target="_blank" rel="noopener" data-lean-map-link>Haritada Aç →</a>
+        </article>
 
-      <div class="login-legal-bar">
+        <article class="login-location-card">
+          <header class="login-location-head">
+            <div class="login-location-brand">
+              <img src="/assets/drc-logo.svg" alt="DRC" class="login-location-logo">
+              <div>
+                <span class="login-foot-addr-kicker" data-lean-footer-label="1">Lager Hamburg</span>
+                <strong>Lauenburger Landstraße 3b · 21039 Börnsen · Deutschland</strong>
+              </div>
+            </div>
+            <div class="login-location-contacts">
+              <a href="tel:+4915221581762">+49 1522 1581762</a>
+              <a href="mailto:info@durmusbaba.com">info@durmusbaba.com</a>
+            </div>
+          </header>
+          <div class="login-location-photo">
+            <img src="/assets/photos/bornsen-depo-clean.png" alt="DRC Lager Börnsen — Hamburg deposu" loading="lazy">
+          </div>
+          <a class="login-location-link" href="https://www.google.com/maps/dir/?api=1&destination=Lauenburger+Landstrasse+3b+21039+Boernsen+Deutschland" target="_blank" rel="noopener" data-lean-map-link>Haritada Aç →</a>
+        </article>
+      </section>
+
+      <!-- Legal bar -->
+      <div class="login-foot-legal login-foot-legal--standalone">
         <a href="/impressum" data-lean-legal-impressum>Impressum</a>
         <span aria-hidden="true">·</span>
         <a href="/datenschutz" data-lean-legal-privacy>Datenschutz</a>
-        <span class="login-legal-copy">© 2026 D-R-C Kältetechnik GmbH</span>
+        <span class="login-foot-copy">© 2026 D-R-C Kältetechnik GmbH</span>
       </div>
 
       <!-- authModal: yalnızca e-posta bağlantısıyla gelen "Yeni Şifre Belirle" akışı için -->
