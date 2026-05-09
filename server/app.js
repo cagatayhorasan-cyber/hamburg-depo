@@ -78,6 +78,16 @@ const {
   createRateLimiter,
   pruneRateLimitBuckets,
 } = require("./lib/rate-limit");
+const {
+  configureCompanyProfile,
+  formatMailAddress,
+  getMailEnvelopeAddress,
+  getMailSenderAddress,
+  getMailReplyTo,
+  getGmailTransporter,
+  getMailDeliveryHealth,
+  sendEmail,
+} = require("./lib/email");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -110,11 +120,9 @@ const QUOTES_DIR = process.env.QUOTES_DIR
   : path.join(os.homedir(), "Desktop", "Teklifler");
 const SHOULD_PERSIST_QUOTES = !process.env.VERCEL && process.env.DISABLE_FILE_EXPORT !== "1";
 const APP_BASE_URL = cleanOptional(process.env.APP_BASE_URL) || "";
-const MAIL_FROM = cleanOptional(process.env.MAIL_FROM) || COMPANY_PROFILE.email;
-const RESEND_API_KEY = cleanOptional(process.env.RESEND_API_KEY) || "";
-const GMAIL_FROM = cleanOptional(process.env.GMAIL_FROM) || "";
-const GMAIL_USER = cleanOptional(process.env.GMAIL_USER) || "";
-const GMAIL_APP_PASSWORD = cleanOptional(process.env.GMAIL_APP_PASSWORD) || "";
+// NOT: MAIL_FROM / RESEND_API_KEY / GMAIL_* env'leri server/lib/email.js içinde
+// okunuyor; configureCompanyProfile() ile şirket bilgisi modüle bildiriliyor.
+configureCompanyProfile({ name: COMPANY_PROFILE.name, email: COMPANY_PROFILE.email });
 // NOT: DRC_MAN_DIR, DRC_MAN_BRIDGE, DRC_MAN_PYTHON server/lib/drc-man-bridge.js'e
 // taşındı (yukarıdaki require'da).
 const SUPPLIER_CATALOG_RAW_DIR = path.join(__dirname, "..", "data", "supplier-catalogs", "raw");
@@ -138,8 +146,7 @@ const BOOTSTRAP_ITEM_LIMIT = Math.max(30, Number(process.env.BOOTSTRAP_ITEM_LIMI
 // constants/ altına çıkarıldı. Yukarıdaki require'da import ediliyorlar.
 const AGENT_TRAINING_CACHE_TTL_MS = 2 * 60 * 1000;
 
-let gmailTransporter = null;
-let mailHealthCache = { key: "", expiresAt: 0, result: null };
+// NOT: gmailTransporter + mailHealthCache server/lib/email.js içine taşındı.
 let agentTrainingCache = { activeOnly: null, expiresAt: 0, entries: [] };
 let troubleshootingBankCache = { activeOnly: null, expiresAt: 0, entries: [] };
 
@@ -4324,129 +4331,12 @@ function getOrderStatusTranslations(language = "tr") {
   };
 }
 
-function formatMailAddress(address) {
-  return address ? `${COMPANY_PROFILE.name} <${address}>` : "";
-}
-
-function getMailEnvelopeAddress(provider = "default") {
-  if (provider === "gmail") {
-    return GMAIL_USER || GMAIL_FROM || MAIL_FROM || COMPANY_PROFILE.email;
-  }
-
-  return MAIL_FROM || GMAIL_USER || COMPANY_PROFILE.email;
-}
-
-function getMailSenderAddress(provider = "default") {
-  return formatMailAddress(getMailEnvelopeAddress(provider));
-}
-
-function getMailReplyTo(provider = "default") {
-  const sender = getMailEnvelopeAddress(provider);
-  const replyTo = GMAIL_FROM || MAIL_FROM || COMPANY_PROFILE.email;
-  return replyTo && replyTo !== sender ? replyTo : "";
-}
-
-function getGmailTransporter() {
-  if (!gmailTransporter) {
-    gmailTransporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: GMAIL_USER,
-        pass: GMAIL_APP_PASSWORD,
-      },
-    });
-  }
-
-  return gmailTransporter;
-}
-
-async function getMailDeliveryHealth() {
-  const cacheKey = [GMAIL_USER, GMAIL_APP_PASSWORD, RESEND_API_KEY, MAIL_FROM, GMAIL_FROM].join("|");
-  const now = Date.now();
-
-  if (mailHealthCache.key === cacheKey && mailHealthCache.expiresAt > now && mailHealthCache.result) {
-    return mailHealthCache.result;
-  }
-
-  let result;
-  if (GMAIL_USER && GMAIL_APP_PASSWORD) {
-    try {
-      await getGmailTransporter().verify();
-      result = { available: true, provider: "gmail", reason: "" };
-    } catch (error) {
-      console.error("Gmail baglantisi dogrulanamadi:", error);
-      result = { available: false, provider: "gmail", reason: "provider_error" };
-    }
-  } else if (RESEND_API_KEY && getMailSenderAddress()) {
-    result = { available: true, provider: "resend", reason: "" };
-  } else {
-    result = { available: false, provider: "", reason: "not_configured" };
-  }
-
-  mailHealthCache = {
-    key: cacheKey,
-    expiresAt: now + 5 * 60 * 1000,
-    result,
-  };
-  return result;
-}
-
-async function sendEmail({ to, subject, html, text }) {
-  if (GMAIL_USER && GMAIL_APP_PASSWORD) {
-    try {
-      const gmailMessage = {
-        from: getMailSenderAddress("gmail"),
-        to,
-        subject,
-        html,
-        text,
-      };
-      const gmailReplyTo = getMailReplyTo("gmail");
-      if (gmailReplyTo) {
-        gmailMessage.replyTo = gmailReplyTo;
-      }
-      await getGmailTransporter().sendMail(gmailMessage);
-      return { sent: true, provider: "gmail" };
-    } catch (error) {
-      console.error("Gmail ile mail gonderilemedi:", error);
-      if (!RESEND_API_KEY || !getMailSenderAddress()) {
-        return { sent: false, reason: "provider_error", provider: "gmail" };
-      }
-    }
-  }
-
-  if (!RESEND_API_KEY || !getMailSenderAddress()) {
-    console.log(`Mail gonderimi atlandi (${subject}) -> ${to}`);
-    return { sent: false, reason: "not_configured" };
-  }
-
-  const resendReplyTo = getMailReplyTo();
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-    },
-    body: JSON.stringify({
-      from: getMailSenderAddress(),
-      to: [to],
-      subject,
-      html,
-      text,
-      ...(resendReplyTo ? { reply_to: resendReplyTo } : {}),
-    }),
-  });
-
-  if (!response.ok) {
-    const body = await response.text();
-    console.error("Mail gonderilemedi:", response.status, body);
-    return { sent: false, reason: "provider_error" };
-  }
-
-  return { sent: true };
-}
+// NOT: formatMailAddress / getMailEnvelopeAddress / getMailSenderAddress /
+// getMailReplyTo / getGmailTransporter / getMailDeliveryHealth / sendEmail
+// fonksiyonları server/lib/email.js'e taşındı (yukarıdaki require'da).
+// sendVerificationEmail / sendPasswordResetEmail / sendOrderStatusEmail
+// burada kalmaya devam ediyor — escapeHtml + getOrderStatusTranslations
+// bağımlılıkları olduğu için template'ler app.js'te tutuluyor.
 
 async function sendVerificationEmail(user, verifyUrl) {
   if (!user?.email) {
