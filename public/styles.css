@@ -5467,20 +5467,106 @@ h3 {
     overflow: visible;
   }
 }
-/* Tek-ekran modunda alt bölümleri (banner/brand/locations) gizle */
+/* Tek-ekran modunda banner+brand strip gizli, lokasyonlar compact yan-yana şerit */
 .login-minimal .login-promobanner,
-.login-minimal .login-brandstrip,
-.login-minimal .login-locations {
+.login-minimal .login-brandstrip {
   display: none;
 }
+
+/* Lokasyon kartları — compact yatay şerit (foto yok, harita link prominent) */
+.login-minimal .login-locations {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 4px clamp(16px, 4vw, 32px) 6px;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+.login-minimal .login-location-card {
+  background: #ffffff;
+  border: 1px solid rgba(7, 44, 87, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.login-minimal .login-location-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.login-minimal .login-location-brand {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.login-minimal .login-location-logo {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+.login-minimal .login-location-brand > div {
+  min-width: 0;
+  flex: 1;
+}
+.login-minimal .login-location-brand strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #082b4c;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.login-minimal .login-foot-addr-kicker {
+  display: block;
+  font-size: 10px;
+  color: rgba(0, 102, 90, 0.85);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.login-minimal .login-location-contacts {
+  display: none; /* compact: tel/mail yer kaplıyor; harita linkten ulaşabilir */
+}
+.login-minimal .login-location-photo {
+  display: none; /* compact: foto yok */
+}
+.login-minimal .login-location-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  background: rgba(0, 169, 143, 0.10);
+  color: #00665a;
+  border: 1px solid rgba(0, 169, 143, 0.32);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+.login-minimal .login-location-link:hover {
+  background: rgba(0, 169, 143, 0.22);
+  text-decoration: none;
+}
+
 @media (max-width: 700px) {
-  .login-minimal .login-brandstrip,
   .login-minimal .login-locations {
-    display: flex;
+    grid-template-columns: 1fr;
   }
-  .login-minimal .login-locations {
-    display: grid;
-  }
+  .login-minimal .login-location-contacts { display: flex; gap: 8px; font-size: 10.5px; }
+  .login-minimal .login-brandstrip { display: flex; }
 }
 .login-minimal > * {
   position: relative;
