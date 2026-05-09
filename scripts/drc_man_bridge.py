@@ -1042,20 +1042,56 @@ def _adapt_answer_level(answer: str, language: str, answer_level: str) -> str:
 
 
 def _extract_room_dimensions(question: str) -> tuple[float, float, float] | None:
+    text = str(question or "")
+    # 1) Klasik 3'lü: 3x3x5, 3*3*5, 3×3×5 (boşluklu da olabilir)
     match = re.search(
         r"(\d+(?:[.,]\d+)?)\s*(?:x|\*|×)\s*(\d+(?:[.,]\d+)?)\s*(?:x|\*|×)\s*(\d+(?:[.,]\d+)?)",
-        str(question or ""),
+        text,
         flags=re.IGNORECASE,
     )
-    if match is None:
-        return None
-    return tuple(float(part.replace(",", ".")) for part in match.groups())
+    if match is not None:
+        return tuple(float(part.replace(",", ".")) for part in match.groups())
+
+    # 2) "3x3" + ayrı yükseklik: "3x3 yükseklik 5m", "3x4 h 2.5", "3*3 hoehe 5"
+    # y[uü]+k... ile typo tolerant ("yük", "yükseklik", "yükeklik", "yuksek")
+    match2 = re.search(
+        r"(\d+(?:[.,]\d+)?)\s*(?:x|\*|×)\s*(\d+(?:[.,]\d+)?)"
+        r".{0,40}?"
+        r"(?:y[uü]+k[a-zışç]*|hoehe|hoehe|height|tavan|\bh\b)"
+        r"\s*[:=]?\s*(\d+(?:[.,]\d+)?)",
+        text,
+        flags=re.IGNORECASE,
+    )
+    if match2 is not None:
+        return tuple(float(part.replace(",", ".")) for part in match2.groups())
+
+    # 3) "Taban 3x4, yükseklik 5"  (taban / boyut / olcu / size öncüllü)
+    match3 = re.search(
+        r"(?:taban|boyut|olcu|ölcu|ölçü|size|grunda|grundflaeche)"
+        r".{0,15}?"
+        r"(\d+(?:[.,]\d+)?)\s*(?:x|\*|×)\s*(\d+(?:[.,]\d+)?)"
+        r".{0,40}?"
+        r"(?:y[uü]+k[a-zışç]*|hoehe|hoehe|height|\bh\b)"
+        r"\s*[:=]?\s*(\d+(?:[.,]\d+)?)",
+        text,
+        flags=re.IGNORECASE,
+    )
+    if match3 is not None:
+        return tuple(float(part.replace(",", ".")) for part in match3.groups())
+
+    return None
 
 
 def _is_cold_room_project_question(question: str) -> bool:
     normalized = _normalize_text(question)
-    if _extract_room_dimensions(question) is None:
+    raw_lower = str(question or "").lower()
+    dims = _extract_room_dimensions(question)
+    if dims is None:
         return False
+    # 3 boyut da gerçekçi bir oda (1-50m) ise — ekstra token aramaya gerek yok,
+    # 3-boyutlu ölçü kalıbı zaten oda intent'i taşır.
+    if all(1.0 <= d <= 50.0 for d in dims):
+        return True
     room_tokens = (
         "soguk oda",
         "soğuk oda",
@@ -1076,8 +1112,30 @@ def _is_cold_room_project_question(question: str) -> bool:
         "plus",
         "pozitif",
         "taze",
+        "chiller",
+        "freezer",
+        "tiefkuhl",
+        "tiefkuehl",
+        "blast",
+        "sok",
+        "muhafaza",
+        "balik",
+        "dondurma",
+        "lab",
+        "ilac",
+        "pharma",
+        "sut",
+        "ne kadar",
+        "fiyat",
+        "preis",
+        "wie teuer",
     )
-    return any(_normalize_text(token) in normalized for token in room_tokens)
+    if any(_normalize_text(token) in normalized for token in room_tokens):
+        return True
+    # +oda / + oda / +5C / +10 / -18C gibi sembollü ipuçları
+    if re.search(r"[+\-]\s*\d+\s*[°c]?", raw_lower) or "+oda" in raw_lower or "+ oda" in raw_lower:
+        return True
+    return False
 
 
 def _resolve_room_profile(question: str, language: str) -> dict[str, object]:
