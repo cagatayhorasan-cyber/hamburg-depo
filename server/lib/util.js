@@ -19,6 +19,14 @@ function cleanOptional(value) {
   return value ? String(value).trim() : "";
 }
 
+function numberOrZero(value) {
+  return Number(value || 0);
+}
+
+function isTruthy(value) {
+  return value === true || value === "true" || value === 1 || value === "1" || value === "on";
+}
+
 function isFutureTimestamp(value) {
   const time = Date.parse(String(value || ""));
   return Number.isFinite(time) && time > Date.now();
@@ -77,6 +85,8 @@ function numberizeRow(row) {
 
 module.exports = {
   cleanOptional,
+  numberOrZero,
+  isTruthy,
   isFutureTimestamp,
   normalizeRole,
   isAdminRole,
