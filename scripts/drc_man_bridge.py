@@ -2183,31 +2183,99 @@ def _classify_focus_mode(question: str) -> str:
     return "offtopic"
 
 
-def _build_offtopic_reply(language: str) -> dict[str, object]:
-    """Mod dışı sorulara kısa yönlendirme — random ürün önerme."""
+def _build_welcome_menu(language: str) -> dict[str, object]:
+    """DRC MAN açılış menüsü — şıklı mod seçimi.
+
+    İlk açılışta veya kullanıcı belirsiz bir mesaj attığında bu menü sunulur.
+    Kullanıcı 1/2/3 ya da 'malzeme'/'soğuk oda'/'teklif' gibi cevap verirse
+    ilgili moda geçer.
+    """
     if language == "de":
         answer = (
-            "DRC MAN ist auf drei Themen fokussiert: "
-            "(1) Kühlraum-Berechnung — Maße, Kapazität, Gas, Panel, Tür; "
-            "(2) Angebot/Bestellung — POS-Tab oder Karte; "
-            "(3) Material-Bestand und Preis — Marke, Modell, Code. "
-            "Bitte präzisieren Sie Ihre Frage nach einem dieser Bereiche."
+            "👋 Willkommen bei **DRC MAN**! Wobei kann ich helfen?\n\n"
+            "  **1️⃣  Material** — Bestand, Preis, Suche nach Marke/Modell/Code, Alternative\n"
+            "  **2️⃣  Kühlraum** — Maßberechnung, Panel/Gas/Gerät-Auswahl, Vorab-Angebot\n"
+            "  **3️⃣  Angebot/Bestellung** — POS-Tab Wegweiser\n\n"
+            "💬 **Antworten Sie**: \"1\", \"Material\", \"2\", \"Kühlraum\", \"3\", \"Angebot\" — "
+            "oder direkt mit Ihrer Frage (z.B. \"Embraco NEK2150U Preis?\" oder \"4×4×3 Plus-Raum\")."
         )
     else:
         answer = (
-            "DRC MAN üç konuya odaklanır: "
-            "(1) Soğuk oda hesabı — boyut, kapasite, gaz, panel, kapı; "
-            "(2) Teklif/sipariş — POS sekmesi veya kart; "
-            "(3) Malzeme stok ve fiyat — marka, model, kod. "
-            "Lütfen sorunuzu bu üç alandan birine yönelik somutlaştırın."
+            "👋 **DRC MAN**'a hoş geldiniz! Hangi konuda yardımcı olayım?\n\n"
+            "  **1️⃣  Malzeme** — stok, fiyat, marka/model/kod arama, alternatif\n"
+            "  **2️⃣  Soğuk oda** — boyut hesabı, panel/gaz/cihaz seçimi, ön teklif\n"
+            "  **3️⃣  Teklif/Sipariş** — POS sekmesi yönlendirmesi\n\n"
+            "💬 **Cevabı verin**: \"1\", \"malzeme\", \"2\", \"soğuk oda\", \"3\", \"teklif\" — "
+            "ya da doğrudan sorunuzu yazın (örn. \"Embraco NEK2150U fiyatı?\" veya \"4×4×3 artı oda\")."
         )
     return {
         "ok": True,
-        "mode": "focus_redirect",
+        "mode": "welcome_menu",
         "answer": answer,
-        "sourceSummary": "DRC MAN odak kapısı (offtopic)",
-        "suggestions": [],
+        "sourceSummary": "DRC MAN açılış menüsü (mod seçimi)",
+        "suggestions": [
+            "1 — Malzeme",
+            "2 — Soğuk oda",
+            "3 — Teklif",
+        ],
     }
+
+
+def _resolve_welcome_choice(question: str) -> str | None:
+    """Kullanıcı 1/2/3 ya da 'malzeme'/'soğuk oda'/'teklif' dedi mi?
+
+    None → seçim yok (normal off-topic akış)
+    'inventory'  → malzeme moduna git
+    'cold_room'  → soğuk oda moduna git
+    'quote'      → teklif moduna git
+    """
+    raw = str(question or "").strip().lower()
+    if not raw:
+        return None
+    # Sayı seçimi
+    if raw in {"1", "1.", "1)", "1️⃣"}:
+        return "inventory"
+    if raw in {"2", "2.", "2)", "2️⃣"}:
+        return "cold_room"
+    if raw in {"3", "3.", "3)", "3️⃣"}:
+        return "quote"
+    # Kelime seçimi (kısa, tek kelime)
+    if len(raw) <= 25:
+        normalized = _normalize_text(raw)
+        if normalized in {"malzeme", "material", "stok", "lager", "fiyat", "preis", "urun", "produkt"}:
+            return "inventory"
+        if normalized in {"soguk oda", "soguk", "kuhlraum", "kuehlraum", "kuhler", "chiller", "freezer", "oda", "raum"}:
+            return "cold_room"
+        if normalized in {"teklif", "siparis", "angebot", "bestellung", "quote", "order"}:
+            return "quote"
+    return None
+
+
+def _is_greeting_or_empty(question: str, history: list) -> bool:
+    """Kullanıcının mesajı bir selamlaşma veya çok kısa mı?
+
+    Açılış menüsünü tetiklemek için kullanılır. History boş veya çok kısaysa,
+    selamlama gibi mesajlarda welcome menüsü sunulur.
+    """
+    raw = str(question or "").strip().lower()
+    if not raw:
+        return True
+    # Geçmiş aktivite varsa (ajan zaten bir şey yapıyor) selamlamayı yine
+    # menüye çevirmek mantıksız değil — yeniden yönlendirme tetiklenir.
+    greetings = {
+        "merhaba", "selam", "selamun aleykum", "selamünaleyküm", "hi", "hey", "hello",
+        "hallo", "guten tag", "gruss gott", "moin", "servus", "iyi gunler", "iyi günler",
+        "günaydın", "gunaydin", "good morning", "good afternoon",
+    }
+    normalized = _normalize_text(raw)
+    if normalized in greetings:
+        return True
+    if normalized in {"yardim", "hilfe", "help", "menu", "menü", "ne yapabilirsin", "was kannst du"}:
+        return True
+    # Sadece soru işareti veya 1-2 karakter
+    if len(raw) <= 3 and not raw.replace("?", "").strip().isdigit():
+        return True
+    return False
 
 
 def _build_quote_intent_reply(question: str, language: str) -> dict[str, object]:
@@ -2252,6 +2320,45 @@ def main() -> int:
     policy_reply = _evaluate_security_policy(question, history, role, language)
     if policy_reply:
         return _json_out(policy_reply)
+
+    # === DRC MAN AÇILIŞ MENÜSÜ: ilk mesaj veya selamlama ise mod-seçim sun ===
+    if _is_greeting_or_empty(question, history):
+        return _json_out(_finalize_reply(_build_welcome_menu(language), role, language))
+
+    # === MOD SEÇİMİ: kullanıcı "1/2/3" ya da "malzeme/soğuk oda/teklif" dediyse ===
+    welcome_choice = _resolve_welcome_choice(question)
+    if welcome_choice == "cold_room":
+        # Boyut yok — interview menüsünü tetikle
+        return _json_out(_finalize_reply(_build_cold_room_interview_reply(question, language), role, language))
+    if welcome_choice == "quote":
+        return _json_out(_finalize_reply(_build_quote_intent_reply(question, language), role, language))
+    if welcome_choice == "inventory":
+        # Malzeme moduna girmek istiyor ama henüz spesifik soru yok
+        if language == "de":
+            answer = (
+                "📦 **Material-Modus aktiv**. Bitte schreiben Sie Marke + Modell + ggf. Code:\n"
+                "  • Beispiel: \"Embraco NEK2150U\"\n"
+                "  • Beispiel: \"Sanhua RFKH022 auf Lager?\"\n"
+                "  • Beispiel: \"Danfoss SZ185-4RI Preis\"\n"
+                "  • Beispiel: \"3×1.5 TTR-Kabel\"\n\n"
+                "Ich gebe Bestand, Preis und Alternativen aus."
+            )
+        else:
+            answer = (
+                "📦 **Malzeme modu aktif**. Marka + model + (varsa) kod yazın:\n"
+                "  • Örnek: \"Embraco NEK2150U\"\n"
+                "  • Örnek: \"Sanhua RFKH022 stokta var mı?\"\n"
+                "  • Örnek: \"Danfoss SZ185-4RI fiyatı\"\n"
+                "  • Örnek: \"3×1.5 TTR kablo\"\n\n"
+                "Stok, fiyat ve alternatifleri size çıkarırım."
+            )
+        return _json_out(_finalize_reply({
+            "ok": True,
+            "mode": "inventory_prompt",
+            "answer": answer,
+            "sourceSummary": "DRC MAN malzeme modu istemi",
+            "suggestions": ["Embraco NEK2150U", "Sanhua RFKH022", "Danfoss SZ scroll"],
+        }, role, language))
 
     # === DRC MAN ODAK KAPISI: 3 mod (cold_room / quote / inventory) ===
     # Bu kapı random katalog önerilerini ve alakasız "yakın stoklu adaylar"
@@ -2328,7 +2435,8 @@ def main() -> int:
     # Sadece focus_mode='inventory' (açık stok/fiyat sorusu) ise aç.
     # Aksi halde offtopic redirect döner — random ürün önerme.
     if focus_mode != "inventory":
-        return _json_out(_finalize_reply(_build_offtopic_reply(language), role, language))
+        # Off-topic → welcome menüsünü tekrar göster (kullanıcı seçim yapsın)
+        return _json_out(_finalize_reply(_build_welcome_menu(language), role, language))
 
     drc_man_dir = Path(str(payload.get("drcManDir") or _default_drc_man_dir())).expanduser()
     if not drc_man_dir.exists():
