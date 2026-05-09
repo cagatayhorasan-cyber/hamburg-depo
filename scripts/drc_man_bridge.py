@@ -919,6 +919,12 @@ def _finalize_reply(payload: dict[str, object], role: str, language: str) -> dic
         return payload
 
     answer = str(payload.get("answer") or "").strip()
+
+    # Guardrail post-process: müşteri cevabından internal not pattern'larını
+    # otomatik temizle. Bu pattern'lar items.notes alanında kalmış olabilir
+    # (Plan A/B, konsolidasyon, cost=, markup=, [YYYY-MM-DD ...]).
+    answer = _strip_internal_leaks(answer, role)
+
     if _answer_has_sensitive_leak(answer, role):
         return _assistant_policy_payload(language, role, "secret_disclosure" if role == "admin" else f"{role}_internal" if role in {"customer", "staff"} else "secret_disclosure")
 
@@ -926,6 +932,32 @@ def _finalize_reply(payload: dict[str, object], role: str, language: str) -> dic
     finalized["answer"] = answer
     finalized["suggestions"] = [str(item).strip() for item in (payload.get("suggestions") or []) if str(item).strip()][:5]
     return finalized
+
+
+# Guardrail patterns — admin için kalır, diğer rollere asla sızmaz.
+_INTERNAL_LEAK_PATTERNS = [
+    re.compile(r"\s*\[Plan\s+[AB][^\]]*\]\s*", re.IGNORECASE),
+    re.compile(r"\s*\[20\d\d-\d\d-\d\d[^\]]*\]\s*"),
+    re.compile(r"\s*\(eski\s+kay[ıi]t[^)]*yaz[ıi]m\s+hatas[ıi]yd[ıi]\)\s*", re.IGNORECASE),
+    re.compile(r"\s*\d+\s*Lt\s+end[üu]striyel\s+bidon\s*\|\s*", re.IGNORECASE),
+    re.compile(r"\s*cost\s*=\s*€?\d+(?:[.,]\d+)?\s*", re.IGNORECASE),
+    re.compile(r"\s*markup\s*[×x]\s*\d+(?:[.,]\d+)?\s*", re.IGNORECASE),
+    re.compile(r"\s*#\d+\s+buraya\s+birle[şs]tirildi\s*", re.IGNORECASE),
+    re.compile(r"\s*konsolidasyon\s*[:.]?\s*", re.IGNORECASE),
+]
+
+
+def _strip_internal_leaks(text: str, role: str) -> str:
+    """Müşteri/staff cevaplarından admin-only internal pattern'ları çıkar."""
+    if not text:
+        return text
+    # Admin için sızıntı temizleme (admin zaten görebilir, ama temiz cevap yine de iyi)
+    out = text
+    for pattern in _INTERNAL_LEAK_PATTERNS:
+        out = pattern.sub(" ", out)
+    # Çift boşlukları normalize et
+    out = re.sub(r"\s+", " ", out).strip()
+    return out
 
 
 def _resolve_answer_level(payload: dict[str, object]) -> str:
