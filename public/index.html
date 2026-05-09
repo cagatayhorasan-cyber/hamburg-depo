@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png">
-  <link rel="stylesheet" href="/styles.css?v=20260509-hero-landing">
+  <link rel="stylesheet" href="/styles.css?v=20260509-image-search">
 </head>
 <body>
   <div class="page-shell">
@@ -491,7 +491,21 @@
                     <label>Liste Fiyati<input name="listPrice" type="number" min="0" step="0.01" placeholder="1 adet fiyat"></label>
                     <label>Net/Satis Fiyati<input name="salePrice" type="number" min="0" step="0.01" placeholder="Normal musteri net"></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
-                    <label>Urun Resmi<input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://..."></label>
+                    <label class="form-span-2 image-url-field">
+                      <span class="image-url-label">
+                        Urun Resmi
+                        <button type="button" class="mini-button image-search-trigger" data-image-search-trigger title="İnternette ürün resmi ara — yeni sekmede arama açar, resme sağ-tık ile adresini buraya yapıştırın">🔍 İnternette Ara</button>
+                      </span>
+                      <input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://...">
+                      <div class="image-search-menu" data-image-search-menu hidden>
+                        <button type="button" data-image-search="google">Google Görseller</button>
+                        <button type="button" data-image-search="duckduckgo">DuckDuckGo Images</button>
+                        <button type="button" data-image-search="bing">Bing Images</button>
+                        <button type="button" data-image-search="yandex">Yandex Görsel (kod araması iyi)</button>
+                        <button type="button" data-image-search="manufacturer">Marka resmi sitesi</button>
+                        <p class="image-search-hint">Açılan sayfada uygun resme <strong>sağ-tık → "Resim adresini kopyala"</strong>, sonra yukarıdaki kutuya yapıştır.</p>
+                      </div>
+                    </label>
                     <label class="form-span-2">Not (TR)<textarea name="notes" rows="3" placeholder="Raf veya tedarik notu — TR içerik"></textarea></label>
                     <label class="form-span-2">Not (DE)<textarea name="notesDe" rows="3" placeholder="Deutsche Artikelnotiz (optional) — boş bırakırsan müşteri DE modunda TR notu görür"></textarea></label>
                     <button id="itemSubmitButton" class="primary-button" type="submit" data-help="TR: Yeni malzeme karti olusturur veya duzenlemeyi kaydeder. DE: Legt eine neue Artikelkarte an oder speichert die Bearbeitung.">Malzeme Ekle</button>
@@ -581,7 +595,21 @@
                     <label>Kritik Stok<input name="minStock" type="number" min="0" step="0.01" value="0"></label>
                     <label>Tarih<input name="date" type="date" required></label>
                     <label>Stok Kodu<input name="barcode" type="text" placeholder="DRC-00001 gibi"></label>
-                    <label>Urun Resmi<input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://..."></label>
+                    <label class="form-span-2 image-url-field">
+                      <span class="image-url-label">
+                        Urun Resmi
+                        <button type="button" class="mini-button image-search-trigger" data-image-search-trigger title="İnternette ürün resmi ara — yeni sekmede arama açar, resme sağ-tık ile adresini buraya yapıştırın">🔍 İnternette Ara</button>
+                      </span>
+                      <input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://...">
+                      <div class="image-search-menu" data-image-search-menu hidden>
+                        <button type="button" data-image-search="google">Google Görseller</button>
+                        <button type="button" data-image-search="duckduckgo">DuckDuckGo Images</button>
+                        <button type="button" data-image-search="bing">Bing Images</button>
+                        <button type="button" data-image-search="yandex">Yandex Görsel (kod araması iyi)</button>
+                        <button type="button" data-image-search="manufacturer">Marka resmi sitesi</button>
+                        <p class="image-search-hint">Açılan sayfada uygun resme <strong>sağ-tık → "Resim adresini kopyala"</strong>, sonra yukarıdaki kutuya yapıştır.</p>
+                      </div>
+                    </label>
                     <label>Malzeme Notu<input name="notes" type="text" placeholder="Raf, seri veya tedarik notu"></label>
                     <label>Hareket Notu<input name="movementNote" type="text" placeholder="Ilk alis bilgisi"></label>
                     <button class="primary-button" type="submit" data-help="TR: Yeni urun karti acip ilk stok girisini ayni anda kaydeder. DE: Legt einen neuen Artikel an und bucht gleichzeitig den Erstbestand.">Yeni Urun ve Stok Girisi Kaydet</button>

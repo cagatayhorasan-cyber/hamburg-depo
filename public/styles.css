@@ -5685,6 +5685,78 @@ h3 {
   }
 }
 
+/* Ürün resmi alanı + "İnternette Ara" yardımcısı */
+.image-url-field {
+  position: relative;
+}
+.image-url-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-strong, #1a2a3d);
+  margin-bottom: 6px;
+}
+.image-search-trigger {
+  font-size: 11px;
+  padding: 3px 9px;
+  background: rgba(0, 169, 143, 0.10);
+  color: #00665a;
+  border: 1px solid rgba(0, 169, 143, 0.32);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-weight: 600;
+}
+.image-search-trigger:hover {
+  background: rgba(0, 169, 143, 0.20);
+}
+.image-search-menu {
+  position: absolute;
+  z-index: 30;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 44, 87, 0.10);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(7, 44, 87, 0.16);
+  padding: 8px;
+  min-width: 240px;
+  display: grid;
+  gap: 4px;
+}
+.image-search-menu[hidden] {
+  display: none;
+}
+.image-search-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1a2a3d;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.image-search-menu button:hover {
+  background: rgba(0, 169, 143, 0.08);
+}
+.image-search-hint {
+  margin: 6px 8px 4px;
+  font-size: 11px;
+  color: rgba(26, 42, 61, 0.65);
+  line-height: 1.5;
+}
+.image-search-hint strong {
+  color: #00665a;
+}
+
 .login-minimal-main {
   display: grid;
   place-items: center;

@@ -2611,6 +2611,7 @@ function bindEvents() {
   bindInlineAuthTabs();
   bindItemDetailModal();
   bindProjectsEvents();
+  bindImageSearchTriggers();
   refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
   refs.loginForm.addEventListener("submit", handleLogin);
@@ -3448,6 +3449,108 @@ function bindAuthModal() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
       closeAuthModal();
+    }
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Ürün form'unda "İnternette resim ara" yardımcısı
+// Form'daki name/brand/barcode alanlarını okuyup search engine URL'i kurar.
+// Admin yeni sekmede arar, resme sağ-tık → "Resim adresini kopyala" → input'a
+// yapıştır → form kaydet.
+// ---------------------------------------------------------------------------
+function buildImageSearchQuery(form) {
+  if (!form) return "";
+  const name = (form.querySelector('[name="name"]')?.value || "").trim();
+  const brand = (form.querySelector('[name="brand"]')?.value || "").trim();
+  const barcode = (form.querySelector('[name="barcode"]')?.value || "").trim();
+  // Marka + isim + (varsa) kod ile arama yap. Marka önde olunca daha doğru sonuç.
+  const parts = [brand, name, barcode].filter(Boolean);
+  return parts.join(" ").trim();
+}
+
+function buildManufacturerUrl(form) {
+  if (!form) return "https://www.google.com/search?q=";
+  const brand = (form.querySelector('[name="brand"]')?.value || "").trim().toLowerCase();
+  const name = (form.querySelector('[name="name"]')?.value || "").trim();
+  // Bilinen marka resmi siteler
+  const map = {
+    "danfoss": `https://store.danfoss.com/search?q=${encodeURIComponent(name)}`,
+    "embraco": `https://www.embraco.com/en/products/?q=${encodeURIComponent(name)}`,
+    "sanhua": `https://www.sanhuaeurope.com/?s=${encodeURIComponent(name)}`,
+    "frigocraft": `https://www.frigocraft.com/?s=${encodeURIComponent(name)}`,
+    "tecumseh": `https://www.tecumseh.com/en/Europe/Products/?search=${encodeURIComponent(name)}`,
+    "copeland": `https://www.copeland.com/en-us/search-results?q=${encodeURIComponent(name)}`,
+    "bitzer": `https://www.bitzer.de/de/de/search/?q=${encodeURIComponent(name)}`,
+    "carel": `https://www.carel.com/search?q=${encodeURIComponent(name)}`,
+    "alco": `https://climate.emerson.com/en-us/search-results?q=${encodeURIComponent(name)}`,
+  };
+  for (const [key, url] of Object.entries(map)) {
+    if (brand.includes(key)) return url;
+  }
+  // Bilinmeyen marka: Google'da "marka adı resmi site" araması
+  return `https://www.google.com/search?q=${encodeURIComponent(brand + " official site " + name)}`;
+}
+
+function openImageSearch(engine, form) {
+  const query = buildImageSearchQuery(form);
+  if (!query) {
+    showToast(langText("Önce ürün adı veya marka gir.", "Erst Produktname oder Marke eingeben."), "warn");
+    return;
+  }
+  const q = encodeURIComponent(query);
+  const urls = {
+    google: `https://www.google.com/search?tbm=isch&q=${q}`,
+    duckduckgo: `https://duckduckgo.com/?q=${q}&iar=images&iax=images&ia=images`,
+    bing: `https://www.bing.com/images/search?q=${q}`,
+    yandex: `https://yandex.com/images/search?text=${q}`,
+    manufacturer: buildManufacturerUrl(form),
+  };
+  const url = urls[engine];
+  if (url) {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
+function bindImageSearchTriggers() {
+  if (document._drcImageSearchBound) return;
+  document._drcImageSearchBound = true;
+
+  // Trigger butonu → menu toggle
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-image-search-trigger]");
+    if (trigger) {
+      event.preventDefault();
+      // Bu form'a ait menu'yü bul
+      const field = trigger.closest(".image-url-field");
+      const menu = field?.querySelector("[data-image-search-menu]");
+      if (menu) {
+        // Diğer menüleri kapat
+        document.querySelectorAll("[data-image-search-menu]").forEach((m) => {
+          if (m !== menu) m.setAttribute("hidden", "");
+        });
+        if (menu.hasAttribute("hidden")) menu.removeAttribute("hidden");
+        else menu.setAttribute("hidden", "");
+      }
+      return;
+    }
+
+    // Engine seçimi
+    const engineBtn = event.target.closest("[data-image-search]");
+    if (engineBtn) {
+      event.preventDefault();
+      const engine = engineBtn.getAttribute("data-image-search");
+      const form = engineBtn.closest("form");
+      openImageSearch(engine, form);
+      // Menü kapat
+      const menu = engineBtn.closest("[data-image-search-menu]");
+      if (menu) menu.setAttribute("hidden", "");
+      return;
+    }
+
+    // Dışına tıklayınca menüleri kapat
+    if (!event.target.closest("[data-image-search-menu]")) {
+      document.querySelectorAll("[data-image-search-menu]").forEach((m) => m.setAttribute("hidden", ""));
     }
   });
 }
