@@ -1,5 +1,5 @@
 .env
-.env.local
+.env*
 .git
 .codex_tmp
 backups
@@ -8,13 +8,38 @@ node_modules
 data
 launchd
 scripts/__pycache__
+
 # Birleşik 115 MB ürün FAQ'ı artık üretilmiyor — yalnızca part1/part2 deploy'a girer.
 scripts/drc_man_product_faq.json
+
 # Exam / yerel sonuç dosyaları runtime'da kullanılmıyor.
 scripts/drc_man_*_exam_result.json
 scripts/drc_man_*_exam.json
 scripts/drc_man_yilmaz*_result.json
 scripts/drc_man_exam_result.json
+scripts/_enriched_*.json
+
+# Eski/arşiv scriptler — runtime referansı yok.
+scripts/archive
+
+# admin-tools/ kök altı build kaynağı + local dev kopyaları.
+# Vercel sadece public/admin-tools/ üzerinden static servis eder, kök gereksiz.
+admin-tools/coldroompro-source
+admin-tools/coldroompro
+admin-tools/soguk-oda-cizim
+
+# Desktop / Docker / Nginx — Vercel build'ine dokunmuyor.
+electron
+deploy
+supabase
+Dockerfile
+docker-compose.yml
+
+# Yerel notlar / handoff dosyaları.
+DEVIR_NOTLARI_*.md
+STATE.md
+README.md
+
 *.log
 *.sqlite
 *.sqlite-shm
