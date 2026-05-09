@@ -48,6 +48,7 @@ FAQ_FILES = [
     Path(__file__).with_name("drc_man_all_products_faq.part2.json"),
     Path(__file__).with_name("drc_man_coldroom_expert_faq.json"),
     Path(__file__).with_name("drc_man_coldroom_pricing_faq.json"),
+    Path(__file__).with_name("drc_man_coldroom_design_50k_faq.json"),
 ]
 
 # MALZEME vs USTALIK intent classification

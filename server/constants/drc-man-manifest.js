@@ -34,6 +34,11 @@ const DRC_MAN_FAQ_MANIFEST = [
     slug: "all_products",
     defaultSummary: "DRC MAN tüm aktif ürün katalog teknik bankası",
   },
+  {
+    file: "drc_man_coldroom_design_50k_faq.json",
+    slug: "coldroom_design_50k",
+    defaultSummary: "DRC MAN 50K soguk oda design + ekipman secimi + montaj bilgi bankasi",
+  },
 ];
 
 module.exports = { DRC_MAN_FAQ_MANIFEST };
