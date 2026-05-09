@@ -1988,6 +1988,102 @@ def _match_master_component_entry(question: str, language: str, answer_level: st
     return _match_faq_entry(question, language, answer_level, [component_file])
 
 
+def _classify_focus_mode(question: str) -> str:
+    """DRC MAN 3-mod kapısı: cold_room | quote | inventory | offtopic.
+
+    Müşterinin asıl ihtiyacına göre cevap yolunu sınırlar — random katalog
+    önerilerini engeller. Soru hiçbir moda girmiyorsa 'offtopic' döner ve
+    bot kısa yönlendirme verir, alakasız ürün önermez.
+    """
+    text = str(question or "").lower()
+    normalized = _normalize_text(question)
+
+    # MOD 1: SOĞUK ODA HESABI
+    if _is_cold_room_project_question(question):
+        return "cold_room"
+
+    # MOD 2: TEKLİF / SİPARİŞ
+    quote_tokens = (
+        "teklif", "siparis", "siparis", "satın al", "satin al",
+        "fiyat ver", "fiyat çıkar", "fiyat cikar", "rapor çıkar",
+        "angebot", "bestellung", "kaufen", "kauf", "preis erstellen",
+        "quote", "order", "purchase", "purchase order",
+    )
+    if any(_normalize_text(token) in normalized for token in quote_tokens):
+        return "quote"
+
+    # MOD 3: MALZEME STOK + FİYAT (açık intent şart)
+    inventory_tokens = (
+        "stok", "stoq", "lager", "lagerstand", "lagerbestand", "bestand", "auf lager", "verfuegbar", "verfügbar",
+        "stokta var", "stokta yok", "kac adet", "kaç adet", "kac tane", "kaç tane", "wieviel", "wie viele",
+        "fiyat", "fiyati", "fiyatı", "ne kadar", "kaca", "kaça", "kac euro", "kaç euro", "kac eur",
+        "preis", "kostet", "kosten", "wie teuer", "betrag",
+        "marka", "model", "kod", "stok kodu", "barkod",
+        "alternatif", "muadil", "esdeger", "eşdeğer",
+        "ne var", "neyiniz var", "katalog", "catalog",
+    )
+    if any(_normalize_text(token) in normalized for token in inventory_tokens):
+        return "inventory"
+
+    return "offtopic"
+
+
+def _build_offtopic_reply(language: str) -> dict[str, object]:
+    """Mod dışı sorulara kısa yönlendirme — random ürün önerme."""
+    if language == "de":
+        answer = (
+            "DRC MAN ist auf drei Themen fokussiert: "
+            "(1) Kühlraum-Berechnung — Maße, Kapazität, Gas, Panel, Tür; "
+            "(2) Angebot/Bestellung — POS-Tab oder Karte; "
+            "(3) Material-Bestand und Preis — Marke, Modell, Code. "
+            "Bitte präzisieren Sie Ihre Frage nach einem dieser Bereiche."
+        )
+    else:
+        answer = (
+            "DRC MAN üç konuya odaklanır: "
+            "(1) Soğuk oda hesabı — boyut, kapasite, gaz, panel, kapı; "
+            "(2) Teklif/sipariş — POS sekmesi veya kart; "
+            "(3) Malzeme stok ve fiyat — marka, model, kod. "
+            "Lütfen sorunuzu bu üç alandan birine yönelik somutlaştırın."
+        )
+    return {
+        "ok": True,
+        "mode": "focus_redirect",
+        "answer": answer,
+        "sourceSummary": "DRC MAN odak kapısı (offtopic)",
+        "suggestions": [],
+    }
+
+
+def _build_quote_intent_reply(question: str, language: str) -> dict[str, object]:
+    """Teklif/sipariş niyeti tespit edildi — kullanıcıyı POS akışına yönlendir."""
+    if language == "de":
+        answer = (
+            "Für Angebote/Bestellungen verwenden Sie bitte den **Verkauf**-Tab (Personal/Admin) "
+            "oder den **Bestellen**-Tab (Kunde). Dort werden Artikel mit Marke, Code, Menge "
+            "und Preis ausgewählt und als PDF/Excel exportiert. "
+            "Wenn Sie zuerst die Kapazität für einen Kühlraum benötigen, fragen Sie z.B. "
+            "'4x5 Höhe 3m Plus-Raum' — DRC MAN berechnet Volumen, Last und Geräteband, "
+            "danach kann der Verkaufsverantwortliche das Angebot zusammenstellen."
+        )
+    else:
+        answer = (
+            "Teklif/sipariş için lütfen **Satış** sekmesini (personel/admin) ya da "
+            "**Sipariş Ver** sekmesini (müşteri) kullanın. Orada marka, kod, miktar "
+            "ve fiyat seçilerek PDF/Excel olarak çıktı alınır. "
+            "Soğuk oda kapasitesi gerekiyorsa önce '4x5 yükseklik 3m artı oda' gibi sorun — "
+            "DRC MAN hacim, yük ve cihaz bandını hesaplar, sonra satış sorumlusu teklifi "
+            "buna göre düzenler."
+        )
+    return {
+        "ok": True,
+        "mode": "quote_redirect",
+        "answer": answer,
+        "sourceSummary": "DRC MAN teklif/sipariş yönlendirme",
+        "suggestions": [],
+    }
+
+
 def main() -> int:
     payload = _load_payload()
     question = str(payload.get("question") or "").strip()
@@ -2002,7 +2098,16 @@ def main() -> int:
     if policy_reply:
         return _json_out(policy_reply)
 
-    if _is_cold_room_project_question(question):
+    # === DRC MAN ODAK KAPISI: 3 mod (cold_room / quote / inventory) ===
+    # Bu kapı random katalog önerilerini ve alakasız "yakın stoklu adaylar"
+    # cevaplarını engeller. Mod dışı sorularda kısa yönlendirme döner.
+    focus_mode = _classify_focus_mode(question)
+
+    if focus_mode == "quote":
+        # Teklif/sipariş intent — POS sekmesine yönlendir
+        return _json_out(_finalize_reply(_build_quote_intent_reply(question, language), role, language))
+
+    if focus_mode == "cold_room" or _is_cold_room_project_question(question):
         project_reply = _build_cold_room_project_reply(question, language, answer_level)
         if project_reply:
             return _json_out(_finalize_reply(project_reply, role, language))
@@ -2043,6 +2148,13 @@ def main() -> int:
     faq_match = _match_faq_entry(question, language, answer_level)
     if faq_match:
         return _json_out(_finalize_reply(faq_match, role, language))
+
+    # === MATERIAL CONSULTANT / TRAINING AGENT ===
+    # Bu yol "yakın stoklu adaylar" gibi katalog önerileri üretir.
+    # Sadece focus_mode='inventory' (açık stok/fiyat sorusu) ise aç.
+    # Aksi halde offtopic redirect döner — random ürün önerme.
+    if focus_mode != "inventory":
+        return _json_out(_finalize_reply(_build_offtopic_reply(language), role, language))
 
     drc_man_dir = Path(str(payload.get("drcManDir") or _default_drc_man_dir())).expanduser()
     if not drc_man_dir.exists():
