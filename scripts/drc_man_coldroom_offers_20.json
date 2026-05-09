@@ -1,0 +1,1122 @@
+[
+  {
+    "offer_no": "DRC-OFFER-2026-001",
+    "project": "2×2×2 m Sebze & Meyve",
+    "project_de": "2×2×2 m Obst & Gemüse",
+    "target_temp_c": 2,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 0.9,
+    "compressor_hp": 1,
+    "wall_area_m2": 20,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 20,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 1000
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (0.9 kW, 1 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 855,
+        "total_eur": 855
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 4235,
+    "total_gross_eur": 5040,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.247Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-002",
+    "project": "3×3×2.5 m Süt Ürünleri",
+    "project_de": "3×3×2.5 m Milchprodukte",
+    "target_temp_c": 4,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 2.4,
+    "compressor_hp": 3,
+    "wall_area_m2": 39,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 39,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 1950
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (2.4 kW, 3 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 2280,
+        "total_eur": 2280
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 6610,
+    "total_gross_eur": 7866,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-003",
+    "project": "3×4×3 m Et (taze)",
+    "project_de": "3×4×3 m Fleisch (frisch)",
+    "target_temp_c": 0,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 4.2,
+    "compressor_hp": 5,
+    "wall_area_m2": 54,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 54,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 2700
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (4.2 kW, 5 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 3990,
+        "total_eur": 3990
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 9070,
+    "total_gross_eur": 10793,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-004",
+    "project": "4×4×3 m Sebze & Meyve",
+    "project_de": "4×4×3 m Obst & Gemüse",
+    "target_temp_c": 2,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 5.2,
+    "compressor_hp": 6,
+    "wall_area_m2": 64,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 64,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3200
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (5.2 kW, 6 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 4940,
+        "total_eur": 4940
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 10520,
+    "total_gross_eur": 12519,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-005",
+    "project": "4×4×3 m Bira / İçecek",
+    "project_de": "4×4×3 m Bier / Getränke",
+    "target_temp_c": 4,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 5,
+    "compressor_hp": 6,
+    "wall_area_m2": 64,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 64,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3200
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (5 kW, 6 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 4750,
+        "total_eur": 4750
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 10330,
+    "total_gross_eur": 12293,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-006",
+    "project": "5×4×3 m Sebze & Meyve",
+    "project_de": "5×4×3 m Obst & Gemüse",
+    "target_temp_c": 2,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 6.6,
+    "compressor_hp": 8,
+    "wall_area_m2": 74,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 74,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3700
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (6.6 kW, 8 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 6270,
+        "total_eur": 6270
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 12350,
+    "total_gross_eur": 14697,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-007",
+    "project": "5×4×3 m Et (taze)",
+    "project_de": "5×4×3 m Fleisch (frisch)",
+    "target_temp_c": 0,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 6.9,
+    "compressor_hp": 8,
+    "wall_area_m2": 74,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 74,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3700
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (6.9 kW, 8 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 6555,
+        "total_eur": 6555
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 12635,
+    "total_gross_eur": 15036,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-008",
+    "project": "6×5×3 m Donmuş Et",
+    "project_de": "6×5×3 m Tiefkühl Fleisch",
+    "target_temp_c": -18,
+    "panel_mm": 100,
+    "panel_k": 0.23,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 15,
+    "compressor_hp": 15,
+    "wall_area_m2": 96,
+    "lines": [
+      {
+        "item": "Panel 100 mm PIR",
+        "qty": 96,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 4800
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (15 kW, 15 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 14250,
+        "total_eur": 14250
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 22030,
+    "total_gross_eur": 26216,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-009",
+    "project": "6×5×3 m Donmuş Gıda",
+    "project_de": "6×5×3 m Tiefkühlkost",
+    "target_temp_c": -22,
+    "panel_mm": 100,
+    "panel_k": 0.23,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 16,
+    "compressor_hp": 16,
+    "wall_area_m2": 96,
+    "lines": [
+      {
+        "item": "Panel 100 mm PIR",
+        "qty": 96,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 4800
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (16 kW, 16 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 15200,
+        "total_eur": 15200
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 22980,
+    "total_gross_eur": 27346,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-010",
+    "project": "8×6×4 m Donmuş Gıda",
+    "project_de": "8×6×4 m Tiefkühlkost",
+    "target_temp_c": -22,
+    "panel_mm": 100,
+    "panel_k": 0.23,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 33.6,
+    "compressor_hp": 33,
+    "wall_area_m2": 160,
+    "lines": [
+      {
+        "item": "Panel 100 mm PIR",
+        "qty": 160,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 8000
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (33.6 kW, 33 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 31920,
+        "total_eur": 31920
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 42900,
+    "total_gross_eur": 51051,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-011",
+    "project": "8×6×4 m Donmuş Balık",
+    "project_de": "8×6×4 m Tiefkühl Fisch",
+    "target_temp_c": -20,
+    "panel_mm": 120,
+    "panel_k": 0.19,
+    "refrigerant": "R448A",
+    "refrigerant_id": "r448a",
+    "capacity_kw": 27.5,
+    "compressor_hp": 27,
+    "wall_area_m2": 160,
+    "lines": [
+      {
+        "item": "Panel 120 mm PIR",
+        "qty": 160,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 8000
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (27.5 kW, 27 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 26125,
+        "total_eur": 26125
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 37105,
+    "total_gross_eur": 44155,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-012",
+    "project": "10×8×5 m Donmuş Gıda",
+    "project_de": "10×8×5 m Tiefkühlkost",
+    "target_temp_c": -22,
+    "panel_mm": 120,
+    "panel_k": 0.19,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 58.4,
+    "compressor_hp": 57,
+    "wall_area_m2": 260,
+    "lines": [
+      {
+        "item": "Panel 120 mm PIR",
+        "qty": 260,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 13000
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (58.4 kW, 57 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 55480,
+        "total_eur": 55480
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 71460,
+    "total_gross_eur": 85037,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-013",
+    "project": "10×8×5 m Dondurma",
+    "project_de": "10×8×5 m Eis",
+    "target_temp_c": -25,
+    "panel_mm": 150,
+    "panel_k": 0.15,
+    "refrigerant": "R448A",
+    "refrigerant_id": "r448a",
+    "capacity_kw": 49.8,
+    "compressor_hp": 49,
+    "wall_area_m2": 260,
+    "lines": [
+      {
+        "item": "Panel 150 mm PIR",
+        "qty": 260,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 13000
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (49.8 kW, 49 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 47310,
+        "total_eur": 47310
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 63290,
+    "total_gross_eur": 75315,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-014",
+    "project": "3×4×3 m Çiçek",
+    "project_de": "3×4×3 m Blumen",
+    "target_temp_c": 5,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R134a",
+    "refrigerant_id": "r134a",
+    "capacity_kw": 3.6,
+    "compressor_hp": 4,
+    "wall_area_m2": 54,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 54,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 2700
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (3.6 kW, 4 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 3420,
+        "total_eur": 3420
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 8500,
+    "total_gross_eur": 10115,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-015",
+    "project": "4×4×3 m Süt Ürünleri",
+    "project_de": "4×4×3 m Milchprodukte",
+    "target_temp_c": 4,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R134a",
+    "refrigerant_id": "r134a",
+    "capacity_kw": 5,
+    "compressor_hp": 6,
+    "wall_area_m2": 64,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 64,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3200
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (5 kW, 6 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 4750,
+        "total_eur": 4750
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 10330,
+    "total_gross_eur": 12293,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-016",
+    "project": "3×3×2.5 m Çiçek",
+    "project_de": "3×3×2.5 m Blumen",
+    "target_temp_c": 5,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 2.3,
+    "compressor_hp": 3,
+    "wall_area_m2": 39,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 39,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 1950
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (2.3 kW, 3 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 2185,
+        "total_eur": 2185
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 6515,
+    "total_gross_eur": 7753,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-017",
+    "project": "5×4×3 m Bira / İçecek",
+    "project_de": "5×4×3 m Bier / Getränke",
+    "target_temp_c": 4,
+    "panel_mm": 80,
+    "panel_k": 0.29,
+    "refrigerant": "R290 (propan, doğal)",
+    "refrigerant_id": "r290",
+    "capacity_kw": 6.2,
+    "compressor_hp": 7,
+    "wall_area_m2": 74,
+    "lines": [
+      {
+        "item": "Panel 80 mm PIR",
+        "qty": 74,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3700
+      },
+      {
+        "item": "Soğuk oda kapısı (menteşeli artı)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1100,
+        "total_eur": 1100
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (6.2 kW, 7 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 5890,
+        "total_eur": 5890
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 11970,
+    "total_gross_eur": 14244,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-018",
+    "project": "4×4×3 m Donmuş Gıda",
+    "project_de": "4×4×3 m Tiefkühlkost",
+    "target_temp_c": -22,
+    "panel_mm": 100,
+    "panel_k": 0.23,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 8.5,
+    "compressor_hp": 8,
+    "wall_area_m2": 64,
+    "lines": [
+      {
+        "item": "Panel 100 mm PIR",
+        "qty": 64,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 3200
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (8.5 kW, 8 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 8075,
+        "total_eur": 8075
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 14255,
+    "total_gross_eur": 16963,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-019",
+    "project": "6×5×3 m Dondurma",
+    "project_de": "6×5×3 m Eis",
+    "target_temp_c": -25,
+    "panel_mm": 120,
+    "panel_k": 0.19,
+    "refrigerant": "R448A",
+    "refrigerant_id": "r448a",
+    "capacity_kw": 14.2,
+    "compressor_hp": 14,
+    "wall_area_m2": 96,
+    "lines": [
+      {
+        "item": "Panel 120 mm PIR",
+        "qty": 96,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 4800
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (14.2 kW, 14 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 13490,
+        "total_eur": 13490
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 21270,
+    "total_gross_eur": 25311,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  },
+  {
+    "offer_no": "DRC-OFFER-2026-020",
+    "project": "8×6×4 m Donmuş Et",
+    "project_de": "8×6×4 m Tiefkühl Fleisch",
+    "target_temp_c": -18,
+    "panel_mm": 100,
+    "panel_k": 0.23,
+    "refrigerant": "R449A (R404A retrofit)",
+    "refrigerant_id": "r449a",
+    "capacity_kw": 31.4,
+    "compressor_hp": 31,
+    "wall_area_m2": 160,
+    "lines": [
+      {
+        "item": "Panel 100 mm PIR",
+        "qty": 160,
+        "unit": "m²",
+        "price_eur": 50,
+        "total_eur": 8000
+      },
+      {
+        "item": "Soğuk oda kapısı (rezistanslı negatif/şok)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 1700,
+        "total_eur": 1700
+      },
+      {
+        "item": "Kondenser ünitesi + evaporatör (31.4 kW, 31 HP)",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 29830,
+        "total_eur": 29830
+      },
+      {
+        "item": "Kontrol panosu (Dixell/Eliwell)",
+        "qty": 1,
+        "unit": "adet",
+        "price_eur": 480,
+        "total_eur": 480
+      },
+      {
+        "item": "Boru / bakır / sarf malzeme",
+        "qty": 1,
+        "unit": "set",
+        "price_eur": 800,
+        "total_eur": 800
+      }
+    ],
+    "total_net_eur": 40810,
+    "total_gross_eur": 48564,
+    "vat_rate": 19,
+    "validity_days": 15,
+    "created_at": "2026-05-09T22:01:40.260Z",
+    "note": "Ön teklif. Bağlayıcı teklif için POS / Satış sekmesi."
+  }
+]

@@ -39,6 +39,11 @@ const DRC_MAN_FAQ_MANIFEST = [
     slug: "coldroom_design_50k",
     defaultSummary: "DRC MAN 50K soguk oda design + ekipman secimi + montaj bilgi bankasi",
   },
+  {
+    file: "drc_man_coldroom_qa_20k_faq.json",
+    slug: "coldroom_qa_20k",
+    defaultSummary: "DRC MAN 20K soguk oda canli soru-cevap (ColdRoomPro opsiyonlari)",
+  },
 ];
 
 module.exports = { DRC_MAN_FAQ_MANIFEST };
