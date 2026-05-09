@@ -585,6 +585,9 @@ const state = {
   adminMessages: [],
   securityEvents: [],
   securityBlocks: [],
+  auditFilters: { category: "", severity: "", userId: "", since: "24h", search: "" },
+  auditPagination: { offset: 0, limit: 100, total: 0, hasMore: false },
+  auditLoaded: false,
   agentTraining: [],
   agentTrainingLoaded: false,
   inventoryLoadedAll: false,
@@ -687,6 +690,16 @@ const refs = {
   securityEventsTableBody: document.getElementById("securityEventsTableBody"),
   securityBlocksTableBody: document.getElementById("securityBlocksTableBody"),
   securitySummary: document.getElementById("securitySummary"),
+  auditCategoryFilter: document.getElementById("auditCategoryFilter"),
+  auditSeverityFilter: document.getElementById("auditSeverityFilter"),
+  auditUserFilter: document.getElementById("auditUserFilter"),
+  auditSinceFilter: document.getElementById("auditSinceFilter"),
+  auditSearchFilter: document.getElementById("auditSearchFilter"),
+  auditApplyFilterButton: document.getElementById("auditApplyFilterButton"),
+  auditRefreshButton: document.getElementById("auditRefreshButton"),
+  auditExportCsvButton: document.getElementById("auditExportCsvButton"),
+  auditLoadMoreButton: document.getElementById("auditLoadMoreButton"),
+  auditResultCount: document.getElementById("auditResultCount"),
   assistantTrainingTableBody: document.getElementById("assistantTrainingTableBody"),
   assistantTrainingSummary: document.getElementById("assistantTrainingSummary"),
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
@@ -2693,6 +2706,18 @@ function bindEvents() {
   refs.categoryFilter.addEventListener("change", handleFilterChange);
   refs.bulkTranslateDeButton?.addEventListener("click", handleBulkTranslateDe);
   refs.resetDeButton?.addEventListener("click", handleResetDeTranslations);
+  // Audit log filtre düğmeleri
+  refs.auditApplyFilterButton?.addEventListener("click", () => loadAuditLog({ reset: true }));
+  refs.auditRefreshButton?.addEventListener("click", () => loadAuditLog({ reset: true }));
+  refs.auditExportCsvButton?.addEventListener("click", exportAuditCsv);
+  refs.auditLoadMoreButton?.addEventListener("click", () => loadAuditLog({ append: true }));
+  refs.auditSearchFilter?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") loadAuditLog({ reset: true });
+  });
+  refs.auditSinceFilter?.addEventListener("change", () => loadAuditLog({ reset: true }));
+  refs.auditCategoryFilter?.addEventListener("change", () => loadAuditLog({ reset: true }));
+  refs.auditSeverityFilter?.addEventListener("change", () => loadAuditLog({ reset: true }));
+  refs.auditUserFilter?.addEventListener("change", () => loadAuditLog({ reset: true }));
   refs.assistantToggle.addEventListener("click", toggleAssistantPanel);
   refs.assistantClose.addEventListener("click", closeAssistantPanel);
   refs.assistantLanguage.addEventListener("change", handleAssistantLanguageChange);
@@ -5459,6 +5484,120 @@ function renderSecurity() {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Audit log: filtreli ve paginasyonlu sorgu (admin)
+// ---------------------------------------------------------------------------
+async function loadAuditLog({ reset = false, append = false } = {}) {
+  if (!isAdminUser()) return;
+
+  // Filtreleri UI'dan oku
+  if (reset && refs.auditCategoryFilter) {
+    state.auditFilters = {
+      category: refs.auditCategoryFilter.value || "",
+      severity: refs.auditSeverityFilter?.value || "",
+      userId: refs.auditUserFilter?.value || "",
+      since: refs.auditSinceFilter?.value || "24h",
+      search: (refs.auditSearchFilter?.value || "").trim(),
+    };
+    state.auditPagination.offset = 0;
+  }
+
+  const f = state.auditFilters;
+  const params = new URLSearchParams();
+  if (f.category) params.set("category", f.category);
+  if (f.severity) params.set("severity", f.severity);
+  if (f.userId) params.set("userId", String(f.userId));
+  if (f.since) params.set("since", f.since);
+  if (f.search) params.set("search", f.search);
+  params.set("limit", String(state.auditPagination.limit));
+  params.set("offset", String(state.auditPagination.offset));
+
+  if (refs.auditApplyFilterButton) refs.auditApplyFilterButton.disabled = true;
+  try {
+    const result = await request(`/api/admin/security-events?${params.toString()}`);
+    if (!result?.ok) throw new Error(result?.error || "Audit yüklenemedi");
+
+    if (append) {
+      state.securityEvents = [...(state.securityEvents || []), ...result.events];
+    } else {
+      state.securityEvents = result.events;
+    }
+    state.auditPagination.total = result.total;
+    state.auditPagination.hasMore = result.hasMore;
+    state.auditPagination.offset = (result.offset || 0) + result.events.length;
+    state.auditLoaded = true;
+
+    populateAuditUserDropdown();
+    renderSecurity();
+
+    if (refs.auditResultCount) {
+      const shown = state.securityEvents.length;
+      refs.auditResultCount.textContent = `${shown} / ${result.total} kayıt`;
+    }
+    if (refs.auditLoadMoreButton) {
+      refs.auditLoadMoreButton.style.display = result.hasMore ? "inline-block" : "none";
+    }
+  } catch (err) {
+    console.error("[loadAuditLog]", err);
+    showToast(langText("Audit yüklenemedi", "Audit-Log konnte nicht geladen werden"), "error");
+  } finally {
+    if (refs.auditApplyFilterButton) refs.auditApplyFilterButton.disabled = false;
+  }
+}
+
+function populateAuditUserDropdown() {
+  if (!refs.auditUserFilter) return;
+  const sel = refs.auditUserFilter;
+  const current = sel.value;
+  const users = Array.isArray(state.users) ? state.users : [];
+  // Ek olarak securityEvents içindeki user'lar (silinmiş kullanıcılar dahil)
+  const seen = new Map(users.map((u) => [Number(u.id), u.name]));
+  for (const ev of state.securityEvents || []) {
+    if (ev.userId && !seen.has(Number(ev.userId))) {
+      seen.set(Number(ev.userId), ev.userName || `#${ev.userId}`);
+    }
+  }
+  sel.innerHTML = '<option value="">Tüm kullanıcılar</option>'
+    + Array.from(seen.entries())
+        .sort((a, b) => String(a[1]).localeCompare(String(b[1])))
+        .map(([id, name]) => `<option value="${id}">${escapeHtml(name)}</option>`).join("");
+  if (current) sel.value = current;
+}
+
+function exportAuditCsv() {
+  const events = state.securityEvents || [];
+  if (!events.length) {
+    showToast(langText("Önce kayıtları yükle", "Erst Datensätze laden"), "warn");
+    return;
+  }
+  const rows = [["Tarih", "Seviye", "Olay", "Kullanici", "Rol", "IP", "Detay"]];
+  for (const ev of events) {
+    const detail = typeof ev.details === "object" ? JSON.stringify(ev.details) : String(ev.details || "");
+    rows.push([
+      formatDateTime(ev.createdAt),
+      ev.severity || "",
+      ev.eventType || "",
+      ev.userName || "",
+      ev.userRole || "",
+      ev.ipAddress || "",
+      detail,
+    ]);
+  }
+  const csv = rows.map((r) => r.map((c) => {
+    const s = String(c == null ? "" : c).replace(/"/g, '""');
+    return /[",\n;]/.test(s) ? `"${s}"` : s;
+  }).join(",")).join("\n");
+  const blob = new Blob([new Uint8Array([0xef, 0xbb, 0xbf]), csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `audit-log-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function trainingAudienceLabel(audience) {
   if (audience === "admin") {
     return langText("Sadece Admin", "Nur Admin");
@@ -7003,7 +7142,12 @@ function renderTabData(tab) {
     return;
   }
   if (tab === "security") {
-    renderSecurity();
+    // İlk açılışta filtreli yükle (default: son 24 saat); bootstrap'ten gelen 80 kayıt yetersiz olabilir
+    if (!state.auditLoaded) {
+      loadAuditLog({ reset: true });
+    } else {
+      renderSecurity();
+    }
     return;
   }
   if (tab === "tools") {

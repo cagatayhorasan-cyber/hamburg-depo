@@ -1470,6 +1470,175 @@ function createApp() {
     return res.json({ ok: true });
   });
 
+  // -------------------------------------------------------------------------
+  // Audit log sorgulama (admin) — security_events tablosu üzerine filtreli arama.
+  // Kullanım örneği:
+  //   GET /api/admin/security-events?eventType=item_deleted&since=7d&limit=200
+  //   GET /api/admin/security-events?userId=4&category=mutations
+  //   GET /api/admin/security-events?search=Tuncay&since=24h
+  // -------------------------------------------------------------------------
+  app.get("/api/admin/security-events", requireAdmin, async (req, res) => {
+    try {
+      const limit = Math.min(Math.max(Number(req.query.limit) || 100, 1), 500);
+      const offset = Math.max(Number(req.query.offset) || 0, 0);
+      const userId = req.query.userId ? Number(req.query.userId) : null;
+      const severity = String(req.query.severity || "").toLowerCase();
+      const search = String(req.query.search || "").trim();
+
+      // eventType: tek değer veya virgülle ayrılmış liste
+      const rawTypes = String(req.query.eventType || "").trim();
+      const eventTypes = rawTypes
+        ? rawTypes.split(",").map((s) => s.trim()).filter(Boolean)
+        : [];
+
+      // category: kategoriyi event_type listesine genişlet (kısayol)
+      const categoryShortcuts = {
+        mutations: [
+          "item_created", "item_updated", "item_deleted", "item_archived", "item_restored", "item_intake_created",
+          "movement_entry_created", "movement_exit_created", "movement_reversed",
+          "order_created", "order_status_updated", "order_items_updated", "order_payment_updated",
+          "order_converted_to_quote",
+          "quote_created",
+          "project_created", "project_converted_to_quote", "project_converted_to_order",
+          "sale_completed", "unbilled_sale_completed",
+          "expense_created", "expense_deleted",
+          "cashbook_created", "cashbook_deleted",
+          "bulk_pricing_updated", "bulk_translate_de", "reset_de_translations",
+          "training_created", "training_updated", "training_deleted",
+          "drc_man_bulk_import",
+        ],
+        auth: ["login_success", "login_failed", "logout", "password_reset_completed", "password_reset_requested",
+               "email_verified", "email_verification_resent", "customer_registered"],
+        users: ["user_created", "user_updated", "user_deleted"],
+        security: ["access_denied", "ip_blocked", "ip_unblocked", "rate_limit_hit", "origin_blocked",
+                   "assistant_policy_block", "assistant_rate_limit"],
+        deletes: ["item_deleted", "user_deleted", "expense_deleted", "cashbook_deleted", "training_deleted"],
+      };
+      const category = String(req.query.category || "").toLowerCase();
+      if (category && categoryShortcuts[category]) {
+        eventTypes.push(...categoryShortcuts[category]);
+      }
+
+      // since: ISO date veya "24h"|"7d"|"30d" gibi relatif
+      let since = null;
+      const rawSince = String(req.query.since || "").trim();
+      if (rawSince) {
+        const rel = rawSince.match(/^(\d+)\s*([hdm])$/i);
+        if (rel) {
+          const n = Number(rel[1]);
+          const unit = rel[2].toLowerCase();
+          const ms = unit === "h" ? n * 3600e3 : unit === "d" ? n * 86400e3 : n * 60e3;
+          since = new Date(Date.now() - ms).toISOString();
+        } else {
+          const d = new Date(rawSince);
+          if (!Number.isNaN(d.getTime())) since = d.toISOString();
+        }
+      }
+
+      let until = null;
+      const rawUntil = String(req.query.until || "").trim();
+      if (rawUntil) {
+        const d = new Date(rawUntil);
+        if (!Number.isNaN(d.getTime())) until = d.toISOString();
+      }
+
+      // WHERE clause oluştur
+      const where = [];
+      const params = [];
+      if (userId && Number.isFinite(userId)) {
+        params.push(userId);
+        where.push(`security_events.user_id = $${params.length}`);
+      }
+      if (eventTypes.length) {
+        params.push(eventTypes);
+        where.push(`security_events.event_type = ANY($${params.length})`);
+      }
+      if (severity && ["info", "warn", "error", "critical"].includes(severity)) {
+        params.push(severity);
+        where.push(`security_events.severity = $${params.length}`);
+      }
+      if (since) {
+        params.push(since);
+        where.push(`security_events.created_at >= $${params.length}`);
+      }
+      if (until) {
+        params.push(until);
+        where.push(`security_events.created_at <= $${params.length}`);
+      }
+      if (search) {
+        params.push(`%${search.toLowerCase()}%`);
+        const idx = params.length;
+        where.push(
+          `(LOWER(COALESCE(users.name,'')) LIKE $${idx}
+            OR LOWER(COALESCE(security_events.identifier,'')) LIKE $${idx}
+            OR LOWER(COALESCE(security_events.details,'')) LIKE $${idx}
+            OR LOWER(COALESCE(security_events.ip_address,'')) LIKE $${idx})`
+        );
+      }
+      const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
+
+      // Toplam sayım (pagination için)
+      const totalRow = await get(
+        `SELECT COUNT(*)::int AS n
+         FROM security_events
+         LEFT JOIN users ON users.id = security_events.user_id
+         ${whereSql}`,
+        params
+      );
+      const total = totalRow?.n || 0;
+
+      // Asıl sorgu
+      params.push(limit, offset);
+      const rows = await query(
+        `SELECT
+            security_events.id,
+            security_events.user_id AS "userId",
+            security_events.user_role AS "userRole",
+            security_events.event_type AS "eventType",
+            security_events.severity,
+            security_events.ip_address AS "ipAddress",
+            security_events.identifier,
+            security_events.request_path AS "requestPath",
+            security_events.request_method AS "requestMethod",
+            security_events.details,
+            security_events.created_at AS "createdAt",
+            users.name AS "userName"
+         FROM security_events
+         LEFT JOIN users ON users.id = security_events.user_id
+         ${whereSql}
+         ORDER BY security_events.created_at DESC, security_events.id DESC
+         LIMIT $${params.length - 1} OFFSET $${params.length}`,
+        params
+      );
+
+      const events = rows.map((row) => ({
+        ...numberizeRow(row),
+        userRole: normalizeRole(row.userRole),
+        details: parseSecurityDetails(row.details),
+        userName: row.userName || "-",
+      }));
+
+      // Filtre dropdown'ları için: distinct event_type listesi (cache friendly, hızlı)
+      const distinctTypes = req.query.includeDistinct === "true"
+        ? await query("SELECT DISTINCT event_type FROM security_events ORDER BY event_type")
+        : null;
+
+      return res.json({
+        ok: true,
+        events,
+        total,
+        limit,
+        offset,
+        hasMore: offset + events.length < total,
+        ...(distinctTypes ? { distinctEventTypes: distinctTypes.map((r) => r.event_type) } : {}),
+        appliedFilters: { userId, eventTypes, severity, since, until, search, category: category || null },
+      });
+    } catch (e) {
+      console.error("[admin/security-events]", e);
+      return res.status(500).json({ error: e.message || "Audit sorgusu basarisiz." });
+    }
+  });
+
   app.post("/api/item-intake", requireStaffOrAdmin, handleItemIntake);
 
   app.post("/api/items", requireAdmin, async (req, res) => {
