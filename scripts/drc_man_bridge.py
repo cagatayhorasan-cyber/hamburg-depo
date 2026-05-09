@@ -1317,11 +1317,57 @@ def _build_cold_room_project_reply(question: str, language: str, answer_level: s
         )
         suggestions = ["hedef sicaklik kac olmali", "sebze odasi icin hangi cihaz", "bu oda icin teklif bandi"]
 
+    # === ÖN TEKLİF + ANA MALZEME LİSTESİ (yeni) ===
+    # Hesabı somutlaştır: panel m² × birim, kapı, kompresör, evap, kondenser,
+    # kontrol panosu, boru/sarf. Tüm fiyatlar yaklaşık bant.
+    panel_unit_eur = 75  # PIR/PUR 80mm tipik (60-90 EUR/m²)
+    panel_total_low = round(panel_m2 * 60)
+    panel_total_high = round(panel_m2 * 90)
+    door_low, door_high = (700, 1200) if profile["application_tr"] == "TAZE" else (1100, 2200)
+    # Cihaz fiyat bandı (kW × ~750-1100 EUR/kW genel)
+    cap_low = practical_low_kw if "practical_low_kw" in dir() else base_kw
+    cap_high = practical_high_kw if "practical_high_kw" in dir() else base_kw * 1.5
+    cihaz_low = round(cap_low * 750)
+    cihaz_high = round(cap_high * 1100)
+    kontrol_low, kontrol_high = 280, 650
+    boru_sarf_low, boru_sarf_high = 450, 1100
+
+    total_low = panel_total_low + door_low + cihaz_low + kontrol_low + boru_sarf_low
+    total_high = panel_total_high + door_high + cihaz_high + kontrol_high + boru_sarf_high
+
+    if language == "de":
+        teklif_blok = (
+            "\n\n📋 **VORAB-ANGEBOT (Schätzung, ohne Montage)**\n"
+            f"  • Panel {profile['panel_mm']} mm ({panel_m2:.0f} m²) ............ €{panel_total_low}-{panel_total_high}\n"
+            f"  • Kühlraumtür ................................. €{door_low}-{door_high}\n"
+            f"  • Kondensiergerät + Verdampfer ({cap_low:.1f}-{cap_high:.1f} kW) .... €{cihaz_low}-{cihaz_high}\n"
+            f"  • Steuerung (Dixell/Eliwell) .................. €{kontrol_low}-{kontrol_high}\n"
+            f"  • Rohr / Kupfer / Befestigungsmaterial ........ €{boru_sarf_low}-{boru_sarf_high}\n"
+            f"  ────────────────────────────────────────────\n"
+            f"  **Gesamt netto: €{total_low}-{total_high}** (zzgl. MwSt.)\n\n"
+            "👉 Verbindliches Angebot über **Verkauf-Tab** (Personal/Admin) "
+            "oder Anfrage über **Bestellen-Tab** (Kunde)."
+        )
+    else:
+        teklif_blok = (
+            "\n\n📋 **ÖN TEKLİF (yaklaşık, montaj hariç)**\n"
+            f"  • Panel {profile['panel_mm']} mm ({panel_m2:.0f} m²) ............ €{panel_total_low}-{panel_total_high}\n"
+            f"  • Soğuk oda kapısı ............................ €{door_low}-{door_high}\n"
+            f"  • Kondenser ünitesi + evaporatör ({cap_low:.1f}-{cap_high:.1f} kW) .. €{cihaz_low}-{cihaz_high}\n"
+            f"  • Kontrol panosu (Dixell/Eliwell) ............. €{kontrol_low}-{kontrol_high}\n"
+            f"  • Boru / bakır / sarf malzeme ................. €{boru_sarf_low}-{boru_sarf_high}\n"
+            f"  ────────────────────────────────────────────\n"
+            f"  **Toplam net: €{total_low}-{total_high}** (KDV hariç)\n\n"
+            "👉 Bağlayıcı teklif için **Satış sekmesi** (personel/admin) "
+            "veya **Sipariş Ver sekmesi** (müşteri) kullanılır."
+        )
+    answer = answer + teklif_blok
+
     return {
         "ok": True,
         "mode": "cold_room_project",
         "answer": answer,
-        "sourceSummary": "DRC MAN soguk oda proje modu",
+        "sourceSummary": "DRC MAN soguk oda proje modu (ön teklif dahil)",
         "suggestions": suggestions,
     }
 
@@ -1988,6 +2034,114 @@ def _match_master_component_entry(question: str, language: str, answer_level: st
     return _match_faq_entry(question, language, answer_level, [component_file])
 
 
+def _is_cold_room_intent_only(question: str) -> bool:
+    """Boyut olmasa bile sadece 'soğuk oda istiyorum' tarzı niyet var mı?
+
+    Cold room project hesabı boyut gerektirir; ama kullanıcı boyutsuz
+    "soğuk oda yaptırmak istiyorum" dediğinde interview menüsünü tetikler.
+    """
+    normalized = _normalize_text(question)
+    raw_lower = str(question or "").lower()
+    intent_tokens = (
+        "soguk oda", "soğuk oda", "cold room", "kuehlraum", "kuhlraum", "kühlraum",
+        "soguk depo", "soğuk depo", "donmus oda", "donmuş oda", "tiefkuhl", "tiefkuehl",
+        "blast oda", "sok dondurucu", "şok dondurucu", "schockfroster",
+        "chiller", "freezer", "kuhler", "kühler",
+    )
+    return any(_normalize_text(token) in normalized for token in intent_tokens)
+
+
+def _build_cold_room_interview_reply(question: str, language: str) -> dict[str, object]:
+    """Soğuk oda interview menüsü — şıklı çoklu seçim.
+
+    Bot kullanıcıya 3 ana parametreyi sorar (boyut + uygulama + gaz),
+    cevaplar geldiğinde tam hesap için _build_cold_room_project_reply'a
+    geçilir.
+    """
+    if language == "de":
+        answer = (
+            "Für ein Kühlraum-Projekt brauche ich 3 Eckdaten. Bitte wählen "
+            "Sie aus den Optionen oder schreiben Sie eigene Werte:\n\n"
+            "📐 **GRÖSSE** (Breite × Länge × Höhe):\n"
+            "  a) 2×2×2 m  (8 m³, klein – Bistrot)\n"
+            "  b) 3×3×3 m  (27 m³, mittel – Café/Kleinmarkt)\n"
+            "  c) 4×4×3 m  (48 m³, groß – Restaurant)\n"
+            "  d) 5×4×3 m  (60 m³, Lager)\n"
+            "  e) 6×5×3 m  (90 m³, Großmarkt)\n"
+            "  f) Eigenes Maß: schreiben Sie z.B. \"7×4×3\"\n\n"
+            "🌡️ **ANWENDUNG / TEMPERATUR**:\n"
+            "  a) Plus-Raum +4°C (Gemüse/Obst)\n"
+            "  b) Frischfleisch 0°C / Wurst -2°C\n"
+            "  c) Tiefkühl -22°C (TK-Ware)\n"
+            "  d) Schockfroster -35°C (Blast)\n"
+            "  e) Milchprodukte +4°C (HACCP)\n"
+            "  f) Pharma/Labor +5°C±1\n\n"
+            "❄️ **KÄLTEMITTEL**:\n"
+            "  a) R290 (natürlich, ATEX-konform)\n"
+            "  b) R449A (R404A-Retrofit)\n"
+            "  c) R134a (Hochplus, Einzelgerät)\n"
+            "  d) Weiss ich nicht, bitte vorschlagen\n\n"
+            "💬 **Antworten Sie kurz**: z.B. \"c, a, a\" oder \"4×4×3, +4, R290\". "
+            "Sobald die 3 Werte da sind, rechne ich Volumen, Last, Geräteband, "
+            "Paneldicke, Tür und das Vorab-Angebot."
+        )
+    else:
+        answer = (
+            "Soğuk oda projesi için 3 temel bilgi gerek. Lütfen şıklardan "
+            "seçin ya da kendi değerinizi yazın:\n\n"
+            "📐 **BOYUT** (genişlik × uzunluk × yükseklik):\n"
+            "  a) 2×2×2 m  (8 m³, mini – büfe/kahve)\n"
+            "  b) 3×3×3 m  (27 m³, orta – kafe/küçük market)\n"
+            "  c) 4×4×3 m  (48 m³, büyük – restoran)\n"
+            "  d) 5×4×3 m  (60 m³, depo)\n"
+            "  e) 6×5×3 m  (90 m³, toptancı)\n"
+            "  f) Özel ölçü: \"7×4×3\" gibi yazın\n\n"
+            "🌡️ **UYGULAMA / SICAKLIK**:\n"
+            "  a) Sebze/meyve +4°C (taze muhafaza)\n"
+            "  b) Et 0°C / şarküteri -2°C\n"
+            "  c) Donmuş gıda -22°C (TK)\n"
+            "  d) Şok dondurucu -35°C (blast)\n"
+            "  e) Süt / dairy +4°C (HACCP)\n"
+            "  f) Pharma / lab +5°C±1\n\n"
+            "❄️ **GAZ TERCİHİ**:\n"
+            "  a) R290 (doğal, ATEX uyumlu, COP yüksek)\n"
+            "  b) R449A (R404A retrofit standardı)\n"
+            "  c) R134a (yüksek pozitif tek-ürün)\n"
+            "  d) Bilmiyorum, sen öner\n\n"
+            "💬 **Kısa cevap verin**: \"c, a, a\" ya da \"4×4×3, +4, R290\" "
+            "şeklinde. 3 değer geldikten sonra hacim, ısı yükü, cihaz bandı, "
+            "panel kalınlığı, kapı ve **ön teklif** çıkarırım."
+        )
+    return {
+        "ok": True,
+        "mode": "cold_room_interview",
+        "answer": answer,
+        "sourceSummary": "DRC MAN soğuk oda interview (şıklı menü)",
+        "suggestions": [
+            "4×4×3, +4°C, R290",
+            "3×3×3, -22°C, R449A",
+            "5×4×3, sebze odası, R290",
+        ],
+    }
+
+
+def _resolve_interview_choice(question: str, history: list) -> tuple[float, float, float] | None:
+    """Kullanıcının a/b/c gibi şık cevabını boyuta çevir."""
+    raw = str(question or "").lower().strip()
+    # "a", "b)", "c."  gibi tek-harf cevap
+    choice_match = re.match(r"^([a-f])[\)\.\s,]?", raw)
+    size_map = {
+        "a": (2.0, 2.0, 2.0),
+        "b": (3.0, 3.0, 3.0),
+        "c": (4.0, 4.0, 3.0),
+        "d": (5.0, 4.0, 3.0),
+        "e": (6.0, 5.0, 3.0),
+    }
+    if choice_match:
+        return size_map.get(choice_match.group(1))
+    return None
+
+
 def _classify_focus_mode(question: str) -> str:
     """DRC MAN 3-mod kapısı: cold_room | quote | inventory | offtopic.
 
@@ -1998,8 +2152,8 @@ def _classify_focus_mode(question: str) -> str:
     text = str(question or "").lower()
     normalized = _normalize_text(question)
 
-    # MOD 1: SOĞUK ODA HESABI
-    if _is_cold_room_project_question(question):
+    # MOD 1: SOĞUK ODA HESABI (boyut + bağlam) ya da niyet (boyutsuz)
+    if _is_cold_room_project_question(question) or _is_cold_room_intent_only(question):
         return "cold_room"
 
     # MOD 2: TEKLİF / SİPARİŞ
@@ -2108,9 +2262,28 @@ def main() -> int:
         return _json_out(_finalize_reply(_build_quote_intent_reply(question, language), role, language))
 
     if focus_mode == "cold_room" or _is_cold_room_project_question(question):
+        # 1) Tam boyut var mı?
         project_reply = _build_cold_room_project_reply(question, language, answer_level)
         if project_reply:
             return _json_out(_finalize_reply(project_reply, role, language))
+        # 2) Sadece niyet var (boyut yok) → interview menüsü
+        # 3) Ya da kullanıcı önceki interview'a "a/b/c" gibi tek-harf cevap verdi
+        choice_dims = _resolve_interview_choice(question, history)
+        if choice_dims:
+            # Şık cevabını boyuta çevirip tam hesabı çağır (synthetic question)
+            synth_q = f"{int(choice_dims[0])}x{int(choice_dims[1])}x{int(choice_dims[2])} +oda"
+            project_reply = _build_cold_room_project_reply(synth_q, language, answer_level)
+            if project_reply:
+                # Cevabın başına "Anladığım şık: X×Y×Z m" notu ekle
+                if language == "de":
+                    prefix = f"📐 Verstanden: {int(choice_dims[0])}×{int(choice_dims[1])}×{int(choice_dims[2])} m. "
+                else:
+                    prefix = f"📐 Anladığım: {int(choice_dims[0])}×{int(choice_dims[1])}×{int(choice_dims[2])} m. "
+                project_reply["answer"] = prefix + str(project_reply.get("answer", ""))
+                return _json_out(_finalize_reply(project_reply, role, language))
+        # Boyut yok ve şık seçimi yok → interview menüsü
+        interview = _build_cold_room_interview_reply(question, language)
+        return _json_out(_finalize_reply(interview, role, language))
 
     product_faq = _match_faq_entry(
         question,
