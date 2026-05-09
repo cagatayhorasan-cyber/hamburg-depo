@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T00:42:08.836Z",
+  "generatedAt": "2026-05-09T00:48:38.232Z",
   "items": [
     {
       "id": 6011,
@@ -32563,19 +32563,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 23618,
-      "name": "SENTEZ KAYNAK TELİ",
-      "brand": "",
-      "category": "Kaynak Telleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "",
-      "visiblePrice": 23.68,
-      "codes": [],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 6345,
       "name": "Danfoss 067N5165 TGEN 40-26 R-134A Sabit Orifisli Expansion Valf",
       "brand": "Danfoss",
@@ -32602,6 +32589,19 @@
       "codes": [
         "drc09129"
       ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23618,
+      "name": "SENTEZ KAYNAK TELİ",
+      "brand": "Generic",
+      "category": "Kaynak Telleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "",
+      "visiblePrice": 23.68,
+      "codes": [],
       "supplierCodes": [],
       "supplierCatalogRefs": []
     },
@@ -41905,22 +41905,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 23044,
-      "name": "B-32 COILS AND CONNECTORS PARKER",
-      "brand": "",
-      "category": "Solenoid Vanaları",
-      "unit": "adet",
-      "productCode": "371090",
-      "barcode": "DRC-09863",
-      "visiblePrice": 60,
-      "codes": [
-        "371090",
-        "drc09863"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 5676,
       "name": "Castel 4375/9S Taşlı Kaynaklı Drayer 1-1/8″",
       "brand": "Castel",
@@ -42479,7 +42463,7 @@
     {
       "id": 23043,
       "name": "A-22 COILS AND CONNECTORS PARKER",
-      "brand": "",
+      "brand": "Generic",
       "category": "Solenoid Vanaları",
       "unit": "adet",
       "productCode": "371091",
@@ -88455,38 +88439,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 22585,
-      "name": "W09HRB ELECTRICAL BOARDS ASCON TECNOLOGIC",
-      "brand": "",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "378233",
-      "barcode": "DRC-09404",
-      "visiblePrice": 80,
-      "codes": [
-        "378233",
-        "drc09404"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 22586,
-      "name": "W09YHRRRB ELECTRICAL BOARDS ASCON TECNOLOGIC",
-      "brand": "",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "378234",
-      "barcode": "DRC-09405",
-      "visiblePrice": 80,
-      "codes": [
-        "378234",
-        "drc09405"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 22589,
       "name": "AKO D14112 ELECTRONIC CONTROLLERS AKO D14",
       "brand": "Ako",
@@ -88578,6 +88530,38 @@
       "codes": [
         "378426",
         "drc09413"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 22585,
+      "name": "W09HRB ELECTRICAL BOARDS ASCON TECNOLOGIC",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "378233",
+      "barcode": "DRC-09404",
+      "visiblePrice": 80,
+      "codes": [
+        "378233",
+        "drc09404"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 22586,
+      "name": "W09YHRRRB ELECTRICAL BOARDS ASCON TECNOLOGIC",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "378234",
+      "barcode": "DRC-09405",
+      "visiblePrice": 80,
+      "codes": [
+        "378234",
+        "drc09405"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -89847,7 +89831,7 @@
     {
       "id": 22672,
       "name": "Flat cable ELECTRONIC CONTROLLERS KIOUR",
-      "brand": "",
+      "brand": "Generic",
       "category": "Elektronik Kontrolörler",
       "unit": "adet",
       "productCode": "400339",
@@ -90127,7 +90111,7 @@
     {
       "id": 22699,
       "name": "Y39-GRRR ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
-      "brand": "",
+      "brand": "Generic",
       "category": "Elektronik Kontrolörler",
       "unit": "adet",
       "productCode": "379210",
@@ -90143,7 +90127,7 @@
     {
       "id": 22700,
       "name": "Y39-HRR ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
-      "brand": "",
+      "brand": "Generic",
       "category": "Elektronik Kontrolörler",
       "unit": "adet",
       "productCode": "379363",
@@ -90159,7 +90143,7 @@
     {
       "id": 22701,
       "name": "Y39-HRRR ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
-      "brand": "",
+      "brand": "Generic",
       "category": "Elektronik Kontrolörler",
       "unit": "adet",
       "productCode": "381502",
@@ -90168,38 +90152,6 @@
       "codes": [
         "381502",
         "drc09520"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 22706,
-      "name": "Z31A-HR ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
-      "brand": "",
-      "category": "Elektronik Kontrolörler",
-      "unit": "adet",
-      "productCode": "381579",
-      "barcode": "DRC-09525",
-      "visiblePrice": 120,
-      "codes": [
-        "381579",
-        "drc09525"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 22708,
-      "name": "Z31Y-HS ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
-      "brand": "",
-      "category": "Elektronik Kontrolörler",
-      "unit": "adet",
-      "productCode": "381435",
-      "barcode": "DRC-09527",
-      "visiblePrice": 120,
-      "codes": [
-        "381435",
-        "drc09527"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -90264,6 +90216,38 @@
       "codes": [
         "8085008",
         "drc09531"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 22706,
+      "name": "Z31A-HR ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
+      "brand": "Generic",
+      "category": "Elektronik Kontrolörler",
+      "unit": "adet",
+      "productCode": "381579",
+      "barcode": "DRC-09525",
+      "visiblePrice": 120,
+      "codes": [
+        "381579",
+        "drc09525"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 22708,
+      "name": "Z31Y-HS ELECTRONIC CONTROLLERS ASCON TECNOLOGIC Z-Y",
+      "brand": "Generic",
+      "category": "Elektronik Kontrolörler",
+      "unit": "adet",
+      "productCode": "381435",
+      "barcode": "DRC-09527",
+      "visiblePrice": 120,
+      "codes": [
+        "381435",
+        "drc09527"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -92720,38 +92704,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 22813,
-      "name": "C17B23HTBF00 AXIAL FANS COMPACT",
-      "brand": "",
-      "category": "Fan Motorları",
-      "unit": "adet",
-      "productCode": "602271",
-      "barcode": "DRC-09632",
-      "visiblePrice": 126,
-      "codes": [
-        "602271",
-        "drc09632"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 22814,
-      "name": "Connection CABLES FOR COMPACT AXIAL FANS",
-      "brand": "",
-      "category": "Fan Motorları",
-      "unit": "adet",
-      "productCode": "550898",
-      "barcode": "DRC-09633",
-      "visiblePrice": 126,
-      "codes": [
-        "550898",
-        "drc09633"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 22815,
       "name": "EBM A3G300AK1303 AXIAL FANS EBM",
       "brand": "Ebm-Papst",
@@ -92779,6 +92731,38 @@
       "codes": [
         "776328",
         "drc09635"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 22813,
+      "name": "C17B23HTBF00 AXIAL FANS COMPACT",
+      "brand": "Generic",
+      "category": "Fan Motorları",
+      "unit": "adet",
+      "productCode": "602271",
+      "barcode": "DRC-09632",
+      "visiblePrice": 126,
+      "codes": [
+        "602271",
+        "drc09632"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 22814,
+      "name": "Connection CABLES FOR COMPACT AXIAL FANS",
+      "brand": "Generic",
+      "category": "Fan Motorları",
+      "unit": "adet",
+      "productCode": "550898",
+      "barcode": "DRC-09633",
+      "visiblePrice": 126,
+      "codes": [
+        "550898",
+        "drc09633"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -93536,7 +93520,7 @@
     {
       "id": 22892,
       "name": "CuSt HEATING ELEMENTS WITH METAL MESH",
-      "brand": "",
+      "brand": "Generic",
       "category": "Isıtma Malzemeleri",
       "unit": "adet",
       "productCode": "418755",
@@ -93552,7 +93536,7 @@
     {
       "id": 22894,
       "name": "Dimension HEATING ELEMENTS CARTER",
-      "brand": "",
+      "brand": "Generic",
       "category": "Isıtma Malzemeleri",
       "unit": "adet",
       "productCode": "696601",
@@ -94156,7 +94140,7 @@
     {
       "id": 22971,
       "name": "Hot Gas REFRIGERATION UNITS - MONOBLOCKS MTH",
-      "brand": "",
+      "brand": "Generic",
       "category": "Kondenser Üniteleri",
       "unit": "adet",
       "productCode": "3058161",
@@ -94187,7 +94171,7 @@
     {
       "id": 22989,
       "name": "LF123097 AIR COOLED CONDENSERS LU-VE",
-      "brand": "",
+      "brand": "Generic",
       "category": "Kondenser Üniteleri",
       "unit": "adet",
       "productCode": "3123097",
@@ -94203,7 +94187,7 @@
     {
       "id": 22990,
       "name": "OCTAL ES8 for condenser fan",
-      "brand": "",
+      "brand": "Generic",
       "category": "Kondenser Üniteleri",
       "unit": "adet",
       "productCode": "380137",
@@ -94234,7 +94218,7 @@
     {
       "id": 23007,
       "name": "EVHP523 HUMIDITY PROBES",
-      "brand": "",
+      "brand": "Generic",
       "category": "Elektronik Kontrolörler",
       "unit": "adet",
       "productCode": "378076",
@@ -94250,7 +94234,7 @@
     {
       "id": 23008,
       "name": "EWHS 3040 HUMIDITY PROBES",
-      "brand": "",
+      "brand": "Generic",
       "category": "Elektronik Kontrolörler",
       "unit": "adet",
       "productCode": "378727",
@@ -94274,102 +94258,6 @@
       "visiblePrice": 51.68,
       "codes": [
         "drc06885"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23009,
-      "name": "FASEC 33 NTC probe",
-      "brand": "",
-      "category": "Elektronik Kontrolörler",
-      "unit": "adet",
-      "productCode": "402946",
-      "barcode": "DRC-09828",
-      "visiblePrice": 25,
-      "codes": [
-        "402946",
-        "drc09828"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23012,
-      "name": "NTC 10K PRESSURE TRANSDUCERS",
-      "brand": "",
-      "category": "Transmitter",
-      "unit": "adet",
-      "productCode": "379805",
-      "barcode": "DRC-09831",
-      "visiblePrice": 25,
-      "codes": [
-        "379805",
-        "drc09831"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23013,
-      "name": "NTC 2K PRESSURE TRANSDUCERS",
-      "brand": "",
-      "category": "Transmitter",
-      "unit": "adet",
-      "productCode": "379784",
-      "barcode": "DRC-09832",
-      "visiblePrice": 25,
-      "codes": [
-        "379784",
-        "drc09832"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23015,
-      "name": "PT1000 PRESSURE TRANSDUCERS",
-      "brand": "",
-      "category": "Transmitter",
-      "unit": "adet",
-      "productCode": "378702",
-      "barcode": "DRC-09834",
-      "visiblePrice": 25,
-      "codes": [
-        "378702",
-        "drc09834"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23016,
-      "name": "PTC PRESSURE TRANSDUCERS",
-      "brand": "",
-      "category": "Transmitter",
-      "unit": "adet",
-      "productCode": "378699",
-      "barcode": "DRC-09835",
-      "visiblePrice": 25,
-      "codes": [
-        "378699",
-        "drc09835"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23017,
-      "name": "XH20P HUMIDITY PROBES",
-      "brand": "",
-      "category": "Elektronik Kontrolörler",
-      "unit": "adet",
-      "productCode": "403390",
-      "barcode": "DRC-09836",
-      "visiblePrice": 25,
-      "codes": [
-        "403390",
-        "drc09836"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -94407,17 +94295,81 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 23029,
-      "name": "INFICON LEAK DETECTOR TIFXP-1A",
-      "brand": "",
-      "category": "Servis Ekipmanları ve El Aletleri",
+      "id": 23009,
+      "name": "FASEC 33 NTC probe",
+      "brand": "Generic",
+      "category": "Elektronik Kontrolörler",
       "unit": "adet",
-      "productCode": "802234",
-      "barcode": "DRC-09848",
-      "visiblePrice": 100,
+      "productCode": "402946",
+      "barcode": "DRC-09828",
+      "visiblePrice": 25,
       "codes": [
-        "802234",
-        "drc09848"
+        "402946",
+        "drc09828"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23012,
+      "name": "NTC 10K PRESSURE TRANSDUCERS",
+      "brand": "Generic",
+      "category": "Transmitter",
+      "unit": "adet",
+      "productCode": "379805",
+      "barcode": "DRC-09831",
+      "visiblePrice": 25,
+      "codes": [
+        "379805",
+        "drc09831"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23013,
+      "name": "NTC 2K PRESSURE TRANSDUCERS",
+      "brand": "Generic",
+      "category": "Transmitter",
+      "unit": "adet",
+      "productCode": "379784",
+      "barcode": "DRC-09832",
+      "visiblePrice": 25,
+      "codes": [
+        "379784",
+        "drc09832"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23015,
+      "name": "PT1000 PRESSURE TRANSDUCERS",
+      "brand": "Generic",
+      "category": "Transmitter",
+      "unit": "adet",
+      "productCode": "378702",
+      "barcode": "DRC-09834",
+      "visiblePrice": 25,
+      "codes": [
+        "378702",
+        "drc09834"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23016,
+      "name": "PTC PRESSURE TRANSDUCERS",
+      "brand": "Generic",
+      "category": "Transmitter",
+      "unit": "adet",
+      "productCode": "378699",
+      "barcode": "DRC-09835",
+      "visiblePrice": 25,
+      "codes": [
+        "378699",
+        "drc09835"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -94482,6 +94434,22 @@
       "codes": [
         "lf3093005",
         "drc09845"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23029,
+      "name": "INFICON LEAK DETECTOR TIFXP-1A",
+      "brand": "Generic",
+      "category": "Servis Ekipmanları ve El Aletleri",
+      "unit": "adet",
+      "productCode": "802234",
+      "barcode": "DRC-09848",
+      "visiblePrice": 100,
+      "codes": [
+        "802234",
+        "drc09848"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -94569,7 +94537,7 @@
     {
       "id": 23051,
       "name": "RT14 COILS AND CONNECTORS PARKER",
-      "brand": "",
+      "brand": "Generic",
       "category": "Solenoid Vanaları",
       "unit": "adet",
       "productCode": "371339",
@@ -94585,7 +94553,7 @@
     {
       "id": 23058,
       "name": "WB4.5 COILS AND CONNECTORS PARKER",
-      "brand": "",
+      "brand": "Generic",
       "category": "Solenoid Vanaları",
       "unit": "adet",
       "productCode": "371316",
@@ -94601,7 +94569,7 @@
     {
       "id": 23059,
       "name": "WB8.0 COILS AND CONNECTORS PARKER",
-      "brand": "",
+      "brand": "Generic",
       "category": "Solenoid Vanaları",
       "unit": "adet",
       "productCode": "LF1199215",
@@ -94617,7 +94585,7 @@
     {
       "id": 23062,
       "name": "ATM DIGITAL THERMOMETER DST-30",
-      "brand": "",
+      "brand": "Generic",
       "category": "Termostat ve Termometreler",
       "unit": "adet",
       "productCode": "541634",
@@ -94633,7 +94601,7 @@
     {
       "id": 23063,
       "name": "ELIWELL DIGITAL THERMOMETER TESTO 106 WHITE",
-      "brand": "",
+      "brand": "Generic",
       "category": "Termostat ve Termometreler",
       "unit": "adet",
       "productCode": "381490",
@@ -94642,38 +94610,6 @@
       "codes": [
         "381490",
         "drc09882"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23065,
-      "name": "EUREMA TE01 DIGITAL THERMOMETERS",
-      "brand": "",
-      "category": "Termostat ve Termometreler",
-      "unit": "adet",
-      "productCode": "379778",
-      "barcode": "DRC-09884",
-      "visiblePrice": 50,
-      "codes": [
-        "379778",
-        "drc09884"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23066,
-      "name": "EUREMA TE01DEF DIGITAL THERMOMETERS",
-      "brand": "",
-      "category": "Termostat ve Termometreler",
-      "unit": "adet",
-      "productCode": "378472",
-      "barcode": "DRC-09885",
-      "visiblePrice": 50,
-      "codes": [
-        "378472",
-        "drc09885"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -94775,6 +94711,38 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 23065,
+      "name": "EUREMA TE01 DIGITAL THERMOMETERS",
+      "brand": "Generic",
+      "category": "Termostat ve Termometreler",
+      "unit": "adet",
+      "productCode": "379778",
+      "barcode": "DRC-09884",
+      "visiblePrice": 50,
+      "codes": [
+        "379778",
+        "drc09884"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23066,
+      "name": "EUREMA TE01DEF DIGITAL THERMOMETERS",
+      "brand": "Generic",
+      "category": "Termostat ve Termometreler",
+      "unit": "adet",
+      "productCode": "378472",
+      "barcode": "DRC-09885",
+      "visiblePrice": 50,
+      "codes": [
+        "378472",
+        "drc09885"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 23081,
       "name": "HONEYWELL AMV THERMOSTATIC VALVES HONEYWELL AMV",
       "brand": "Honeywell",
@@ -94839,22 +94807,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 23085,
-      "name": "LOKPREP 65G SERVICE VALVE WITH TUBE ø 1/4\"",
-      "brand": "",
-      "category": "Genleşme Vanaları",
-      "unit": "adet",
-      "productCode": "890053",
-      "barcode": "DRC-09904",
-      "visiblePrice": 80,
-      "codes": [
-        "890053",
-        "drc09904"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 23089,
       "name": "SANHUA H00 THERMOSTATIC VALVES SANHUA",
       "brand": "Sanhua",
@@ -94898,6 +94850,22 @@
       "codes": [
         "lf3150166",
         "drc09910"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23085,
+      "name": "LOKPREP 65G SERVICE VALVE WITH TUBE ø 1/4\"",
+      "brand": "Generic",
+      "category": "Genleşme Vanaları",
+      "unit": "adet",
+      "productCode": "890053",
+      "barcode": "DRC-09904",
+      "visiblePrice": 80,
+      "codes": [
+        "890053",
+        "drc09904"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -95219,19 +95187,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 23625,
-      "name": "GND 2.500-1 EVAPORATÖR 1X450D",
-      "brand": "",
-      "category": "Evaporatörler",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "",
-      "visiblePrice": 534.29,
-      "codes": [],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 23611,
       "name": "WEIGUANG FAN MOTORU YWF4E 250S-92/25G 1380 RPM SC",
       "brand": "Weiguang",
@@ -95292,6 +95247,19 @@
       "productCode": "",
       "barcode": "",
       "visiblePrice": 3479.76,
+      "codes": [],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23625,
+      "name": "GND 2.500-1 EVAPORATÖR 1X450D",
+      "brand": "Generic",
+      "category": "Evaporatörler",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "",
+      "visiblePrice": 534.29,
       "codes": [],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -95625,19 +95593,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 23659,
-      "name": "KÜÇÜK ŞASE",
-      "brand": "",
-      "category": "Soğutma Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "",
-      "visiblePrice": 9.76,
-      "codes": [],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 23660,
       "name": "SO 260 15056 V2 Fransız Soğutucu (8.889W, 1×500)",
       "brand": "Buzyapsan",
@@ -95716,6 +95671,19 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 23659,
+      "name": "KÜÇÜK ŞASE",
+      "brand": "Generic",
+      "category": "Soğutma Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "",
+      "visiblePrice": 9.76,
+      "codes": [],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 23678,
       "name": "2 hp Soğutma Grubu Takım",
       "brand": "Buzyapsan",
@@ -95724,19 +95692,6 @@
       "productCode": "",
       "barcode": "",
       "visiblePrice": 2226.5,
-      "codes": [],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23679,
-      "name": "MENTEŞELİ SOĞUK HAVA DEPO KAPISI (100MM POLY POLY)",
-      "brand": "",
-      "category": "Soğuk Oda Kapıları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "",
-      "visiblePrice": 550,
       "codes": [],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -95758,9 +95713,35 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 23704,
+      "name": "TEK KAPI ENDÜSTİRYEL BUZDOLABI (+2 +8)",
+      "brand": "Teknik Buz",
+      "category": "Buzdolapları ve Vitrinler",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "",
+      "visiblePrice": 1800,
+      "codes": [],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23679,
+      "name": "MENTEŞELİ SOĞUK HAVA DEPO KAPISI (100MM POLY POLY)",
+      "brand": "Generic",
+      "category": "Soğuk Oda Kapıları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "",
+      "visiblePrice": 550,
+      "codes": [],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 23688,
       "name": "SOĞUTUCU ELEKTRİK PANOSU",
-      "brand": "",
+      "brand": "Generic",
       "category": "Evaporatörler",
       "unit": "adet",
       "productCode": "",
@@ -95773,7 +95754,7 @@
     {
       "id": 23690,
       "name": "6HP İÇ SOĞUTMA ÜNİTESİ",
-      "brand": "",
+      "brand": "Generic",
       "category": "Soğutma Malzemeleri",
       "unit": "adet",
       "productCode": "",
@@ -95786,7 +95767,7 @@
     {
       "id": 23691,
       "name": "2HP SOĞUTMA ÜNİTESİ İÇ",
-      "brand": "",
+      "brand": "Generic",
       "category": "Soğutma Malzemeleri",
       "unit": "adet",
       "productCode": "",
@@ -95799,7 +95780,7 @@
     {
       "id": 23692,
       "name": "2HP SOĞUTMA ÜNİTESİ DIŞ",
-      "brand": "",
+      "brand": "Generic",
       "category": "Soğutma Malzemeleri",
       "unit": "adet",
       "productCode": "",
@@ -95812,7 +95793,7 @@
     {
       "id": 23696,
       "name": "İZOLASYONLU BAKIR BORU (1/4 3/8)",
-      "brand": "",
+      "brand": "Generic",
       "category": "İzolasyonlu Borular",
       "unit": "adet",
       "productCode": "",
@@ -95825,25 +95806,12 @@
     {
       "id": 23702,
       "name": "SOĞUK HAVA DEPO KAPISI",
-      "brand": "",
+      "brand": "Generic",
       "category": "Soğuk Oda Kapıları",
       "unit": "adet",
       "productCode": "",
       "barcode": "",
       "visiblePrice": 440,
-      "codes": [],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 23704,
-      "name": "TEK KAPI ENDÜSTİRYEL BUZDOLABI (+2 +8)",
-      "brand": "Teknik Buz",
-      "category": "Buzdolapları ve Vitrinler",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "",
-      "visiblePrice": 1800,
       "codes": [],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -101577,6 +101545,38 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 23044,
+      "name": "B-32 COILS AND CONNECTORS PARKER",
+      "brand": "Generic",
+      "category": "Solenoid Vanaları",
+      "unit": "adet",
+      "productCode": "371090",
+      "barcode": "DRC-09863",
+      "visiblePrice": 60,
+      "codes": [
+        "371090",
+        "drc09863"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 23017,
+      "name": "XH20P HUMIDITY PROBES",
+      "brand": "Generic",
+      "category": "Elektronik Kontrolörler",
+      "unit": "adet",
+      "productCode": "403390",
+      "barcode": "DRC-09836",
+      "visiblePrice": 25,
+      "codes": [
+        "403390",
+        "drc09836"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 7646,
       "name": "Thermotrick Bakır Manson 54 MM 2-1/8″",
       "brand": "Thermotrick",
@@ -101999,7 +101999,7 @@
     {
       "id": 1,
       "name": "Hidrolik Yag",
-      "brand": "",
+      "brand": "Generic",
       "category": "Servis Ekipmanları ve El Aletleri",
       "unit": "litre",
       "productCode": "",

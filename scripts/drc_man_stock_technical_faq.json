@@ -87,42 +87,6 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "copeland (emerson)",
-      "23888"
-    ],
-    "tr_question": "Copeland Scroll Kompresör ZH30K4E-TFD-524 stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23888 Copeland Scroll Kompresör ZH30K4E-TFD-524 | Marka: Copeland (Emerson) | Kategori: Kompresör > Scroll | Birim: adet. Hamburg depoda 22 adet stok mevcut. Cost: €400.00, Net (sale): €400.00, Brüt (liste): €400.00. Teknik özet: 4 HP · 9 kW · 3F · R134 · 407°C. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele Copeland Scroll Kompresör ZH30K4E-TFD-524 sind am Lager und was kostet das?",
-    "de_answer": "DB#23888 Copeland Scrollverdichter ZH30K4E-TFD-524 | Marke: Copeland (Emerson) | Kategorie: Kompresör > Scroll | Einheit: adet. In Hamburg lagernd: 22 adet. EK: €400.00, Netto (VK): €400.00, Brutto (Liste): €400.00. Technische Kurzdaten: 4 HP · 9 kW · 3F · R134 · 407°C. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme_teknik",
-      "copeland (emerson)",
-      "23888"
-    ],
-    "tr_question": "Copeland (Emerson) Copeland Scroll Kompresör ZH30K4E-TFD-524 teknik özellikleri nedir?",
-    "tr_answer": "DB#23888 Copeland Scroll Kompresör ZH30K4E-TFD-524 kart kayıtlarına göre: 4 HP · 9 kW · 3F · R134 · 407°C. Detay: Copeland Scroll Kompresör ZH30K4E-TFD-524.. Bu kalem 'Kompresör > Scroll' kategorisinde adet bazlı satılır. Stok: 22 adet. Net fiyat €400.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von Copeland (Emerson) Copeland Scroll Kompresör ZH30K4E-TFD-524?",
-    "de_answer": "DB#23888 Copeland Scrollverdichter ZH30K4E-TFD-524 laut Stammdaten: 4 HP · 9 kW · 3F · R134 · 407°C. Detail: Copeland Scroll Kompresör ZH30K4E-TFD-524.. Position liegt in der Kategorie 'Kompresör > Scroll', Einheit adet. Lagerstand: 22 adet. Nettopreis €400.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "copeland (emerson)",
-      "23888"
-    ],
-    "tr_question": "CMP-COPELAND-ZH30K4E kodlu ürün hangisi?",
-    "tr_answer": "CMP-COPELAND-ZH30K4E, DB#23888 'Copeland Scroll Kompresör ZH30K4E-TFD-524' kaydının kodudur. Marka: Copeland (Emerson), Kategori: Kompresör > Scroll. Hamburg depoda 22 adet stoklu, net fiyat €400.00. Teknik özet: 4 HP · 9 kW · 3F · R134 · 407°C.",
-    "de_question": "Welches Produkt ist CMP-COPELAND-ZH30K4E?",
-    "de_answer": "CMP-COPELAND-ZH30K4E ist der Code fuer DB#23888 'Copeland Scrollverdichter ZH30K4E-TFD-524'. Marke: Copeland (Emerson), Kategorie: Kompresör > Scroll. In Hamburg lagernd: 22 adet, VK netto €400.00. Kurzdaten: 4 HP · 9 kW · 3F · R134 · 407°C."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
       "drc",
       "23135"
     ],
@@ -154,6 +118,42 @@
     "tr_answer": "KAPI-80X180-REZ, DB#23135 'DRC Rezistanslı Çarpma Soğuk Oda Kapısı 180×80 cm (Isıtıcılı + Eşikli)' kaydının kodudur. Marka: DRC, Kategori: Soğuk Oda Kapıları. Hamburg depoda 22 adet stoklu, net fiyat €400.00. Teknik özet: 180x80 · 80°C.",
     "de_question": "Welches Produkt ist KAPI-80X180-REZ?",
     "de_answer": "KAPI-80X180-REZ ist der Code fuer DB#23135 'DRC Beheizte Pendeltuer Kuehlraumtuer 180×80 cm (mit Heizung + Schwelle)'. Marke: DRC, Kategorie: Soğuk Oda Kapıları. In Hamburg lagernd: 22 adet, VK netto €400.00. Kurzdaten: 180x80 · 80°C."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "copeland (emerson)",
+      "23888"
+    ],
+    "tr_question": "Copeland Scroll Kompresör ZH30K4E-TFD-524 stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23888 Copeland Scroll Kompresör ZH30K4E-TFD-524 | Marka: Copeland (Emerson) | Kategori: Kompresör > Scroll | Birim: adet. Hamburg depoda 22 adet stok mevcut. Cost: €400.00, Net (sale): €400.00, Brüt (liste): €400.00. Teknik özet: 4 HP · 9 kW · 400V · 3F · R134 · 407°C. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele Copeland Scroll Kompresör ZH30K4E-TFD-524 sind am Lager und was kostet das?",
+    "de_answer": "DB#23888 Copeland Scrollverdichter ZH30K4E-TFD-524 | Marke: Copeland (Emerson) | Kategorie: Kompresör > Scroll | Einheit: adet. In Hamburg lagernd: 22 adet. EK: €400.00, Netto (VK): €400.00, Brutto (Liste): €400.00. Technische Kurzdaten: 4 HP · 9 kW · 400V · 3F · R134 · 407°C. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme_teknik",
+      "copeland (emerson)",
+      "23888"
+    ],
+    "tr_question": "Copeland (Emerson) Copeland Scroll Kompresör ZH30K4E-TFD-524 teknik özellikleri nedir?",
+    "tr_answer": "DB#23888 Copeland Scroll Kompresör ZH30K4E-TFD-524 kart kayıtlarına göre: 4 HP · 9 kW · 400V · 3F · R134 · 407°C. Detay: Copeland Scroll Kompresör ZH30K4E-TFD-524.. Bu kalem 'Kompresör > Scroll' kategorisinde adet bazlı satılır. Stok: 22 adet. Net fiyat €400.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von Copeland (Emerson) Copeland Scroll Kompresör ZH30K4E-TFD-524?",
+    "de_answer": "DB#23888 Copeland Scrollverdichter ZH30K4E-TFD-524 laut Stammdaten: 4 HP · 9 kW · 400V · 3F · R134 · 407°C. Detail: Copeland Scroll Kompresör ZH30K4E-TFD-524.. Position liegt in der Kategorie 'Kompresör > Scroll', Einheit adet. Lagerstand: 22 adet. Nettopreis €400.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "code_lookup",
+      "copeland (emerson)",
+      "23888"
+    ],
+    "tr_question": "CMP-COPELAND-ZH30K4E kodlu ürün hangisi?",
+    "tr_answer": "CMP-COPELAND-ZH30K4E, DB#23888 'Copeland Scroll Kompresör ZH30K4E-TFD-524' kaydının kodudur. Marka: Copeland (Emerson), Kategori: Kompresör > Scroll. Hamburg depoda 22 adet stoklu, net fiyat €400.00. Teknik özet: 4 HP · 9 kW · 400V · 3F · R134 · 407°C.",
+    "de_question": "Welches Produkt ist CMP-COPELAND-ZH30K4E?",
+    "de_answer": "CMP-COPELAND-ZH30K4E ist der Code fuer DB#23888 'Copeland Scrollverdichter ZH30K4E-TFD-524'. Marke: Copeland (Emerson), Kategorie: Kompresör > Scroll. In Hamburg lagernd: 22 adet, VK netto €400.00. Kurzdaten: 4 HP · 9 kW · 400V · 3F · R134 · 407°C."
   },
   {
     "tags": [
@@ -331,9 +331,9 @@
       "19"
     ],
     "tr_question": "ETS ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Gru teknik özellikleri nedir?",
-    "tr_answer": "DB#19 ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Grubu Dış Ünite kart kayıtlarına göre: 16 HP. Detay: ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Grubu Dış Ünite kompresör.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €7593.72. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#19 ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Grubu Dış Ünite kart kayıtlarına göre: 16 HP. Detay: ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Grubu Dış Ünite kompresör.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 16 HP\n  • Marka: ETS\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol komple soğutma sistemi. Anahtar teslim kurulum için.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €7593.72. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von ETS ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Gru?",
-    "de_answer": "DB#19 ThermETS SHSC-LP10160-DT04SE 16 HP Halbhermetisches Kaelteaggregat Aussengeraet laut Stammdaten: 16 HP. Detail: ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Grubu Dış Ünite kompresör.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €7593.72. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#19 ThermETS SHSC-LP10160-DT04SE 16 HP Halbhermetisches Kaelteaggregat Aussengeraet laut Stammdaten: 16 HP. Detail: ThermETS SHSC-LP10160-DT04SE 16 HP Semi Hermetik Soğutma Grubu Dış Ünite kompresör.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 16 HP\n  • Marka: ETS\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol komple soğutma sistemi. Anahtar teslim kurulum için.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €7593.72. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -427,9 +427,9 @@
       "18"
     ],
     "tr_question": "ETS ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğut teknik özellikleri nedir?",
-    "tr_answer": "DB#18 ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğutma Grubu kart kayıtlarına göre: 10 HP. Detay: ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğutma Grubu kompresör.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €6610.44. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#18 ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğutma Grubu kart kayıtlarına göre: 10 HP. Detay: ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğutma Grubu kompresör.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 10 HP\n  • Marka: ETS\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol komple soğutma sistemi. Anahtar teslim kurulum için.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €6610.44. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von ETS ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğut?",
-    "de_answer": "DB#18 ThermETS SHSC-MP10100-DT04SE 10 HP Halbhermetisches Split-Kaelteaggregat laut Stammdaten: 10 HP. Detail: ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğutma Grubu kompresör.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €6610.44. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#18 ThermETS SHSC-MP10100-DT04SE 10 HP Halbhermetisches Split-Kaelteaggregat laut Stammdaten: 10 HP. Detail: ThermETS SHSC-MP10100-DT04SE 10 HP Yarı Hermetik Split Soğutma Grubu kompresör.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 10 HP\n  • Marka: ETS\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol komple soğutma sistemi. Anahtar teslim kurulum için.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €6610.44. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -463,9 +463,9 @@
       "23901"
     ],
     "tr_question": "Kontak 375 CM DAISY VG Dik Camlı Reyon teknik özellikleri nedir?",
-    "tr_answer": "DB#23901 375 CM DAISY VG Dik Camlı Reyon kart kayıtlarına göre: 375°C. Detay: [Plan B 2026-05-08] DR02025000000032 line 2 — kesin fatura fiyatı. Markup ×3.0.. Bu kalem 'Buzdolapları ve Vitrinler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €15767.73. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23901 375 CM DAISY VG Dik Camlı Reyon kart kayıtlarına göre: 375°C. Detay: [Plan B 2026-05-08] DR02025000000032 line 2 — kesin fatura fiyatı. Markup ×3.0.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Kontak\n  • Kategori: Buzdolapları ve Vitrinler\n  • Birim: pcs\n\nℹ Endüstriyel soğutmalı dolap/reyon. Cephe veya dik camlı.. Bu kalem 'Buzdolapları ve Vitrinler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €15767.73. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 375 CM DAISY VG Dik Camlı Reyon?",
-    "de_answer": "DB#23901 375 CM DAISY VG Dik Camlı Reyon laut Stammdaten: 375°C. Detail: [Plan B 2026-05-08] DR02025000000032 line 2 — kesin fatura fiyatı. Markup ×3.0.. Position liegt in der Kategorie 'Buzdolapları ve Vitrinler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €15767.73. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23901 375 CM DAISY VG Dik Camlı Reyon laut Stammdaten: 375°C. Detail: [Plan B 2026-05-08] DR02025000000032 line 2 — kesin fatura fiyatı. Markup ×3.0.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Kontak\n  • Kategori: Buzdolapları ve Vitrinler\n  • Birim: pcs\n\nℹ Endüstriyel soğutmalı dolap/reyon. Cephe veya dik camlı.. Position liegt in der Kategorie 'Buzdolapları ve Vitrinler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €15767.73. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -535,9 +535,9 @@
       "56"
     ],
     "tr_question": "Kontak 250 CM DAISY VG Dik Camli Reyon teknik özellikleri nedir?",
-    "tr_answer": "DB#56 250 CM DAISY VG Dik Camli Reyon kart kayıtlarına göre: 250°C. Detay: 250 CM DAISY VG Dik Camli Reyon – kategori: Buzdolapları ve Vitrinler. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2542.05 sale=€7626.15 (×3.0 / ×1.20)]. Bu kalem 'Buzdolapları ve Vitrinler' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €7626.15. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#56 250 CM DAISY VG Dik Camli Reyon kart kayıtlarına göre: 250°C. Detay: 250 CM DAISY VG Dik Camli Reyon – kategori: Buzdolapları ve Vitrinler. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2542.05 sale=€7626.15 (×3.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Kontak\n  • Kategori: Buzdolapları ve Vitrinler\n  • Birim: pcs\n\nℹ Endüstriyel soğutmalı dolap. Bu kalem 'Buzdolapları ve Vitrinler' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €7626.15. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 250 CM DAISY VG Dik Camli Reyon?",
-    "de_answer": "DB#56 250 CM DAISY VG Vertikales Glasregal laut Stammdaten: 250°C. Detail: 250 CM DAISY VG Dik Camli Reyon – kategori: Buzdolapları ve Vitrinler. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2542.05 sale=€7626.15 (×3.0 / ×1.20)]. Position liegt in der Kategorie 'Buzdolapları ve Vitrinler', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €7626.15. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#56 250 CM DAISY VG Vertikales Glasregal laut Stammdaten: 250°C. Detail: 250 CM DAISY VG Dik Camli Reyon – kategori: Buzdolapları ve Vitrinler. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2542.05 sale=€7626.15 (×3.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Kontak\n  • Kategori: Buzdolapları ve Vitrinler\n  • Birim: pcs\n\nℹ Endüstriyel soğutmalı dolap. Position liegt in der Kategorie 'Buzdolapları ve Vitrinler', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €7626.15. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -571,9 +571,9 @@
       "23905"
     ],
     "tr_question": "Refrigerant R-404A 10 KG Depozitolu Soğutucu Gaz teknik özellikleri nedir?",
-    "tr_answer": "DB#23905 R-404A 10 KG Depozitolu Soğutucu Gaz kart kayıtlarına göre: R404. Detay: [2026-05-08] R-404A 10 KG Depozitolu — kullanıcı kayıt: cost €220, net €250, brüt €300. Tüp depoziti dahil.. Bu kalem 'Soğutucu Akışkanlar' kategorisinde adet bazlı satılır. Stok: 22 adet. Net fiyat €250.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23905 R-404A 10 KG Depozitolu Soğutucu Gaz kart kayıtlarına göre: R404. Detay: [2026-05-08] R-404A 10 KG Depozitolu — kullanıcı kayıt: cost €220, net €250, brüt €300. Tüp depoziti dahil.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Soğutkan: R404A\n  • Ağırlık/Hacim: 10 kg\n  • Marka: Refrigerant\n  • Kategori: Soğutucu Akışkanlar\n  • Birim: adet\n\nℹ HFC/HFO/HC tipi soğutkan gaz. Doldurulabilir tüp/. Bu kalem 'Soğutucu Akışkanlar' kategorisinde adet bazlı satılır. Stok: 22 adet. Net fiyat €250.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Refrigerant R-404A 10 KG Depozitolu Soğutucu Gaz?",
-    "de_answer": "DB#23905 R-404A 10 KG Depozitolu Soğutucu Gaz laut Stammdaten: R404. Detail: [2026-05-08] R-404A 10 KG Depozitolu — kullanıcı kayıt: cost €220, net €250, brüt €300. Tüp depoziti dahil.. Position liegt in der Kategorie 'Soğutucu Akışkanlar', Einheit adet. Lagerstand: 22 adet. Nettopreis €250.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23905 R-404A 10 KG Depozitolu Soğutucu Gaz laut Stammdaten: R404. Detail: [2026-05-08] R-404A 10 KG Depozitolu — kullanıcı kayıt: cost €220, net €250, brüt €300. Tüp depoziti dahil.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Soğutkan: R404A\n  • Ağırlık/Hacim: 10 kg\n  • Marka: Refrigerant\n  • Kategori: Soğutucu Akışkanlar\n  • Birim: adet\n\nℹ HFC/HFO/HC tipi soğutkan gaz. Doldurulabilir tüp/. Position liegt in der Kategorie 'Soğutucu Akışkanlar', Einheit adet. Lagerstand: 22 adet. Nettopreis €250.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -775,9 +775,9 @@
       "49"
     ],
     "tr_question": "Kontak 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli teknik özellikleri nedir?",
-    "tr_answer": "DB#49 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli kart kayıtlarına göre: 10 HP · 380V · 3F. Detay: 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€4158.76 sale=€5073.69 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €5073.69. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#49 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli kart kayıtlarına göre: 10 HP · 380V · 3F. Detay: 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€4158.76 sale=€5073.69 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 10 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Katego. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €5073.69. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli?",
-    "de_answer": "DB#49 10 PS (0/+5) 380 V Dorin komplette Kühlgruppe mit Doppelverdampfer laut Stammdaten: 10 HP · 380V · 3F. Detail: 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€4158.76 sale=€5073.69 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €5073.69. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#49 10 PS (0/+5) 380 V Dorin komplette Kühlgruppe mit Doppelverdampfer laut Stammdaten: 10 HP · 380V · 3F. Detail: 10 HP (0/+5) 380V Dorin Komplu Soğutma Grubu Cift Evapli – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€4158.76 sale=€5073.69 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 10 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Katego. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €5073.69. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -871,9 +871,9 @@
       "41"
     ],
     "tr_question": "Kontak 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu teknik özellikleri nedir?",
-    "tr_answer": "DB#41 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu kart kayıtlarına göre: 7.5 HP · 380V · 3F. Detay: 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€3843.58 sale=€4689.17 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €4689.17. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#41 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu kart kayıtlarına göre: 7.5 HP · 380V · 3F. Detay: 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€3843.58 sale=€4689.17 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 7.5 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutm. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €4689.17. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu?",
-    "de_answer": "DB#41 7,5 PS (0/+5) 380 V Dorin komplette Kühlgruppe laut Stammdaten: 7.5 HP · 380V · 3F. Detail: 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€3843.58 sale=€4689.17 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €4689.17. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#41 7,5 PS (0/+5) 380 V Dorin komplette Kühlgruppe laut Stammdaten: 7.5 HP · 380V · 3F. Detail: 7,5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€3843.58 sale=€4689.17 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 7.5 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutm. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €4689.17. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -895,9 +895,9 @@
       "21"
     ],
     "tr_question": "Elektrosan THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Üni teknik özellikleri nedir?",
-    "tr_answer": "DB#21 THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 3 HP. Detay: THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1872.98 sale=€2285.04 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €2285.04. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#21 THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 3 HP. Detay: THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1872.98 sale=€2285.04 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 3 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €2285.04. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Üni?",
-    "de_answer": "DB#21 THERMETS/HSC.MP10030.TT04SE 3 HP Split Chiller Außengerät laut Stammdaten: 3 HP. Detail: THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1872.98 sale=€2285.04 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €2285.04. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#21 THERMETS/HSC.MP10030.TT04SE 3 HP Split Chiller Außengerät laut Stammdaten: 3 HP. Detail: THERMETS/HSC.MP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1872.98 sale=€2285.04 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 3 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €2285.04. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -939,42 +939,6 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "damla soğutma",
-      "23148"
-    ],
-    "tr_question": "Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23148 Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) | Marka: Damla Soğutma | Kategori: Kondenser Üniteleri | Birim: adet. Hamburg depoda 3 adet stok mevcut. Cost: €1200.00, Net (sale): €1200.00, Brüt (liste): €1440.00. Teknik özet: 21.695 W · 1x500. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa sind am Lager und was kostet das?",
-    "de_answer": "DB#23148 Damla Sogutma GMC-SD14 Kondensator (21.695W ohne Motor, 1x500 Luefter) | Marke: Damla Soğutma | Kategorie: Kondenser Üniteleri | Einheit: adet. In Hamburg lagernd: 3 adet. EK: €1200.00, Netto (VK): €1200.00, Brutto (Liste): €1440.00. Technische Kurzdaten: 21.695 W · 1x500. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme_teknik",
-      "damla soğutma",
-      "23148"
-    ],
-    "tr_question": "Damla Soğutma Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa teknik özellikleri nedir?",
-    "tr_answer": "DB#23148 Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) kart kayıtlarına göre: 21.695 W · 1x500. Detay: Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) kondenser ünitesi (kompresör + kondenser).. Bu kalem 'Kondenser Üniteleri' kategorisinde adet bazlı satılır. Stok: 3 adet. Net fiyat €1200.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von Damla Soğutma Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa?",
-    "de_answer": "DB#23148 Damla Sogutma GMC-SD14 Kondensator (21.695W ohne Motor, 1x500 Luefter) laut Stammdaten: 21.695 W · 1x500. Detail: Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) kondenser ünitesi (kompresör + kondenser).. Position liegt in der Kategorie 'Kondenser Üniteleri', Einheit adet. Lagerstand: 3 adet. Nettopreis €1200.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "damla soğutma",
-      "23148"
-    ],
-    "tr_question": "GMC-SD14 kodlu ürün hangisi?",
-    "tr_answer": "GMC-SD14, DB#23148 'Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan)' kaydının kodudur. Marka: Damla Soğutma, Kategori: Kondenser Üniteleri. Hamburg depoda 3 adet stoklu, net fiyat €1200.00. Teknik özet: 21.695 W · 1x500.",
-    "de_question": "Welches Produkt ist GMC-SD14?",
-    "de_answer": "GMC-SD14 ist der Code fuer DB#23148 'Damla Sogutma GMC-SD14 Kondensator (21.695W ohne Motor, 1x500 Luefter)'. Marke: Damla Soğutma, Kategorie: Kondenser Üniteleri. In Hamburg lagernd: 3 adet, VK netto €1200.00. Kurzdaten: 21.695 W · 1x500."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
       "frigocraft",
       "23754"
     ],
@@ -1006,6 +970,42 @@
     "tr_answer": "FRIGOCRAFT-ACIK-GRUP-KOMPRESOR, DB#23754 'Frigocraft M012 Açık Grup Kondenser Ünitesi 1 HP R290 (Motorlu)' kaydının kodudur. Marka: Frigocraft, Kategori: Kondenser Üniteleri. Hamburg depoda 4 adet stoklu, net fiyat €900.00. Teknik özet: 1 HP · R290.",
     "de_question": "Welches Produkt ist FRIGOCRAFT-ACIK-GRUP-KOMPRESOR?",
     "de_answer": "FRIGOCRAFT-ACIK-GRUP-KOMPRESOR ist der Code fuer DB#23754 'Frigocraft M012 Offener Verfluessigersatz 1 HP R290 (Mit Motor)'. Marke: Frigocraft, Kategorie: Kondenser Üniteleri. In Hamburg lagernd: 4 adet, VK netto €900.00. Kurzdaten: 1 HP · R290."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "damla soğutma",
+      "23148"
+    ],
+    "tr_question": "Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23148 Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) | Marka: Damla Soğutma | Kategori: Kondenser Üniteleri | Birim: adet. Hamburg depoda 3 adet stok mevcut. Cost: €1200.00, Net (sale): €1200.00, Brüt (liste): €1440.00. Teknik özet: 21.695 W · 1x500. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa sind am Lager und was kostet das?",
+    "de_answer": "DB#23148 Damla Sogutma GMC-SD14 Kondensator (21.695W ohne Motor, 1x500 Luefter) | Marke: Damla Soğutma | Kategorie: Kondenser Üniteleri | Einheit: adet. In Hamburg lagernd: 3 adet. EK: €1200.00, Netto (VK): €1200.00, Brutto (Liste): €1440.00. Technische Kurzdaten: 21.695 W · 1x500. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme_teknik",
+      "damla soğutma",
+      "23148"
+    ],
+    "tr_question": "Damla Soğutma Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa teknik özellikleri nedir?",
+    "tr_answer": "DB#23148 Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) kart kayıtlarına göre: 21.695 W · 1x500. Detay: Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) kondenser ünitesi (kompresör + kondenser).. Bu kalem 'Kondenser Üniteleri' kategorisinde adet bazlı satılır. Stok: 3 adet. Net fiyat €1200.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von Damla Soğutma Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fa?",
+    "de_answer": "DB#23148 Damla Sogutma GMC-SD14 Kondensator (21.695W ohne Motor, 1x500 Luefter) laut Stammdaten: 21.695 W · 1x500. Detail: Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan) kondenser ünitesi (kompresör + kondenser).. Position liegt in der Kategorie 'Kondenser Üniteleri', Einheit adet. Lagerstand: 3 adet. Nettopreis €1200.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "code_lookup",
+      "damla soğutma",
+      "23148"
+    ],
+    "tr_question": "GMC-SD14 kodlu ürün hangisi?",
+    "tr_answer": "GMC-SD14, DB#23148 'Damla Soğutma GMC-SD14 Kondenser (21.695W Motorsuz, 1x500 Fan)' kaydının kodudur. Marka: Damla Soğutma, Kategori: Kondenser Üniteleri. Hamburg depoda 3 adet stoklu, net fiyat €1200.00. Teknik özet: 21.695 W · 1x500.",
+    "de_question": "Welches Produkt ist GMC-SD14?",
+    "de_answer": "GMC-SD14 ist der Code fuer DB#23148 'Damla Sogutma GMC-SD14 Kondensator (21.695W ohne Motor, 1x500 Luefter)'. Marke: Damla Soğutma, Kategorie: Kondenser Üniteleri. In Hamburg lagernd: 3 adet, VK netto €1200.00. Kurzdaten: 21.695 W · 1x500."
   },
   {
     "tags": [
@@ -1063,9 +1063,9 @@
       "24"
     ],
     "tr_question": "Elektrosan THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Üni teknik özellikleri nedir?",
-    "tr_answer": "DB#24 THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 3 HP. Detay: THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1786.54 sale=€2179.58 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €2179.58. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#24 THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 3 HP. Detay: THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1786.54 sale=€2179.58 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 3 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €2179.58. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Üni?",
-    "de_answer": "DB#24 THERMETS/HSC.LP10030.TT04SE 3 HP Split Chiller Außengerät laut Stammdaten: 3 HP. Detail: THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1786.54 sale=€2179.58 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €2179.58. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#24 THERMETS/HSC.LP10030.TT04SE 3 HP Split Chiller Außengerät laut Stammdaten: 3 HP. Detail: THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1786.54 sale=€2179.58 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 3 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €2179.58. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1078,6 +1078,42 @@
     "tr_answer": "THERMETS/HSC.LP10030.TT04SE, DB#24 'THERMETS/HSC.LP10030.TT04SE 3 HP Split Soğutma Grubu Dış Ünite' kaydının kodudur. Marka: Elektrosan, Kategori: Soğutma Grupları. Hamburg depoda 2 pcs stoklu, net fiyat €2179.58. Teknik özet: 3 HP.",
     "de_question": "Welches Produkt ist THERMETS/HSC.LP10030.TT04SE?",
     "de_answer": "THERMETS/HSC.LP10030.TT04SE ist der Code fuer DB#24 'THERMETS/HSC.LP10030.TT04SE 3 HP Split Chiller Außengerät'. Marke: Elektrosan, Kategorie: Soğutma Grupları. In Hamburg lagernd: 2 pcs, VK netto €2179.58. Kurzdaten: 3 HP."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "copeland (emerson)",
+      "23889"
+    ],
+    "tr_question": "Copeland Scroll Kompresör ZH21K4E-TFD-524 stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23889 Copeland Scroll Kompresör ZH21K4E-TFD-524 | Marka: Copeland (Emerson) | Kategori: Kompresör > Scroll | Birim: adet. Hamburg depoda 10 adet stok mevcut. Cost: €350.00, Net (sale): €350.00, Brüt (liste): €350.00. Teknik özet: 3 HP · 6 kW · 400V · 3F · R134 · 407°C. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele Copeland Scroll Kompresör ZH21K4E-TFD-524 sind am Lager und was kostet das?",
+    "de_answer": "DB#23889 Copeland Scrollverdichter ZH21K4E-TFD-524 | Marke: Copeland (Emerson) | Kategorie: Kompresör > Scroll | Einheit: adet. In Hamburg lagernd: 10 adet. EK: €350.00, Netto (VK): €350.00, Brutto (Liste): €350.00. Technische Kurzdaten: 3 HP · 6 kW · 400V · 3F · R134 · 407°C. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme_teknik",
+      "copeland (emerson)",
+      "23889"
+    ],
+    "tr_question": "Copeland (Emerson) Copeland Scroll Kompresör ZH21K4E-TFD-524 teknik özellikleri nedir?",
+    "tr_answer": "DB#23889 Copeland Scroll Kompresör ZH21K4E-TFD-524 kart kayıtlarına göre: 3 HP · 6 kW · 400V · 3F · R134 · 407°C. Detay: Copeland Scroll Kompresör ZH21K4E-TFD-524.. Bu kalem 'Kompresör > Scroll' kategorisinde adet bazlı satılır. Stok: 10 adet. Net fiyat €350.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von Copeland (Emerson) Copeland Scroll Kompresör ZH21K4E-TFD-524?",
+    "de_answer": "DB#23889 Copeland Scrollverdichter ZH21K4E-TFD-524 laut Stammdaten: 3 HP · 6 kW · 400V · 3F · R134 · 407°C. Detail: Copeland Scroll Kompresör ZH21K4E-TFD-524.. Position liegt in der Kategorie 'Kompresör > Scroll', Einheit adet. Lagerstand: 10 adet. Nettopreis €350.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "code_lookup",
+      "copeland (emerson)",
+      "23889"
+    ],
+    "tr_question": "CMP-COPELAND-ZH21K4E kodlu ürün hangisi?",
+    "tr_answer": "CMP-COPELAND-ZH21K4E, DB#23889 'Copeland Scroll Kompresör ZH21K4E-TFD-524' kaydının kodudur. Marka: Copeland (Emerson), Kategori: Kompresör > Scroll. Hamburg depoda 10 adet stoklu, net fiyat €350.00. Teknik özet: 3 HP · 6 kW · 400V · 3F · R134 · 407°C.",
+    "de_question": "Welches Produkt ist CMP-COPELAND-ZH21K4E?",
+    "de_answer": "CMP-COPELAND-ZH21K4E ist der Code fuer DB#23889 'Copeland Scrollverdichter ZH21K4E-TFD-524'. Marke: Copeland (Emerson), Kategorie: Kompresör > Scroll. In Hamburg lagernd: 10 adet, VK netto €350.00. Kurzdaten: 3 HP · 6 kW · 400V · 3F · R134 · 407°C."
   },
   {
     "tags": [
@@ -1107,61 +1143,25 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "copeland (emerson)",
-      "23889"
-    ],
-    "tr_question": "Copeland Scroll Kompresör ZH21K4E-TFD-524 stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23889 Copeland Scroll Kompresör ZH21K4E-TFD-524 | Marka: Copeland (Emerson) | Kategori: Kompresör > Scroll | Birim: adet. Hamburg depoda 10 adet stok mevcut. Cost: €350.00, Net (sale): €350.00, Brüt (liste): €350.00. Teknik özet: 3 HP · 6 kW · 3F · R134 · 407°C. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele Copeland Scroll Kompresör ZH21K4E-TFD-524 sind am Lager und was kostet das?",
-    "de_answer": "DB#23889 Copeland Scrollverdichter ZH21K4E-TFD-524 | Marke: Copeland (Emerson) | Kategorie: Kompresör > Scroll | Einheit: adet. In Hamburg lagernd: 10 adet. EK: €350.00, Netto (VK): €350.00, Brutto (Liste): €350.00. Technische Kurzdaten: 3 HP · 6 kW · 3F · R134 · 407°C. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme_teknik",
-      "copeland (emerson)",
-      "23889"
-    ],
-    "tr_question": "Copeland (Emerson) Copeland Scroll Kompresör ZH21K4E-TFD-524 teknik özellikleri nedir?",
-    "tr_answer": "DB#23889 Copeland Scroll Kompresör ZH21K4E-TFD-524 kart kayıtlarına göre: 3 HP · 6 kW · 3F · R134 · 407°C. Detay: Copeland Scroll Kompresör ZH21K4E-TFD-524.. Bu kalem 'Kompresör > Scroll' kategorisinde adet bazlı satılır. Stok: 10 adet. Net fiyat €350.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von Copeland (Emerson) Copeland Scroll Kompresör ZH21K4E-TFD-524?",
-    "de_answer": "DB#23889 Copeland Scrollverdichter ZH21K4E-TFD-524 laut Stammdaten: 3 HP · 6 kW · 3F · R134 · 407°C. Detail: Copeland Scroll Kompresör ZH21K4E-TFD-524.. Position liegt in der Kategorie 'Kompresör > Scroll', Einheit adet. Lagerstand: 10 adet. Nettopreis €350.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "copeland (emerson)",
-      "23889"
-    ],
-    "tr_question": "CMP-COPELAND-ZH21K4E kodlu ürün hangisi?",
-    "tr_answer": "CMP-COPELAND-ZH21K4E, DB#23889 'Copeland Scroll Kompresör ZH21K4E-TFD-524' kaydının kodudur. Marka: Copeland (Emerson), Kategori: Kompresör > Scroll. Hamburg depoda 10 adet stoklu, net fiyat €350.00. Teknik özet: 3 HP · 6 kW · 3F · R134 · 407°C.",
-    "de_question": "Welches Produkt ist CMP-COPELAND-ZH21K4E?",
-    "de_answer": "CMP-COPELAND-ZH21K4E ist der Code fuer DB#23889 'Copeland Scrollverdichter ZH21K4E-TFD-524'. Marke: Copeland (Emerson), Kategorie: Kompresör > Scroll. In Hamburg lagernd: 10 adet, VK netto €350.00. Kurzdaten: 3 HP · 6 kW · 3F · R134 · 407°C."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
       "kontak",
-      "23892"
+      "42"
     ],
     "tr_question": "8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23892 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu | Marka: Kontak | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 1 pcs stok mevcut. Cost: €3500.00, Net (sale): €4270.00, Brüt (liste): €5124.00. Teknik özet: 8 HP · 380V · 3F. Bu MALZEME sorusudur — kart bilgisidir.",
+    "tr_answer": "DB#42 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu | Marka: Kontak | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 1 pcs stok mevcut. Cost: €3500.00, Net (sale): €4270.00, Brüt (liste): €5124.00. Teknik özet: 8 HP · 380V · 3F. Bu MALZEME sorusudur — kart bilgisidir.",
     "de_question": "Wie viele 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu sind am Lager und was kostet das?",
-    "de_answer": "DB#23892 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu | Marke: Kontak | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 1 pcs. EK: €3500.00, Netto (VK): €4270.00, Brutto (Liste): €5124.00. Technische Kurzdaten: 8 HP · 380V · 3F. Das ist eine Materialfrage."
+    "de_answer": "DB#42 8 PS (0/-20) 380 V Tecumseh komplette Kühlgruppe | Marke: Kontak | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 1 pcs. EK: €3500.00, Netto (VK): €4270.00, Brutto (Liste): €5124.00. Technische Kurzdaten: 8 HP · 380V · 3F. Das ist eine Materialfrage."
   },
   {
     "tags": [
       "stock_technical",
       "malzeme_teknik",
       "kontak",
-      "23892"
+      "42"
     ],
     "tr_question": "Kontak 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu teknik özellikleri nedir?",
-    "tr_answer": "DB#23892 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 8 HP · 380V · 3F. Detay: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €4270.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#42 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 8 HP · 380V · 3F. Detay: 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 8 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + k. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €4270.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu?",
-    "de_answer": "DB#23892 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu laut Stammdaten: 8 HP · 380V · 3F. Detail: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €4270.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#42 8 PS (0/-20) 380 V Tecumseh komplette Kühlgruppe laut Stammdaten: 8 HP · 380V · 3F. Detail: 8 HP (0/-20) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 8 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + k. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €4270.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1243,9 +1243,9 @@
       "23895"
     ],
     "tr_question": "Elektrosan THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Üni teknik özellikleri nedir?",
-    "tr_answer": "DB#23895 THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 2 HP. Detay: [Plan B 2026-05-08] EL02025000000022 — 2HP LP donuk depo. #23 (ET49S) analog fiyatlandırma.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €1908.52. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23895 THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 2 HP. Detay: [Plan B 2026-05-08] EL02025000000022 — 2HP LP donuk depo. #23 (ET49S) analog fiyatlandırma.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 2 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol komple soğutma sistemi. Anahtar teslim kurulum için.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €1908.52. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Üni?",
-    "de_answer": "DB#23895 THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Ünite laut Stammdaten: 2 HP. Detail: [Plan B 2026-05-08] EL02025000000022 — 2HP LP donuk depo. #23 (ET49S) analog fiyatlandırma.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €1908.52. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23895 THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Ünite laut Stammdaten: 2 HP. Detail: [Plan B 2026-05-08] EL02025000000022 — 2HP LP donuk depo. #23 (ET49S) analog fiyatlandırma.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 2 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol komple soğutma sistemi. Anahtar teslim kurulum için.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €1908.52. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1258,78 +1258,6 @@
     "tr_answer": "THERMETS/HSC.LP10020.ET04SE, DB#23895 'THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Ünite' kaydının kodudur. Marka: Elektrosan, Kategori: Soğutma Grupları. Hamburg depoda 2 pcs stoklu, net fiyat €1908.52. Teknik özet: 2 HP.",
     "de_question": "Welches Produkt ist THERMETS/HSC.LP10020.ET04SE?",
     "de_answer": "THERMETS/HSC.LP10020.ET04SE ist der Code fuer DB#23895 'THERMETS/HSC.LP10020.ET04SE 2 HP Split Soğutma Grubu Dış Ünite'. Marke: Elektrosan, Kategorie: Soğutma Grupları. In Hamburg lagernd: 2 pcs, VK netto €1908.52. Kurzdaten: 2 HP."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
-      "ets",
-      "23"
-    ],
-    "tr_question": "ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik S stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23 ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik Soğutma Grubu (+Evaporatör WTE.40.8.113) | Marka: ETS | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 2 pcs stok mevcut. Cost: €1564.36, Net (sale): €1564.36, Brüt (liste): €1877.23. Teknik özet: 2.0 HP · 1731 W · 380V · 3F · R449 · 1x400 · -25°C. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik S sind am Lager und was kostet das?",
-    "de_answer": "DB#23 ThermETS HSC-LP10020-ET49S 2.0HP Tiefkuehl Split Hermetisches Kaelteaggregat (+Verdampfer WTE.40.8.113) | Marke: ETS | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 2 pcs. EK: €1564.36, Netto (VK): €1564.36, Brutto (Liste): €1877.23. Technische Kurzdaten: 2.0 HP · 1731 W · 380V · 3F · R449 · 1x400 · -25°C. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme_teknik",
-      "ets",
-      "23"
-    ],
-    "tr_question": "ETS ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik S teknik özellikleri nedir?",
-    "tr_answer": "DB#23 ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik Soğutma Grubu (+Evaporatör WTE.40.8.113) kart kayıtlarına göre: 2.0 HP · 1731 W · 380V · 3F · R449 · 1x400 · -25°C. Detay: ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik Soğutma Grubu (+Evaporatör WTE.40.8.113) kompresör.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €1564.36. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von ETS ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik S?",
-    "de_answer": "DB#23 ThermETS HSC-LP10020-ET49S 2.0HP Tiefkuehl Split Hermetisches Kaelteaggregat (+Verdampfer WTE.40.8.113) laut Stammdaten: 2.0 HP · 1731 W · 380V · 3F · R449 · 1x400 · -25°C. Detail: ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik Soğutma Grubu (+Evaporatör WTE.40.8.113) kompresör.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €1564.36. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "ets",
-      "23"
-    ],
-    "tr_question": "DRC-10040 kodlu ürün hangisi?",
-    "tr_answer": "DRC-10040, DB#23 'ThermETS HSC-LP10020-ET49S 2.0HP Donuk Depo Split Hermetik Soğutma Grubu (+Evaporatör WTE.40.8.113)' kaydının kodudur. Marka: ETS, Kategori: Soğutma Grupları. Hamburg depoda 2 pcs stoklu, net fiyat €1564.36. Teknik özet: 2.0 HP · 1731 W · 380V · 3F · R449 · 1x400 · -25°C.",
-    "de_question": "Welches Produkt ist DRC-10040?",
-    "de_answer": "DRC-10040 ist der Code fuer DB#23 'ThermETS HSC-LP10020-ET49S 2.0HP Tiefkuehl Split Hermetisches Kaelteaggregat (+Verdampfer WTE.40.8.113)'. Marke: ETS, Kategorie: Soğutma Grupları. In Hamburg lagernd: 2 pcs, VK netto €1564.36. Kurzdaten: 2.0 HP · 1731 W · 380V · 3F · R449 · 1x400 · -25°C."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
-      "ets",
-      "20"
-    ],
-    "tr_question": "ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grub stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#20 ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grubu (+Evaporatör WTE.35.6.213) | Marka: ETS | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 2 pcs stok mevcut. Cost: €1560.26, Net (sale): €1560.26, Brüt (liste): €1872.31. Teknik özet: 2.0 HP · 3253 W · 380V · 3F · R449 · 1x400 · -10°C. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grub sind am Lager und was kostet das?",
-    "de_answer": "DB#20 ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetisches Kaelteaggregat (+Verdampfer WTE.35.6.213) | Marke: ETS | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 2 pcs. EK: €1560.26, Netto (VK): €1560.26, Brutto (Liste): €1872.31. Technische Kurzdaten: 2.0 HP · 3253 W · 380V · 3F · R449 · 1x400 · -10°C. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme_teknik",
-      "ets",
-      "20"
-    ],
-    "tr_question": "ETS ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grub teknik özellikleri nedir?",
-    "tr_answer": "DB#20 ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grubu (+Evaporatör WTE.35.6.213) kart kayıtlarına göre: 2.0 HP · 3253 W · 380V · 3F · R449 · 1x400 · -10°C. Detay: ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grubu (+Evaporatör WTE.35.6.213) kompresör.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 2 pcs. Net fiyat €1560.26. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von ETS ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grub?",
-    "de_answer": "DB#20 ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetisches Kaelteaggregat (+Verdampfer WTE.35.6.213) laut Stammdaten: 2.0 HP · 3253 W · 380V · 3F · R449 · 1x400 · -10°C. Detail: ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grubu (+Evaporatör WTE.35.6.213) kompresör.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 2 pcs. Nettopreis €1560.26. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "ets",
-      "20"
-    ],
-    "tr_question": "DRC-10043 kodlu ürün hangisi?",
-    "tr_answer": "DRC-10043, DB#20 'ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetik Soğutma Grubu (+Evaporatör WTE.35.6.213)' kaydının kodudur. Marka: ETS, Kategori: Soğutma Grupları. Hamburg depoda 2 pcs stoklu, net fiyat €1560.26. Teknik özet: 2.0 HP · 3253 W · 380V · 3F · R449 · 1x400 · -10°C.",
-    "de_question": "Welches Produkt ist DRC-10043?",
-    "de_answer": "DRC-10043 ist der Code fuer DB#20 'ThermETS HSC-MP10020-ET49S 2.0HP Split Hermetisches Kaelteaggregat (+Verdampfer WTE.35.6.213)'. Marke: ETS, Kategorie: Soğutma Grupları. In Hamburg lagernd: 2 pcs, VK netto €1560.26. Kurzdaten: 2.0 HP · 3253 W · 380V · 3F · R449 · 1x400 · -10°C."
   },
   {
     "tags": [
@@ -1351,9 +1279,9 @@
       "23902"
     ],
     "tr_question": "Kontak 187,5 CM DAISY VG Dik Camlı Reyon teknik özellikleri nedir?",
-    "tr_answer": "DB#23902 187,5 CM DAISY VG Dik Camlı Reyon kart kayıtlarına göre: 5°C. Detay: [Plan B 2026-05-08] DR02025000000032 line 3 — kesin fatura fiyatı. Markup ×3.0.. Bu kalem 'Buzdolapları ve Vitrinler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €9159.75. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23902 187,5 CM DAISY VG Dik Camlı Reyon kart kayıtlarına göre: 5°C. Detay: [Plan B 2026-05-08] DR02025000000032 line 3 — kesin fatura fiyatı. Markup ×3.0.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Kontak\n  • Kategori: Buzdolapları ve Vitrinler\n  • Birim: pcs\n\nℹ Endüstriyel soğutmalı dolap/reyon. Cephe veya dik camlı.. Bu kalem 'Buzdolapları ve Vitrinler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €9159.75. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 187,5 CM DAISY VG Dik Camlı Reyon?",
-    "de_answer": "DB#23902 187,5 CM DAISY VG Dik Camlı Reyon laut Stammdaten: 5°C. Detail: [Plan B 2026-05-08] DR02025000000032 line 3 — kesin fatura fiyatı. Markup ×3.0.. Position liegt in der Kategorie 'Buzdolapları ve Vitrinler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €9159.75. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23902 187,5 CM DAISY VG Dik Camlı Reyon laut Stammdaten: 5°C. Detail: [Plan B 2026-05-08] DR02025000000032 line 3 — kesin fatura fiyatı. Markup ×3.0.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Kontak\n  • Kategori: Buzdolapları ve Vitrinler\n  • Birim: pcs\n\nℹ Endüstriyel soğutmalı dolap/reyon. Cephe veya dik camlı.. Position liegt in der Kategorie 'Buzdolapları ve Vitrinler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €9159.75. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1431,37 +1359,37 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "genel",
-      "23161"
+      "elektrosan",
+      "25"
     ],
-    "tr_question": "R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23161 R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) | Marka: Genel | Kategori: Soğutucu Akışkanlar | Birim: adet. Hamburg depoda 24 adet stok mevcut. Cost: €105.00, Net (sale): €105.00, Brüt (liste): €140.00. Teknik özet: R290. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) sind am Lager und was kostet das?",
-    "de_answer": "DB#23161 R290 Propan Kaeltemittel 6 KG (Kohlenwasserstoff, Brennbar) | Marke: Genel | Kategorie: Soğutucu Akışkanlar | Einheit: adet. In Hamburg lagernd: 24 adet. EK: €105.00, Netto (VK): €105.00, Brutto (Liste): €140.00. Technische Kurzdaten: R290. Das ist eine Materialfrage."
+    "tr_question": "THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite | Marka: Elektrosan | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 1 pcs stok mevcut. Cost: €2420.48, Net (sale): €2953.99, Brüt (liste): €3544.79. Teknik özet: 5 HP. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni sind am Lager und was kostet das?",
+    "de_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Chiller Außengerät | Marke: Elektrosan | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 1 pcs. EK: €2420.48, Netto (VK): €2953.99, Brutto (Liste): €3544.79. Technische Kurzdaten: 5 HP. Das ist eine Materialfrage."
   },
   {
     "tags": [
       "stock_technical",
       "malzeme_teknik",
-      "genel",
-      "23161"
+      "elektrosan",
+      "25"
     ],
-    "tr_question": "Genel R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) teknik özellikleri nedir?",
-    "tr_answer": "DB#23161 R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) kart kayıtlarına göre: R290. Detay: R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) (soğutma ve klima sistemleri için).. Bu kalem 'Soğutucu Akışkanlar' kategorisinde adet bazlı satılır. Stok: 24 adet. Net fiyat €105.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von Genel R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı)?",
-    "de_answer": "DB#23161 R290 Propan Kaeltemittel 6 KG (Kohlenwasserstoff, Brennbar) laut Stammdaten: R290. Detail: R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) (soğutma ve klima sistemleri için).. Position liegt in der Kategorie 'Soğutucu Akışkanlar', Einheit adet. Lagerstand: 24 adet. Nettopreis €105.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "tr_question": "Elektrosan THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni teknik özellikleri nedir?",
+    "tr_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 5 HP. Detay: THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 5 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €2953.99. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von Elektrosan THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni?",
+    "de_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Chiller Außengerät laut Stammdaten: 5 HP. Detail: THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 5 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €2953.99. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
       "stock_technical",
       "code_lookup",
-      "genel",
-      "23161"
+      "elektrosan",
+      "25"
     ],
-    "tr_question": "R290-6KG kodlu ürün hangisi?",
-    "tr_answer": "R290-6KG, DB#23161 'R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı)' kaydının kodudur. Marka: Genel, Kategori: Soğutucu Akışkanlar. Hamburg depoda 24 adet stoklu, net fiyat €105.00. Teknik özet: R290.",
-    "de_question": "Welches Produkt ist R290-6KG?",
-    "de_answer": "R290-6KG ist der Code fuer DB#23161 'R290 Propan Kaeltemittel 6 KG (Kohlenwasserstoff, Brennbar)'. Marke: Genel, Kategorie: Soğutucu Akışkanlar. In Hamburg lagernd: 24 adet, VK netto €105.00. Kurzdaten: R290."
+    "tr_question": "THERMETS/HSC.LP10050.TT04SE kodlu ürün hangisi?",
+    "tr_answer": "THERMETS/HSC.LP10050.TT04SE, DB#25 'THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite' kaydının kodudur. Marka: Elektrosan, Kategori: Soğutma Grupları. Hamburg depoda 1 pcs stoklu, net fiyat €2953.99. Teknik özet: 5 HP.",
+    "de_question": "Welches Produkt ist THERMETS/HSC.LP10050.TT04SE?",
+    "de_answer": "THERMETS/HSC.LP10050.TT04SE ist der Code fuer DB#25 'THERMETS/HSC.LP10050.TT04SE 5 HP Split Chiller Außengerät'. Marke: Elektrosan, Kategorie: Soğutma Grupları. In Hamburg lagernd: 1 pcs, VK netto €2953.99. Kurzdaten: 5 HP."
   },
   {
     "tags": [
@@ -1483,9 +1411,9 @@
       "22"
     ],
     "tr_question": "Elektrosan THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni teknik özellikleri nedir?",
-    "tr_answer": "DB#22 THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 5 HP. Detay: THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €2953.99. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#22 THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 5 HP. Detay: THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 5 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €2953.99. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni?",
-    "de_answer": "DB#22 THERMETS/HSC.MP10050.TT04SE 5 HP Split Chiller Außengerät laut Stammdaten: 5 HP. Detail: THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €2953.99. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#22 THERMETS/HSC.MP10050.TT04SE 5 HP Split Chiller Außengerät laut Stammdaten: 5 HP. Detail: THERMETS/HSC.MP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 5 HP\n  • Marka: Elektrosan\n  • Kategori: Soğutma Grupları\n  • Birim. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €2953.99. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1503,37 +1431,37 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "elektrosan",
-      "25"
+      "genel",
+      "23161"
     ],
-    "tr_question": "THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite | Marka: Elektrosan | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 1 pcs stok mevcut. Cost: €2420.48, Net (sale): €2953.99, Brüt (liste): €3544.79. Teknik özet: 5 HP. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni sind am Lager und was kostet das?",
-    "de_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Chiller Außengerät | Marke: Elektrosan | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 1 pcs. EK: €2420.48, Netto (VK): €2953.99, Brutto (Liste): €3544.79. Technische Kurzdaten: 5 HP. Das ist eine Materialfrage."
+    "tr_question": "R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23161 R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) | Marka: Genel | Kategori: Soğutucu Akışkanlar | Birim: adet. Hamburg depoda 23 adet stok mevcut. Cost: €105.00, Net (sale): €105.00, Brüt (liste): €140.00. Teknik özet: R290. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) sind am Lager und was kostet das?",
+    "de_answer": "DB#23161 R290 Propan Kaeltemittel 6 KG (Kohlenwasserstoff, Brennbar) | Marke: Genel | Kategorie: Soğutucu Akışkanlar | Einheit: adet. In Hamburg lagernd: 23 adet. EK: €105.00, Netto (VK): €105.00, Brutto (Liste): €140.00. Technische Kurzdaten: R290. Das ist eine Materialfrage."
   },
   {
     "tags": [
       "stock_technical",
       "malzeme_teknik",
-      "elektrosan",
-      "25"
+      "genel",
+      "23161"
     ],
-    "tr_question": "Elektrosan THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni teknik özellikleri nedir?",
-    "tr_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite kart kayıtlarına göre: 5 HP. Detay: THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €2953.99. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von Elektrosan THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Üni?",
-    "de_answer": "DB#25 THERMETS/HSC.LP10050.TT04SE 5 HP Split Chiller Außengerät laut Stammdaten: 5 HP. Detail: THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite – kategori: Soğutma Grupları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€2420.48 sale=€2953.99 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €2953.99. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "tr_question": "Genel R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) teknik özellikleri nedir?",
+    "tr_answer": "DB#23161 R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) kart kayıtlarına göre: R290. Detay: R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) (soğutma ve klima sistemleri için).. Bu kalem 'Soğutucu Akışkanlar' kategorisinde adet bazlı satılır. Stok: 23 adet. Net fiyat €105.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von Genel R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı)?",
+    "de_answer": "DB#23161 R290 Propan Kaeltemittel 6 KG (Kohlenwasserstoff, Brennbar) laut Stammdaten: R290. Detail: R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı) (soğutma ve klima sistemleri için).. Position liegt in der Kategorie 'Soğutucu Akışkanlar', Einheit adet. Lagerstand: 23 adet. Nettopreis €105.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
       "stock_technical",
       "code_lookup",
-      "elektrosan",
-      "25"
+      "genel",
+      "23161"
     ],
-    "tr_question": "THERMETS/HSC.LP10050.TT04SE kodlu ürün hangisi?",
-    "tr_answer": "THERMETS/HSC.LP10050.TT04SE, DB#25 'THERMETS/HSC.LP10050.TT04SE 5 HP Split Soğutma Grubu Dış Ünite' kaydının kodudur. Marka: Elektrosan, Kategori: Soğutma Grupları. Hamburg depoda 1 pcs stoklu, net fiyat €2953.99. Teknik özet: 5 HP.",
-    "de_question": "Welches Produkt ist THERMETS/HSC.LP10050.TT04SE?",
-    "de_answer": "THERMETS/HSC.LP10050.TT04SE ist der Code fuer DB#25 'THERMETS/HSC.LP10050.TT04SE 5 HP Split Chiller Außengerät'. Marke: Elektrosan, Kategorie: Soğutma Grupları. In Hamburg lagernd: 1 pcs, VK netto €2953.99. Kurzdaten: 5 HP."
+    "tr_question": "R290-6KG kodlu ürün hangisi?",
+    "tr_answer": "R290-6KG, DB#23161 'R290 Propan Soğutucu Gazı 6 KG (Hidrokarbon, Yanıcı)' kaydının kodudur. Marka: Genel, Kategori: Soğutucu Akışkanlar. Hamburg depoda 23 adet stoklu, net fiyat €105.00. Teknik özet: R290.",
+    "de_question": "Welches Produkt ist R290-6KG?",
+    "de_answer": "R290-6KG ist der Code fuer DB#23161 'R290 Propan Kaeltemittel 6 KG (Kohlenwasserstoff, Brennbar)'. Marke: Genel, Kategorie: Soğutucu Akışkanlar. In Hamburg lagernd: 23 adet, VK netto €105.00. Kurzdaten: R290."
   },
   {
     "tags": [
@@ -1636,24 +1564,24 @@
       "stock_technical",
       "malzeme",
       "kontak",
-      "23894"
+      "44"
     ],
     "tr_question": "4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23894 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu | Marka: Kontak | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 1 pcs stok mevcut. Cost: €2200.00, Net (sale): €2684.00, Brüt (liste): €3220.80. Teknik özet: 4.5 HP · 380V · 3F. Bu MALZEME sorusudur — kart bilgisidir.",
+    "tr_answer": "DB#44 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu | Marka: Kontak | Kategori: Soğutma Grupları | Birim: pcs. Hamburg depoda 1 pcs stok mevcut. Cost: €2200.00, Net (sale): €2684.00, Brüt (liste): €3220.80. Teknik özet: 4.5 HP · 380V · 3F. Bu MALZEME sorusudur — kart bilgisidir.",
     "de_question": "Wie viele 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu sind am Lager und was kostet das?",
-    "de_answer": "DB#23894 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu | Marke: Kontak | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 1 pcs. EK: €2200.00, Netto (VK): €2684.00, Brutto (Liste): €3220.80. Technische Kurzdaten: 4.5 HP · 380V · 3F. Das ist eine Materialfrage."
+    "de_answer": "DB#44 4,5 PS (0/+5) 380 V komplette Tecumseh-Kühlgruppe | Marke: Kontak | Kategorie: Soğutma Grupları | Einheit: pcs. In Hamburg lagernd: 1 pcs. EK: €2200.00, Netto (VK): €2684.00, Brutto (Liste): €3220.80. Technische Kurzdaten: 4.5 HP · 380V · 3F. Das ist eine Materialfrage."
   },
   {
     "tags": [
       "stock_technical",
       "malzeme_teknik",
       "kontak",
-      "23894"
+      "44"
     ],
     "tr_question": "Kontak 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu teknik özellikleri nedir?",
-    "tr_answer": "DB#23894 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 4.5 HP · 380V · 3F. Detay: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €2684.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#44 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 4.5 HP · 380V · 3F. Detay: 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 4.5 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite . Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €2684.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu?",
-    "de_answer": "DB#23894 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu laut Stammdaten: 4.5 HP · 380V · 3F. Detail: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €2684.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#44 4,5 PS (0/+5) 380 V komplette Tecumseh-Kühlgruppe laut Stammdaten: 4.5 HP · 380V · 3F. Detail: 4,5 HP (0/+5) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 4.5 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite . Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €2684.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1687,9 +1615,9 @@
       "23139"
     ],
     "tr_question": "Embraco NJX2219GS (R404A, 3 Faz) stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23139 Embraco NJX2219GS (R404A, 3 Faz) | Marka: Embraco | Kategori: Kompresörler | Birim: adet. Hamburg depoda 5 adet stok mevcut. Cost: €371.62, Net (sale): €743.24, Brüt (liste): €891.89. Teknik özet: 3F · R404. Bu MALZEME sorusudur — kart bilgisidir.",
+    "tr_answer": "DB#23139 Embraco NJX2219GS (R404A, 3 Faz) | Marka: Embraco | Kategori: Kompresörler | Birim: adet. Hamburg depoda 5 adet stok mevcut. Cost: €371.62, Net (sale): €743.24, Brüt (liste): €891.89. Teknik özet: 400V · 3F · R404. Bu MALZEME sorusudur — kart bilgisidir.",
     "de_question": "Wie viele Embraco NJX2219GS (R404A, 3 Faz) sind am Lager und was kostet das?",
-    "de_answer": "DB#23139 Embraco NJX2219GS (R404A, 3-Phasen) | Marke: Embraco | Kategorie: Kompresörler | Einheit: adet. In Hamburg lagernd: 5 adet. EK: €371.62, Netto (VK): €743.24, Brutto (Liste): €891.89. Technische Kurzdaten: 3F · R404. Das ist eine Materialfrage."
+    "de_answer": "DB#23139 Embraco NJX2219GS (R404A, 3-Phasen) | Marke: Embraco | Kategorie: Kompresörler | Einheit: adet. In Hamburg lagernd: 5 adet. EK: €371.62, Netto (VK): €743.24, Brutto (Liste): €891.89. Technische Kurzdaten: 400V · 3F · R404. Das ist eine Materialfrage."
   },
   {
     "tags": [
@@ -1699,9 +1627,9 @@
       "23139"
     ],
     "tr_question": "Embraco Embraco NJX2219GS (R404A, 3 Faz) teknik özellikleri nedir?",
-    "tr_answer": "DB#23139 Embraco NJX2219GS (R404A, 3 Faz) kart kayıtlarına göre: 3F · R404. Detay: Embraco NJX2219GS (R404A, 3 Faz) kompresör.. Bu kalem 'Kompresörler' kategorisinde adet bazlı satılır. Stok: 5 adet. Net fiyat €743.24. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23139 Embraco NJX2219GS (R404A, 3 Faz) kart kayıtlarına göre: 400V · 3F · R404. Detay: Embraco NJX2219GS (R404A, 3 Faz) kompresör.. Bu kalem 'Kompresörler' kategorisinde adet bazlı satılır. Stok: 5 adet. Net fiyat €743.24. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Embraco Embraco NJX2219GS (R404A, 3 Faz)?",
-    "de_answer": "DB#23139 Embraco NJX2219GS (R404A, 3-Phasen) laut Stammdaten: 3F · R404. Detail: Embraco NJX2219GS (R404A, 3 Faz) kompresör.. Position liegt in der Kategorie 'Kompresörler', Einheit adet. Lagerstand: 5 adet. Nettopreis €743.24. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23139 Embraco NJX2219GS (R404A, 3-Phasen) laut Stammdaten: 400V · 3F · R404. Detail: Embraco NJX2219GS (R404A, 3 Faz) kompresör.. Position liegt in der Kategorie 'Kompresörler', Einheit adet. Lagerstand: 5 adet. Nettopreis €743.24. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1711,9 +1639,9 @@
       "23139"
     ],
     "tr_question": "NJX2219GS kodlu ürün hangisi?",
-    "tr_answer": "NJX2219GS, DB#23139 'Embraco NJX2219GS (R404A, 3 Faz)' kaydının kodudur. Marka: Embraco, Kategori: Kompresörler. Hamburg depoda 5 adet stoklu, net fiyat €743.24. Teknik özet: 3F · R404.",
+    "tr_answer": "NJX2219GS, DB#23139 'Embraco NJX2219GS (R404A, 3 Faz)' kaydının kodudur. Marka: Embraco, Kategori: Kompresörler. Hamburg depoda 5 adet stoklu, net fiyat €743.24. Teknik özet: 400V · 3F · R404.",
     "de_question": "Welches Produkt ist NJX2219GS?",
-    "de_answer": "NJX2219GS ist der Code fuer DB#23139 'Embraco NJX2219GS (R404A, 3-Phasen)'. Marke: Embraco, Kategorie: Kompresörler. In Hamburg lagernd: 5 adet, VK netto €743.24. Kurzdaten: 3F · R404."
+    "de_answer": "NJX2219GS ist der Code fuer DB#23139 'Embraco NJX2219GS (R404A, 3-Phasen)'. Marke: Embraco, Kategorie: Kompresörler. In Hamburg lagernd: 5 adet, VK netto €743.24. Kurzdaten: 400V · 3F · R404."
   },
   {
     "tags": [
@@ -1855,9 +1783,9 @@
       "40"
     ],
     "tr_question": "Kontak 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu teknik özellikleri nedir?",
-    "tr_answer": "DB#40 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 3 HP · 380V · 3F. Detay: 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1598.93 sale=€1950.69 (×1.22 / ×1.20)]. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €1950.69. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#40 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 3 HP · 380V · 3F. Detay: 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1598.93 sale=€1950.69 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 3 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutm. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €1950.69. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu?",
-    "de_answer": "DB#40 3 PS (0/-18) 380 V Tecumseh komplette Kühlgruppe laut Stammdaten: 3 HP · 380V · 3F. Detail: 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1598.93 sale=€1950.69 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €1950.69. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#40 3 PS (0/-18) 380 V Tecumseh komplette Kühlgruppe laut Stammdaten: 3 HP · 380V · 3F. Detail: 3 HP (0/-18) 380V Tecumseh Komplu Soğutma Grubu – kategori: Soğutma Grupları. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€1598.93 sale=€1950.69 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 3 HP\n  • Voltaj: 380V\n  • Faz: 3-faz (380-400V)\n  • Marka: Kontak\n  • Kategori: Soğutm. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €1950.69. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -1915,9 +1843,9 @@
       "23900"
     ],
     "tr_question": "Kontak 5×2,5 TTR Kablo (5 damarlı 2,5 mm²) teknik özellikleri nedir?",
-    "tr_answer": "DB#23900 5×2,5 TTR Kablo (5 damarlı 2,5 mm²) kart kayıtlarına göre: 5x2. Detay: [Plan B 2026-05-08] DR02025000000032 line 22 — kesin fatura fiyatı.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 400 mt. Net fiyat €7.76. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23900 5×2,5 TTR Kablo (5 damarlı 2,5 mm²) kart kayıtlarına göre: 5x2. Detay: [Plan B 2026-05-08] DR02025000000032 line 22 — kesin fatura fiyatı.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Yüzey: 2.5 m²\n  • Marka: Kontak\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 400 mt. Net fiyat €7.76. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 5×2,5 TTR Kablo (5 damarlı 2,5 mm²)?",
-    "de_answer": "DB#23900 5×2,5 TTR Kablo (5 damarlı 2,5 mm²) laut Stammdaten: 5x2. Detail: [Plan B 2026-05-08] DR02025000000032 line 22 — kesin fatura fiyatı.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 400 mt. Nettopreis €7.76. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23900 5×2,5 TTR Kablo (5 damarlı 2,5 mm²) laut Stammdaten: 5x2. Detail: [Plan B 2026-05-08] DR02025000000032 line 22 — kesin fatura fiyatı.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Yüzey: 2.5 m²\n  • Marka: Kontak\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 400 mt. Nettopreis €7.76. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2071,9 +1999,9 @@
       "50"
     ],
     "tr_question": "Kontak 9mm 125x250 Kontra Heksa Play Wood Panel teknik özellikleri nedir?",
-    "tr_answer": "DB#50 9mm 125x250 Kontra Heksa Play Wood Panel kart kayıtlarına göre: 125x250. Detay: 9mm 125x250 Kontra Heksa Play Wood Panel – kategori: Panel. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€75.33 sale=€113.00 (×1.5 / ×1.20)]. Bu kalem 'Panel' kategorisinde pcs bazlı satılır. Stok: 16 pcs. Net fiyat €113.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#50 9mm 125x250 Kontra Heksa Play Wood Panel kart kayıtlarına göre: 125x250. Detay: 9mm 125x250 Kontra Heksa Play Wood Panel – kategori: Panel. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€75.33 sale=€113.00 (×1.5 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 125x250 mm\n  • Yüzey: 9 m²\n  • Marka: Kontak\n  • Kategori: Panel\n  • Birim: pcs\n\nℹ Soğuk oda yalıtım paneli. Bu kalem 'Panel' kategorisinde pcs bazlı satılır. Stok: 16 pcs. Net fiyat €113.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 9mm 125x250 Kontra Heksa Play Wood Panel?",
-    "de_answer": "DB#50 9 mm 125 x 250 Contra Hexa Spielholzplatte laut Stammdaten: 125x250. Detail: 9mm 125x250 Kontra Heksa Play Wood Panel – kategori: Panel. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€75.33 sale=€113.00 (×1.5 / ×1.20)]. Position liegt in der Kategorie 'Panel', Einheit pcs. Lagerstand: 16 pcs. Nettopreis €113.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#50 9 mm 125 x 250 Contra Hexa Spielholzplatte laut Stammdaten: 125x250. Detail: 9mm 125x250 Kontra Heksa Play Wood Panel – kategori: Panel. Kontak marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€75.33 sale=€113.00 (×1.5 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 125x250 mm\n  • Yüzey: 9 m²\n  • Marka: Kontak\n  • Kategori: Panel\n  • Birim: pcs\n\nℹ Soğuk oda yalıtım paneli. Position liegt in der Kategorie 'Panel', Einheit pcs. Lagerstand: 16 pcs. Nettopreis €113.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2187,30 +2115,6 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "drc",
-      "23783"
-    ],
-    "tr_question": "DRC DCB 100 Plus Kontrol Ünitesi stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23783 DRC DCB 100 Plus Kontrol Ünitesi | Marka: DRC | Kategori: Elektronik Kontrolörler | Birim: adet. Hamburg depoda 19 adet stok mevcut. Cost: €55.00, Net (sale): €55.00, Brüt (liste): €65.00. Teknik özet: standart konfigürasyon. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele DRC DCB 100 Plus Kontrol Ünitesi sind am Lager und was kostet das?",
-    "de_answer": "DB#23783 DRC DCB 100 Plus Steuereinheit | Marke: DRC | Kategorie: Elektronik Kontrolörler | Einheit: adet. In Hamburg lagernd: 19 adet. EK: €55.00, Netto (VK): €55.00, Brutto (Liste): €65.00. Technische Kurzdaten: standart konfigürasyon. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "drc",
-      "23783"
-    ],
-    "tr_question": "DCB-100-PLUS kodlu ürün hangisi?",
-    "tr_answer": "DCB-100-PLUS, DB#23783 'DRC DCB 100 Plus Kontrol Ünitesi' kaydının kodudur. Marka: DRC, Kategori: Elektronik Kontrolörler. Hamburg depoda 19 adet stoklu, net fiyat €55.00. Teknik özet: standart konfigürasyon.",
-    "de_question": "Welches Produkt ist DCB-100-PLUS?",
-    "de_answer": "DCB-100-PLUS ist der Code fuer DB#23783 'DRC DCB 100 Plus Steuereinheit'. Marke: DRC, Kategorie: Elektronik Kontrolörler. In Hamburg lagernd: 19 adet, VK netto €55.00. Kurzdaten: standart konfigürasyon."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
       "kontak",
       "23893"
     ],
@@ -2227,9 +2131,9 @@
       "23893"
     ],
     "tr_question": "Kontak 1 HP (0/+5) 220V Tecumseh Komplu Soğutma Grubu teknik özellikleri nedir?",
-    "tr_answer": "DB#23893 1 HP (0/+5) 220V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 1 HP · 220V · 1F. Detay: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €1220.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23893 1 HP (0/+5) 220V Tecumseh Komplu Soğutma Grubu kart kayıtlarına göre: 1 HP · 220V · 1F. Detay: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 1 HP\n  • Voltaj: 220V\n  • Faz: 1-faz (220V)\n  • Marka: Kontak\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol kom. Bu kalem 'Soğutma Grupları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €1220.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 1 HP (0/+5) 220V Tecumseh Komplu Soğutma Grubu?",
-    "de_answer": "DB#23893 1 HP (0/+5) 220V Tecumseh Komplu Soğutma Grubu laut Stammdaten: 1 HP · 220V · 1F. Detail: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €1220.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23893 1 HP (0/+5) 220V Tecumseh Komplu Soğutma Grubu laut Stammdaten: 1 HP · 220V · 1F. Detail: [Plan B 2026-05-08] DR02025000000012 — Komplu (Dış+Kumanda+İç). Cost tahmini, gerçek faturadan teyit gerekiyor.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Güç: 1 HP\n  • Voltaj: 220V\n  • Faz: 1-faz (220V)\n  • Marka: Kontak\n  • Kategori: Soğutma Grupları\n  • Birim: pcs\n\nℹ Kompresör + kondenser + iç ünite + kontrol kom. Position liegt in der Kategorie 'Soğutma Grupları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €1220.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2251,9 +2155,9 @@
       "23897"
     ],
     "tr_question": "Elektrosan 19×28 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø28mm) teknik özellikleri nedir?",
-    "tr_answer": "DB#23897 19×28 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø28mm) kart kayıtlarına göre: 19x28. Detay: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.. Bu kalem 'İzolasyonlu Borular' kategorisinde mt bazlı satılır. Stok: 70 mt. Net fiyat €28.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23897 19×28 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø28mm) kart kayıtlarına göre: 19x28. Detay: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 19x28 mm\n  • Yüzey: 28 m²\n  • Fan: 19×28 fan\n  • Marka: Elektrosan\n  • Kategori: İzolasyonlu Borular\n  • Birim: mt\n\nℹ Bakır boru + kapalı hücreli kauçuk yalıtım. Çift hat (likit + e. Bu kalem 'İzolasyonlu Borular' kategorisinde mt bazlı satılır. Stok: 70 mt. Net fiyat €28.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan 19×28 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø28mm)?",
-    "de_answer": "DB#23897 19×28 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø28mm) laut Stammdaten: 19x28. Detail: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.. Position liegt in der Kategorie 'İzolasyonlu Borular', Einheit mt. Lagerstand: 70 mt. Nettopreis €28.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23897 19×28 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø28mm) laut Stammdaten: 19x28. Detail: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 19x28 mm\n  • Yüzey: 28 m²\n  • Fan: 19×28 fan\n  • Marka: Elektrosan\n  • Kategori: İzolasyonlu Borular\n  • Birim: mt\n\nℹ Bakır boru + kapalı hücreli kauçuk yalıtım. Çift hat (likit + e. Position liegt in der Kategorie 'İzolasyonlu Borular', Einheit mt. Lagerstand: 70 mt. Nettopreis €28.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2275,9 +2179,9 @@
       "23898"
     ],
     "tr_question": "Kontak 5×1,5 TTR Kablo (5 damarlı 1,5 mm²) teknik özellikleri nedir?",
-    "tr_answer": "DB#23898 5×1,5 TTR Kablo (5 damarlı 1,5 mm²) kart kayıtlarına göre: 5x1. Detay: [Plan B 2026-05-08] DR02025000000032 line 20 — kesin fatura fiyatı.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 400 mt. Net fiyat €4.80. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23898 5×1,5 TTR Kablo (5 damarlı 1,5 mm²) kart kayıtlarına göre: 5x1. Detay: [Plan B 2026-05-08] DR02025000000032 line 20 — kesin fatura fiyatı.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Yüzey: 1.5 m²\n  • Marka: Kontak\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 400 mt. Net fiyat €4.80. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 5×1,5 TTR Kablo (5 damarlı 1,5 mm²)?",
-    "de_answer": "DB#23898 5×1,5 TTR Kablo (5 damarlı 1,5 mm²) laut Stammdaten: 5x1. Detail: [Plan B 2026-05-08] DR02025000000032 line 20 — kesin fatura fiyatı.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 400 mt. Nettopreis €4.80. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23898 5×1,5 TTR Kablo (5 damarlı 1,5 mm²) laut Stammdaten: 5x1. Detail: [Plan B 2026-05-08] DR02025000000032 line 20 — kesin fatura fiyatı.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Yüzey: 1.5 m²\n  • Marka: Kontak\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 400 mt. Nettopreis €4.80. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2314,6 +2218,30 @@
     "tr_answer": "VTE-40-6-214, DB#23771 'ThermETS VTE.40.6.214' kaydının kodudur. Marka: ETS, Kategori: Evaporatörler. Hamburg depoda 1 adet stoklu, net fiyat €1900.00. Teknik özet: 6.905 W · 2x400.",
     "de_question": "Welches Produkt ist VTE-40-6-214?",
     "de_answer": "VTE-40-6-214 ist der Code fuer DB#23771 'ThermETS VTE.40.6.214'. Marke: ETS, Kategorie: Evaporatörler. In Hamburg lagernd: 1 adet, VK netto €1900.00. Kurzdaten: 6.905 W · 2x400."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "drc",
+      "23783"
+    ],
+    "tr_question": "DRC DCB 100 Plus Kontrol Ünitesi stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23783 DRC DCB 100 Plus Kontrol Ünitesi | Marka: DRC | Kategori: Elektronik Kontrolörler | Birim: adet. Hamburg depoda 17 adet stok mevcut. Cost: €55.00, Net (sale): €55.00, Brüt (liste): €65.00. Teknik özet: standart konfigürasyon. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele DRC DCB 100 Plus Kontrol Ünitesi sind am Lager und was kostet das?",
+    "de_answer": "DB#23783 DRC DCB 100 Plus Steuereinheit | Marke: DRC | Kategorie: Elektronik Kontrolörler | Einheit: adet. In Hamburg lagernd: 17 adet. EK: €55.00, Netto (VK): €55.00, Brutto (Liste): €65.00. Technische Kurzdaten: standart konfigürasyon. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "code_lookup",
+      "drc",
+      "23783"
+    ],
+    "tr_question": "DCB-100-PLUS kodlu ürün hangisi?",
+    "tr_answer": "DCB-100-PLUS, DB#23783 'DRC DCB 100 Plus Kontrol Ünitesi' kaydının kodudur. Marka: DRC, Kategori: Elektronik Kontrolörler. Hamburg depoda 17 adet stoklu, net fiyat €55.00. Teknik özet: standart konfigürasyon.",
+    "de_question": "Welches Produkt ist DCB-100-PLUS?",
+    "de_answer": "DCB-100-PLUS ist der Code fuer DB#23783 'DRC DCB 100 Plus Steuereinheit'. Marke: DRC, Kategorie: Elektronik Kontrolörler. In Hamburg lagernd: 17 adet, VK netto €55.00. Kurzdaten: standart konfigürasyon."
   },
   {
     "tags": [
@@ -2391,30 +2319,6 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "gvn (güven)",
-      "23756"
-    ],
-    "tr_question": "GVN Yatay Likit Tankı HLR.GR.33B.05 stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23756 GVN Yatay Likit Tankı HLR.GR.33B.05 | Marka: GVN (Güven) | Kategori: Likit Tanklar | Birim: adet. Hamburg depoda 2 adet stok mevcut. Cost: €295.00, Net (sale): €295.00, Brüt (liste): €354.00. Teknik özet: standart konfigürasyon. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele GVN Yatay Likit Tankı HLR.GR.33B.05 sind am Lager und was kostet das?",
-    "de_answer": "DB#23756 GVN Horizontaler Fluessigkeitssammler HLR.GR.33B.05 | Marke: GVN (Güven) | Kategorie: Likit Tanklar | Einheit: adet. In Hamburg lagernd: 2 adet. EK: €295.00, Netto (VK): €295.00, Brutto (Liste): €354.00. Technische Kurzdaten: standart konfigürasyon. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "code_lookup",
-      "gvn (güven)",
-      "23756"
-    ],
-    "tr_question": "HLRGR33B05B3B3 kodlu ürün hangisi?",
-    "tr_answer": "HLRGR33B05B3B3, DB#23756 'GVN Yatay Likit Tankı HLR.GR.33B.05' kaydının kodudur. Marka: GVN (Güven), Kategori: Likit Tanklar. Hamburg depoda 2 adet stoklu, net fiyat €295.00. Teknik özet: standart konfigürasyon.",
-    "de_question": "Welches Produkt ist HLRGR33B05B3B3?",
-    "de_answer": "HLRGR33B05B3B3 ist der Code fuer DB#23756 'GVN Horizontaler Fluessigkeitssammler HLR.GR.33B.05'. Marke: GVN (Güven), Kategorie: Likit Tanklar. In Hamburg lagernd: 2 adet, VK netto €295.00. Kurzdaten: standart konfigürasyon."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
       "systemair",
       "23762"
     ],
@@ -2434,6 +2338,30 @@
     "tr_answer": "SYSVRF3VOL56Q, DB#23762 'Systemair VRF İç Ünite WALL 56 Q' kaydının kodudur. Marka: Systemair, Kategori: Klima Sistemleri. Hamburg depoda 2 adet stoklu, net fiyat €295.00. Teknik özet: standart konfigürasyon.",
     "de_question": "Welches Produkt ist SYSVRF3VOL56Q?",
     "de_answer": "SYSVRF3VOL56Q ist der Code fuer DB#23762 'Systemair VRF Innengeraet WALL 56 Q'. Marke: Systemair, Kategorie: Klima Sistemleri. In Hamburg lagernd: 2 adet, VK netto €295.00. Kurzdaten: standart konfigürasyon."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "gvn (güven)",
+      "23756"
+    ],
+    "tr_question": "GVN Yatay Likit Tankı HLR.GR.33B.05 stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23756 GVN Yatay Likit Tankı HLR.GR.33B.05 | Marka: GVN (Güven) | Kategori: Likit Tanklar | Birim: adet. Hamburg depoda 2 adet stok mevcut. Cost: €295.00, Net (sale): €295.00, Brüt (liste): €354.00. Teknik özet: standart konfigürasyon. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele GVN Yatay Likit Tankı HLR.GR.33B.05 sind am Lager und was kostet das?",
+    "de_answer": "DB#23756 GVN Horizontaler Fluessigkeitssammler HLR.GR.33B.05 | Marke: GVN (Güven) | Kategorie: Likit Tanklar | Einheit: adet. In Hamburg lagernd: 2 adet. EK: €295.00, Netto (VK): €295.00, Brutto (Liste): €354.00. Technische Kurzdaten: standart konfigürasyon. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "code_lookup",
+      "gvn (güven)",
+      "23756"
+    ],
+    "tr_question": "HLRGR33B05B3B3 kodlu ürün hangisi?",
+    "tr_answer": "HLRGR33B05B3B3, DB#23756 'GVN Yatay Likit Tankı HLR.GR.33B.05' kaydının kodudur. Marka: GVN (Güven), Kategori: Likit Tanklar. Hamburg depoda 2 adet stoklu, net fiyat €295.00. Teknik özet: standart konfigürasyon.",
+    "de_question": "Welches Produkt ist HLRGR33B05B3B3?",
+    "de_answer": "HLRGR33B05B3B3 ist der Code fuer DB#23756 'GVN Horizontaler Fluessigkeitssammler HLR.GR.33B.05'. Marke: GVN (Güven), Kategorie: Likit Tanklar. In Hamburg lagernd: 2 adet, VK netto €295.00. Kurzdaten: standart konfigürasyon."
   },
   {
     "tags": [
@@ -2479,21 +2407,9 @@
       "23899"
     ],
     "tr_question": "Kontak 3×1,5 TTR Kablo (3 damarlı 1,5 mm²) teknik özellikleri nedir?",
-    "tr_answer": "DB#23899 3×1,5 TTR Kablo (3 damarlı 1,5 mm²) kart kayıtlarına göre: 3x1. Detay: [Plan B 2026-05-08] DR02025000000032 line 21 — kesin fatura fiyatı.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 400 mt. Net fiyat €2.82. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23899 3×1,5 TTR Kablo (3 damarlı 1,5 mm²) kart kayıtlarına göre: 3x1. Detay: [Plan B 2026-05-08] DR02025000000032 line 21 — kesin fatura fiyatı.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Yüzey: 1.5 m²\n  • Marka: Kontak\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 400 mt. Net fiyat €2.82. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak 3×1,5 TTR Kablo (3 damarlı 1,5 mm²)?",
-    "de_answer": "DB#23899 3×1,5 TTR Kablo (3 damarlı 1,5 mm²) laut Stammdaten: 3x1. Detail: [Plan B 2026-05-08] DR02025000000032 line 21 — kesin fatura fiyatı.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 400 mt. Nettopreis €2.82. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
-      "ottocool",
-      "23785"
-    ],
-    "tr_question": "Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Bakır Boru stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23785 Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Bakır Boru | Marka: Ottocool | Kategori: İzolasyonlu Borular | Birim: rulo. Hamburg depoda 8 rulo stok mevcut. Cost: €63.00, Net (sale): €63.00, Brüt (liste): €75.60. Teknik özet: standart konfigürasyon. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Bakır Boru sind am Lager und was kostet das?",
-    "de_answer": "DB#23785 Ottocool 5/8\" VRF Gummi-isoliertes Kupferrohr | Marke: Ottocool | Kategorie: İzolasyonlu Borular | Einheit: rulo. In Hamburg lagernd: 8 rulo. EK: €63.00, Netto (VK): €63.00, Brutto (Liste): €75.60. Technische Kurzdaten: standart konfigürasyon. Das ist eine Materialfrage."
+    "de_answer": "DB#23899 3×1,5 TTR Kablo (3 damarlı 1,5 mm²) laut Stammdaten: 3x1. Detail: [Plan B 2026-05-08] DR02025000000032 line 21 — kesin fatura fiyatı.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Yüzey: 1.5 m²\n  • Marka: Kontak\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 400 mt. Nettopreis €2.82. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2518,6 +2434,42 @@
     "tr_answer": "OTTOCOOL-1-4-VRF-KAUCUK-IZOLASYONLU-BAKI-23786, DB#23786 'Ottocool 1/4\\\" Vrf Kauçuk İzolasyonlu Bakır Boru' kaydının kodudur. Marka: Ottocool, Kategori: İzolasyonlu Borular. Hamburg depoda 8 rulo stoklu, net fiyat €63.00. Teknik özet: standart konfigürasyon.",
     "de_question": "Welches Produkt ist OTTOCOOL-1-4-VRF-KAUCUK-IZOLASYONLU-BAKI-23786?",
     "de_answer": "OTTOCOOL-1-4-VRF-KAUCUK-IZOLASYONLU-BAKI-23786 ist der Code fuer DB#23786 'Ottocool 1/4\" VRF Gummi-isoliertes Kupferrohr'. Marke: Ottocool, Kategorie: İzolasyonlu Borular. In Hamburg lagernd: 8 rulo, VK netto €63.00. Kurzdaten: standart konfigürasyon."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "ottocool",
+      "23785"
+    ],
+    "tr_question": "Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Bakır Boru stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#23785 Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Bakır Boru | Marka: Ottocool | Kategori: İzolasyonlu Borular | Birim: rulo. Hamburg depoda 8 rulo stok mevcut. Cost: €63.00, Net (sale): €63.00, Brüt (liste): €75.60. Teknik özet: standart konfigürasyon. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Bakır Boru sind am Lager und was kostet das?",
+    "de_answer": "DB#23785 Ottocool 5/8\" VRF Gummi-isoliertes Kupferrohr | Marke: Ottocool | Kategorie: İzolasyonlu Borular | Einheit: rulo. In Hamburg lagernd: 8 rulo. EK: €63.00, Netto (VK): €63.00, Brutto (Liste): €75.60. Technische Kurzdaten: standart konfigürasyon. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme",
+      "elektrosan",
+      "37"
+    ],
+    "tr_question": "2x0,75 Sinyal Kablosu stokta var mı, kaç adet ve fiyatı nedir?",
+    "tr_answer": "DB#37 2x0,75 Sinyal Kablosu | Marka: Elektrosan | Kategori: Elektrik Malzemeleri | Birim: mt. Hamburg depoda 500 mt stok mevcut. Cost: €1.00, Net (sale): €2.00, Brüt (liste): €2.40. Teknik özet: 2x0. Bu MALZEME sorusudur — kart bilgisidir.",
+    "de_question": "Wie viele 2x0,75 Sinyal Kablosu sind am Lager und was kostet das?",
+    "de_answer": "DB#37 2x0,75 Signalkabel | Marke: Elektrosan | Kategorie: Elektrik Malzemeleri | Einheit: mt. In Hamburg lagernd: 500 mt. EK: €1.00, Netto (VK): €2.00, Brutto (Liste): €2.40. Technische Kurzdaten: 2x0. Das ist eine Materialfrage."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "malzeme_teknik",
+      "elektrosan",
+      "37"
+    ],
+    "tr_question": "Elektrosan 2x0,75 Sinyal Kablosu teknik özellikleri nedir?",
+    "tr_answer": "DB#37 2x0,75 Sinyal Kablosu kart kayıtlarına göre: 2x0. Detay: 2x0,75 Sinyal Kablosu elektrik malzemesi (soğutma sistemi). [Plan A 2026-05-08: cost=€1.00 sale=€2.00 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Elektrosan\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 500 mt. Net fiyat €2.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von Elektrosan 2x0,75 Sinyal Kablosu?",
+    "de_answer": "DB#37 2x0,75 Signalkabel laut Stammdaten: 2x0. Detail: 2x0,75 Sinyal Kablosu elektrik malzemesi (soğutma sistemi). [Plan A 2026-05-08: cost=€1.00 sale=€2.00 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Marka: Elektrosan\n  • Kategori: Elektrik Malzemeleri\n  • Birim: mt\n\nℹ Kontrol panosu, kablo, sigorta, kontaktör, termostat, prob.. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 500 mt. Nettopreis €2.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2596,30 +2548,6 @@
       "stock_technical",
       "malzeme",
       "elektrosan",
-      "37"
-    ],
-    "tr_question": "2x0,75 Sinyal Kablosu stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#37 2x0,75 Sinyal Kablosu | Marka: Elektrosan | Kategori: Elektrik Malzemeleri | Birim: mt. Hamburg depoda 500 mt stok mevcut. Cost: €1.00, Net (sale): €2.00, Brüt (liste): €2.40. Teknik özet: 2x0. Bu MALZEME sorusudur — kart bilgisidir.",
-    "de_question": "Wie viele 2x0,75 Sinyal Kablosu sind am Lager und was kostet das?",
-    "de_answer": "DB#37 2x0,75 Signalkabel | Marke: Elektrosan | Kategorie: Elektrik Malzemeleri | Einheit: mt. In Hamburg lagernd: 500 mt. EK: €1.00, Netto (VK): €2.00, Brutto (Liste): €2.40. Technische Kurzdaten: 2x0. Das ist eine Materialfrage."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme_teknik",
-      "elektrosan",
-      "37"
-    ],
-    "tr_question": "Elektrosan 2x0,75 Sinyal Kablosu teknik özellikleri nedir?",
-    "tr_answer": "DB#37 2x0,75 Sinyal Kablosu kart kayıtlarına göre: 2x0. Detay: 2x0,75 Sinyal Kablosu elektrik malzemesi (soğutma sistemi). [Plan A 2026-05-08: cost=€1.00 sale=€2.00 (×2.0 / ×1.20)]. Bu kalem 'Elektrik Malzemeleri' kategorisinde mt bazlı satılır. Stok: 500 mt. Net fiyat €2.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von Elektrosan 2x0,75 Sinyal Kablosu?",
-    "de_answer": "DB#37 2x0,75 Signalkabel laut Stammdaten: 2x0. Detail: 2x0,75 Sinyal Kablosu elektrik malzemesi (soğutma sistemi). [Plan A 2026-05-08: cost=€1.00 sale=€2.00 (×2.0 / ×1.20)]. Position liegt in der Kategorie 'Elektrik Malzemeleri', Einheit mt. Lagerstand: 500 mt. Nettopreis €2.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "malzeme",
-      "elektrosan",
       "55"
     ],
     "tr_question": "HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kap stokta var mı, kaç adet ve fiyatı nedir?",
@@ -2635,9 +2563,9 @@
       "55"
     ],
     "tr_question": "Elektrosan HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kap teknik özellikleri nedir?",
-    "tr_answer": "DB#55 HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kapısı kart kayıtlarına göre: 107x185. Detay: HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kapısı – kategori: Soğuk Oda Kapıları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€487.59 sale=€595.86 (×1.22 / ×1.20)]. Bu kalem 'Soğuk Oda Kapıları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €595.86. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#55 HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kapısı kart kayıtlarına göre: 107x185. Detay: HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kapısı – kategori: Soğuk Oda Kapıları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€487.59 sale=€595.86 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 107x185 mm\n  • Yüzey: 185 m²\n  • Marka: Elektrosan\n  • Kategori: . Bu kalem 'Soğuk Oda Kapıları' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €595.86. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kap?",
-    "de_answer": "DB#55 SCHARNIERE/ATM1020.0120PP 107x185 Scharniertür für Kühlräume laut Stammdaten: 107x185. Detail: HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kapısı – kategori: Soğuk Oda Kapıları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€487.59 sale=€595.86 (×1.22 / ×1.20)]. Position liegt in der Kategorie 'Soğuk Oda Kapıları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €595.86. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#55 SCHARNIERE/ATM1020.0120PP 107x185 Scharniertür für Kühlräume laut Stammdaten: 107x185. Detail: HINGETS/ATM1020.0120PP 107x185 Menteseli Soğuk Hava Depo Kapısı – kategori: Soğuk Oda Kapıları. Elektrosan marka endüstriyel soğutma ürünü. [Plan A 2026-05-08: cost=€487.59 sale=€595.86 (×1.22 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 107x185 mm\n  • Yüzey: 185 m²\n  • Marka: Elektrosan\n  • Kategori: . Position liegt in der Kategorie 'Soğuk Oda Kapıları', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €595.86. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -2983,9 +2911,9 @@
       "48"
     ],
     "tr_question": "Kontak Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli teknik özellikleri nedir?",
-    "tr_answer": "DB#48 Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 2803 W. Detay: Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€293.65 sale=€587.30 (×2.0 / ×1.20)]. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €587.30. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#48 Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 2803 W. Detay: Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€293.65 sale=€587.30 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 2803 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €587.30. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli?",
-    "de_answer": "DB#48 Kühlendes Innengerät, 2803-Watt-Lüfter mit Ventilöffnung laut Stammdaten: 2803 W. Detail: Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€293.65 sale=€587.30 (×2.0 / ×1.20)]. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €587.30. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#48 Kühlendes Innengerät, 2803-Watt-Lüfter mit Ventilöffnung laut Stammdaten: 2803 W. Detail: Soğutma İç Ünite 2803 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€293.65 sale=€587.30 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 2803 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €587.30. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -3007,9 +2935,9 @@
       "45"
     ],
     "tr_question": "Kontak Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli teknik özellikleri nedir?",
-    "tr_answer": "DB#45 Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 1694 W. Detay: Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€292.11 sale=€584.22 (×2.0 / ×1.20)]. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €584.22. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#45 Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 1694 W. Detay: Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€292.11 sale=€584.22 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 1694 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €584.22. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli?",
-    "de_answer": "DB#45 Kühlendes Innengerät, 1694-Watt-Lüfter mit Ventilöffnung laut Stammdaten: 1694 W. Detail: Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€292.11 sale=€584.22 (×2.0 / ×1.20)]. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €584.22. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#45 Kühlendes Innengerät, 1694-Watt-Lüfter mit Ventilöffnung laut Stammdaten: 1694 W. Detail: Soğutma İç Ünite 1694 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€292.11 sale=€584.22 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 1694 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €584.22. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -3031,9 +2959,9 @@
       "46"
     ],
     "tr_question": "Kontak Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli teknik özellikleri nedir?",
-    "tr_answer": "DB#46 Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 1576 W. Detay: Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€284.43 sale=€568.86 (×2.0 / ×1.20)]. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €568.86. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#46 Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 1576 W. Detay: Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€284.43 sale=€568.86 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 1576 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €568.86. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli?",
-    "de_answer": "DB#46 Kühlendes Innengerät, 1576-Watt-Ventilator mit Ventilöffnung laut Stammdaten: 1576 W. Detail: Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€284.43 sale=€568.86 (×2.0 / ×1.20)]. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €568.86. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#46 Kühlendes Innengerät, 1576-Watt-Ventilator mit Ventilöffnung laut Stammdaten: 1576 W. Detail: Soğutma İç Ünite 1576 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€284.43 sale=€568.86 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 1576 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €568.86. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -3115,9 +3043,9 @@
       "47"
     ],
     "tr_question": "Kontak Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli teknik özellikleri nedir?",
-    "tr_answer": "DB#47 Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 1180 W. Detay: Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€273.97 sale=€547.94 (×2.0 / ×1.20)]. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €547.94. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#47 Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli kart kayıtlarına göre: 1180 W. Detay: Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€273.97 sale=€547.94 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 1180 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Bu kalem 'Evaporatörler' kategorisinde pcs bazlı satılır. Stok: 1 pcs. Net fiyat €547.94. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Kontak Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli?",
-    "de_answer": "DB#47 Kühlendes Innengerät, 1180-Watt-Ventilator mit Ventilöffnung laut Stammdaten: 1180 W. Detail: Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€273.97 sale=€547.94 (×2.0 / ×1.20)]. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €547.94. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#47 Kühlendes Innengerät, 1180-Watt-Ventilator mit Ventilöffnung laut Stammdaten: 1180 W. Detail: Soğutma İç Ünite 1180 Watt Fanli Valfli Orifisli evaporatör (ısı değiştirici). [Plan A 2026-05-08: cost=€273.97 sale=€547.94 (×2.0 / ×1.20)]\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kapasite: 1180 W\n  • Marka: Kontak\n  • Kategori: Evaporatörler\n  • Birim: pcs\n\nℹ Soğutma odası içinde ısı çekme görevi. Hava üfleme v. Position liegt in der Kategorie 'Evaporatörler', Einheit pcs. Lagerstand: 1 pcs. Nettopreis €547.94. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -3367,9 +3295,9 @@
       "23896"
     ],
     "tr_question": "Elektrosan 19×22 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø22mm) teknik özellikleri nedir?",
-    "tr_answer": "DB#23896 19×22 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø22mm) kart kayıtlarına göre: 19x22. Detay: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.. Bu kalem 'İzolasyonlu Borular' kategorisinde mt bazlı satılır. Stok: 20 mt. Net fiyat €22.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "tr_answer": "DB#23896 19×22 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø22mm) kart kayıtlarına göre: 19x22. Detay: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 19x22 mm\n  • Yüzey: 22 m²\n  • Fan: 19×22 fan\n  • Marka: Elektrosan\n  • Kategori: İzolasyonlu Borular\n  • Birim: mt\n\nℹ Bakır boru + kapalı hücreli kauçuk yalıtım. Çift hat (likit + e. Bu kalem 'İzolasyonlu Borular' kategorisinde mt bazlı satılır. Stok: 20 mt. Net fiyat €22.00. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
     "de_question": "Was sind die technischen Daten von Elektrosan 19×22 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø22mm)?",
-    "de_answer": "DB#23896 19×22 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø22mm) laut Stammdaten: 19x22. Detail: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.. Position liegt in der Kategorie 'İzolasyonlu Borular', Einheit mt. Lagerstand: 20 mt. Nettopreis €22.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "de_answer": "DB#23896 19×22 mm İzoleli Bakır Boru (İç Ø19mm / Dış Ø22mm) laut Stammdaten: 19x22. Detail: [Plan B 2026-05-08] EL02026000000003 — Cost tahmini, gerçek faturadan teyit gerekiyor.\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Ölçü: 19x22 mm\n  • Yüzey: 22 m²\n  • Fan: 19×22 fan\n  • Marka: Elektrosan\n  • Kategori: İzolasyonlu Borular\n  • Birim: mt\n\nℹ Bakır boru + kapalı hücreli kauçuk yalıtım. Çift hat (likit + e. Position liegt in der Kategorie 'İzolasyonlu Borular', Einheit mt. Lagerstand: 20 mt. Nettopreis €22.00. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
@@ -3747,37 +3675,37 @@
     "tags": [
       "stock_technical",
       "malzeme",
-      "drc",
+      "ets",
       "23796"
     ],
     "tr_question": "Genel 13 CM Soğuk Oda U Profili stokta var mı, kaç adet ve fiyatı nedir?",
-    "tr_answer": "DB#23796 Genel 13 CM Soğuk Oda U Profili | Marka: DRC | Kategori: Soğuk Oda Aksesuarları | Birim: adet. Hamburg depoda 37 adet stok mevcut. Cost: €3.13, Net (sale): €9.39, Brüt (liste): €11.27. Teknik özet: 13°C. Bu MALZEME sorusudur — kart bilgisidir.",
+    "tr_answer": "DB#23796 Genel 13 CM Soğuk Oda U Profili | Marka: ETS | Kategori: Soğuk Oda Aksesuarları | Birim: adet. Hamburg depoda 37 adet stok mevcut. Cost: €3.13, Net (sale): €9.39, Brüt (liste): €11.27. Teknik özet: 13°C. Bu MALZEME sorusudur — kart bilgisidir.",
     "de_question": "Wie viele Genel 13 CM Soğuk Oda U Profili sind am Lager und was kostet das?",
-    "de_answer": "DB#23796 Allgemein 13 CM Kuehlraum U-Profil | Marke: DRC | Kategorie: Soğuk Oda Aksesuarları | Einheit: adet. In Hamburg lagernd: 37 adet. EK: €3.13, Netto (VK): €9.39, Brutto (Liste): €11.27. Technische Kurzdaten: 13°C. Das ist eine Materialfrage."
+    "de_answer": "DB#23796 Allgemein 13 CM Kuehlraum U-Profil | Marke: ETS | Kategorie: Soğuk Oda Aksesuarları | Einheit: adet. In Hamburg lagernd: 37 adet. EK: €3.13, Netto (VK): €9.39, Brutto (Liste): €11.27. Technische Kurzdaten: 13°C. Das ist eine Materialfrage."
   },
   {
     "tags": [
       "stock_technical",
       "malzeme_teknik",
-      "drc",
+      "ets",
       "23796"
     ],
-    "tr_question": "DRC Genel 13 CM Soğuk Oda U Profili teknik özellikleri nedir?",
-    "tr_answer": "DB#23796 Genel 13 CM Soğuk Oda U Profili kart kayıtlarına göre: 13°C. Detay: Model 13 CM. Bu kalem 'Soğuk Oda Aksesuarları' kategorisinde adet bazlı satılır. Stok: 37 adet. Net fiyat €9.39. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
-    "de_question": "Was sind die technischen Daten von DRC Genel 13 CM Soğuk Oda U Profili?",
-    "de_answer": "DB#23796 Allgemein 13 CM Kuehlraum U-Profil laut Stammdaten: 13°C. Detail: Model 13 CM. Position liegt in der Kategorie 'Soğuk Oda Aksesuarları', Einheit adet. Lagerstand: 37 adet. Nettopreis €9.39. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
+    "tr_question": "ETS Genel 13 CM Soğuk Oda U Profili teknik özellikleri nedir?",
+    "tr_answer": "DB#23796 Genel 13 CM Soğuk Oda U Profili kart kayıtlarına göre: 13°C. Detay: Model 13 CM\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kategori: Soğuk Oda Aksesuarları\n  • Birim: adet\n\nℹ Köşe profili, U-zemin profili, kapama PVC, düzeltici elemanlar. [2026-05-09 kategori-bazlı marka ataması]. Bu kalem 'Soğuk Oda Aksesuarları' kategorisinde adet bazlı satılır. Stok: 37 adet. Net fiyat €9.39. Eğer projede uygulayacaksan kapasite, gaz ve sistem uyumunu önce kontrol et.",
+    "de_question": "Was sind die technischen Daten von ETS Genel 13 CM Soğuk Oda U Profili?",
+    "de_answer": "DB#23796 Allgemein 13 CM Kuehlraum U-Profil laut Stammdaten: 13°C. Detail: Model 13 CM\n\n⚙ TEKNİK ÖZELLİKLER:\n  • Kategori: Soğuk Oda Aksesuarları\n  • Birim: adet\n\nℹ Köşe profili, U-zemin profili, kapama PVC, düzeltici elemanlar. [2026-05-09 kategori-bazlı marka ataması]. Position liegt in der Kategorie 'Soğuk Oda Aksesuarları', Einheit adet. Lagerstand: 37 adet. Nettopreis €9.39. Vor Projekteinsatz Kapazitaet, Kaeltemittel und Systemkompatibilitaet pruefen."
   },
   {
     "tags": [
       "stock_technical",
       "code_lookup",
-      "drc",
+      "ets",
       "23796"
     ],
     "tr_question": "13-CM kodlu ürün hangisi?",
-    "tr_answer": "13-CM, DB#23796 'Genel 13 CM Soğuk Oda U Profili' kaydının kodudur. Marka: DRC, Kategori: Soğuk Oda Aksesuarları. Hamburg depoda 37 adet stoklu, net fiyat €9.39. Teknik özet: 13°C.",
+    "tr_answer": "13-CM, DB#23796 'Genel 13 CM Soğuk Oda U Profili' kaydının kodudur. Marka: ETS, Kategori: Soğuk Oda Aksesuarları. Hamburg depoda 37 adet stoklu, net fiyat €9.39. Teknik özet: 13°C.",
     "de_question": "Welches Produkt ist 13-CM?",
-    "de_answer": "13-CM ist der Code fuer DB#23796 'Allgemein 13 CM Kuehlraum U-Profil'. Marke: DRC, Kategorie: Soğuk Oda Aksesuarları. In Hamburg lagernd: 37 adet, VK netto €9.39. Kurzdaten: 13°C."
+    "de_answer": "13-CM ist der Code fuer DB#23796 'Allgemein 13 CM Kuehlraum U-Profil'. Marke: ETS, Kategorie: Soğuk Oda Aksesuarları. In Hamburg lagernd: 37 adet, VK netto €9.39. Kurzdaten: 13°C."
   },
   {
     "tags": [
@@ -4062,9 +3990,9 @@
       "stok_durumu"
     ],
     "tr_question": "Hamburg depoda toplam kaç çeşit ürün stokta var?",
-    "tr_answer": "Hamburg depoda 08.05.2026 itibariyle 139 farklı stoklu ürün bulunmaktadır. Toplam stok değeri yaklaşık €313.515 (cost), €501.084 (sale). Bunlar 139 farklı kalem; en çok değer taşıyan 5 kalem: DRC çarpma kapı (€18.000), GVN likit tankı (€16.538), Errecom POE 170 yağ (€8.800), Copeland scroll kompresör (€8.800), DRC çarpma kapı 180×80 (€8.800). Detay rapor için Excel: /Users/anilakbas/Desktop/HamburgDepo_Stoklu_Urunler_08052026.xlsx",
+    "tr_answer": "Hamburg depoda 08.05.2026 itibariyle 137 farklı stoklu ürün bulunmaktadır. Toplam stok değeri yaklaşık €313.515 (cost), €501.084 (sale). Bunlar 139 farklı kalem; en çok değer taşıyan 5 kalem: DRC çarpma kapı (€18.000), GVN likit tankı (€16.538), Errecom POE 170 yağ (€8.800), Copeland scroll kompresör (€8.800), DRC çarpma kapı 180×80 (€8.800). Detay rapor için Excel: /Users/anilakbas/Desktop/HamburgDepo_Stoklu_Urunler_08052026.xlsx",
     "de_question": "Wieviele verschiedene Artikel sind in Hamburg am Lager?",
-    "de_answer": "Stand 08.05.2026 sind 139 verschiedene Artikel im Hamburger Lager auf Bestand. Gesamt-Lagerwert ca. EK €313.515, VK €501.084. Top 5 nach Wert: DRC Tuerheizung (€18.000), GVN Fluessigkeitssammler (€16.538), Errecom POE 170 Oel (€8.800), Copeland Scroll Verdichter (€8.800), DRC Tuerheizung 180×80 (€8.800). Excel-Bericht: /Users/anilakbas/Desktop/HamburgDepo_Stoklu_Urunler_08052026.xlsx"
+    "de_answer": "Stand 08.05.2026 sind 137 verschiedene Artikel im Hamburger Lager auf Bestand. Gesamt-Lagerwert ca. EK €313.515, VK €501.084. Top 5 nach Wert: DRC Tuerheizung (€18.000), GVN Fluessigkeitssammler (€16.538), Errecom POE 170 Oel (€8.800), Copeland Scroll Verdichter (€8.800), DRC Tuerheizung 180×80 (€8.800). Excel-Bericht: /Users/anilakbas/Desktop/HamburgDepo_Stoklu_Urunler_08052026.xlsx"
   },
   {
     "tags": [
@@ -4084,9 +4012,9 @@
       "ets"
     ],
     "tr_question": "ETS markasından stokta hangi ürünler var?",
-    "tr_answer": "ETS markasından Hamburg depoda toplam 17 farklı kalem stoklu. Toplam stok değeri (cost): €37465.76. Örnek ürünler: ThermETS SHSC-LP10160-DT04SE 16 HP Semi  · Soğutma Ünitesi Negatif Paket Grup HCS · ThermETS SHSC-MP10100-DT04SE 10 HP Yarı  · ThermETS HSC-LP10015-ET49S 1.5HP Donuk D · ThermETS HSC-MP10015-EM49S 1.5HP Split H.",
+    "tr_answer": "ETS markasından Hamburg depoda toplam 16 farklı kalem stoklu. Toplam stok değeri (cost): €31332.33. Örnek ürünler: ThermETS SHSC-LP10160-DT04SE 16 HP Semi  · Soğutma Ünitesi Negatif Paket Grup HCS · ThermETS SHSC-MP10100-DT04SE 10 HP Yarı  · ThermETS HSC-LP10015-ET49S 1.5HP Donuk D · ThermETS HSC-MP10015-EM49S 1.5HP Split H.",
     "de_question": "Welche ETS Artikel sind am Lager?",
-    "de_answer": "Vom Hersteller ETS sind aktuell 17 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €37465.76. Beispiele: ThermETS SHSC-LP10160-DT04SE 16 HP Semi  · Soğutma Ünitesi Negatif Paket Grup HCS · ThermETS SHSC-MP10100-DT04SE 10 HP Yarı  · ThermETS HSC-LP10015-ET49S 1.5HP Donuk D · ThermETS HSC-MP10015-EM49S 1.5HP Split H."
+    "de_answer": "Vom Hersteller ETS sind aktuell 16 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €31332.33. Beispiele: ThermETS SHSC-LP10160-DT04SE 16 HP Semi  · Soğutma Ünitesi Negatif Paket Grup HCS · ThermETS SHSC-MP10100-DT04SE 10 HP Yarı  · ThermETS HSC-LP10015-ET49S 1.5HP Donuk D · ThermETS HSC-MP10015-EM49S 1.5HP Split H."
   },
   {
     "tags": [
@@ -4106,9 +4034,9 @@
       "elektrosan"
     ],
     "tr_question": "Elektrosan markasından stokta hangi ürünler var?",
-    "tr_answer": "Elektrosan markasından Hamburg depoda toplam 11 farklı kalem stoklu. Toplam stok değeri (cost): €22926.31. Örnek ürünler: Elektrosan Çift Kapı Buzdolabı (-18°C /  · THERMETS/HSC.MP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10020.ET04SE 2 HP Split S · THERMETS/HSC.MP10050.TT04SE 5 HP Split S.",
+    "tr_answer": "Elektrosan markasından Hamburg depoda toplam 11 farklı kalem stoklu. Toplam stok değeri (cost): €22926.31. Örnek ürünler: Elektrosan Çift Kapı Buzdolabı (-18°C /  · THERMETS/HSC.MP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10020.ET04SE 2 HP Split S · THERMETS/HSC.LP10050.TT04SE 5 HP Split S.",
     "de_question": "Welche Elektrosan Artikel sind am Lager?",
-    "de_answer": "Vom Hersteller Elektrosan sind aktuell 11 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €22926.31. Beispiele: Elektrosan Çift Kapı Buzdolabı (-18°C /  · THERMETS/HSC.MP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10020.ET04SE 2 HP Split S · THERMETS/HSC.MP10050.TT04SE 5 HP Split S."
+    "de_answer": "Vom Hersteller Elektrosan sind aktuell 11 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €22926.31. Beispiele: Elektrosan Çift Kapı Buzdolabı (-18°C /  · THERMETS/HSC.MP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10030.TT04SE 3 HP Split S · THERMETS/HSC.LP10020.ET04SE 2 HP Split S · THERMETS/HSC.LP10050.TT04SE 5 HP Split S."
   },
   {
     "tags": [
@@ -4117,20 +4045,9 @@
       "genel"
     ],
     "tr_question": "Genel markasından stokta hangi ürünler var?",
-    "tr_answer": "Genel markasından Hamburg depoda toplam 9 farklı kalem stoklu. Toplam stok değeri (cost): €6091.00. Örnek ürünler: R290 Propan Soğutucu Gazı 6 KG (Hidrokar · Genel Soğutucu Elektrik Panosu · Boru İzolasyon Köpüğü İç Çap 22 mm (13mm · Genel 5X1.5 Ttr Kablo · Boru İzolasyon Köpüğü İç Çap 28 mm (13mm.",
+    "tr_answer": "Genel markasından Hamburg depoda toplam 9 farklı kalem stoklu. Toplam stok değeri (cost): €5986.00. Örnek ürünler: R290 Propan Soğutucu Gazı 6 KG (Hidrokar · Genel Soğutucu Elektrik Panosu · Boru İzolasyon Köpüğü İç Çap 22 mm (13mm · Genel 5X1.5 Ttr Kablo · Boru İzolasyon Köpüğü İç Çap 28 mm (13mm.",
     "de_question": "Welche Genel Artikel sind am Lager?",
-    "de_answer": "Vom Hersteller Genel sind aktuell 9 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €6091.00. Beispiele: R290 Propan Soğutucu Gazı 6 KG (Hidrokar · Genel Soğutucu Elektrik Panosu · Boru İzolasyon Köpüğü İç Çap 22 mm (13mm · Genel 5X1.5 Ttr Kablo · Boru İzolasyon Köpüğü İç Çap 28 mm (13mm."
-  },
-  {
-    "tags": [
-      "stock_technical",
-      "brand_overview",
-      "drc"
-    ],
-    "tr_question": "DRC markasından stokta hangi ürünler var?",
-    "tr_answer": "DRC markasından Hamburg depoda toplam 5 farklı kalem stoklu. Toplam stok değeri (cost): €32172.81. Örnek ürünler: DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Dijital Kontrolor DCB31 · DRC DCB 100 Plus Kontrol Ünitesi · Genel 13 CM Soğuk Oda U Profili.",
-    "de_question": "Welche DRC Artikel sind am Lager?",
-    "de_answer": "Vom Hersteller DRC sind aktuell 5 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €32172.81. Beispiele: DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Dijital Kontrolor DCB31 · DRC DCB 100 Plus Kontrol Ünitesi · Genel 13 CM Soğuk Oda U Profili."
+    "de_answer": "Vom Hersteller Genel sind aktuell 9 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €5986.00. Beispiele: R290 Propan Soğutucu Gazı 6 KG (Hidrokar · Genel Soğutucu Elektrik Panosu · Boru İzolasyon Köpüğü İç Çap 22 mm (13mm · Genel 5X1.5 Ttr Kablo · Boru İzolasyon Köpüğü İç Çap 28 mm (13mm."
   },
   {
     "tags": [
@@ -4169,6 +4086,17 @@
     "tags": [
       "stock_technical",
       "brand_overview",
+      "drc"
+    ],
+    "tr_question": "DRC markasından stokta hangi ürünler var?",
+    "tr_answer": "DRC markasından Hamburg depoda toplam 4 farklı kalem stoklu. Toplam stok değeri (cost): €31947.00. Örnek ürünler: DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Dijital Kontrolor DCB31 · DRC DCB 100 Plus Kontrol Ünitesi.",
+    "de_question": "Welche DRC Artikel sind am Lager?",
+    "de_answer": "Vom Hersteller DRC sind aktuell 4 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €31947.00. Beispiele: DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Rezistanslı Çarpma Soğuk Oda Kapısı  · DRC Dijital Kontrolor DCB31 · DRC DCB 100 Plus Kontrol Ünitesi."
+  },
+  {
+    "tags": [
+      "stock_technical",
+      "brand_overview",
       "errecom"
     ],
     "tr_question": "Errecom markasından stokta hangi ürünler var?",
@@ -4194,9 +4122,9 @@
       "ottocool"
     ],
     "tr_question": "Ottocool markasından stokta hangi ürünler var?",
-    "tr_answer": "Ottocool markasından Hamburg depoda toplam 4 farklı kalem stoklu. Toplam stok değeri (cost): €2505.92. Örnek ürünler: Ottocool Klima Drenaj Pompası · Ottocool 3/8\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 1/4\\\" Vrf Kauçuk İzolasyonlu Ba.",
+    "tr_answer": "Ottocool markasından Hamburg depoda toplam 4 farklı kalem stoklu. Toplam stok değeri (cost): €2505.92. Örnek ürünler: Ottocool Klima Drenaj Pompası · Ottocool 3/8\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 1/4\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Ba.",
     "de_question": "Welche Ottocool Artikel sind am Lager?",
-    "de_answer": "Vom Hersteller Ottocool sind aktuell 4 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €2505.92. Beispiele: Ottocool Klima Drenaj Pompası · Ottocool 3/8\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 1/4\\\" Vrf Kauçuk İzolasyonlu Ba."
+    "de_answer": "Vom Hersteller Ottocool sind aktuell 4 verschiedene Artikel in Hamburg lagernd. Gesamtlagerwert (EK): €2505.92. Beispiele: Ottocool Klima Drenaj Pompası · Ottocool 3/8\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 1/4\\\" Vrf Kauçuk İzolasyonlu Ba · Ottocool 5/8\\\" Vrf Kauçuk İzolasyonlu Ba."
   },
   {
     "tags": [
