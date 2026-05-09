@@ -56,6 +56,14 @@ const {
   querySecurityEvents,
   querySecurityBlocks,
 } = require("./lib/security-events");
+const {
+  DRC_MAN_DIR,
+  DRC_MAN_BRIDGE,
+  DRC_MAN_PYTHON,
+  isLocalDrcManAvailable,
+  resolveDrcManPython,
+  queryDrcManAssistant,
+} = require("./lib/drc-man-bridge");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -93,9 +101,8 @@ const RESEND_API_KEY = cleanOptional(process.env.RESEND_API_KEY) || "";
 const GMAIL_FROM = cleanOptional(process.env.GMAIL_FROM) || "";
 const GMAIL_USER = cleanOptional(process.env.GMAIL_USER) || "";
 const GMAIL_APP_PASSWORD = cleanOptional(process.env.GMAIL_APP_PASSWORD) || "";
-const DRC_MAN_DIR = path.resolve(process.env.DRC_MAN_DIR || path.join(os.homedir(), "Desktop", "DRC_MAN"));
-const DRC_MAN_BRIDGE = path.join(__dirname, "..", "scripts", "drc_man_bridge.py");
-const DRC_MAN_PYTHON = process.env.DRC_MAN_PYTHON || "/opt/homebrew/bin/python3";
+// NOT: DRC_MAN_DIR, DRC_MAN_BRIDGE, DRC_MAN_PYTHON server/lib/drc-man-bridge.js'e
+// taşındı (yukarıdaki require'da).
 const SUPPLIER_CATALOG_RAW_DIR = path.join(__dirname, "..", "data", "supplier-catalogs", "raw");
 const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
 // Herkese (auth'lu tüm rollere) açık araçlar — customer da ColdRoomPro ile proje hesaplayabilsin diye.
@@ -6116,58 +6123,8 @@ function hasAssistantTokenStemMatch(left, right) {
   return leftToken.slice(0, prefixLength) === rightToken.slice(0, prefixLength);
 }
 
-function isLocalDrcManAvailable() {
-  return !process.env.VERCEL
-    && fs.existsSync(DRC_MAN_DIR)
-    && fs.existsSync(DRC_MAN_BRIDGE);
-}
-
-function resolveDrcManPython() {
-  if (DRC_MAN_PYTHON && fs.existsSync(DRC_MAN_PYTHON)) {
-    return DRC_MAN_PYTHON;
-  }
-
-  return "python3";
-}
-
-function queryDrcManAssistant(message, language = "tr", user = null, answerLevel = "master", history = []) {
-  if (!isLocalDrcManAvailable()) {
-    return null;
-  }
-
-  try {
-    const result = spawnSync(
-      resolveDrcManPython(),
-      [DRC_MAN_BRIDGE],
-      {
-        cwd: path.join(__dirname, ".."),
-        input: JSON.stringify({
-          question: message,
-          language,
-          role: normalizeRole(user?.role),
-          answerLevel,
-          history: Array.isArray(history) ? history.slice(-8) : [],
-          drcManDir: DRC_MAN_DIR,
-        }),
-        encoding: "utf8",
-        timeout: 15000,
-        env: {
-          ...process.env,
-          DRC_MAN_DIR,
-        },
-      }
-    );
-
-    if (result.error || result.status !== 0 || !result.stdout) {
-      return null;
-    }
-
-    const parsed = JSON.parse(result.stdout.trim());
-    return parsed?.ok ? parsed : null;
-  } catch (_error) {
-    return null;
-  }
-}
+// NOT: isLocalDrcManAvailable / resolveDrcManPython / queryDrcManAssistant
+// server/lib/drc-man-bridge.js'e taşındı (yukarıdaki require'da).
 
 function resolveAssistantAnswerLevel(message, user) {
   const normalizedMessage = normalizeAssistantText(message || "");
