@@ -146,7 +146,12 @@
           "scripts/drc_man_master_field_faq.json",
           "scripts/drc_man_pt_superheat_faq.json",
           "scripts/drc_man_refrigeration_faq.json",
-          "scripts/drc_man_sales_instinct_faq.json"
+          "scripts/drc_man_sales_instinct_faq.json",
+          "scripts/drc_man_malzeme_vs_ustalik_faq.json",
+          "scripts/drc_man_stock_technical_faq.json",
+          "scripts/drc_man_all_products_faq.part1.json",
+          "scripts/drc_man_all_products_faq.part2.json",
+          "scripts/drc_man_coldroom_expert_faq.json"
         ]
       }
     },
