@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T00:48:38.232Z",
+  "generatedAt": "2026-05-09T02:10:16.462Z",
   "items": [
     {
       "id": 6011,
@@ -58577,186 +58577,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7297,
-      "name": "Bakır Kangal Boru 1/4 * 0,70 MM ( 6,35 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00351",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00351"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7298,
-      "name": "Bakır Kangal Boru 5/16*0,70 MM ( 7,94 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00359",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00359"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7299,
-      "name": "Bakır Kangal Boru 3/8 * 0,70 MM ( 9,52 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00356",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00356"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7300,
-      "name": "Bakır Kangal Boru 1/2 * 0,70 MM ( 12,70 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00348",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00348"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7301,
-      "name": "Bakır Kangal Boru 5/8 * 0,70 MM ( 15,87 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00360",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00360"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7302,
-      "name": "Bakır Kangal Boru 3/4 * 0,70 MM ( 19,05 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00354",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00354"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7303,
-      "name": "Bakır Kangal Boru 1/2 * 0,90 MM ( 12,7 * 0,90 MM ) ( Vrv )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00349",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00349"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7304,
-      "name": "Bakır Kangal Boru 5/8 * 1,00 MM ( 15,87 * 1,00 MM ) ( Vrv )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00361",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00361"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7305,
-      "name": "Bakır Kangal Boru 3/4 * 1,00 MM ( 19,05 * 1,00 MM ) ( Vrv )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00355",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00355"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7306,
-      "name": "Bakır Kangal Boru 3/16 * 0,70 MM ( 4,76 * 0,70 MM ) ( Split )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00353",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00353"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7307,
-      "name": "Bakır Kangal Boru 1/4 * 0,80 MM ( 6,35 * 0,80 MM ) ( Vrv )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00352",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00352"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7308,
-      "name": "Bakır Kangal Boru 3/8 * 0,80 MM ( 9,52 * 0,80 MM ) ( Vrv )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00357",
-      "visiblePrice": 56,
-      "codes": [
-        "drc00357"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 7309,
       "name": "Tavlı Bakır Kangal Boru ( Ø ) 10*1,00 MM",
       "brand": "Tavlı",
@@ -58832,36 +58652,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7314,
-      "name": "Bakır Boy Boru 08*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00302",
-      "visiblePrice": 8.52,
-      "codes": [
-        "drc00302"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7315,
-      "name": "Bakır Boy Boru 10*0,75 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00303",
-      "visiblePrice": 8.66,
-      "codes": [
-        "drc00303"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 5452,
       "name": "Frascold V 25 71 Y 25HP 380V Yarı Hermetik Pistonlu Kompresör ( +7,5 / -40 )",
       "brand": "Frascold",
@@ -58872,231 +58662,6 @@
       "visiblePrice": 6010,
       "codes": [
         "drc05125"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7316,
-      "name": "Bakır Boy Boru 10*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00304",
-      "visiblePrice": 14.94,
-      "codes": [
-        "drc00304"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7317,
-      "name": "Bakır Boy Boru 12*0,75 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00308",
-      "visiblePrice": 10.56,
-      "codes": [
-        "drc00308"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7318,
-      "name": "Bakır Boy Boru 12*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00309",
-      "visiblePrice": 18.2,
-      "codes": [
-        "drc00309"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7319,
-      "name": "Bakır Boy Boru 15*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00310",
-      "visiblePrice": 23.16,
-      "codes": [
-        "drc00310"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7320,
-      "name": "Bakır Boy Boru 16*0,75 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00311",
-      "visiblePrice": 14.6,
-      "codes": [
-        "drc00311"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7321,
-      "name": "Bakır Boy Boru 16*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00312",
-      "visiblePrice": 24.76,
-      "codes": [
-        "drc00312"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7322,
-      "name": "Bakır Boy Boru 18*0,70 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00313",
-      "visiblePrice": 14.12,
-      "codes": [
-        "drc00313"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7323,
-      "name": "Bakır Boy Boru 18*0,75 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00314",
-      "visiblePrice": 17.16,
-      "codes": [
-        "drc00314"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7324,
-      "name": "Bakır Boy Boru 18*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00315",
-      "visiblePrice": 27.76,
-      "codes": [
-        "drc00315"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7325,
-      "name": "Bakır Boy Boru 19*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00316",
-      "visiblePrice": 29.04,
-      "codes": [
-        "drc00316"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7326,
-      "name": "Bakır Boy Boru 22*0,80 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00317",
-      "visiblePrice": 28.8,
-      "codes": [
-        "drc00317"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7327,
-      "name": "Bakır Boy Boru 22*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00318",
-      "visiblePrice": 33.74,
-      "codes": [
-        "drc00318"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7328,
-      "name": "Bakır Boy Boru 22*1,20 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00319",
-      "visiblePrice": 40.04,
-      "codes": [
-        "drc00319"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7329,
-      "name": "Bakır Boy Boru 25*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00322",
-      "visiblePrice": 38.5,
-      "codes": [
-        "drc00322"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7330,
-      "name": "Bakır Boy Boru 25*1,20 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00323",
-      "visiblePrice": 45.82,
-      "codes": [
-        "drc00323"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -59117,231 +58682,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7331,
-      "name": "Bakır Boy Boru 28*0,80 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00324",
-      "visiblePrice": 42.5,
-      "codes": [
-        "drc00324"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7332,
-      "name": "Bakır Boy Boru 28*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00325",
-      "visiblePrice": 47.32,
-      "codes": [
-        "drc00325"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7333,
-      "name": "Bakır Boy Boru 28*1,20 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00326",
-      "visiblePrice": 51.6,
-      "codes": [
-        "drc00326"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7334,
-      "name": "Bakır Boy Boru 28*1,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00327",
-      "visiblePrice": 63.78,
-      "codes": [
-        "drc00327"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7335,
-      "name": "Bakır Boy Boru 35*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00328",
-      "visiblePrice": 64.08,
-      "codes": [
-        "drc00328"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7336,
-      "name": "Bakır Boy Boru 35*1,20 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00329",
-      "visiblePrice": 66.22,
-      "codes": [
-        "drc00329"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7337,
-      "name": "Bakır Boy Boru 35*1,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00330",
-      "visiblePrice": 81.38,
-      "codes": [
-        "drc00330"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7338,
-      "name": "Bakır Boy Boru 42*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00331",
-      "visiblePrice": 77.34,
-      "codes": [
-        "drc00331"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7339,
-      "name": "Bakır Boy Boru 42*1,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00332",
-      "visiblePrice": 101.06,
-      "codes": [
-        "drc00332"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7340,
-      "name": "Bakır Boy Boru 54*1,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00333",
-      "visiblePrice": 87.26,
-      "codes": [
-        "drc00333"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7341,
-      "name": "Bakır Boy Boru 54*1,20 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00334",
-      "visiblePrice": 78.04,
-      "codes": [
-        "drc00334"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7342,
-      "name": "Bakır Boy Boru 54*1,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00335",
-      "visiblePrice": 128.42,
-      "codes": [
-        "drc00335"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7343,
-      "name": "Bakır Boy Boru 54*2,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00336",
-      "visiblePrice": 169.02,
-      "codes": [
-        "drc00336"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7344,
-      "name": "Bakır Boy Boru 66*2,00 MM 67 mm",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00338",
-      "visiblePrice": 210.04,
-      "codes": [
-        "drc00338"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7345,
-      "name": "Bakır Boy Boru 76*1,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00339",
-      "visiblePrice": 137.36,
-      "codes": [
-        "drc00339"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 6531,
       "name": "Danfoss EVR 3 3/8″ Kaynaklı Solenoid Valf 032F1204 / 032F5084",
       "brand": "Danfoss",
@@ -59352,36 +58692,6 @@
       "visiblePrice": 69.88,
       "codes": [
         "drc03442"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7346,
-      "name": "Bakır Boy Boru 79*2,30 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00343",
-      "visiblePrice": 303.96,
-      "codes": [
-        "drc00343"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7347,
-      "name": "Bakır Boy Boru 92*2,30 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00346",
-      "visiblePrice": 229,
-      "codes": [
-        "drc00346"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -59507,24 +58817,9 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 6002,
-      "name": "Olab 32000-TS-05-0 Kaynaklı Gözetleme Camı 3/4″",
-      "brand": "Olab",
-      "category": "Hat Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06509",
-      "visiblePrice": 44.82,
-      "codes": [
-        "drc06509"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 7348,
       "name": "Bakır Boy Boru 66*1,65 MM",
-      "brand": "Bakır",
+      "brand": "Ottocool",
       "category": "Bakır Borular",
       "unit": "adet",
       "productCode": "",
@@ -59537,106 +58832,16 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7349,
-      "name": "Bakır Boy Boru 79*1,83 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
+      "id": 6002,
+      "name": "Olab 32000-TS-05-0 Kaynaklı Gözetleme Camı 3/4″",
+      "brand": "Olab",
+      "category": "Hat Aksesuarları",
       "unit": "adet",
       "productCode": "",
-      "barcode": "DRC-00341",
-      "visiblePrice": 168.16,
+      "barcode": "DRC-06509",
+      "visiblePrice": 44.82,
       "codes": [
-        "drc00341"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7350,
-      "name": "PVC Kaplamalı Tavlı Kangal Bakır Boru ( Ø ) 06*1,00 MM ( Otogaz İçin )",
-      "brand": "PVC",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06831",
-      "visiblePrice": 9.6,
-      "codes": [
-        "drc06831"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7351,
-      "name": "Bakır Boy Boru 104,77*2,41 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00305",
-      "visiblePrice": 297.46,
-      "codes": [
-        "drc00305"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7352,
-      "name": "Bakır Boy Boru 76*2,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00340",
-      "visiblePrice": 172.96,
-      "codes": [
-        "drc00340"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7353,
-      "name": "Bakır Boy Boru 22*1,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00321",
-      "visiblePrice": 35.94,
-      "codes": [
-        "drc00321"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7354,
-      "name": "Bakır Boy Boru 79*2,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00344",
-      "visiblePrice": 257.72,
-      "codes": [
-        "drc00344"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7355,
-      "name": "Bakır Boy Boru 92*2,50 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00347",
-      "visiblePrice": 371.44,
-      "codes": [
-        "drc00347"
+        "drc06509"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -59672,36 +58877,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7358,
-      "name": "Bakır Boy Boru 22*1,20 MM (Tavlı)",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00320",
-      "visiblePrice": 27.66,
-      "codes": [
-        "drc00320"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7359,
-      "name": "Bakır Boy Boru 79*2,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00342",
-      "visiblePrice": 213.42,
-      "codes": [
-        "drc00342"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 7360,
       "name": "Tavlı Bakır Kangal Boru ( Ø ) 22*1,00 MM ( 7/8*1,00 MM )",
       "brand": "Tavlı",
@@ -59712,21 +58887,6 @@
       "visiblePrice": 50.04,
       "codes": [
         "drc08044"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7361,
-      "name": "Bakır Kangal Boru 1/2*0,33 MM ( 12,7 * 0,33 MM ) ( Lwc )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00350",
-      "visiblePrice": 50.04,
-      "codes": [
-        "drc00350"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -59762,21 +58922,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7362,
-      "name": "Bakır Kangal Boru 3/8*0,35 MM ( 9,52 * 0,35 MM ) ( Lwc )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00358",
-      "visiblePrice": 50.04,
-      "codes": [
-        "drc00358"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 5525,
       "name": "Highly VSH175CU 6.653 BTU 1950 Watt R-134A/R-407C/R-410A 380~460V 50Hz / 60Hz TRK 5512 muadili 7K",
       "brand": "Highly",
@@ -59792,21 +58937,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 7363,
-      "name": "Bakır Kangal Boru 5/8*0,40 MM ( 15,87 * 0,40 MM ) ( Lwc )",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00362",
-      "visiblePrice": 50.04,
-      "codes": [
-        "drc00362"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 7364,
       "name": "Tavlı Bakır Kangal Boru ( Ø ) 04*1,00 MM",
       "brand": "Tavlı",
@@ -59817,51 +58947,6 @@
       "visiblePrice": 7.06,
       "codes": [
         "drc08039"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7365,
-      "name": "Bakır Boy Boru 105*2,70 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00307",
-      "visiblePrice": 346.06,
-      "codes": [
-        "drc00307"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7366,
-      "name": "Bakır Boy Boru 104,77*2,79 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00306",
-      "visiblePrice": 498.2,
-      "codes": [
-        "drc00306"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 7367,
-      "name": "Bakır Boy Boru 89*2,00 MM",
-      "brand": "Bakır",
-      "category": "Bakır Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-00345",
-      "visiblePrice": 209.7,
-      "codes": [
-        "drc00345"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -101592,6 +100677,336 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 7297,
+      "name": "Bakır Kangal Boru 1/4 * 0,70 MM ( 6,35 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00351",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00351"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7298,
+      "name": "Bakır Kangal Boru 5/16*0,70 MM ( 7,94 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00359",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00359"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7299,
+      "name": "Bakır Kangal Boru 3/8 * 0,70 MM ( 9,52 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00356",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00356"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7300,
+      "name": "Bakır Kangal Boru 1/2 * 0,70 MM ( 12,70 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00348",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00348"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7301,
+      "name": "Bakır Kangal Boru 5/8 * 0,70 MM ( 15,87 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00360",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00360"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7302,
+      "name": "Bakır Kangal Boru 3/4 * 0,70 MM ( 19,05 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00354",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00354"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7303,
+      "name": "Bakır Kangal Boru 1/2 * 0,90 MM ( 12,7 * 0,90 MM ) ( Vrv )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00349",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00349"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7304,
+      "name": "Bakır Kangal Boru 5/8 * 1,00 MM ( 15,87 * 1,00 MM ) ( Vrv )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00361",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00361"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7305,
+      "name": "Bakır Kangal Boru 3/4 * 1,00 MM ( 19,05 * 1,00 MM ) ( Vrv )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00355",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00355"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7306,
+      "name": "Bakır Kangal Boru 3/16 * 0,70 MM ( 4,76 * 0,70 MM ) ( Split )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00353",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00353"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7307,
+      "name": "Bakır Kangal Boru 1/4 * 0,80 MM ( 6,35 * 0,80 MM ) ( Vrv )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00352",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00352"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7308,
+      "name": "Bakır Kangal Boru 3/8 * 0,80 MM ( 9,52 * 0,80 MM ) ( Vrv )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00357",
+      "visiblePrice": 56,
+      "codes": [
+        "drc00357"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7314,
+      "name": "Bakır Boy Boru 08*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00302",
+      "visiblePrice": 8.52,
+      "codes": [
+        "drc00302"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7315,
+      "name": "Bakır Boy Boru 10*0,75 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00303",
+      "visiblePrice": 8.66,
+      "codes": [
+        "drc00303"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7316,
+      "name": "Bakır Boy Boru 10*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00304",
+      "visiblePrice": 14.94,
+      "codes": [
+        "drc00304"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7317,
+      "name": "Bakır Boy Boru 12*0,75 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00308",
+      "visiblePrice": 10.56,
+      "codes": [
+        "drc00308"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7318,
+      "name": "Bakır Boy Boru 12*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00309",
+      "visiblePrice": 18.2,
+      "codes": [
+        "drc00309"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7319,
+      "name": "Bakır Boy Boru 15*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00310",
+      "visiblePrice": 23.16,
+      "codes": [
+        "drc00310"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7320,
+      "name": "Bakır Boy Boru 16*0,75 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00311",
+      "visiblePrice": 14.6,
+      "codes": [
+        "drc00311"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7321,
+      "name": "Bakır Boy Boru 16*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00312",
+      "visiblePrice": 24.76,
+      "codes": [
+        "drc00312"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7322,
+      "name": "Bakır Boy Boru 18*0,70 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00313",
+      "visiblePrice": 14.12,
+      "codes": [
+        "drc00313"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7323,
+      "name": "Bakır Boy Boru 18*0,75 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00314",
+      "visiblePrice": 17.16,
+      "codes": [
+        "drc00314"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 11414,
       "name": "Problue DVS 8-P 3.78 LT Klima Temizlik Sıvısı Kondenser Kimyasal",
       "brand": "Problue",
@@ -101682,6 +101097,501 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 7324,
+      "name": "Bakır Boy Boru 18*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00315",
+      "visiblePrice": 27.76,
+      "codes": [
+        "drc00315"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7325,
+      "name": "Bakır Boy Boru 19*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00316",
+      "visiblePrice": 29.04,
+      "codes": [
+        "drc00316"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7326,
+      "name": "Bakır Boy Boru 22*0,80 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00317",
+      "visiblePrice": 28.8,
+      "codes": [
+        "drc00317"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7327,
+      "name": "Bakır Boy Boru 22*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00318",
+      "visiblePrice": 33.74,
+      "codes": [
+        "drc00318"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7328,
+      "name": "Bakır Boy Boru 22*1,20 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00319",
+      "visiblePrice": 40.04,
+      "codes": [
+        "drc00319"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7329,
+      "name": "Bakır Boy Boru 25*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00322",
+      "visiblePrice": 38.5,
+      "codes": [
+        "drc00322"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7330,
+      "name": "Bakır Boy Boru 25*1,20 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00323",
+      "visiblePrice": 45.82,
+      "codes": [
+        "drc00323"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7331,
+      "name": "Bakır Boy Boru 28*0,80 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00324",
+      "visiblePrice": 42.5,
+      "codes": [
+        "drc00324"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7332,
+      "name": "Bakır Boy Boru 28*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00325",
+      "visiblePrice": 47.32,
+      "codes": [
+        "drc00325"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7333,
+      "name": "Bakır Boy Boru 28*1,20 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00326",
+      "visiblePrice": 51.6,
+      "codes": [
+        "drc00326"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7334,
+      "name": "Bakır Boy Boru 28*1,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00327",
+      "visiblePrice": 63.78,
+      "codes": [
+        "drc00327"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7335,
+      "name": "Bakır Boy Boru 35*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00328",
+      "visiblePrice": 64.08,
+      "codes": [
+        "drc00328"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7336,
+      "name": "Bakır Boy Boru 35*1,20 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00329",
+      "visiblePrice": 66.22,
+      "codes": [
+        "drc00329"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7337,
+      "name": "Bakır Boy Boru 35*1,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00330",
+      "visiblePrice": 81.38,
+      "codes": [
+        "drc00330"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7338,
+      "name": "Bakır Boy Boru 42*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00331",
+      "visiblePrice": 77.34,
+      "codes": [
+        "drc00331"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7339,
+      "name": "Bakır Boy Boru 42*1,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00332",
+      "visiblePrice": 101.06,
+      "codes": [
+        "drc00332"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7340,
+      "name": "Bakır Boy Boru 54*1,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00333",
+      "visiblePrice": 87.26,
+      "codes": [
+        "drc00333"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7341,
+      "name": "Bakır Boy Boru 54*1,20 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00334",
+      "visiblePrice": 78.04,
+      "codes": [
+        "drc00334"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7342,
+      "name": "Bakır Boy Boru 54*1,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00335",
+      "visiblePrice": 128.42,
+      "codes": [
+        "drc00335"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7343,
+      "name": "Bakır Boy Boru 54*2,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00336",
+      "visiblePrice": 169.02,
+      "codes": [
+        "drc00336"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7344,
+      "name": "Bakır Boy Boru 66*2,00 MM 67 mm",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00338",
+      "visiblePrice": 210.04,
+      "codes": [
+        "drc00338"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7345,
+      "name": "Bakır Boy Boru 76*1,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00339",
+      "visiblePrice": 137.36,
+      "codes": [
+        "drc00339"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7346,
+      "name": "Bakır Boy Boru 79*2,30 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00343",
+      "visiblePrice": 303.96,
+      "codes": [
+        "drc00343"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7347,
+      "name": "Bakır Boy Boru 92*2,30 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00346",
+      "visiblePrice": 229,
+      "codes": [
+        "drc00346"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7349,
+      "name": "Bakır Boy Boru 79*1,83 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00341",
+      "visiblePrice": 168.16,
+      "codes": [
+        "drc00341"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7351,
+      "name": "Bakır Boy Boru 104,77*2,41 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00305",
+      "visiblePrice": 297.46,
+      "codes": [
+        "drc00305"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7352,
+      "name": "Bakır Boy Boru 76*2,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00340",
+      "visiblePrice": 172.96,
+      "codes": [
+        "drc00340"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7353,
+      "name": "Bakır Boy Boru 22*1,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00321",
+      "visiblePrice": 35.94,
+      "codes": [
+        "drc00321"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7354,
+      "name": "Bakır Boy Boru 79*2,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00344",
+      "visiblePrice": 257.72,
+      "codes": [
+        "drc00344"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7355,
+      "name": "Bakır Boy Boru 92*2,50 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00347",
+      "visiblePrice": 371.44,
+      "codes": [
+        "drc00347"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7358,
+      "name": "Bakır Boy Boru 22*1,20 MM (Tavlı)",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00320",
+      "visiblePrice": 27.66,
+      "codes": [
+        "drc00320"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7359,
+      "name": "Bakır Boy Boru 79*2,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00342",
+      "visiblePrice": 213.42,
+      "codes": [
+        "drc00342"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7361,
+      "name": "Bakır Kangal Boru 1/2*0,33 MM ( 12,7 * 0,33 MM ) ( Lwc )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00350",
+      "visiblePrice": 50.04,
+      "codes": [
+        "drc00350"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 7647,
       "name": "Thermotrick Bakır Manson 66 MM 2-5/8”",
       "brand": "Thermotrick",
@@ -101692,6 +101602,186 @@
       "visiblePrice": 13.2,
       "codes": [
         "drc08483"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7362,
+      "name": "Bakır Kangal Boru 3/8*0,35 MM ( 9,52 * 0,35 MM ) ( Lwc )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00358",
+      "visiblePrice": 50.04,
+      "codes": [
+        "drc00358"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7363,
+      "name": "Bakır Kangal Boru 5/8*0,40 MM ( 15,87 * 0,40 MM ) ( Lwc )",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00362",
+      "visiblePrice": 50.04,
+      "codes": [
+        "drc00362"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7365,
+      "name": "Bakır Boy Boru 105*2,70 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00307",
+      "visiblePrice": 346.06,
+      "codes": [
+        "drc00307"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7366,
+      "name": "Bakır Boy Boru 104,77*2,79 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00306",
+      "visiblePrice": 498.2,
+      "codes": [
+        "drc00306"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7367,
+      "name": "Bakır Boy Boru 89*2,00 MM",
+      "brand": "Ottocool",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-00345",
+      "visiblePrice": 209.7,
+      "codes": [
+        "drc00345"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11902,
+      "name": "Soğuk Oda Sürgülü Kapı Kolu SKA03",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07809",
+      "visiblePrice": 688.04,
+      "codes": [
+        "drc07809"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11913,
+      "name": "Soğuk Oda Yatay Bağlantılı Kilit İ-267-01",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07810",
+      "visiblePrice": 44.9,
+      "codes": [
+        "drc07810"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11916,
+      "name": "Soğuk Oda Dikey Bağlantılı Kilit İ-267-D",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07805",
+      "visiblePrice": 40.34,
+      "codes": [
+        "drc07805"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11917,
+      "name": "Soğuk Oda Kapısı İnox Menteşe İ-34K Bar Kapısı Menteşesi – Vavien Kapı İçin",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07806",
+      "visiblePrice": 53.56,
+      "codes": [
+        "drc07806"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11920,
+      "name": "Soğuk Oda Dijital Pano Kutusu İkili İ-481-02 ( Boş Tip )",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07801",
+      "visiblePrice": 10,
+      "codes": [
+        "drc07801"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11921,
+      "name": "Soğuk Oda Dikey Bağlantılı Kilit İ-266",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07804",
+      "visiblePrice": 45.18,
+      "codes": [
+        "drc07804"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11931,
+      "name": "Soğuk Oda Dijital Pano Kutusu Üçlü OR-2016 ( Boş Tip )",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07803",
+      "visiblePrice": 10.6,
+      "codes": [
+        "drc07803"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -101712,6 +101802,1236 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 11948,
+      "name": "Soğuk Oda Dijital Pano Kutusu Tekli İ-481-01 ( Boş Tip )",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07802",
+      "visiblePrice": 10,
+      "codes": [
+        "drc07802"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11576,
+      "name": "Sürgülü Donmuş Oda Kapısı",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07992",
+      "visiblePrice": 4076.36,
+      "codes": [
+        "drc07992"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11905,
+      "name": "Sürgülü Kapı Dış Açma Kolu I-SKA-03",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07994",
+      "visiblePrice": 76.34,
+      "codes": [
+        "drc07994"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11923,
+      "name": "Sürgülü Kapı Panel Merkezleme OR-06",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07997",
+      "visiblePrice": 8.08,
+      "codes": [
+        "drc07997"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11926,
+      "name": "Sürgülü Kapı İç Açma Kolu İ-SKA-07 HD",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07995",
+      "visiblePrice": 134.44,
+      "codes": [
+        "drc07995"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11922,
+      "name": "Sürgülü Kapı Kanal Merkezleme OR-04",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-07996",
+      "visiblePrice": 9.6,
+      "codes": [
+        "drc07996"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11575,
+      "name": "Çarpma Soğuk Oda Kapısı 900X1900 MM",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-01412",
+      "visiblePrice": 955.56,
+      "codes": [
+        "drc01412"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11893,
+      "name": "Endüstriyel Buzdolabı Yan Kilit İ-105 ( Büyük Tip Anahtarlı )",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04824",
+      "visiblePrice": 17.32,
+      "codes": [
+        "drc04824"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11894,
+      "name": "Endüstriyel Buzdolabı Yaysız Yan Menteşe İ-09",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04825",
+      "visiblePrice": 4.64,
+      "codes": [
+        "drc04825"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11895,
+      "name": "Endüstriyel Buzdolabı Vitrin Menteşe İ-07",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04821",
+      "visiblePrice": 5.88,
+      "codes": [
+        "drc04821"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11898,
+      "name": "Endüstriyel Soğuk Oda Kapısı Ayarlı Menteşe İ-34",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04834",
+      "visiblePrice": 45.32,
+      "codes": [
+        "drc04834"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11901,
+      "name": "Endüstriyel Buzdolabı Yan Kilit İ-100 / OR-3091",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04822",
+      "visiblePrice": 20.74,
+      "codes": [
+        "drc04822"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11914,
+      "name": "Endüstriyel Buzdolabı Pres Menteşe İ-05-01",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04819",
+      "visiblePrice": 8.24,
+      "codes": [
+        "drc04819"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11928,
+      "name": "Endüstriyel Buzdolabı OR-3004 Karaman Kilit",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04802",
+      "visiblePrice": 33.64,
+      "codes": [
+        "drc04802"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11929,
+      "name": "Endüstriyel Buzdolabı OR-3009 Soğuk Oda Kapı Kilit",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04803",
+      "visiblePrice": 77.32,
+      "codes": [
+        "drc04803"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11930,
+      "name": "Endüstriyel OR-3011 Lüks Soğuk Oda Kilit",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04829",
+      "visiblePrice": 117.72,
+      "codes": [
+        "drc04829"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11932,
+      "name": "Endüstriyel Buzdolabı OR-3065 Soğuk Oda Anahtarlı Kilit",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04812",
+      "visiblePrice": 84.08,
+      "codes": [
+        "drc04812"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11933,
+      "name": "Endüstriyel Buzdolabı OR-3019 Soğuk Oda Menteşe",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04808",
+      "visiblePrice": 25.22,
+      "codes": [
+        "drc04808"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11936,
+      "name": "Endüstriyel Buzdolabı OR-3064 Soğuk Oda Anahtarsız Kilit",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04811",
+      "visiblePrice": 75.68,
+      "codes": [
+        "drc04811"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11937,
+      "name": "Endüstriyel Buzdolabı OR-07 Sürgülü Kapı İç Açma Kolu ( Paslanmaz )",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04801",
+      "visiblePrice": 119.82,
+      "codes": [
+        "drc04801"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11938,
+      "name": "Endüstriyel Buzdolabı OR-5000 Helezon Buzhane Kilit Sağ",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04816",
+      "visiblePrice": 123.6,
+      "codes": [
+        "drc04816"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11939,
+      "name": "Endüstriyel Buzdolabı OR-5000 Helezon Buzhane Kilit Sol",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04817",
+      "visiblePrice": 123.6,
+      "codes": [
+        "drc04817"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11940,
+      "name": "Endüstriyel Buzdolabı OR-3150 Plastik Lüx Soğuk Oda Kilit",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04814",
+      "visiblePrice": 113.52,
+      "codes": [
+        "drc04814"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11941,
+      "name": "Endüstriyel Buzdolabı OR-3010 Helezon Kilit",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04804",
+      "visiblePrice": 164.64,
+      "codes": [
+        "drc04804"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11942,
+      "name": "Endüstriyel Buzdolabı OR-3017 Yan Köşeli Menteşe",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04806",
+      "visiblePrice": 6.72,
+      "codes": [
+        "drc04806"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11944,
+      "name": "Endüstriyel Buzdolabı OR-3200 Plastik Soğuk Oda Menteşe",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04815",
+      "visiblePrice": 18,
+      "codes": [
+        "drc04815"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11945,
+      "name": "Endüstriyel OR-3014 Vitrin Menteşe Bombeli",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04830",
+      "visiblePrice": 10,
+      "codes": [
+        "drc04830"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11946,
+      "name": "Endüstriyel Buzdolabı ORS-09 Sürgülü Kapı Kuyruk Makarası",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04818",
+      "visiblePrice": 43.62,
+      "codes": [
+        "drc04818"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11947,
+      "name": "Endüstriyel Buzdolabı OR-3113 Plastk Servis Menteşesi ( Bar Kapısı İçin )",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04813",
+      "visiblePrice": 57.52,
+      "codes": [
+        "drc04813"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11949,
+      "name": "Endüstriyel Buzdolabı OR-03 Kapı Dış Açma Kolu",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04800",
+      "visiblePrice": 136.38,
+      "codes": [
+        "drc04800"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11950,
+      "name": "Endüstriyel Buzdolabı OR-02 Sürgülü Kapı Kuyruk Çatalı",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04799",
+      "visiblePrice": 10.3,
+      "codes": [
+        "drc04799"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11951,
+      "name": "Endüstriyel Fırın Kilit OR-3333",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04827",
+      "visiblePrice": 33.64,
+      "codes": [
+        "drc04827"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11952,
+      "name": "Endüstriyel Buzdolabı OR-3012 Buzhane Lüks Menteşe",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04805",
+      "visiblePrice": 38.68,
+      "codes": [
+        "drc04805"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11953,
+      "name": "Endüstriyel Musluk İlavesi OR-3026",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04828",
+      "visiblePrice": 13.46,
+      "codes": [
+        "drc04828"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11954,
+      "name": "Endüstriyel Buzdolabı OR-3017-B Yaylı Yan Menteşe",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04807",
+      "visiblePrice": 11.78,
+      "codes": [
+        "drc04807"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11956,
+      "name": "Endüstriyel OR-3015 Pres Vitrin Menteşe",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04831",
+      "visiblePrice": 11.78,
+      "codes": [
+        "drc04831"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11957,
+      "name": "Endüstriyel OR-3111 Plastik Soğuk Oda Menteşesi Küçük",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04833",
+      "visiblePrice": 15.14,
+      "codes": [
+        "drc04833"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11958,
+      "name": "Endüstriyel OR-3023 Yaprak Menteşe Oval",
+      "brand": "DRC",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-04832",
+      "visiblePrice": 4.2,
+      "codes": [
+        "drc04832"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12054,
+      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Sarı Lamba )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05853",
+      "visiblePrice": 4.2,
+      "codes": [
+        "drc05853"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12055,
+      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Kırmızı Aç-Kapa )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05851",
+      "visiblePrice": 4.2,
+      "codes": [
+        "drc05851"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12056,
+      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Yeşil Kar )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05854",
+      "visiblePrice": 4.2,
+      "codes": [
+        "drc05854"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12057,
+      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Kırmızı Fan )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05852",
+      "visiblePrice": 4.2,
+      "codes": [
+        "drc05852"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12059,
+      "name": "Işıklı Anahtar Siyah Kasa ( Sarı Lamba )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05848",
+      "visiblePrice": 2.2,
+      "codes": [
+        "drc05848"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12060,
+      "name": "Işıklı Anahtar Siyah Kasa ( Yeşil Kar )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05850",
+      "visiblePrice": 2,
+      "codes": [
+        "drc05850"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12061,
+      "name": "Işıklı Anahtar Siyah Kasa ( Çiftli Aç-Kapa )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05846",
+      "visiblePrice": 4.2,
+      "codes": [
+        "drc05846"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12062,
+      "name": "Işıklı Anahtar Siyah Kasa ( Tekli Aç-Kapa )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05849",
+      "visiblePrice": 2,
+      "codes": [
+        "drc05849"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12063,
+      "name": "Işıklı Anahtar Siyah Kasa ( Kırmızı Fan )",
+      "brand": "DRC",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05847",
+      "visiblePrice": 2,
+      "codes": [
+        "drc05847"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 7350,
+      "name": "PVC Kaplamalı Tavlı Kangal Bakır Boru ( Ø ) 06*1,00 MM ( Otogaz İçin )",
+      "brand": "Generic",
+      "category": "Bakır Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06831",
+      "visiblePrice": 9.6,
+      "codes": [
+        "drc06831"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11707,
+      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Deepfreeze oda ( Polar )",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06835",
+      "visiblePrice": 186,
+      "codes": [
+        "drc06835"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11708,
+      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Pozitif Oda için",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06837",
+      "visiblePrice": 170,
+      "codes": [
+        "drc06837"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11709,
+      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Deepfreeze oda (Avrupa Menşei)",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06836",
+      "visiblePrice": 217.76,
+      "codes": [
+        "drc06836"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11710,
+      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Pozitif Oda İçin (Avrupa Menşei)",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06838",
+      "visiblePrice": 173.64,
+      "codes": [
+        "drc06838"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11711,
+      "name": "PVC Soğuk Oda Kapı Perdesi – Buzlu 120*220",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06832",
+      "visiblePrice": 188.18,
+      "codes": [
+        "drc06832"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11712,
+      "name": "PVC Şerit Perde 110*200",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06847",
+      "visiblePrice": 159.18,
+      "codes": [
+        "drc06847"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11713,
+      "name": "PVC Şerit Perde 100*200",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06846",
+      "visiblePrice": 139.88,
+      "codes": [
+        "drc06846"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11714,
+      "name": "PVC Şerit Perde 150*220",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06849",
+      "visiblePrice": 219.46,
+      "codes": [
+        "drc06849"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11715,
+      "name": "PVC Şerit Perde 150*250",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06850",
+      "visiblePrice": 190.36,
+      "codes": [
+        "drc06850"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11716,
+      "name": "PVC Şerit Perde 110*220",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06848",
+      "visiblePrice": 162.14,
+      "codes": [
+        "drc06848"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11717,
+      "name": "PVC Soğuk Oda Kapı Perdesi – Buzlu 190*235",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06833",
+      "visiblePrice": 249.7,
+      "codes": [
+        "drc06833"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11718,
+      "name": "PVC Şerit Perde 90*220",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06853",
+      "visiblePrice": 139.32,
+      "codes": [
+        "drc06853"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11719,
+      "name": "PVC Soğuk Oda Kapı Perdesi 120*200 cm Deepfreeze Oda ( Polar )",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06834",
+      "visiblePrice": 208.92,
+      "codes": [
+        "drc06834"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11720,
+      "name": "PVC Şerit Perde – 120*208",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06840",
+      "visiblePrice": 162.92,
+      "codes": [
+        "drc06840"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11721,
+      "name": "PVC Şerit Perde – 120*200",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06839",
+      "visiblePrice": 191.16,
+      "codes": [
+        "drc06839"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11722,
+      "name": "PVC Şerit Perde – 440*310",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06844",
+      "visiblePrice": 1043.42,
+      "codes": [
+        "drc06844"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11723,
+      "name": "PVC Şerit Perde – 340*320",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06842",
+      "visiblePrice": 829.58,
+      "codes": [
+        "drc06842"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11724,
+      "name": "PVC Şerit Perde – 350*320",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06843",
+      "visiblePrice": 831.92,
+      "codes": [
+        "drc06843"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11725,
+      "name": "PVC Şerit Perde – 630*500",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06845",
+      "visiblePrice": 2178.5,
+      "codes": [
+        "drc06845"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11726,
+      "name": "PVC Şerit Perde – 180*245",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06841",
+      "visiblePrice": 336.54,
+      "codes": [
+        "drc06841"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11727,
+      "name": "PVC Şerit Perde Siyah – 200*200",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06854",
+      "visiblePrice": 222.84,
+      "codes": [
+        "drc06854"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11728,
+      "name": "PVC Şerit Perde 90*210",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06852",
+      "visiblePrice": 147.52,
+      "codes": [
+        "drc06852"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 11729,
+      "name": "PVC Şerit Perde 200*250",
+      "brand": "Generic",
+      "category": "Soğuk Oda Aksesuarları",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06851",
+      "visiblePrice": 345.5,
+      "codes": [
+        "drc06851"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12621,
+      "name": "Kondansatör 1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06093",
+      "visiblePrice": 1.94,
+      "codes": [
+        "drc06093"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12622,
+      "name": "Kondansatör 2 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06098",
+      "visiblePrice": 2.06,
+      "codes": [
+        "drc06098"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12623,
+      "name": "Kondansatör 2,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06099",
+      "visiblePrice": 2.08,
+      "codes": [
+        "drc06099"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12624,
+      "name": "Kondansatör 3 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06106",
+      "visiblePrice": 2.1,
+      "codes": [
+        "drc06106"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12625,
+      "name": "Kondansatör 4 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06114",
+      "visiblePrice": 2.6,
+      "codes": [
+        "drc06114"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12626,
+      "name": "Kondansatör 5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06123",
+      "visiblePrice": 2.34,
+      "codes": [
+        "drc06123"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12627,
+      "name": "Kondansatör 6 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06133",
+      "visiblePrice": 2.84,
+      "codes": [
+        "drc06133"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12628,
+      "name": "Kondansatör 8 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06138",
+      "visiblePrice": 3.78,
+      "codes": [
+        "drc06138"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12629,
+      "name": "Kondansatör 10 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06094",
+      "visiblePrice": 3.26,
+      "codes": [
+        "drc06094"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12630,
+      "name": "Kondansatör 12 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06096",
+      "visiblePrice": 4.12,
+      "codes": [
+        "drc06096"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12631,
+      "name": "Kondansatör 16 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06097",
+      "visiblePrice": 4.02,
+      "codes": [
+        "drc06097"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 11624,
       "name": "Gmc CV2/11 Kaynaklı Check Valf – 1 3/8″",
       "brand": "GMC",
@@ -101722,6 +103042,786 @@
       "visiblePrice": 115.92,
       "codes": [
         "drc05300"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12632,
+      "name": "Kondansatör 20 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06100",
+      "visiblePrice": 3.76,
+      "codes": [
+        "drc06100"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12633,
+      "name": "Kondansatör 25 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06103",
+      "visiblePrice": 4.4,
+      "codes": [
+        "drc06103"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12634,
+      "name": "Kondansatör 30 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06107",
+      "visiblePrice": 6,
+      "codes": [
+        "drc06107"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12635,
+      "name": "Kondansatör 35 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06110",
+      "visiblePrice": 6.4,
+      "codes": [
+        "drc06110"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12636,
+      "name": "Kondansatör 40 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06115",
+      "visiblePrice": 6.8,
+      "codes": [
+        "drc06115"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12637,
+      "name": "Kondansatör 45 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06119",
+      "visiblePrice": 7.6,
+      "codes": [
+        "drc06119"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12638,
+      "name": "Kondansatör 50 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06124",
+      "visiblePrice": 8,
+      "codes": [
+        "drc06124"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12639,
+      "name": "Kondansatör 55 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06129",
+      "visiblePrice": 11.8,
+      "codes": [
+        "drc06129"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12640,
+      "name": "Kondansatör 70 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06137",
+      "visiblePrice": 14.2,
+      "codes": [
+        "drc06137"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12641,
+      "name": "Kondansatör 100 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06095",
+      "visiblePrice": 20.18,
+      "codes": [
+        "drc06095"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12642,
+      "name": "Kondansatör 20+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06101",
+      "visiblePrice": 5.58,
+      "codes": [
+        "drc06101"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12643,
+      "name": "Kondansatör 25+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06104",
+      "visiblePrice": 5.78,
+      "codes": [
+        "drc06104"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12644,
+      "name": "Kondansatör 30+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06108",
+      "visiblePrice": 6.24,
+      "codes": [
+        "drc06108"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12645,
+      "name": "Kondansatör 40+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06116",
+      "visiblePrice": 7.38,
+      "codes": [
+        "drc06116"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12646,
+      "name": "Kondansatör 45+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06120",
+      "visiblePrice": 8.44,
+      "codes": [
+        "drc06120"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12647,
+      "name": "Kondansatör 50+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06125",
+      "visiblePrice": 9,
+      "codes": [
+        "drc06125"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12648,
+      "name": "Kondansatör 60+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06134",
+      "visiblePrice": 11.86,
+      "codes": [
+        "drc06134"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12649,
+      "name": "Kondansatör 40+3 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06117",
+      "visiblePrice": 7.46,
+      "codes": [
+        "drc06117"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12650,
+      "name": "Kondansatör 45+3 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06121",
+      "visiblePrice": 8.26,
+      "codes": [
+        "drc06121"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12651,
+      "name": "Kondansatör 50+3 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06126",
+      "visiblePrice": 8.6,
+      "codes": [
+        "drc06126"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12652,
+      "name": "Kondansatör 55+3,0 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06130",
+      "visiblePrice": 9.68,
+      "codes": [
+        "drc06130"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12653,
+      "name": "Kondansatör 20+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06102",
+      "visiblePrice": 6.62,
+      "codes": [
+        "drc06102"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12654,
+      "name": "Kondansatör 25+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06105",
+      "visiblePrice": 8.08,
+      "codes": [
+        "drc06105"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12655,
+      "name": "Kondansatör 30+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06109",
+      "visiblePrice": 8.24,
+      "codes": [
+        "drc06109"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12656,
+      "name": "Kondansatör 35+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06112",
+      "visiblePrice": 7.94,
+      "codes": [
+        "drc06112"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12657,
+      "name": "Kondansatör 40+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06118",
+      "visiblePrice": 7.86,
+      "codes": [
+        "drc06118"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12658,
+      "name": "Kondansatör 45+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06122",
+      "visiblePrice": 8.38,
+      "codes": [
+        "drc06122"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12659,
+      "name": "Kondansatör 50+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06127",
+      "visiblePrice": 8.64,
+      "codes": [
+        "drc06127"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12660,
+      "name": "Kondansatör 55+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06131",
+      "visiblePrice": 9.36,
+      "codes": [
+        "drc06131"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12661,
+      "name": "Kondansatör 60+5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06135",
+      "visiblePrice": 8.38,
+      "codes": [
+        "drc06135"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12662,
+      "name": "Kondansatör 35+6 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06113",
+      "visiblePrice": 7.1,
+      "codes": [
+        "drc06113"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12663,
+      "name": "Kondansatör 50+6 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06128",
+      "visiblePrice": 8.76,
+      "codes": [
+        "drc06128"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12664,
+      "name": "Kondansatör 55+6 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06132",
+      "visiblePrice": 9.12,
+      "codes": [
+        "drc06132"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12665,
+      "name": "Kondansatör 60+6 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06136",
+      "visiblePrice": 9.34,
+      "codes": [
+        "drc06136"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12689,
+      "name": "İzolasyonlu Boru Beyaz Tekli 1/4″0,70 9 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05938",
+      "visiblePrice": 6.02,
+      "codes": [
+        "drc05938"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12690,
+      "name": "İzolasyonlu Boru Beyaz Tekli 1/4″0,80 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05939",
+      "visiblePrice": 7.74,
+      "codes": [
+        "drc05939"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12691,
+      "name": "İzolasyonlu Boru Beyaz Tekli 3/8″0,70 9 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05941",
+      "visiblePrice": 8.4,
+      "codes": [
+        "drc05941"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12692,
+      "name": "İzolasyonlu Boru Beyaz Tekli 3/8″0,80 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05943",
+      "visiblePrice": 11.46,
+      "codes": [
+        "drc05943"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12693,
+      "name": "İzolasyonlu Boru Beyaz Tekli 1/2″0,70 9 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05936",
+      "visiblePrice": 10.04,
+      "codes": [
+        "drc05936"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12694,
+      "name": "İzolasyonlu Boru Beyaz Tekli 1/2″0,80 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05937",
+      "visiblePrice": 15.38,
+      "codes": [
+        "drc05937"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12695,
+      "name": "İzolasyonlu Boru Beyaz Tekli 5/8″1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05945",
+      "visiblePrice": 19.58,
+      "codes": [
+        "drc05945"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12696,
+      "name": "İzolasyonlu Boru Beyaz Tekli 3/4″1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05940",
+      "visiblePrice": 21.7,
+      "codes": [
+        "drc05940"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12697,
+      "name": "İzolasyonlu Boru Beyaz Tekli 3/8″0,80 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05942",
+      "visiblePrice": 10.02,
+      "codes": [
+        "drc05942"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12698,
+      "name": "İzolasyonlu Boru Beyaz Tekli 5/8″1,00 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05944",
+      "visiblePrice": 16.76,
+      "codes": [
+        "drc05944"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12699,
+      "name": "İzolasyonlu Boru Siyah Tekli 1/4″0,80 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05950",
+      "visiblePrice": 6.86,
+      "codes": [
+        "drc05950"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12700,
+      "name": "İzolasyonlu Boru Siyah Tekli 3/8″0,80 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05954",
+      "visiblePrice": 8.94,
+      "codes": [
+        "drc05954"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12701,
+      "name": "İzolasyonlu Boru Siyah Tekli 1/2″0,80 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05947",
+      "visiblePrice": 11.68,
+      "codes": [
+        "drc05947"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12702,
+      "name": "İzolasyonlu Boru Siyah Tekli 5/8″1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05957",
+      "visiblePrice": 15.72,
+      "codes": [
+        "drc05957"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12703,
+      "name": "İzolasyonlu Boru Siyah Tekli 3/4″1,00 09 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05951",
+      "visiblePrice": 14.38,
+      "codes": [
+        "drc05951"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12704,
+      "name": "İzolasyonlu Boru Siyah Tekli 1/4″0,80 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05949",
+      "visiblePrice": 7.28,
+      "codes": [
+        "drc05949"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12705,
+      "name": "İzolasyonlu Boru Siyah Tekli 3/8″0,80 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05953",
+      "visiblePrice": 10.5,
+      "codes": [
+        "drc05953"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12706,
+      "name": "İzolasyonlu Boru Siyah Tekli 1/2″0,80 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05946",
+      "visiblePrice": 11.84,
+      "codes": [
+        "drc05946"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -101742,9 +103842,249 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 12707,
+      "name": "İzolasyonlu Boru Siyah Tekli 1/2″0,90 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05948",
+      "visiblePrice": 14.48,
+      "codes": [
+        "drc05948"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12708,
+      "name": "İzolasyonlu Boru Siyah Tekli 5/8″0,70 13 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05955",
+      "visiblePrice": 17.8,
+      "codes": [
+        "drc05955"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12709,
+      "name": "İzolasyonlu Boru Siyah Tekli 5/8″1,00 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05956",
+      "visiblePrice": 19.32,
+      "codes": [
+        "drc05956"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12710,
+      "name": "İzolasyonlu Boru Siyah Tekli 3/4″1,00 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05952",
+      "visiblePrice": 18.76,
+      "codes": [
+        "drc05952"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12711,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,70 + 3/8″0,70 9 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05927",
+      "visiblePrice": 17.34,
+      "codes": [
+        "drc05927"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12712,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,70 + 1/2″0,70 9 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05926",
+      "visiblePrice": 22.12,
+      "codes": [
+        "drc05926"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12713,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,70 + 5/8″0,80 9 MM ( Split )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05932",
+      "visiblePrice": 33.02,
+      "codes": [
+        "drc05932"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12714,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,80 + 3/8″0,80 9 MM ( Vrv ) 25.03.005",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05929",
+      "visiblePrice": 19.62,
+      "codes": [
+        "drc05929"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12715,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,80 + 1/2″0,80 9 MM ( Vrv ) 25.07.038",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05928",
+      "visiblePrice": 23.88,
+      "codes": [
+        "drc05928"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12716,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,80 + 5/8″1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05930",
+      "visiblePrice": 19.8,
+      "codes": [
+        "drc05930"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12717,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,80 + 5/8″1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05935",
+      "visiblePrice": 31.38,
+      "codes": [
+        "drc05935"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12718,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8 0,80 + 3/4 1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05931",
+      "visiblePrice": 28.98,
+      "codes": [
+        "drc05931"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12719,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/2″0,80 + 3/4″1,00 9 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05925",
+      "visiblePrice": 31.02,
+      "codes": [
+        "drc05925"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12720,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,80 + 3/4″1,00 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05933",
+      "visiblePrice": 28.56,
+      "codes": [
+        "drc05933"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12721,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,80 + 5/8″1,00 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05934",
+      "visiblePrice": 29.36,
+      "codes": [
+        "drc05934"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 12722,
+      "name": "İzolasyonlu Boru Beyaz Çiftli 1/2″0,80 + 3/4″1,00 13 MM ( Vrv )",
+      "brand": "Generic",
+      "category": "İzolasyonlu Borular",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-05924",
+      "visiblePrice": 31.18,
+      "codes": [
+        "drc05924"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 11900,
       "name": "Endüstriyel Buzdolabı Yan Kilit İ-102 ( Anahtarlı )",
-      "brand": "Endüstriyel",
+      "brand": "DRC",
       "category": "Klima Yedek Parçaları",
       "unit": "adet",
       "productCode": "",
@@ -101759,7 +104099,7 @@
     {
       "id": 11924,
       "name": "Sürgülü Kapı Dış Açma Kolu",
-      "brand": "Sürgülü",
+      "brand": "DRC",
       "category": "Soğuk Oda Aksesuarları",
       "unit": "adet",
       "productCode": "",
@@ -132568,36 +134908,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11575,
-      "name": "Çarpma Soğuk Oda Kapısı 900X1900 MM",
-      "brand": "Çarpma",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-01412",
-      "visiblePrice": 955.56,
-      "codes": [
-        "drc01412"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11576,
-      "name": "Sürgülü Donmuş Oda Kapısı",
-      "brand": "Sürgülü",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07992",
-      "visiblePrice": 4076.36,
-      "codes": [
-        "drc07992"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11577,
       "name": "Polyester Dış Köşe Aksesuar 50*110",
       "brand": "Polyester",
@@ -134393,351 +136703,6 @@
       "visiblePrice": 38,
       "codes": [
         "drc08052"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11707,
-      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Deepfreeze oda ( Polar )",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06835",
-      "visiblePrice": 186,
-      "codes": [
-        "drc06835"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11708,
-      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Pozitif Oda için",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06837",
-      "visiblePrice": 170,
-      "codes": [
-        "drc06837"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11709,
-      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Deepfreeze oda (Avrupa Menşei)",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06836",
-      "visiblePrice": 217.76,
-      "codes": [
-        "drc06836"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11710,
-      "name": "PVC Soğuk Oda Kapı Perdesi 90*190 cm Pozitif Oda İçin (Avrupa Menşei)",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06838",
-      "visiblePrice": 173.64,
-      "codes": [
-        "drc06838"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11711,
-      "name": "PVC Soğuk Oda Kapı Perdesi – Buzlu 120*220",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06832",
-      "visiblePrice": 188.18,
-      "codes": [
-        "drc06832"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11712,
-      "name": "PVC Şerit Perde 110*200",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06847",
-      "visiblePrice": 159.18,
-      "codes": [
-        "drc06847"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11713,
-      "name": "PVC Şerit Perde 100*200",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06846",
-      "visiblePrice": 139.88,
-      "codes": [
-        "drc06846"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11714,
-      "name": "PVC Şerit Perde 150*220",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06849",
-      "visiblePrice": 219.46,
-      "codes": [
-        "drc06849"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11715,
-      "name": "PVC Şerit Perde 150*250",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06850",
-      "visiblePrice": 190.36,
-      "codes": [
-        "drc06850"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11716,
-      "name": "PVC Şerit Perde 110*220",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06848",
-      "visiblePrice": 162.14,
-      "codes": [
-        "drc06848"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11717,
-      "name": "PVC Soğuk Oda Kapı Perdesi – Buzlu 190*235",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06833",
-      "visiblePrice": 249.7,
-      "codes": [
-        "drc06833"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11718,
-      "name": "PVC Şerit Perde 90*220",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06853",
-      "visiblePrice": 139.32,
-      "codes": [
-        "drc06853"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11719,
-      "name": "PVC Soğuk Oda Kapı Perdesi 120*200 cm Deepfreeze Oda ( Polar )",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06834",
-      "visiblePrice": 208.92,
-      "codes": [
-        "drc06834"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11720,
-      "name": "PVC Şerit Perde – 120*208",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06840",
-      "visiblePrice": 162.92,
-      "codes": [
-        "drc06840"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11721,
-      "name": "PVC Şerit Perde – 120*200",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06839",
-      "visiblePrice": 191.16,
-      "codes": [
-        "drc06839"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11722,
-      "name": "PVC Şerit Perde – 440*310",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06844",
-      "visiblePrice": 1043.42,
-      "codes": [
-        "drc06844"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11723,
-      "name": "PVC Şerit Perde – 340*320",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06842",
-      "visiblePrice": 829.58,
-      "codes": [
-        "drc06842"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11724,
-      "name": "PVC Şerit Perde – 350*320",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06843",
-      "visiblePrice": 831.92,
-      "codes": [
-        "drc06843"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11725,
-      "name": "PVC Şerit Perde – 630*500",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06845",
-      "visiblePrice": 2178.5,
-      "codes": [
-        "drc06845"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11726,
-      "name": "PVC Şerit Perde – 180*245",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06841",
-      "visiblePrice": 336.54,
-      "codes": [
-        "drc06841"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11727,
-      "name": "PVC Şerit Perde Siyah – 200*200",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06854",
-      "visiblePrice": 222.84,
-      "codes": [
-        "drc06854"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11728,
-      "name": "PVC Şerit Perde 90*210",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06852",
-      "visiblePrice": 147.52,
-      "codes": [
-        "drc06852"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11729,
-      "name": "PVC Şerit Perde 200*250",
-      "brand": "PVC",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06851",
-      "visiblePrice": 345.5,
-      "codes": [
-        "drc06851"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -137144,51 +139109,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11893,
-      "name": "Endüstriyel Buzdolabı Yan Kilit İ-105 ( Büyük Tip Anahtarlı )",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04824",
-      "visiblePrice": 17.32,
-      "codes": [
-        "drc04824"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11894,
-      "name": "Endüstriyel Buzdolabı Yaysız Yan Menteşe İ-09",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04825",
-      "visiblePrice": 4.64,
-      "codes": [
-        "drc04825"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11895,
-      "name": "Endüstriyel Buzdolabı Vitrin Menteşe İ-07",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04821",
-      "visiblePrice": 5.88,
-      "codes": [
-        "drc04821"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11896,
       "name": "Şarküteri Dijital Termostat Panosu Bombeli Tip Tekli İ-478-01 / OR-2000-A",
       "brand": "Şarküteri",
@@ -137219,21 +139139,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11898,
-      "name": "Endüstriyel Soğuk Oda Kapısı Ayarlı Menteşe İ-34",
-      "brand": "Endüstriyel",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04834",
-      "visiblePrice": 45.32,
-      "codes": [
-        "drc04834"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11899,
       "name": "Kuyruk Makarası I-SKA-09",
       "brand": "Kuyruk",
@@ -137244,36 +139149,6 @@
       "visiblePrice": 43.46,
       "codes": [
         "drc06183"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11901,
-      "name": "Endüstriyel Buzdolabı Yan Kilit İ-100 / OR-3091",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04822",
-      "visiblePrice": 20.74,
-      "codes": [
-        "drc04822"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11902,
-      "name": "Soğuk Oda Sürgülü Kapı Kolu SKA03",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07809",
-      "visiblePrice": 688.04,
-      "codes": [
-        "drc07809"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -137304,36 +139179,6 @@
       "visiblePrice": 5.66,
       "codes": [
         "drc06376"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11905,
-      "name": "Sürgülü Kapı Dış Açma Kolu I-SKA-03",
-      "brand": "Sürgülü",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07994",
-      "visiblePrice": 76.34,
-      "codes": [
-        "drc07994"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11906,
-      "name": "Endüstriyel Buzdolabı Metal Yaprak Menteşe İ-12",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04798",
-      "visiblePrice": 8.86,
-      "codes": [
-        "drc04798"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -137429,36 +139274,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11913,
-      "name": "Soğuk Oda Yatay Bağlantılı Kilit İ-267-01",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07810",
-      "visiblePrice": 44.9,
-      "codes": [
-        "drc07810"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11914,
-      "name": "Endüstriyel Buzdolabı Pres Menteşe İ-05-01",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04819",
-      "visiblePrice": 8.24,
-      "codes": [
-        "drc04819"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11915,
       "name": "Şarküteri Dijital Termostat Panosu Düz Tip İ-478-04 ( Sadece Dijital )",
       "brand": "Şarküteri",
@@ -137474,16 +139289,16 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11916,
-      "name": "Soğuk Oda Dikey Bağlantılı Kilit İ-267-D",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
+      "id": 11906,
+      "name": "Endüstriyel Buzdolabı Metal Yaprak Menteşe İ-12",
+      "brand": "DRC",
+      "category": "Klima Yedek Parçaları",
       "unit": "adet",
       "productCode": "",
-      "barcode": "DRC-07805",
-      "visiblePrice": 40.34,
+      "barcode": "DRC-04798",
+      "visiblePrice": 8.86,
       "codes": [
-        "drc07805"
+        "drc04798"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -137564,21 +139379,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11917,
-      "name": "Soğuk Oda Kapısı İnox Menteşe İ-34K Bar Kapısı Menteşesi – Vavien Kapı İçin",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07806",
-      "visiblePrice": 53.56,
-      "codes": [
-        "drc07806"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11918,
       "name": "Mekanik Pano Düz Tip İkili İ-479-03 ( Ranco İçin )",
       "brand": "Mekanik",
@@ -137609,21 +139409,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11920,
-      "name": "Soğuk Oda Dijital Pano Kutusu İkili İ-481-02 ( Boş Tip )",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07801",
-      "visiblePrice": 10,
-      "codes": [
-        "drc07801"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11535,
       "name": "Frigoblock FSN 315 SZ Soğutma Grubu",
       "brand": "Frigoblock",
@@ -137639,39 +139424,9 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11921,
-      "name": "Soğuk Oda Dikey Bağlantılı Kilit İ-266",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07804",
-      "visiblePrice": 45.18,
-      "codes": [
-        "drc07804"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11923,
-      "name": "Sürgülü Kapı Panel Merkezleme OR-06",
-      "brand": "Sürgülü",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07997",
-      "visiblePrice": 8.08,
-      "codes": [
-        "drc07997"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11925,
       "name": "Endüstriyel Dikey Buzdolabı Kulpu İ-149",
-      "brand": "Endüstriyel",
+      "brand": "DRC",
       "category": "Klima Yedek Parçaları",
       "unit": "adet",
       "productCode": "",
@@ -137679,21 +139434,6 @@
       "visiblePrice": 4.76,
       "codes": [
         "drc04826"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11926,
-      "name": "Sürgülü Kapı İç Açma Kolu İ-SKA-07 HD",
-      "brand": "Sürgülü",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07995",
-      "visiblePrice": 134.44,
-      "codes": [
-        "drc07995"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -137709,96 +139449,6 @@
       "visiblePrice": 48.6,
       "codes": [
         "drc08656"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11928,
-      "name": "Endüstriyel Buzdolabı OR-3004 Karaman Kilit",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04802",
-      "visiblePrice": 33.64,
-      "codes": [
-        "drc04802"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11929,
-      "name": "Endüstriyel Buzdolabı OR-3009 Soğuk Oda Kapı Kilit",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04803",
-      "visiblePrice": 77.32,
-      "codes": [
-        "drc04803"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11930,
-      "name": "Endüstriyel OR-3011 Lüks Soğuk Oda Kilit",
-      "brand": "Endüstriyel",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04829",
-      "visiblePrice": 117.72,
-      "codes": [
-        "drc04829"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11931,
-      "name": "Soğuk Oda Dijital Pano Kutusu Üçlü OR-2016 ( Boş Tip )",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07803",
-      "visiblePrice": 10.6,
-      "codes": [
-        "drc07803"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11932,
-      "name": "Endüstriyel Buzdolabı OR-3065 Soğuk Oda Anahtarlı Kilit",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04812",
-      "visiblePrice": 84.08,
-      "codes": [
-        "drc04812"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11933,
-      "name": "Endüstriyel Buzdolabı OR-3019 Soğuk Oda Menteşe",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04808",
-      "visiblePrice": 25.22,
-      "codes": [
-        "drc04808"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -137821,7 +139471,7 @@
     {
       "id": 11935,
       "name": "Endüstriyel Buzdolabı OR-3061 Plastik Soğuk Oda GöMMe Kilit",
-      "brand": "Endüstriyel",
+      "brand": "DRC",
       "category": "Klima Yedek Parçaları",
       "unit": "adet",
       "productCode": "",
@@ -137829,276 +139479,6 @@
       "visiblePrice": 60,
       "codes": [
         "drc04809"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11936,
-      "name": "Endüstriyel Buzdolabı OR-3064 Soğuk Oda Anahtarsız Kilit",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04811",
-      "visiblePrice": 75.68,
-      "codes": [
-        "drc04811"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11937,
-      "name": "Endüstriyel Buzdolabı OR-07 Sürgülü Kapı İç Açma Kolu ( Paslanmaz )",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04801",
-      "visiblePrice": 119.82,
-      "codes": [
-        "drc04801"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11938,
-      "name": "Endüstriyel Buzdolabı OR-5000 Helezon Buzhane Kilit Sağ",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04816",
-      "visiblePrice": 123.6,
-      "codes": [
-        "drc04816"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11939,
-      "name": "Endüstriyel Buzdolabı OR-5000 Helezon Buzhane Kilit Sol",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04817",
-      "visiblePrice": 123.6,
-      "codes": [
-        "drc04817"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11940,
-      "name": "Endüstriyel Buzdolabı OR-3150 Plastik Lüx Soğuk Oda Kilit",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04814",
-      "visiblePrice": 113.52,
-      "codes": [
-        "drc04814"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11941,
-      "name": "Endüstriyel Buzdolabı OR-3010 Helezon Kilit",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04804",
-      "visiblePrice": 164.64,
-      "codes": [
-        "drc04804"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11942,
-      "name": "Endüstriyel Buzdolabı OR-3017 Yan Köşeli Menteşe",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04806",
-      "visiblePrice": 6.72,
-      "codes": [
-        "drc04806"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11944,
-      "name": "Endüstriyel Buzdolabı OR-3200 Plastik Soğuk Oda Menteşe",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04815",
-      "visiblePrice": 18,
-      "codes": [
-        "drc04815"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11945,
-      "name": "Endüstriyel OR-3014 Vitrin Menteşe Bombeli",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04830",
-      "visiblePrice": 10,
-      "codes": [
-        "drc04830"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11946,
-      "name": "Endüstriyel Buzdolabı ORS-09 Sürgülü Kapı Kuyruk Makarası",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04818",
-      "visiblePrice": 43.62,
-      "codes": [
-        "drc04818"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11947,
-      "name": "Endüstriyel Buzdolabı OR-3113 Plastk Servis Menteşesi ( Bar Kapısı İçin )",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04813",
-      "visiblePrice": 57.52,
-      "codes": [
-        "drc04813"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11948,
-      "name": "Soğuk Oda Dijital Pano Kutusu Tekli İ-481-01 ( Boş Tip )",
-      "brand": "Soğuk",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07802",
-      "visiblePrice": 10,
-      "codes": [
-        "drc07802"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11949,
-      "name": "Endüstriyel Buzdolabı OR-03 Kapı Dış Açma Kolu",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04800",
-      "visiblePrice": 136.38,
-      "codes": [
-        "drc04800"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11950,
-      "name": "Endüstriyel Buzdolabı OR-02 Sürgülü Kapı Kuyruk Çatalı",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04799",
-      "visiblePrice": 10.3,
-      "codes": [
-        "drc04799"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11951,
-      "name": "Endüstriyel Fırın Kilit OR-3333",
-      "brand": "Endüstriyel",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04827",
-      "visiblePrice": 33.64,
-      "codes": [
-        "drc04827"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11952,
-      "name": "Endüstriyel Buzdolabı OR-3012 Buzhane Lüks Menteşe",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04805",
-      "visiblePrice": 38.68,
-      "codes": [
-        "drc04805"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11953,
-      "name": "Endüstriyel Musluk İlavesi OR-3026",
-      "brand": "Endüstriyel",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04828",
-      "visiblePrice": 13.46,
-      "codes": [
-        "drc04828"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11954,
-      "name": "Endüstriyel Buzdolabı OR-3017-B Yaylı Yan Menteşe",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04807",
-      "visiblePrice": 11.78,
-      "codes": [
-        "drc04807"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -138114,51 +139494,6 @@
       "visiblePrice": 12.8,
       "codes": [
         "drc05457"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11956,
-      "name": "Endüstriyel OR-3015 Pres Vitrin Menteşe",
-      "brand": "Endüstriyel",
-      "category": "Klima Yedek Parçaları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04831",
-      "visiblePrice": 11.78,
-      "codes": [
-        "drc04831"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11957,
-      "name": "Endüstriyel OR-3111 Plastik Soğuk Oda Menteşesi Küçük",
-      "brand": "Endüstriyel",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04833",
-      "visiblePrice": 15.14,
-      "codes": [
-        "drc04833"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 11958,
-      "name": "Endüstriyel OR-3023 Yaprak Menteşe Oval",
-      "brand": "Endüstriyel",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-04832",
-      "visiblePrice": 4.2,
-      "codes": [
-        "drc04832"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -139516,66 +140851,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 12054,
-      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Sarı Lamba )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05853",
-      "visiblePrice": 4.2,
-      "codes": [
-        "drc05853"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12055,
-      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Kırmızı Aç-Kapa )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05851",
-      "visiblePrice": 4.2,
-      "codes": [
-        "drc05851"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12056,
-      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Yeşil Kar )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05854",
-      "visiblePrice": 4.2,
-      "codes": [
-        "drc05854"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12057,
-      "name": "Işıklı Anahtar Siyah Kasa Körüklü ( Kırmızı Fan )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05852",
-      "visiblePrice": 4.2,
-      "codes": [
-        "drc05852"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 12058,
       "name": "Butto Mandal Buton A6000",
       "brand": "Butto",
@@ -139586,81 +140861,6 @@
       "visiblePrice": 9.66,
       "codes": [
         "drc00803"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12059,
-      "name": "Işıklı Anahtar Siyah Kasa ( Sarı Lamba )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05848",
-      "visiblePrice": 2.2,
-      "codes": [
-        "drc05848"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12060,
-      "name": "Işıklı Anahtar Siyah Kasa ( Yeşil Kar )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05850",
-      "visiblePrice": 2,
-      "codes": [
-        "drc05850"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12061,
-      "name": "Işıklı Anahtar Siyah Kasa ( Çiftli Aç-Kapa )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05846",
-      "visiblePrice": 4.2,
-      "codes": [
-        "drc05846"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12062,
-      "name": "Işıklı Anahtar Siyah Kasa ( Tekli Aç-Kapa )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05849",
-      "visiblePrice": 2,
-      "codes": [
-        "drc05849"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12063,
-      "name": "Işıklı Anahtar Siyah Kasa ( Kırmızı Fan )",
-      "brand": "Işıklı",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05847",
-      "visiblePrice": 2,
-      "codes": [
-        "drc05847"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -146686,21 +147886,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 11922,
-      "name": "Sürgülü Kapı Kanal Merkezleme OR-04",
-      "brand": "Sürgülü",
-      "category": "Soğuk Oda Aksesuarları",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-07996",
-      "visiblePrice": 9.6,
-      "codes": [
-        "drc07996"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 12528,
       "name": "Thermotrick 6’lı Distribütör",
       "brand": "Thermotrick",
@@ -148111,456 +149296,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 12621,
-      "name": "Kondansatör 1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06093",
-      "visiblePrice": 1.94,
-      "codes": [
-        "drc06093"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12622,
-      "name": "Kondansatör 2 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06098",
-      "visiblePrice": 2.06,
-      "codes": [
-        "drc06098"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12623,
-      "name": "Kondansatör 2,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06099",
-      "visiblePrice": 2.08,
-      "codes": [
-        "drc06099"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12624,
-      "name": "Kondansatör 3 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06106",
-      "visiblePrice": 2.1,
-      "codes": [
-        "drc06106"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12625,
-      "name": "Kondansatör 4 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06114",
-      "visiblePrice": 2.6,
-      "codes": [
-        "drc06114"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12626,
-      "name": "Kondansatör 5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06123",
-      "visiblePrice": 2.34,
-      "codes": [
-        "drc06123"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12627,
-      "name": "Kondansatör 6 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06133",
-      "visiblePrice": 2.84,
-      "codes": [
-        "drc06133"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12628,
-      "name": "Kondansatör 8 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06138",
-      "visiblePrice": 3.78,
-      "codes": [
-        "drc06138"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12629,
-      "name": "Kondansatör 10 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06094",
-      "visiblePrice": 3.26,
-      "codes": [
-        "drc06094"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12630,
-      "name": "Kondansatör 12 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06096",
-      "visiblePrice": 4.12,
-      "codes": [
-        "drc06096"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12631,
-      "name": "Kondansatör 16 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06097",
-      "visiblePrice": 4.02,
-      "codes": [
-        "drc06097"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12632,
-      "name": "Kondansatör 20 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06100",
-      "visiblePrice": 3.76,
-      "codes": [
-        "drc06100"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12633,
-      "name": "Kondansatör 25 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06103",
-      "visiblePrice": 4.4,
-      "codes": [
-        "drc06103"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12634,
-      "name": "Kondansatör 30 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06107",
-      "visiblePrice": 6,
-      "codes": [
-        "drc06107"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12635,
-      "name": "Kondansatör 35 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06110",
-      "visiblePrice": 6.4,
-      "codes": [
-        "drc06110"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12636,
-      "name": "Kondansatör 40 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06115",
-      "visiblePrice": 6.8,
-      "codes": [
-        "drc06115"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12637,
-      "name": "Kondansatör 45 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06119",
-      "visiblePrice": 7.6,
-      "codes": [
-        "drc06119"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12638,
-      "name": "Kondansatör 50 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06124",
-      "visiblePrice": 8,
-      "codes": [
-        "drc06124"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12639,
-      "name": "Kondansatör 55 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06129",
-      "visiblePrice": 11.8,
-      "codes": [
-        "drc06129"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12640,
-      "name": "Kondansatör 70 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06137",
-      "visiblePrice": 14.2,
-      "codes": [
-        "drc06137"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12641,
-      "name": "Kondansatör 100 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06095",
-      "visiblePrice": 20.18,
-      "codes": [
-        "drc06095"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12642,
-      "name": "Kondansatör 20+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06101",
-      "visiblePrice": 5.58,
-      "codes": [
-        "drc06101"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12643,
-      "name": "Kondansatör 25+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06104",
-      "visiblePrice": 5.78,
-      "codes": [
-        "drc06104"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12644,
-      "name": "Kondansatör 30+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06108",
-      "visiblePrice": 6.24,
-      "codes": [
-        "drc06108"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12645,
-      "name": "Kondansatör 40+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06116",
-      "visiblePrice": 7.38,
-      "codes": [
-        "drc06116"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12646,
-      "name": "Kondansatör 45+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06120",
-      "visiblePrice": 8.44,
-      "codes": [
-        "drc06120"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12647,
-      "name": "Kondansatör 50+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06125",
-      "visiblePrice": 9,
-      "codes": [
-        "drc06125"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12648,
-      "name": "Kondansatör 60+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06134",
-      "visiblePrice": 11.86,
-      "codes": [
-        "drc06134"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12649,
-      "name": "Kondansatör 40+3 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06117",
-      "visiblePrice": 7.46,
-      "codes": [
-        "drc06117"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12650,
-      "name": "Kondansatör 45+3 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06121",
-      "visiblePrice": 8.26,
-      "codes": [
-        "drc06121"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 6787,
       "name": "Sanhua SQ-A2522G AC220V-240V IP54 4 Yollu Vana Bobini",
       "brand": "Sanhua",
@@ -148576,21 +149311,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 12651,
-      "name": "Kondansatör 50+3 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06126",
-      "visiblePrice": 8.6,
-      "codes": [
-        "drc06126"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 7003,
       "name": "Sanhua SSV-14008 1/2” – 5/16” Klima Servis Vanası",
       "brand": "Sanhua",
@@ -148601,216 +149321,6 @@
       "visiblePrice": 16.38,
       "codes": [
         "drc07585"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12652,
-      "name": "Kondansatör 55+3,0 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06130",
-      "visiblePrice": 9.68,
-      "codes": [
-        "drc06130"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12653,
-      "name": "Kondansatör 20+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06102",
-      "visiblePrice": 6.62,
-      "codes": [
-        "drc06102"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12654,
-      "name": "Kondansatör 25+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06105",
-      "visiblePrice": 8.08,
-      "codes": [
-        "drc06105"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12655,
-      "name": "Kondansatör 30+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06109",
-      "visiblePrice": 8.24,
-      "codes": [
-        "drc06109"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12656,
-      "name": "Kondansatör 35+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06112",
-      "visiblePrice": 7.94,
-      "codes": [
-        "drc06112"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12657,
-      "name": "Kondansatör 40+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06118",
-      "visiblePrice": 7.86,
-      "codes": [
-        "drc06118"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12658,
-      "name": "Kondansatör 45+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06122",
-      "visiblePrice": 8.38,
-      "codes": [
-        "drc06122"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12659,
-      "name": "Kondansatör 50+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06127",
-      "visiblePrice": 8.64,
-      "codes": [
-        "drc06127"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12660,
-      "name": "Kondansatör 55+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06131",
-      "visiblePrice": 9.36,
-      "codes": [
-        "drc06131"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12661,
-      "name": "Kondansatör 60+5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06135",
-      "visiblePrice": 8.38,
-      "codes": [
-        "drc06135"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12662,
-      "name": "Kondansatör 35+6 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06113",
-      "visiblePrice": 7.1,
-      "codes": [
-        "drc06113"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12663,
-      "name": "Kondansatör 50+6 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06128",
-      "visiblePrice": 8.76,
-      "codes": [
-        "drc06128"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12664,
-      "name": "Kondansatör 55+6 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06132",
-      "visiblePrice": 9.12,
-      "codes": [
-        "drc06132"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12665,
-      "name": "Kondansatör 60+6 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06136",
-      "visiblePrice": 9.34,
-      "codes": [
-        "drc06136"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -149086,6 +149596,21 @@
       "supplierCatalogRefs": []
     },
     {
+      "id": 12687,
+      "name": "Kondansatör 35+1,5 uF 450 VAC-50/60 Hz",
+      "brand": "Generic",
+      "category": "Elektrik Malzemeleri",
+      "unit": "adet",
+      "productCode": "",
+      "barcode": "DRC-06111",
+      "visiblePrice": 7.44,
+      "codes": [
+        "drc06111"
+      ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
       "id": 10276,
       "name": "Schneider LC1D12M7 220V Kontaktör",
       "brand": "Schneider",
@@ -149146,21 +149671,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 12687,
-      "name": "Kondansatör 35+1,5 uF 450 VAC-50/60 Hz",
-      "brand": "Kondansatör",
-      "category": "Elektrik Malzemeleri",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-06111",
-      "visiblePrice": 7.44,
-      "codes": [
-        "drc06111"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 12688,
       "name": "Techsun SPP8 Start Kapasitör",
       "brand": "Techsun",
@@ -149176,369 +149686,9 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 12689,
-      "name": "İzolasyonlu Boru Beyaz Tekli 1/4″0,70 9 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05938",
-      "visiblePrice": 6.02,
-      "codes": [
-        "drc05938"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12690,
-      "name": "İzolasyonlu Boru Beyaz Tekli 1/4″0,80 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05939",
-      "visiblePrice": 7.74,
-      "codes": [
-        "drc05939"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12691,
-      "name": "İzolasyonlu Boru Beyaz Tekli 3/8″0,70 9 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05941",
-      "visiblePrice": 8.4,
-      "codes": [
-        "drc05941"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12692,
-      "name": "İzolasyonlu Boru Beyaz Tekli 3/8″0,80 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05943",
-      "visiblePrice": 11.46,
-      "codes": [
-        "drc05943"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12693,
-      "name": "İzolasyonlu Boru Beyaz Tekli 1/2″0,70 9 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05936",
-      "visiblePrice": 10.04,
-      "codes": [
-        "drc05936"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12694,
-      "name": "İzolasyonlu Boru Beyaz Tekli 1/2″0,80 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05937",
-      "visiblePrice": 15.38,
-      "codes": [
-        "drc05937"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12695,
-      "name": "İzolasyonlu Boru Beyaz Tekli 5/8″1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05945",
-      "visiblePrice": 19.58,
-      "codes": [
-        "drc05945"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12696,
-      "name": "İzolasyonlu Boru Beyaz Tekli 3/4″1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05940",
-      "visiblePrice": 21.7,
-      "codes": [
-        "drc05940"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12697,
-      "name": "İzolasyonlu Boru Beyaz Tekli 3/8″0,80 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05942",
-      "visiblePrice": 10.02,
-      "codes": [
-        "drc05942"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12698,
-      "name": "İzolasyonlu Boru Beyaz Tekli 5/8″1,00 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05944",
-      "visiblePrice": 16.76,
-      "codes": [
-        "drc05944"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12699,
-      "name": "İzolasyonlu Boru Siyah Tekli 1/4″0,80 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05950",
-      "visiblePrice": 6.86,
-      "codes": [
-        "drc05950"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12700,
-      "name": "İzolasyonlu Boru Siyah Tekli 3/8″0,80 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05954",
-      "visiblePrice": 8.94,
-      "codes": [
-        "drc05954"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12701,
-      "name": "İzolasyonlu Boru Siyah Tekli 1/2″0,80 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05947",
-      "visiblePrice": 11.68,
-      "codes": [
-        "drc05947"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12702,
-      "name": "İzolasyonlu Boru Siyah Tekli 5/8″1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05957",
-      "visiblePrice": 15.72,
-      "codes": [
-        "drc05957"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12703,
-      "name": "İzolasyonlu Boru Siyah Tekli 3/4″1,00 09 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05951",
-      "visiblePrice": 14.38,
-      "codes": [
-        "drc05951"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12704,
-      "name": "İzolasyonlu Boru Siyah Tekli 1/4″0,80 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05949",
-      "visiblePrice": 7.28,
-      "codes": [
-        "drc05949"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12705,
-      "name": "İzolasyonlu Boru Siyah Tekli 3/8″0,80 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05953",
-      "visiblePrice": 10.5,
-      "codes": [
-        "drc05953"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12706,
-      "name": "İzolasyonlu Boru Siyah Tekli 1/2″0,80 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05946",
-      "visiblePrice": 11.84,
-      "codes": [
-        "drc05946"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12707,
-      "name": "İzolasyonlu Boru Siyah Tekli 1/2″0,90 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05948",
-      "visiblePrice": 14.48,
-      "codes": [
-        "drc05948"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12708,
-      "name": "İzolasyonlu Boru Siyah Tekli 5/8″0,70 13 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05955",
-      "visiblePrice": 17.8,
-      "codes": [
-        "drc05955"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12709,
-      "name": "İzolasyonlu Boru Siyah Tekli 5/8″1,00 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05956",
-      "visiblePrice": 19.32,
-      "codes": [
-        "drc05956"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12710,
-      "name": "İzolasyonlu Boru Siyah Tekli 3/4″1,00 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05952",
-      "visiblePrice": 18.76,
-      "codes": [
-        "drc05952"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12711,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,70 + 3/8″0,70 9 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05927",
-      "visiblePrice": 17.34,
-      "codes": [
-        "drc05927"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12712,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,70 + 1/2″0,70 9 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05926",
-      "visiblePrice": 22.12,
-      "codes": [
-        "drc05926"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 11574,
       "name": "Soğuk Oda Sürgülü Kapı 1750*2350",
-      "brand": "Soğuk",
+      "brand": "DRC",
       "category": "Soğuk Oda Aksesuarları",
       "unit": "adet",
       "productCode": "",
@@ -149546,126 +149696,6 @@
       "visiblePrice": 4144.5,
       "codes": [
         "drc07808"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12713,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,70 + 5/8″0,80 9 MM ( Split )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05932",
-      "visiblePrice": 33.02,
-      "codes": [
-        "drc05932"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12714,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,80 + 3/8″0,80 9 MM ( Vrv ) 25.03.005",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05929",
-      "visiblePrice": 19.62,
-      "codes": [
-        "drc05929"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12715,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,80 + 1/2″0,80 9 MM ( Vrv ) 25.07.038",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05928",
-      "visiblePrice": 23.88,
-      "codes": [
-        "drc05928"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12716,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/4″0,80 + 5/8″1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05930",
-      "visiblePrice": 19.8,
-      "codes": [
-        "drc05930"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12717,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,80 + 5/8″1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05935",
-      "visiblePrice": 31.38,
-      "codes": [
-        "drc05935"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12718,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8 0,80 + 3/4 1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05931",
-      "visiblePrice": 28.98,
-      "codes": [
-        "drc05931"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12719,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/2″0,80 + 3/4″1,00 9 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05925",
-      "visiblePrice": 31.02,
-      "codes": [
-        "drc05925"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12720,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,80 + 3/4″1,00 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05933",
-      "visiblePrice": 28.56,
-      "codes": [
-        "drc05933"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -149681,36 +149711,6 @@
       "visiblePrice": 393.28,
       "codes": [
         "drc07847"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12721,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 3/8″0,80 + 5/8″1,00 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05934",
-      "visiblePrice": 29.36,
-      "codes": [
-        "drc05934"
-      ],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
-      "id": 12722,
-      "name": "İzolasyonlu Boru Beyaz Çiftli 1/2″0,80 + 3/4″1,00 13 MM ( Vrv )",
-      "brand": "İzolasyonlu",
-      "category": "İzolasyonlu Borular",
-      "unit": "adet",
-      "productCode": "",
-      "barcode": "DRC-05924",
-      "visiblePrice": 31.18,
-      "codes": [
-        "drc05924"
       ],
       "supplierCodes": [],
       "supplierCatalogRefs": []
@@ -151368,19 +151368,6 @@
       "supplierCatalogRefs": []
     },
     {
-      "id": 2412,
-      "name": "R404",
-      "brand": "Refrigirant",
-      "category": "Soğutucu Akışkanlar",
-      "unit": "KG",
-      "productCode": "",
-      "barcode": "",
-      "visiblePrice": 500,
-      "codes": [],
-      "supplierCodes": [],
-      "supplierCatalogRefs": []
-    },
-    {
       "id": 12838,
       "name": "Allgoo Atık Su Tahliye Pompa Motoru 3650 3320/3340 ( Arçelik-Beko-Altus Çamaşır Makinesi)",
       "brand": "Allgoo",
@@ -151516,6 +151503,19 @@
         "drc07229",
         "61120sogutmateknisyeniserviselaletimontajekipmanteknikozellikleragrlkhacim10kgmarkarothenbergerkategoriservisekipmanlarveelaletleribirimadet"
       ],
+      "supplierCodes": [],
+      "supplierCatalogRefs": []
+    },
+    {
+      "id": 2412,
+      "name": "R404",
+      "brand": "Refrigerant",
+      "category": "Soğutucu Akışkanlar",
+      "unit": "KG",
+      "productCode": "",
+      "barcode": "",
+      "visiblePrice": 500,
+      "codes": [],
       "supplierCodes": [],
       "supplierCatalogRefs": []
     },
@@ -158967,7 +158967,7 @@
     {
       "id": 11892,
       "name": "Endüstriyel Buzdolabı Vitrin Kilit İ-06 / OR-3003",
-      "brand": "Endüstriyel",
+      "brand": "DRC",
       "category": "Klima Yedek Parçaları",
       "unit": "adet",
       "productCode": "",
@@ -160258,7 +160258,7 @@
     {
       "id": 2408,
       "name": "R134A",
-      "brand": "Refrigirant",
+      "brand": "Refrigerant",
       "category": "Soğutucu Akışkanlar",
       "unit": "KG",
       "productCode": "",
@@ -160271,7 +160271,7 @@
     {
       "id": 2409,
       "name": "R290",
-      "brand": "Refrigirant",
+      "brand": "Refrigerant",
       "category": "Soğutucu Akışkanlar",
       "unit": "6 KG",
       "productCode": "",

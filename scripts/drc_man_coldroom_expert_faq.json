@@ -1,0 +1,705 @@
+[
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "panel"
+    ],
+    "tr_question": "Soğuk oda paneli kalınlığı nasıl seçilir?",
+    "tr_answer": "Soğuk oda paneli kalınlığı, oda iç sıcaklığına göre seçilir: +4°C/+8°C pozitif odalar için 60-80mm yeterlidir. 0°C/-2°C uygulamaları için 100mm önerilir. -18°C/-25°C donuk odalar için 120-150mm kullanılır. -25°C ve altı şok odalar için 200mm gerekir. Paneller PIR (Poliisosyanürat) veya PUR (Poliüretan) çekirdekli, çift yüzü galvaniz/boyalı sac veya paslanmaz çelik olur. K-değeri 100mm PIR için yaklaşık 0.022 W/mK'dir.",
+    "de_question": "Wie wählt man die Stärke eines Kühlraumpaneels?",
+    "de_answer": "Die Paneelstärke richtet sich nach der Innentemperatur: +4°C/+8°C Plusräume 60-80mm; 0°C/-2°C Anwendungen 100mm; -18°C/-25°C Tiefkühlräume 120-150mm; Schockfroster unter -25°C 200mm. Paneele haben PIR/PUR-Kern mit beidseitig verzinkt/lackiertem Stahl oder Edelstahl. K-Wert 100mm PIR ca. 0,022 W/mK."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "panel",
+      "ekleme"
+    ],
+    "tr_question": "Sandviç panel kilitleri (CAM-LOK) nasıl çalışır?",
+    "tr_answer": "Sandviç paneller arası birleşim genellikle CAM-LOK (eksantrik kilit) sistemiyle yapılır. Bir paneldeki dişi yatak ile diğer panelin erkek dişlisi birleştirilir, sonra kam kilit anahtarla 180° döndürülerek sıkıştırılır. Bu hava sızdırmaz ve mekanik olarak sağlam bir bağlantı sağlar. Birleşim noktasına ek olarak NBR conta veya silikon kullanılır. Kilitsiz panellerde ise erkek-dişi geçme + dış sızdırmazlık bandı yöntemi vardır.",
+    "de_question": "Wie funktionieren CAM-LOK Verschlüsse bei Sandwichpaneelen?",
+    "de_answer": "Die Verbindung zwischen Sandwichpaneelen erfolgt mit CAM-LOK (Exzenterverschluss): Ein Panel hat den weiblichen Sitz, das andere die männliche Nase. Mit einem Schlüssel wird der Nocken um 180° gedreht und damit gespannt. Das ergibt eine luftdichte und mechanisch feste Verbindung. Zusätzlich wird NBR-Dichtung oder Silikon verwendet. Ohne Schlüssel-System: Nut-Feder-Verbindung mit Außenband."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "kapı"
+    ],
+    "tr_question": "Soğuk oda kapılarında rezistans (ısıtıcı) ne işe yarar?",
+    "tr_answer": "Donuk oda kapılarında (-18°C ve altı) kapı çerçevesinin etrafında kauçuk ısıtıcı rezistans bulunur. İşlevi: kapı ile çerçeve arasındaki contanın donmasını engellemek. Donmuş conta kapıyı yapıştırır ve açılmasını engeller, ayrıca conta yırtılır. Rezistans 220V AC, genellikle 30-50 W/m gücündedir. Kapı switch'i ile (kapı kapalıyken) sürekli devrede tutulur. Pozitif odalarda (>0°C) rezistansa gerek yoktur.",
+    "de_question": "Welche Funktion hat die Türrahmenheizung bei Kühlraumtüren?",
+    "de_answer": "Bei Tiefkühlraumtüren (-18°C und kälter) ist eine elektrische Heizung um den Türrahmen verlegt. Sie verhindert das Anfrieren der Dichtung am Rahmen. Eingefrorene Dichtung blockiert die Tür und reißt beim Öffnen. Heizleistung 30-50 W/m, 220V AC, mit Tür-Schalter dauerhaft im Betrieb wenn Tür geschlossen. Bei Plus-Räumen (>0°C) nicht nötig."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "izolasyon"
+    ],
+    "tr_question": "Bakır boru izolasyonunda hangi malzeme kullanılır?",
+    "tr_answer": "Soğutma sistemi bakır borularında kapalı hücreli kauçuk yalıtım (örn. Armaflex, K-Flex, Aeroflex) kullanılır. Tipik kalınlıklar: 9mm, 13mm, 19mm, 25mm. Soğutma uygulamasında: emiş hattı (suction) için 19-25mm önerilir (ısı kazancı önleme), likit hattı için 9-13mm yeterli. Kauçuk izolasyonun avantajı: su buharı geçirmezliği yüksek (μ ≥ 7000), yangın sınıfı B-s3,d0. Genellikle pre-insulated 'twinpack' set olarak satılır (likit + emiş + drenaj kablosu beraber).",
+    "de_question": "Welches Material wird zur Kupferrohrisolierung verwendet?",
+    "de_answer": "Geschlossenporige Elastomer-Isolierung (Armaflex, K-Flex, Aeroflex). Übliche Stärken: 9, 13, 19, 25mm. Saugleitung 19-25mm (Wärmeaufnahme verhindern), Flüssigleitung 9-13mm. Vorteile: hoher Wasserdampfdiffusionswiderstand (μ ≥ 7000), Brandklasse B-s3,d0. Oft als pre-insulierte Twinpack-Set verkauft (Flüssig + Saug + Drainagekabel zusammen)."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "perde"
+    ],
+    "tr_question": "Soğuk oda PVC perdesi neden kullanılır?",
+    "tr_answer": "PVC stripler (perde) soğuk oda kapısının önüne asılır. Görevi: kapı açıldığında soğuk hava kaybını ve sıcak nemli havanın girmesini azaltmak. Şeritler %50 örtüşmeli, esnek polar PVC olmalı. Pozitif odalar için saydam standart PVC (~3mm), donuk odalar için Polar PVC (-25°C'ye dayanıklı, ~4mm) kullanılır. Pasta dolapları gibi sürekli açma-kapama olan yerlerde enerji tasarrufu sağlar; tahminen %20-30 enerji kazancı.",
+    "de_question": "Warum werden PVC-Streifenvorhänge in Kühlräumen verwendet?",
+    "de_answer": "PVC-Streifen werden vor der Kühlraumtür angebracht. Aufgabe: Kälteverlust und Eindringen warmer feuchter Luft beim Türöffnen verringern. 50% Überlappung, flexibles polares PVC. Plus-Räume Standard transparent (~3mm), Tiefkühlräume Polar-PVC bis -25°C (~4mm). Bei häufigem Öffnen ca. 20-30% Energieeinsparung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "aksesuar"
+    ],
+    "tr_question": "Soğuk oda zemin U-profili (PZ aksesuar) ne işe yarar?",
+    "tr_answer": "Zemin U-profili soğuk oda paneli ile zemin arasındaki birleşim noktasının ısıl köprüsünü ve nem geçişini engeller. ETS ACSETS/PZ serisi: 50×80×50 (8cm panel için), 50×100×50 (10cm), 50×120×50 (12cm), 50×150×50 (15cm). Plastik enjeksiyon, PVC/PP hammadde. Üst yüzeyde paneli karşılayan oluk + alt yüzeyde zemine yapışacak silikon/conta kanalı. Termal break (ısıl kesik) sağlayarak zemin altından gelen ısı kazancını minimize eder.",
+    "de_question": "Wofür dient das Boden-U-Profil (PZ-Zubehör) in Kühlräumen?",
+    "de_answer": "Das Boden-U-Profil verhindert Wärmebrücke und Feuchteeintritt zwischen Paneel und Boden. ETS ACSETS/PZ-Serie: 50×80×50 (8cm Paneel), 50×100×50, 50×120×50, 50×150×50. PVC/PP Spritzguss. Obere Nut für Paneel, untere mit Silikon/Dichtung am Boden. Thermische Trennung minimiert Wärmegewinn aus dem Untergrund."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "köşe"
+    ],
+    "tr_question": "Soğuk odada dış köşe profili (PD aksesuar) nasıl monte edilir?",
+    "tr_answer": "Dış köşe profili (PD = Poly Dış Köşe) iki panelin 90° birleştiği dış köşelere monte edilir. ETS ACSETS/PD serisi: PD080 (50×120 - 8cm panele), PD120 (50×160 - 12cm), PD130 (50×130 - 13cm), PD180 (50×180 - 18cm panele). Montaj sırası: 1) İki panel CAM-LOK ile 90°'de birleştirilir, 2) Köşe hattına silikon çekilir, 3) PD profili köşeye geçirilir, 4) Vidayla sabitlenir. Estetik kapama + mekanik koruma + sızdırmazlık sağlar.",
+    "de_question": "Wie wird das Außeneckprofil (PD-Zubehör) in Kühlräumen montiert?",
+    "de_answer": "Außeneckprofil (PD = Polyurethan Außenecke) wird an 90°-Außenecken montiert. ETS ACSETS/PD-Serie: PD080 (8cm), PD120 (12cm), PD130 (13cm), PD180 (18cm). Montage: 1) Zwei Paneele mit CAM-LOK verbinden, 2) Silikon auf Eckkante, 3) PD-Profil aufstecken, 4) Verschrauben. Ästhetisch + mechanischer Schutz + Abdichtung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "materials",
+      "rampa"
+    ],
+    "tr_question": "Soğuk oda zemininde anti-statik kayma engelleyici neden gereklidir?",
+    "tr_answer": "Soğuk oda zemininde nem ve sıcaklık değişimi nedeniyle yoğuşma birikir → kayma riski. Bu yüzden anti-slip (kaymaz) kaplama veya R10/R11 kayma dirençli pano galvaniz/paslanmaz uygulanır. Donuk odalarda zemin sürekli buzlanmaması için: 1) Zemin altında 2cm XPS/PUR yalıtım + ısıtıcı kablo (anti-frost heating) bulunur, 2) +5°C civarında zemin sıcaklığı korunur, 3) Forklift trafiği için yük dayanımı min 500-1000 kg/m². Zemin paneli kullanıldığında PD profili ile zemin arasında ısı köprüsü kesilir.",
+    "de_question": "Warum ist rutschhemmender Boden im Kühlraum erforderlich?",
+    "de_answer": "Durch Kondenswasser und Temperaturschwankungen entsteht Rutschgefahr. Anti-Slip-Belag oder R10/R11 rutschfeste Paneele werden eingesetzt. Bei TK-Räumen: 1) Boden-XPS/PUR-Isolierung + Heizband (Frostschutz), 2) Bodentemperatur ~+5°C, 3) Belastung min 500-1000 kg/m² für Stapler. Mit PD-Profil thermische Trennung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "kompresor",
+      "tip"
+    ],
+    "tr_question": "Hermetik, yarı-hermetik ve scroll kompresör arasındaki fark nedir?",
+    "tr_answer": "Hermetik kompresör: kompresör + motor tek kapalı kabuğun içinde, kaynaklı; tamiri imkansız, değiştirilir. Düşük güç (1/4 - 5 HP), tüketici ve hafif ticari. Embraco, Tecumseh, Cubigel klasik örnekler. Yarı-hermetik: motor ve kompresör aynı muhafazada ama vidalı, sökülüp tamir edilebilir. Orta-büyük güç (3-100 HP), sanayi tipi. Bitzer, Frascold, Dorin, Refcomp tipiktir. Scroll: iki spiral parça birbirine geçerek gaz sıkıştırır, çok az hareketli parça → düşük titreşim ve gürültü, %15 daha verimli. Copeland (Emerson) ZB/ZH/ZP serisi öncüdür. Yağ taşıma sorunsuzdur. R410A klimalarda ve modern ticari soğutmada baskındır.",
+    "de_question": "Was ist der Unterschied zwischen hermetisch, halbhermetisch und Scroll-Verdichter?",
+    "de_answer": "Hermetisch: Verdichter + Motor in geschlossenem Gehäuse, geschweißt; nicht reparierbar, austauschbar. Niedrige Leistung (1/4 - 5 HP), Konsumenten/leichte Industrie. Embraco, Tecumseh, Cubigel typisch. Halbhermetisch: Motor und Verdichter in einem Gehäuse aber verschraubt, zerlegbar/reparierbar. Mittlere bis große Leistung (3-100 HP), Industrie. Bitzer, Frascold, Dorin, Refcomp typisch. Scroll: zwei Spiralen, wenige bewegliche Teile, niedrige Vibration und 15% effizienter. Copeland (Emerson) ZB/ZH/ZP führend. Bei R410A-Klimas und modernen Kühlanlagen vorherrschend."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "evaporator",
+      "tip"
+    ],
+    "tr_question": "Tavan tipi vs duvar tipi evaporatör hangi durumda seçilir?",
+    "tr_answer": "Tavan tipi (cube/double-flow): odanın merkezine tavandan asılır, hava akışı 360° veya çift yönlü. Yüksek tavanlı (>2.5m) büyük odalar için ideal. Hava döngüsü her köşeye ulaşır. GVN, Buzyapsan, Frigocraft tavan tipi yapar. Duvar tipi (single-flow): bir duvara asılır, tek yönlü hava üfler. Düşük tavanlı (<2.5m) veya küçük odalar için. Kapı karşısı duvara yerleştirilirse kapı açıldığında ölü hava bölgesi azalır. Buzyapsan BYS-SH (BOX) ve TEA serileri klasik duvar tipidir. Genel kural: 1m³ oda hacmi için ~50W kapasite, donuk için 80W.",
+    "de_question": "Wann wählt man Decken- vs. Wandverdampfer?",
+    "de_answer": "Deckenverdampfer (Cube/Doppelflow): in Raummitte hängend, 360° oder zweiseitiger Luftstrom. Für hohe Decken (>2.5m) und große Räume ideal. Luftumwälzung erreicht jede Ecke. GVN, Buzyapsan, Frigocraft. Wandverdampfer (Single-Flow): an Wand, einseitiger Luftstrom. Für niedrige Decken (<2.5m) oder kleine Räume. Gegenüber Tür montiert reduziert Totluftzonen. Buzyapsan BYS-SH (BOX) und TEA-Serie. Faustregel: 1m³ Raum ~50W Kapazität, TK-Raum 80W."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "kondenser",
+      "kapasite"
+    ],
+    "tr_question": "Kondenser kapasitesi neye göre seçilir?",
+    "tr_answer": "Kondenser kapasitesi = Soğutma kapasitesi (Q_evap) + Kompresör motoru gücü (P_motor). Tipik oran: Q_kondenser ≈ 1.2-1.4 × Q_evap. Örneğin 5 kW soğutma için 6-7 kW kondenser gerekir. Hava soğutmalı kondenserde dış sıcaklık (Tamb) önemli: yazın 35°C ortam için TC=50°C tasarlanır (15K Δ). Yüzey alanı m² ile ölçülür: Buzyapsan BYS SH60 BOX 64.17m² → 23.78 kW kapasite. Fan adedi ve devri (RPM) hava debisini belirler. R404A için 0.7-1.0 K/m² ısı transfer katsayısı.",
+    "de_question": "Wie wird die Kondensatorkapazität ausgelegt?",
+    "de_answer": "Kondensatorkapazität = Kühlleistung (Q_evap) + Verdichtermotorleistung (P_motor). Typisch: Q_cond ≈ 1.2-1.4 × Q_evap. Beispiel: 5 kW Kühlung → 6-7 kW Kondensator. Luftgekühlte Kondensatoren: Außentemperatur (Tamb) wichtig; bei 35°C Sommer wird TC=50°C ausgelegt (ΔT 15K). Fläche in m²: Buzyapsan BYS SH60 BOX 64.17m² → 23.78 kW. Lüfteranzahl und Drehzahl bestimmen Luftvolumen. R404A: 0.7-1.0 K/m² Wärmeübergang."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "expansion_valve"
+    ],
+    "tr_question": "Termostatik genleşme valfi (TXV) ile kapiler boru arasındaki fark nedir?",
+    "tr_answer": "Termostatik genleşme valfi (TXV): değişken yük altında otomatik orifis ayarlayan, prob ile evaporatör çıkış sıcaklığını okuyup superheat'i sabit tutan valftir (Danfoss TE2/TE5, Sporlan SH/SF). Avantaj: değişen yüke uyum, en verimli kullanım. Maliyet: 50-200 €. Kapiler boru: sabit çap ve uzunluktaki ince bakır boru, basınç düşürmek için sabit kısıtlama. Avantaj: ucuz (1-2€), arızalanmaz. Dezavantaj: değişken yüke uyumsuz, sadece sabit çalışma noktası. Buzdolabı, su sebili, küçük soğutucu için kapiler; ticari/endüstriyel soğutma için TXV.",
+    "de_question": "Was ist der Unterschied zwischen TXV und Kapillarrohr?",
+    "de_answer": "Thermostatisches Expansionsventil (TXV): variabler Querschnitt, regelt Überhitzung mit Fühler am Verdampferausgang konstant (Danfoss TE2/TE5, Sporlan SH/SF). Vorteil: passt sich Lastwechsel an, höchste Effizienz. Kosten 50-200 €. Kapillarrohr: feste Länge und Durchmesser des dünnen Kupferrohres, konstante Drosselung. Vorteil: billig (1-2€), nicht defekt. Nachteil: keine Anpassung an Lastwechsel, nur ein Betriebspunkt. Kühlschrank/kleine Geräte → Kapillar; gewerblich/industriell → TXV."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "solenoid"
+    ],
+    "tr_question": "Solenoid valf neden kullanılır ve nereye monte edilir?",
+    "tr_answer": "Solenoid valf elektromanyetik kapama valfi. Görevi: kompresör durduğunda likit hattı kapatıp sıvı kaçağını engellemek (pump-down devresi). Tipik bağlantı: kondenser çıkışından sonra likit hattına, evaporatöre TXV'den ÖNCE. Bobinli (220V AC veya 24V DC). Sanhua DHF, Castel 1064, Danfoss EVR serileri. Açıkken (NO) veya kapalıyken (NC) tipte olabilir. Kapasite: 1/4'' - 1-3/8'' arası. Pump-down: termostat tetiklendiğinde önce solenoid kapanır, kompresör low-pressure switch ile durduğunda evaporatör boşalmış olur. Bu likit batık başlangıç (slug-back) önler.",
+    "de_question": "Wofür wird ein Magnetventil verwendet und wo eingebaut?",
+    "de_answer": "Magnetventil = elektromagnetisches Absperrventil. Aufgabe: bei Verdichterstillstand Flüssigleitung schließen, Flüssigkeitsmigration verhindern (Pump-Down). Einbau: nach Kondensator in der Flüssigleitung, VOR dem TXV. Spule (220V AC oder 24V DC). Sanhua DHF, Castel 1064, Danfoss EVR. NO oder NC. Kapazität 1/4'' - 1-3/8''. Pump-Down: Thermostat schließt Magnetventil; Verdichter läuft bis Niederdruck-Pressostat abschaltet. Verhindert Flüssigkeitsschläge beim Start."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "filter_drier"
+    ],
+    "tr_question": "Likit hat filtre-kurutucusu (drier) neden gereklidir?",
+    "tr_answer": "Filtre-kurutucu sistemde nem ve katı parçacıkları tutar. Nem TXV'yi tıkar (don oluşturur), asit oluşturur (yağı bozar), bakırla reaksiyon verir. Likit hattına monte edilir (kondenser çıkışı ile TXV arası). İçinde moleküler elek (3Å/4Å zeolit) + asit absorber + parçacık filtresi vardır. Boyut: 1/4'' (15g) - 1-3/8'' (300g+) arası. Yön ok ile gösterilir (likit akış yönü). 5 yılda bir veya gaz değişikliği sırasında değiştirilir. Sight glass (gözetleme camı) ile birlikte kullanılır: yeşil renk = nem normal, sarı = nem var (drier değişmeli).",
+    "de_question": "Warum ist ein Filtertrockner in der Flüssigleitung erforderlich?",
+    "de_answer": "Filtertrockner hält Feuchtigkeit und Partikel zurück. Feuchtigkeit verstopft TXV (Eisbildung), bildet Säure (zerstört Öl), reagiert mit Kupfer. Einbau in Flüssigleitung (Kondensator → TXV). Innen: Molekularsieb (3Å/4Å Zeolith) + Säureabsorber + Partikelfilter. Größen: 1/4'' (15g) bis 1-3/8'' (300g+). Pfeil zeigt Strömungsrichtung. Wechsel alle 5 Jahre oder bei Kältemittelwechsel. Mit Schauglas: grün = Feuchte ok, gelb = Wechsel erforderlich."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "kontrol"
+    ],
+    "tr_question": "Dijital soğuk oda kontrol cihazı (Dixell, Carel, DCB) ne işler yapar?",
+    "tr_answer": "Dijital kontrolör (Dixell XR60CX, Carel ir33, DRC DCB100/DCB31) soğuk oda otomasyonunun beynidir. İşlevleri: 1) Termostat — set noktası ile oda sıcaklığını karşılaştırıp kompresörü açar/kapatır, 2) Defrost yönetimi — zaman/sıcaklık tabanlı, elektrikli/sıcak gaz/hava, 3) Fan kontrolü — defrost sırasında fan durdurma, drip-off bekleme, 4) Alarm — yüksek/düşük sıcaklık, prob arızası, kapı açık alarmı, 5) Modbus/RS485 ile uzaktan izleme. Tipik prob bağlantısı: oda probu (oda sıcaklığı), evaporatör probu (defrost sonu), kondenser probu (basınç güvenliği). Set: -25°C için differential 2K, defrost günde 4 kez, drain time 2 dak.",
+    "de_question": "Welche Funktionen hat ein digitaler Kühlraumregler (Dixell, Carel, DCB)?",
+    "de_answer": "Digitaler Regler (Dixell XR60CX, Carel ir33, DRC DCB100/DCB31) ist die Steuerzentrale: 1) Thermostat — vergleicht Soll mit Raumtemperatur, schaltet Verdichter, 2) Abtaumanagement — zeitlich/temperaturbasiert, elektrisch/Heißgas/Luft, 3) Lüftersteuerung — Stop bei Abtauung, Drip-Off-Wartezeit, 4) Alarme — Übertemperatur, Fühlerfehler, Türalarm, 5) Modbus/RS485 zur Fernüberwachung. Fühler: Raum, Verdampfer (Abtauende), Kondensator. Beispiel-Setup: -25°C, Schaltdiff 2K, 4× Abtauung/Tag, 2 min Abtropfzeit."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "presostat"
+    ],
+    "tr_question": "Yüksek/Alçak basınç şalteri (KP/MP serisi) ne için kullanılır?",
+    "tr_answer": "Basınç şalteri (Danfoss KP1/KP5/KP15/MP54, Sporlan PD/PR) sistemi aşırı basınçtan korur. Yüksek basınç şalteri (HP) — kondenser tıkanması, fan arızası → kompresör koruma. Açma: ~28-32 bar (R404A için), reset 22 bar manuel. Alçak basınç şalteri (LP) — likit hattı tıkanması, gaz kaçağı → kompresör donma koruması. Açma: ~1 bar (vakum), reset 2 bar otomatik. MP54 yağ basınç şalteri yarı-hermetik kompresörlerde yağlama eksikliği koruması için (delta P): pompa basıncı - karter basıncı min 0.7 bar olmalı, 60-90 saniye içinde sağlanmazsa durdurur.",
+    "de_question": "Wofür dient ein Hoch-/Niederdruckschalter (KP/MP-Serie)?",
+    "de_answer": "Druckschalter (Danfoss KP1/KP5/KP15/MP54, Sporlan PD/PR) schützen vor Überdruck. Hochdruckschalter (HP) — Kondensatorverstopfung, Lüfterfehler → Verdichterschutz. Aus bei ~28-32 bar (R404A), manueller Reset 22 bar. Niederdruckschalter (LP) — Flüssigleitungsverstopfung, Leckage → Frostschutz. Aus bei ~1 bar (Vakuum), Reset 2 bar automatisch. MP54 Öldruckschalter für halbhermetische Verdichter: Pumpendruck - Kurbelgehäusedruck min 0,7 bar; bei nicht-Erreichen in 60-90 Sek Notabschaltung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "sight_glass"
+    ],
+    "tr_question": "Sight glass (gözetleme camı) ne gösterir?",
+    "tr_answer": "Sight glass likit hattına lehimli/vidalı monte edilen cam pencere. İki bilgi verir: 1) GAZ MİKTARI — flash gaz (köpük/kabarcık) görüyorsan sistem gaz eksikliği veya alt soğutma yetersiz. Likit dolu ise tertemiz görünür. 2) NEM SEVİYESİ — içinde renk değiştiren nem indikatörü vardır: yeşil = kuru (normal), sarı = nem var (drier değiştir). Hata durumunda: kabarcık varsa gaz şarj et, sarı renk varsa filtre-drier yenile. Sanhua SYJ06H11 (1/4'' kaynaklı) tipik bir model. Likit hat üzerinde, drier'dan SONRA, TXV'den ÖNCE bağlanır.",
+    "de_question": "Was zeigt ein Schauglas in der Flüssigleitung?",
+    "de_answer": "Schauglas, an der Flüssigleitung gelötet/verschraubt, zeigt zwei Dinge: 1) KÄLTEMITTELMENGE — Schaum/Blasen = Untermenge oder fehlende Unterkühlung. Klar gefüllt = ok. 2) FEUCHTIGKEIT — Farbindikator: grün = trocken, gelb = Feuchte (Trockner wechseln). Fehlerbehebung: Blasen → Kältemittel nachfüllen; gelb → Filtertrockner ersetzen. Sanhua SYJ06H11 (1/4'' geschweißt) typisch. Position: nach Trockner, vor TXV."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "drenaj"
+    ],
+    "tr_question": "Soğuk oda evaporatörünün drenaj hattı nasıl döşenmeli?",
+    "tr_answer": "Evaporatörün drenaj tepsisinde toplanan defrost suyu kapaklı tahliye borusuna gider, oradan dışa drene edilir. KRİTİK kurallar: 1) Drenaj borusu min 1/2'' iç çap, 2) Eğim ≥ %1 (1m'de 1cm aşağı), 3) Soğuk oda dışına çıkana kadar ISITMALI rezistans (donmaya karşı), 4) Sifon (P-trap) HER İKİ SİSTEMDE — koku ve hava sızıntısı önler, 5) Yatay run en fazla 5m, sonra ek sifon, 6) Bina kanalına bağlanırken hava boşluğu (air gap) bırak. Kondens pompası (Siccom Eco Line, Sfa Sanicondens) kanalın yukarıda olduğu durumlarda kullanılır.",
+    "de_question": "Wie muss der Verdampfer-Kondensatablauf verlegt werden?",
+    "de_answer": "Abtauwasser sammelt sich in der Tropfschale, läuft über das Ablaufrohr nach außen. KRITISCHE Regeln: 1) Mindest 1/2'' Innendurchmesser, 2) Gefälle ≥ 1% (1cm/m), 3) Beheiztes Heizband bis Ausgang Kühlraum (Frostschutz), 4) Siphon (P-Trap) auf BEIDEN Seiten — verhindert Geruch/Luftleck, 5) Horizontale Führung max 5m, dann zusätzlicher Siphon, 6) Anschluss ans Hausabflusssystem mit Luftspalt. Kondensatpumpe (Siccom Eco Line, Sfa Sanicondens) wenn Abfluss höher liegt."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "sicaklik"
+    ],
+    "tr_question": "Soğuk oda sıcaklığa düşmüyor — neden?",
+    "tr_answer": "Sebep listesi sıralı tanı: 1) GAZ EKSİKLİĞİ — sight glass'ta kabarcık, alçak basınç düşük. Çözüm: kaçak ara (kabuk testi, leak detector), şarj et. 2) KONDENSER KİRLİ — basınç yüksek, fan çalışıyor ama hava akışı zayıf. Çözüm: kondenser temizle, fan döndüğünden emin ol. 3) DEFROST TIKANIK — evaporatörde buz birikmiş, hava akışı durmuş. Çözüm: defrost saatini artır, drenaj sifonunu kontrol et. 4) TXV TIKANIK — sıcaklık düşmüyor, alçak basınç çok düşük. Çözüm: drier değiştir, TXV'yi söküp temizle. 5) KOMPRESÖR ZAYIF — basınç farkı yok, akım düşük. Çözüm: kompresör değiştir. 6) KAPI HEP AÇIK — switch arızası, kapı düzgün kapanmıyor. Çözüm: door switch ve conta kontrol. 7) YÜK ÇOK FAZLA — oda kapasitenin üstünde dolduruldu.",
+    "de_question": "Kühlraum erreicht Solltemperatur nicht — Warum?",
+    "de_answer": "Diagnose-Reihenfolge: 1) KÄLTEMITTELMANGEL — Blasen im Schauglas, Niederdruck zu niedrig. Lösung: Lecksuche, nachfüllen. 2) KONDENSATOR VERSCHMUTZT — Hochdruck hoch, Lüfter läuft aber Luftstrom schwach. Reinigen. 3) ABTAU-VERSAGEN — Eis am Verdampfer, Luftstrom blockiert. Abtauintervall erhöhen, Siphon prüfen. 4) TXV VERSTOPFT — sehr niedriger Niederdruck. Trockner wechseln, TXV reinigen. 5) VERDICHTER SCHWACH — keine Druckdifferenz, niedriger Strom. Wechseln. 6) TÜR DAUEROFFEN — Schalter defekt, schlechte Dichtung. 7) ÜBERLAST — Raum überfüllt."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "buzlanma"
+    ],
+    "tr_question": "Evaporatörde aşırı buz birikiyor — sebepleri ve çözümü?",
+    "tr_answer": "Aşırı buzlanma şu sebeplerden olur: 1) DEFROST YETERSİZ — günde 4-6 kez, her 4-6 saatte bir, defrost süresi 20-30 dakika olmalı. Set'i kontrol et. 2) DRENAJ TIKANIK — defrost suyu boşalmıyor, evaporatör altında biriken su tekrar donuyor. Drenaj borusu, sifon ve ısıtıcı kablo kontrol. 3) FAN DÖNMÜYOR — sürekli soğuk hava bir noktada birikiyor → bağıl nem yükseliyor → buz. Fan motoru/kondansatör kontrol. 4) AŞIRI ŞARJ — gaz fazla, evaporatör tabakası düşük, sıvı taşıyor. Şarj boşalt + ölç. 5) KAPI SIK AÇILIYOR — sıcak nemli hava içeri giriyor → buz. PVC perde tak. 6) DEFROST PROBU ARIZALI — hiç bitmediği için sürekli defrost. Probu değiştir. Acil çözüm: manuel defrost başlat, oda boşalt, sebebi giderdikten sonra çalıştır.",
+    "de_question": "Übermäßige Vereisung am Verdampfer — Ursachen und Lösung?",
+    "de_answer": "Ursachen: 1) UNZUREICHENDE ABTAUUNG — 4-6×/Tag, alle 4-6h, je 20-30 min. Setup prüfen. 2) ABLAUF VERSTOPFT — Wasser bleibt, gefriert wieder. Abflussrohr/Siphon/Heizband prüfen. 3) LÜFTER AUSGEFALLEN — Luftstau, hohe rel. Luftfeuchte → Eis. Motor/Kondensator prüfen. 4) ÜBERFÜLLUNG — zu viel Kältemittel, Sauganteil hoch. Entleeren + nachladen. 5) TÜR ZU OFT GEÖFFNET — feuchte Luft → Eis. PVC-Vorhang. 6) ABTAUFÜHLER DEFEKT — Abtauung endet nie. Fühler tauschen. Sofortmaßnahme: manuelle Abtauung, Raum leeren, Ursache beheben."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "gaz_kacagi"
+    ],
+    "tr_question": "Gaz kaçağı nasıl tespit edilir?",
+    "tr_answer": "Gaz kaçak tespit yöntemleri: 1) ELEKTRONIK LEAK DETECTOR — refrigerant gaz kaçağına duyarlı (10g/yıl hassasiyet). Inficon, Cps, Bacharach markaları. Şüpheli noktalar: kaynak yerleri, valf bağlantıları, sight glass, drier, expansion valf, evaporatör/kondenser fitting'leri. 2) UV BOYA — sisteme UV-aktif boya (Errecom, Wipcool) eklenir, çalıştırılır, sonra UV ışıkla noktalar aranır. Sızıntı parlak yeşil parlar. 3) KÖPÜK SPREY — Refco, Bacharach Zip-Bag spray, basınçlı sistemden çıkan gaz köpürür. Hızlı ve görsel. 4) BASINÇ TESTİ — sistem N2 ile 25-30 bar basınçlandırılır, manometre 24 saat izlenir, basınç düşerse kaçak var. En kritik noktalar: 1) flare bağlantılar, 2) Schroeder valfler, 3) kompresör bağlantı flanşları, 4) eski lehim noktaları.",
+    "de_question": "Wie wird ein Kältemittelleck gefunden?",
+    "de_answer": "Methoden: 1) ELEKTRONISCHER LECKSUCHER — empfindlich auf Kältemittel (10g/Jahr). Inficon, Cps, Bacharach. Verdächtige Stellen: Lötstellen, Ventilanschlüsse, Schauglas, Trockner, Expansionsventil, Verdampfer-/Kondensatorfittings. 2) UV-FARBSTOFF — UV-aktiv (Errecom, Wipcool) im System, mit UV-Lampe Lecks lokalisieren. Leckstelle leuchtet hellgrün. 3) SCHAUMSPRAY — Refco, Bacharach Zip-Bag; Gas aus Druckseite schäumt. Schnell visuell. 4) DRUCKTEST — System mit N2 auf 25-30 bar, Manometer 24h. Kritisch: Flare-Verbindungen, Schroeder-Ventile, Verdichterflansche, alte Lötstellen."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "yuksek_basinc"
+    ],
+    "tr_question": "Yüksek basınç alarm veriyor — neden?",
+    "tr_answer": "Yüksek basınç (HP) alarm sebepleri: 1) KONDENSER FAN ÇALIŞMIYOR — fan kondansatörü/motoru arızalı, basınç şalteri açık. Fan ölç + değiştir. 2) KONDENSER TIKANIK — toz, yağ, yaprak. Yıkama önerisi: alkali deterjan + basınçlı su. 3) ORTAM SICAKLIĞI YÜKSEK — yaz aylarında 40°C+ ortamda fan kapasitesi yetmiyor. Daha büyük kondenser veya gölge sağla. 4) AŞIRI ŞARJ — gaz fazla, kondenser doluyor. Boşalt-tartılarak kontrol et. 5) NON-CONDENSABLES (Hava karışmış) — sistem kötü vakumlanmış. Vakumla 500 mikron, gaz değiştir. 6) SOLENOID VALF KAPALI KALMIŞ — likit dönmüyor, kondenser dolu. Valfi kontrol et. R404A için 28 bar üstüne çıkıyorsa HP alarm normal.",
+    "de_question": "Hochdruck-Alarm — Ursachen?",
+    "de_answer": "Hochdruck-Ursachen: 1) KONDENSATORLÜFTER STILL — Motor/Kondensator defekt. Tauschen. 2) KONDENSATOR VERSCHMUTZT — Staub, Öl, Laub. Reinigung mit Alkalireiniger + Druckwasser. 3) HOHE UMGEBUNGSTEMP — Sommer 40°C+, Lüfterleistung reicht nicht. Größeren Kondensator oder Schatten. 4) ÜBERFÜLLUNG — Kältemittel zu viel. Auswiegen. 5) NICHT-KONDENSIERBARE GASE (Luft im System) — schlechte Vakuumierung. Vakuum 500 µm, neu füllen. 6) MAGNETVENTIL ZU — Flüssigkeit staut sich. Ventil prüfen. R404A: HP-Alarm bei >28 bar normal."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "kompresor_arızası"
+    ],
+    "tr_question": "Kompresör çalışmıyor — adım adım kontrol nedir?",
+    "tr_answer": "Kompresör çalışmıyor diagnostik: 1) ELEKTRİK ÖLÇ — sigorta atmış mı, kontaktör açıyor mu, motor terminal voltajı (220V/380V), kontrol panosu power LED. 2) THERMOSTAT — set noktası doğru mu, ortam sıcaklığı set'in altında ise normal kapalıdır. 3) KONTAKTÖR — kontak yapışmış/yanmış olabilir, multimetre ile kontrol. 4) BASINÇ ŞALTERİ — HP/LP açmış olabilir (manuel reset olmayan). Manometre ile basınç oku. 5) MOTOR KORUMA (KLİXON/IKO) — termik koruma açmış. Kompresör soğusun (30 dak), tekrar dene. 6) KAPASİTÖR — start/run kondansatör arızalı (özellikle hermetik). Mikrofarad ölç. 7) SARGI ARIZASI — motor sargısı yanmış, içi kararmış, asit kokusu. Megger ile direnç ölç (R-S, R-C, S-C). 8) MEKANİK KİLİTLİ — kompresör donmuş veya yağsız çalışmış. Ses dinle, motor ısınması var mı.",
+    "de_question": "Verdichter läuft nicht — Schritt-für-Schritt-Diagnose?",
+    "de_answer": "1) ELEKTRIK — Sicherung, Schütz schaltet, Motorklemme Spannung (220V/380V), Schaltschrank Power-LED. 2) THERMOSTAT — Sollwert ok, Raum unter Soll = normal aus. 3) SCHÜTZ — Kontakt verschmolzen/verbrannt, Multimeter prüfen. 4) DRUCKSCHALTER — HP/LP ausgelöst (ohne autom. Reset). Manometer ablesen. 5) MOTORSCHUTZ (KLIXON/IKO) — Thermo ausgelöst. 30 min abkühlen, neu starten. 6) KONDENSATOR — Start-/Run-Cap defekt (hermetisch). µF messen. 7) WICKLUNGSSCHADEN — schwarz, Säuregeruch. Megger R-S, R-C, S-C. 8) MECHANISCH FEST — eingefroren oder ölfrei gelaufen. Geräusch + Motorerwärmung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "kapı"
+    ],
+    "tr_question": "Soğuk oda kapısı düzgün kapanmıyor — sebepler?",
+    "tr_answer": "Kapı kapanma sorunları: 1) MENTEŞELER YAYLI/AŞINMIŞ — yer çekimi ile düşüyor. Yağla veya değiştir. 2) CONTA YIRTIK — magnet conta deforme olmuş, kenarda boşluk. Conta yenile. 3) DON BLOĞU — donuk odada conta donmuş, açılırken yırtılmış. Rezistans (kapı çerçeve ısıtıcısı) çalışmıyor. 4) KAPI EĞRİ — montaj problemi, çerçeve eğri. Şim/seviye ayarı. 5) KAPI KOLU AYARI — sürgülü/kilitli kolu sıkılmamış. Ayar vidalarını sık. 6) HİDROLİK YAY ARIZASI — kapı kapatıcı (door closer) yıpranmış. Yenile. 7) AŞIRI ZORLAMA — yük ile kapı çarpılmış. Çerçeveyi düzelt. Test: kapıyı kapatıp 1€/A4 kağıdı conta arasına koy, çek; kolayca çıkıyorsa conta sızdırıyor.",
+    "de_question": "Kühlraumtür schließt nicht richtig — Ursachen?",
+    "de_answer": "1) SCHARNIERE ABGENUTZT — Tür hängt durch. Schmieren oder ersetzen. 2) DICHTUNG GERISSEN — Magnetdichtung deformiert, Spalt am Rand. Tauschen. 3) EISBLOCK — TK-Raum Dichtung gefroren, beim Öffnen gerissen. Türrahmenheizung defekt. 4) TÜR SCHIEF — Montagefehler, Rahmen schief. Justieren. 5) GRIFFEINSTELLUNG — Schiebe-/Hebelgriff lose. Schrauben ziehen. 6) HYDRAULISCHER TÜRSCHLIESSER — verschlissen. Wechseln. 7) BESCHÄDIGUNG — Tür durch Last verbogen. Test: Tür zu, 1€-Münze/A4 zwischen Dichtung; einfaches Herausziehen = Leck."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "yag"
+    ],
+    "tr_question": "Kompresör yağı kontaminasyonu — belirti, sebep, çözüm?",
+    "tr_answer": "Yağ kontaminasyonu BELİRTİLERİ: yağ siyahlaşmış, asit kokusu, yağ basıncı düşük, kompresör sıcak çalışıyor. SEBEP: 1) Sistem nem aldı (drier eskimiş, vakum yapılmamış), 2) Aşırı sıcaklık nedeniyle yağ kavruldu (kompresör overheating), 3) Yanlış yağ kullanıldı (R404A → POE 32, R134a → POE 32, R22 → mineral, R290 → POE 22), 4) Asit oluştu (kompresör yanması sonrası). ÇÖZÜM: 1) Kompresör burnout cleanup — sistem N2 ile basınçlı temizleme, 2) Asit test (Errecom RK1349 kit) — pozitif ise burnout drier (Sporlan EHA series) montajı, 3) Yağ tam değişim, 4) Vakumla 500 mikrona, 5) Yeni şarj. Burnout sonrası 2 hafta içinde yağ tekrar kontrol edilmeli (drier 24-48 saat sonra değiştirilir).",
+    "de_question": "Verdichteröl-Kontamination — Symptome, Ursache, Lösung?",
+    "de_answer": "SYMPTOME: Öl schwarz, Säuregeruch, niedriger Öldruck, heißer Verdichterlauf. URSACHE: 1) Feuchte (alter Trockner, schlechtes Vakuum), 2) Überhitzung (Öl verbrannt), 3) Falsches Öl (R404A→POE 32, R134a→POE 32, R22→mineralisch, R290→POE 22), 4) Säure nach Burnout. LÖSUNG: 1) System mit N2 spülen, 2) Säuretest (Errecom RK1349) — positiv: Burnout-Trockner (Sporlan EHA), 3) Öl komplett wechseln, 4) Vakuum 500 µm, 5) Neu füllen. Nach 2 Wochen erneut prüfen, Trockner nach 24-48h tauschen."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "ses"
+    ],
+    "tr_question": "Kompresörden anormal ses geliyor — tanı?",
+    "tr_answer": "Anormal ses türleri: 1) METALİK 'TIK-TAK' — likit batık (slug-back), kompresör sıvı sıkıştırıyor. Sebep: TXV bozuk, aşırı şarj, defrost sonrası refrigerant evaporatöre dolmuş. ÇÖZÜM: durdur, beklet, çalıştır + suction line accumulator ekle. 2) UĞULTU/DRİL SESİ — çekirdekte yağ eksik veya yataklar aşınmış. Yağ seviyesi gözetleme camından kontrol, eklemeli/değişmeli. 3) GICIRTILA — kayış/kasnak (yarı-hermetik motorda) hizasız. Kasnak hizasını ayarla. 4) PATIRTI — gevşek montaj cıvatası, lastik takoz yıpranmış. Sıkma + takoz değişimi. 5) PERİYODİK 'PAT PAT' — boşaltma/emiş valfı bozuk (yarı-hermetik). Valf plakası onarımı. 6) RÖLE 'TIK' — kontaktör hızlı açıp kapatıyor (short cycling), termostat differential düşük. Differential 2-3K artır.",
+    "de_question": "Verdichter macht abnormale Geräusche — Diagnose?",
+    "de_answer": "1) METALLISCHES 'TIK-TAK' — Flüssigkeitsschlag, Verdichter komprimiert Flüssigkeit. Ursache: TXV defekt, Überfüllung, nach Abtauung Kältemittel im Verdampfer. LÖSUNG: stoppen, warten, neu starten + Sauggassammler. 2) BRUMMEN/BOHREN — Öl im Kern fehlt, Lager verschlissen. Ölstand prüfen, ersetzen. 3) QUIETSCHEN — Riemen/Riemenscheibe fluchtet nicht. 4) RUMPELN — Befestigungsschrauben lose, Gummipuffer alt. 5) PERIODISCHES 'TAK-TAK' — Saug-/Druckventil defekt. Ventilplatte. 6) RELAIS 'TIK' — Schütz schaltet schnell (Short Cycling), Schaltdiff zu klein. 2-3K erhöhen."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "kapasite"
+    ],
+    "tr_question": "Soğuk oda soğutma yükü nasıl hesaplanır?",
+    "tr_answer": "Soğuk oda soğutma yükü = Q_yapı + Q_ürün + Q_kişi + Q_aydınlatma + Q_ekipman + Q_kapı (toplam Watt). YAPI yükü: Q = U × A × ΔT, U= 1/(thickness/k + 1/h_in + 1/h_out), 100mm PIR için U≈0.22 W/m²K. Örnek 5×4×3m oda (94m² yüzey), iç 0°C / dış 32°C: Q = 0.22 × 94 × 32 = 661W. ÜRÜN soğutma yükü: m × cp × ΔT / saat. Et için cp=3.49 kJ/kg·K, donma altı için cp=1.84 + gizli ısı 233 kJ/kg. Günlük 1000kg et yüklemesi (+18°C → 0°C, 24 saat): 1000×3.49×18/24/3.6 = 727W. Faktör 1.2× güvenlik. Toplam: bu tipik 5×4×3 et odası için ~3.5 kW soğutma, 4-5 HP grup gerekir.",
+    "de_question": "Wie berechnet man die Kühllast eines Kühlraums?",
+    "de_answer": "Kühllast = Q_Hülle + Q_Produkt + Q_Personen + Q_Licht + Q_Equipment + Q_Tür. HÜLLE: Q = U × A × ΔT; U = 0,22 W/m²K bei 100mm PIR. Beispiel 5×4×3m (94m² Fläche), innen 0°C / außen 32°C: Q = 0,22 × 94 × 32 = 661W. PRODUKT: m × cp × ΔT/h. Fleisch cp=3,49 kJ/kg·K. 1000kg Fleisch (+18°C → 0°C in 24h): 1000×3,49×18/24/3,6 = 727W. 1,2× Sicherheitsfaktor. Total für typischen Fleischraum 5×4×3m: ~3,5 kW, 4-5 HP-Aggregat."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "vakum"
+    ],
+    "tr_question": "Soğutma sistemi vakum prosedürü nedir?",
+    "tr_answer": "Vakum prosedürü (devreye almadan önce ZORUNLU): 1) Sistemi N2 ile 30 bar test et, 30 dak basınç düşmüyor mu kontrol. 2) N2'yi tahliye et. 3) Vakum pompasını (Value VE-115N min 6 CFM, 2-stage) hem yüksek basınç hem alçak basınç tarafına bağla (3-port manifold). 4) Pompayı çalıştır, manifold valflerini aç. 5) Hedef vakum: 500 mikron (0.5 torr) — değer değişmiyorsa nem yok. 6) Süre: küçük sistem 30 dak, büyük sistem 2-4 saat. 7) Vakum bittikten sonra valfleri kapat, izole et. 8) 15-30 dak bekle — vakum bozulursa sistem kaçırıyor. 9) Bozulmazsa şarja geç. ÖNEMLİ: deep vacuum gauge (mikron metre) kullan, klasik manometre yetersiz (ölçek 0-1 bar). Triple evacuation (vakum-N2-vakum-N2-vakum) yöntemi nem garantisi için.",
+    "de_question": "Wie ist der Vakuumprozess vor Inbetriebnahme?",
+    "de_answer": "PFLICHT vor Inbetriebnahme: 1) System mit N2 auf 30 bar testen, 30 min Druckverlust prüfen. 2) N2 ablassen. 3) Vakuumpumpe (Value VE-115N min 6 CFM, 2-stufig) an Hoch- + Niederdruckseite. 4) Pumpe + Manifold-Ventile auf. 5) Ziel: 500 µm (0,5 Torr) — stabil = trocken. 6) Dauer: klein 30 min, groß 2-4h. 7) Ventile zu, isolieren. 8) 15-30 min warten — Anstieg = Leck. 9) Stabil = befüllen. Mikrometer (Mikron-Vakuummeter) nötig, klassisches Manometer ungenügend. Triple Evacuation (Vakuum-N2-Vakuum-N2-Vakuum) für absolute Trocknung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "sarj"
+    ],
+    "tr_question": "Soğutucu gaz şarjı nasıl yapılır (R404A örneği)?",
+    "tr_answer": "Şarj prosedürü: 1) Sistem vakumlanmış olmalı (500 mikron). 2) Kompresör DURDURULMUŞ. 3) Tüpü sisteme yüksek basınç tarafından bağla, valfi aç (likit faz). Tüpü baş aşağı tut (compressor durmuş ise). 4) Sistem set basıncına gelene kadar şarj — likit hattında sight glass'ta tam dolu görüntü. 5) Kompresörü çalıştır, alçak basınç tarafından (suction) GAZ FAZ ile incremental şarj devam et — likit asla gaz hattına gönderme (slug-back!). 6) Hedef performans: superheat 4-7K (TXV sistemler), subcooling 4-6K. 7) Tartılı şarj: tüpü tartı üzerine koy, sistemin nameplate'inde belirtilen miktar (örn. 2.5 kg R404A) eklenir. 8) ÖNEMLİ: R404A azeotropic değil, glide var (~0.5K), HER ZAMAN LİKİT FAZ ile şarj et, gaz fazı kompozisyonu değiştirir. Şarj sonrası: drier sıcak/soğuk dengeleme, sight glass kontrol, manifold gauges'leri sök, Schroeder valf kapakları ile.",
+    "de_question": "Wie wird R404A geladen?",
+    "de_answer": "Befüllung: 1) System vakuumiert (500 µm). 2) Verdichter AUS. 3) Flasche an Hochdruckseite, Ventil auf (Flüssigphase). Flasche umgekehrt halten (Verdichter aus). 4) Bis Solldruck — Schauglas voll. 5) Verdichter ein, an Saugseite mit GASPHASE inkrementell weiter — niemals Flüssig in Saug (Schlag!). 6) Ziel: Überhitzung 4-7K (TXV), Unterkühlung 4-6K. 7) Wiegen: Flasche auf Waage, lt. Typenschild (z.B. 2,5 kg). 8) WICHTIG: R404A nicht azeotrop, ~0,5K Glide, IMMER Flüssig laden, Gasphase ändert Mischung. Nach Befüllung: Trockner Wärme prüfen, Schauglas, Schroeder-Ventilkappen."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "superheat"
+    ],
+    "tr_question": "Superheat ve subcooling nasıl ölçülür ve neden önemlidir?",
+    "tr_answer": "SUPERHEAT (gaz aşırı kızdırma): evaporatör çıkışındaki gerçek gaz sıcaklığı - doyma sıcaklığı (basınçtan hesap). Ölçüm: clamp-on prob ile suction line üzerinde (evaporatör çıkışı), manifold gauges low-side basıncı. PT chart'tan veya digital manifold'tan saturation temp oku. Hedef: TXV sistem 4-7K, kapiler sistem 5-15K. Düşük superheat (<3K) → likit batık riski (slug). Yüksek superheat (>10K TXV ile) → undercharge veya TXV kapalı kalmış. SUBCOOLING (likit aşırı soğutma): kondenser çıkış likit sıcaklığı - doyma sıcaklığı (HP basınçtan). Ölçüm: clamp-on liquid line + manifold high-side. Hedef: 4-6K (R404A), 8-10K (R134a). Düşük subcooling → undercharge, kondenser sorunu. Yüksek subcooling → overcharge, condenser temizdir kontrol et.",
+    "de_question": "Überhitzung und Unterkühlung — Messung und Bedeutung?",
+    "de_answer": "ÜBERHITZUNG: Saugleitung-Temperatur - Sättigungstemperatur (aus Druck). Messung: Clamp-Fühler an Saugleitung (Verdampferausgang), Manifold Niederdruck. PT-Chart oder digitales Manometer für Sättigung. Soll: TXV 4-7K, Kapillarrohr 5-15K. Niedrig (<3K) → Schlaggefahr. Hoch (>10K bei TXV) → Untermenge oder TXV zu. UNTERKÜHLUNG: Flüssigleitung-Temp - Sättigungstemp (Hochdruck). Clamp-Fühler an Flüssigleitung. Soll: 4-6K (R404A), 8-10K (R134a). Niedrig → Untermenge oder Kondensatorproblem. Hoch → Überfüllung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "gaz_secimi"
+    ],
+    "tr_question": "R404A, R134a, R448A, R449A, R290 hangi uygulamada kullanılır?",
+    "tr_answer": "Soğutucu gaz uygulama matrisi: 1) R404A (HFC, GWP=3922) — donuk depo standardı, -40°C'ye kadar. F-Gas yönetmeliği nedeniyle 2020'den beri yasaklanmaya başladı, sadece servis amaçlı. 2) R134a (HFC, GWP=1430) — pozitif uygulamalar (+5°C ve üstü), klima, su sebili, küçük ticari. 3) R448A (HFO/HFC blend, GWP=1387) — R404A retrofit alternatifi, %15-20 enerji tasarrufu. 4) R449A (HFO/HFC blend, GWP=1397) — R404A retrofit, R448A'ya benzer. 5) R290 (Propan, doğal HC, GWP=3) — küçük hermetik (≤150g şarj) entegre vitrin/buzdolabı. Yanıcı (A3) — tüplü değil, fabrika dolu. 6) R744 (CO2, GWP=1) — endüstriyel süpermarket, yüksek basınç (60-100 bar). 7) R1234ze (HFO, GWP=7) — yeni klima sistemleri. F-Gas yönetmeliğinde 2025'ten itibaren GWP < 150 zorunlu küçük sistemde.",
+    "de_question": "Welches Kältemittel für welche Anwendung?",
+    "de_answer": "1) R404A (HFC, GWP=3922) — Tiefkühlstandard bis -40°C. F-Gas seit 2020 stark eingeschränkt, nur Service. 2) R134a (HFC, GWP=1430) — Plus-Anwendung +5°C+, Klima, Wasserspender, klein-gewerblich. 3) R448A (HFO/HFC, GWP=1387) — R404A-Retrofit, 15-20% Energieersparnis. 4) R449A (HFO/HFC, GWP=1397) — R404A-Retrofit, ähnlich. 5) R290 (Propan, A3, GWP=3) — kleine hermetische Geräte (≤150g), brennbar, werksbefüllt. 6) R744 (CO2, GWP=1) — industrielle Supermärkte, Hochdruck 60-100 bar. 7) R1234ze (HFO, GWP=7) — neue Klimasysteme. F-Gas: ab 2025 GWP < 150 für Kleinsysteme Pflicht."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "defrost_tipleri"
+    ],
+    "tr_question": "Defrost tipleri (elektrikli, sıcak gaz, hava, su) farkları?",
+    "tr_answer": "Defrost yöntemleri: 1) ELEKTRİKLİ (rezistans) — evaporatör kanatları arasında elektrik ısıtıcısı (~1-3 kW). En yaygın, ucuz, basit. Dezavantaj: enerji yoğun, ek ısı odaya verilir. -25°C odalar için tipik. 2) SICAK GAZ (hot gas) — kompresör çıkışındaki sıcak gaz evaporatöre yönlendirilir, defrost yapar, sonra likit hattına döner. 3-yollu valf gerekir. Avantaj: %50 daha hızlı, kompresör enerjisi kullanır. Karmaşık devre, lisanslı kurulum gerekir. 3) HAVA — pozitif odalarda (≥+2°C), fan dönerek oda havası ile evaporatörü çözer. Set 2 saatte bir 30 dak, kompresör off. Sebze odaları için ideal. 4) SU — direk su püskürtme (chiller'larda), 24/7 deniz/balık endüstrisinde. Hızlı ama drenaj çok önemli. Pozitif/şok soğuk için. Çoğu 100mm panelli orta-büyük odada elektrikli + drenaj ısıtmalı standart.",
+    "de_question": "Abtauverfahren — elektrisch, Heißgas, Luft, Wasser?",
+    "de_answer": "1) ELEKTRISCH — Heizstäbe zwischen Verdampferlamellen (~1-3 kW). Verbreitet, billig. Nachteil: hoher Energiebedarf, zusätzliche Wärme im Raum. Standard für -25°C. 2) HEISSGAS — heißes Druckgas in Verdampfer, dann zurück zur Saugleitung. 3-Wege-Ventil. Vorteil: 50% schneller, nutzt Verdichterenergie. Komplexer, lizenziert. 3) LUFT — Plus-Räume (≥+2°C), Lüfter läuft mit Raumluft. Alle 2h, 30 min, Verdichter aus. Ideal für Gemüse. 4) WASSER — direktes Wasser (Chiller, Fisch), schnell aber Ablauf kritisch. Standard: 100mm Paneel, mittel-groß = elektrisch + Heizband-Ablauf."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "yag_secimi"
+    ],
+    "tr_question": "Hangi soğutucu için hangi yağ kullanılır?",
+    "tr_answer": "Soğutkan-yağ uyumluluk matrisi: 1) MİNERAL YAĞ (klasik) — R12, R22, R502 (eski sistemler) için. POE ile karıştırılamaz. 2) ALKYLBENZENE (AB) — R22 için bazı sistemler. 3) POE (Poliolester) — R134a, R404A, R407C, R410A, R448A, R449A, R452A için ZORUNLU. R290 için de POE (ASTM 22). En yaygın yağ türü. 4) PVE (Polivinileter) — R32 için bazı kompresörler, R410A modern bazı sistemler. 5) PAG (Polialkilen Glikol) — otomotiv klima R134a (bazıları). NEM hassasiyeti: POE > PVE > AB > Mineral. POE açık şişe 2 saat içinde nem alır. Bu yüzden POE her zaman kapalı tüpten doldurulmalı, 50ml sample ile asit testi yapılmalı. Viskozite seçimi: kompresör tipine göre — küçük hermetik POE 32, scroll POE 32, yarı-hermetik POE 68 veya POE 100. Errecom OL6012, Lubreeze NXT-32, POE 170 markalar.",
+    "de_question": "Welches Öl für welches Kältemittel?",
+    "de_answer": "1) MINERALÖL — R12, R22, R502 (alt). Nicht mit POE mischbar. 2) ALKYLBENZOL (AB) — R22 manche. 3) POE (Polyolester) — R134a, R404A, R407C, R410A, R448A, R449A, R452A PFLICHT. Auch R290 (POE 22). Verbreitetstes. 4) PVE (Polyvinylether) — R32 manche, R410A modern. 5) PAG (Polyalkylenglykol) — Auto-Klima R134a teilweise. Feuchtempfindlichkeit: POE > PVE > AB > Mineral. POE offene Flasche zieht in 2h Feuchte. Daher immer geschlossener Behälter, 50ml Säuretest. Viskosität: hermetisch POE 32, Scroll POE 32, halbhermetisch POE 68/100. Errecom OL6012, Lubreeze NXT-32, POE 170."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "quickref",
+      "basinc_sicaklik"
+    ],
+    "tr_question": "R404A için tipik çalışma basınçları nedir?",
+    "tr_answer": "R404A tipik çalışma değerleri (azeotropik gibi davranır, glide ~0.5K): SUCTION (alçak basınç) — donuk -25°C oda için 1.6 bar, donuk -18°C için 2.3 bar, pozitif 0°C için 4.5 bar, +5°C için 5.5 bar. DISCHARGE (yüksek basınç) — yazın 35°C ortamda condenser 50°C → 22 bar, kışın 5°C ortamda 35°C → 13 bar. SUPERHEAT 4-7K, SUBCOOLING 4-6K. PRESSURE LIMIT — HP cut 28-30 bar, LP cut donuk için 0.5 bar (vakum), pozitif için 2 bar. ÇALIŞMA NORMAL: discharge/suction oranı (compression ratio) donuk için 8-12, pozitif için 4-6. Yüksek ratio = kompresör zorlanması.",
+    "de_question": "Typische Betriebsdrücke R404A?",
+    "de_answer": "R404A typische Werte (azeotrop-ähnlich, Glide ~0.5K): SAUG — TK -25°C: 1,6 bar; -18°C: 2,3 bar; Plus 0°C: 4,5 bar; +5°C: 5,5 bar. DRUCK — Sommer 35°C/Kondensator 50°C: 22 bar; Winter 5°C/35°C: 13 bar. ÜBERHITZUNG 4-7K, UNTERKÜHLUNG 4-6K. GRENZEN: HP-Aus 28-30 bar, LP-Aus TK 0,5 bar (Vakuum), Plus 2 bar. Verdichtungsverhältnis TK 8-12, Plus 4-6. Hoch = Belastung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "quickref",
+      "kapasite_secim"
+    ],
+    "tr_question": "Soğuk oda için kompresör HP'si nasıl kabaca seçilir?",
+    "tr_answer": "Hızlı seçim tablosu (oda iç sıcaklığı / oda hacmi → kabaca HP): POZİTİF +2°C/+8°C: 5m³ → 0.5 HP, 10m³ → 1 HP, 20m³ → 1.5-2 HP, 30m³ → 2-2.5 HP, 50m³ → 3-3.5 HP, 100m³ → 5-7 HP. DONUK -18°C/-25°C: 5m³ → 1 HP, 10m³ → 1.5-2 HP, 20m³ → 3-4 HP, 30m³ → 4-5 HP, 50m³ → 7-10 HP, 100m³ → 12-15 HP. ŞOK SOĞUK -30°C/-40°C: hacim × 2-3 HP/m³. NOT: bu tablo 100mm panel ve standart yük varsayımı; meyve sebze (yüksek nem yükü) +%30, açık vitrin +%50, kapı sıkça açıldığı yerler +%20-30 ekle. Sigorta payı için her zaman 1.2-1.5× üst seviyeyi seç.",
+    "de_question": "Wie wählt man die Verdichter-HP für einen Kühlraum?",
+    "de_answer": "Schnellauswahltabelle (Innentemp / Volumen → HP): PLUS +2°C/+8°C: 5m³ → 0,5 HP; 10m³ → 1; 20m³ → 1,5-2; 30m³ → 2-2,5; 50m³ → 3-3,5; 100m³ → 5-7 HP. TIEFKÜHL -18°C/-25°C: 5m³ → 1; 10m³ → 1,5-2; 20m³ → 3-4; 30m³ → 4-5; 50m³ → 7-10; 100m³ → 12-15 HP. SCHOCK -30°C/-40°C: × 2-3 HP/m³. ANNAHMEN: 100mm Paneel, normale Last. Obst+Gemüse (Feuchte) +30%, offene Vitrine +50%, häufige Türöffnung +20-30%. Reserve 1,2-1,5× nach oben."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "defrost",
+      "elektrik"
+    ],
+    "tr_question": "Elektrikli defrost rezistansı nasıl boyutlandırılır?",
+    "tr_answer": "Elektrikli defrost rezistansı evaporatör kanatları arasına yerleştirilen flat veya tubular ısıtıcılardır. Boyutlandırma: evaporatör kapasitesinin %30-50'si kadar elektrik gücü gerekir. Örnek: 5 kW soğutma kapasiteli evaporatör için 1.5-2.5 kW defrost ısıtıcı. Voltaj 220V veya 380V (3-faz). Defrost süresi 20-30 dakika, günde 4-6 kez. Termination: termostat 15°C'ye ulaşınca veya max 30 dak güvenlik. Drip-off (damlama) süresi 2-5 dak (fan kapalı, su damlasın). Toplam defrost cycle 30-40 dak. ENERJİ kaybı: %3-5 toplam soğutma enerjisinin defrosta gider.",
+    "de_question": "Wie wird die elektrische Abtauheizung dimensioniert?",
+    "de_answer": "Elektrische Abtauheizung als Flach- oder Rohrheizer zwischen Verdampferlamellen. Dimensionierung: 30-50% der Verdampferleistung. Bsp: 5 kW Verdampfer → 1,5-2,5 kW Heizung. 220V oder 380V (3-Phase). Abtaudauer 20-30 min, 4-6×/Tag. Beendigung: Thermostat bei 15°C oder Sicherheitsabschaltung 30 min. Drip-Off 2-5 min (Lüfter aus). Gesamtzyklus 30-40 min. Energieverlust: 3-5% der Kühlenergie."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "defrost",
+      "hot_gas"
+    ],
+    "tr_question": "Hot gas (sıcak gaz) defrost devresi nasıl çalışır?",
+    "tr_answer": "Hot gas defrost: kompresörden çıkan sıcak yüksek basınçlı gaz kondenser yerine evaporatöre yönlendirilir. Bileşenler: 1) 3-yollu yön valfi (4-yollu reverse valf de olabilir) — Sanhua FDF veya Honeywell, 2) Likit hattı bypass valfi, 3) Defrost timer/sensör. Çevrim: 1) Defrost başlar — 3-yollu valf hot gas hattını evaporatöre açar, 2) Sıcak gaz evaporatör kanatlarını ısıtır, buzu eritir, 3) Soğuyan gaz likit oluşur, accumulator'a düşer, 4) Süre: 5-15 dak (elektrikten %50-75 hızlı), 5) Defrost biter — valf normale döner, normal soğutma başlar. AVANTAJ: hızlı, enerji tasarrufu (kompresör enerjisi kullanır). DEZAVANTAJ: karmaşık devre, ek valf maliyeti, sürekli çalışan kompresör gerek. SADECE çoklu evaporatör sistemlerde mantıklıdır (bir grup soğuturken diğeri defrost eder).",
+    "de_question": "Wie funktioniert Heißgas-Abtauung (Hot Gas Defrost)?",
+    "de_answer": "Hot Gas Defrost: heißes Druckgas vom Verdichter wird statt zum Kondensator zum Verdampfer geleitet. Komponenten: 1) 3-Wege-Umschaltventil (oder 4-Wege Reverse), 2) Flüssigkeitsbypass-Ventil, 3) Abtau-Timer/Fühler. Ablauf: 1) Start — 3-Wege-Ventil öffnet Hot-Gas-Leitung, 2) Heißes Gas erwärmt Verdampferlamellen, 3) Kondensiert in Akkumulator, 4) Dauer 5-15 min (50-75% schneller als elektrisch), 5) Ende — Ventil zurück. VORTEIL: schnell, spart Energie. NACHTEIL: komplex, teurere Ventile. Nur bei Multi-Verdampfer-Systemen sinnvoll."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "r290",
+      "propan"
+    ],
+    "tr_question": "R290 (propan) sistemde maksimum şarj limiti ve güvenlik?",
+    "tr_answer": "R290 (propan, doğal hidrokarbon) çevreci ama YANICI (A3 sınıfı). Şarj limitleri: 1) Hermetik küçük sistem (buzdolabı, vitrin) — max 150g (Avrupa EN 60335), 2) Açık alan ticari — max 1 kg, 3) Endüstriyel kapalı oda — özel havalandırma + leak detector zorunlu. Tutuşma sınırı %2.1-9.5 hava karışımı. ALEV NOKTASI -104°C. Güvenlik kuralları: 1) Tüplü dolum YASAK — fabrika dolu hermetik sistem, 2) Servis için ATEX-sertifikalı tools, 3) Sızıntı tespiti hidrokarbon-spesifik leak detector (genel halojen detector çalışmaz), 4) Vakum pompası R290 uyumlu olmalı (yağ ayrıştırıcı), 5) Lehimleme ALEVLE değil mekanik birleşim, 6) Sigorta uyumluluğu kontrol. POE 22 yağ kullan, mineral yağ asla.",
+    "de_question": "R290 (Propan) Maximalfüllung und Sicherheit?",
+    "de_answer": "R290 (Propan, natürliches HC) umweltfreundlich aber BRENNBAR (A3-Klasse). Füllgrenzen: 1) Hermetisches Kleingerät (Kühlschrank, Vitrine) — max 150g (EN 60335), 2) Gewerblich offen — max 1 kg, 3) Industriell geschlossen — Spezialbelüftung + Leck-Detektor PFLICHT. Zündbereich 2,1-9,5% in Luft. Flammpunkt -104°C. Regeln: 1) Flaschenfüllung VERBOTEN — werksbefüllt hermetisch, 2) ATEX-Werkzeug, 3) HC-spezifischer Lecksucher (Halogen-Detektor funktioniert nicht), 4) R290-kompatible Vakuumpumpe (Ölabscheider), 5) Mechanisch verbinden, NICHT löten, 6) Versicherungskompatibilität prüfen. POE 22 Öl, niemals Mineral."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "vakum",
+      "triple"
+    ],
+    "tr_question": "Triple evacuation (üçlü vakum) prosedürü nedir?",
+    "tr_answer": "Triple evacuation: nem ve gaz kalıntılarını tamamen yok etmek için yapılan üç aşamalı vakumlama. Adımlar: 1) İLK VAKUM — sistemi 1500 mikrona indir (~30 dak), valfleri kapat, 2) AZOT KIRIL — N2 ile sistemi 0.5-1 bar pozitif basınçla doldur (kuru gaz nem alır), 5-10 dak bekle, 3) İKİNCİ VAKUM — N2'yi tahliye et + tekrar 1000 mikrona indir, 4) AZOT KIRIL — tekrar N2 ile doldur, 5-10 dak bekle, 5) FİNAL VAKUM — 500 mikrona indir, 30 dak izle, 6) Stabil ise şarja geç. AMAÇ: tek vakum nemi tam çekemez (yağda çözünmüş su, lehim noktalarında nem). Üçlü süreçle %99.9 nem temizlenir. Yeni sistem (büyük), gaz değişikliği veya burnout sonrası ZORUNLU. Süre: 2-4 saat. TEK vakum sadece servis sonrası (gaz boşalt-tekrar şarj) için yeterli.",
+    "de_question": "Was ist Triple Evacuation (dreifaches Vakuumieren)?",
+    "de_answer": "Triple Evacuation: dreistufiges Vakuum zur vollständigen Entfeuchtung und Gasentfernung. Schritte: 1) ERSTES VAKUUM — auf 1500 µm (~30 min), Ventile zu, 2) N2-SPÜLUNG — Trockenstickstoff bei 0,5-1 bar Überdruck, 5-10 min, 3) ZWEITES VAKUUM — N2 ablassen + 1000 µm, 4) N2-SPÜLUNG nochmal, 5) FINALES VAKUUM — 500 µm, 30 min beobachten, 6) Stabil → befüllen. ZWECK: Einmaliges Vakuum entfernt nicht komplett Wasser im Öl/an Lötstellen. Dreifach = 99,9% Trockenheit. PFLICHT bei Neuanlagen (groß), Kältemittelwechsel, Burnout. Dauer 2-4h. Einfaches Vakuum nur für Servicearbeiten."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "burnout",
+      "cleanup"
+    ],
+    "tr_question": "Burnout (kompresör yanması) sonrası sistem temizleme prosedürü?",
+    "tr_answer": "Burnout cleanup tam prosedürü: 1) TEŞHİS — yağ siyah, asit kokusu, motor sargısı yanmış (Megger ile R-S-C ölç). 2) KOMPRESÖR ÇIKART — yeni kompresör hazırla. 3) SİSTEM N2 İLE TEMİZLE — eski yağ ve asitten arındırmak için sistemi N2 ile basınçla yıka, alçak noktada drenaj toplama. 4) BURNOUT DRIER MONTE ET — Sporlan EHB/EHA serisi, normal drier'a göre 3× kapasite, asit absorber ile. Likit hattına ek olarak suction line'a da takılır. 5) YENİ KOMPRESÖR + YAĞ — POE yağı tam dolum, asit testli yağ kullan (Lubreeze/Errecom). 6) VAKUM TRIPLE — burnout sistemde nem hassasiyeti yüksek, üçlü vakum şart. 7) ŞARJ + ÇALIŞTIR — normal şarj, 24 saat çalıştır. 8) ASİT TESTİ TEKRAR — 24 saat sonra yağdan örnek al, Errecom RK1349 kit ile asit testi. POZİTİF ise drier'ı tekrar değiştir, döngü tekrar. Asit temizlenene kadar (genelde 2-3 cycle). 9) FİNAL — drier'ları normal kapasiteyle değiştir, sight glass'tan kontrol. SÜRE: 4-8 saat işçilik + 24-72 saat izleme.",
+    "de_question": "Burnout (Verdichterausfall) Reinigungsverfahren?",
+    "de_answer": "Burnout-Cleanup vollständig: 1) DIAGNOSE — Öl schwarz, Säuregeruch, Motorwicklung verbrannt (Megger R-S-C). 2) VERDICHTER AUSBAUEN. 3) SYSTEM MIT N2 SPÜLEN — Druckspülung, Drainage am Tiefpunkt. 4) BURNOUT-TROCKNER — Sporlan EHB/EHA, 3× normale Kapazität, Säureabsorber. Sowohl Flüssig- als auch Saugleitung. 5) NEUER VERDICHTER + ÖL — POE, säurefrei (Lubreeze/Errecom). 6) TRIPLE VAKUUM — Pflicht. 7) BEFÜLLEN + 24h LAUFEN. 8) SÄURETEST WIEDERHOLEN — nach 24h Ölprobe, Errecom RK1349. Positiv → Trockner erneut, Zyklus wiederholen (2-3×). 9) FINAL — Normaltrockner einsetzen. DAUER: 4-8h Arbeit + 24-72h Beobachtung."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "parts",
+      "accumulator"
+    ],
+    "tr_question": "Suction line accumulator ne işe yarar ve nereye bağlanır?",
+    "tr_answer": "Suction line accumulator (SLA): kompresör emiş hattında likit yakalama deposu. GÖREVİ: defrost sonrası veya değişken yük altında evaporatörden geri dönen sıvı refrigerant'ı tutmak — kompresörün likit batık (slug-back) yapmasını önlemek. KRİTİK koruma: bir slug kompresörün çekirdeğini, valflerini veya pistonlarını anlık yok edebilir. KONUM: evaporatör çıkışı ile kompresör emişi arası, kompresörden ÖNCE. ÇALIŞMA: J-tube tasarımı — sıvı dibe çöker, gaz üstten emilir; alt deliklerden yağ taşınması sağlanır (yağ kaybı önlenir). BOYUTLANDIRMA: kompresör kapasitesinin %50-70'i kadar likit hacim alabilir (örn. 5 kg gaz şarjı sistem için 2-3 L accumulator). BU GEREKLİ ZAMANLAR: 1) Çoklu evaporatör (defrost sonrası likit dönüşü), 2) Heat pump (cycle ters dönmesi), 3) Düşük yük çalışması, 4) Burnout retrofit (yağ filtreleme). Frigocraft, Frigomec, Refco markaları yapar.",
+    "de_question": "Wofür dient ein Sauggas-Akkumulator (Suction Line Accumulator)?",
+    "de_answer": "Sauggas-Akkumulator (SLA): Flüssigkeitssammler in der Saugleitung. AUFGABE: Nach Abtauung oder bei Lastwechsel zurücklaufende flüssige Kältemittel auffangen — Flüssigkeitsschlag (Slug) am Verdichter verhindern. EIN Schlag kann Kern, Ventile oder Kolben sofort zerstören. POSITION: zwischen Verdampfer und Verdichter, VOR dem Verdichter. FUNKTION: J-Rohr-Design — Flüssigkeit setzt sich ab, Gas wird oben gesaugt; Bodenöffnungen für Ölrückführung. DIMENSIONIERUNG: 50-70% der Verdichter-Füllmenge (z.B. 5 kg System → 2-3 L Akku). PFLICHT bei: 1) Multi-Verdampfer, 2) Wärmepumpe, 3) Teillast, 4) Burnout-Retrofit. Frigocraft, Frigomec, Refco."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "nem"
+    ],
+    "tr_question": "Soğuk odada nem çok düşük (ürünler kuruyor) — sebep ve çözüm?",
+    "tr_answer": "Düşük nem (RH < %75) ürünleri kurur (et, sebze, çiçek). SEBEP: 1) DELTA-T YÜKSEK — evaporatör yüzey sıcaklığı oda sıcaklığından çok düşük (ΔT > 8K). Düşük yüzey sıcaklığı havadaki nemi yoğuşturur, suya dönüştürür, drenajla atar. ÇÖZÜM: ΔT'yi 5-7K'a indirmek için: a) Daha büyük yüzey alanlı evaporatör seç, b) Birden çok evaporatör kullan, c) Suction basıncını yükselt (yüksek superheat). 2) FAN HIZI YÜKSEK — sürekli hava akışı kuruma yapar. ÇÖZÜM: variable speed fan veya gece düşük hız. 3) AŞIRI DEFROST — sık defrost = sık ısınma = nem kaybı. Defrost frekansını azalt. 4) ODA AÇILMA SIK — kapı sıkça açılınca dış kuru hava girer. PVC perde ve kontrollü açılma. 5) HUMIDIFIER YOK — meyve/sebze odasında ultrasonic/atomizer humidifier kur, RH %85-95 hedef. ÖLÇÜM: psikrometre veya Carel/Honeywell digital humidity sensor. EAS (Effective Air Speed) max 0.5 m/s ürün üzerinde.",
+    "de_question": "Niedrige Luftfeuchte im Kühlraum (Produkte trocknen) — Ursache und Lösung?",
+    "de_answer": "Niedrige Feuchte (rel. < 75%) trocknet Produkte. URSACHEN: 1) HOHES DELTA-T — Verdampferoberfläche zu kalt vs. Raumluft (ΔT > 8K). Kalte Fläche kondensiert Feuchte → Drainage. LÖSUNG: ΔT auf 5-7K reduzieren: a) größere Verdampferfläche, b) mehrere Verdampfer, c) Saugdruck erhöhen (höhere Überhitzung). 2) HOHE LÜFTERDREHZAHL — ständige Luftbewegung trocknet. EC-Lüfter mit Drehzahlregelung oder nachts langsam. 3) ÜBERMÄSSIGE ABTAUUNG — häufige Erwärmung = Feuchteverlust. Frequenz reduzieren. 4) HÄUFIGE TÜRÖFFNUNG — trockene Außenluft. PVC-Vorhang. 5) KEIN BEFEUCHTER — bei Obst/Gemüse Ultraschall-/Atomizer-Befeuchter, RH 85-95% Ziel. Messung: Psychrometer/Digital-Sensor. EAS max 0,5 m/s am Produkt."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "trouble",
+      "short_cycling"
+    ],
+    "tr_question": "Kompresör short cycling (sık açılıp kapanma) sorunu ve çözümü?",
+    "tr_answer": "Short cycling = kompresör 5 dakikadan kısa aralıklarla açıp kapanıyor (saatte 6+ kez). SORUNLAR: motor aşırı ısınma, kontaktör yıpranma, yağ yetersizliği (start sırasında likit dönüşü), elektrik tüketimi artışı (start akımı 5-7×), kompresör ömrü %50 azalır. SEBEPLER: 1) THERMOSTAT DIFFERENTIAL DAR — set 0°C, diff 1K → 0°C - +1°C arası sürekli açar. ÇÖZÜM: differential 2-3K yap (0°C - +3°C). 2) BASINÇ ŞALTERİ TİTREMESİ — LP cut-in/cut-out aralığı dar (örn. cut 1 bar, in 1.5 bar). LP differential 2-3 bar yap. 3) ODA AŞIRI BÜYÜK + KOMPRESÖR KÜÇÜK — yetersiz kapasite, sürekli max çalışıyor, kısa süre dinlenip tekrar başlıyor. Daha büyük HP grup gerek. 4) GAZ EKSİK — basınç çabuk düşüyor, LP hızlı açıyor. Şarj kontrol. 5) KAPASİTÖR ARIZALI — start kondansatör aşınmış, motor başlamada zorlanıyor. KORUMA: Anti-short cycle timer (5 dak min off) — modern dijital kontrolörler standart sağlar.",
+    "de_question": "Verdichter Short Cycling (häufiges An/Aus) — Problem und Lösung?",
+    "de_answer": "Short Cycling = Verdichter schaltet alle <5 min an/aus (>6×/h). PROBLEME: Motorüberhitzung, Schützverschleiß, Ölmangel (Flüssigkeitsrücklauf beim Start), Stromverbrauch ↑ (Anlaufstrom 5-7×), Lebensdauer -50%. URSACHEN: 1) ENGE THERMOSTAT-DIFFERENZ — Soll 0°C, Diff 1K. LÖSUNG: 2-3K Differenz. 2) ENGE PRESSOSTAT-DIFFERENZ — LP Cut-in/Cut-out zu nah. 2-3 bar. 3) RAUM ZU GROSS / VERDICHTER ZU KLEIN — größere HP nötig. 4) UNTERFÜLLUNG — Druck fällt schnell, LP schaltet. Nachfüllen. 5) DEFEKTER START-CAP. SCHUTZ: Anti-Short-Cycle-Timer (5 min min-Off) — moderne Digitalregler Standard."
+  },
+  {
+    "tags": [
+      "coldroom_expert",
+      "service",
+      "ses"
+    ],
+    "tr_question": "Soğuk oda gürültü kontrolü — fan + kompresör için ne yapmalı?",
+    "tr_answer": "Gürültü kaynakları: 1) FAN MOTOR (50-65 dB normal) — yüksek RPM = yüksek ses. EC fan motoru AC motora göre %30 daha sessiz, ayarlanabilir hız. Düşük RPM (1000-1200 rpm) gece için. Fan kanat şekli aerodinamik (sickle blade) gürültü azaltır. 2) KOMPRESÖR (60-75 dB) — Scroll en sessiz (60 dB), reciprocating yüksek (70+ dB). Lastik anti-vibration takoz, akustik kabin (Frigocraft G-BOX, Günay GBX). 3) BORU TİTREŞİMİ — sert metal montaj titreşimi yayar. Esnek bağlantı (Frigocraft Vibration Eliminator, Refco), boru klipsleri lastik takozlu. 4) HAVA ÇARPMASI — duct açıları keskin → türbülans → ses. Yumuşak dirsekler. KORUMA: 1) Akustik perde (mineral wool 50mm) yatak çevresinde, 2) Kompresör grubu binadan en az 5m uzakta, 3) Gece modu (set sıcaklık +1-2K, fan düşük) ile gürültü %50 azalır. NORM: ev yakını AC sınır 40 dB(A) gece, 55 dB gündüz (TR yönetmelik).",
+    "de_question": "Kühlraum-Geräuschkontrolle — Lüfter + Verdichter?",
+    "de_answer": "Geräuschquellen: 1) LÜFTERMOTOR (50-65 dB) — hohe Drehzahl = laut. EC-Motor 30% leiser, regelbar. Niedrig (1000-1200 rpm) nachts. Aerodynamische Sichelflügel reduzieren. 2) VERDICHTER (60-75 dB) — Scroll am leisesten (60 dB), Hubkolben laut (70+). Anti-Vibrationsgummipuffer, Akustikgehäuse (Frigocraft G-BOX, Günay GBX). 3) ROHRVIBRATION — feste Metallbefestigung überträgt Schwingung. Flexible Verbindung (Vibration Eliminator), gummigelagerte Schellen. 4) LUFTSTAUE — scharfe Kanal-Ecken = Turbulenz. Sanfte Bögen. SCHUTZ: 1) Akustikvorhang (Mineralwolle 50mm), 2) Verdichter mind. 5m vom Gebäude, 3) Nachtmodus (Soll +1-2K, Lüfter niedrig) reduziert 50%. NORM: nahe Wohnung AC Grenze 40 dB(A) nachts, 55 dB tags."
+  },
+  {
+    "tags": [
+      "servis_arac",
+      "uv_lamp"
+    ],
+    "tr_question": "UV lamp ile gaz kaçağı nasıl tespit edilir?",
+    "tr_answer": "UV (ultraviyole) leak detection: sisteme UV-aktif boya (Errecom Glow Tracer, Wipcool UV Dye, Bright Solutions) eklenir, sistem 24-48 saat çalışır, sonra UV ışığı (365nm) ile şüpheli noktalar taranır. Sızıntı parlak yeşil/sarı parlar. Avantaj: çok küçük kaçaklar bile görünür. Dezavantaj: boya sistemde kalır, sonradan değişimde POE drier ek yenilemeli. Halojen gaz detector'a göre daha hassas (1g/yıl). UV gözlük şart (mor ışıktan koruma).",
+    "de_question": "UV-Lampe Lecksuche?",
+    "de_answer": "UV-Farbstoff (Errecom Glow Tracer, Wipcool, Bright Solutions) ins System geben, 24-48h laufen lassen, mit UV-Licht (365nm) suchen. Leck leuchtet hell grün/gelb. Sehr empfindlich (1g/Jahr), Farbstoff verbleibt im System."
+  },
+  {
+    "tags": [
+      "servis_arac",
+      "halide_torch"
+    ],
+    "tr_question": "Halide torch lamp ne için kullanılır?",
+    "tr_answer": "Halide torch (asetilen alev kaçak detector) eski jenerasyon HFC/CFC/HCFC gaz kaçak tespit aleti. Çalışma prensibi: bakır sond ile gaz çekilir, asetilen alevine değer, halojenli gaz (R22, R134a, R404A) varsa alev rengi mavi → yeşil/turkuaz değişir. Modern leak detector'lar (Inficon D-TEK 3, Bacharach Leakator) bunun yerini aldı (elektronik, hassas, güvenli). Halide torch HC gazlarda (R290 yanıcı!) ASLA kullanılmaz.",
+    "de_question": "Halide-Torch (Halogenlampe) Funktion?",
+    "de_answer": "Alte Generation Halogen-Lecksucher: Acetylenflamme + Kupfersonde, bei HFC/CFC/HCFC ändert Flammenfarbe blau→grün/türkis. Heute durch elektronische Detektoren (Inficon D-TEK 3, Bacharach Leakator) ersetzt. Bei HC-Gasen (R290 brennbar!) NIE verwenden."
+  },
+  {
+    "tags": [
+      "servis_arac",
+      "filtration"
+    ],
+    "tr_question": "Filtration micron seçimi sistemde ne işe yarar?",
+    "tr_answer": "Filtre micron derecesi: 1) Drier (kurutucu): 5-25 micron — moleküler elek, asit absorber. 2) Likit hat filtresi: 10-40 micron — büyük parçacıklar, lehim curufu. 3) Suction line filter (servis sırası): 25-100 micron — burnout sonrası geçici. 4) Yağ filtresi (yarı-hermetik): 5-10 micron — kompresör koruma. Mikronlar küçük → daha hassas filtreleme ama basınç düşüşü artar. Tipik likit drier 20 micron, burnout drier 5 micron.",
+    "de_question": "Filtration Mikron-Wahl?",
+    "de_answer": "Mikron-Klassen: Trockner 5-25µ; Flüssigfilter 10-40µ; Saugfilter 25-100µ (nach Burnout); Ölfilter 5-10µ. Kleiner = feiner aber Druckverlust steigt."
+  },
+  {
+    "tags": [
+      "servis_arac",
+      "burst_disc"
+    ],
+    "tr_question": "Burst disc (emniyet diski) ne işe yarar?",
+    "tr_answer": "Burst disc = bilerek belirli basınçta patlayan yırtılma diski. Soğutma sistemi (özellikle CO2 R744, R290 propan) için emniyet elemanı. Yüksek basınç receiver, kondenser veya likit hat üzerine monte edilir. Sistem aşırı basıncın üstüne çıkarsa (örn. R404A için 35 bar, CO2 için 90-120 bar) disk yırtılır, gaz dışarı boşalır, patlama önlenir. Tek kullanımlık — patlamadan sonra değişmeli. Pressure relief valve (basınç tahliye valfi) alternatif: tekrar kapanabilir. CE/PED sertifikalı olmalı.",
+    "de_question": "Was ist eine Berstscheibe?",
+    "de_answer": "Berstscheibe = bewusst bei definiertem Druck reißende Scheibe. Sicherheitselement (CO2 R744, R290 Propan). Auf Hochdruckbehälter, Kondensator oder Flüssigleitung. R404A 35 bar, CO2 90-120 bar Auslösegrenze. Einmalverwendung. Alternativ: Druckentlastungsventil (wiederverschließbar). CE/PED-zertifiziert."
+  },
+  {
+    "tags": [
+      "service",
+      "subcooler"
+    ],
+    "tr_question": "Subcooler (alt soğutucu) ne için kullanılır?",
+    "tr_answer": "Subcooler = ek likit soğutma elemanı, soğutma çevriminin verimi için kritik. Konum: kondenser çıkışı + sıvı hat arası. İşlev: kondansatörden çıkan likit refrigerant'ı doyma noktasının ALTINA soğutur (örn. 5-10K subcool). Avantaj: 1) Flash gas önlenir (sight glass'ta köpük yok), 2) Likit hat boyunca verim kaybı azalır, 3) Sistem kapasitesi %5-10 artar. Tipler: a) Plate heat exchanger subcooler (suction line ile ısı alışverişi), b) Liquid receiver alt-soğutma bobini, c) Mechanical subcooler (ayrı küçük çevrim). Süpermarket sistemlerde standart.",
+    "de_question": "Subcooler (Unterkühler) Funktion?",
+    "de_answer": "Subcooler = zusätzliche Flüssigkeitskühlung. Position: Kondensatorausgang + Flüssigleitung. Kühlt Kältemittel unter Sättigungspunkt (5-10K Unterkühlung). Vorteil: kein Flashgas, 5-10% mehr Kapazität. Typen: Plattenwärmetauscher (Saug-/Flüssig), Sammler-Kühlspirale, Mechanical Subcooler. Standard in Supermärkten."
+  },
+  {
+    "tags": [
+      "service",
+      "economizer"
+    ],
+    "tr_question": "Economizer port nedir, hangi kompresörlerde var?",
+    "tr_answer": "Economizer: scroll/yarı-hermetik kompresörlerin ekstra emiş portu. Çalışma: ana çevrimden alınan likit refrigerant ek bir genleşme valfinden geçer, alt-soğutma yapar, sonra kompresör orta basınç portuna gönderilir. Sonuç: %15-25 ek soğutma kapasitesi, daha düşük discharge sıcaklığı. Bitzer ECOLINE, Copeland Discus EVI/EVH, Frascold Q serisi destekler. Düşük buharlaşma sıcaklığı uygulamaları (donuk depo, freezer) için ekonomik. Liquid injection (sıcaklık kontrolü) ile karıştırılmamalı — economizer kapasiteyi artırır, liquid injection sadece kompresör soğutur.",
+    "de_question": "Economizer-Port — was und wo?",
+    "de_answer": "Economizer = zusätzlicher Saugport bei Scroll/halbhermetisch. Flüssigkeit aus Hauptkreis durch zweites Expansionsventil → unterkühlen → Mitteldruck-Port. 15-25% mehr Kapazität, niedrigere Druckgastemperatur. Bitzer ECOLINE, Copeland EVI/EVH, Frascold Q. Niedrige Verdampfungstemp (TK). Nicht mit Liquid Injection verwechseln."
+  },
+  {
+    "tags": [
+      "service",
+      "low_stage"
+    ],
+    "tr_question": "Low stage compressor (düşük kademeli kompresör) ne demek?",
+    "tr_answer": "Low stage compressor = kademeli (cascade veya iki kademeli) sistemde alçak basınç tarafındaki kompresör. Düşük buharlaşma sıcaklığı (-40°C ve altı) için kullanılır. İki kademeli sistem: low stage gaz emer, orta basınca sıkıştırır, sonra high stage kompresör onu yüksek basınca taşır. Cascade sistem: low stage farklı refrigerant (R744 CO2 / R23) kullanır, high stage kondenseri ile ısı atar. Avantaj: -50°C ila -90°C ulaşılabilir, single-stage kompresör basınç oranı 12+ olunca verim düşer. Bitzer S6F-30,2Y-LS gibi modeller LS = Low Stage etiketli.",
+    "de_question": "Low Stage Compressor Bedeutung?",
+    "de_answer": "Low Stage = Niederstufenverdichter im Kaskaden- oder Booster-System. Sehr niedrige Verdampfungstemp (-40°C und tiefer). Zweistufig: Low saugt Gas, Mitteldruck → High Stage → Hochdruck. Kaskade: Low mit R744/R23 → Wärmetausch mit High Stage Kondensator. -50°C bis -90°C möglich. Bitzer S6F-30,2Y-LS = LS Low Stage."
+  },
+  {
+    "tags": [
+      "elektrik",
+      "klixon"
+    ],
+    "tr_question": "Klixon (termal koruma) ne işe yarar?",
+    "tr_answer": "Klixon = thermal overload protector, kompresör motor sargısına monte edilen otomatik termik koruma. Çalışma: bimetal disk, motor sargısı belirli sıcaklığın üstüne çıkarsa (genellikle 110-130°C) kontak açar, kompresörü besler durumdan keser. Soğuduktan sonra (~80°C) otomatik kapanır, kompresör tekrar başlar. Korur: 1) Yüksek akım (kilitli rotor, başlatma sorunu), 2) Aşırı yük (kondenser tıkanıklığı, gaz fazlalığı), 3) Sargı yanması. Bütün hermetik kompresörlerde standart. Klixon arızalı = kompresör defalarca on/off (short cycle), motor yanma riski. Test: ohm metre ile sürekli açık veya kapalı kalmamalı.",
+    "de_question": "Klixon (Thermo-Schutz) Funktion?",
+    "de_answer": "Klixon = thermischer Überlastschutz an Motorwicklung. Bimetallscheibe öffnet bei 110-130°C, schaltet Verdichter ab. Bei ~80°C automatischer Reset. Schützt vor: hoher Strom (Lockedrotor), Überlast, Wicklungsschaden. Standard bei hermetischen Verdichtern. Defekt = Short Cycling, Brandgefahr."
+  },
+  {
+    "tags": [
+      "elektrik",
+      "thermal_protection"
+    ],
+    "tr_question": "Thermal protection klixon arızasını nasıl test ederim?",
+    "tr_answer": "Klixon test prosedürü: 1) Kompresörü elektrikten ayır, 2) Sargı terminallerini bul (R-S-C). 3) Klixon genelde C terminaliyle seri bağlı, dış kabuk altında. 4) Multimetre ohm modunda klixon uçlarını ölç — soğukken kapalı kontak (0Ω). 5) Kompresör sıcakken (yanma sonrası): klixon açıkmış olabilir (∞Ω) → soğuyana kadar bekle (~30 dak). 6) Sargı dirençleri: R-S 8-15Ω, R-C 3-8Ω, S-C 12-20Ω (model spesifik). 7) Megger ile sargı-toprak izolasyonu: >2 MΩ olmalı. Sargı yanmış = düşük direnç + asit kokusu. Klixon yanmış: kontak kapanmıyor → kompresör reset sonrası hâlâ açık.",
+    "de_question": "Klixon-Test wie?",
+    "de_answer": "1) Verdichter stromlos. 2) R-S-C Klemmen. 3) Klixon meist mit C in Serie. 4) Ohm-Modus: kalt = geschlossen (0Ω). 5) Heiß: kann offen sein (∞Ω), 30 min abwarten. 6) Wicklungswiderstand R-S 8-15Ω, R-C 3-8Ω, S-C 12-20Ω. 7) Megger Wicklung-Erde >2 MΩ. Wicklung defekt = niedriger Widerstand + Säuregeruch. Klixon defekt = Kontakt schließt nie."
+  },
+  {
+    "tags": [
+      "elektrik",
+      "kapasitor"
+    ],
+    "tr_question": "Kapasitör mikrofarad nasıl ölçülür?",
+    "tr_answer": "Kapasitör (kondansatör) ölçümü: 1) Kapasitörü devreden ÇIKAR (sökmek lazım, devre üzerinde ölçüm yanlış sonuç verir). 2) DEŞARJ — terminallerine 100kΩ direnç ile birkaç saniye dokun (boşalt, elektrik şoku önle). 3) Multimetre kapasitör (µF) modunda probları kapasitör uçlarına bağla. 4) Değer oku — etiketteki değerin ±%6 toleransında olmalı. Örnek: 35µF kondansatör → 32.9-37.1 µF arası kabul. 5) Çok düşük (<%80) = kapasitör eski, değiştir. 6) Sıfır = kısa devre, yanmış. 7) ∞ = açık devre, kopuk. Kompresör start condansatörleri 50-300µF, run kondansatörleri 5-50µF tipik. ESR (eşdeğer seri direnç) ölçümü daha hassas (özel meter).",
+    "de_question": "Kondensator µF messen?",
+    "de_answer": "1) Aus Schaltkreis ENTFERNEN. 2) ENTLADEN mit 100kΩ Widerstand. 3) Multimeter µF-Modus an Klemmen. 4) Ablesen — Etikett ±6% Toleranz. 35µF → 32,9-37,1µF ok. 5) <80% = alt, ersetzen. 6) 0 = Kurzschluss. 7) ∞ = Unterbruch. Start-Cap 50-300µF, Run-Cap 5-50µF. ESR-Messung präziser."
+  },
+  {
+    "tags": [
+      "elektrik",
+      "rcd"
+    ],
+    "tr_question": "Diferansiyel şalter (RCD) 30mA neden seçilir?",
+    "tr_answer": "RCD (Residual Current Device, kaçak akım rölesi) 30mA: insan koruması için Avrupa standardı (IEC 60364, TS HD 60364). Çalışma: faz ile nötr akımları arasındaki fark (kaçak) 30 mA aşarsa <30 ms içinde devreyi keser. 30mA insanı elektrik çarpmasından korur (>50mA kalp atışı sorunlu, >100mA ölümcül). Soğuk oda elektrik panosu ZORUNLU 30mA RCD. Tipler: A (DC + AC), AC (sadece AC), B (her tür). Soğuk oda + invertörlü kompresör = Type B önerilir (DC kaçak da algılar). Test: aylık T butonu ile çalışma kontrolü. ABB FH202, Schneider iID-K, Siemens 5SV3 markaları.",
+    "de_question": "Warum RCD 30mA?",
+    "de_answer": "RCD (Fehlerstromschutzschalter) 30mA = europäische Norm (IEC 60364, TS HD 60364). Schaltet bei Differenz Phase/Neutral >30mA in <30ms. Schützt Mensch (>50mA gefährlich, >100mA tödlich). Im Kühlraum-Schaltschrank PFLICHT. Typ A (AC+DC pulsierend), AC, B (alle). Mit Inverter Type B empfohlen. Monatlicher T-Test. ABB FH202, Schneider iID-K, Siemens 5SV3."
+  },
+  {
+    "tags": [
+      "elektrik",
+      "calibration"
+    ],
+    "tr_question": "Sıcaklık prob kalibrasyon sertifikası neden gerekli?",
+    "tr_answer": "Kalibrasyon sertifikası (ISO 17025 akredite laboratuvar): sıcaklık prob veya kontrol cihazının ölçüm doğruluğunu kanıtlar. Soğuk oda HACCP, ilaç (GDP/GMP) ve gıda güvenliği denetimlerinde ZORUNLU. İçerik: 1) Prob seri numarası, 2) Referans sıcaklıklar (-30°C, 0°C, +30°C tipik 3-nokta), 3) Ölçülen değerler, 4) Sapma ±°C, 5) Belirsizlik (uncertainty) ±, 6) Geçerlilik tarihi (genelde 12 ay), 7) İmza + akreditasyon logo. Süt, et, ilaç gibi sektörlerde her yıl yenilenir. PT100 4-tel hassasiyet ±0.1°C, PT1000 ±0.2°C, NTC ±0.5°C tipik. Düzgün kalibrasyon = €50-150/prob (lab ücreti).",
+    "de_question": "Warum Kalibrierzertifikat für Temperaturfühler?",
+    "de_answer": "Kalibrierzertifikat (ISO 17025 akkreditiert) belegt Genauigkeit. Im Kühlraum HACCP, Pharma (GDP/GMP) PFLICHT. Inhalt: Seriennr, Referenztemperaturen (-30/0/+30°C 3-Punkt), gemessene Werte, Abweichung ±°C, Unsicherheit, Gültigkeit (12 Monate), Unterschrift + Akkreditierungslogo. Jährliche Neukalibrierung. PT100 4-Leiter ±0,1°C, PT1000 ±0,2°C, NTC ±0,5°C. Kosten €50-150/Fühler."
+  },
+  {
+    "tags": [
+      "servis_arac",
+      "wrench"
+    ],
+    "tr_question": "Açıkağız anahtar (open-end wrench) ferro materyal seçimi?",
+    "tr_answer": "Soğutma servisi anahtarları: 1) FERRO (çelik) — standart Cr-V (krom-vanadyum) çelik, 14-tane standart set: 6mm-32mm. Ucuz, sağlam ama mıknatıs çekim, kıvılcım çıkarır (R290 propan ortamında YASAK). 2) NON-FERROUS (alüminyum, bronz, berilyum-bakır) — yanıcı R290 sistemlerde ATEX-uygun. Pahalı (10× ferro), Wera Non-Sparking, Bahco AB serisi. 3) Adjustable wrench (kurbağacık) — ayarlanabilir, küçük setlerde pratik. 4) Flare nut wrench — özel 5-yüz kapalı uç, flare bağlantı sıkma. SAE inçli set ayrıca alın (1/4'', 3/8'', 5/8'', 7/8'', 1''). Tork değerleri: 1/4 flare 14 Nm, 3/8 flare 35 Nm.",
+    "de_question": "Maulschlüssel — Ferrum (Stahl) vs nicht-magnetisch?",
+    "de_answer": "1) FERRO (Cr-V Stahl) — Standard Set 6-32mm. Günstig, zieht Magnet, Funkenflug (R290 VERBOTEN). 2) NON-FERROUS (Al, Bronze, BeCu) — ATEX bei R290. Teuer (10× ferro), Wera Non-Sparking, Bahco AB. 3) Verstellbar (Engländer). 4) Flare-Schlüssel — 5-Kant für Flare-Verbindung. SAE-Set extra (1/4'', 3/8'', 5/8'', 7/8'', 1''). Drehmoment: 1/4 flare 14 Nm, 3/8 flare 35 Nm."
+  },
+  {
+    "tags": [
+      "servis_arac",
+      "silver_braze"
+    ],
+    "tr_question": "Silver brazing rod (gümüş lehim teli) hangi durumlarda?",
+    "tr_answer": "Silver brazing (gümüş lehimleme): bakır-bakır veya bakır-pirinç bağlantılarda kullanılır, 600-700°C eriyen alaşım. Tipler: 1) BCuP-2 (Sil-Phos, %0 Ag, %7 P) — bakır-bakır için uygun, fluxsuz lehimlenebilir. Ucuz. 2) BCuP-5 (%15 Ag, %5 P) — bakır-pirinç için, biraz daha pahalı. 3) BAg-7 (%56 Ag, gümüş alaşımı) — paslanmaz çelik dahil, pahalı. Soğutma sistemi standart: BCuP-2 (%0 Ag) bakır boru lehimleme. Pirinç fitting kullanıldıysa BCuP-5. Çubuk ölçüsü 1.5-2.0mm × 500mm tipik (Lucas Milhaupt AL718 NC, Castolin, Sentesbir). Lehimleme: oksi-asetilen alev yumuşak ısıtma, lehim akıtma, yavaş soğut. Flux gerekmez (BCuP fluxlu).",
+    "de_question": "Silberlot (silver brazing rod) wann?",
+    "de_answer": "Silberlot 600-700°C: 1) BCuP-2 (0% Ag, 7% P) — Cu-Cu, flussmittelfrei, billig. 2) BCuP-5 (15% Ag, 5% P) — Cu-Messing. 3) BAg-7 (56% Ag, Edelstahl). Kältetechnik-Standard BCuP-2. Bei Messingfittings BCuP-5. Stäbe 1,5-2,0mm × 500mm (Lucas Milhaupt AL718 NC, Castolin, Sentesbir). Sauerstoff-Acetylen weich erhitzen, lot fließen lassen, langsam kühlen."
+  },
+  {
+    "tags": [
+      "service",
+      "moisture_indicator"
+    ],
+    "tr_question": "Moisture indicator (nem göstergesi) nasıl okunur?",
+    "tr_answer": "Moisture indicator = filtre-drier üzerine veya likit hat'ta gözetleme camında bulunan nem-duyarlı renk değiştirici. Renk kodu: 1) YEŞİL = kuru (normal, <30 ppm nem) — sistem sağlam. 2) SARI = nem ALARM (>30 ppm) — drier yenilenmeli ASAP. 3) MOR/PEMBE (bazı tipler) = nem var. 4) KAHVERENGİ = doyma, ciddi nem + asit. ÖNEMLİ: indicator nem'e tepki vermek için biraz zaman alır (saatler). Yeni drier takıldıktan sonra 24 saat çalıştır, sonra renk kontrol. Sarı kalırsa ya drier kapasitesi yetersiz (büyüğüne geç) ya sızıntı var (vakum kontrolü). Sanhua, Refco, Honeywell üretir.",
+    "de_question": "Feuchteindikator wie ablesen?",
+    "de_answer": "Feuchteindikator am Trockner oder Schauglas: 1) GRÜN = trocken (<30 ppm). 2) GELB = Feuchtealarm, Trockner wechseln. 3) LILA/ROSA = nass. 4) BRAUN = gesättigt + Säure. Reaktionszeit Stunden. Nach neuem Trockner 24h Lauf, dann Farbe prüfen. Bleibt gelb = Trockner zu klein oder Leck. Sanhua, Refco, Honeywell."
+  },
+  {
+    "tags": [
+      "maintenance",
+      "humidifier"
+    ],
+    "tr_question": "Soğuk oda humidifier (nemlendirici) önerisi?",
+    "tr_answer": "Soğuk odada nem yükseltici (humidifier) gerekirse meyve/sebze, çiçek, peynir, taze et için kullanılır (RH %85-95 hedef). Tipler: 1) ULTRASONIC humidifier — 1.7 MHz titreşim ile su mikro damlacık (1-5 µm) üretir. Sessiz, enerji verimli. Carel humiSonic, Condair RM. 5-30 kg/h kapasite. 2) ATOMIZER (basınçlı su püskürtme) — 70 bar pompalı, geniş hacim için. Carel humiFog. 50-500 kg/h. 3) STEAM humidifier (buharlı) — elektrikli ısıtmalı, daha yüksek hijyen ama enerji yoğun. 5-100 kg/h. Suyun YUMUŞATILMIŞ + UV sterilize olması önemli (Legionella riski). Kontrol: hijrostat ile RH set, nemlendirici on/off. €1.000-10.000 arası.",
+    "de_question": "Kühlraum-Befeuchter Empfehlung?",
+    "de_answer": "Befeuchter für Obst/Gemüse, Blumen, Käse, Frischfleisch (RH 85-95% Ziel). 1) ULTRASCHALL — 1,7 MHz, 1-5µm Mikrotröpfchen. Carel humiSonic, Condair RM. 5-30 kg/h. 2) ATOMIZER — 70 bar Pumpe, große Räume. Carel humiFog. 50-500 kg/h. 3) STEAM — elektrisch, hygienisch aber energieintensiv. 5-100 kg/h. Wasser MUSS enthärtet + UV-sterilisiert (Legionellen). Hygrostat-Steuerung. €1.000-10.000."
+  },
+  {
+    "tags": [
+      "maintenance",
+      "filter_cleaning"
+    ],
+    "tr_question": "Soğuk oda fan/kondenser süzgeç temizliği nasıl?",
+    "tr_answer": "Süzgeç (filter mesh) temizlik prosedürü: 1) Sistem KAPATILSIN, kompresör off. 2) Süzgecin üzerindeki büyük tortuları fırça/elektrik süpürge ile al. 3) ÇIKAR ve düz yüzeye koy. 4) Yıkama: hafif alkali deterjan + ılık su veya endüstriyel coil cleaner (Wipcool DryClean, Errecom Tubex). Aluminyum kanatları zedelemeyecek pH 7-9. 5) BASINÇLI SU 3-5 bar, kanatlara DİK açıdan püskürt (eğri açı kanat eğer). 6) Tatlı su ile durula, deterjan kalmasın. 7) KURUT — basınçlı hava veya doğal hava. 8) Tekrar mont. Sıklık: temiz ortam ayda 1, tozlu ortam haftada 1, yağlı ortam (mutfak yakını) hergün kontrol. Kirli süzgeç = kondenser basıncı yüksek, soğutma azalır, enerji %30+ artar.",
+    "de_question": "Kühlraum Lüfter/Kondensator-Filtersieb reinigen?",
+    "de_answer": "Reinigung: 1) System AUS. 2) Grobe Verschmutzung absaugen. 3) AUSBAUEN. 4) Wäsche: milder Alkalireiniger + warmes Wasser oder industrieller Coil Cleaner (Wipcool DryClean, Errecom Tubex), pH 7-9. 5) DRUCKWASSER 3-5 bar, SENKRECHT auf Lamellen. 6) Spülen. 7) TROCKNEN — Druckluft oder Lufttrocknung. 8) Wieder einbauen. Häufigkeit: sauber 1×/Monat, staubig 1×/Woche, fettig (Küche) täglich. Schmutziges Sieb = HD steigt, Kühlung sinkt, Energie +30%."
+  },
+  {
+    "tags": [
+      "service",
+      "compressor_wiring"
+    ],
+    "tr_question": "Kompresör wiring şeması (motor sargı bağlantısı) nedir?",
+    "tr_answer": "Kompresör motor wiring 3 ana tip: 1) PSC (Permanent Split Capacitor) — küçük 1-faz hermetik. R-S-C terminalleri: R (Run, ana sargı), S (Start, yardımcı), C (Common, ortak nötr). Run kondansatörü S-R arası sürekli devrede. 2) CSR (Capacitor Start, Capacitor Run) — orta 1-faz. Start kondansatör + relay (manyetik veya elektronik) ile başlatır, run kondansatör çalışmada kalır. PTC veya elektronik start relay. 3) CSIR (Capacitor Start, Induction Run) — start kondansatör start sırası, sonra elektronik relay devre dışı. 4) 3-FAZ (380V) — yarı-hermetik kompresörler. 6 terminal: U1-V1-W1, U2-V2-W2 (delta veya yıldız bağlantı). Kontaktör + termik röle koruma. Doğru bağlantı için kompresör nameplate kontrol şart. Yanlış bağlantı = motor yanma.",
+    "de_question": "Verdichter-Verdrahtung (Wicklungsschema)?",
+    "de_answer": "1) PSC — kleine 1-Phase: R-S-C (Run, Start, Common). Run-Cap zwischen S-R. 2) CSR — Mittel: Start-Cap + Relais startet, Run-Cap bleibt. PTC oder elektronisches Relais. 3) CSIR — Start-Cap nur beim Start. 4) 3-PHASE (380V) — halbhermetisch. 6 Klemmen U1-V1-W1, U2-V2-W2 (Stern oder Dreieck). Schütz + Thermorelais. Typenschild prüfen, sonst Brandgefahr."
+  },
+  {
+    "tags": [
+      "service",
+      "loading_dock"
+    ],
+    "tr_question": "Loading dock seal (yükleme rıhtımı keçesi) ne işe yarar?",
+    "tr_answer": "Loading dock seal = yükleme/boşaltma rıhtımında soğuk oda kapısı ile kamyon arasındaki esnek conta. İşlev: 1) ENERJİ kayıp önler — soğuk hava dışarı + sıcak nemli hava içeri girmesin. 2) HİJYEN — toz/böcek/yağmur engelle. 3) İŞ GÜVENLİĞİ — operatör sıcak/soğuk geçişten korunur. Tipler: 1) FOAM/SPONGE seal — 100-200mm köpük çerçeve, kamyon kapıya yaslanınca sıkışır. 200-500€/m². 2) INFLATABLE seal — pnömatik şişen lastik. Kamera takip ile otomatik. 1500€+/m². 3) RETRACTABLE shelter — büyük hangar tipi tente, motorlu açılma. 5000€+. Ek: dock leveler (rıhtım yüksek ayar), wheel chock (tekerlek kilidi), traffic light (yeşil = giriş ok).",
+    "de_question": "Loading Dock Seal (Verladerampe-Dichtung)?",
+    "de_answer": "Dock Seal = elastische Dichtung zwischen Kühlraumtür und LKW. Verhindert Energieverlust, Hygiene-Probleme, schützt Personal. Typen: 1) Schaumstoff-Seal 200-500€/m². 2) Aufblasbar (Inflatable) — pneumatisch, mit Kamera, 1500€+/m². 3) Retractable Shelter — Hallenzelt, motorisiert, 5000€+. Zubehör: Dockleveler, Radkeil, Ampel."
+  },
+  {
+    "tags": [
+      "modern",
+      "ecc_avl"
+    ],
+    "tr_question": "ECC (Electronic Control Center) AVL chiller monitoring nedir?",
+    "tr_answer": "ECC / AVL = chiller (su soğutma cihazı) için ileri elektronik kontrol ve uzaktan izleme. Bileşenler: 1) Ana kontrolör (Carel pCO5, Honeywell DCS, Schneider M340) — tüm aktüatör ve sensörleri yönetir. 2) Web/cloud arayüz — uzaktan parametreler, alarm, trendler. 3) Sensörler — su giriş/çıkış sıcaklığı, basınç, akış, kompresör akım, gaz basınçları. 4) Aktüatör — kompresör inverter, vana, fan VFD, pompa. AVL = Available, Live monitoring (canlı izleme). Tipik AVL özellikleri: SMS/email alarm, trendler 1 yıllık kayıt, energy reporting (kWh/COP), predictive maintenance (Otomatik öneri). Carel boss, AVL chiller management, Tridium Niagara platform örnekler. €5000-50000 sistem maliyeti.",
+    "de_question": "ECC AVL Chiller Monitoring?",
+    "de_answer": "Electronic Control Center / AVL = elektronische Steuerung + Fernüberwachung von Wasserkühlern. Komponenten: Hauptregler (Carel pCO5, Honeywell DCS), Web-/Cloud-Interface, Sensoren (Temperatur, Druck, Strom), Aktuatoren (Inverter, Ventil, VFD, Pumpe). AVL = Available Live Monitoring. SMS/E-Mail-Alarm, Trends 1 Jahr, Energy Reporting (COP), Predictive Maintenance. Carel boss, AVL chiller mgmt, Tridium Niagara. €5.000-50.000."
+  },
+  {
+    "tags": [
+      "service",
+      "reverse_cycle"
+    ],
+    "tr_question": "Reverse cycle (ters çevrim) sisteminde dikkat edilecekler?",
+    "tr_answer": "Reverse cycle = ısı pompası modlu sistem (soğutma ↔ ısıtma yön değiştirir). Bileşenler: 1) 4-yollu valf (Sanhua DSF, Saginomiya STF) — gaz akış yönünü çevirir. 2) Çift fonksiyonlu evaporatör/kondenser. 3) Bidirectional TXV (her iki yöne de çalışan) veya iki TXV + check valve. 4) Defrost stratejisi — ısıtma modunda dış ünite kondenser olur, üzerinde buz birikebilir, kontrol cihazı reverse cycle defrost yapar. DİKKAT: 1) İlk başlatmada hangi mod (heat/cool) seçili kontrol et. 2) 4-yollu valf bobini doğru voltaj (genellikle 220V AC). 3) Refrigerant tek yönlü accumulator yerine iki yönlü kullanılmalı. 4) Hata durumunda 4-yollu valf orta pozisyonda takılır = sistem hiç çalışmaz, manuel reset gerekir. Mitsubishi, Daikin, Hisense markaları reverse cycle örnekleri.",
+    "de_question": "Reverse Cycle (Wärmepumpenbetrieb) — was beachten?",
+    "de_answer": "Reverse Cycle = Wärmepumpe (Kühlen ↔ Heizen wechselt). Komponenten: 1) 4-Wege-Ventil (Sanhua DSF, Saginomiya STF). 2) Bidirektionaler Wärmetauscher. 3) Bidirektionales TXV oder 2 TXV + Rückschlagventil. 4) Reverse-Cycle Abtaustrategie. ACHTUNG: 1) Start-Modus prüfen. 2) 4-Wege-Ventil-Spule 220V AC. 3) Bidirektionaler Akku. 4) Bei Fehler steckt 4-Wege-Ventil mittig. Mitsubishi, Daikin, Hisense Beispiele."
+  }
+]
