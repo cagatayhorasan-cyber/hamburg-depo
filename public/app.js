@@ -700,6 +700,11 @@ const refs = {
   auditExportCsvButton: document.getElementById("auditExportCsvButton"),
   auditLoadMoreButton: document.getElementById("auditLoadMoreButton"),
   auditResultCount: document.getElementById("auditResultCount"),
+  globalSearchModal: document.getElementById("globalSearchModal"),
+  globalSearchInput: document.getElementById("globalSearchInput"),
+  globalSearchResults: document.getElementById("globalSearchResults"),
+  globalSearchHint: document.getElementById("globalSearchHint"),
+  globalSearchCount: document.getElementById("globalSearchCount"),
   assistantTrainingTableBody: document.getElementById("assistantTrainingTableBody"),
   assistantTrainingSummary: document.getElementById("assistantTrainingSummary"),
   barcodeItemSelect: document.getElementById("barcodeItemSelect"),
@@ -2658,6 +2663,22 @@ function bindEvents() {
     if (e.key === "Escape") {
       closeMobileMoreSheet();
     }
+    // Cmd+K (macOS) / Ctrl+K (Win/Linux) → Global arama
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      if (refs.globalSearchModal?.hasAttribute("hidden")) {
+        openGlobalSearch();
+      } else {
+        closeGlobalSearch();
+      }
+    }
+  });
+
+  // Global arama modalı handler'ları
+  refs.globalSearchInput?.addEventListener("input", handleGlobalSearchInput);
+  refs.globalSearchInput?.addEventListener("keydown", handleGlobalSearchKeydown);
+  refs.globalSearchModal?.querySelectorAll("[data-global-search-close]").forEach((el) => {
+    el.addEventListener("click", closeGlobalSearch);
   });
 
   if (refs.userForm) {
@@ -5596,6 +5617,305 @@ function exportAuditCsv() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+// ---------------------------------------------------------------------------
+// Global arama (Cmd+K / Ctrl+K) — client-side, mevcut state üzerinden.
+// Items, users, orders, quotes, projects'i fuzzy match ile birlikte arar.
+// ---------------------------------------------------------------------------
+let globalSearchSelectedIdx = 0;
+let globalSearchResultsCache = [];
+let globalSearchDebounce = null;
+
+function openGlobalSearch() {
+  if (!refs.globalSearchModal) return;
+  refs.globalSearchModal.removeAttribute("hidden");
+  refs.globalSearchModal.classList.add("modal-open");
+  globalSearchSelectedIdx = 0;
+  globalSearchResultsCache = [];
+  if (refs.globalSearchInput) {
+    refs.globalSearchInput.value = "";
+    setTimeout(() => refs.globalSearchInput?.focus(), 50);
+  }
+  resetGlobalSearchUI();
+}
+
+function closeGlobalSearch() {
+  if (!refs.globalSearchModal) return;
+  refs.globalSearchModal.setAttribute("hidden", "");
+  refs.globalSearchModal.classList.remove("modal-open");
+}
+
+function resetGlobalSearchUI() {
+  if (refs.globalSearchHint) refs.globalSearchHint.style.display = "block";
+  if (refs.globalSearchResults) {
+    // Sadece hint'i tut, diğerlerini sil
+    refs.globalSearchResults.querySelectorAll(".global-search-group").forEach((n) => n.remove());
+  }
+  if (refs.globalSearchCount) refs.globalSearchCount.textContent = "";
+}
+
+function handleGlobalSearchInput() {
+  if (globalSearchDebounce) clearTimeout(globalSearchDebounce);
+  globalSearchDebounce = setTimeout(() => runGlobalSearch(refs.globalSearchInput?.value || ""), 120);
+}
+
+function runGlobalSearch(query) {
+  const q = String(query || "").trim().toLowerCase();
+  if (q.length < 2) {
+    resetGlobalSearchUI();
+    return;
+  }
+  if (refs.globalSearchHint) refs.globalSearchHint.style.display = "none";
+
+  const groups = [];
+  const role = (state.user?.role || "").toLowerCase();
+  const isAdmin = role === "admin";
+  const isStaffOrAdmin = role === "admin" || role === "staff";
+
+  // 1. Ürünler
+  const items = (state.items || []).filter((it) => {
+    const hay = `${it.name || ""} ${it.nameDe || ""} ${it.brand || ""} ${it.category || ""} ${it.barcode || ""} ${it.notes || ""}`.toLowerCase();
+    return hay.includes(q);
+  }).slice(0, 8);
+  if (items.length) {
+    groups.push({
+      label: langText("Ürünler", "Artikel"),
+      icon: "📦",
+      items: items.map((it) => ({
+        id: `item-${it.id}`,
+        title: it.name,
+        subtitle: `${it.brand || "—"} · ${it.category || "—"}${it.barcode ? ` · ${it.barcode}` : ""}`,
+        meta: typeof it.currentStock === "number" ? `Stok: ${it.currentStock}` : "",
+        action: () => navigateToItem(it.id),
+      })),
+    });
+  }
+
+  // 2. Müşteriler / Kullanıcılar (admin/staff)
+  if (isStaffOrAdmin && Array.isArray(state.users)) {
+    const users = state.users.filter((u) => {
+      const hay = `${u.name || ""} ${u.username || ""} ${u.email || ""} ${u.phone || ""} ${u.role || ""}`.toLowerCase();
+      return hay.includes(q);
+    }).slice(0, 5);
+    if (users.length) {
+      groups.push({
+        label: langText("Kullanıcılar", "Benutzer"),
+        icon: "👤",
+        items: users.map((u) => ({
+          id: `user-${u.id}`,
+          title: u.name || u.username,
+          subtitle: `${u.role} · ${u.email || u.phone || u.username}`,
+          meta: u.emailVerified ? "✓" : "",
+          action: () => navigateToUser(u.id),
+        })),
+      });
+    }
+  }
+
+  // 3. Siparişler
+  const orders = (state.orders || []).filter((o) => {
+    const hay = `${o.id} ${o.customerName || ""} ${o.note || ""} ${o.status || ""}`.toLowerCase();
+    return hay.includes(q);
+  }).slice(0, 5);
+  if (orders.length) {
+    groups.push({
+      label: langText("Siparişler", "Bestellungen"),
+      icon: "🧾",
+      items: orders.map((o) => ({
+        id: `order-${o.id}`,
+        title: `Sipariş #${o.id}${o.customerName ? ` — ${o.customerName}` : ""}`,
+        subtitle: `${o.status || "—"} · ${formatDateTime(o.createdAt) || ""}`,
+        meta: o.totalNet ? `€${Number(o.totalNet).toFixed(2)}` : "",
+        action: () => navigateToOrder(o.id),
+      })),
+    });
+  }
+
+  // 4. Teklifler / Satışlar
+  const quotes = (state.quotes || []).filter((qq) => {
+    const hay = `${qq.id} ${qq.customerName || ""} ${qq.documentType || ""}`.toLowerCase();
+    return hay.includes(q);
+  }).slice(0, 5);
+  if (quotes.length) {
+    groups.push({
+      label: langText("Teklifler / Satışlar", "Angebote / Verkäufe"),
+      icon: "📄",
+      items: quotes.map((qq) => ({
+        id: `quote-${qq.id}`,
+        title: `${qq.documentType || "Teklif"} #${qq.id}${qq.customerName ? ` — ${qq.customerName}` : ""}`,
+        subtitle: formatDateTime(qq.createdAt) || "",
+        meta: qq.totalNet ? `€${Number(qq.totalNet).toFixed(2)}` : "",
+        action: () => navigateToTab("quotes"),
+      })),
+    });
+  }
+
+  // 5. Projeler
+  const projects = (state.projects || []).filter((p) => {
+    const hay = `${p.title || ""} ${p.customerName || ""} ${p.status || ""}`.toLowerCase();
+    return hay.includes(q);
+  }).slice(0, 5);
+  if (projects.length) {
+    groups.push({
+      label: langText("Projeler", "Projekte"),
+      icon: "🧊",
+      items: projects.map((p) => ({
+        id: `project-${p.id}`,
+        title: p.title,
+        subtitle: `${p.customerName || "—"} · ${p.status || "—"}`,
+        meta: p.totalValue ? `€${Number(p.totalValue).toFixed(2)}` : "",
+        action: () => navigateToTab("projects"),
+      })),
+    });
+  }
+
+  renderGlobalSearchResults(groups);
+}
+
+function renderGlobalSearchResults(groups) {
+  if (!refs.globalSearchResults) return;
+  // Eski grupları sil (hint hariç)
+  refs.globalSearchResults.querySelectorAll(".global-search-group").forEach((n) => n.remove());
+
+  globalSearchResultsCache = [];
+  let total = 0;
+  for (const grp of groups) {
+    total += grp.items.length;
+    const container = document.createElement("div");
+    container.className = "global-search-group";
+    container.style.cssText = "padding:6px 0;";
+
+    const header = document.createElement("div");
+    header.style.cssText = "padding:6px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6b7280);text-transform:uppercase;letter-spacing:0.5px;";
+    header.textContent = `${grp.icon} ${grp.label} (${grp.items.length})`;
+    container.appendChild(header);
+
+    grp.items.forEach((item) => {
+      const idx = globalSearchResultsCache.length;
+      globalSearchResultsCache.push(item);
+      const row = document.createElement("button");
+      row.type = "button";
+      row.className = "global-search-row";
+      row.dataset.idx = String(idx);
+      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;width:100%;padding:8px 16px;background:none;border:none;cursor:pointer;text-align:left;font:inherit;color:inherit;border-radius:0;gap:12px;";
+      row.innerHTML = `
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.title)}</div>
+          <div style="font-size:12px;color:var(--text-muted,#6b7280);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.subtitle)}</div>
+        </div>
+        ${item.meta ? `<div style="font-size:12px;color:var(--text-muted,#6b7280);white-space:nowrap;">${escapeHtml(item.meta)}</div>` : ""}
+      `;
+      row.addEventListener("mouseenter", () => {
+        globalSearchSelectedIdx = idx;
+        highlightGlobalSearchSelection();
+      });
+      row.addEventListener("click", () => {
+        item.action?.();
+        closeGlobalSearch();
+      });
+      container.appendChild(row);
+    });
+
+    refs.globalSearchResults.appendChild(container);
+  }
+
+  if (refs.globalSearchCount) {
+    refs.globalSearchCount.textContent = total ? `${total} sonuç` : "Sonuç yok";
+  }
+  if (!total && refs.globalSearchHint) {
+    refs.globalSearchHint.style.display = "block";
+    refs.globalSearchHint.textContent = "Eşleşen kayıt bulunamadı.";
+  }
+
+  globalSearchSelectedIdx = 0;
+  highlightGlobalSearchSelection();
+}
+
+function highlightGlobalSearchSelection() {
+  if (!refs.globalSearchResults) return;
+  refs.globalSearchResults.querySelectorAll(".global-search-row").forEach((row) => {
+    const idx = Number(row.dataset.idx);
+    if (idx === globalSearchSelectedIdx) {
+      row.style.background = "var(--bg-secondary,#f3f4f6)";
+      row.scrollIntoView({ block: "nearest" });
+    } else {
+      row.style.background = "transparent";
+    }
+  });
+}
+
+function handleGlobalSearchKeydown(e) {
+  if (e.key === "Escape") {
+    closeGlobalSearch();
+    return;
+  }
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    if (globalSearchSelectedIdx < globalSearchResultsCache.length - 1) {
+      globalSearchSelectedIdx += 1;
+      highlightGlobalSearchSelection();
+    }
+    return;
+  }
+  if (e.key === "ArrowUp") {
+    e.preventDefault();
+    if (globalSearchSelectedIdx > 0) {
+      globalSearchSelectedIdx -= 1;
+      highlightGlobalSearchSelection();
+    }
+    return;
+  }
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const sel = globalSearchResultsCache[globalSearchSelectedIdx];
+    if (sel) {
+      sel.action?.();
+      closeGlobalSearch();
+    }
+  }
+}
+
+function navigateToTab(tab) {
+  const button = document.querySelector(`[data-tab="${tab}"]`);
+  if (button) button.click();
+}
+
+function navigateToItem(itemId) {
+  navigateToTab("items");
+  // Ürünü highlight et
+  setTimeout(() => {
+    const row = document.querySelector(`[data-item-id="${itemId}"]`);
+    if (row) {
+      row.scrollIntoView({ block: "center", behavior: "smooth" });
+      row.style.outline = "2px solid var(--accent,#2563eb)";
+      setTimeout(() => { row.style.outline = ""; }, 2000);
+    }
+  }, 200);
+}
+
+function navigateToUser(userId) {
+  navigateToTab("users");
+  setTimeout(() => {
+    const row = document.querySelector(`[data-user-id="${userId}"]`);
+    if (row) {
+      row.scrollIntoView({ block: "center", behavior: "smooth" });
+      row.style.outline = "2px solid var(--accent,#2563eb)";
+      setTimeout(() => { row.style.outline = ""; }, 2000);
+    }
+  }, 200);
+}
+
+function navigateToOrder(orderId) {
+  navigateToTab("orders");
+  setTimeout(() => {
+    const row = document.querySelector(`[data-order-id="${orderId}"]`);
+    if (row) {
+      row.scrollIntoView({ block: "center", behavior: "smooth" });
+      row.style.outline = "2px solid var(--accent,#2563eb)";
+      setTimeout(() => { row.style.outline = ""; }, 2000);
+    }
+  }, 200);
 }
 
 function trainingAudienceLabel(audience) {
