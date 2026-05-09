@@ -5445,9 +5445,11 @@ h3 {
    Sadece: topbar + ortalanmış login kartı + 3 sütun adres + legal bar.
    ========================================================================= */
 .login-minimal {
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr auto auto auto auto;
+  grid-template-rows: auto 1fr auto;
   background:
     radial-gradient(ellipse at 0% 0%, rgba(7, 44, 87, 0.10), transparent 45%),
     radial-gradient(ellipse at 100% 0%, rgba(123, 194, 66, 0.07), transparent 45%),
@@ -5455,6 +5457,30 @@ h3 {
     #f6f8fb;
   color: #1a2a3d;
   font-family: "Inter", "Plus Jakarta Sans", sans-serif;
+}
+/* Mobile (≤ 700px): scroll'a izin ver — küçük ekranda her şey sığmaz */
+@media (max-width: 700px) {
+  .login-minimal {
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    overflow: visible;
+  }
+}
+/* Tek-ekran modunda alt bölümleri (banner/brand/locations) gizle */
+.login-minimal .login-promobanner,
+.login-minimal .login-brandstrip,
+.login-minimal .login-locations {
+  display: none;
+}
+@media (max-width: 700px) {
+  .login-minimal .login-brandstrip,
+  .login-minimal .login-locations {
+    display: flex;
+  }
+  .login-minimal .login-locations {
+    display: grid;
+  }
 }
 .login-minimal > * {
   position: relative;
@@ -5465,10 +5491,13 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px clamp(18px, 4vw, 38px);
+  padding: 8px clamp(18px, 4vw, 38px);
   background: #ffffff;
   border-bottom: 1px solid rgba(26, 42, 61, 0.06);
 }
+.login-topbar-logo { width: 32px !important; height: 32px !important; }
+.login-topbar-brand strong { font-size: 13px !important; }
+.login-topbar-brand small { font-size: 10px !important; margin-top: 1px !important; }
 .login-topbar-brand {
   display: flex;
   gap: 12px;
@@ -5542,9 +5571,9 @@ h3 {
   transform: translateY(-1px);
 }
 
-/* Hero — tek-ekran-boyu başlık + 2 CTA + 3 value prop */
+/* Hero — tek-ekran COMPACT */
 .login-hero {
-  padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px) clamp(28px, 4vw, 44px);
+  padding: clamp(16px, 2vw, 28px) clamp(20px, 5vw, 48px) clamp(8px, 1vw, 16px);
   background:
     radial-gradient(ellipse at 12% 10%, rgba(0, 169, 143, 0.10), transparent 42%),
     radial-gradient(ellipse at 88% 90%, rgba(255, 138, 0, 0.07), transparent 40%),
@@ -5554,17 +5583,17 @@ h3 {
   max-width: 1180px;
   margin: 0 auto;
   display: grid;
-  gap: clamp(16px, 2vw, 24px);
+  gap: clamp(8px, 1vw, 14px);
 }
 .login-hero-eyebrow {
   display: inline-block;
-  padding: 5px 12px;
+  padding: 3px 10px;
   border-radius: 999px;
   background: rgba(0, 169, 143, 0.10);
   color: #00665a;
-  font-size: 11.5px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   width: fit-content;
 }
@@ -5572,24 +5601,21 @@ h3 {
   margin: 0;
   font-family: "Outfit", "Sora", "Inter", sans-serif;
   font-weight: 800;
-  font-size: clamp(28px, 4.4vw, 48px);
-  line-height: 1.12;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: #082b4c;
-  max-width: 22ch;
+  max-width: 28ch;
 }
 .login-hero-sub {
   margin: 0;
-  color: rgba(26, 42, 61, 0.74);
-  font-size: clamp(14px, 1.2vw, 17px);
-  line-height: 1.6;
-  max-width: 56ch;
+  color: rgba(26, 42, 61, 0.7);
+  font-size: clamp(12px, 1vw, 14px);
+  line-height: 1.45;
+  max-width: 64ch;
 }
 .login-hero-ctas {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 6px;
+  display: none; /* tek-ekranda CTA login card'ın içinde, hero'da gerek yok */
 }
 .login-hero-cta-primary,
 .login-hero-cta-secondary {
@@ -5625,54 +5651,66 @@ h3 {
   transform: translateY(-1px);
 }
 
-/* 3 value-prop kartı */
+/* 3 value-prop kartı — COMPACT (yatay) */
 .login-value-props {
   list-style: none;
-  margin: clamp(20px, 3vw, 32px) 0 0;
+  margin: clamp(8px, 1vw, 14px) 0 0;
   padding: 0;
   display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 760px) {
+  .login-value-props {
+    grid-template-columns: 1fr;
+  }
 }
 .login-value-card {
-  padding: 22px 22px 24px;
+  padding: 10px 14px;
   background: #ffffff;
   border: 1px solid rgba(7, 44, 87, 0.08);
-  border-radius: 14px;
+  border-radius: 10px;
   box-shadow: 0 1px 2px rgba(7, 44, 87, 0.04);
-  display: grid;
+  display: flex;
+  align-items: center;
   gap: 10px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  transition: border-color 0.18s ease;
 }
 .login-value-card:hover {
-  transform: translateY(-2px);
   border-color: rgba(0, 169, 143, 0.32);
-  box-shadow: 0 8px 24px rgba(7, 44, 87, 0.10);
 }
 .login-value-icon {
   display: inline-flex;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 8px;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, rgba(0, 169, 143, 0.14), rgba(255, 138, 0, 0.10));
   color: #00665a;
   border: 1px solid rgba(0, 169, 143, 0.22);
 }
+.login-value-icon svg { width: 16px; height: 16px; }
 .login-value-card strong {
   font-family: "Outfit", "Sora", "Inter", sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 700;
   color: #082b4c;
-  line-height: 1.35;
+  line-height: 1.25;
+  display: block;
 }
 .login-value-card p {
-  margin: 0;
-  color: rgba(26, 42, 61, 0.70);
-  font-size: 13.5px;
-  line-height: 1.55;
+  margin: 1px 0 0;
+  color: rgba(26, 42, 61, 0.65);
+  font-size: 11px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+.login-value-card > div { min-width: 0; flex: 1; }
 
 /* Mobile: topbar CTA gizle (hero CTA yeterli), hero padding küçült */
 @media (max-width: 640px) {
@@ -5760,20 +5798,22 @@ h3 {
 .login-minimal-main {
   display: grid;
   place-items: center;
-  padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px) clamp(12px, 2vw, 20px);
+  padding: clamp(8px, 1.5vw, 16px) clamp(16px, 4vw, 32px);
+  min-height: 0;
+  overflow: auto;
 }
 .login-card {
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 14px;
   border: 1px solid rgba(7, 44, 87, 0.07);
   box-shadow:
     0 1px 2px rgba(7, 44, 87, 0.04),
-    0 12px 32px rgba(7, 44, 87, 0.10),
+    0 8px 24px rgba(7, 44, 87, 0.10),
     0 1px 0 rgba(255, 255, 255, 0.6) inset;
-  padding: clamp(26px, 3.5vw, 36px) clamp(24px, 3.5vw, 38px) clamp(22px, 3.5vw, 30px);
-  width: min(400px, 100%);
+  padding: 16px 22px 18px;
+  width: min(360px, 100%);
   display: grid;
-  gap: 18px;
+  gap: 10px;
   position: relative;
   overflow: hidden;
 }
@@ -5785,32 +5825,7 @@ h3 {
   background: linear-gradient(90deg, #072C57 0%, #008E80 50%, #FF8A00 100%);
 }
 .login-card-brandblock {
-  display: grid;
-  gap: 4px;
-  justify-items: center;
-  text-align: center;
-}
-.login-card-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 11px;
-  background: #ffffff;
-  padding: 6px;
-  box-shadow: 0 2px 6px rgba(26, 42, 61, 0.08);
-}
-.login-card-title {
-  margin: 4px 0 0;
-  font-family: "Outfit", "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: -0.005em;
-  color: #1a2a3d;
-}
-.login-card-tagline {
-  margin: 0;
-  font-size: 11px;
-  color: rgba(26, 42, 61, 0.55);
-  letter-spacing: 0.04em;
+  display: none; /* compact mode: logo zaten topbar'da */
 }
 
 .login-tabs {
@@ -6106,7 +6121,21 @@ h3 {
 .login-foot-legal--standalone {
   background: linear-gradient(180deg, #ffffff 0%, #f1f4f9 100%);
   border-top: 1px solid rgba(7, 44, 87, 0.08);
+  padding: 6px 16px;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
+.login-foot-legal--standalone a {
+  font-size: 11px;
+  color: rgba(26, 42, 61, 0.7);
+  text-decoration: none;
+}
+.login-foot-legal--standalone a:hover { text-decoration: underline; }
+.login-foot-copy { font-size: 11px; color: rgba(26, 42, 61, 0.5); }
 
 /* =========================================================================
    Eski footer (kullanılmıyor ama uyumluluk için kalıyor)
