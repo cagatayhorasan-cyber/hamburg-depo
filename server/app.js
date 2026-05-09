@@ -2418,7 +2418,10 @@ function createApp() {
             throw new Error("Siparis miktari sifirdan buyuk olmali.");
           }
 
-          const item = await tx.get("SELECT id, name, unit, is_active, sale_price, list_price, default_price FROM items WHERE id = ?", [Number(entry.itemId)]);
+          const item = await tx.get(
+            "SELECT id, name, unit, is_active, sale_price, list_price, default_price, lead_time_days, allow_backorder FROM items WHERE id = ?",
+            [Number(entry.itemId)]
+          );
           if (!item) {
             throw new Error("Siparis icindeki bir urun bulunamadi.");
           }
@@ -2438,6 +2441,8 @@ function createApp() {
             quantity,
             unit: entry.unit || item.unit || "adet",
             unitPrice: Number(lockedUnitPrice.toFixed(2)),
+            leadTimeDays: Number(item.lead_time_days || 14),
+            allowBackorder: item.allow_backorder !== false && item.allow_backorder !== 0,
           });
         }
 
@@ -2446,21 +2451,45 @@ function createApp() {
           orderTotals.set(line.itemId, (orderTotals.get(line.itemId) || 0) + line.quantity);
         }
 
+        // Backorder kontrolü: stok yetmiyorsa allow_backorder=true ise satıra is_backorder işle
+        let hasBackorderInOrder = false;
+        let maxLeadTime = 0;
         for (const [itemId, totalQuantity] of orderTotals.entries()) {
           const currentStock = await getItemStock(itemId, tx);
           if (totalQuantity > currentStock) {
             const line = orderLines.find((entry) => entry.itemId === itemId);
-            throw new Error(`${line?.itemName || "Urun"} icin stok yetersiz.`);
+            if (!line?.allowBackorder) {
+              throw new Error(`${line?.itemName || "Urun"} icin stok yetersiz ve on siparis acik degil.`);
+            }
+            // Bu kalem(ler) backorder
+            for (const entry of orderLines.filter((l) => l.itemId === itemId)) {
+              entry.isBackorder = true;
+              hasBackorderInOrder = true;
+              if (entry.leadTimeDays > maxLeadTime) maxLeadTime = entry.leadTimeDays;
+            }
           }
         }
 
+        // Tahmini hazır olma tarihi (en uzun lead time + 1 gün buffer)
+        const estimatedReadyDate = hasBackorderInOrder
+          ? new Date(Date.now() + (maxLeadTime + 1) * 86400000).toISOString().slice(0, 10)
+          : null;
+
         const orderResult = await tx.execute(
           `
-            INSERT INTO orders (customer_user_id, customer_name, order_date, status, note)
-            VALUES (?, ?, ?, 'pending', ?)
+            INSERT INTO orders (customer_user_id, customer_name, order_date, status, note, has_backorder, estimated_ready_date)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             RETURNING id
           `,
-          [req.session.user.id, req.session.user.name, date, cleanOptional(note)]
+          [
+            req.session.user.id,
+            req.session.user.name,
+            date,
+            hasBackorderInOrder ? "backorder" : "pending",
+            cleanOptional(note),
+            hasBackorderInOrder,
+            estimatedReadyDate,
+          ]
         );
 
         const insertedOrderId = Number(orderResult.rows[0]?.id || orderResult.lastInsertId);
@@ -2468,8 +2497,8 @@ function createApp() {
         for (const entry of orderLines) {
           await tx.execute(
             `
-              INSERT INTO order_items (order_id, item_id, item_name, quantity, unit, unit_price)
-              VALUES (?, ?, ?, ?, ?, ?)
+              INSERT INTO order_items (order_id, item_id, item_name, quantity, unit, unit_price, is_backorder, lead_time_days_at_order)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             `,
             [
               insertedOrderId,
@@ -2478,6 +2507,8 @@ function createApp() {
               entry.quantity,
               entry.unit,
               entry.unitPrice,
+              entry.isBackorder === true,
+              entry.leadTimeDays,
             ]
           );
         }
@@ -4620,9 +4651,17 @@ async function queryItems(isActive = true) {
 
 async function queryCustomerItems(options = {}) {
   const includePrices = options.includePrices === true;
+  // includeBackorder: stoğu olmayan ama allow_backorder=true olan ürünleri de döndür
+  // Default: true (backorder sistemi açık).
+  const includeBackorder = options.includeBackorder !== false;
   const limit = Number(options.limit || 0);
   const activeValue = dbClient === "postgres" ? true : 1;
   const limitClause = Number.isFinite(limit) && limit > 0 ? `LIMIT ${Math.floor(limit)}` : "";
+  // Stok filtresi: stoklular her zaman gelir; stoğu 0 olanlar sadece allow_backorder=true
+  // ise gelir (müşteri "ön sipariş" verebilsin).
+  const stockFilter = includeBackorder
+    ? `(COALESCE(movement_summary.current_stock, 0) > 0 OR COALESCE(items.allow_backorder, TRUE) = TRUE)`
+    : `COALESCE(movement_summary.current_stock, 0) > 0`;
   const rows = await query(
     `
       WITH movement_summary AS (
@@ -4661,6 +4700,8 @@ async function queryCustomerItems(options = {}) {
         items.default_price,
         items.list_price,
         items.sale_price,
+        items.lead_time_days AS "leadTimeDays",
+        items.allow_backorder AS "allowBackorder",
         COALESCE(movement_summary.current_stock, 0) AS current_stock,
         COALESCE(last_entry.unit_price, 0) AS last_purchase_price,
         COALESCE(movement_summary.average_purchase_price, 0) AS average_purchase_price
@@ -4668,8 +4709,11 @@ async function queryCustomerItems(options = {}) {
       LEFT JOIN movement_summary ON movement_summary.item_id = items.id
       LEFT JOIN last_entry ON last_entry.item_id = items.id
       WHERE COALESCE(items.is_active, TRUE) = ?
-        AND COALESCE(movement_summary.current_stock, 0) > 0
-      ORDER BY items.name ASC, items.id ASC
+        AND ${stockFilter}
+      ORDER BY
+        CASE WHEN COALESCE(movement_summary.current_stock, 0) > 0 THEN 0 ELSE 1 END,
+        items.name ASC,
+        items.id ASC
       ${limitClause}
     `,
     [activeValue]
@@ -4711,6 +4755,9 @@ function mapItemRow(row, options = {}) {
     salePrice,
     lastPurchasePrice: includePrices ? Number(row.last_purchase_price || 0) : 0,
     averagePurchasePrice: includePrices ? Number(row.average_purchase_price || 0) : 0,
+    leadTimeDays: row.leadTimeDays !== undefined ? Number(row.leadTimeDays || 14) : 14,
+    allowBackorder: row.allowBackorder !== undefined ? Boolean(row.allowBackorder) : true,
+    inStock: Number(row.current_stock || 0) > 0,
     supplierCatalogRefs,
     supplierCatalogCodes,
     supplierCatalogBrands,

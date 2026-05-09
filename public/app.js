@@ -7100,12 +7100,16 @@ function renderCustomerCatalog() {
       </div>
       <div class="pos-card-kpis">
         <span class="pos-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
-        <span class="pos-card-stock">${langText("Stok", "Bestand")}: ${item.inStock === false || Number(item.currentStock) <= 0 ? langText("Tükendi", "Nicht verfügbar") : langText("Mevcut", "Verfügbar")}</span>
+        ${
+          item.inStock === false || Number(item.currentStock) <= 0
+            ? `<span class="pos-card-stock pos-card-stock-backorder">📦 ${langText("Ön sipariş — " + (item.leadTimeDays || 14) + " iş günü", "Vorbestellung — " + (item.leadTimeDays || 14) + " Werktage")}</span>`
+            : `<span class="pos-card-stock pos-card-stock-instock">${langText("Stok", "Bestand")}: ${langText("Mevcut", "Verfügbar")}</span>`
+        }
         ${listPrice ? `<span class="pos-card-list">${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
       </div>
       ${itemDetail ? `<div class="pos-card-note">${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</div>` : ""}
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : langText("Fiyat sorunuz", "Preis auf Anfrage")}</div>
-      <button class="primary-button" type="button" data-add-order-item="${item.id}" data-help="TR: Urunu musteri siparis sepetine ekler. DE: Fuegt den Artikel dem Kundenwarenkorb hinzu.">${t("common.addToOrder")}</button>
+      <button class="primary-button ${item.inStock === false ? 'is-backorder-cta' : ''}" type="button" data-add-order-item="${item.id}" data-help="${item.inStock === false ? 'TR: On siparis verir (' + (item.leadTimeDays || 14) + ' is gunu). DE: Vorbestellung (' + (item.leadTimeDays || 14) + ' Werktage).' : 'TR: Urunu sepete ekler. DE: Fuegt zum Warenkorb hinzu.'}">${item.inStock === false ? langText("🚚 Ön Sipariş", "🚚 Vorbestellen") : t("common.addToOrder")}</button>
     `;
     hydrateImageFallbacks(card);
     refs.customerCatalogGrid.append(card);

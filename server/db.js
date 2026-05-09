@@ -798,6 +798,12 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("name_de")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN name_de TEXT DEFAULT ''");
   }
+  if (!columns.includes("lead_time_days")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN lead_time_days INTEGER NOT NULL DEFAULT 14");
+  }
+  if (!columns.includes("allow_backorder")) {
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN allow_backorder INTEGER NOT NULL DEFAULT 1");
+  }
 }
 
 function ensureUserColumnsSqlite() {
@@ -957,12 +963,24 @@ function ensureQuoteColumnsSqlite() {
   if (orderColumns.length && !orderColumns.includes("stock_deducted_at")) {
     sqliteDb.exec("ALTER TABLE orders ADD COLUMN stock_deducted_at TEXT");
   }
+  if (orderColumns.length && !orderColumns.includes("has_backorder")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN has_backorder INTEGER NOT NULL DEFAULT 0");
+  }
+  if (orderColumns.length && !orderColumns.includes("estimated_ready_date")) {
+    sqliteDb.exec("ALTER TABLE orders ADD COLUMN estimated_ready_date TEXT");
+  }
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_orders_quote_id ON orders(quote_id)");
   sqliteDb.exec("CREATE INDEX IF NOT EXISTS idx_orders_payment_status ON orders(payment_status)");
 
   const orderItemColumns = sqliteDb.prepare("PRAGMA table_info(order_items)").all().map((column) => column.name);
   if (orderItemColumns.length && !orderItemColumns.includes("unit_price")) {
     sqliteDb.exec("ALTER TABLE order_items ADD COLUMN unit_price REAL NOT NULL DEFAULT 0");
+  }
+  if (orderItemColumns.length && !orderItemColumns.includes("is_backorder")) {
+    sqliteDb.exec("ALTER TABLE order_items ADD COLUMN is_backorder INTEGER NOT NULL DEFAULT 0");
+  }
+  if (orderItemColumns.length && !orderItemColumns.includes("lead_time_days_at_order")) {
+    sqliteDb.exec("ALTER TABLE order_items ADD COLUMN lead_time_days_at_order INTEGER");
   }
 }
 
@@ -999,6 +1017,12 @@ async function ensureQuoteColumnsPostgres() {
   if (!orderNames.has("stock_deducted_at")) {
     await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN stock_deducted_at TIMESTAMPTZ");
   }
+  if (!orderNames.has("has_backorder")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN has_backorder BOOLEAN NOT NULL DEFAULT false");
+  }
+  if (!orderNames.has("estimated_ready_date")) {
+    await postgresSchemaQuery("ALTER TABLE orders ADD COLUMN estimated_ready_date DATE");
+  }
   await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_quote_id ON orders (quote_id)");
   await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_orders_payment_status ON orders (payment_status)");
 
@@ -1010,6 +1034,12 @@ async function ensureQuoteColumnsPostgres() {
   const orderItemNames = new Set(orderItemColumns.rows.map((row) => row.column_name));
   if (!orderItemNames.has("unit_price")) {
     await postgresSchemaQuery("ALTER TABLE order_items ADD COLUMN unit_price NUMERIC DEFAULT 0");
+  }
+  if (!orderItemNames.has("is_backorder")) {
+    await postgresSchemaQuery("ALTER TABLE order_items ADD COLUMN is_backorder BOOLEAN NOT NULL DEFAULT false");
+  }
+  if (!orderItemNames.has("lead_time_days_at_order")) {
+    await postgresSchemaQuery("ALTER TABLE order_items ADD COLUMN lead_time_days_at_order INTEGER");
   }
 }
 
@@ -1141,6 +1171,12 @@ async function ensureItemColumnsPostgres() {
   }
   if (!names.has("name_de")) {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN name_de TEXT DEFAULT ''");
+  }
+  if (!names.has("lead_time_days")) {
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN lead_time_days INTEGER NOT NULL DEFAULT 14");
+  }
+  if (!names.has("allow_backorder")) {
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN allow_backorder BOOLEAN NOT NULL DEFAULT true");
   }
 }
 

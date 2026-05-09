@@ -2063,6 +2063,25 @@ label {
 .pos-card-stock {
   color: var(--accent-strong);
 }
+.pos-card-stock-backorder {
+  color: #ff6a3d !important;
+  font-weight: 600;
+  background: rgba(255, 138, 0, 0.10);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 138, 0, 0.32);
+}
+.pos-card-stock-instock {
+  color: #00665a !important;
+  font-weight: 600;
+}
+.is-backorder-cta {
+  background: linear-gradient(135deg, #ff8a00 0%, #ff6a3d 100%) !important;
+  border-color: transparent !important;
+}
+.is-backorder-cta:hover {
+  filter: brightness(1.05);
+}
 
 .stocked-card-detail {
   min-height: 2.5em;
