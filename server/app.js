@@ -99,6 +99,11 @@ const {
   formatQuoteDate,
   getQuoteTranslations,
 } = require("./lib/pdf-quote");
+const {
+  sanitizeSummaryForRole,
+  sanitizeItemsForRole,
+  sanitizeMovementsForRole,
+} = require("./lib/role-filters");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -5100,67 +5105,8 @@ async function computeSummary(user = null) {
   };
 }
 
-function sanitizeSummaryForRole(summary, role) {
-  if (normalizeRole(role) === "admin") {
-    return summary;
-  }
-  if (normalizeRole(role) === "staff") {
-    return {
-      ...summary,
-      stockValue: 0,
-      stockCostValue: 0,
-      expenseTotal: 0,
-    };
-  }
-
-  return {
-    ...summary,
-    stockValue: 0,
-    stockCostValue: 0,
-    expenseTotal: 0,
-    cashBalance: 0,
-  };
-}
-
-function sanitizeItemsForRole(items, user) {
-  const role = normalizeRole(user?.role);
-  if (role === "admin") {
-    return items;
-  }
-
-  // Customer: alış fiyatlarını, kritik stok eşiğini ve gerçek stok miktarını gizle.
-  // Sadece "stokta var/yok" bilgisi ve satış/liste fiyatı görünür.
-  if (role === "customer") {
-    return items.map((item) => ({
-      ...item,
-      defaultPrice: 0,
-      lastPurchasePrice: 0,
-      averagePurchasePrice: 0,
-      minStock: 0,
-      currentStock: Number(item.currentStock) > 0 ? 1 : 0, // stokta var/yok sinyali
-      inStock: Number(item.currentStock) > 0,
-    }));
-  }
-
-  // Staff/operator: alış fiyatlarını gizle, stok miktarını koru (operasyonel).
-  return items.map((item) => ({
-    ...item,
-    defaultPrice: 0,
-    lastPurchasePrice: 0,
-    averagePurchasePrice: 0,
-  }));
-}
-
-function sanitizeMovementsForRole(movements, role) {
-  if (normalizeRole(role) === "admin") {
-    return movements;
-  }
-
-  return movements.map((movement) => ({
-    ...movement,
-    unitPrice: 0,
-  }));
-}
+// NOT: sanitizeSummaryForRole / sanitizeItemsForRole / sanitizeMovementsForRole
+// server/lib/role-filters.js'e taşındı (yukarıdaki require'da).
 
 function resolveSupplierCatalogRawPath(fileName) {
   const safeFileName = path.basename(String(fileName || "").trim());
