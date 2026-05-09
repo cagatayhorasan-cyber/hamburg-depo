@@ -29,7 +29,11 @@ CONSULT_HINTS = (
 )
 
 FAQ_FILES = [
-    Path(__file__).with_name("drc_man_product_faq.json"),
+    # Ürün FAQ'ı GitHub 100 MB tek-dosya limitini aştığı için iki parçaya bölündü.
+    # Tek dosya yüklemek isteyenler train-drc-man-products.js çıktısındaki
+    # .codex_tmp/drc_man_product_training/drc_man_product_faq.json'a bakabilir.
+    Path(__file__).with_name("drc_man_product_faq.part1.json"),
+    Path(__file__).with_name("drc_man_product_faq.part2.json"),
     Path(__file__).with_name("drc_man_training_faq.json"),
     Path(__file__).with_name("drc_man_pt_superheat_faq.json"),
     Path(__file__).with_name("drc_man_master_field_faq.json"),
@@ -1916,7 +1920,10 @@ def main() -> int:
         question,
         language,
         answer_level,
-        [Path(__file__).with_name("drc_man_product_faq.json")],
+        [
+            Path(__file__).with_name("drc_man_product_faq.part1.json"),
+            Path(__file__).with_name("drc_man_product_faq.part2.json"),
+        ],
     )
     if product_faq:
         return _json_out(_finalize_reply(product_faq, role, language))

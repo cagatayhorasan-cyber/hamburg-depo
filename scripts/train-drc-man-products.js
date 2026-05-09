@@ -16,7 +16,6 @@ const EXPORT_DIR = path.join(process.cwd(), ".codex_tmp", "drc_man_product_train
 const PRODUCT_JSON_PATH = path.join(EXPORT_DIR, "drc_man_products.json");
 const KNOWLEDGE_MD_PATH = path.join(EXPORT_DIR, "hamburg_urun_egitimi.md");
 const PRODUCT_FAQ_PATH = path.join(EXPORT_DIR, "drc_man_product_faq.json");
-const STATIC_PRODUCT_FAQ_PATH = path.join(process.cwd(), "scripts", "drc_man_product_faq.json");
 const STATIC_PRODUCT_FAQ_PART_PATHS = [
   path.join(process.cwd(), "scripts", "drc_man_product_faq.part1.json"),
   path.join(process.cwd(), "scripts", "drc_man_product_faq.part2.json"),
@@ -121,7 +120,9 @@ async function main() {
 
   const productFaqJson = JSON.stringify(productFaqEntries, null, 2);
   fs.writeFileSync(PRODUCT_FAQ_PATH, productFaqJson, "utf8");
-  fs.writeFileSync(STATIC_PRODUCT_FAQ_PATH, productFaqJson, "utf8");
+  // NOT: scripts/drc_man_product_faq.json artık üretilmiyor.
+  // Tek dosya 115 MB ile GitHub limitini ve Vercel bundle hızını olumsuz etkiliyordu.
+  // Bridge ve manifest sadece part1 + part2 dosyalarını kullanıyor (writeProductFaqParts).
   writeProductFaqParts(productFaqEntries);
 
   const stocked = items.filter((item) => Number(item.currentStock || 0) > 0);
@@ -136,7 +137,7 @@ async function main() {
         productJsonPath: PRODUCT_JSON_PATH,
         knowledgeMarkdownPath: KNOWLEDGE_MD_PATH,
         productFaqPath: PRODUCT_FAQ_PATH,
-        staticProductFaqPath: STATIC_PRODUCT_FAQ_PATH,
+        staticProductFaqPartPaths: STATIC_PRODUCT_FAQ_PART_PATHS,
       },
       null,
       2

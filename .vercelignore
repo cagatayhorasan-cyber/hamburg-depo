@@ -8,10 +8,13 @@ node_modules
 data
 launchd
 scripts/__pycache__
+# Birleşik 115 MB ürün FAQ'ı artık üretilmiyor — yalnızca part1/part2 deploy'a girer.
 scripts/drc_man_product_faq.json
-scripts/drc_man_product_faq.part1.json
-scripts/drc_man_product_faq.part2.json
-scripts/drc_man_*_faq.json
+# Exam / yerel sonuç dosyaları runtime'da kullanılmıyor.
+scripts/drc_man_*_exam_result.json
+scripts/drc_man_*_exam.json
+scripts/drc_man_yilmaz*_result.json
+scripts/drc_man_exam_result.json
 *.log
 *.sqlite
 *.sqlite-shm
