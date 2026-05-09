@@ -1,0 +1,232 @@
+{
+  "user": {
+    "id": "49",
+    "username": "yilmazbilgili69",
+    "name": "Yilmaz Bilgili",
+    "role": "customer",
+    "email": null,
+    "phone": null,
+    "email_verified": true
+  },
+  "orders": 3,
+  "projects": 1,
+  "questions_tested": 30,
+  "correct": 27,
+  "partial": 3,
+  "wrong": 0,
+  "score_pct": 95.0,
+  "grade": "A",
+  "cost_leaks": 0,
+  "results": [
+    {
+      "q": "Merhaba, R-404A 10 KG gazınız var mı?",
+      "status": "DOĞRU",
+      "score": 0.14,
+      "matched_q": "R-404A 10 KG Depozitolu Soğutucu Gaz stokta var mı, fiyatı ve teknik özellikleri",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Embraco NJX2219GS stokta mı?",
+      "status": "DOĞRU",
+      "score": 0.1,
+      "matched_q": "Embraco NJX2219GS (R404A, 3 Faz) stokta var mı, kaç adet ve fiyatı nedir?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Soğuk oda paneli 100mm fiyatı nedir?",
+      "status": "DOĞRU",
+      "score": 0.116,
+      "matched_q": "MENTEŞELİ SOĞUK HAVA DEPO KAPISI (100MM POLY POLY) stokta var mı, fiyatı ve tekn",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Bana sürgülü soğuk oda kapısı 200x250 lazım, var mı?",
+      "status": "DOĞRU",
+      "score": 0.132,
+      "matched_q": "SLIDETS/ATS2025.0100PP 200x250 Surgulu Soguk Hava Depo Kapısı stokta var mı, fiy",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Sandviç panel sandviç 100mm metre kareye ne kadar?",
+      "status": "DOĞRU",
+      "score": 0.114,
+      "matched_q": "PANEL-100MM-1X4 kodlu ürün hangisi?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "ETS thermets HSC.MP10030 3 HP grup ne kadar?",
+      "status": "DOĞRU",
+      "score": 0.085,
+      "matched_q": "ETS markasından stokta hangi ürünler var?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Frigocraft kondenser fiyatları?",
+      "status": "DOĞRU",
+      "score": 0.059,
+      "matched_q": "FRIGOCRAFT-ACIK-GRUP-KOMPRESOR kodlu ürün hangisi?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Bakır boru 1/4 çift izole var mı?",
+      "status": "DOĞRU",
+      "score": 0.116,
+      "matched_q": "Bakır Boru 1/4\" (Emme/Sıvı) stokta var mı, fiyatı ve teknik özellikleri nedir?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Soğuk odamda buz birikiyor sürekli, ne yapmalıyım?",
+      "status": "DOĞRU",
+      "score": 0.056,
+      "matched_q": "Evaporatörde aşırı buz birikiyor — sebepleri ve çözümü?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Kompresörden tık-tık ses geliyor, ne olabilir?",
+      "status": "DOĞRU",
+      "score": 0.044,
+      "matched_q": "Kompresörden anormal ses geliyor — tanı?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Donuk oda için kaç mm panel önerirsin?",
+      "status": "DOĞRU",
+      "score": 0.062,
+      "matched_q": "ACSETS/PVC70 Hijyenik PVC İç Aksesuar (70 mm) stokta var mı, kaç adet ve fiyatı ",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Soğuk oda kapısı tam kapanmıyor, sebep ne?",
+      "status": "DOĞRU",
+      "score": 0.088,
+      "matched_q": "HINGETS/ATM1020.0120PP kodlu ürün hangisi?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Termostat differential ayarı kaç olmalı?",
+      "status": "KISMEN",
+      "score": 0.034,
+      "matched_q": "Termostat ve Termometreler kategorisinde neler var?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "5x4x3 metre soğuk oda için kaç HP grup gerek?",
+      "status": "DOĞRU",
+      "score": 0.071,
+      "matched_q": "Soğuk Oda Kapıları kategorisinde neler var?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "POE yağı ne için kullanılır?",
+      "status": "DOĞRU",
+      "score": 0.048,
+      "matched_q": "Yüksek/Alçak basınç şalteri (KP/MP serisi) ne için kullanılır?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "R449A retrofit gazı ne demek?",
+      "status": "KISMEN",
+      "score": 0.033,
+      "matched_q": "",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Defrost yöntemleri nedir?",
+      "status": "DOĞRU",
+      "score": 0.041,
+      "matched_q": "Danfoss 023U4380 DCN48DN Kartuş stokta var mı, fiyatı ve teknik özellikleri nedi",
+      "has_cost_leak": false
+    },
+    {
+      "q": "PVC kapı perdesi ne kadar enerji tasarrufu sağlar?",
+      "status": "DOĞRU",
+      "score": 0.103,
+      "matched_q": "Soğuk oda PVC perdesi neden kullanılır?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Sanhua solenoid valf ne için lazım?",
+      "status": "DOĞRU",
+      "score": 0.071,
+      "matched_q": "Solenoid Vanaları kategorisinde neler var?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Carel kontrol cihazı stoklu mu?",
+      "status": "DOĞRU",
+      "score": 0.062,
+      "matched_q": "DCB-100-PLUS kodlu ürün hangisi?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Vakum prosedürü nasıl yapılır?",
+      "status": "DOĞRU",
+      "score": 0.042,
+      "matched_q": "Soğutucu gaz şarjı nasıl yapılır (R404A örneği)?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Sight glass'ım sarı oldu, ne yapmalıyım?",
+      "status": "DOĞRU",
+      "score": 0.058,
+      "matched_q": "Sight glass (gözetleme camı) ne gösterir?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Yüksek basınç alarmı veriyor, sebep?",
+      "status": "DOĞRU",
+      "score": 0.059,
+      "matched_q": "Yüksek basınç koruması atıyor.",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Hot gas defrost ne avantaj sağlar?",
+      "status": "DOĞRU",
+      "score": 0.059,
+      "matched_q": "Defrost tipleri (elektrikli, sıcak gaz, hava, su) farkları?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "R290 propan ne kadar şarj limiti var?",
+      "status": "DOĞRU",
+      "score": 0.068,
+      "matched_q": "Genel markasından stokta hangi ürünler var?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Triple evacuation prosedürü?",
+      "status": "DOĞRU",
+      "score": 0.046,
+      "matched_q": "Triple evacuation (üçlü vakum) prosedürü nedir?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Kompresör short cycling nasıl çözülür?",
+      "status": "DOĞRU",
+      "score": 0.042,
+      "matched_q": "Kompresör short cycling (sık açılıp kapanma) sorunu ve çözümü?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Suction line accumulator ne işe yarar?",
+      "status": "DOĞRU",
+      "score": 0.09,
+      "matched_q": "Suction line accumulator ne işe yarar ve nereye bağlanır?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Soğuk odamda nem düşük, ürünler kuruyor",
+      "status": "DOĞRU",
+      "score": 0.07,
+      "matched_q": "Soğuk odada nem çok düşük (ürünler kuruyor) — sebep ve çözüm?",
+      "has_cost_leak": false
+    },
+    {
+      "q": "Burnout sonrası temizlik nasıl yapılmalı?",
+      "status": "KISMEN",
+      "score": 0.033,
+      "matched_q": "Kompresör yağı kontaminasyonu — belirti, sebep, çözüm?",
+      "has_cost_leak": false
+    }
+  ]
+}

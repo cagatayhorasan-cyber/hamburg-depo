@@ -1,0 +1,360 @@
+[
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "3x3x2.5",
+      "+4°C",
+      "1.0hp"
+    ],
+    "tr_question": "3×3×2.5 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "3×3×2.5m +4°C soğuk oda hesabı: Hacim 22.5 m³, panel yüzey alanı (kapı hariç) 37.5 m², panel kalınlığı 80 mm önerilir. KOMPRESÖR GRUP: 1.0 HP → 1 HP (0/+5) 220V Tecumseh Komplu Grubu (#23893, sale €1220). FİYAT TABLOSU (yaklaşık): Sandviç panel (37.5 m² × €50) = €1874.0, Soğuk oda kapısı (80×190, 80mm) = €350, Komple soğutma grubu (1.0 HP) = €1220, Evaporatör (yaklaşık) = €366, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €3960.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "3×3×2.5 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "3×3×2.5m +4°C Kühlraum-Berechnung: Volumen 22.5 m³, Paneelfläche (ohne Tür) 37.5 m², Paneelstärke 80 mm empfohlen. VERDICHTERAGGREGAT: 1.0 HP → 1 HP (0/+5) 220V Tecumseh Komplu Grubu (#23893, VK €1220). PREISÜBERSICHT (ungefähr): Sandwichpaneel (37.5 m² × €50) = €1874.0, Kühlraumtür (80×190, 80mm) = €350, Verflüssigungssatz (1.0 HP) = €1220, Verdampfer (geschätzt) = €366, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €3960.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "3x3x2.5",
+      "-18°C",
+      "1.5hp"
+    ],
+    "tr_question": "3×3×2.5 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "3×3×2.5m -18°C soğuk oda hesabı: Hacim 22.5 m³, panel yüzey alanı (kapı hariç) 37.5 m², panel kalınlığı 120 mm önerilir. KOMPRESÖR GRUP: 1.5 HP → 1.5 HP (0/+5) ThermETS HSC-MP10015 (#23816, sale €1990). FİYAT TABLOSU (yaklaşık): Sandviç panel (37.5 m² × €50) = €1874.0, Soğuk oda kapısı (80×190, 120mm) = €350, Komple soğutma grubu (1.5 HP) = €1990, Evaporatör (yaklaşık) = €597, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €4961.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "3×3×2.5 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "3×3×2.5m -18°C Kühlraum-Berechnung: Volumen 22.5 m³, Paneelfläche (ohne Tür) 37.5 m², Paneelstärke 120 mm empfohlen. VERDICHTERAGGREGAT: 1.5 HP → 1.5 HP (0/+5) ThermETS HSC-MP10015 (#23816, VK €1990). PREISÜBERSICHT (ungefähr): Sandwichpaneel (37.5 m² × €50) = €1874.0, Kühlraumtür (80×190, 120mm) = €350, Verflüssigungssatz (1.5 HP) = €1990, Verdampfer (geschätzt) = €597, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €4961.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "3x3x3",
+      "+4°C",
+      "1.0hp"
+    ],
+    "tr_question": "3×3×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "3×3×3m +4°C soğuk oda hesabı: Hacim 27 m³, panel yüzey alanı (kapı hariç) 43.5 m², panel kalınlığı 80 mm önerilir. KOMPRESÖR GRUP: 1.0 HP → 1 HP (0/+5) 220V Tecumseh Komplu Grubu (#23893, sale €1220). FİYAT TABLOSU (yaklaşık): Sandviç panel (43.5 m² × €50) = €2174.0, Soğuk oda kapısı (80×190, 80mm) = €350, Komple soğutma grubu (1.0 HP) = €1220, Evaporatör (yaklaşık) = €366, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €4260.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "3×3×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "3×3×3m +4°C Kühlraum-Berechnung: Volumen 27 m³, Paneelfläche (ohne Tür) 43.5 m², Paneelstärke 80 mm empfohlen. VERDICHTERAGGREGAT: 1.0 HP → 1 HP (0/+5) 220V Tecumseh Komplu Grubu (#23893, VK €1220). PREISÜBERSICHT (ungefähr): Sandwichpaneel (43.5 m² × €50) = €2174.0, Kühlraumtür (80×190, 80mm) = €350, Verflüssigungssatz (1.0 HP) = €1220, Verdampfer (geschätzt) = €366, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €4260.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "4x3x2.5",
+      "+4°C",
+      "1.5hp"
+    ],
+    "tr_question": "4×3×2.5 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "4×3×2.5m +4°C soğuk oda hesabı: Hacim 30.0 m³, panel yüzey alanı (kapı hariç) 45.5 m², panel kalınlığı 80 mm önerilir. KOMPRESÖR GRUP: 1.5 HP → 1.5 HP (0/+5) ThermETS HSC-MP10015 (#23816, sale €1990). FİYAT TABLOSU (yaklaşık): Sandviç panel (45.5 m² × €50) = €2274.0, Soğuk oda kapısı (80×190, 80mm) = €350, Komple soğutma grubu (1.5 HP) = €1990, Evaporatör (yaklaşık) = €597, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €5361.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "4×3×2.5 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "4×3×2.5m +4°C Kühlraum-Berechnung: Volumen 30.0 m³, Paneelfläche (ohne Tür) 45.5 m², Paneelstärke 80 mm empfohlen. VERDICHTERAGGREGAT: 1.5 HP → 1.5 HP (0/+5) ThermETS HSC-MP10015 (#23816, VK €1990). PREISÜBERSICHT (ungefähr): Sandwichpaneel (45.5 m² × €50) = €2274.0, Kühlraumtür (80×190, 80mm) = €350, Verflüssigungssatz (1.5 HP) = €1990, Verdampfer (geschätzt) = €597, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €5361.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "4x3x3",
+      "+4°C",
+      "1.5hp"
+    ],
+    "tr_question": "4×3×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "4×3×3m +4°C soğuk oda hesabı: Hacim 36 m³, panel yüzey alanı (kapı hariç) 52.5 m², panel kalınlığı 80 mm önerilir. KOMPRESÖR GRUP: 1.5 HP → 1.5 HP (0/+5) ThermETS HSC-MP10015 (#23816, sale €1990). FİYAT TABLOSU (yaklaşık): Sandviç panel (52.5 m² × €50) = €2624.0, Soğuk oda kapısı (80×190, 80mm) = €350, Komple soğutma grubu (1.5 HP) = €1990, Evaporatör (yaklaşık) = €597, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €5711.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "4×3×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "4×3×3m +4°C Kühlraum-Berechnung: Volumen 36 m³, Paneelfläche (ohne Tür) 52.5 m², Paneelstärke 80 mm empfohlen. VERDICHTERAGGREGAT: 1.5 HP → 1.5 HP (0/+5) ThermETS HSC-MP10015 (#23816, VK €1990). PREISÜBERSICHT (ungefähr): Sandwichpaneel (52.5 m² × €50) = €2624.0, Kühlraumtür (80×190, 80mm) = €350, Verflüssigungssatz (1.5 HP) = €1990, Verdampfer (geschätzt) = €597, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €5711.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "4x3x3",
+      "-18°C",
+      "2.5hp"
+    ],
+    "tr_question": "4×3×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "4×3×3m -18°C soğuk oda hesabı: Hacim 36 m³, panel yüzey alanı (kapı hariç) 52.5 m², panel kalınlığı 120 mm önerilir. KOMPRESÖR GRUP: 2.5 HP → 2.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#23894 ya da #44, sale €2684). FİYAT TABLOSU (yaklaşık): Sandviç panel (52.5 m² × €50) = €2624.0, Soğuk oda kapısı (80×190, 120mm) = €350, Komple soğutma grubu (2.5 HP) = €2684, Evaporatör (yaklaşık) = €805, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €6613.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "4×3×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "4×3×3m -18°C Kühlraum-Berechnung: Volumen 36 m³, Paneelfläche (ohne Tür) 52.5 m², Paneelstärke 120 mm empfohlen. VERDICHTERAGGREGAT: 2.5 HP → 2.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#23894 ya da #44, VK €2684). PREISÜBERSICHT (ungefähr): Sandwichpaneel (52.5 m² × €50) = €2624.0, Kühlraumtür (80×190, 120mm) = €350, Verflüssigungssatz (2.5 HP) = €2684, Verdampfer (geschätzt) = €805, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €6613.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "4x4x3",
+      "+4°C",
+      "2.0hp"
+    ],
+    "tr_question": "4×4×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "4×4×3m +4°C soğuk oda hesabı: Hacim 48 m³, panel yüzey alanı (kapı hariç) 62.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 2.0 HP → 2.0 HP (0/+5) ThermETS HSC-MP10020 / 380V Tecumseh (#20, sale €1560). FİYAT TABLOSU (yaklaşık): Sandviç panel (62.5 m² × €50) = €3124.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (2.0 HP) = €1560, Evaporatör (yaklaşık) = €468, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €5652.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "4×4×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "4×4×3m +4°C Kühlraum-Berechnung: Volumen 48 m³, Paneelfläche (ohne Tür) 62.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 2.0 HP → 2.0 HP (0/+5) ThermETS HSC-MP10020 / 380V Tecumseh (#20, VK €1560). PREISÜBERSICHT (ungefähr): Sandwichpaneel (62.5 m² × €50) = €3124.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (2.0 HP) = €1560, Verdampfer (geschätzt) = €468, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €5652.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "5x3x3",
+      "+4°C",
+      "2.0hp"
+    ],
+    "tr_question": "5×3×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "5×3×3m +4°C soğuk oda hesabı: Hacim 45 m³, panel yüzey alanı (kapı hariç) 61.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 2.0 HP → 2.0 HP (0/+5) ThermETS HSC-MP10020 / 380V Tecumseh (#20, sale €1560). FİYAT TABLOSU (yaklaşık): Sandviç panel (61.5 m² × €50) = €3074.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (2.0 HP) = €1560, Evaporatör (yaklaşık) = €468, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €5602.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "5×3×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "5×3×3m +4°C Kühlraum-Berechnung: Volumen 45 m³, Paneelfläche (ohne Tür) 61.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 2.0 HP → 2.0 HP (0/+5) ThermETS HSC-MP10020 / 380V Tecumseh (#20, VK €1560). PREISÜBERSICHT (ungefähr): Sandwichpaneel (61.5 m² × €50) = €3074.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (2.0 HP) = €1560, Verdampfer (geschätzt) = €468, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €5602.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "5x4x3",
+      "+4°C",
+      "2.5hp"
+    ],
+    "tr_question": "5×4×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "5×4×3m +4°C soğuk oda hesabı: Hacim 60 m³, panel yüzey alanı (kapı hariç) 72.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 2.5 HP → 2.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#23894 ya da #44, sale €2684). FİYAT TABLOSU (yaklaşık): Sandviç panel (72.5 m² × €50) = €3624.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (2.5 HP) = €2684, Evaporatör (yaklaşık) = €805, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €7613.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "5×4×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "5×4×3m +4°C Kühlraum-Berechnung: Volumen 60 m³, Paneelfläche (ohne Tür) 72.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 2.5 HP → 2.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#23894 ya da #44, VK €2684). PREISÜBERSICHT (ungefähr): Sandwichpaneel (72.5 m² × €50) = €3624.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (2.5 HP) = €2684, Verdampfer (geschätzt) = €805, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €7613.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "5x4x3",
+      "-18°C",
+      "4.0hp"
+    ],
+    "tr_question": "5×4×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "5×4×3m -18°C soğuk oda hesabı: Hacim 60 m³, panel yüzey alanı (kapı hariç) 72.5 m², panel kalınlığı 120 mm önerilir. KOMPRESÖR GRUP: 4.0 HP → 4.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#44, sale €2684). FİYAT TABLOSU (yaklaşık): Sandviç panel (72.5 m² × €50) = €3624.0, Soğuk oda kapısı (80×190, 120mm) = €350, Komple soğutma grubu (4.0 HP) = €2684, Evaporatör (yaklaşık) = €805, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €7613.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "5×4×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "5×4×3m -18°C Kühlraum-Berechnung: Volumen 60 m³, Paneelfläche (ohne Tür) 72.5 m², Paneelstärke 120 mm empfohlen. VERDICHTERAGGREGAT: 4.0 HP → 4.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#44, VK €2684). PREISÜBERSICHT (ungefähr): Sandwichpaneel (72.5 m² × €50) = €3624.0, Kühlraumtür (80×190, 120mm) = €350, Verflüssigungssatz (4.0 HP) = €2684, Verdampfer (geschätzt) = €805, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €7613.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "5x4x3",
+      "0°C",
+      "3.0hp"
+    ],
+    "tr_question": "5×4×3 metre 0°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "5×4×3m 0°C soğuk oda hesabı: Hacim 60 m³, panel yüzey alanı (kapı hariç) 72.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 3.0 HP → 3 HP (0/-18) 380V Tecumseh Komplu (donuk için) (#40, sale €1951). FİYAT TABLOSU (yaklaşık): Sandviç panel (72.5 m² × €50) = €3624.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (3.0 HP) = €1951, Evaporatör (yaklaşık) = €585, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €6660.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "5×4×3 m 0°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "5×4×3m 0°C Kühlraum-Berechnung: Volumen 60 m³, Paneelfläche (ohne Tür) 72.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 3.0 HP → 3 HP (0/-18) 380V Tecumseh Komplu (donuk için) (#40, VK €1951). PREISÜBERSICHT (ungefähr): Sandwichpaneel (72.5 m² × €50) = €3624.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (3.0 HP) = €1951, Verdampfer (geschätzt) = €585, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €6660.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "6x4x3",
+      "+4°C",
+      "3.0hp"
+    ],
+    "tr_question": "6×4×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "6×4×3m +4°C soğuk oda hesabı: Hacim 72 m³, panel yüzey alanı (kapı hariç) 82.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 3.0 HP → 3 HP (0/-18) 380V Tecumseh Komplu (donuk için) (#40, sale €1951). FİYAT TABLOSU (yaklaşık): Sandviç panel (82.5 m² × €50) = €4124.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (3.0 HP) = €1951, Evaporatör (yaklaşık) = €585, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €7160.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "6×4×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "6×4×3m +4°C Kühlraum-Berechnung: Volumen 72 m³, Paneelfläche (ohne Tür) 82.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 3.0 HP → 3 HP (0/-18) 380V Tecumseh Komplu (donuk için) (#40, VK €1951). PREISÜBERSICHT (ungefähr): Sandwichpaneel (82.5 m² × €50) = €4124.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (3.0 HP) = €1951, Verdampfer (geschätzt) = €585, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €7160.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "6x4x3",
+      "-18°C",
+      "5.0hp"
+    ],
+    "tr_question": "6×4×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "6×4×3m -18°C soğuk oda hesabı: Hacim 72 m³, panel yüzey alanı (kapı hariç) 82.5 m², panel kalınlığı 120 mm önerilir. KOMPRESÖR GRUP: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, sale €2954). FİYAT TABLOSU (yaklaşık): Sandviç panel (82.5 m² × €50) = €4124.0, Soğuk oda kapısı (80×190, 120mm) = €350, Komple soğutma grubu (5.0 HP) = €2954, Evaporatör (yaklaşık) = €886, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €8464.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "6×4×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "6×4×3m -18°C Kühlraum-Berechnung: Volumen 72 m³, Paneelfläche (ohne Tür) 82.5 m², Paneelstärke 120 mm empfohlen. VERDICHTERAGGREGAT: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, VK €2954). PREISÜBERSICHT (ungefähr): Sandwichpaneel (82.5 m² × €50) = €4124.0, Kühlraumtür (80×190, 120mm) = €350, Verflüssigungssatz (5.0 HP) = €2954, Verdampfer (geschätzt) = €886, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €8464.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "6x5x3",
+      "+4°C",
+      "3.0hp"
+    ],
+    "tr_question": "6×5×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "6×5×3m +4°C soğuk oda hesabı: Hacim 90 m³, panel yüzey alanı (kapı hariç) 94.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 3.0 HP → 3 HP (0/-18) 380V Tecumseh Komplu (donuk için) (#40, sale €1951). FİYAT TABLOSU (yaklaşık): Sandviç panel (94.5 m² × €50) = €4724.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (3.0 HP) = €1951, Evaporatör (yaklaşık) = €585, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €7760.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "6×5×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "6×5×3m +4°C Kühlraum-Berechnung: Volumen 90 m³, Paneelfläche (ohne Tür) 94.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 3.0 HP → 3 HP (0/-18) 380V Tecumseh Komplu (donuk için) (#40, VK €1951). PREISÜBERSICHT (ungefähr): Sandwichpaneel (94.5 m² × €50) = €4724.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (3.0 HP) = €1951, Verdampfer (geschätzt) = €585, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €7760.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "6x5x3",
+      "-18°C",
+      "5.0hp"
+    ],
+    "tr_question": "6×5×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "6×5×3m -18°C soğuk oda hesabı: Hacim 90 m³, panel yüzey alanı (kapı hariç) 94.5 m², panel kalınlığı 120 mm önerilir. KOMPRESÖR GRUP: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, sale €2954). FİYAT TABLOSU (yaklaşık): Sandviç panel (94.5 m² × €50) = €4724.0, Soğuk oda kapısı (80×190, 120mm) = €350, Komple soğutma grubu (5.0 HP) = €2954, Evaporatör (yaklaşık) = €886, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €9064.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "6×5×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "6×5×3m -18°C Kühlraum-Berechnung: Volumen 90 m³, Paneelfläche (ohne Tür) 94.5 m², Paneelstärke 120 mm empfohlen. VERDICHTERAGGREGAT: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, VK €2954). PREISÜBERSICHT (ungefähr): Sandwichpaneel (94.5 m² × €50) = €4724.0, Kühlraumtür (80×190, 120mm) = €350, Verflüssigungssatz (5.0 HP) = €2954, Verdampfer (geschätzt) = €886, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €9064.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "8x5x3",
+      "+4°C",
+      "4.0hp"
+    ],
+    "tr_question": "8×5×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "8×5×3m +4°C soğuk oda hesabı: Hacim 120 m³, panel yüzey alanı (kapı hariç) 116.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 4.0 HP → 4.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#44, sale €2684). FİYAT TABLOSU (yaklaşık): Sandviç panel (116.5 m² × €50) = €5824.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (4.0 HP) = €2684, Evaporatör (yaklaşık) = €805, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €9813.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "8×5×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "8×5×3m +4°C Kühlraum-Berechnung: Volumen 120 m³, Paneelfläche (ohne Tür) 116.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 4.0 HP → 4.5 HP (0/+5) 380V Tecumseh Komplu Grubu (#44, VK €2684). PREISÜBERSICHT (ungefähr): Sandwichpaneel (116.5 m² × €50) = €5824.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (4.0 HP) = €2684, Verdampfer (geschätzt) = €805, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €9813.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "8x5x3",
+      "-18°C",
+      "7.5hp"
+    ],
+    "tr_question": "8×5×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "8×5×3m -18°C soğuk oda hesabı: Hacim 120 m³, panel yüzey alanı (kapı hariç) 116.5 m², panel kalınlığı 150 mm önerilir. KOMPRESÖR GRUP: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, sale €4689). FİYAT TABLOSU (yaklaşık): Sandviç panel (116.5 m² × €50) = €5824.0, Soğuk oda kapısı (80×190, 150mm) = €350, Komple soğutma grubu (7.5 HP) = €4689, Evaporatör (yaklaşık) = €1406, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €12419.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "8×5×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "8×5×3m -18°C Kühlraum-Berechnung: Volumen 120 m³, Paneelfläche (ohne Tür) 116.5 m², Paneelstärke 150 mm empfohlen. VERDICHTERAGGREGAT: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, VK €4689). PREISÜBERSICHT (ungefähr): Sandwichpaneel (116.5 m² × €50) = €5824.0, Kühlraumtür (80×190, 150mm) = €350, Verflüssigungssatz (7.5 HP) = €4689, Verdampfer (geschätzt) = €1406, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €12419.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "8x6x3",
+      "+4°C",
+      "5.0hp"
+    ],
+    "tr_question": "8×6×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "8×6×3m +4°C soğuk oda hesabı: Hacim 144 m³, panel yüzey alanı (kapı hariç) 130.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, sale €2954). FİYAT TABLOSU (yaklaşık): Sandviç panel (130.5 m² × €50) = €6524.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (5.0 HP) = €2954, Evaporatör (yaklaşık) = €886, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €10864.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "8×6×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "8×6×3m +4°C Kühlraum-Berechnung: Volumen 144 m³, Paneelfläche (ohne Tür) 130.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, VK €2954). PREISÜBERSICHT (ungefähr): Sandwichpaneel (130.5 m² × €50) = €6524.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (5.0 HP) = €2954, Verdampfer (geschätzt) = €886, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €10864.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "8x6x3",
+      "-18°C",
+      "7.5hp"
+    ],
+    "tr_question": "8×6×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "8×6×3m -18°C soğuk oda hesabı: Hacim 144 m³, panel yüzey alanı (kapı hariç) 130.5 m², panel kalınlığı 150 mm önerilir. KOMPRESÖR GRUP: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, sale €4689). FİYAT TABLOSU (yaklaşık): Sandviç panel (130.5 m² × €50) = €6524.0, Soğuk oda kapısı (80×190, 150mm) = €350, Komple soğutma grubu (7.5 HP) = €4689, Evaporatör (yaklaşık) = €1406, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €13119.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "8×6×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "8×6×3m -18°C Kühlraum-Berechnung: Volumen 144 m³, Paneelfläche (ohne Tür) 130.5 m², Paneelstärke 150 mm empfohlen. VERDICHTERAGGREGAT: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, VK €4689). PREISÜBERSICHT (ungefähr): Sandwichpaneel (130.5 m² × €50) = €6524.0, Kühlraumtür (80×190, 150mm) = €350, Verflüssigungssatz (7.5 HP) = €4689, Verdampfer (geschätzt) = €1406, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €13119.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "10x6x3",
+      "+4°C",
+      "5.0hp"
+    ],
+    "tr_question": "10×6×3 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "10×6×3m +4°C soğuk oda hesabı: Hacim 180 m³, panel yüzey alanı (kapı hariç) 154.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, sale €2954). FİYAT TABLOSU (yaklaşık): Sandviç panel (154.5 m² × €50) = €7724.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (5.0 HP) = €2954, Evaporatör (yaklaşık) = €886, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €12064.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "10×6×3 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "10×6×3m +4°C Kühlraum-Berechnung: Volumen 180 m³, Paneelfläche (ohne Tür) 154.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 5.0 HP → 5 HP THERMETS/HSC.MP10050.TT04SE 5HP Pozitif (#22, VK €2954). PREISÜBERSICHT (ungefähr): Sandwichpaneel (154.5 m² × €50) = €7724.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (5.0 HP) = €2954, Verdampfer (geschätzt) = €886, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €12064.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "10x6x3",
+      "-18°C",
+      "10.0hp"
+    ],
+    "tr_question": "10×6×3 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "10×6×3m -18°C soğuk oda hesabı: Hacim 180 m³, panel yüzey alanı (kapı hariç) 154.5 m², panel kalınlığı 150 mm önerilir. KOMPRESÖR GRUP: 10.0 HP → 10 HP (0/+5) 380V Dorin Komplu Çift Evapli (#49, sale €5074). FİYAT TABLOSU (yaklaşık): Sandviç panel (154.5 m² × €50) = €7724.0, Soğuk oda kapısı (80×190, 150mm) = €350, Komple soğutma grubu (10.0 HP) = €5074, Evaporatör (yaklaşık) = €1522, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €14820.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "10×6×3 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "10×6×3m -18°C Kühlraum-Berechnung: Volumen 180 m³, Paneelfläche (ohne Tür) 154.5 m², Paneelstärke 150 mm empfohlen. VERDICHTERAGGREGAT: 10.0 HP → 10 HP (0/+5) 380V Dorin Komplu Çift Evapli (#49, VK €5074). PREISÜBERSICHT (ungefähr): Sandwichpaneel (154.5 m² × €50) = €7724.0, Kühlraumtür (80×190, 150mm) = €350, Verflüssigungssatz (10.0 HP) = €5074, Verdampfer (geschätzt) = €1522, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €14820.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "10x8x3.5",
+      "+4°C",
+      "7.5hp"
+    ],
+    "tr_question": "10×8×3.5 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "10×8×3.5m +4°C soğuk oda hesabı: Hacim 280.0 m³, panel yüzey alanı (kapı hariç) 204.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, sale €4689). FİYAT TABLOSU (yaklaşık): Sandviç panel (204.5 m² × €50) = €10224.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (7.5 HP) = €4689, Evaporatör (yaklaşık) = €1406, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €16819.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "10×8×3.5 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "10×8×3.5m +4°C Kühlraum-Berechnung: Volumen 280.0 m³, Paneelfläche (ohne Tür) 204.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, VK €4689). PREISÜBERSICHT (ungefähr): Sandwichpaneel (204.5 m² × €50) = €10224.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (7.5 HP) = €4689, Verdampfer (geschätzt) = €1406, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €16819.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "10x8x3.5",
+      "-18°C",
+      "10.0hp"
+    ],
+    "tr_question": "10×8×3.5 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "10×8×3.5m -18°C soğuk oda hesabı: Hacim 280.0 m³, panel yüzey alanı (kapı hariç) 204.5 m², panel kalınlığı 150 mm önerilir. KOMPRESÖR GRUP: 10.0 HP → 10 HP (0/+5) 380V Dorin Komplu Çift Evapli (#49, sale €5074). FİYAT TABLOSU (yaklaşık): Sandviç panel (204.5 m² × €50) = €10224.0, Soğuk oda kapısı (80×190, 150mm) = €350, Komple soğutma grubu (10.0 HP) = €5074, Evaporatör (yaklaşık) = €1522, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €17320.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "10×8×3.5 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "10×8×3.5m -18°C Kühlraum-Berechnung: Volumen 280.0 m³, Paneelfläche (ohne Tür) 204.5 m², Paneelstärke 150 mm empfohlen. VERDICHTERAGGREGAT: 10.0 HP → 10 HP (0/+5) 380V Dorin Komplu Çift Evapli (#49, VK €5074). PREISÜBERSICHT (ungefähr): Sandwichpaneel (204.5 m² × €50) = €10224.0, Kühlraumtür (80×190, 150mm) = €350, Verflüssigungssatz (10.0 HP) = €5074, Verdampfer (geschätzt) = €1522, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €17320.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "12x8x3.5",
+      "+4°C",
+      "7.5hp"
+    ],
+    "tr_question": "12×8×3.5 metre +4°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "12×8×3.5m +4°C soğuk oda hesabı: Hacim 336.0 m³, panel yüzey alanı (kapı hariç) 234.5 m², panel kalınlığı 100 mm önerilir. KOMPRESÖR GRUP: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, sale €4689). FİYAT TABLOSU (yaklaşık): Sandviç panel (234.5 m² × €50) = €11724.0, Soğuk oda kapısı (80×190, 100mm) = €350, Komple soğutma grubu (7.5 HP) = €4689, Evaporatör (yaklaşık) = €1406, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €18319.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "12×8×3.5 m +4°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "12×8×3.5m +4°C Kühlraum-Berechnung: Volumen 336.0 m³, Paneelfläche (ohne Tür) 234.5 m², Paneelstärke 100 mm empfohlen. VERDICHTERAGGREGAT: 7.5 HP → 7.5 HP (0/+5) 380V Dorin Komplu Soğutma Grubu (#41, VK €4689). PREISÜBERSICHT (ungefähr): Sandwichpaneel (234.5 m² × €50) = €11724.0, Kühlraumtür (80×190, 100mm) = €350, Verflüssigungssatz (7.5 HP) = €4689, Verdampfer (geschätzt) = €1406, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €18319.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "calculation",
+      "12x8x3.5",
+      "-18°C",
+      "16.0hp"
+    ],
+    "tr_question": "12×8×3.5 metre -18°C soğuk oda için kaç HP grup ve toplam maliyet?",
+    "tr_answer": "12×8×3.5m -18°C soğuk oda hesabı: Hacim 336.0 m³, panel yüzey alanı (kapı hariç) 234.5 m², panel kalınlığı 150 mm önerilir. KOMPRESÖR GRUP: 16.0 HP → 16 HP ThermETS SHSC-LP10160-DT04SE Semi-Hermetik (#19, sale €7593). FİYAT TABLOSU (yaklaşık): Sandviç panel (234.5 m² × €50) = €11724.0, Soğuk oda kapısı (80×190, 150mm) = €350, Komple soğutma grubu (16.0 HP) = €7593, Evaporatör (yaklaşık) = €2277, Aksesuar/profil/kontrol = €150. TOPLAM TAHMİNİ MALZEME = €22094.0. İŞÇİLİK + nakliye + montaj hariç. ColdRoomPro modülünden detaylı tasarım yapılır. Bu MALZEME fiyat sorusudur.",
+    "de_question": "12×8×3.5 m -18°C Kühlraum — wieviele PS und Gesamtkosten?",
+    "de_answer": "12×8×3.5m -18°C Kühlraum-Berechnung: Volumen 336.0 m³, Paneelfläche (ohne Tür) 234.5 m², Paneelstärke 150 mm empfohlen. VERDICHTERAGGREGAT: 16.0 HP → 16 HP ThermETS SHSC-LP10160-DT04SE Semi-Hermetik (#19, VK €7593). PREISÜBERSICHT (ungefähr): Sandwichpaneel (234.5 m² × €50) = €11724.0, Kühlraumtür (80×190, 150mm) = €350, Verflüssigungssatz (16.0 HP) = €7593, Verdampfer (geschätzt) = €2277, Zubehör/Profile/Steuerung = €150. GESAMT MATERIAL ≈ €22094.0. Montage/Transport extra. Detail über ColdRoomPro-Modul. Materialfrage."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "general",
+      "panel"
+    ],
+    "tr_question": "Soğuk oda paneli m² fiyatı ne kadar?",
+    "tr_answer": "DRC standart soğuk oda paneli m² fiyatı: €50/m² (varsayılan, ColdRoomPro içinde her teklif için override edilebilir). Bu fiyat 60mm-200mm arası tüm kalınlıklar için geçerli (kalınlığa göre değişmez varsayılan). PIR/PUR çekirdek + 2 yüz galvaniz/boyalı sac panel. Detay ürünler: #10 PANETS/PPWP-100 100mm Duvar Paneli (Lento) Net €29.89, #11 PANETS/PPWP-150 150mm Duvar Paneli Net €37.82, #26 PANETS/PPWP-80 80mm Duvar Paneli Net €24.40, #23133 MESPAN Sandviç Panel 100mm 1×4m Net €42.70.",
+    "de_question": "Wie viel kostet ein Kühlraum-Sandwichpaneel pro m²?",
+    "de_answer": "DRC Standard-Sandwichpaneel: €50/m² (Default, in ColdRoomPro je Angebot überschreibbar). Gültig für 60-200 mm Stärken. PIR/PUR-Kern + beidseitig verzinkt/lackiert. Spezifische Produkte: #10 PPWP-100 100mm €29,89; #11 PPWP-150 150mm €37,82; #26 PPWP-80 80mm €24,40; #23133 MESPAN 100mm 1×4m €42,70."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "general",
+      "kapı"
+    ],
+    "tr_question": "Soğuk oda kapısı fiyatı ne kadar?",
+    "tr_answer": "DRC soğuk oda kapısı default fiyatı: €350/adet (standart 80×190, 100-120mm). Stoklu kapı kalemleri: #12 SLIDETS/ATS2025.0100PP 200×250 Sürgülü Kapı 100mm Net €1.282, #23814 ETS 200×250 Sürgülü Tip 120mm Net €1.350, #53 HINGETS/PTM0919.0120PP 90×180 Menteşeli Kapı Net €335, #55 HINGETS/ATM1020.0120PP 107×185 Menteşeli Kapı Net €595. Donuk oda için rezistans (ısıtıcı çerçevesi) +€50-100 ek.",
+    "de_question": "Wie viel kostet eine Kühlraumtür?",
+    "de_answer": "DRC Standard-Kühlraumtür: €350/Stk (80×190, 100-120mm). Lagerartikel: #12 SLIDETS 200×250 100mm Schiebetür €1.282; #23814 ETS 200×250 120mm €1.350; #53 HINGETS 90×180 €335; #55 HINGETS 107×185 €595. TK-Tür mit Rahmenheizung +€50-100."
+  },
+  {
+    "tags": [
+      "coldroom_pricing",
+      "general",
+      "hp_secim"
+    ],
+    "tr_question": "Soğuk oda için HP grup nasıl seçilir, fiyat nedir?",
+    "tr_answer": "Soğuk oda hacmine göre HP grup seçimi (DRC katalogu net fiyat):\nPOZİTİF (+2 / +8°C):\n  • 5-10 m³ → 1 HP Tecumseh #23893 €1.220\n  • 10-20 m³ → 1.5-2 HP ThermETS HSC-MP10015 #23816 €1.990\n  • 20-30 m³ → 2-2.5 HP ThermETS HSC-MP10020 #20 €1.560\n  • 30-50 m³ → 3 HP komple #21 €2.285 ya da #44 (4.5HP) €2.684\n  • 50-100 m³ → 5 HP THERMETS/HSC.MP10050 #22 €2.954\n  • 100-150 m³ → 7.5 HP Dorin Komplu #41 €4.689\nDONUK (-18 / -25°C):\n  • 5-10 m³ → 1.5-2 HP\n  • 10-20 m³ → 3-4 HP Tecumseh Komplu #40 €1.951\n  • 20-30 m³ → 4-5 HP\n  • 30-50 m³ → 7.5-10 HP Dorin Çift Evapli #49 €5.074\n  • 50-100 m³ → 10-15 HP\n  • 100+ m³ → 16 HP Semi Hermetik ThermETS #19 €7.593\nFaktör 1.2× güvenlik için üst seviyeyi seç.",
+    "de_question": "Wie wählt man die HP-Gruppe für einen Kühlraum, welcher Preis?",
+    "de_answer": "Auswahl nach Volumen (DRC Netto-VK):\nPLUS (+2 / +8°C):\n  • 5-10 m³ → 1 HP Tecumseh #23893 €1.220\n  • 10-20 m³ → 1,5-2 HP ThermETS HSC-MP10015 #23816 €1.990\n  • 20-30 m³ → 2-2,5 HP ThermETS HSC-MP10020 #20 €1.560\n  • 30-50 m³ → 3 HP #21 €2.285 oder 4,5 HP #44 €2.684\n  • 50-100 m³ → 5 HP THERMETS HSC.MP10050 #22 €2.954\n  • 100-150 m³ → 7,5 HP Dorin Komplett #41 €4.689\nTIEFKÜHL (-18 / -25°C):\n  • 5-10 m³ → 1,5-2 HP\n  • 10-20 m³ → 3-4 HP Tecumseh Komplett #40 €1.951\n  • 20-30 m³ → 4-5 HP\n  • 30-50 m³ → 7,5-10 HP Dorin Doppelverdampfer #49 €5.074\n  • 50-100 m³ → 10-15 HP\n  • 100+ m³ → 16 HP Halbhermetisch ThermETS #19 €7.593\nSicherheitsfaktor 1,2× nach oben."
+  }
+]

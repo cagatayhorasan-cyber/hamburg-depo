@@ -109,10 +109,10 @@ def build_qa(it):
         stock_tr = f"Stok kaydı negatif ({stock:g})"
         stock_de = f"Bestandseintrag negativ ({stock:g})"
 
-    # Fiyat satırı
-    if sale > 0 or cost > 0:
-        price_tr = f"Cost: {fmt_price(cost)}, Net: {fmt_price(sale)}, Brüt: {fmt_price(list_p)}"
-        price_de = f"EK: {fmt_price(cost)}, Netto: {fmt_price(sale)}, Brutto: {fmt_price(list_p)}"
+    # Fiyat satırı — MÜŞTERİ GÜVENLİĞİ: cost (alış) sızdırılmaz, yalnızca net + brüt.
+    if sale > 0:
+        price_tr = f"Net: {fmt_price(sale)}, Brüt: {fmt_price(list_p)}"
+        price_de = f"Netto: {fmt_price(sale)}, Brutto: {fmt_price(list_p)}"
     else:
         price_tr = "Fiyat henüz girilmemiş — talep gelince güncellenecek"
         price_de = "Preis noch nicht gepflegt — wird bei Bedarf aktualisiert"
@@ -130,6 +130,9 @@ def build_qa(it):
     )
     if notes and 'Detay' in notes:
         notes_short = notes.split('|')[0].replace('Detay:', '').strip()[:200]
+        # MÜŞTERİ GÜVENLİĞİ: cost/maliyet sızıntısı temizle
+        notes_short = re.sub(r'cost\s*[=:]?\s*€?\s*\d+(?:[\.,]\d+)?', '[cost gizli]', notes_short, flags=re.IGNORECASE)
+        notes_short = re.sub(r'maliyet\s*[=:]?\s*€?\s*\d+(?:[\.,]\d+)?', '[maliyet gizli]', notes_short, flags=re.IGNORECASE)
         tr_a += f" {notes_short}."
     tr_a += " Bu MALZEME sorusudur — kart bilgisidir."
 

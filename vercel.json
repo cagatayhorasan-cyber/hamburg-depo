@@ -151,7 +151,8 @@
           "scripts/drc_man_stock_technical_faq.json",
           "scripts/drc_man_all_products_faq.part1.json",
           "scripts/drc_man_all_products_faq.part2.json",
-          "scripts/drc_man_coldroom_expert_faq.json"
+          "scripts/drc_man_coldroom_expert_faq.json",
+          "scripts/drc_man_coldroom_pricing_faq.json"
         ]
       }
     },

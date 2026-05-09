@@ -97,6 +97,9 @@ def build_qa_for_item(it):
     if 'Detay:' in notes_clean:
         notes_clean = notes_clean.split('|')[0].replace('Detay:', '').strip()
     notes_clean = notes_clean[:300]
+    # MÜŞTERİ GÜVENLİĞİ: cost/maliyet bilgisi notes'tan sızmamalı
+    notes_clean = re.sub(r'cost\s*[=:]?\s*€?\s*\d+(?:[\.,]\d+)?', '[cost gizli]', notes_clean, flags=re.IGNORECASE)
+    notes_clean = re.sub(r'maliyet\s*[=:]?\s*€?\s*\d+(?:[\.,]\d+)?', '[maliyet gizli]', notes_clean, flags=re.IGNORECASE)
 
     # ───── Q1: Stok + fiyat (MALZEME) ─────
     short_name = name[:60]
@@ -104,14 +107,14 @@ def build_qa_for_item(it):
     tr_a1 = (
         f"DB#{item_id} {name} | Marka: {brand} | Kategori: {category} | Birim: {unit}. "
         f"Hamburg depoda {stock:g} {unit} stok mevcut. "
-        f"Cost: {fmt_price(cost)}, Net (sale): {fmt_price(sale)}, Brüt (liste): {fmt_price(list_p)}. "
+        f"Net: {fmt_price(sale)}, Brüt (liste): {fmt_price(list_p)}. "
         f"Teknik özet: {spec_summary}. Bu MALZEME sorusudur — kart bilgisidir."
     )
     de_q1 = f"Wie viele {short_name} sind am Lager und was kostet das?"
     de_a1 = (
         f"DB#{item_id} {name_de} | Marke: {brand} | Kategorie: {category} | Einheit: {unit}. "
         f"In Hamburg lagernd: {stock:g} {unit}. "
-        f"EK: {fmt_price(cost)}, Netto (VK): {fmt_price(sale)}, Brutto (Liste): {fmt_price(list_p)}. "
+        f"Netto (VK): {fmt_price(sale)}, Brutto (Liste): {fmt_price(list_p)}. "
         f"Technische Kurzdaten: {spec_summary}. Das ist eine Materialfrage."
     )
     qas.append({
