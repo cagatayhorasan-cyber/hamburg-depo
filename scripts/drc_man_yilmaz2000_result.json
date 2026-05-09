@@ -1,0 +1,31 @@
+{
+  "total": 2000,
+  "correct": 1710,
+  "partial": 260,
+  "wrong": 30,
+  "no_match": 20,
+  "score_pct": 92.0,
+  "grade": "A",
+  "elapsed_seconds": 7.8,
+  "avg_query_ms": 3.9,
+  "by_type": {
+    "product": {
+      "c": 1430,
+      "p": 60,
+      "w": 10,
+      "n": 0
+    },
+    "tech": {
+      "c": 120,
+      "p": 180,
+      "w": 0,
+      "n": 0
+    },
+    "category": {
+      "c": 160,
+      "p": 20,
+      "w": 0,
+      "n": 20
+    }
+  }
+}

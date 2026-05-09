@@ -1,0 +1,778 @@
+{
+  "generatedAt": "2026-05-09T03:14:30",
+  "faq_total": 10784,
+  "questions": 51,
+  "correct": 37,
+  "partial": 0,
+  "wrong": 14,
+  "score_percent": 72.5,
+  "grade": "C",
+  "results": [
+    {
+      "q": "Donuk soğuk oda için kaç mm panel kalınlığı önerilir?",
+      "expect": [
+        "120",
+        "150",
+        "200",
+        "donuk",
+        "tiefkühl"
+      ],
+      "matched_q": "Soğuk oda paneli kalınlığı nasıl seçilir?",
+      "score": 0.054,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Sandviç panel CAM-LOK kilit sistemi ne avantaj sağlar?",
+      "expect": [
+        "sızdırmaz",
+        "180",
+        "kam",
+        "eksantrik"
+      ],
+      "matched_q": "Sandviç panel kilitleri (CAM-LOK) nasıl çalışır?",
+      "score": 0.052,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Donuk oda kapısında rezistans (ısıtıcı) ne için kullanılır?",
+      "expect": [
+        "conta",
+        "donmasını",
+        "yapıştır",
+        "rezistans"
+      ],
+      "matched_q": "Soğuk oda kapılarında rezistans (ısıtıcı) ne işe yarar?",
+      "score": 0.053,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Bakır boru izolasyonunda hangi malzeme kullanılır?",
+      "expect": [
+        "armaflex",
+        "kauçuk",
+        "kapalı hücreli",
+        "elastomer"
+      ],
+      "matched_q": "Bakır boru izolasyonunda hangi malzeme kullanılır?",
+      "score": 0.068,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Soğuk oda PVC perdesi ne işe yarar enerji açısından?",
+      "expect": [
+        "%20",
+        "%30",
+        "enerji",
+        "tasarruf",
+        "kayıp"
+      ],
+      "matched_q": "Soğuk Oda Aksesuarları kategorisinde neler var?",
+      "score": 0.07,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "ETS PZ100 50x100x50 ne anlama gelir?",
+      "expect": [
+        "50",
+        "100",
+        "panel",
+        "u profil",
+        "zemin"
+      ],
+      "matched_q": "Panel kategorisinde neler var?",
+      "score": 0.027,
+      "hits": 1,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "ETS PD120 dış köşe profili nereye monte edilir?",
+      "expect": [
+        "dış köşe",
+        "90",
+        "12cm",
+        "panel"
+      ],
+      "matched_q": "Soğuk odada dış köşe profili (PD aksesuar) nasıl monte edilir?",
+      "score": 0.08,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Hermetik ve yarı-hermetik kompresör arasındaki temel fark?",
+      "expect": [
+        "kaynak",
+        "vidalı",
+        "tamir",
+        "değiştir",
+        "söküp"
+      ],
+      "matched_q": "Hermetik, yarı-hermetik ve scroll kompresör arasındaki fark nedir?",
+      "score": 0.059,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Scroll kompresör neden daha verimli?",
+      "expect": [
+        "spiral",
+        "az hareketli",
+        "%15",
+        "titreşim",
+        "düşük gürültü"
+      ],
+      "matched_q": "COPELAND-SCROLL-KOMPRESOR kodlu ürün hangisi?",
+      "score": 0.047,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Tavan tipi vs duvar tipi evaporatör farkı?",
+      "expect": [
+        "tavan",
+        "360",
+        "yüksek",
+        "duvar",
+        "tek yönlü"
+      ],
+      "matched_q": "ACT-TAVAN-TIPI-EVAPORATOR kodlu ürün hangisi?",
+      "score": 0.057,
+      "hits": 1,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Kondenser kapasitesi soğutma kapasitesinin kaç katı seçilir?",
+      "expect": [
+        "1.2",
+        "1.4",
+        "kondenser",
+        "kompresör",
+        "motor"
+      ],
+      "matched_q": "Kondenser kapasitesi neye göre seçilir?",
+      "score": 0.043,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "TXV ile kapiler boru arasındaki fark nedir?",
+      "expect": [
+        "txv",
+        "termostatik",
+        "değişken",
+        "kapiler",
+        "sabit",
+        "superheat"
+      ],
+      "matched_q": "Termostatik genleşme valfi (TXV) ile kapiler boru arasındaki fark nedir?",
+      "score": 0.07,
+      "hits": 6,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Solenoid valf nereye monte edilir?",
+      "expect": [
+        "likit",
+        "kondenser",
+        "txv",
+        "önce",
+        "pump-down"
+      ],
+      "matched_q": "Solenoid valf neden kullanılır ve nereye monte edilir?",
+      "score": 0.048,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Filtre-drier neden gereklidir?",
+      "expect": [
+        "nem",
+        "asit",
+        "moleküler",
+        "zeolit",
+        "drier"
+      ],
+      "matched_q": "Likit hat filtre-kurutucusu (drier) neden gereklidir?",
+      "score": 0.038,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Sight glass'ta sarı renk ne anlama gelir?",
+      "expect": [
+        "nem",
+        "sarı",
+        "drier",
+        "değiştir"
+      ],
+      "matched_q": "Sight glass (gözetleme camı) ne gösterir?",
+      "score": 0.047,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Dixell veya DCB100 dijital kontrolör ne işler yapar?",
+      "expect": [
+        "termostat",
+        "defrost",
+        "alarm",
+        "fan",
+        "set"
+      ],
+      "matched_q": "Dijital soğuk oda kontrol cihazı (Dixell, Carel, DCB) ne işler yapar?",
+      "score": 0.06,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Yüksek basınç şalteri R404A için kaç barda açar?",
+      "expect": [
+        "28",
+        "30",
+        "32",
+        "hp",
+        "yüksek"
+      ],
+      "matched_q": "Yüksek/Alçak basınç şalteri (KP/MP serisi) ne için kullanılır?",
+      "score": 0.055,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Soğuk oda sıcaklığa düşmüyorsa ilk kontrol edilecekler?",
+      "expect": [
+        "gaz",
+        "kondenser",
+        "defrost",
+        "txv",
+        "kompresör"
+      ],
+      "matched_q": "DRC markasından stokta hangi ürünler var?",
+      "score": 0.061,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Evaporatörde aşırı buz birikmesinin sebepleri?",
+      "expect": [
+        "defrost",
+        "drenaj",
+        "fan",
+        "şarj",
+        "kapı"
+      ],
+      "matched_q": "Evaporatörde aşırı buz birikiyor — sebepleri ve çözümü?",
+      "score": 0.034,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Gaz kaçağı nasıl tespit edilir?",
+      "expect": [
+        "leak detector",
+        "uv",
+        "köpük",
+        "azot",
+        "basınç"
+      ],
+      "matched_q": "Gaz kaçağı nasıl tespit edilir?",
+      "score": 0.047,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Yüksek basınç alarmı sebepleri?",
+      "expect": [
+        "fan",
+        "kondenser",
+        "kirli",
+        "şarj",
+        "ortam",
+        "hava"
+      ],
+      "matched_q": "Yüksek basınç alarm veriyor — neden?",
+      "score": 0.03,
+      "hits": 5,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Kompresör çalışmıyorsa ne kontrol edilmeli?",
+      "expect": [
+        "sigorta",
+        "termostat",
+        "kontaktör",
+        "basınç",
+        "kapasitör"
+      ],
+      "matched_q": "Copeland Copeland Scroll Kompresör teknik özellikleri nedir?",
+      "score": 0.03,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Kapı kapanmıyorsa sebep ne olabilir?",
+      "expect": [
+        "menteşe",
+        "conta",
+        "don",
+        "hidrolik",
+        "rezistans"
+      ],
+      "matched_q": "Soğuk oda kapılarında rezistans (ısıtıcı) ne işe yarar?",
+      "score": 0.021,
+      "hits": 3,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Yağ kontaminasyonu belirtileri?",
+      "expect": [
+        "asit",
+        "siyah",
+        "burnout",
+        "drier",
+        "vakum"
+      ],
+      "matched_q": "Kompresör yağı kontaminasyonu — belirti, sebep, çözüm?",
+      "score": 0.031,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Kompresörden tık-tık sesi gelirse sorun ne olabilir?",
+      "expect": [
+        "likit",
+        "slug",
+        "batık",
+        "txv",
+        "şarj"
+      ],
+      "matched_q": "Kompresörden anormal ses geliyor — tanı?",
+      "score": 0.018,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Soğuk oda yapı ısı yükü nasıl hesaplanır?",
+      "expect": [
+        "u",
+        "a",
+        "delta",
+        "0.22",
+        "100mm",
+        "pir"
+      ],
+      "matched_q": "Soğuk oda soğutma yükü nasıl hesaplanır?",
+      "score": 0.066,
+      "hits": 5,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "5×4×3 metre 0°C oda için kabaca kaç HP gerekir?",
+      "expect": [
+        "3",
+        "4",
+        "5",
+        "kompresör",
+        "60"
+      ],
+      "matched_q": "Eşanjörler kategorisinde neler var?",
+      "score": 0.095,
+      "hits": 3,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Ürün soğutma yükü nasıl hesaplanır (Q_ürün)?",
+      "expect": [
+        "m",
+        "cp",
+        "delta",
+        "kütle",
+        "spesifik",
+        "kg"
+      ],
+      "matched_q": "Soğutma Malzemeleri kategorisinde neler var?",
+      "score": 0.075,
+      "hits": 1,
+      "expected": 6,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Vakum prosedüründe hedef değer kaç mikron?",
+      "expect": [
+        "500",
+        "mikron",
+        "torr",
+        "0.5"
+      ],
+      "matched_q": "Soğutma sistemi vakum prosedürü nedir?",
+      "score": 0.035,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "R404A pozitif 0°C oda için tipik suction basıncı?",
+      "expect": [
+        "4.5",
+        "4",
+        "5",
+        "bar",
+        "0°C"
+      ],
+      "matched_q": "R404A için tipik çalışma basınçları nedir?",
+      "score": 0.092,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Superheat normal değeri TXV sistemde?",
+      "expect": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "k",
+        "txv"
+      ],
+      "matched_q": "Likit hat filtre-kurutucusu (drier) neden gereklidir?",
+      "score": 0.028,
+      "hits": 4,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Subcooling R404A için hedef değer?",
+      "expect": [
+        "4",
+        "5",
+        "6",
+        "k",
+        "subcool"
+      ],
+      "matched_q": "R404A için tipik çalışma basınçları nedir?",
+      "score": 0.034,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Donuk oda -25°C için 30m³ hacim kaç HP?",
+      "expect": [
+        "4",
+        "5",
+        "donuk",
+        "tiefkühl"
+      ],
+      "matched_q": "Soğuk oda için kompresör HP'si nasıl kabaca seçilir?",
+      "score": 0.082,
+      "hits": 4,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "R404A şarjı nasıl yapılır - likit faz mı gaz faz mı?",
+      "expect": [
+        "likit",
+        "yüksek",
+        "sıvı",
+        "tüp",
+        "flüssig"
+      ],
+      "matched_q": "Soğutucu gaz şarjı nasıl yapılır (R404A örneği)?",
+      "score": 0.059,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "POE yağı R404A için neden zorunlu?",
+      "expect": [
+        "poe",
+        "polyolester",
+        "404",
+        "uyumlu"
+      ],
+      "matched_q": "Carina ES68 R-404A-410A-134A Gazlı Kompresör Yağı 4 Lt ( POE 68) stokta var mı, ",
+      "score": 0.034,
+      "hits": 2,
+      "expected": 4,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Defrost yöntemleri ve farkları?",
+      "expect": [
+        "elektrik",
+        "sıcak gaz",
+        "hava",
+        "rezistans"
+      ],
+      "matched_q": "Kapiler Hortumlar ve Rakorlar kategorisinde neler var?",
+      "score": 0.029,
+      "hits": 0,
+      "expected": 4,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "R448A ve R449A ne için kullanılır?",
+      "expect": [
+        "404",
+        "retrofit",
+        "alternatif",
+        "gwp",
+        "f-gas"
+      ],
+      "matched_q": "Hangi soğutucu için hangi yağ kullanılır?",
+      "score": 0.041,
+      "hits": 1,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Triple evacuation prosedürü ne?",
+      "expect": [
+        "vakum",
+        "azot",
+        "n2",
+        "nem",
+        "üç"
+      ],
+      "matched_q": "Soğutucu elektrik panosu olarak ne öneriyorsunuz?",
+      "score": 0.012,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Burnout sonrası temizlik prosedürü?",
+      "expect": [
+        "asit",
+        "n2",
+        "drier",
+        "burnout",
+        "ehb",
+        "eha"
+      ],
+      "matched_q": "Kompresör yağı kontaminasyonu — belirti, sebep, çözüm?",
+      "score": 0.02,
+      "hits": 5,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "R290 ne kadar şarj limitiyle kullanılabilir?",
+      "expect": [
+        "150",
+        "g",
+        "propan",
+        "yanıcı",
+        "a3"
+      ],
+      "matched_q": "R404A, R134a, R448A, R449A, R290 hangi uygulamada kullanılır?",
+      "score": 0.02,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Hot gas defrost nasıl çalışır?",
+      "expect": [
+        "sıcak gaz",
+        "kompresör",
+        "evaporatör",
+        "valf",
+        "3-yollu"
+      ],
+      "matched_q": "Hot Gas REFRIGERATION UNITS - MONOBLOCKS MTH stokta var mı, fiyatı ve teknik öze",
+      "score": 0.026,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Sistem 30 bar N2 testte 24 saat 5 bar düşerse ne yapmalı?",
+      "expect": [
+        "kaçak",
+        "leak",
+        "test",
+        "leak detector",
+        "köpük"
+      ],
+      "matched_q": "Gaz kaçağı nasıl tespit edilir?",
+      "score": 0.054,
+      "hits": 5,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Pump-down devresi nasıl çalışır?",
+      "expect": [
+        "solenoid",
+        "likit",
+        "evaporatör",
+        "boşalt",
+        "lp"
+      ],
+      "matched_q": "Solenoid valf neden kullanılır ve nereye monte edilir?",
+      "score": 0.028,
+      "hits": 3,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Compression ratio nedir, donuk oda için ne olmalı?",
+      "expect": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "ratio",
+        "donuk",
+        "tiefkühl"
+      ],
+      "matched_q": "R404A için tipik çalışma basınçları nedir?",
+      "score": 0.068,
+      "hits": 4,
+      "expected": 7,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Anti-frost heating zemin altında ne için?",
+      "expect": [
+        "zemin",
+        "buzlanma",
+        "ısıtıcı",
+        "donmasını",
+        "kablo"
+      ],
+      "matched_q": "Soğuk oda zemininde anti-statik kayma engelleyici neden gereklidir?",
+      "score": 0.059,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Suction line accumulator ne işe yarar?",
+      "expect": [
+        "likit",
+        "slug",
+        "batık",
+        "kompresör",
+        "sıvı"
+      ],
+      "matched_q": "Soğuk oda zemin U-profili (PZ aksesuar) ne işe yarar?",
+      "score": 0.032,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Yağ basınç şalteri MP54 nasıl çalışır?",
+      "expect": [
+        "yağ",
+        "basınç",
+        "delta",
+        "0.7",
+        "60",
+        "yarı-hermetik"
+      ],
+      "matched_q": "Yüksek/Alçak basınç şalteri (KP/MP serisi) ne için kullanılır?",
+      "score": 0.044,
+      "hits": 6,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Soğuk oda düşük nem sorunu — sebep?",
+      "expect": [
+        "evaporatör",
+        "delta",
+        "düşük",
+        "fark",
+        "yüzey"
+      ],
+      "matched_q": "Soğuk Oda Kapıları kategorisinde neler var?",
+      "score": 0.053,
+      "hits": 0,
+      "expected": 5,
+      "status": "YANLIŞ"
+    },
+    {
+      "q": "Compressor short cycling çözümü?",
+      "expect": [
+        "differential",
+        "thermostat",
+        "2",
+        "3",
+        "k",
+        "ratio"
+      ],
+      "matched_q": "CAREL SHORT ELECTRONIC CONTROLLERS CAREL PB stokta var mı, fiyatı ve teknik özel",
+      "score": 0.014,
+      "hits": 3,
+      "expected": 6,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Sistem vakum yapamıyor (500 mikrona inmiyor) — neden?",
+      "expect": [
+        "nem",
+        "kaçak",
+        "yağ",
+        "vakum",
+        "n2"
+      ],
+      "matched_q": "Kompresör yağı kontaminasyonu — belirti, sebep, çözüm?",
+      "score": 0.04,
+      "hits": 4,
+      "expected": 5,
+      "status": "DOĞRU"
+    },
+    {
+      "q": "Cold room sound design — fan gürültüsü 40dB altı için?",
+      "expect": [
+        "fan",
+        "rpm",
+        "düşük",
+        "yavaş",
+        "izolasyon"
+      ],
+      "matched_q": "Q Fan Tel Kafes 200 MM Kondenser İçin stokta var mı, fiyatı ve teknik özellikler",
+      "score": 0.025,
+      "hits": 1,
+      "expected": 5,
+      "status": "YANLIŞ"
+    }
+  ]
+}
