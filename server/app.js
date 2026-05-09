@@ -64,6 +64,20 @@ const {
   resolveDrcManPython,
   queryDrcManAssistant,
 } = require("./lib/drc-man-bridge");
+const {
+  API_RATE_WINDOW_MS,
+  AUTH_RATE_WINDOW_MS,
+  GENERAL_API_RATE_LIMIT,
+  AUTH_API_RATE_LIMIT,
+  ASSISTANT_CUSTOMER_RATE_LIMIT,
+  ASSISTANT_STAFF_RATE_LIMIT,
+  ASSISTANT_ADMIN_RATE_LIMIT,
+} = require("./constants/rate-limit");
+const {
+  RATE_LIMIT_BUCKETS,
+  createRateLimiter,
+  pruneRateLimitBuckets,
+} = require("./lib/rate-limit");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -110,14 +124,9 @@ const ADMIN_TOOLS = new Set(["coldroompro", "soguk-oda-cizim"]);
 const PUBLIC_TOOLS = new Set(["coldroompro"]);
 const JSON_BODY_LIMIT = process.env.JSON_BODY_LIMIT || "256kb";
 const FORM_BODY_LIMIT = process.env.FORM_BODY_LIMIT || "64kb";
-const API_RATE_WINDOW_MS = 60 * 1000;
-const AUTH_RATE_WINDOW_MS = 10 * 60 * 1000;
-const GENERAL_API_RATE_LIMIT = Number(process.env.GENERAL_API_RATE_LIMIT || 240);
-const AUTH_API_RATE_LIMIT = Number(process.env.AUTH_API_RATE_LIMIT || 12);
-const ASSISTANT_CUSTOMER_RATE_LIMIT = Number(process.env.ASSISTANT_CUSTOMER_RATE_LIMIT || 30);
-const ASSISTANT_STAFF_RATE_LIMIT = Number(process.env.ASSISTANT_STAFF_RATE_LIMIT || 60);
-const ASSISTANT_ADMIN_RATE_LIMIT = Number(process.env.ASSISTANT_ADMIN_RATE_LIMIT || 120);
-const RATE_LIMIT_BUCKETS = new Map();
+// NOT: API_RATE_WINDOW_MS, AUTH_RATE_WINDOW_MS, *_RATE_LIMIT, RATE_LIMIT_BUCKETS,
+// createRateLimiter, pruneRateLimitBuckets server/lib/rate-limit.js +
+// server/constants/rate-limit.js'e taşındı (yukarıdaki require'da).
 // NOT: SECURITY_* sabitleri server/constants/security.js'e taşındı (yukarıdaki require'da).
 const ADMIN_MESSAGE_SUBJECT_LIMIT = 160;
 const ADMIN_MESSAGE_BODY_LIMIT = 3000;
@@ -3972,58 +3981,8 @@ async function validateBrowserRequestOrigin(req, res, next) {
   }
 }
 
-function createRateLimiter({ name, windowMs, max, keyFn, message }) {
-  return async (req, res, next) => {
-    try {
-      const now = Date.now();
-      const key = `${name}:${typeof keyFn === "function" ? keyFn(req) : getClientIp(req)}`;
-      const bucket = RATE_LIMIT_BUCKETS.get(key) || [];
-      const fresh = bucket.filter((timestamp) => now - timestamp < windowMs);
-
-      if (fresh.length >= max) {
-        const retryAfterSeconds = Math.max(1, Math.ceil((windowMs - (now - fresh[0])) / 1000));
-        RATE_LIMIT_BUCKETS.set(key, fresh);
-        res.set("Retry-After", String(retryAfterSeconds));
-        await insertSecurityEvent(normalizeSecurityEventPayload(req, {
-          eventType: "rate_limit_hit",
-          severity: name === "auth-api" ? "critical" : "warn",
-          details: { limiter: name, retryAfterSeconds, hits: fresh.length },
-        }));
-        if (name === "auth-api") {
-          await activateSecurityBlock(req, {
-            reason: "Asiri kimlik dogrulama denemesi",
-            eventType: "rate_limit_hit",
-            blockDurationMs: SECURITY_RATE_LIMIT_BLOCK_MS,
-            eventCount: fresh.length,
-          });
-        }
-        return res.status(429).json({ error: message || "Cok fazla istek gonderildi." });
-      }
-
-      fresh.push(now);
-      RATE_LIMIT_BUCKETS.set(key, fresh);
-
-      if (RATE_LIMIT_BUCKETS.size > 5000) {
-        pruneRateLimitBuckets(now);
-      }
-
-      return next();
-    } catch (error) {
-      return next(error);
-    }
-  };
-}
-
-function pruneRateLimitBuckets(now = Date.now()) {
-  for (const [key, timestamps] of RATE_LIMIT_BUCKETS.entries()) {
-    const fresh = timestamps.filter((timestamp) => now - timestamp < AUTH_RATE_WINDOW_MS);
-    if (fresh.length === 0) {
-      RATE_LIMIT_BUCKETS.delete(key);
-    } else {
-      RATE_LIMIT_BUCKETS.set(key, fresh);
-    }
-  }
-}
+// NOT: createRateLimiter / pruneRateLimitBuckets server/lib/rate-limit.js'e
+// taşındı (yukarıdaki require'da).
 
 // NOT: getClientIp / normalizeRole / isAdminRole / isStaffRole / isCustomerRole /
 // cleanOptional tanımları server/lib/util.js'e taşındı (yukarıdaki require'da).
