@@ -3474,6 +3474,24 @@ function bindInlineAuthTabs() {
       }, 60);
     }
   };
+  // Hero CTA / topbar CTA → smooth scroll + opsiyonel tab değişimi
+  document.querySelectorAll("[data-scroll-login]").forEach((link) => {
+    if (link._drcScrollBound) return;
+    link._drcScrollBound = true;
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const targetTab = link.getAttribute("data-target-tab");
+      if (targetTab) showView(targetTab);
+      const card = document.getElementById("loginCard");
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Hafif vurgu: outline 1.2 sn
+        card.style.transition = "box-shadow 0.4s ease";
+        card.style.boxShadow = "0 0 0 4px rgba(0, 169, 143, 0.22), 0 8px 32px rgba(7, 44, 87, 0.10)";
+        setTimeout(() => { card.style.boxShadow = ""; }, 1200);
+      }
+    });
+  });
   tabs.forEach((tab) => {
     tab.addEventListener("click", (event) => {
       event.preventDefault();

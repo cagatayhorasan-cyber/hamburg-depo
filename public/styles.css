@@ -5494,12 +5494,22 @@ h3 {
   text-transform: uppercase;
   margin-top: 2px;
 }
+.login-topbar-actions,
+.login-topbar-lang {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.login-topbar-actions .ui-language-switch,
 .login-topbar-lang .ui-language-switch {
   background: rgba(26, 42, 61, 0.04);
   border: 1px solid rgba(26, 42, 61, 0.08);
   border-radius: 10px;
   padding: 4px 8px;
 }
+.login-topbar-actions .ui-language-select,
 .login-topbar-lang .ui-language-select {
   background: transparent;
   color: #1a2a3d;
@@ -5509,8 +5519,170 @@ h3 {
   outline: none;
   cursor: pointer;
 }
+.login-topbar-actions .ui-language-select option,
 .login-topbar-lang .ui-language-select option {
   color: #1a2a3d;
+}
+.login-topbar-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: #082b4c;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 1px solid #082b4c;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.login-topbar-cta:hover {
+  background: #0f3d6b;
+  transform: translateY(-1px);
+}
+
+/* Hero — tek-ekran-boyu başlık + 2 CTA + 3 value prop */
+.login-hero {
+  padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px) clamp(28px, 4vw, 44px);
+  background:
+    radial-gradient(ellipse at 12% 10%, rgba(0, 169, 143, 0.10), transparent 42%),
+    radial-gradient(ellipse at 88% 90%, rgba(255, 138, 0, 0.07), transparent 40%),
+    transparent;
+}
+.login-hero-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+}
+.login-hero-eyebrow {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(0, 169, 143, 0.10);
+  color: #00665a;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.login-hero-title {
+  margin: 0;
+  font-family: "Outfit", "Sora", "Inter", sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4.4vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #082b4c;
+  max-width: 22ch;
+}
+.login-hero-sub {
+  margin: 0;
+  color: rgba(26, 42, 61, 0.74);
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.6;
+  max-width: 56ch;
+}
+.login-hero-ctas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.login-hero-cta-primary,
+.login-hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.login-hero-cta-primary {
+  background: #082b4c;
+  color: #ffffff;
+  border: 1px solid #082b4c;
+  box-shadow: 0 6px 18px rgba(8, 43, 76, 0.18);
+}
+.login-hero-cta-primary:hover {
+  background: #0f3d6b;
+  transform: translateY(-1px);
+}
+.login-hero-cta-secondary {
+  background: #ffffff;
+  color: #082b4c;
+  border: 1px solid rgba(8, 43, 76, 0.18);
+}
+.login-hero-cta-secondary:hover {
+  border-color: #082b4c;
+  transform: translateY(-1px);
+}
+
+/* 3 value-prop kartı */
+.login-value-props {
+  list-style: none;
+  margin: clamp(20px, 3vw, 32px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.login-value-card {
+  padding: 22px 22px 24px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 44, 87, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(7, 44, 87, 0.04);
+  display: grid;
+  gap: 10px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.login-value-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 169, 143, 0.32);
+  box-shadow: 0 8px 24px rgba(7, 44, 87, 0.10);
+}
+.login-value-icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 169, 143, 0.14), rgba(255, 138, 0, 0.10));
+  color: #00665a;
+  border: 1px solid rgba(0, 169, 143, 0.22);
+}
+.login-value-card strong {
+  font-family: "Outfit", "Sora", "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #082b4c;
+  line-height: 1.35;
+}
+.login-value-card p {
+  margin: 0;
+  color: rgba(26, 42, 61, 0.70);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+/* Mobile: topbar CTA gizle (hero CTA yeterli), hero padding küçült */
+@media (max-width: 640px) {
+  .login-topbar-cta {
+    display: none;
+  }
+  .login-hero {
+    padding-top: clamp(28px, 6vw, 44px);
+    padding-bottom: clamp(20px, 4vw, 32px);
+  }
 }
 
 .login-minimal-main {
