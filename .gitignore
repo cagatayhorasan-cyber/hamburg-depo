@@ -38,3 +38,14 @@ DEVIR_NOTLARI_*.md
 
 # Supabase CLI local scaffolding
 supabase/
+
+# 2026-05-09 cleanup — eski script arşivi ve enrichment dump'ları
+scripts/archive/
+scripts/_enriched_*.json
+scripts/drc_man_all_products_exam_result.json
+scripts/drc_man_exam_result.json
+scripts/drc_man_stock_exam_result.json
+scripts/drc_man_malzeme_vs_ustalik_faq.json
+
+# .env yedekleri
+.env.backup-*
