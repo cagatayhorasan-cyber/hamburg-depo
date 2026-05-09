@@ -35,10 +35,11 @@ async function main() {
   const c = new Client({ connectionString: process.env.DATABASE_URL });
   await c.connect();
 
-  // Önce eski kayitlari sil
-  console.log(`Eski kayitlar siliniyor (context_id=${SLUG})...`);
-  const del = await c.query("DELETE FROM assistant_troubleshooting_bank WHERE context_id = $1", [SLUG]);
-  console.log(`  ${del.rowCount} eski kayit silindi`);
+  // DELETE atlandi: ON CONFLICT UPDATE ile idempotent calismasi icin.
+  // Bu sayede yarida kalan (timeout) yuklemeler tekrar koşmakla tamamlanabilir.
+  const exists = await c.query("SELECT COUNT(*) AS n FROM assistant_troubleshooting_bank WHERE context_id = $1", [SLUG]);
+  console.log(`  Mevcut ${SLUG} satır: ${exists.rows[0].n}`);
+  console.log("  DELETE atlandi (UPSERT modunda eksik tamamlanir).");
 
   // Batch insert (50'lik gruplar)
   const BATCH = 50;
