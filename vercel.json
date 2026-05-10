@@ -8,8 +8,6 @@
       "config": {
         "includeFiles": [
           "public/**",
-          "scripts/drc_man_product_faq.part1.json",
-          "scripts/drc_man_product_faq.part2.json",
           "scripts/drc_man_training_faq.json",
           "scripts/drc_man_troubleshooting_faq.json",
           "scripts/drc_man_electrical_faq.json",
@@ -21,12 +19,9 @@
           "scripts/drc_man_sales_instinct_faq.json",
           "scripts/drc_man_malzeme_vs_ustalik_faq.json",
           "scripts/drc_man_stock_technical_faq.json",
-          "scripts/drc_man_all_products_faq.part1.json",
-          "scripts/drc_man_all_products_faq.part2.json",
           "scripts/drc_man_coldroom_expert_faq.json",
           "scripts/drc_man_coldroom_pricing_faq.json",
-          "scripts/drc_man_coldroom_design_50k_faq.json",
-          "scripts/drc_man_coldroom_qa_20k_faq.json"
+          "scripts/drc_man_guardrails_faq.json"
         ]
       }
     },
