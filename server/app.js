@@ -2441,7 +2441,7 @@ function createApp() {
             quantity,
             unit: entry.unit || item.unit || "adet",
             unitPrice: Number(lockedUnitPrice.toFixed(2)),
-            leadTimeDays: Number(item.lead_time_days || 14),
+            leadTimeDays: Number(item.lead_time_days || 10),
             allowBackorder: item.allow_backorder !== false && item.allow_backorder !== 0,
           });
         }
@@ -4755,7 +4755,7 @@ function mapItemRow(row, options = {}) {
     salePrice,
     lastPurchasePrice: includePrices ? Number(row.last_purchase_price || 0) : 0,
     averagePurchasePrice: includePrices ? Number(row.average_purchase_price || 0) : 0,
-    leadTimeDays: row.leadTimeDays !== undefined ? Number(row.leadTimeDays || 14) : 14,
+    leadTimeDays: row.leadTimeDays !== undefined ? Number(row.leadTimeDays || 10) : 10,
     allowBackorder: row.allowBackorder !== undefined ? Boolean(row.allowBackorder) : true,
     inStock: Number(row.current_stock || 0) > 0,
     supplierCatalogRefs,

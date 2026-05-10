@@ -799,7 +799,7 @@ function ensureItemColumnsSqlite() {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN name_de TEXT DEFAULT ''");
   }
   if (!columns.includes("lead_time_days")) {
-    sqliteDb.exec("ALTER TABLE items ADD COLUMN lead_time_days INTEGER NOT NULL DEFAULT 14");
+    sqliteDb.exec("ALTER TABLE items ADD COLUMN lead_time_days INTEGER NOT NULL DEFAULT 10");
   }
   if (!columns.includes("allow_backorder")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN allow_backorder INTEGER NOT NULL DEFAULT 1");
@@ -1173,7 +1173,7 @@ async function ensureItemColumnsPostgres() {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN name_de TEXT DEFAULT ''");
   }
   if (!names.has("lead_time_days")) {
-    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN lead_time_days INTEGER NOT NULL DEFAULT 14");
+    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN lead_time_days INTEGER NOT NULL DEFAULT 10");
   }
   if (!names.has("allow_backorder")) {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN allow_backorder BOOLEAN NOT NULL DEFAULT true");
