@@ -7013,9 +7013,10 @@ async function convertOrderToQuote(orderId) {
 
 function populateCustomerCatalogFilters() {
   if (!refs.customerCatalogCategory || !refs.customerCatalogBrand) return;
-  const stockItems = state.items.filter((item) => Number(item.currentStock) > 0);
-  const categories = Array.from(new Set(stockItems.map(i => (i.category || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
-  const brands = Array.from(new Set(stockItems.map(i => (i.brand || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
+  // Tüm aktif ürünler dahil (stoklu + ön sipariş açık stoksuz)
+  const allItems = state.items;
+  const categories = Array.from(new Set(allItems.map(i => (i.category || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
+  const brands = Array.from(new Set(allItems.map(i => (i.brand || "").trim()).filter(Boolean))).sort((a,b) => a.localeCompare(b, "tr"));
   const prevCategory = refs.customerCatalogCategory.value || "all";
   const prevBrand = refs.customerCatalogBrand.value || "all";
   refs.customerCatalogCategory.innerHTML = `<option value="all">${langText("Tümü","Alle")}</option>` + categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(getDisplayCategory(c))}</option>`).join("");
@@ -7038,7 +7039,12 @@ function getFilteredCustomerItems() {
   const termRaw = normalizeSearchStr(filters.search || "");
   // Boşluksuz varyant da eşleştir ("dcb100" ↔ "dcb 100")
   const termNoSpace = termRaw.replace(/\s+/g, "");
-  let items = state.items.filter((item) => Number(item.currentStock) > 0);
+  // Tüm aktif ürünler: stoklu + ön sipariş açık stoksuz (allowBackorder=true)
+  // sanitizeItemsForRole zaten currentStock'u 0/1'e indiriyor + inStock flag bırakıyor
+  let items = state.items.filter((item) => {
+    if (item.allowBackorder === false) return false;  // backorder kapalı tek tek ürünler
+    return true;
+  });
 
   if (filters.category && filters.category !== "all") {
     items = items.filter((i) => (i.category || "").trim() === filters.category);
@@ -7055,6 +7061,8 @@ function getFilteredCustomerItems() {
   }
 
   items.sort((a, b) => {
+    // Önce stoklular, sonra backorder
+    if (a.inStock !== b.inStock) return a.inStock ? -1 : 1;
     switch (filters.sort) {
       case "price-asc":  return Number(visibleSalePrice(a) || 0) - Number(visibleSalePrice(b) || 0);
       case "price-desc": return Number(visibleSalePrice(b) || 0) - Number(visibleSalePrice(a) || 0);
