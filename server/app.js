@@ -157,7 +157,10 @@ const FORM_BODY_LIMIT = process.env.FORM_BODY_LIMIT || "64kb";
 const ADMIN_MESSAGE_SUBJECT_LIMIT = 160;
 const ADMIN_MESSAGE_BODY_LIMIT = 3000;
 const SALE_PRICE_MULTIPLIER = 1.22;
-const BOOTSTRAP_ITEM_LIMIT = Math.max(30, Number(process.env.BOOTSTRAP_ITEM_LIMIT || 60));
+// Admin/staff bootstrap'ta tüm aktif ürünler gelsin (POS'ta ürün çeşitliliği için).
+// 10K+ ürün ~3MB JSON kabul edilebilir. Customer zaten ayrı path (limitsiz).
+// 0 = limitsiz (queryCustomerItems'a parametre olarak limit clause yazmaz).
+const BOOTSTRAP_ITEM_LIMIT = Number(process.env.BOOTSTRAP_ITEM_LIMIT || 0);
 // NOT: TROUBLESHOOTING_BANK_CACHE_TTL_MS, DRC_MAN_FAQ_MANIFEST,
 // TROUBLESHOOTING_STRONG_HINTS, TROUBLESHOOTING_SHORT_TOKENS,
 // TROUBLESHOOTING_STOP_WORDS, TROUBLESHOOTING_ANCHOR_TOKENS

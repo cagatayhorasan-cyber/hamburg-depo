@@ -6615,7 +6615,15 @@ function renderPosCatalog() {
     return;
   }
 
-  const items = getFilteredQuoteItems().filter((item) => Number(item.currentStock) > 0);
+  // Tüm ürünleri göster (stoksuzlar dahil — staff/admin ön sipariş satışı yapabilir)
+  // Önce stoklular sıralanır, sonra backorder kalemleri.
+  const allItems = getFilteredQuoteItems();
+  const items = allItems.slice().sort((a, b) => {
+    const aStock = Number(a.currentStock || 0) > 0 ? 0 : 1;
+    const bStock = Number(b.currentStock || 0) > 0 ? 0 : 1;
+    if (aStock !== bStock) return aStock - bStock;
+    return (a.name || "").localeCompare(b.name || "", "tr");
+  });
   refs.posCatalogGrid.innerHTML = "";
 
   if (items.length === 0) {
@@ -6623,7 +6631,17 @@ function renderPosCatalog() {
     return;
   }
 
-  items.slice(0, 60).forEach((item) => {
+  // İlk 200 göster (önce stoklular). Daha fazlası için arama/filtre.
+  const MAX_SHOW = 200;
+  const visibleItems = items.slice(0, MAX_SHOW);
+  if (refs.posCatalogSummary) {
+    const stockedCount = items.filter(i => Number(i.currentStock || 0) > 0).length;
+    refs.posCatalogSummary.textContent = items.length > MAX_SHOW
+      ? `${items.length} ürün (${stockedCount} stoklu) · ilk ${MAX_SHOW} gösteriliyor — daralt için arama/filtre kullan`
+      : `${items.length} ürün (${stockedCount} stoklu)`;
+  }
+
+  visibleItems.forEach((item) => {
     const card = document.createElement("article");
     card.className = "pos-card";
     card.dataset.itemDetailId = String(item.id);
