@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png">
-  <link rel="stylesheet" href="/styles.css?v=20260510-pwa-update">
+  <link rel="stylesheet" href="/styles.css?v=20260510-install-cta">
 </head>
 <body>
   <div class="page-shell">
@@ -35,11 +35,55 @@
               <option value="de">DE</option>
             </select>
           </div>
+          <button type="button" class="login-topbar-install" id="landingInstallBtn" title="Uygulamayı telefonuna kur">📲 Uygulamayı İndir</button>
           <a class="login-topbar-cta" href="#loginCard" data-scroll-login>
             <span data-lean-cta-login>Giriş Yap</span>
           </a>
         </div>
       </header>
+
+      <!-- PWA install modal — Android ve iOS uyumlu -->
+      <div id="installPwaModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
+        <div class="auth-modal-backdrop" data-install-close></div>
+        <div class="auth-modal-panel" role="document" style="max-width:440px;text-align:center;">
+          <button type="button" class="auth-modal-close" data-install-close aria-label="Kapat">×</button>
+          <div style="font-size:48px;line-height:1;margin-bottom:8px;">📲</div>
+          <h2 style="margin:0 0 4px;font-size:20px;color:#082b4c;">DRC Portal Uygulaması</h2>
+          <p style="margin:0 0 18px;color:#475569;font-size:13.5px;">Tarayıcı yerine doğrudan ana ekrandan açın — daha hızlı, çevrimdışı stok görme, push güncelleme.</p>
+
+          <!-- Android Chrome (beforeinstallprompt) -->
+          <div id="installAndroidPanel" style="display:none;">
+            <div style="background:linear-gradient(135deg,#082b4c,#0f3d6b);color:#fff;padding:14px;border-radius:12px;margin-bottom:14px;">
+              <strong style="display:block;font-size:14px;margin-bottom:4px;">📱 Android (Chrome)</strong>
+              <span style="font-size:12px;opacity:0.85;">Tek tıkla ana ekrana eklenir.</span>
+            </div>
+            <button type="button" id="installAndroidBtn" class="primary-button" style="width:100%;padding:14px;font-size:14px;font-weight:700;">⬇ Şimdi Kur</button>
+          </div>
+
+          <!-- iOS Safari (manuel) -->
+          <div id="installIosPanel" style="display:none;">
+            <div style="background:linear-gradient(135deg,#0f3d6b,#082b4c);color:#fff;padding:14px;border-radius:12px;margin-bottom:14px;">
+              <strong style="display:block;font-size:14px;margin-bottom:4px;">🍏 iPhone / iPad (Safari)</strong>
+              <span style="font-size:12px;opacity:0.85;">Ana ekrana ekleme adımları:</span>
+            </div>
+            <ol style="text-align:left;margin:0;padding-left:22px;font-size:13px;line-height:1.7;color:#1a2a3d;">
+              <li>Safari'de altta <strong>Paylaş</strong> simgesine ⎙ bas</li>
+              <li>Listeden <strong>"Ana Ekrana Ekle"</strong> seç</li>
+              <li>Sağ üstte <strong>Ekle</strong>'ye dokun</li>
+            </ol>
+          </div>
+
+          <!-- Desktop / fallback -->
+          <div id="installDesktopPanel" style="display:none;">
+            <div style="background:rgba(0,169,143,0.10);color:#00665a;padding:14px;border-radius:12px;border:1px solid rgba(0,169,143,0.32);">
+              <strong style="display:block;font-size:14px;margin-bottom:4px;">💻 Bilgisayar / Diğer</strong>
+              <span style="font-size:12px;">Chrome adres çubuğunda <strong>⊕ kur</strong> simgesini tıklayın. Edge/Brave de destekler.</span>
+            </div>
+          </div>
+
+          <p style="margin:14px 0 0;font-size:11px;color:#94a3b8;">Uygulama yer kaplamaz — site bağlantısı (PWA), tek dokunuşla açılır.</p>
+        </div>
+      </div>
 
       <!-- Hero: tek-ekran-boyu başlık + 2 CTA -->
       <section class="login-hero" aria-labelledby="loginHeroTitle">

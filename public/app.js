@@ -1043,6 +1043,62 @@ if (typeof window !== "undefined") {
     }
     if (typeof updatePwaInstallButtons === "function") updatePwaInstallButtons();
   });
+
+  // Landing "📲 Uygulamayı İndir" butonu — modal aç + platforma göre panel göster
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("landingInstallBtn");
+    const modal = document.getElementById("installPwaModal");
+    if (!btn || !modal) return;
+
+    btn.addEventListener("click", () => {
+      // Platform tespit
+      const ua = navigator.userAgent || "";
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const hasInstallPrompt = typeof state !== "undefined" && Boolean(state.deferredInstallPrompt);
+
+      // Tüm panelleri gizle, doğru olanı göster
+      const androidP = document.getElementById("installAndroidPanel");
+      const iosP = document.getElementById("installIosPanel");
+      const desktopP = document.getElementById("installDesktopPanel");
+      if (androidP) androidP.style.display = "none";
+      if (iosP) iosP.style.display = "none";
+      if (desktopP) desktopP.style.display = "none";
+
+      if (hasInstallPrompt) {
+        // Android Chrome — beforeinstallprompt mevcut
+        if (androidP) androidP.style.display = "block";
+      } else if (isIOS) {
+        if (iosP) iosP.style.display = "block";
+      } else if (isAndroid) {
+        // Android ama prompt yok — manuel rehber
+        if (androidP) androidP.style.display = "block";
+        const insBtn = document.getElementById("installAndroidBtn");
+        if (insBtn) {
+          insBtn.disabled = true;
+          insBtn.textContent = "⚙ Chrome menü → 'Uygulamayı yükle'";
+        }
+      } else {
+        if (desktopP) desktopP.style.display = "block";
+      }
+      modal.removeAttribute("hidden");
+    });
+
+    // Android tek-tık install
+    document.addEventListener("click", async (e) => {
+      if (e.target?.id === "installAndroidBtn") {
+        const promptEvent = state?.deferredInstallPrompt;
+        if (!promptEvent) return;
+        promptEvent.prompt();
+        try { await promptEvent.userChoice; } catch {}
+        if (state) state.deferredInstallPrompt = null;
+        modal.setAttribute("hidden", "");
+      }
+      if (e.target?.dataset?.installClose !== undefined || e.target?.closest?.("[data-install-close]")) {
+        modal.setAttribute("hidden", "");
+      }
+    });
+  });
 }
 
 function getMobileTabMeta(tab) {
