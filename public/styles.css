@@ -2083,6 +2083,64 @@ label {
   filter: brightness(1.05);
 }
 
+/* Aktif kullanıcı badge — sidebar'da prominent */
+.erp-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin: 8px 12px 4px;
+  background: linear-gradient(135deg, rgba(8, 43, 76, 0.06), rgba(0, 169, 143, 0.06));
+  border: 1px solid rgba(8, 43, 76, 0.10);
+  border-radius: 10px;
+}
+.erp-user-avatar {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #082b4c, #00a98f);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.erp-user-info {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.erp-user-info strong {
+  font-size: 13.5px;
+  color: #082b4c;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.erp-user-info small {
+  font-size: 10.5px;
+  color: rgba(8, 43, 76, 0.62);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.erp-user-badge.role-admin .erp-user-avatar {
+  background: linear-gradient(135deg, #ff6a3d, #ff8a00);
+}
+.erp-user-badge.role-staff .erp-user-avatar {
+  background: linear-gradient(135deg, #00a98f, #0f3d6b);
+}
+.erp-user-badge.role-customer .erp-user-avatar {
+  background: linear-gradient(135deg, #082b4c, #1a4f7f);
+}
+
 .stocked-card-detail {
   min-height: 2.5em;
   font-size: 0.82rem;

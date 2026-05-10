@@ -3649,6 +3649,23 @@ function showApp() {
   // Rol bazlı CSS kilidi için body'ye data-role set
   document.body.dataset.role = effectiveRole() || "";
   refs.welcomeText.textContent = t("messages.welcome", state.user.name, isCustomerUser() && !state.user?.emailVerified);
+
+  // Kullanıcı badge — sidebar'da prominent gösterim
+  const userName = state.user?.name || state.user?.username || "—";
+  const userRole = effectiveRole() || "—";
+  const initials = userName.split(/\s+/).slice(0, 2).map((w) => w.charAt(0).toUpperCase()).join("") || "?";
+  const roleLabels = { admin: langText("Yönetici", "Admin"), staff: langText("Personel", "Personal"), customer: langText("Müşteri", "Kunde") };
+  const badge = document.getElementById("erpUserBadge");
+  const avatarEl = document.getElementById("erpUserAvatar");
+  const nameEl = document.getElementById("erpUserName");
+  const roleEl = document.getElementById("erpUserRole");
+  if (badge) {
+    badge.classList.remove("role-admin", "role-staff", "role-customer");
+    badge.classList.add(`role-${userRole}`);
+    if (avatarEl) avatarEl.textContent = initials;
+    if (nameEl) nameEl.textContent = userName;
+    if (roleEl) roleEl.textContent = roleLabels[userRole] || userRole;
+  }
   document.querySelectorAll(".admin-only").forEach((node) => {
     node.classList.toggle("hidden", !isAdminUser());
   });

@@ -2523,6 +2523,38 @@ function createApp() {
         details: { orderId, lineCount: items.length, date },
       });
 
+      // Backorder bildirimini admin + staff'a gönder (admin_messages tablosu)
+      try {
+        const orderDetail = await get(
+          `SELECT o.id, o.has_backorder, o.estimated_ready_date, o.customer_name,
+                  COUNT(oi.id) FILTER (WHERE oi.is_backorder = true) AS backorder_lines,
+                  COUNT(oi.id) AS total_lines,
+                  COALESCE(SUM(oi.quantity * oi.unit_price), 0) AS total_value
+           FROM orders o
+           LEFT JOIN order_items oi ON oi.order_id = o.id
+           WHERE o.id = ?
+           GROUP BY o.id`,
+          [orderId]
+        );
+        if (orderDetail?.has_backorder) {
+          const subject = `🚚 Yeni ön sipariş #${orderId} — ${orderDetail.customer_name}`;
+          const message = `Müşteri **${orderDetail.customer_name}** sipariş #${orderId} verdi.\n\n` +
+            `• Toplam kalem: ${orderDetail.total_lines}\n` +
+            `• Ön sipariş kalem: ${orderDetail.backorder_lines}\n` +
+            `• Toplam değer: €${Number(orderDetail.total_value).toFixed(2)}\n` +
+            `• Tahmini hazır: ${orderDetail.estimated_ready_date || "—"}\n\n` +
+            `Detay için Siparişler sekmesi → #${orderId}.`;
+          await execute(
+            `INSERT INTO admin_messages (sender_user_id, sender_name, sender_role, category, subject, message, status, created_at, updated_at)
+             VALUES (?, ?, 'customer', 'backorder_alert', ?, ?, 'new', NOW(), NOW())`,
+            [req.session.user.id, req.session.user.name, subject, message]
+          );
+        }
+      } catch (notifyErr) {
+        console.error("[backorder-notify]", notifyErr.message);
+        // Bildirim hatası siparişi bozmasın
+      }
+
       return res.json({ ok: true, id: orderId });
     } catch (error) {
       return res.status(400).json({ error: error.message || "Siparis olusturulamadi." });
@@ -4866,7 +4898,12 @@ async function queryAdminMessages(user, limit = 80) {
   const params = [];
   let whereClause = "";
 
-  if (normalizedRole !== "admin") {
+  if (normalizedRole === "staff") {
+    // Staff (Tuncay vb.) kendi gönderdikleri + tüm backorder_alert / order_alert
+    // mesajlarını görür (sipariş takibi için kritik).
+    whereClause = "WHERE (admin_messages.sender_user_id = ? OR admin_messages.category IN ('backorder_alert','order_alert'))";
+    params.push(Number(user?.id || 0));
+  } else if (normalizedRole !== "admin") {
     whereClause = "WHERE admin_messages.sender_user_id = ?";
     params.push(Number(user?.id || 0));
   }
