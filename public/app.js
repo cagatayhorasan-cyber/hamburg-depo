@@ -967,24 +967,82 @@ function registerPwaSupport() {
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/sw.js").catch(() => {
+      navigator.serviceWorker.register("/sw.js").then((registration) => {
+        // Yeni güncelleme var mı kontrol et (her sayfa load'da)
+        registration.update().catch(() => {});
+        // Update bulunduğunda kullanıcıya toast göster
+        registration.addEventListener("updatefound", () => {
+          const newWorker = registration.installing;
+          if (!newWorker) return;
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              // Yeni SW kuruldu (eski hâlâ aktif). Kullanıcıya bildir.
+              showUpdateAvailableToast(() => {
+                newWorker.postMessage({ type: "SKIP_WAITING" });
+              });
+            }
+          });
+        });
+        // SW controller değiştiğinde sayfayı yenile (yeni version aktif)
+        let reloading = false;
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (reloading) return;
+          reloading = true;
+          window.location.reload();
+        });
+      }).catch(() => {
         // ignore pwa registration issues on unsupported browsers
       });
     }, { once: true });
-  }
 
+    // Her 5 dakikada bir SW update kontrolü (PWA sürekli açık kalırsa)
+    setInterval(() => {
+      navigator.serviceWorker.getRegistration().then((reg) => reg && reg.update().catch(() => {}));
+    }, 5 * 60 * 1000);
+  }
+}
+
+// SW update toast — kullanıcı "Şimdi yenile" derse yeni SW aktif olur
+function showUpdateAvailableToast(applyUpdate) {
+  // Eskisi varsa kaldır
+  const old = document.getElementById("swUpdateToast");
+  if (old) old.remove();
+  const toast = document.createElement("div");
+  toast.id = "swUpdateToast";
+  toast.style.cssText = "position:fixed;bottom:20px;right:20px;z-index:99999;background:linear-gradient(135deg,#082b4c,#0f3d6b);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,0.3);font-family:Inter,sans-serif;font-size:13px;max-width:340px;display:flex;align-items:center;gap:10px;";
+  toast.innerHTML = `
+    <span style="font-size:20px;">🔄</span>
+    <div style="flex:1;line-height:1.4;">
+      <strong style="display:block;font-size:13.5px;">Yeni güncelleme var</strong>
+      <span style="opacity:0.85;font-size:12px;">Programın yeni sürümü hazır.</span>
+    </div>
+    <button id="swUpdateApplyBtn" style="background:#ff8a00;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;">Şimdi Yenile</button>
+    <button id="swUpdateDismissBtn" style="background:transparent;color:rgba(255,255,255,0.7);border:none;font-size:18px;cursor:pointer;line-height:1;">×</button>
+  `;
+  document.body.appendChild(toast);
+  document.getElementById("swUpdateApplyBtn").addEventListener("click", () => {
+    toast.remove();
+    applyUpdate();
+  });
+  document.getElementById("swUpdateDismissBtn").addEventListener("click", () => toast.remove());
+}
+
+// PWA install prompt handlers (initialize sonrası bağımsız)
+if (typeof window !== "undefined") {
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
-    state.deferredInstallPrompt = event;
-    updatePwaInstallButtons();
+    if (typeof state !== "undefined") {
+      state.deferredInstallPrompt = event;
+    }
+    if (typeof updatePwaInstallButtons === "function") updatePwaInstallButtons();
   });
 
   window.addEventListener("appinstalled", () => {
-    state.deferredInstallPrompt = null;
-    updatePwaInstallButtons();
+    if (typeof state !== "undefined") {
+      state.deferredInstallPrompt = null;
+    }
+    if (typeof updatePwaInstallButtons === "function") updatePwaInstallButtons();
   });
-
-  updatePwaInstallButtons();
 }
 
 function getMobileTabMeta(tab) {
