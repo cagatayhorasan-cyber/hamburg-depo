@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "_": "Not: top-level 'headers' bloğu kaldırıldı — Vercel 'routes' tanımlıyken modern 'headers/redirects/rewrites' alanlarını yok sayıyor. Tüm güvenlik header'ları zaten aşağıdaki 'routes' içinde tekrar tanımlı.",
   "builds": [
     {
       "src": "api/[...path].js",
