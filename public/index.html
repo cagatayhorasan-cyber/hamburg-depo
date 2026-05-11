@@ -425,6 +425,7 @@
               <button class="tab-button admin-only" data-tab="archive" type="button"><span class="erp-nav-icon">AŞ</span><span class="tab-title">Arşiv</span></button>
               <button class="tab-button admin-only" data-tab="users" type="button"><span class="erp-nav-icon">KL</span><span class="tab-title">Kullanıcılar</span></button>
               <button class="tab-button admin-only" data-tab="security" type="button"><span class="erp-nav-icon">GV</span><span class="tab-title">Güvenlik</span></button>
+              <button class="tab-button admin-only" data-tab="activity" type="button"><span class="erp-nav-icon">AK</span><span class="tab-title">Müşteri Hareketleri</span></button>
               <button class="tab-button admin-only" data-tab="messages" type="button"><span class="erp-nav-icon">MJ</span><span class="tab-title">Mesajlar</span></button>
               <button class="tab-button admin-only" data-tab="training" type="button"><span class="erp-nav-icon">DM</span><span class="tab-title">DRC MAN</span></button>
             </div>
@@ -1189,6 +1190,65 @@
             </div>
           </div>
 
+          <div class="tab-content admin-only" data-tab-content="activity">
+            <section>
+              <div class="section-head">
+                <div>
+                  <h2>Müşteri Hareketleri</h2>
+                  <p class="muted" id="activitySummary">Kullanıcıların sayfa ziyaretleri, aramaları, ürün görüntülemeleri, sepet ve sipariş eylemleri.</p>
+                </div>
+                <div class="action-row">
+                  <button id="activityRefreshBtn" class="secondary-button" type="button">↻ Yenile</button>
+                </div>
+              </div>
+
+              <div class="filters-row" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;">
+                <select id="activityUserFilter" class="mini-select">
+                  <option value="">Tüm kullanıcılar</option>
+                </select>
+                <select id="activityEventFilter" class="mini-select">
+                  <option value="">Tüm olaylar</option>
+                  <option value="page_view">Sayfa görüntüleme</option>
+                  <option value="search">Arama</option>
+                  <option value="product_view">Ürün görüntüleme</option>
+                  <option value="category_view">Kategori</option>
+                  <option value="brand_view">Marka</option>
+                  <option value="cart_add">Sepete ekle</option>
+                  <option value="cart_remove">Sepetten çıkar</option>
+                  <option value="order_placed">Sipariş</option>
+                  <option value="bot_message">DRC MAN mesajı</option>
+                  <option value="filter_apply">Filtre</option>
+                  <option value="login">Giriş</option>
+                  <option value="logout">Çıkış</option>
+                </select>
+                <select id="activitySinceFilter" class="mini-select">
+                  <option value="1h">Son 1 saat</option>
+                  <option value="24h" selected>Son 24 saat</option>
+                  <option value="7d">Son 7 gün</option>
+                  <option value="30d">Son 30 gün</option>
+                </select>
+                <input type="search" id="activitySearch" class="mini-input" placeholder="Etiket içinde ara..." style="flex:1;min-width:220px;" />
+              </div>
+
+              <!-- Stats kartları -->
+              <div id="activityStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;"></div>
+
+              <!-- Aktif kullanıcı listesi -->
+              <div style="margin-bottom:24px;">
+                <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;">Son 7 günde aktif kullanıcılar</h3>
+                <div id="activeUsersTable" style="overflow-x:auto;">
+                  <div class="muted" style="padding:12px;">Yükleniyor...</div>
+                </div>
+              </div>
+
+              <!-- Aktivite timeline -->
+              <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;">Olay akışı (timeline)</h3>
+              <div id="activityTimeline" style="background:#fff;border:1px solid #e5e7eb;border-radius:6px;max-height:600px;overflow-y:auto;">
+                <div class="muted" style="padding:24px;text-align:center;">Yükleniyor...</div>
+              </div>
+            </section>
+          </div>
+
           <div class="tab-content" data-tab-content="iot" style="display:none"></div>
 
           <div class="tab-content" data-tab-content="projects">
@@ -1641,5 +1701,6 @@
     </section>
   </aside>
   <script src="/app.js?v=20260424-name-de-cart"></script>
+  <script src="/tracker.js?v=20260511-activity"></script>
 </body>
 </html>

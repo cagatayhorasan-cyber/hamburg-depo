@@ -7752,6 +7752,12 @@ function renderTabData(tab) {
     }
     return;
   }
+  if (tab === "activity") {
+    if (typeof loadActivityTab === "function") {
+      loadActivityTab();
+    }
+    return;
+  }
   if (tab === "tools") {
     return;
   }
@@ -9845,3 +9851,224 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
+
+// ==============================================================
+// MÜŞTERİ HAREKETLERİ (Activity Tab)
+// ==============================================================
+
+async function loadActivityTab() {
+  const params = readActivityFilters();
+  const eventsUrl = "/api/admin/user-activity?" + buildActivityQuery(params, 300);
+  const statsUrl = "/api/admin/user-activity/stats?" + buildActivityQuery(params, null);
+  const usersUrl = "/api/admin/active-users?since=" + sinceFromFilter(params.since) + "&limit=30";
+
+  try {
+    const [eventsRes, statsRes, usersRes] = await Promise.all([
+      fetch(eventsUrl, { credentials: "same-origin" }),
+      fetch(statsUrl, { credentials: "same-origin" }),
+      fetch(usersUrl, { credentials: "same-origin" }),
+    ]);
+    const eventsData = await eventsRes.json();
+    const statsData = await statsRes.json();
+    const usersData = await usersRes.json();
+
+    renderActivityStats(statsData?.stats || null);
+    renderActiveUsers(usersData?.users || []);
+    renderActivityTimeline(eventsData?.events || []);
+    populateActivityUserFilter(usersData?.users || []);
+  } catch (e) {
+    console.error("[activity] load error:", e);
+    const tl = document.getElementById("activityTimeline");
+    if (tl) tl.innerHTML = '<div class="muted" style="padding:24px;text-align:center;color:#b91c1c;">Yükleme hatası: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+
+function readActivityFilters() {
+  return {
+    userId:    document.getElementById("activityUserFilter")?.value || "",
+    eventType: document.getElementById("activityEventFilter")?.value || "",
+    since:     document.getElementById("activitySinceFilter")?.value || "24h",
+    search:    document.getElementById("activitySearch")?.value?.trim() || "",
+  };
+}
+
+function sinceFromFilter(s) {
+  const now = Date.now();
+  const map = { "1h": 1, "24h": 24, "7d": 168, "30d": 720 };
+  const hours = map[s] || 24;
+  return new Date(now - hours * 3600 * 1000).toISOString();
+}
+
+function buildActivityQuery(params, limit) {
+  const q = new URLSearchParams();
+  if (params.userId) q.set("userId", params.userId);
+  if (params.eventType) q.set("eventType", params.eventType);
+  q.set("since", sinceFromFilter(params.since));
+  if (limit) q.set("limit", String(limit));
+  return q.toString();
+}
+
+function renderActivityStats(stats) {
+  const root = document.getElementById("activityStats");
+  if (!root || !stats) return;
+  const cards = [
+    { label: "Toplam olay", value: stats.total, icon: "📊" },
+    { label: "Top arama", value: (stats.topSearches[0]?.label || "—"), icon: "🔍", sub: stats.topSearches[0]?.count + " kez" },
+    { label: "Top ürün", value: (stats.topItems[0]?.label || "—"), icon: "📦", sub: stats.topItems[0]?.count + " görüntüleme" },
+    { label: "Top olay tipi", value: (stats.topEvents[0]?.eventType || "—"), icon: "🎯", sub: stats.topEvents[0]?.count + " kez" },
+  ];
+  root.innerHTML = cards.map(c => `
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:14px 16px;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;margin-bottom:4px;">${c.icon} ${escapeHtml(c.label)}</div>
+      <div style="font-size:16px;font-weight:700;color:#1f2937;line-height:1.3;">${escapeHtml(String(c.value || ""))}</div>
+      ${c.sub ? `<div style="font-size:11px;color:#6b7280;margin-top:2px;">${escapeHtml(c.sub)}</div>` : ""}
+    </div>
+  `).join("");
+}
+
+function renderActiveUsers(users) {
+  const root = document.getElementById("activeUsersTable");
+  if (!root) return;
+  if (!users.length) {
+    root.innerHTML = '<div class="muted" style="padding:16px;">Son 7 günde aktif kullanıcı yok.</div>';
+    return;
+  }
+  const rows = users.map(u => {
+    const lastSeen = u.lastSeen ? new Date(u.lastSeen).toLocaleString("tr-TR") : "—";
+    const roleClass = u.role === "admin" ? "#7c3aed" : (u.role === "staff" ? "#0070c0" : (u.role === "customer" ? "#16a34a" : "#6b7280"));
+    return `
+      <tr>
+        <td style="padding:8px 12px;">
+          <a href="#" data-activity-user-id="${u.userId || ''}" class="link-button">${escapeHtml(u.name)}</a>
+          <div style="font-size:11px;color:#6b7280;">${escapeHtml(u.username || "")}</div>
+        </td>
+        <td style="padding:8px 12px;"><span style="background:${roleClass};color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">${escapeHtml(u.role)}</span></td>
+        <td style="padding:8px 12px;text-align:right;">${u.eventCount}</td>
+        <td style="padding:8px 12px;text-align:right;">${u.productViews}</td>
+        <td style="padding:8px 12px;text-align:right;">${u.searches}</td>
+        <td style="padding:8px 12px;text-align:right;">${u.cartAdds}</td>
+        <td style="padding:8px 12px;text-align:right;">${u.ordersPlaced}</td>
+        <td style="padding:8px 12px;font-size:11px;color:#6b7280;">${lastSeen}</td>
+      </tr>
+    `;
+  }).join("");
+  root.innerHTML = `
+    <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e7eb;border-radius:6px;font-size:13px;">
+      <thead style="background:#f9fafb;">
+        <tr>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#6b7280;">Kullanıcı</th>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#6b7280;">Rol</th>
+          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Olay</th>
+          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Ürün</th>
+          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Arama</th>
+          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Sepet</th>
+          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Sipariş</th>
+          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#6b7280;">Son</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+  // Bir kullanıcıya tıklayınca timeline filtreli yükle
+  root.querySelectorAll("[data-activity-user-id]").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const uid = a.getAttribute("data-activity-user-id");
+      const sel = document.getElementById("activityUserFilter");
+      if (sel && uid) { sel.value = uid; }
+      loadActivityTab();
+    });
+  });
+}
+
+function renderActivityTimeline(events) {
+  const root = document.getElementById("activityTimeline");
+  if (!root) return;
+  const searchFilter = (document.getElementById("activitySearch")?.value || "").toLowerCase();
+  const filtered = searchFilter
+    ? events.filter(e => (e.eventLabel || "").toLowerCase().includes(searchFilter) || (e.pagePath || "").toLowerCase().includes(searchFilter))
+    : events;
+  if (!filtered.length) {
+    root.innerHTML = '<div class="muted" style="padding:24px;text-align:center;">Bu filtrelerle eşleşen aktivite yok.</div>';
+    return;
+  }
+  const eventIcons = {
+    page_view: "👁", search: "🔍", product_view: "📦", category_view: "📁",
+    brand_view: "🏷", cart_add: "🛒", cart_remove: "➖", cart_clear: "🗑",
+    order_placed: "✅", login: "🔐", logout: "🚪", bot_message: "🤖",
+    filter_apply: "🎯", project_view: "📐", profile_update: "👤",
+  };
+  const html = filtered.map(ev => {
+    const when = new Date(ev.createdAt).toLocaleString("tr-TR");
+    const ago = humanizeAgo(new Date(ev.createdAt));
+    const icon = eventIcons[ev.eventType] || "📌";
+    const userBadge = ev.userId
+      ? `<a href="#" data-activity-user-id="${ev.userId}" class="link-button" style="font-weight:600;">${escapeHtml(ev.userName || "U#" + ev.userId)}</a>`
+      : `<span style="color:#9ca3af;">Anonim</span>`;
+    const roleBadge = ev.userRole
+      ? `<span style="background:#e5e7eb;color:#374151;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:600;">${escapeHtml(ev.userRole)}</span>`
+      : "";
+    return `
+      <div style="display:grid;grid-template-columns:36px 1fr auto;gap:12px;padding:12px 16px;border-bottom:1px solid #f3f4f6;align-items:start;">
+        <div style="font-size:22px;line-height:1;">${icon}</div>
+        <div>
+          <div style="font-size:13px;">
+            ${userBadge} ${roleBadge}
+            <strong style="color:#374151;">${escapeHtml(ev.eventType)}</strong>
+            ${ev.eventLabel ? '— <span style="color:#1f2937;">' + escapeHtml(ev.eventLabel) + '</span>' : ""}
+          </div>
+          <div style="font-size:11px;color:#6b7280;margin-top:2px;">
+            ${ev.pagePath ? '📍 ' + escapeHtml(ev.pagePath) : ""}
+            ${ev.targetType ? ' · ' + escapeHtml(ev.targetType) + (ev.targetId ? "#" + ev.targetId : "") : ""}
+            ${ev.ipAddress ? ' · ' + escapeHtml(ev.ipAddress) : ""}
+          </div>
+        </div>
+        <div style="font-size:11px;color:#9ca3af;text-align:right;white-space:nowrap;">
+          ${escapeHtml(ago)}<br/><span style="font-size:10px;">${when}</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+  root.innerHTML = html;
+  root.querySelectorAll("[data-activity-user-id]").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const uid = a.getAttribute("data-activity-user-id");
+      const sel = document.getElementById("activityUserFilter");
+      if (sel && uid) { sel.value = uid; }
+      loadActivityTab();
+    });
+  });
+}
+
+function populateActivityUserFilter(users) {
+  const sel = document.getElementById("activityUserFilter");
+  if (!sel) return;
+  const current = sel.value;
+  const opts = ['<option value="">Tüm kullanıcılar</option>']
+    .concat(users.map(u => `<option value="${u.userId || ''}">${escapeHtml(u.name)} (${escapeHtml(u.role)})</option>`));
+  sel.innerHTML = opts.join("");
+  if (current) sel.value = current;
+}
+
+function humanizeAgo(date) {
+  const sec = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (sec < 60) return sec + " sn";
+  if (sec < 3600) return Math.floor(sec / 60) + " dk";
+  if (sec < 86400) return Math.floor(sec / 3600) + " sa";
+  return Math.floor(sec / 86400) + " gün";
+}
+
+// Filter event listeners (tab açılınca kurulur)
+document.addEventListener("DOMContentLoaded", () => {
+  const refresh = () => { if (state?.activeTab === "activity") loadActivityTab(); };
+  ["activityUserFilter", "activityEventFilter", "activitySinceFilter"].forEach(id => {
+    document.getElementById(id)?.addEventListener("change", refresh);
+  });
+  let searchTimer;
+  document.getElementById("activitySearch")?.addEventListener("input", () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(refresh, 400);
+  });
+  document.getElementById("activityRefreshBtn")?.addEventListener("click", refresh);
+});

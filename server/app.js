@@ -104,6 +104,13 @@ const {
   sanitizeItemsForRole,
   sanitizeMovementsForRole,
 } = require("./lib/role-filters");
+const {
+  ALLOWED_EVENTS: ACTIVITY_ALLOWED_EVENTS,
+  insertActivity,
+  queryActivity,
+  activityStats,
+  activeUsersList,
+} = require("./lib/activity-log");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -1565,6 +1572,65 @@ function createApp() {
     } catch (e) {
       console.error("[admin/security-events]", e);
       return res.status(500).json({ error: e.message || "Audit sorgusu basarisiz." });
+    }
+  });
+
+  // === Kullanıcı Aktivite İzleme (admin: müşteri davranışını gör) ===
+
+  // Frontend her aktiviteyi buraya gönderir. Kullanıcı login değilse de bilgi düşer (anonim).
+  app.post("/api/activity/track", async (req, res) => {
+    try {
+      const event = req.body || {};
+      await insertActivity(req, event);
+      return res.json({ ok: true });
+    } catch (e) {
+      // Activity log hatası UX'i bozmasın
+      return res.json({ ok: false });
+    }
+  });
+
+  // Admin: tek bir kullanıcının veya tüm kullanıcıların aktivite akışı.
+  app.get("/api/admin/user-activity", requireAdmin, async (req, res) => {
+    try {
+      const rows = await queryActivity({
+        userId:    req.query.userId,
+        role:      req.query.role,
+        eventType: req.query.eventType,
+        since:     req.query.since,
+        limit:     req.query.limit,
+      });
+      return res.json({ ok: true, events: rows, allowedEventTypes: ACTIVITY_ALLOWED_EVENTS });
+    } catch (e) {
+      console.error("[admin/user-activity]", e);
+      return res.status(500).json({ error: e.message || "Aktivite sorgusu basarisiz." });
+    }
+  });
+
+  // Admin: aktivite istatistikleri (top arama, top ürün, günlük trend).
+  app.get("/api/admin/user-activity/stats", requireAdmin, async (req, res) => {
+    try {
+      const stats = await activityStats({
+        userId: req.query.userId,
+        since:  req.query.since,
+      });
+      return res.json({ ok: true, stats });
+    } catch (e) {
+      console.error("[admin/user-activity/stats]", e);
+      return res.status(500).json({ error: e.message || "Stat sorgusu basarisiz." });
+    }
+  });
+
+  // Admin: son 7 gün aktif kullanıcı listesi (özet kartlar için).
+  app.get("/api/admin/active-users", requireAdmin, async (req, res) => {
+    try {
+      const users = await activeUsersList({
+        since: req.query.since,
+        limit: req.query.limit,
+      });
+      return res.json({ ok: true, users });
+    } catch (e) {
+      console.error("[admin/active-users]", e);
+      return res.status(500).json({ error: e.message || "Aktif kullanici listesi basarisiz." });
     }
   });
 
