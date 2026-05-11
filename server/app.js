@@ -104,6 +104,7 @@ const {
   sanitizeItemsForRole,
   sanitizeMovementsForRole,
 } = require("./lib/role-filters");
+const { mountWpSyncRoutes } = require("./lib/wp-sync");
 
 const COMPANY_PROFILE = {
   name: "D-R-C Kältetechnik GmbH",
@@ -346,6 +347,9 @@ function createApp() {
   });
 
   app.use(express.static(path.join(__dirname, "..", "public")));
+
+  // WordPress (drckaltetechnik.de) sync + inbound endpoints (Bearer WP_SYNC_TOKEN)
+  mountWpSyncRoutes(app);
 
   app.get("/api/health", (_req, res) => {
     const dbTarget = dbClient === "postgres"
