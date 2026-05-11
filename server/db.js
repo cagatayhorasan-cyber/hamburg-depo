@@ -623,7 +623,6 @@ async function initDatabase() {
   ensureMovementIndexesSqlite();
   ensureQuoteColumnsSqlite();
   ensureCashbookColumnsSqlite();
-  ensureVendorsTableSqlite();
   ensureAgentTrainingIndexesSqlite();
   ensureTroubleshootingBankIndexesSqlite();
   ensureSecurityIndexesSqlite();
@@ -663,7 +662,6 @@ async function runPostgresSchemaInit() {
   await ensureSecurityIndexesPostgres();
   await ensureAdminMessageIndexesPostgres();
   await ensureQuoteColumnsPostgres();
-  await ensureVendorsTablePostgres();
   await ensureCashbookColumnsPostgres();
   await ensureProjectIndexesPostgres();
   await seedUsers({
@@ -806,36 +804,6 @@ function ensureItemColumnsSqlite() {
   if (!columns.includes("allow_backorder")) {
     sqliteDb.exec("ALTER TABLE items ADD COLUMN allow_backorder INTEGER NOT NULL DEFAULT 1");
   }
-  // WP/marketplace: indirimli üye fiyatı (0 = sale_price kullan) ve vendor (NULL = DRC ana)
-  if (!columns.includes("member_price")) {
-    sqliteDb.exec("ALTER TABLE items ADD COLUMN member_price REAL NOT NULL DEFAULT 0");
-  }
-  if (!columns.includes("vendor_id")) {
-    sqliteDb.exec("ALTER TABLE items ADD COLUMN vendor_id INTEGER");
-  }
-}
-
-function ensureVendorsTableSqlite() {
-  sqliteDb.exec(`
-    CREATE TABLE IF NOT EXISTS vendors (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      owner_user_id INTEGER NOT NULL,
-      business_name TEXT NOT NULL,
-      slug TEXT NOT NULL UNIQUE,
-      status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','suspended','rejected')),
-      commission_pct REAL NOT NULL DEFAULT 10,
-      contact_email TEXT,
-      contact_phone TEXT,
-      address TEXT,
-      vat_id TEXT,
-      iban TEXT,
-      notes TEXT,
-      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updated_at TEXT,
-      approved_at TEXT,
-      FOREIGN KEY(owner_user_id) REFERENCES users(id)
-    )
-  `);
 }
 
 function ensureUserColumnsSqlite() {
@@ -1210,38 +1178,6 @@ async function ensureItemColumnsPostgres() {
   if (!names.has("allow_backorder")) {
     await postgresSchemaQuery("ALTER TABLE items ADD COLUMN allow_backorder BOOLEAN NOT NULL DEFAULT true");
   }
-  // WP/marketplace: indirimli üye fiyatı + vendor FK
-  if (!names.has("member_price")) {
-    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN member_price NUMERIC NOT NULL DEFAULT 0");
-  }
-  if (!names.has("vendor_id")) {
-    await postgresSchemaQuery("ALTER TABLE items ADD COLUMN vendor_id BIGINT");
-  }
-}
-
-async function ensureVendorsTablePostgres() {
-  await postgresSchemaQuery(`
-    CREATE TABLE IF NOT EXISTS vendors (
-      id BIGSERIAL PRIMARY KEY,
-      owner_user_id BIGINT NOT NULL REFERENCES users(id),
-      business_name TEXT NOT NULL,
-      slug TEXT NOT NULL UNIQUE,
-      status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','approved','suspended','rejected')),
-      commission_pct NUMERIC NOT NULL DEFAULT 10,
-      contact_email TEXT,
-      contact_phone TEXT,
-      address TEXT,
-      vat_id TEXT,
-      iban TEXT,
-      notes TEXT,
-      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-      updated_at TIMESTAMPTZ,
-      approved_at TIMESTAMPTZ
-    )
-  `);
-  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_vendors_owner ON vendors (owner_user_id)");
-  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_vendors_status ON vendors (status)");
-  await postgresSchemaQuery("CREATE INDEX IF NOT EXISTS idx_items_vendor ON items (vendor_id) WHERE vendor_id IS NOT NULL");
 }
 
 async function ensureItemIndexesPostgres() {
