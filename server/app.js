@@ -369,10 +369,10 @@ function createApp() {
 
   app.post("/api/login", authRateLimiter, async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.username || req.body?.email);
-    const password = req.body?.password;
+    const password = typeof req.body?.password === "string" ? req.body.password : "";
     const user = await findUserByLoginIdentifier(identifier);
 
-    if (!user || !bcrypt.compareSync(password || "", user.password_hash)) {
+    if (!user || !bcrypt.compareSync(password, user.password_hash)) {
       await recordFailedAuthentication(req, identifier);
       return res.status(401).json({ error: "Kullanici adi/e-posta veya sifre hatali." });
     }
