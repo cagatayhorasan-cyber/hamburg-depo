@@ -308,25 +308,30 @@
           </div>
           <nav class="erp-nav">
             <div class="tab-buttons erp-nav-buttons">
-              <span class="erp-nav-label admin-staff-only" data-nav-label="main">Ana İşlemler</span>
-              <button class="tab-button admin-staff-only active" data-tab="items" type="button"><span class="erp-nav-icon">ST</span><span class="tab-title">Stok</span></button>
-              <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="erp-nav-icon">GÇ</span><span class="tab-title">Giriş / Çıkış</span></button>
-              <button class="tab-button admin-staff-only" data-tab="quotes" type="button"><span class="erp-nav-icon">SŞ</span><span class="tab-title">Satış</span></button>
-              <button class="tab-button admin-staff-only" type="button" onclick="document.getElementById('cashbookModal').classList.add('modal-open');if(typeof renderCashbook==='function')renderCashbook()"><span class="erp-nav-icon">KS</span><span class="tab-title">Kasa</span></button>
-              <span class="erp-nav-label" data-nav-label="orders">Sipariş Yönetimi</span>
-              <button class="tab-button admin-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Siparişler</span></button>
-              <button class="tab-button customer-only" data-tab="orders" type="button"><span class="erp-nav-icon">SP</span><span class="tab-title">Sipariş Ver</span></button>
-              <span class="erp-nav-label" data-nav-label="projects">Proje &amp; Araçlar</span>
-              <button class="tab-button" data-tab="projects" type="button"><span class="erp-nav-icon">PR</span><span class="tab-title">Projeler</span></button>
-              <button class="tab-button" data-tab="tools" type="button"><span class="erp-nav-icon">AR</span><span class="tab-title">Proje Araçları</span></button>
-              <span class="erp-nav-label admin-only" data-nav-label="admin">Yönetim</span>
-              <!-- Masraf sekmesi kaldırıldı — tüm gider/gelir Kasa'da (cashbook) yönetiliyor -->
-              <button class="tab-button admin-only" data-tab="archive" type="button"><span class="erp-nav-icon">AŞ</span><span class="tab-title">Arşiv</span></button>
-              <button class="tab-button admin-only" data-tab="users" type="button"><span class="erp-nav-icon">KL</span><span class="tab-title">Kullanıcılar</span></button>
-              <button class="tab-button admin-only" data-tab="security" type="button"><span class="erp-nav-icon">GV</span><span class="tab-title">Güvenlik</span></button>
-              <button class="tab-button admin-only" data-tab="activity" type="button"><span class="erp-nav-icon">AK</span><span class="tab-title">Müşteri Hareketleri</span></button>
-              <button class="tab-button admin-only" data-tab="messages" type="button"><span class="erp-nav-icon">MJ</span><span class="tab-title">Mesajlar</span></button>
-              <button class="tab-button admin-only" data-tab="training" type="button"><span class="erp-nav-icon">DM</span><span class="tab-title">DRC MAN</span></button>
+              <!-- 6 ana operasyonel tab + Yönetim dropdown -->
+              <button class="tab-button admin-staff-only active" data-tab="items" type="button"><span class="erp-nav-icon">📦</span><span class="tab-title">Stok</span></button>
+              <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="erp-nav-icon">🔄</span><span class="tab-title">Hareketler</span></button>
+              <button class="tab-button admin-staff-only" data-tab="quotes" type="button"><span class="erp-nav-icon">🛒</span><span class="tab-title">Satış</span></button>
+              <button class="tab-button admin-staff-only" type="button" onclick="document.getElementById('cashbookModal').classList.add('modal-open');if(typeof renderCashbook==='function')renderCashbook()"><span class="erp-nav-icon">💰</span><span class="tab-title">Kasa</span></button>
+              <button class="tab-button admin-only" data-tab="orders" type="button"><span class="erp-nav-icon">📋</span><span class="tab-title">Siparişler</span></button>
+              <button class="tab-button customer-only" data-tab="orders" type="button"><span class="erp-nav-icon">🛒</span><span class="tab-title">Sipariş Ver</span></button>
+              <button class="tab-button" data-tab="projects" type="button"><span class="erp-nav-icon">🏗️</span><span class="tab-title">Projeler</span></button>
+
+              <!-- Yönetim ▼ dropdown (az kullanılanlar) -->
+              <div class="erp-nav-dropdown admin-only">
+                <button type="button" class="tab-button erp-nav-dropdown-toggle" data-erp-dropdown-toggle="yonetim" aria-haspopup="menu" aria-expanded="false">
+                  <span class="erp-nav-icon">⚙️</span><span class="tab-title">Yönetim</span><span class="erp-nav-caret" aria-hidden="true">▾</span>
+                </button>
+                <div class="erp-nav-dropdown-menu" data-erp-dropdown-menu="yonetim" hidden role="menu">
+                  <button class="tab-button" data-tab="users" type="button" role="menuitem"><span class="erp-nav-icon">👥</span><span class="tab-title">Kullanıcılar</span></button>
+                  <button class="tab-button" data-tab="security" type="button" role="menuitem"><span class="erp-nav-icon">🛡️</span><span class="tab-title">Güvenlik</span></button>
+                  <button class="tab-button" data-tab="activity" type="button" role="menuitem"><span class="erp-nav-icon">📊</span><span class="tab-title">Müşteri Hareketleri</span></button>
+                  <button class="tab-button" data-tab="messages" type="button" role="menuitem"><span class="erp-nav-icon">💬</span><span class="tab-title">Mesajlar</span></button>
+                  <button class="tab-button" data-tab="training" type="button" role="menuitem"><span class="erp-nav-icon">🤖</span><span class="tab-title">DRC MAN</span></button>
+                  <button class="tab-button" data-tab="tools" type="button" role="menuitem"><span class="erp-nav-icon">🛠️</span><span class="tab-title">Proje Araçları</span></button>
+                  <button class="tab-button" data-tab="archive" type="button" role="menuitem"><span class="erp-nav-icon">🗄️</span><span class="tab-title">Arşiv</span></button>
+                </div>
+              </div>
             </div>
           </nav>
           <div class="erp-sidebar-footer">

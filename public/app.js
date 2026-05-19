@@ -5431,6 +5431,45 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     const modal = document.getElementById("saleDetailModal");
     if (modal && !modal.hidden) closeSaleDetailModal();
+    closeAllErpNavDropdowns();
+  }
+});
+
+// ERP nav dropdown (Yönetim ▼) toggle/close handler
+function closeAllErpNavDropdowns() {
+  document.querySelectorAll(".erp-nav-dropdown.is-open").forEach((wrap) => {
+    wrap.classList.remove("is-open");
+    const tog = wrap.querySelector("[data-erp-dropdown-toggle]");
+    if (tog) tog.setAttribute("aria-expanded", "false");
+    const key = tog?.dataset.erpDropdownToggle;
+    const menu = key ? document.querySelector(`[data-erp-dropdown-menu="${key}"]`) : null;
+    if (menu) menu.hidden = true;
+  });
+}
+document.addEventListener("click", (event) => {
+  const toggle = event.target.closest("[data-erp-dropdown-toggle]");
+  if (toggle) {
+    event.preventDefault();
+    const key = toggle.dataset.erpDropdownToggle;
+    const wrap = toggle.closest(".erp-nav-dropdown");
+    const menu = document.querySelector(`[data-erp-dropdown-menu="${key}"]`);
+    const isOpen = wrap?.classList.contains("is-open");
+    closeAllErpNavDropdowns();
+    if (!isOpen && wrap && menu) {
+      wrap.classList.add("is-open");
+      menu.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+    }
+    return;
+  }
+  // Menu içindeki tab butonuna tıklayınca dropdown'ı kapat (activateTab zaten çağrılır)
+  if (event.target.closest("[data-erp-dropdown-menu] [data-tab]")) {
+    closeAllErpNavDropdowns();
+    return;
+  }
+  // Dışarı tıklama → kapa
+  if (!event.target.closest(".erp-nav-dropdown")) {
+    closeAllErpNavDropdowns();
   }
 });
 
