@@ -135,7 +135,7 @@ const UI_TEXT = {
     companyName: "D-R-C Kältetechnik GmbH",
     authLocationLine: "Hamm & Börnsen bei Hamburg, Deutschland",
     authShowcaseTitle: "Kältetechnik, Lager & Angebot – Alles in einem Portal",
-    authShowcaseCopy: "Soguk oda sistemlerinden kontrol ekipmanlarina kadar tum urun ve sureclerinizi tek merkezden yonetin.",
+    authShowcaseCopy: "Soğuk oda sistemlerinden kontrol ekipmanlarına kadar tüm ürün ve süreçlerinizi tek merkezden yönetin.",
     authHeroPrimary: "Produkte entdecken",
     authHeroSecondary: "Angebot anfordern",
     authLocationCards: [
@@ -143,14 +143,14 @@ const UI_TEXT = {
       { label: "Lager bei Hamburg", name: "Börnsen", copy: "Lauenburger Landstraße 3b · 21039 Börnsen" },
     ],
     authLoginTitle: "Giriş ve müşteri hesabı",
-    authLoginDesc: "Satis, stok ve proje araclarina buradan girilir. Musteriler de kendi hesaplariyla siparislerini takip eder.",
+    authLoginDesc: "Satış, stok ve proje araçlarına buradan girilir. Müşteriler de kendi hesaplarıyla siparişlerini takip eder.",
     solutionsEyebrow: "Unsere Lösungen",
-    solutionsTitle: "Kühlräume, kontrol ve servis ayni akista",
+    solutionsTitle: "Kühlräume, kontrol ve servis aynı akışta",
     brandWallTitle: "Portfolio Marken",
-    brandWallCopy: "D-R-C portfoyunde sahada en cok kullanilan sogutma markalari.",
+    brandWallCopy: "D-R-C portföyünde sahada en çok kullanılan soğutma markaları.",
     productFamilies: ["Kühlräume", "Evaporatoren", "Kondensatoren", "Steuerungssysteme", "Kühlraumtüren", "Panel Systeme", "Service & Support"],
     aboutTitle: "Über uns",
-    aboutCopy: "D-R-C Kältetechnik GmbH, endustriyel sogutma cozumlerinde uzmanlasmis; urun tedariği, stok yonetimi ve teklif sureclerini tek platformda birlestiren modern bir yapidir.",
+    aboutCopy: "D-R-C Kältetechnik GmbH, endüstriyel soğutma çözümlerinde uzmanlaşmış; ürün tedariği, stok yönetimi ve teklif süreçlerini tek platformda birleştiren modern bir yapıdır.",
     addressesTitle: "Standorte",
     contactTitle: "Kontakt",
     contactLabels: ["Telefon", "E-Mail"],
@@ -162,8 +162,8 @@ const UI_TEXT = {
     badgeSecondary: "DRC PEYK Remote Control",
     peykEyebrow: "DRC PEYK",
     peykTitle: "Uzaktan izleme ve kontrol sistemi",
-    peykCopy: "Oda sicakligi, alarm, defrost ve servis mudahalesini tek panelden yonetin.",
-    peykPoints: ["Canli izleme", "Alarm bildirimi", "Uzaktan mudahale"],
+    peykCopy: "Oda sıcaklığı, alarm, defrost ve servis müdahalesini tek panelden yönetin.",
+    peykPoints: ["Canli izleme", "Alarm bildirimi", "Uzaktan müdahale"],
     leanEyebrow: "B2B Portal · Hamm & Hamburg",
     leanTopbarTagline: "Hamm & Hamburg",
     leanHeroTitle: "Endüstriyel Soğutma — Tedarik, Servis, Proje",
@@ -193,160 +193,160 @@ const UI_TEXT = {
     leanMapLink: "Haritada Aç →",
     leanTitle: "Endüstriyel Soğutma Portalı",
     leanSub: "Stok, sipariş, teklif ve soğuk oda projesi tek hesapta.",
-    uiLanguage: "Arayuz Dili",
-    loginIdentifier: "Kullanici Adi veya E-Posta",
-    password: "Sifre",
-    loginButton: "Giris Yap",
-    forgotTitle: "Sifremi Unuttum",
-    forgotDesc: "Kullanici adi veya e-postayi girin. Eslesen hesap varsa sifre yenileme talimati guvenli kanaldan gonderilir.",
-    forgotButton: "Yenileme Baglantisi Gonder",
-    noCustomerAccount: "Musteri hesabi yok mu?",
-    registerTitle: "Musteri Kaydi",
-    registerDesc: "Musteri hesabinizi buradan olusturabilirsiniz.",
+    uiLanguage: "Arayüz Dili",
+    loginIdentifier: "Kullanıcı Adı veya E-Posta",
+    password: "Şifre",
+    loginButton: "Giriş Yap",
+    forgotTitle: "Şifremi Unuttum",
+    forgotDesc: "Kullanıcı adı veya e-postayı girin. Eşleşen hesap varsa şifre yenileme talimatı güvenli kanaldan gönderilir.",
+    forgotButton: "Yenileme Bağlantısı Gönder",
+    noCustomerAccount: "Müşteri hesabi yok mu?",
+    registerTitle: "Müşteri Kaydı",
+    registerDesc: "Müşteri hesabınızı buradan oluşturabilirsiniz.",
     fullName: "Ad Soyad",
     email: "E-Posta",
     phone: "Telefon / WhatsApp",
-    optionalUsername: "Kullanici Adi (Istege Bagli)",
-    optionalUsernamePlaceholder: "Bos birakirsaniz sistem uretir",
-    registerButton: "Musteri Hesabi Ac",
-    resetTitle: "Yeni Sifre Belirle",
-    resetDesc: "E-postadaki baglanti ile geldiyseniz yeni sifrenizi burada belirleyin.",
-    resetButton: "Sifreyi Guncelle",
+    optionalUsername: "Kullanıcı Adı (İsteğe Bağlı)",
+    optionalUsernamePlaceholder: "Boş bırakırsanız sistem üretir",
+    registerButton: "Müşteri Hesabı Aç",
+    resetTitle: "Yeni Şifre Belirle",
+    resetDesc: "E-postadaki bağlantı ile geldiyseniz yeni şifrenizi burada belirleyin.",
+    resetButton: "Şifreyi Güncelle",
     appLabel: "Uygulama:",
-    heroTitle: "Operasyon ve satis kontrol merkezi",
-    heroSubtitle: "Tek ekranda stok, satis, teklif, karbon odağı ve DRC IoT gorunumu.",
+    heroTitle: "Operasyon ve satış kontrol merkezi",
+    heroSubtitle: "Tek ekranda stok, satış, teklif, karbon odağı ve DRC IoT görünümü.",
     downloadXlsx: "Excel Rapor",
     downloadPdf: "PDF Ozet",
-    logout: "Cikis Yap",
-    tabQuotes: "Hizli Satis",
-    tabQuotesDesc: "Teklif, sepet ve direkt satis islemleri",
+    logout: "Çıkış Yap",
+    tabQuotes: "Hızlı Satış",
+    tabQuotesDesc: "Teklif, sepet ve direkt satış işlemleri",
     tabItems: "Malzemeler",
-    tabItemsDesc: "Urun kartlari, filtreleme ve stoklu urun listesi",
-    tabArchive: "Arsiv",
-    tabArchiveDesc: "Pasif urunleri sakla ve geri al",
+    tabItemsDesc: "Ürün kartları, filtreleme ve stoklu ürün listesi",
+    tabArchive: "Arşiv",
+    tabArchiveDesc: "Pasif ürünleri sakla ve geri al",
     tabMovements: "Stok",
-    tabMovementsDesc: "Giris, cikis ve yeni urun kaydi",
+    tabMovementsDesc: "Giriş, çıkış ve yeni ürün kaydı",
     tabExpenses: "Masraf",
-    tabExpensesDesc: "Firma giderlerini ve harcamalari yonet",
+    tabExpensesDesc: "Firma giderlerini ve harcamalari yönet",
     tabCashbook: "Kasa",
     tabCashbookDesc: "Tahsilat ve kasa hareketleri",
-    tabOrders: "Siparisler",
-    tabOrdersDesc: "Siparis takibi ve durum guncelleme",
-    tabCustomerOrders: "Siparis Ver",
-    tabCustomerOrdersDesc: "Stoktaki urunleri gorup talep gonder",
+    tabOrders: "Siparişler",
+    tabOrdersDesc: "Sipariş takibi ve durum güncelleme",
+    tabCustomerOrders: "Sipariş Ver",
+    tabCustomerOrdersDesc: "Stoktaki ürünleri görüp talep gönder",
     tabMessages: "Admin'e Yaz",
-    tabMessagesDesc: "Istek, sikayet ve destek mesaji gonder",
+    tabMessagesDesc: "Istek, şikayet ve destek mesajı gönder",
     tabIot: "DRC IoT",
-    tabIotDesc: "Uzaktan izleme, alarm ve enerji gorunumu",
-    tabUsers: "Kullanicilar",
-    tabUsersDesc: "Admin, personel ve musteri hesaplari",
-    tabSecurity: "Guvenlik",
-    tabSecurityDesc: "Olay kaydi, bloklanan IP ve erisim denemeleri",
+    tabIotDesc: "Uzaktan izleme, alarm ve enerji görünümü",
+    tabUsers: "Kullanıcılar",
+    tabUsersDesc: "Admin, personel ve müşteri hesaplari",
+    tabSecurity: "Güvenlik",
+    tabSecurityDesc: "Olay kaydı, bloklanan IP ve erisim denemeleri",
     tabTools: "Proje Araclari",
-    tabToolsDesc: "Soguk oda cizim ve hesaplama araclari",
-    tabTraining: "DRC MAN Egitim",
-    tabTrainingDesc: "Soru-cevap, gaz egitimi ve retrofit kontrol araclari",
-    roles: { admin: "admin", staff: "personel", customer: "musteri" },
+    tabToolsDesc: "Soğuk oda çizim ve hesaplama araçları",
+    tabTraining: "DRC MAN Eğitim",
+    tabTrainingDesc: "Soru-cevap, gaz eğitimi ve retrofit kontrol araçları",
+    roles: { admin: "admin", staff: "personel", customer: "müşteri" },
     stats: {
-      customerItems: "Stoktaki Urun",
-      customerItemsDesc: "Siparise acik aktif urunler",
-      critical: "Kritik Urun",
-      criticalDesc: "Stogu azalan urunler",
-      totalItems: "Malzeme Cesidi",
-      totalItemsDesc: "Kayitli aktif kart",
+      customerItems: "Stoktaki Ürün",
+      customerItemsDesc: "Siparişe açık aktif ürünler",
+      critical: "Kritik Ürün",
+      criticalDesc: "Stoğu azalan ürünler",
+      totalItems: "Malzeme Çeşidi",
+      totalItemsDesc: "Kayıtlı aktif kart",
       stockValue: "Stok Maliyeti",
-      stockValueDesc: "Alis fiyatina gore toplam",
+      stockValueDesc: "Alış fiyatına göre toplam",
       stockCostValue: "Stok Maliyeti",
-      stockCostValueDesc: "Alis fiyatina gore toplam",
-      stockSaleValue: "Satis Stok Degeri",
-      stockSaleValueDesc: "Satis fiyatina gore toplam",
+      stockCostValueDesc: "Alış fiyatına göre toplam",
+      stockSaleValue: "Satış Stok Değeri",
+      stockSaleValueDesc: "Satış fiyatına göre toplam",
       expenseTotal: "Toplam Masraf",
-      expenseTotalDesc: "Tum giderler",
+      expenseTotalDesc: "Tüm giderler",
       cashBalance: "Kasa Bakiyesi",
       cashBalanceDesc: "Net nakit durum",
     },
     common: {
-      edit: "Duzenle",
+      edit: "Düzenle",
       delete: "Sil",
-      cancelEdit: "Duzenlemeyi Iptal Et",
+      cancelEdit: "Düzenlemeyi İptal Et",
       save: "Kaydet",
       addToCart: "Sepete Ekle",
-      addToOrder: "Siparise Ekle",
-      viewOnly: "Goruntuleme",
+      addToOrder: "Siparişe Ekle",
+      viewOnly: "Görüntüleme",
       restore: "Geri Al",
-      archive: "Arsivle",
-      reverse: "Iptal Et",
-      reversed: "Iptal edildi",
-      reverseRecord: "Iptal kaydi",
+      archive: "Arşivle",
+      reverse: "İptal Et",
+      reversed: "İptal edildi",
+      reverseRecord: "İptal kaydı",
       active: "Aktif",
       passive: "Pasif",
-      in: "Giris",
-      out: "Cikis",
-      unbilledSale: "Faturasiz Satis",
-      approved: "Onaylandi",
-      preparing: "Hazirlaniyor",
-      completed: "Tamamlandi",
-      cancelled: "Iptal",
+      in: "Giriş",
+      out: "Çıkış",
+      unbilledSale: "Faturasız Satış",
+      approved: "Onaylandı",
+      preparing: "Hazırlanıyor",
+      completed: "Tamamlandı",
+      cancelled: "İptal",
       pending: "Beklemede",
-      export: "Yurt Disi",
-      inland: "Yurt Ici",
-      release: "Bloku Kaldir",
+      export: "Yurt Dışı",
+      inland: "Yurt İçi",
+      release: "Bloğu Kaldır",
       markRead: "Okundu",
       close: "Kapat",
     },
     messages: {
-      welcome: (name, needsVerify) => `${name} olarak giris yaptiniz${needsVerify ? " | E-posta henuz dogrulanmadi" : ""}`,
-      customerRegisterMailSent: "Hesabiniz olusturuldu. Dogrulama maili gonderildi ve kendi musteri panelinizdesiniz.",
-      customerRegisterNoMail: "Hesabiniz olusturuldu, ancak mail sistemi ayarli olmadigi icin dogrulama maili gonderilemedi.",
-      operationDone: "Islem tamamlandi.",
-      passwordUpdated: "Sifreniz guncellendi.",
-      stockIntakeSaved: "Yeni urun karti ve ilk stok girisi basariyla kaydedildi.",
-      bulkUpdated: (count) => `${count} kaydin satis fiyati guncellendi.`,
-      itemsSummaryShort: (count, total) => `${count} / ${total} malzeme goruntuleniyor`,
-      itemsSummaryLong: (count, total, max) => `${count} / ${total} malzeme bulundu. Performans icin ilk ${max} kayit gosteriliyor.`,
+      welcome: (name, needsVerify) => `${name} olarak giriş yaptınız${needsVerify ? " | E-posta henüz doğrulanmadı" : ""}`,
+      customerRegisterMailSent: "Hesabınız oluşturuldu. Doğrulama maili gönderildi ve kendi müşteri panelinizdesiniz.",
+      customerRegisterNoMail: "Hesabınız oluşturuldu, ancak mail sistemi ayarlı olmadigi için doğrulama maili gönderilemedi.",
+      operationDone: "İşlem tamamlandı.",
+      passwordUpdated: "Şifreniz güncellendi.",
+      stockIntakeSaved: "Yeni ürün kartı ve ilk stok girişi basariyla kaydedildi.",
+      bulkUpdated: (count) => `${count} kaydın satış fiyati güncellendi.`,
+      itemsSummaryShort: (count, total) => `${count} / ${total} malzeme görüntüleniyor`,
+      itemsSummaryLong: (count, total, max) => `${count} / ${total} malzeme bulundu. Performans için ilk ${max} kayıt gösteriliyor.`,
       stockedSummary: (count) => `${count} ürün stokta`,
-      noStockedItems: "Stokta urun bulunamadi.",
-      archiveSummary: (count) => `${count} pasif urun arsivde tutuluyor`,
-      noArchive: "Pasif urun yok.",
-      noQuotes: "Henuz teklif yok.",
-      emptyQuoteDraft: "Sepet bos. Soldan urun secip ekleyin.",
-      quoteSummary: (_subtotal, _discount, _netTotal, _vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Faturali: ${grossTotal} | Faturasiz: ${unbilledTotal} | Tahsil: ${collectedAmount} | Kalan: ${remaining} | Faturasiz kalan: ${unbilledRemaining}`,
-      noPosItems: "Aramaya uygun urun bulunamadi.",
-      noAdminOrders: "Henuz musteri siparisi yok.",
-      noCustomerCatalog: "Siparise acik stoklu urun bulunamadi.",
-      emptyCustomerCart: "Sepetiniz bos. Soldan stoktaki urunleri ekleyebilirsiniz.",
-      noCustomerOrderLines: "Henuz siparis kalemi yok.",
+      noStockedItems: "Stokta ürün bulunamadi.",
+      archiveSummary: (count) => `${count} pasif ürün arşivde tutuluyor`,
+      noArchive: "Pasif ürün yok.",
+      noQuotes: "Henüz teklif yok.",
+      emptyQuoteDraft: "Sepet boş. Soldan ürün secip ekleyin.",
+      quoteSummary: (_subtotal, _discount, _netTotal, _vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Faturalı: ${grossTotal} | Faturasız: ${unbilledTotal} | Tahsil: ${collectedAmount} | Kalan: ${remaining} | Faturasız kalan: ${unbilledRemaining}`,
+      noPosItems: "Aramaya uygun ürün bulunamadi.",
+      noAdminOrders: "Henüz müşteri siparişi yok.",
+      noCustomerCatalog: "Siparişe açık stoklu ürün bulunamadi.",
+      emptyCustomerCart: "Sepetiniz boş. Soldan stoktaki ürünleri ekleyebilirsiniz.",
+      noCustomerOrderLines: "Henüz sipariş kalemi yok.",
       customerOrderSummary: (lines, units, total) => `${lines} kalem | Toplam talep: ${units} adet/birim${total ? ` | Tahmini toplam: ${total}` : ""}`,
-      noCustomerOrders: "Daha once gonderilmis siparisiniz yok.",
-      customerLinked: (name) => `Kayitli musteri: ${name}`,
-      customerFreeText: (name) => `Yeni/kayitsiz musteri adi olarak kaydedilecek: ${name}`,
-      noAdminMessages: "Henuz admine gonderilmis mesaj yok.",
-      noOwnAdminMessages: "Henuz admin ekibine gonderilmis mesajiniz yok.",
+      noCustomerOrders: "Daha önce gönderilmiş siparişiniz yok.",
+      customerLinked: (name) => `Kayıtlı müşteri: ${name}`,
+      customerFreeText: (name) => `Yeni/kayıtsız müşteri adı olarak kaydedilecek: ${name}`,
+      noAdminMessages: "Henüz admine gönderilmiş mesaj yok.",
+      noOwnAdminMessages: "Henüz admin ekibine gönderilmiş mesajınız yok.",
       adminMessagesSummary: (total, fresh) => `${total} mesaj | ${fresh} yeni`,
-      adminMessageHistorySummary: (total, fresh) => `${total} mesaj | ${fresh} acik takip`,
-      adminMessageSent: "Mesajiniz admin ekibine gonderildi.",
-      noSecurityEvents: "Su an dikkat gerektiren bir guvenlik kaydi yok.",
-      noSecurityBlocks: "Su an acik IP blogu bulunmuyor.",
-      securitySummary: (events, blocks, activeBlocks) => `${events} kayit | ${blocks} blok gecmisi | ${activeBlocks} aktif blok`,
-      trainingSummary: (count) => `${count} egitim kaydi var. DRC MAN bu kayitlari once kontrol eder.`,
-      noTraining: "Henuz egitim kaydi yok. Ilk soru-cevap ciftinizi soldan ekleyin.",
-      trainingSaved: "Egitim Kaydet",
-      trainingUpdated: "Egitimi Guncelle",
-      quoteSaved: (id) => `Teklif kaydedildi. Son Teklifler alaninda #${id} olarak durur. Stok ve kasa degismez.`,
-      orderSent: "Siparisiniz alindi. Durumunu Siparis Gecmisi alanindan takip edebilirsiniz.",
-      directSaleDone: (id, paid, remaining, hasCash) => `Direkt satis tamamlandi. Stok dusuldu, kayit Son Teklifler ve Stok Hareketleri alanina yazildi${hasCash ? ", tahsilat da Kasa Defteri'ne islendi" : ""}. No: #${id} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
-      unbilledDone: (total, paid, remaining, hasCash, cashEntryId) => `Faturasiz satis kaydedildi. Stok dusuldu${hasCash ? `, tahsilat Kasa Defteri'ne islendi${cashEntryId ? ` (#${cashEntryId})` : ""}` : ""}. Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
-      noOrderPhone: "Bu siparis icin kayitli telefon numarasi yok.",
-      invalidWhatsappPhone: "Telefon numarasi WhatsApp icin uygun formatta degil.",
-      addQuoteFirst: "Once teklif kalemi ekleyin.",
-      addCartFirst: "Once sepete urun ekleyin.",
-      addOrderFirst: "Siparis gondermeden once sepete en az bir urun ekleyin.",
-      deleteTrainingConfirm: "Bu egitim kaydini silmek istediginize emin misiniz?",
-      deleteItemConfirm: "Bu malzeme kartini silmek istiyor musunuz?",
-      archiveItemConfirm: "Bu malzeme aktif listeden kaldirilip arsive tasinsin mi?",
-      deleteExpenseConfirm: "Bu masraf kaydini silmek istiyor musunuz?",
+      adminMessageHistorySummary: (total, fresh) => `${total} mesaj | ${fresh} açık takip`,
+      adminMessageSent: "Mesajiniz admin ekibine gönderildi.",
+      noSecurityEvents: "Şu an dikkat gerektiren bir güvenlik kaydı yok.",
+      noSecurityBlocks: "Şu an açık IP bloğu bulunmuyor.",
+      securitySummary: (events, blocks, activeBlocks) => `${events} kayıt | ${blocks} blok geçmişi | ${activeBlocks} aktif blok`,
+      trainingSummary: (count) => `${count} eğitim kaydı var. DRC MAN bu kayıtlari önce kontrol eder.`,
+      noTraining: "Henüz eğitim kaydı yok. Ilk soru-cevap çiftinizi soldan ekleyin.",
+      trainingSaved: "Eğitim Kaydet",
+      trainingUpdated: "Eğitimi Güncelle",
+      quoteSaved: (id) => `Teklif kaydedildi. Son Teklifler alaninda #${id} olarak durur. Stok ve kasa değişmez.`,
+      orderSent: "Siparişiniz alındı. Durumunu Sipariş Geçmişi alanindan takip edebilirsiniz.",
+      directSaleDone: (id, paid, remaining, hasCash) => `Direkt satış tamamlandı. Stok düşüldü, kayıt Son Teklifler ve Stok Hareketleri alanina yazıldı${hasCash ? ", tahsilat da Kasa Defteri'ne işlendi" : ""}. No: #${id} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      unbilledDone: (total, paid, remaining, hasCash, cashEntryId) => `Faturasız satış kaydedildi. Stok düşüldü${hasCash ? `, tahsilat Kasa Defteri'ne işlendi${cashEntryId ? ` (#${cashEntryId})` : ""}` : ""}. Toplam: ${total} | Tahsil edilen: ${paid} | Kalan: ${remaining}`,
+      noOrderPhone: "Bu sipariş için kayıtlı telefon numarası yok.",
+      invalidWhatsappPhone: "Telefon numarası WhatsApp için uygun formatta değil.",
+      addQuoteFirst: "Önce teklif kalemi ekleyin.",
+      addCartFirst: "Önce sepete ürün ekleyin.",
+      addOrderFirst: "Sipariş göndermeden önce sepete en az bir ürün ekleyin.",
+      deleteTrainingConfirm: "Bu eğitim kaydını silmek istediğinize emin misiniz?",
+      deleteItemConfirm: "Bu malzeme kartını silmek istiyor musunuz?",
+      archiveItemConfirm: "Bu malzeme aktif listeden kaldırılıp arşive taşınsın mi?",
+      deleteExpenseConfirm: "Bu masraf kaydını silmek istiyor musunuz?",
       deleteCashConfirm: "Bu kasa hareketini silmek istiyor musunuz?",
-      reverseMovementConfirm: "Bu stok hareketi ters kayit olusturularak iptal edilsin mi?",
+      reverseMovementConfirm: "Bu stok hareketi ters kayıt oluşturularak iptal edilsin mi?",
     },
   },
   de: {
@@ -369,7 +369,7 @@ const UI_TEXT = {
     brandWallCopy: "Kernmarken aus dem D-R-C Portfolio fuer Verkauf, Lager und Projekteinsatz.",
     productFamilies: ["Kühlräume", "Evaporatoren", "Kondensatoren", "Steuerungssysteme", "Kühlraumtüren", "Panel Systeme", "Service & Support"],
     aboutTitle: "Über uns",
-    aboutCopy: "D-R-C Kältetechnik GmbH ist auf industrielle Kältelösungen spezialisiert und vereint Materialversorgung, Lagerorganisation und Angebotsprozesse in einer modernen Plattform.",
+    aboutCopy: "D-R-C Kältetechnik GmbH ist auf industrielle Kältelösungen spezialışiert und vereint Materialversorgung, Lagerorganisation und Angebotsprozesse in einer modernen Plattform.",
     addressesTitle: "Standorte",
     contactTitle: "Kontakt",
     contactLabels: ["Telefon", "E-Mail"],
@@ -518,9 +518,9 @@ const UI_TEXT = {
       customerRegisterMailSent: "Ihr Konto wurde erstellt. Die Bestaetigungs-E-Mail wurde versendet und Sie befinden sich jetzt im Kundenbereich.",
       customerRegisterNoMail: "Ihr Konto wurde erstellt, aber das Mail-System ist noch nicht aktiv. Deshalb konnte keine Bestaetigung versendet werden.",
       operationDone: "Vorgang abgeschlossen.",
-      passwordUpdated: "Ihr Passwort wurde aktualisiert.",
+      passwordUpdated: "Ihr Passwort wurde aktualışiert.",
       stockIntakeSaved: "Neuer Artikel und erster Lagerbestand wurden erfolgreich gespeichert.",
-      bulkUpdated: (count) => `Die Verkaufspreise von ${count} Datensaetzen wurden aktualisiert.`,
+      bulkUpdated: (count) => `Die Verkaufspreise von ${count} Datensaetzen wurden aktualışiert.`,
       itemsSummaryShort: (count, total) => `${count} / ${total} Artikel werden angezeigt`,
       itemsSummaryLong: (count, total, max) => `${count} / ${total} Artikel gefunden. Aus Performancegruenden werden nur die ersten ${max} angezeigt.`,
       stockedSummary: (count) => `${count} Artikel auf Lager`,
@@ -550,7 +550,7 @@ const UI_TEXT = {
       trainingSummary: (count) => `${count} Trainingseintraege vorhanden. DRC MAN prueft diese zuerst.`,
       noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
       trainingSaved: "Training speichern",
-      trainingUpdated: "Training aktualisieren",
+      trainingUpdated: "Training aktualışieren",
       quoteSaved: (id) => `Angebot gespeichert. Es erscheint unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unveraendert.`,
       orderSent: "Ihre Bestellung wurde aufgenommen. Den Status sehen Sie im Bestellverlauf.",
       directSaleDone: (id, paid, remaining, hasCash) => `Direktverkauf abgeschlossen. Bestand wurde reduziert und der Eintrag unter Letzte Angebote sowie Lagerbewegungen gespeichert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Bezahlt: ${paid} | Offen: ${remaining}`,
@@ -732,7 +732,7 @@ const refs = {
   retrofitChecklistHint: document.getElementById("retrofitChecklistHint"),
   retrofitChecklistOutput: document.getElementById("retrofitChecklistOutput"),
   quoteForm: document.getElementById("quoteForm"),
-  quoteCustomerDatalist: document.getElementById("quoteCustomerDatalist"),
+  quoteCustomerDatalist: document.getElementById("quoteCustomerDatalışt"),
   quoteCustomerNameInput: document.getElementById("quoteCustomerNameInput"),
   quoteCustomerUserIdInput: document.getElementById("quoteCustomerUserIdInput"),
   quoteCustomerHint: document.getElementById("quoteCustomerHint"),
@@ -773,7 +773,7 @@ const refs = {
   projectForm: document.getElementById("projectForm"),
   projectFormTitle: document.getElementById("projectFormTitle"),
   projectFormSubmitButton: document.getElementById("projectFormSubmitButton"),
-  projectCustomerDatalist: document.getElementById("projectCustomerDatalist"),
+  projectCustomerDatalist: document.getElementById("projectCustomerDatalışt"),
   projectCustomerNameInput: document.getElementById("projectCustomerNameInput"),
   projectCustomerUserIdInput: document.getElementById("projectCustomerUserIdInput"),
   projectDetailModal: document.getElementById("projectDetailModal"),
@@ -993,7 +993,7 @@ function registerPwaSupport() {
       }).catch(() => {
         // ignore pwa registration issues on unsupported browsers
       });
-    }, { once: true });
+    }, { önce: true });
 
     // Her 5 dakikada bir SW update kontrolü (PWA sürekli açık kalırsa)
     setInterval(() => {
@@ -1105,67 +1105,67 @@ function getMobileTabMeta(tab) {
   const metaMap = {
     quotes: {
       title: t("tabQuotes"),
-      hint: langText("Mobilde teklif, sepet ve direkt satis akisi once gelir.", "Mobil zuerst: Angebot, Warenkorb und Direktverkauf."),
+      hint: langText("Mobilde teklif, sepet ve direkt satış akisi önce gelir.", "Mobil zuerst: Angebot, Warenkorb und Direktverkauf."),
     },
     orders: {
       title: isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"),
       hint: isCustomerUser()
-        ? langText("Stoktaki urunleri secip siparis talebinizi hizli gonderin.", "Waehlen Sie Lagerartikel und senden Sie Ihre Bestellung schnell.")
-        : langText("Siparis onayi, durum takibi ve musteri donusu burada.", "Bestellfreigabe, Status und Kundenrueckmeldung laufen hier."),
+        ? langText("Stoktaki ürünleri secip sipariş talebinizi hızlı gönderin.", "Waehlen Sie Lagerartikel und senden Sie Ihre Bestellung schnell.")
+        : langText("Sipariş onayi, durum takibi ve müşteri donusu burada.", "Bestellfreigabe, Status und Kundenrueckmeldung laufen hier."),
     },
     items: {
       title: t("tabItems"),
-      hint: langText("Satista en cok sorulan urun, stok ve fiyat aramasi burada.", "Hier finden Sie die haeufigsten Produkt-, Lager- und Preisabfragen."),
+      hint: langText("Satışta en çok sorulan ürün, stok ve fiyat aramasi burada.", "Hier finden Sie die haeufigsten Produkt-, Lager- und Preisabfragen."),
     },
     tools: {
       title: t("tabTools"),
-      hint: langText("Sahada hizli proje ve hesap araclari burada.", "Schnelle Projekt- und Berechnungstools fuer unterwegs."),
+      hint: langText("Sahada hızlı proje ve hesap araçları burada.", "Schnelle Projekt- und Berechnungstools fuer unterwegs."),
     },
     projects: {
       title: langText("Projeler", "Projekte"),
-      hint: langText("Detayli proje takibi bilgisayarda daha rahat; mobilde hizli bakis icin acik.", "Detaillierte Projektarbeit ist am Desktop besser; mobil bleibt der Schnellzugriff offen."),
+      hint: langText("Detayli proje takibi bilgisayarda daha rahat; mobilde hızlı bakis için açık.", "Detaillierte Projektarbeit ist am Desktop besser; mobil bleibt der Schnellzugriff offen."),
     },
     messages: {
       title: t("tabMessages"),
-      hint: langText("Musteri ve ekip yazismalari icin hizli kanal.", "Schneller Kanal fuer Nachrichten mit Kunde oder Team."),
+      hint: langText("Müşteri ve ekip yazismalari için hızlı kanal.", "Schneller Kanal fuer Nachrichten mit Kunde oder Team."),
     },
     movements: {
       title: t("tabMovements"),
-      hint: langText("Stok giris-cikis ve detayli hareketler burada.", "Wareneingang, Ausgang und detaillierte Lagerbewegungen hier."),
+      hint: langText("Stok giriş-çıkış ve detayli hareketler burada.", "Wareneingang, Ausgang und detaillierte Lagerbewegungen hier."),
     },
     training: {
       title: t("tabTraining"),
-      hint: langText("DRC MAN egitim ve ileri ayarlar masaustu odaklidir.", "DRC MAN Training und erweiterte Einstellungen sind desktop-orientiert."),
+      hint: langText("DRC MAN eğitim ve ileri ayarlar masaustu odaklidir.", "DRC MAN Training und erweiterte Einstellungen sind desktop-orientiert."),
     },
   };
 
   return metaMap[tab] || {
-    title: langText("Satis Merkezi", "Verkaufszentrale"),
-    hint: langText("Android icin sade akista satis ve siparis once gelir.", "Auf Android stehen Verkauf und Bestellung im Vordergrund."),
+    title: langText("Satış Merkezi", "Verkaufszentrale"),
+    hint: langText("Android için sade akışta satış ve sipariş önce gelir.", "Auf Android stehen Verkauf und Bestellung im Vordergrund."),
   };
 }
 
 function getMobileSalesAssistantMeta(tab = state.activeTab) {
   const metaMap = {
     quotes: {
-      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
+      title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
       hint: langText("Fiyat, stok, muadil ve usta cozumunu tek mesajda sor.", "Preis, Bestand, Alternative und Meisterloesung in einer Nachricht fragen."),
       prompt: langText("DCB31 fiyat stok kullanildigi yer muadil ve usta alternatifi ozetle", "DCB31 Preis Bestand Einsatz Alternative und Meisterloesung zusammenfassen"),
     },
     items: {
-      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
-      hint: langText("Kod, stok, muadil ve katalog referansini hizli sor.", "Code, Bestand, Alternative und Katalogreferenz schnell abfragen."),
+      title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Kod, stok, muadil ve katalog referansini hızlı sor.", "Code, Bestand, Alternative und Katalogreferenz schnell abfragen."),
       prompt: langText("DCB31 muadili var mi?", "Gibt es eine Alternative fuer DCB31?"),
     },
     orders: {
-      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
-      hint: langText("Siparise uygun stoklu urunleri ve hizli sevk adaylarini sor.", "Nach lagernden Artikeln und schnell lieferbaren Kandidaten fragen."),
-      prompt: langText("Stokta hizli sevk edilebilecek kontrol cihazlari hangileri?", "Welche Steuergeraete sind lagernd und schnell lieferbar?"),
+      title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Siparişe uygun stoklu ürünleri ve hızlı sevk adaylarini sor.", "Nach lagernden Artikeln und schnell lieferbaren Kandidaten fragen."),
+      prompt: langText("Stokta hızlı sevk edilebilecek kontrol cihazlari hangileri?", "Welche Steuergeraete sind lagernd und schnell lieferbar?"),
     },
     tools: {
-      title: langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"),
-      hint: langText("Proje icin uygun urun ve teknik adaylari sor.", "Geeignete Produkte und Technik-Kandidaten fuer das Projekt fragen."),
-      prompt: langText("Kucuk soguk oda icin uygun kontrol ve servis valfi oner", "Geeignete Regelung und Serviceventil fuer einen kleinen Kuehlraum vorschlagen"),
+      title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
+      hint: langText("Proje için uygun ürün ve teknik adaylari sor.", "Geeignete Produkte und Technik-Kandidaten fuer das Projekt fragen."),
+      prompt: langText("Kucuk soğuk oda için uygun kontrol ve servis valfi oner", "Geeignete Regelung und Serviceventil fuer einen kleinen Kuehlraum vorschlagen"),
     },
   };
 
@@ -1217,7 +1217,7 @@ function buildItemDetailFacts(item) {
     [langText("Mevcut Stok", "Aktueller Bestand"), formatItemStock(item.currentStock, item.unit)],
   ];
   if (item.productCode && item.productCode !== item.barcode) {
-    facts.splice(4, 0, [langText("Urun Kodu", "Produktcode"), item.productCode]);
+    facts.splice(4, 0, [langText("Ürün Kodu", "Produktcode"), item.productCode]);
   }
   // Minimum stok iç envanter parametresi — müşteriye gösterme
   const minStock = Number(item?.minStock || 0);
@@ -1464,7 +1464,7 @@ function getItemImageMarkup(item, options = {}) {
   const imageClass = options.imageClass || "item-media-image";
   const eager = options.eager === true;
   const { src, fallback } = getItemImageSources(item);
-  const alt = options.alt || resolveLocalizedName(item) || item?.name || "Urun";
+  const alt = options.alt || resolveLocalizedName(item) || item?.name || "Ürün";
   return `
     <div class="${escapeHtml(wrapperClass)}">
       <img
@@ -1509,7 +1509,7 @@ function buildItemTechFacts(item) {
   if (supplierRefs.length) {
     facts.push([langText("Tedarikci Katalogu", "Lieferkatalog"), getSupplierCatalogSummary(item, 6)]);
     supplierRefs.forEach((ref, index) => {
-      facts.push([`${langText("Katalog Kaydi", "Katalogeintrag")} ${index + 1}`, formatSupplierCatalogRef(ref)]);
+      facts.push([`${langText("Katalog Kaydı", "Katalogeintrag")} ${index + 1}`, formatSupplierCatalogRef(ref)]);
     });
   }
   if (combined.length) {
@@ -1531,8 +1531,8 @@ function buildItemPricingFacts(item) {
   const net = visibleSalePrice(item);
   const single = cartSalePrice(item, 1);
   const facts = [
-    [langText("Alis", "Einkauf"), formatMoneyOrDash(purchase)],
-    [langText("Net / Satis", "Netto / Verkauf"), formatMoneyOrDash(net)],
+    [langText("Alış", "Einkauf"), formatMoneyOrDash(purchase)],
+    [langText("Net / Satış", "Netto / Verkauf"), formatMoneyOrDash(net)],
     [langText("Liste", "Liste"), formatMoneyOrDash(list)],
     [langText("1 Adet Fiyati", "Einzelstueck"), formatMoneyOrDash(single)],
   ];
@@ -1560,7 +1560,7 @@ function buildItemNotesFacts(item) {
   if (!notes.length) {
     return supplierRows.length ? supplierRows : [[
       langText("Not", "Notiz"),
-      langText("Bu urun icin ozel not veya kullanim aciklamasi henuz girilmedi.", "Fuer diesen Artikel wurde noch keine spezielle Notiz hinterlegt."),
+      langText("Bu ürün için ozel not veya kullanim aciklamasi henüz girilmedi.", "Fuer diesen Artikel wurde noch keine spezielle Notiz hinterlegt."),
     ]];
   }
   return [
@@ -1593,7 +1593,7 @@ function renderItemDocuments(target, documents) {
       <div class="product-detail-doc-empty">
         <strong>${escapeHtml(langText("Hazir katalog veya PDF bulunamadi", "Kein passender Katalog oder PDF gefunden"))}</strong>
         <p>${escapeHtml(langText(
-          "Bu urun icin yerel katalog, OCR kaynagi veya datasheet daha sonra eklenecek.",
+          "Bu ürün için yerel katalog, OCR kaynagi veya datasheet daha sonra eklenecek.",
           "Fuer diesen Artikel wird spaeter ein lokaler Katalog, eine OCR-Quelle oder ein Datenblatt hinterlegt."
         ))}</p>
       </div>
@@ -1605,14 +1605,14 @@ function renderItemDocuments(target, documents) {
       <div class="product-detail-doc-meta">
         <span>${escapeHtml(String(doc.category || langText("Dokuman", "Dokument")))}</span>
         <strong>${escapeHtml(String(doc.title || "PDF"))}</strong>
-        <p>${escapeHtml(String(doc.matchReason || langText("Urun ile eslesen katalog", "Zum Artikel passender Katalog")))}</p>
+        <p>${escapeHtml(String(doc.matchReason || langText("Ürün ile eşleşen katalog", "Zum Artikel passender Katalog")))}</p>
       </div>
       <a
         class="product-detail-doc-link"
         href="${escapeHtml(String(doc.openUrl || "#"))}"
         target="_blank"
         rel="noopener noreferrer"
-      >${escapeHtml(doc.kind === "catalog" ? langText("Katalog Ac", "Katalog oeffnen") : langText("PDF Ac", "PDF oeffnen"))}</a>
+      >${escapeHtml(doc.kind === "catalog" ? langText("Katalog Aç", "Katalog oeffnen") : langText("PDF Aç", "PDF oeffnen"))}</a>
     </article>
   `).join("");
 }
@@ -1625,7 +1625,7 @@ async function loadItemDocuments(item) {
     <div class="product-detail-doc-empty">
       <strong>${escapeHtml(langText("Dokumanlar taraniyor", "Dokumente werden geladen"))}</strong>
       <p>${escapeHtml(langText(
-        "Bu bilgisayardaki katalog, OCR dosyasi ve PDF kaynaklari urun koduna gore eslestiriliyor.",
+        "Bu bilgisayardaki katalog, OCR dosyasi ve PDF kaynaklari ürün koduna göre eslestiriliyor.",
         "Die lokalen Katalog-, OCR- und PDF-Quellen werden per Artikelcode abgeglichen."
       ))}</p>
     </div>
@@ -1669,7 +1669,7 @@ function openItemDetailModal(item) {
   const detail = getPublicItemDetail(item);
   const media = getBrandMedia(item);
   const imageMedia = getItemImageSources(item);
-  setText(refs.itemDetailEyebrow, langText("Urun Karti", "Artikelkarte"));
+  setText(refs.itemDetailEyebrow, langText("Ürün Karti", "Artikelkarte"));
   setText(refs.itemDetailCode, item.barcode || item.productCode || "-");
   if (refs.itemDetailBrandLogo) {
     const logoWrap = refs.itemDetailBrandLogo.parentElement;
@@ -1693,9 +1693,9 @@ function openItemDetailModal(item) {
     refs.itemDetailImage,
     imageMedia.src,
     imageMedia.fallback,
-    `${resolveLocalizedName(item) || item.name || "Urun"} ${langText("gorseli", "Bild")}`
+    `${resolveLocalizedName(item) || item.name || "Ürün"} ${langText("gorseli", "Bild")}`
   );
-  setText(refs.itemDetailTitle, resolveLocalizedName(item) || langText("Urun Detayi", "Artikeldetail"));
+  setText(refs.itemDetailTitle, resolveLocalizedName(item) || langText("Ürün Detayi", "Artikeldetail"));
   setText(refs.itemDetailSubtitle, `${item.brand || "-"} · ${getDisplayCategory(item.category)}`);
   setText(
     refs.itemDetailStock,
@@ -1723,7 +1723,7 @@ function openItemDetailModal(item) {
       refs.itemDetailDescription.textContent = uniqueBits[0];
     } else {
       refs.itemDetailDescription.textContent = langText(
-        "Bu urun icin teknik ozellik henuz girilmedi.",
+        "Bu ürün için teknik ozellik henüz girilmedi.",
         "Fuer diesen Artikel wurden noch keine technischen Daten hinterlegt."
       );
     }
@@ -2030,7 +2030,7 @@ function applyUiTranslations() {
 
   setText("#resetPasswordPanel h3", t("resetTitle"));
   setText("#resetPasswordPanel p.muted", t("resetDesc"));
-  setFormFieldLabel(refs.resetPasswordForm, "password", langText("Yeni Sifre", "Neues Passwort"));
+  setFormFieldLabel(refs.resetPasswordForm, "password", langText("Yeni Şifre", "Neues Passwort"));
   setText("#resetPasswordForm button[type='submit']", t("resetButton"));
 
   setText(".hero h1", t("heroTitle"));
@@ -2046,8 +2046,8 @@ function applyUiTranslations() {
   setText(refs.mobileMoreKicker, langText("Masaüstü ve ek araçlar", "Desktop und Zusatztools"));
   setText(refs.mobileMoreTitle, langText("Detay Menüsü", "Detailmenü"));
   setText(refs.mobileMoreNote, langText("Detaylı stok, yönetim ve eğitim ekranları masaüstünde daha rahattır. Burada hızlı erişim bırakıldı.", "Detaillierte Lager-, Verwaltungs- und Trainingsseiten sind am Desktop angenehmer. Hier bleibt nur der Schnellzugriff."));
-  setText("#mobileSalesBannerKicker", langText("Android Satis Modu", "Android Verkaufsmodus"));
-  setText(refs.mobileSalesAssistantShortcut, langText("Hizli Satis Asistani", "Schneller Verkaufsassistent"));
+  setText("#mobileSalesBannerKicker", langText("Android Satış Modu", "Android Verkaufsmodus"));
+  setText(refs.mobileSalesAssistantShortcut, langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"));
   setText(refs.mobileCashbookButton, t("tabCashbook"));
   setText(refs.mobileAssistantButton, langText("DRC MAN Sor", "DRC MAN fragen"));
   setText(refs.mobileLogoutButton, t("logout"));
@@ -2128,23 +2128,23 @@ function applyUiTranslations() {
   replaceLabelText(refs.itemSearch?.closest("label"), langText("Arama", "Suche"));
   replaceLabelText(refs.brandFilter?.closest("label"), langText("Marka", "Marke"));
   replaceLabelText(refs.categoryFilter?.closest("label"), langText("Kategori", "Kategorie"));
-  refs.itemSearch.placeholder = langText("Urun, marka veya stok kodu ara", "Artikel, Marke oder Lagercode suchen");
+  refs.itemSearch.placeholder = langText("Ürün, marka veya stok kodu ara", "Artikel, Marke oder Lagercode suchen");
   setText(".stocked-panel h3", langText("Stokta Olan Ürünler", "Artikel auf Lager"));
-  setText(".items-list-drawer summary", langText("Tum Malzeme Listesi", "Gesamte Artikelliste"));
+  setText(".items-list-drawer summary", langText("Tüm Malzeme Listesi", "Gesamte Artikelliste"));
   setText(".management-drawer summary", langText("Yonetim Araclari", "Verwaltungswerkzeuge"));
 
   const itemFormSection = refs.itemForm?.closest("section");
   setText(itemFormSection?.querySelector("h2"), langText("Malzeme Karti", "Artikelkarte"));
-  setFormFieldLabel(refs.itemForm, "name", langText("Malzeme Adi", "Artikelname"));
+  setFormFieldLabel(refs.itemForm, "name", langText("Malzeme Adı", "Artikelname"));
   setFormFieldLabel(refs.itemForm, "brand", langText("Marka", "Marke"));
   setFormFieldLabel(refs.itemForm, "category", langText("Kategori", "Kategorie"));
   setFormFieldLabel(refs.itemForm, "unit", langText("Birim", "Einheit"));
   setFormFieldLabel(refs.itemForm, "minStock", langText("Kritik Stok", "Mindestbestand"));
-  setFormFieldLabel(refs.itemForm, "defaultPrice", langText("Alis Fiyati", "Einkaufspreis"));
+  setFormFieldLabel(refs.itemForm, "defaultPrice", langText("Alış Fiyati", "Einkaufspreis"));
   setFormFieldLabel(refs.itemForm, "listPrice", langText("Liste Fiyati", "Listenpreis"));
-  setFormFieldLabel(refs.itemForm, "salePrice", langText("Net/Satis Fiyati", "Netto-/Verkaufspreis"));
+  setFormFieldLabel(refs.itemForm, "salePrice", langText("Net/Satış Fiyati", "Netto-/Verkaufspreis"));
   setFormFieldLabel(refs.itemForm, "barcode", langText("Stok Kodu", "Lagercode"));
-  setFormFieldLabel(refs.itemForm, "imageUrl", langText("Urun Resmi", "Produktbild"));
+  setFormFieldLabel(refs.itemForm, "imageUrl", langText("Ürün Resmi", "Produktbild"));
   setFormFieldLabel(refs.itemForm, "notes", langText("Not (TR)", "Notiz (TR)"));
   setFormFieldLabel(refs.itemForm, "notesDe", langText("Not (DE)", "Notiz (DE)"));
   setFieldPlaceholder(refs.itemForm, "brand", langText("Orn. Embraco, Hisense", "z. B. Embraco, Hisense"));
@@ -2153,7 +2153,7 @@ function applyUiTranslations() {
   setFieldPlaceholder(refs.itemForm, "notes", langText("Türkçe ürün notu — müşteri TR modunda bunu görür", "Tuerkische Notiz — wird Kunden im TR-Modus angezeigt"));
   setFieldPlaceholder(refs.itemForm, "notesDe", langText("Almanca ürün notu (boş bırakırsan TR gösterilir)", "Deutsche Artikelnotiz (leer = TR-Fallback)"));
   refs.itemSubmitButton.textContent = refs.itemForm?.elements?.id?.value
-    ? langText("Malzemeyi Guncelle", "Artikel aktualisieren")
+    ? langText("Malzemeyi Güncelle", "Artikel aktualisieren")
     : langText("Malzeme Ekle", "Artikel anlegen");
   refs.itemCancelEdit.textContent = t("common.cancelEdit");
 
@@ -2168,53 +2168,53 @@ function applyUiTranslations() {
     increase: langText("Mevcut Satisa Artis", "Aufschlag auf Verkauf"),
   });
   setSelectOptionTexts(refs.bulkPricingForm?.elements?.baseField, {
-    purchase: langText("Alis Fiyati", "Einkaufspreis"),
-    sale: langText("Satis Fiyati", "Verkaufspreis"),
+    purchase: langText("Alış Fiyati", "Einkaufspreis"),
+    sale: langText("Satış Fiyati", "Verkaufspreis"),
   });
-  setText("#bulkPricingForm button[type='submit']", langText("Satis Fiyatlarini Guncelle", "Verkaufspreise aktualisieren"));
+  setText("#bulkPricingForm button[type='submit']", langText("Satış Fiyatlarini Güncelle", "Verkaufspreise aktualisieren"));
   setText(".barcode-section h2", langText("Stok Kodu Onizleme", "Lagercode-Vorschau"));
 
   const movementsSections = document.querySelectorAll("[data-tab-content='movements'] .two-column > section");
-  setText(movementsSections[0]?.querySelector("h2"), langText("Stok Giris / Cikis", "Lager Eingang / Ausgang"));
+  setText(movementsSections[0]?.querySelector("h2"), langText("Stok Giriş / Çıkış", "Lager Eingang / Ausgang"));
   setText(
     movementsSections[0]?.querySelector(".section-tip"),
     langText(
-      "Bu form mevcut urunlerde stok giris ve cikis icin kullanilir. Ustteki arama kutusuna harf yazdikca urun listesi otomatik daralir.",
+      "Bu form mevcut urunlerde stok giriş ve çıkış için kullanilir. Ustteki arama kutusuna harf yazdikca ürün listesi otomatik daralir.",
       "Dieses Formular wird fuer Lagerzugang und -ausgang bei vorhandenen Artikeln verwendet. Beim Tippen im Suchfeld wird die Artikelliste automatisch eingegrenzt."
     )
   );
-  replaceLabelText(refs.movementItemSearch?.closest("label"), langText("Urun Arama", "Artikelsuche"));
+  replaceLabelText(refs.movementItemSearch?.closest("label"), langText("Ürün Arama", "Artikelsuche"));
   if (refs.movementItemSearch) {
-    refs.movementItemSearch.placeholder = langText("Urun, marka veya stok kodu yazin", "Artikel, Marke oder Lagercode eingeben");
+    refs.movementItemSearch.placeholder = langText("Ürün, marka veya stok kodu yazın", "Artikel, Marke oder Lagercode eingeben");
   }
   setFormFieldLabel(refs.movementForm, "itemId", langText("Malzeme", "Artikel"));
-  setFormFieldLabel(refs.movementForm, "type", langText("Islem", "Vorgang"));
+  setFormFieldLabel(refs.movementForm, "type", langText("İşlem", "Vorgang"));
   setFormFieldLabel(refs.movementForm, "quantity", langText("Miktar", "Menge"));
   setFormFieldLabel(refs.movementForm, "unitPrice", langText("Birim Maliyet", "Stueckpreis"));
   setFormFieldLabel(refs.movementForm, "date", langText("Tarih", "Datum"));
-  setFormFieldLabel(refs.movementForm, "note", langText("Aciklama", "Beschreibung"));
+  setFormFieldLabel(refs.movementForm, "note", langText("Açıklama", "Beschreibung"));
   setSelectOptionTexts(refs.movementForm?.elements?.type, {
-    entry: langText("Giris", "Eingang"),
-    exit: langText("Cikis", "Ausgang"),
+    entry: langText("Giriş", "Eingang"),
+    exit: langText("Çıkış", "Ausgang"),
   });
   setText("#movementForm button[type='submit']", langText("Hareket Kaydet", "Bewegung speichern"));
   setText(refs.movementAutoCostHint, langText("Maliyet bilgisi sistemde otomatik uygulanir.", "Der Kostenwert wird automatisch aus dem System uebernommen."));
 
   const stockIntakePanel = document.querySelector("[data-tab-content='movements'] .panel-lite");
-  setText(stockIntakePanel?.querySelector("h3"), langText("Yeni Urun + Ilk Stok Girisi", "Neuer Artikel + Erstbestand"));
-  setText(stockIntakePanel?.querySelector(".section-tip"), langText("Yeni marka, kategori veya urun karti burada acilir. Kaydedince urun otomatik olusur ve ilk stok girisi ayni anda islenir.", "Hier werden neue Marken, Kategorien oder Artikel angelegt. Beim Speichern wird gleichzeitig der Erstbestand gebucht."));
-  setFormFieldLabel(refs.stockIntakeForm, "name", langText("Malzeme Adi", "Artikelname"));
+  setText(stockIntakePanel?.querySelector("h3"), langText("Yeni Ürün + Ilk Stok Girişi", "Neuer Artikel + Erstbestand"));
+  setText(stockIntakePanel?.querySelector(".section-tip"), langText("Yeni marka, kategori veya ürün kartı burada acilir. Kaydedince ürün otomatik olusur ve ilk stok girişi aynı anda islenir.", "Hier werden neue Marken, Kategorien oder Artikel angelegt. Beim Speichern wird gleichzeitig der Erstbestand gebucht."));
+  setFormFieldLabel(refs.stockIntakeForm, "name", langText("Malzeme Adı", "Artikelname"));
   setFormFieldLabel(refs.stockIntakeForm, "brand", langText("Marka", "Marke"));
   setFormFieldLabel(refs.stockIntakeForm, "category", langText("Kategori", "Kategorie"));
   setFormFieldLabel(refs.stockIntakeForm, "unit", langText("Birim", "Einheit"));
   setFormFieldLabel(refs.stockIntakeForm, "quantity", langText("Ilk Miktar", "Erstmenge"));
-  setFormFieldLabel(refs.stockIntakeForm, "unitPrice", langText("Birim Alis", "Einkauf pro Einheit"));
+  setFormFieldLabel(refs.stockIntakeForm, "unitPrice", langText("Birim Alış", "Einkauf pro Einheit"));
   setFormFieldLabel(refs.stockIntakeForm, "listPrice", langText("Liste Fiyati", "Listenpreis"));
-  setFormFieldLabel(refs.stockIntakeForm, "salePrice", langText("Net/Satis Fiyati", "Netto-/Verkaufspreis"));
+  setFormFieldLabel(refs.stockIntakeForm, "salePrice", langText("Net/Satış Fiyati", "Netto-/Verkaufspreis"));
   setFormFieldLabel(refs.stockIntakeForm, "minStock", langText("Kritik Stok", "Mindestbestand"));
   setFormFieldLabel(refs.stockIntakeForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.stockIntakeForm, "barcode", langText("Stok Kodu", "Lagercode"));
-  setFormFieldLabel(refs.stockIntakeForm, "imageUrl", langText("Urun Resmi", "Produktbild"));
+  setFormFieldLabel(refs.stockIntakeForm, "imageUrl", langText("Ürün Resmi", "Produktbild"));
   setFormFieldLabel(refs.stockIntakeForm, "notes", langText("Malzeme Notu", "Artikelnote"));
   setFormFieldLabel(refs.stockIntakeForm, "movementNote", langText("Hareket Notu", "Bewegungsnotiz"));
   setFieldPlaceholder(refs.stockIntakeForm, "name", langText("Orn. Embraco NJ 6220 Z", "z. B. Embraco NJ 6220 Z"));
@@ -2223,8 +2223,8 @@ function applyUiTranslations() {
   setFieldPlaceholder(refs.stockIntakeForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
   setFieldPlaceholder(refs.stockIntakeForm, "imageUrl", langText("/assets/products/ornek.jpg veya https://...", "/assets/products/beispiel.jpg oder https://..."));
   setFieldPlaceholder(refs.stockIntakeForm, "notes", langText("Raf, seri veya tedarik notu", "Regal-, Serien- oder Lieferantennotiz"));
-  setFieldPlaceholder(refs.stockIntakeForm, "movementNote", langText("Ilk alis bilgisi", "Erste Einkaufsinfo"));
-  setText("#stockIntakeForm button[type='submit']", langText("Yeni Urun ve Stok Girisi Kaydet", "Neuen Artikel mit Erstbestand speichern"));
+  setFieldPlaceholder(refs.stockIntakeForm, "movementNote", langText("Ilk alış bilgisi", "Erste Einkaufsinfo"));
+  setText("#stockIntakeForm button[type='submit']", langText("Yeni Ürün ve Stok Girişi Kaydet", "Neuen Artikel mit Erstbestand speichern"));
   setText(movementsSections[1]?.querySelector("h2"), langText("Son Hareketler", "Letzte Bewegungen"));
 
   const expenseSections = document.querySelectorAll("[data-tab-content='expenses'] .two-column > section");
@@ -2234,7 +2234,7 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.expenseForm, "amount", langText("Tutar", "Betrag"));
   setFormFieldLabel(refs.expenseForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.expenseForm, "paymentType", langText("Odeme Tipi", "Zahlungsart"));
-  setFormFieldLabel(refs.expenseForm, "note", langText("Aciklama", "Beschreibung"));
+  setFormFieldLabel(refs.expenseForm, "note", langText("Açıklama", "Beschreibung"));
   setSelectOptionTexts(refs.expenseForm?.elements?.paymentType, {
     cash: langText("Nakit", "Bar"),
     bank: langText("Banka", "Bank"),
@@ -2242,11 +2242,11 @@ function applyUiTranslations() {
   });
   setText("#expenseForm button[type='submit']", langText("Masraf Kaydet", "Ausgabe speichern"));
   setText(expenseSections[1]?.querySelector("h2"), langText("Masraf Listesi", "Ausgabenliste"));
-  setText(expenseSections[1]?.querySelector(".section-tip"), langText("Her kaydi satirin sagindaki sil butonundan kaldirabilirsiniz.", "Jeden Eintrag koennen Sie ueber die rechte Loeschen-Schaltflaeche entfernen."));
+  setText(expenseSections[1]?.querySelector(".section-tip"), langText("Her kaydı satirin sagindaki sil butonundan kaldirabilirsiniz.", "Jeden Eintrag koennen Sie ueber die rechte Loeschen-Schaltflaeche entfernen."));
 
   const cashSections = document.querySelectorAll("[data-tab-content='cashbook'] .two-column > section");
   setText(cashSections[0]?.querySelector("h2"), langText("Kasa Hareketi", "Kassenbewegung"));
-  setFormFieldLabel(refs.cashForm, "type", langText("Islem", "Vorgang"));
+  setFormFieldLabel(refs.cashForm, "type", langText("İşlem", "Vorgang"));
   setFormFieldLabel(refs.cashForm, "title", langText("Baslik", "Titel"));
   setFormFieldLabel(refs.cashForm, "amount", langText("Tutar", "Betrag"));
   setFormFieldLabel(refs.cashForm, "date", langText("Tarih", "Datum"));
@@ -2254,96 +2254,96 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.cashForm, "note", langText("Not", "Notiz"));
   setFieldPlaceholder(refs.cashForm, "title", langText("Orn. Tezgah satisi", "z. B. Barverkauf"));
   setSelectOptionTexts(refs.cashForm?.elements?.type, {
-    in: langText("Kasa Girisi", "Kasseneingang"),
-    out: langText("Kasa Cikisi", "Kassenausgang"),
-    unbilled_sale: langText("Faturasiz Satis", "Verkauf ohne Rechnung"),
+    in: langText("Kasa Girişi", "Kasseneingang"),
+    out: langText("Kasa Çıkışı", "Kassenausgang"),
+    unbilled_sale: langText("Faturasız Satış", "Verkauf ohne Rechnung"),
   });
   setText("#cashForm button[type='submit']", langText("Kasa Kaydet", "Kasse speichern"));
   setText(cashSections[1]?.querySelector("h2"), langText("Kasa Defteri", "Kassenbuch"));
   setText(
     cashSections[1]?.querySelector(".section-tip"),
     langText(
-      "Kasa girisleri, cikislari ve faturasiz satis hareketleri burada listelenir. Referans alani fis, havale, kart slipi veya banka aciklamasi icin; Not alani ise serbest aciklama icindir.",
+      "Kasa girisleri, çıkışları ve faturasız satış hareketleri burada listelenir. Referans alani fis, havale, kart slipi veya banka aciklamasi için; Not alani ise serbest açıklama icindir.",
       "Hier werden Kassen-Eingaenge, -Ausgaenge und Verkaeufe ohne Rechnung gelistet. Das Referenzfeld ist fuer Beleg, Ueberweisung, Kartenslip oder Bankreferenz; das Notizfeld fuer freie Ergaenzungen."
     )
   );
 
-  setText("[data-tab-content='quotes'] .pos-catalog h2", langText("Urun Katalogu", "Produktkatalog"));
+  setText("[data-tab-content='quotes'] .pos-catalog h2", langText("Ürün Katalogu", "Produktkatalog"));
   setText("[data-tab-content='quotes'] .pos-catalog .muted", langText("Arayin, filtreleyin ve tek tikla sepete ekleyin.", "Suchen, filtern und mit einem Klick in den Warenkorb legen."));
   replaceLabelText(refs.quoteItemSearch?.closest("label"), langText("Arama", "Suche"));
   replaceLabelText(refs.quoteBrandFilter?.closest("label"), langText("Marka", "Marke"));
   replaceLabelText(refs.quoteCategoryFilter?.closest("label"), langText("Kategori", "Kategorie"));
-  refs.quoteItemSearch.placeholder = langText("Urun veya marka ara", "Artikel oder Marke suchen");
-  setText("[data-tab-content='quotes'] .pos-cart h2", langText("Sepet ve Musteri", "Warenkorb und Kunde"));
-  setText("[data-tab-content='quotes'] .pos-cart .muted", langText("Teklif olusturmadan once sepeti ve musteri bilgilerini tamamlayin.", "Vor dem Angebot bitte Warenkorb und Kundendaten vervollstaendigen."));
-  setFormFieldLabel(refs.quoteForm, "customerName", langText("Musteri", "Kunde"));
+  refs.quoteItemSearch.placeholder = langText("Ürün veya marka ara", "Artikel oder Marke suchen");
+  setText("[data-tab-content='quotes'] .pos-cart h2", langText("Sepet ve Müşteri", "Warenkorb und Kunde"));
+  setText("[data-tab-content='quotes'] .pos-cart .muted", langText("Teklif olusturmadan önce sepeti ve müşteri bilgilerini tamamlayin.", "Vor dem Angebot bitte Warenkorb und Kundendaten vervollstaendigen."));
+  setFormFieldLabel(refs.quoteForm, "customerName", langText("Müşteri", "Kunde"));
   setFormFieldLabel(refs.quoteForm, "title", langText("Baslik", "Titel"));
   setFormFieldLabel(refs.quoteForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.quoteForm, "language", langText("Dil", "Sprache"));
-  setFormFieldLabel(refs.quoteForm, "isExport", langText("Satis Tipi", "Verkaufsart"));
+  setFormFieldLabel(refs.quoteForm, "isExport", langText("Satış Tipi", "Verkaufsart"));
   setFormFieldLabel(refs.quoteForm, "discount", langText("Iskonto", "Rabatt"));
   setFormFieldLabel(refs.quoteForm, "paymentType", langText("Tahsilat Tipi", "Zahlungsart"));
   setFormFieldLabel(refs.quoteForm, "collectedAmount", langText("Tahsil Edilen", "Erhalten"));
   setFormFieldLabel(refs.quoteForm, "reference", langText("Referans", "Referenz"));
   setFormFieldLabel(refs.quoteForm, "note", langText("Not", "Notiz"));
-  setFieldPlaceholder(refs.quoteForm, "title", langText("Orn. Soguk Oda Teklifi", "z. B. Kuehlraum-Angebot"));
+  setFieldPlaceholder(refs.quoteForm, "title", langText("Orn. Soğuk Oda Teklifi", "z. B. Kuehlraum-Angebot"));
   setFieldPlaceholder(refs.quoteForm, "reference", langText("Fis, havale, kart sonu", "Beleg, Ueberweisung, Kartenreferenz"));
   setSelectOptionTexts(refs.quoteForm?.elements?.language, { de: "Deutsch", tr: langText("Turkce", "Tuerkisch") });
   setSelectOptionTexts(refs.quoteForm?.elements?.isExport, {
-    true: langText("Yurt Disi - KDV Yok", "Export - ohne MwSt"),
-    false: langText("Yurt Ici - KDV Dahil", "Inland - inkl. MwSt"),
+    true: langText("Yurt Dışı - KDV Yok", "Export - ohne MwSt"),
+    false: langText("Yurt İçi - KDV Dahil", "Inland - inkl. MwSt"),
   });
   setSelectOptionTexts(refs.quoteForm?.elements?.paymentType, {
     cash: langText("Nakit", "Bar"),
     bank: langText("Banka", "Bank"),
     card: langText("Kart", "Karte"),
   });
-  setText("[data-tab-content='quotes'] .section-tip", langText("Direkt Satis stok dusurur; tahsilat yazdiysaniz Kasa Defteri'ne de isler. Teklif Olarak Kaydet sadece Son Teklifler listesine kaydeder, stok ve kasa degismez. Faturasiz satis butonunda sepette gorunen tutar son satis tutaridir; ekstra KDV eklenmez.", "Direktverkauf reduziert den Bestand; bei eingetragener Zahlung wird auch das Kassenbuch aktualisiert. Als Angebot speichern legt nur einen Eintrag unter Letzte Angebote an, Bestand und Kasse bleiben unveraendert. Beim Verkauf ohne Rechnung gilt der sichtbare Warenkorbwert als Endsumme; es wird keine zusaetzliche MwSt hinzugefuegt."));
-  setText(refs.checkoutSaleButton, langText("Direkt Satis Yap", "Direktverkauf"));
-  setText(refs.checkoutUnbilledSaleButton, langText("Faturasiz Satis", "Ohne Rechnung"));
+  setText("[data-tab-content='quotes'] .section-tip", langText("Direkt Satış stok dusurur; tahsilat yazdiysaniz Kasa Defteri'ne de isler. Teklif Olarak Kaydet sadece Son Teklifler listesine kaydeder, stok ve kasa değişmez. Faturasız satış butonunda sepette gorunen tutar son satış tutaridir; ekstra KDV eklenmez.", "Direktverkauf reduziert den Bestand; bei eingetragener Zahlung wird auch das Kassenbuch aktualışiert. Als Angebot speichern legt nur einen Eintrag unter Letzte Angebote an, Bestand und Kasse bleiben unveraendert. Beim Verkauf ohne Rechnung gilt der sichtbare Warenkorbwert als Endsumme; es wird keine zusaetzliche MwSt hinzugefuegt."));
+  setText(refs.checkoutSaleButton, langText("Direkt Satış Yap", "Direktverkauf"));
+  setText(refs.checkoutUnbilledSaleButton, langText("Faturasız Satış", "Ohne Rechnung"));
   setText(refs.saveQuoteButton, langText("Teklif Olarak Kaydet", "Als Angebot speichern"));
   setText("[data-tab-content='quotes'] .recent-quotes h2", langText("Son Teklifler", "Letzte Angebote"));
 
   const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-only section");
-  setText(ordersSection?.querySelector("h2"), langText("Siparis Takibi", "Bestellverfolgung"));
-  setText(ordersSection?.querySelector(".section-tip"), langText("Musteri siparisleri burada toplanir ve durumlari takip edilir.", "Hier werden Kundenbestellungen gesammelt und im Status verfolgt."));
-  setText("#customerVerificationBanner h3", langText("E-Posta Dogrulamasi Bekleniyor", "E-Mail-Bestaetigung ausstehend"));
-  setText("#customerVerificationBanner p.muted", langText("Siparis bildirimleri ve sifre yenileme baglantilari icin e-posta adresinizi dogrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
-  setText(refs.resendVerificationButton, langText("Dogrulama Mailini Tekrar Gonder", "Bestaetigungs-E-Mail erneut senden"));
-  setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Urunler", "Verfuegbare Artikel"));
-  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Stoktaki urunler, stok adedi ve satis fiyatlari burada gosterilir.", "Hier sehen Sie lagernde Artikel, Bestandsmenge und Verkaufspreise."));
-  setText("[data-tab-content='orders'] .customer-only .pos-cart h2", langText("Siparis Sepeti", "Bestellkorb"));
-  setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz urunleri secip siparis talebi gonderebilirsiniz.", "Waehlen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
+  setText(ordersSection?.querySelector("h2"), langText("Sipariş Takibi", "Bestellverfolgung"));
+  setText(ordersSection?.querySelector(".section-tip"), langText("Müşteri siparişleri burada toplanir ve durumlari takip edilir.", "Hier werden Kundenbestellungen gesammelt und im Status verfolgt."));
+  setText("#customerVerificationBanner h3", langText("E-Posta Doğrulamasi Bekleniyor", "E-Mail-Bestaetigung ausstehend"));
+  setText("#customerVerificationBanner p.muted", langText("Sipariş bildirimleri ve şifre yenileme bağlantılari için e-posta adresinizi doğrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
+  setText(refs.resendVerificationButton, langText("Doğrulama Mailini Tekrar Gönder", "Bestaetigungs-E-Mail erneut senden"));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Ürünler", "Verfuegbare Artikel"));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Stoktaki ürünler, stok adedi ve satış fiyatlari burada gosterilir.", "Hier sehen Sie lagernde Artikel, Bestandsmenge und Verkaufspreise."));
+  setText("[data-tab-content='orders'] .customer-only .pos-cart h2", langText("Sipariş Sepeti", "Bestellkorb"));
+  setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz ürünleri secip sipariş talebi gönderebilirsiniz.", "Waehlen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
   setFormFieldLabel(refs.customerOrderForm, "date", langText("Tarih", "Datum"));
-  setFormFieldLabel(refs.customerOrderForm, "note", langText("Siparis Notu", "Bestellnotiz"));
-  setFieldPlaceholder(refs.customerOrderForm, "note", langText("Teslim tarihi, aciklama veya ozel not", "Lieferdatum, Beschreibung oder Sondernotiz"));
+  setFormFieldLabel(refs.customerOrderForm, "note", langText("Sipariş Notu", "Bestellnotiz"));
+  setFieldPlaceholder(refs.customerOrderForm, "note", langText("Teslim tarihi, açıklama veya ozel not", "Lieferdatum, Beschreibung oder Sondernotiz"));
   setText(refs.submitCustomerOrderButton, langText("Siparişi Gözden Geçir", "Bestellung prüfen"));
-  setText("[data-tab-content='orders'] .customer-only .recent-quotes h2", langText("Siparis Gecmisi", "Bestellverlauf"));
+  setText("[data-tab-content='orders'] .customer-only .recent-quotes h2", langText("Sipariş Geçmişi", "Bestellverlauf"));
 
   setText("[data-tab-content='messages'] .admin-only h2", langText("Admin Mesaj Kutusu", "Admin-Nachrichten"));
-  setText(refs.adminMessagesSummary, langText("Yeni istekler, sikayetler ve destek mesajlari burada toplanir.", "Hier laufen neue Wuensche, Beschwerden und Support-Nachrichten zusammen."));
-  setText("[data-tab-content='messages'] .non-admin-only section:first-child h2", langText("Admin'e Mesaj Gonder", "Nachricht an Admin"));
-  setText("[data-tab-content='messages'] .non-admin-only section:first-child .muted", langText("Sikayet, istek, destek talebi veya oneri mesajinizi admin ekibine yazin.", "Schreiben Sie hier Wunsch, Beschwerde, Support-Anfrage oder Vorschlag an das Admin-Team."));
+  setText(refs.adminMessagesSummary, langText("Yeni istekler, şikayetler ve destek mesajlari burada toplanir.", "Hier laufen neue Wuensche, Beschwerden und Support-Nachrichten zusammen."));
+  setText("[data-tab-content='messages'] .non-admin-only section:first-child h2", langText("Admin'e Mesaj Gönder", "Nachricht an Admin"));
+  setText("[data-tab-content='messages'] .non-admin-only section:first-child .muted", langText("Sikayet, istek, destek talebi veya oneri mesajınızı admin ekibine yazın.", "Schreiben Sie hier Wunsch, Beschwerde, Support-Anfrage oder Vorschlag an das Admin-Team."));
   setText("[data-tab-content='messages'] .non-admin-only section:last-child h2", langText("Mesaj Gecmisim", "Mein Nachrichtenverlauf"));
-  setText("[data-tab-content='messages'] .non-admin-only section:last-child .muted", langText("Burada size ait tum admin mesajlarinin durumunu gorebilirsiniz.", "Hier sehen Sie den Status Ihrer Nachrichten an das Admin-Team."));
+  setText("[data-tab-content='messages'] .non-admin-only section:last-child .muted", langText("Burada size ait tüm admin mesajlarinin durumunu gorebilirsiniz.", "Hier sehen Sie den Status Ihrer Nachrichten an das Admin-Team."));
   if (refs.adminMessageForm) {
     setFormFieldLabel(refs.adminMessageForm, "category", langText("Tur", "Typ"));
     setFormFieldLabel(refs.adminMessageForm, "subject", langText("Baslik", "Betreff"));
     setFormFieldLabel(refs.adminMessageForm, "message", langText("Mesaj", "Nachricht"));
     setFieldPlaceholder(refs.adminMessageForm, "subject", langText("Kisa konu basligi", "Kurzer Betreff"));
-    setFieldPlaceholder(refs.adminMessageForm, "message", langText("Admin ekibine iletmek istediginiz detaylari yazin", "Schreiben Sie hier Ihr Anliegen an das Admin-Team"));
+    setFieldPlaceholder(refs.adminMessageForm, "message", langText("Admin ekibine iletmek istediginiz detaylari yazın", "Schreiben Sie hier Ihr Anliegen an das Admin-Team"));
     setSelectOptionTexts(refs.adminMessageForm.elements.category, {
       request: langText("Istek", "Wunsch"),
       complaint: langText("Sikayet", "Beschwerde"),
       suggestion: langText("Oneri", "Vorschlag"),
     });
   }
-  setText(refs.adminMessageSubmitButton, langText("Mesaji Gonder", "Nachricht senden"));
+  setText(refs.adminMessageSubmitButton, langText("Mesaji Gönder", "Nachricht senden"));
 
   const userSections = document.querySelectorAll("[data-tab-content='users'] .two-column > section");
-  setText(userSections[0]?.querySelector("h2"), langText("Kullanici Ekle", "Benutzer anlegen"));
+  setText(userSections[0]?.querySelector("h2"), langText("Kullanıcı Ekle", "Benutzer anlegen"));
   setFormFieldLabel(refs.userForm, "name", t("fullName"));
-  setFormFieldLabel(refs.userForm, "username", langText("Kullanici Adi", "Benutzername"));
+  setFormFieldLabel(refs.userForm, "username", langText("Kullanıcı Adı", "Benutzername"));
   setFormFieldLabel(refs.userForm, "email", t("email"));
   setFormFieldLabel(refs.userForm, "phone", t("phone"));
   setFormFieldLabel(refs.userForm, "password", t("password"));
@@ -2351,31 +2351,31 @@ function applyUiTranslations() {
   setFieldPlaceholder(refs.userForm, "phone", "+49...");
   setSelectOptionTexts(refs.userForm?.elements?.role, {
     staff: langText("Personel", "Personal"),
-    customer: langText("Musteri", "Kunde"),
+    customer: langText("Müşteri", "Kunde"),
     admin: "Admin",
   });
-  setText("#userForm button[type='submit']", langText("Kullanici Ekle", "Benutzer anlegen"));
-  setText(userSections[1]?.querySelector("h2"), langText("Kullanicilar", "Benutzer"));
+  setText("#userForm button[type='submit']", langText("Kullanıcı Ekle", "Benutzer anlegen"));
+  setText(userSections[1]?.querySelector("h2"), langText("Kullanıcılar", "Benutzer"));
 
   const toolsPanel = document.querySelector("[data-tab-content='tools'] .tools-panel");
   const iotPanel = document.querySelector("[data-tab-content='iot'] .iot-panel");
   setText(iotPanel?.querySelector(".section-head h2"), langText("DRC IoT Pack", "DRC IoT Pack"));
   setText(iotPanel?.querySelector(".section-head .muted"), langText("Uzaktan izleme ekraninda oda durumu, alarm akisi, karbon odagi ve saha karar notlari tek yerde toplanir.", "Im Fernmonitoring-Bildschirm laufen Raumstatus, Alarme, Carbon-Fokus und Feldnotizen an einem Ort zusammen."));
   setText(toolsPanel?.querySelector(".section-head h2"), langText("Proje Araclari", "Projektwerkzeuge"));
-  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soguk oda hesaplama, 3D cizim, borulama ve teklif hazirligi icin kullanilan araclar burada toplandi. Bu bolume tum kullanicilar erisebilir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist fuer alle angemeldeten Benutzer offen."));
+  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soğuk oda hesaplama, 3D çizim, borulama ve teklif hazirligi için kullanılan araçlar burada toplandi. Bu bolume tüm kullanıcılar erisebilir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist fuer alle angemeldeten Benutzer offen."));
   const toolCards = toolsPanel?.querySelectorAll(".tool-card") || [];
-  setText(toolCards[0]?.querySelector("h3"), langText("Soguk Oda Proje Hesaplayici", "Kuehlraum-Projektrechner"));
-  setText(toolCards[0]?.querySelector(".muted"), langText("Kapasite, malzeme, teklif ve proje akisi icin kullandiginiz ana ColdRoomPro uygulamasi.", "Die ColdRoomPro-Anwendung fuer Kapazitaet, Material, Angebot und Projektablauf."));
-  setText(toolCards[0]?.querySelector(".tool-link"), langText("Yeni Sekmede Ac", "In neuem Tab oeffnen"));
-  setText(toolCards[1]?.querySelector("h3"), langText("Soguk Oda Cizim Pro", "Kuehlraum-Zeichnung Pro"));
-  setText(toolCards[1]?.querySelector(".muted"), langText("Yan yana oda, ortak duvar, borulama, 3D gorunum ve PDF/PNG ciktilari icin tam cizim araci.", "Zeichenwerkzeug fuer nebeneinanderliegende Raeume, gemeinsame Waende, Rohrfuehrung, 3D-Ansicht und PDF/PNG-Ausgaben."));
-  setText(toolCards[1]?.querySelector(".tool-link"), langText("Yeni Sekmede Ac", "In neuem Tab oeffnen"));
+  setText(toolCards[0]?.querySelector("h3"), langText("Soğuk Oda Proje Hesaplayici", "Kuehlraum-Projektrechner"));
+  setText(toolCards[0]?.querySelector(".muted"), langText("Kapasite, malzeme, teklif ve proje akisi için kullandiginiz ana ColdRoomPro uygulamasi.", "Die ColdRoomPro-Anwendung fuer Kapazitaet, Material, Angebot und Projektablauf."));
+  setText(toolCards[0]?.querySelector(".tool-link"), langText("Yeni Sekmede Aç", "In neuem Tab oeffnen"));
+  setText(toolCards[1]?.querySelector("h3"), langText("Soğuk Oda Cizim Pro", "Kuehlraum-Zeichnung Pro"));
+  setText(toolCards[1]?.querySelector(".muted"), langText("Yan yana oda, ortak duvar, borulama, 3D görünüm ve PDF/PNG ciktilari için tam çizim araci.", "Zeichenwerkzeug fuer nebeneinanderliegende Raeume, gemeinsame Waende, Rohrfuehrung, 3D-Ansicht und PDF/PNG-Ausgaben."));
+  setText(toolCards[1]?.querySelector(".tool-link"), langText("Yeni Sekmede Aç", "In neuem Tab oeffnen"));
 
   const trainingSections = document.querySelectorAll("[data-tab-content='training'] .two-column > section");
-  setText(trainingSections[0]?.querySelector("h2"), langText("DRC MAN Egitim Kaydi", "DRC MAN Trainingseintrag"));
-  setText(trainingSections[0]?.querySelector("p.muted"), langText("Buraya eklenen soru-cevaplar once DRC MAN tarafinda denenir. Egitim kayitlari admin tarafindan duzenlenir ve tum yerel kullanicilar ayni bilgiyi alir.", "Hier hinterlegte Fragen und Antworten werden zuerst von DRC MAN verwendet. Trainings werden vom Admin gepflegt und fuer alle lokalen Benutzer genutzt."));
+  setText(trainingSections[0]?.querySelector("h2"), langText("DRC MAN Eğitim Kaydı", "DRC MAN Trainingseintrag"));
+  setText(trainingSections[0]?.querySelector("p.muted"), langText("Buraya eklenen soru-cevaplar önce DRC MAN tarafinda denenir. Eğitim kayitlari admin tarafindan duzenlenir ve tüm yerel kullanıcılar aynı bilgiyi alir.", "Hier hinterlegte Fragen und Antworten werden zuerst von DRC MAN verwendet. Trainings werden vom Admin gepflegt und fuer alle lokalen Benutzer genutzt."));
   setFormFieldLabel(refs.assistantTrainingForm, "topic", langText("Konu", "Thema"));
-  setFormFieldLabel(refs.assistantTrainingForm, "audience", langText("Hedef Kullanici", "Zielgruppe"));
+  setFormFieldLabel(refs.assistantTrainingForm, "audience", langText("Hedef Kullanıcı", "Zielgruppe"));
   setFormFieldLabel(refs.assistantTrainingForm, "keywords", langText("Anahtar Kelimeler", "Schluesselwoerter"));
   setFormFieldLabel(refs.assistantTrainingForm, "trQuestion", langText("TR Soru", "TR Frage"));
   setFormFieldLabel(refs.assistantTrainingForm, "trAnswer", langText("TR Cevap", "TR Antwort"));
@@ -2383,18 +2383,18 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.assistantTrainingForm, "deAnswer", langText("DE Cevap", "DE Antwort"));
   setFormFieldLabel(refs.assistantTrainingForm, "suggestions", langText("Onerilen Sonraki Sorular", "Empfohlene Folgefragen"));
   setFormFieldLabel(refs.assistantTrainingForm, "isActive", langText("Durum", "Status"));
-  setFieldPlaceholder(refs.assistantTrainingForm, "topic", langText("Orn. Faturasiz satis akisi", "z. B. Ablauf Verkauf ohne Rechnung"));
-  setFieldPlaceholder(refs.assistantTrainingForm, "keywords", langText("stok girisi, malzeme girisi, wareneingang", "wareneingang, lagerzugang, materialeingang"));
-  setFieldPlaceholder(refs.assistantTrainingForm, "trQuestion", langText("Orn. stok girisi nasil yapilir", "z. B. wie buche ich wareneingang"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "topic", langText("Orn. Faturasız satış akisi", "z. B. Ablauf Verkauf ohne Rechnung"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "keywords", langText("stok girişi, malzeme girişi, wareneingang", "wareneingang, lagerzugang, materialeingang"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "trQuestion", langText("Orn. stok girişi nasil yapilir", "z. B. wie buche ich wareneingang"));
   setFieldPlaceholder(refs.assistantTrainingForm, "trAnswer", langText("Bu soruya verilecek net operasyon cevabi", "Klare operative Antwort fuer diese Frage"));
   setFieldPlaceholder(refs.assistantTrainingForm, "deQuestion", langText("Orn. wie buche ich wareneingang", "z. B. wie buche ich wareneingang"));
-  setFieldPlaceholder(refs.assistantTrainingForm, "deAnswer", langText("Almanca cevap opsiyoneldir, bos kalirsa Turkce cevap kullanilir", "Deutsche Antwort ist optional; leer bedeutet, dass die tuerkische Antwort genutzt wird."));
-  setFieldPlaceholder(refs.assistantTrainingForm, "suggestions", langText("virgulle ayirin: stok cikisi nasil yapilir, hareket iptali nasil olur", "mit Komma trennen: wie buche ich lagerausgang, wie storniere ich eine bewegung"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "deAnswer", langText("Almanca cevap opsiyoneldir, boş kalirsa Turkce cevap kullanilir", "Deutsche Antwort ist optional; leer bedeutet, dass die tuerkische Antwort genutzt wird."));
+  setFieldPlaceholder(refs.assistantTrainingForm, "suggestions", langText("virgulle ayirin: stok çıkışı nasil yapilir, hareket iptali nasil olur", "mit Komma trennen: wie buche ich lagerausgang, wie storniere ich eine bewegung"));
   setSelectOptionTexts(refs.assistantTrainingForm?.elements?.audience, {
-    all: langText("Tum Kullanicilar", "Alle Benutzer"),
+    all: langText("Tüm Kullanıcılar", "Alle Benutzer"),
     admin: langText("Sadece Admin", "Nur Admin"),
     staff: langText("Admin + Personel", "Admin + Personal"),
-    customer: langText("Sadece Musteri", "Nur Kunde"),
+    customer: langText("Sadece Müşteri", "Nur Kunde"),
   });
   setSelectOptionTexts(refs.assistantTrainingForm?.elements?.isActive, {
     true: langText("Aktif", "Aktiv"),
@@ -2404,14 +2404,14 @@ function applyUiTranslations() {
     ? t("messages.trainingUpdated")
     : t("messages.trainingSaved");
   refs.assistantTrainingCancelButton.textContent = t("common.cancelEdit");
-  setText(trainingSections[1]?.querySelector("h2"), langText("Egitim Listesi", "Trainingsliste"));
+  setText(trainingSections[1]?.querySelector("h2"), langText("Eğitim Listesi", "Trainingsliste"));
 
   const retrofitPanel = document.querySelector(".retrofit-checklist-panel");
   setText(retrofitPanel?.querySelector(".section-head h2"), langText("Retrofit Checklist", "Retrofit-Checkliste"));
   setText(
     retrofitPanel?.querySelector(".section-head .muted"),
     langText(
-      "Mevcut gazdan yeni gaza gecis dusunulurken sahada atlanmamasi gereken adimlari bu arac hizli toparlar.",
+      "Mevcut gazdan yeni gaza gecis dusunulurken sahada atlanmamasi gereken adimlari bu arac hızlı toparlar.",
       "Dieses Werkzeug fasst die wichtigen Schritte zusammen, die bei einer Umruestung auf ein anderes Kaeltemittel im Feld nicht uebersehen werden sollten."
     )
   );
@@ -2429,12 +2429,12 @@ function applyUiTranslations() {
     refs.retrofitChecklistForm,
     "notes",
     langText(
-      "Kompresor modeli, olculer, valf tipi, musteri istegi gibi notlari yazin",
+      "Kompresor modeli, olculer, valf tipi, müşteri istegi gibi notlari yazın",
       "Notieren Sie z. B. Verdichtermodell, Messwerte, Ventiltyp oder Kundenwunsch"
     )
   );
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.targetGas, {
-    "": langText("Henuz Net Degil", "Noch offen"),
+    "": langText("Henüz Net Degil", "Noch offen"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.applicationType, {
     positive: langText("Arti Muhafaza", "Pluskuehlung"),
@@ -2455,29 +2455,29 @@ function applyUiTranslations() {
     poe: "POE",
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.compressorApproval, {
-    unknown: langText("Henuz Kontrol Edilmedi", "Noch nicht geprueft"),
-    approved: langText("Onayli", "Freigegeben"),
+    unknown: langText("Henüz Kontrol Edilmedi", "Noch nicht geprueft"),
+    approved: langText("Onaylı", "Freigegeben"),
     not_approved: langText("Uyumsuz / Onaysiz", "Nicht freigegeben / kritisch"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.valveState, {
-    unchecked: langText("Henuz Kontrol Edilmedi", "Noch nicht geprueft"),
+    unchecked: langText("Henüz Kontrol Edilmedi", "Noch nicht geprueft"),
     checked: langText("Kontrol Edildi", "Geprueft"),
     replace: langText("Degisim Gerekebilir", "Tausch moeglich"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.controlsState, {
-    unchecked: langText("Henuz Kontrol Edilmedi", "Noch nicht geprueft"),
+    unchecked: langText("Henüz Kontrol Edilmedi", "Noch nicht geprueft"),
     checked: langText("Kontrol Edildi", "Geprueft"),
     update_required: langText("Ayar / Guncelleme Gerekli", "Anpassung erforderlich"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.labelState, {
     pending: langText("Bekliyor", "Offen"),
-    updated: langText("Guncellendi", "Aktualisiert"),
+    updated: langText("Güncellendi", "Aktualisiert"),
   });
   setText(refs.retrofitChecklistTitle, langText("Saha Kontrol Ciktisi", "Ausgabe fuer den Feldeinsatz"));
   setText(
     refs.retrofitChecklistHint,
     langText(
-      "Formu doldurup checklist urettiginizde burada saha sirasina gore duzenlenmis bir yol haritasi goreceksiniz.",
+      "Formu doldurup checklist urettiginizde burada saha sirasina göre duzenlenmis bir yol haritasi goreceksiniz.",
       "Nach dem Erstellen sehen Sie hier eine nach Feldeinsatz sortierte Retrofit-Checkliste."
     )
   );
@@ -2488,7 +2488,7 @@ function applyUiTranslations() {
   replaceLabelText(refs.assistantLanguage?.closest("label"), langText("Dil", "Sprache"));
   setText(refs.assistantClose, langText("Kapat", "Schliessen"));
   refs.assistantClose.setAttribute("aria-label", langText("DRC MAN panelini kapat", "DRC MAN Panel schliessen"));
-  refs.assistantInput.placeholder = langText("Orn. En pahali urun hangisi?", "z. B. Welcher Artikel ist am teuersten?");
+  refs.assistantInput.placeholder = langText("Orn. En pahali ürün hangisi?", "z. B. Welcher Artikel ist am teuersten?");
   setText("#assistantForm button[type='submit']", langText("Sor", "Fragen"));
 
   setTableHeaders(refs.itemsTableBody, [
@@ -2496,22 +2496,22 @@ function applyUiTranslations() {
     langText("Marka", "Marke"),
     langText("Kategori", "Kategorie"),
     langText("Stok", "Bestand"),
-    langText("Alis", "Einkauf"),
+    langText("Alış", "Einkauf"),
     langText("Liste", "Liste"),
-    langText("Net/Satis", "Netto/Verkauf"),
+    langText("Net/Satış", "Netto/Verkauf"),
     langText("Kritik", "Minimum"),
     langText("Stok Kodu", "Lagercode"),
-    langText("Islem", "Aktion"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.archiveTableBody, [
     langText("Malzeme", "Artikel"),
     langText("Marka", "Marke"),
     langText("Kategori", "Kategorie"),
-    langText("Alis", "Einkauf"),
+    langText("Alış", "Einkauf"),
     langText("Liste", "Liste"),
-    langText("Net/Satis", "Netto/Verkauf"),
+    langText("Net/Satış", "Netto/Verkauf"),
     langText("Stok Kodu", "Lagercode"),
-    langText("Islem", "Aktion"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.movementsTableBody, [
     langText("Tarih", "Datum"),
@@ -2519,18 +2519,18 @@ function applyUiTranslations() {
     langText("Tip", "Typ"),
     langText("Miktar", "Menge"),
     langText("Not", "Notiz"),
-    langText("Kullanici", "Benutzer"),
-    langText("Islem", "Aktion"),
+    langText("Kullanıcı", "Benutzer"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.expensesTableBody, [
     langText("Tarih", "Datum"),
     langText("Baslik", "Titel"),
     langText("Kategori", "Kategorie"),
     langText("Odeme Tipi", "Zahlungsart"),
-    langText("Aciklama", "Beschreibung"),
+    langText("Açıklama", "Beschreibung"),
     langText("Tutar", "Betrag"),
-    langText("Kullanici", "Benutzer"),
-    langText("Islem", "Aktion"),
+    langText("Kullanıcı", "Benutzer"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.cashbookTableBody, [
     langText("Tarih", "Datum"),
@@ -2539,16 +2539,16 @@ function applyUiTranslations() {
     langText("Referans", "Referenz"),
     langText("Not", "Notiz"),
     langText("Tutar", "Betrag"),
-    langText("Kullanici", "Benutzer"),
-    langText("Islem", "Aktion"),
+    langText("Kullanıcı", "Benutzer"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.ordersTableBody, [
     langText("Tarih", "Datum"),
-    langText("Musteri", "Kunde"),
+    langText("Müşteri", "Kunde"),
     langText("Kalemler", "Positionen"),
     langText("Durum", "Status"),
     langText("Not", "Notiz"),
-    langText("Islem", "Aktion"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.adminMessagesTableBody, [
     langText("Tarih", "Datum"),
@@ -2557,11 +2557,11 @@ function applyUiTranslations() {
     langText("Baslik", "Betreff"),
     langText("Mesaj", "Nachricht"),
     langText("Durum", "Status"),
-    langText("Islem", "Aktion"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.usersTableBody, [
     langText("Ad Soyad", "Name"),
-    langText("Kullanici Adi", "Benutzername"),
+    langText("Kullanıcı Adı", "Benutzername"),
     t("email"),
     langText("Telefon", "Telefon"),
     langText("Rol", "Rolle"),
@@ -2570,7 +2570,7 @@ function applyUiTranslations() {
     langText("Tarih", "Datum"),
     langText("Durum", "Status"),
     langText("Olay", "Ereignis"),
-    langText("Kullanici", "Benutzer"),
+    langText("Kullanıcı", "Benutzer"),
     langText("Rol", "Rolle"),
     "IP",
     langText("Detay", "Details"),
@@ -2580,7 +2580,7 @@ function applyUiTranslations() {
     langText("Sebep", "Grund"),
     langText("Blok Bitisi", "Sperre bis"),
     langText("Durum", "Status"),
-    langText("Islem", "Aktion"),
+    langText("İşlem", "Aktion"),
   ]);
   setTableHeaders(refs.assistantTrainingTableBody, [
     langText("Konu", "Thema"),
@@ -2589,11 +2589,11 @@ function applyUiTranslations() {
     langText("DE Soru", "DE Frage"),
     langText("Durum", "Status"),
     langText("Guncelleyen", "Aktualisiert von"),
-    langText("Islem", "Aktion"),
+    langText("İşlem", "Aktion"),
   ]);
 
   const securitySections = document.querySelectorAll("[data-tab-content='security'] .two-column > section");
-  setText(securitySections[0]?.querySelector("h2"), langText("Guvenlik Olaylari", "Sicherheitsereignisse"));
+  setText(securitySections[0]?.querySelector("h2"), langText("Güvenlik Olaylari", "Sicherheitsereignisse"));
   setText(securitySections[1]?.querySelector("h2"), langText("IP Blok Listesi", "IP-Sperrliste"));
   setText(securitySections[1]?.querySelector(".muted"), langText("Supheli denemelerde sistem IP adresini gecici bloke eder. Gerekiyorsa buradan kaldirin.", "Bei verdaechtigen Versuchen sperrt das System die IP temporaer. Bei Bedarf hier freigeben."));
 }
@@ -2726,8 +2726,8 @@ function bindEvents() {
   bindItemDetailModal();
   bindProjectsEvents();
   bindImageSearchTriggers();
-  refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { once: true });
-  refs.loginForm.addEventListener("focusin", unlockLoginInputs, { once: true });
+  refs.loginForm.addEventListener("pointerdown", unlockLoginInputs, { önce: true });
+  refs.loginForm.addEventListener("focusin", unlockLoginInputs, { önce: true });
   refs.loginForm.addEventListener("submit", handleLogin);
   refs.forgotPasswordForm?.addEventListener("submit", handleForgotPassword);
   refs.customerRegisterForm?.addEventListener("submit", handleCustomerRegister);
@@ -3235,7 +3235,7 @@ async function handleDrcManBulkImport(dryRun) {
   if (!resultBox) return;
 
   if (!dryRun && !window.confirm(langText(
-    "Tum FAQ dosyalari canli Postgres'e yazilacak. Mevcut ayni kaynak satirlari silinip yeniden eklenir. Devam edilsin mi?",
+    "Tüm FAQ dosyalari canli Postgres'e yazilacak. Mevcut aynı kaynak satirlari silinip yeniden eklenir. Devam edilsin mi?",
     "Alle FAQ-Dateien werden in die Live-Postgres geschrieben. Bestehende Zeilen mit derselben Quelle werden geloescht und neu eingefuegt. Fortfahren?"
   ))) {
     return;
@@ -3244,8 +3244,8 @@ async function handleDrcManBulkImport(dryRun) {
   if (mainBtn) mainBtn.disabled = true;
   if (dryBtn) dryBtn.disabled = true;
   resultBox.textContent = dryRun
-    ? langText("On izleme calisiyor...", "Vorschau laeuft...")
-    : langText("Yukleme calisiyor, lutfen bekleyin...", "Import laeuft, bitte warten...");
+    ? langText("On izleme calışiyor...", "Vorschau laeuft...")
+    : langText("Yukleme calışiyor, lutfen bekleyin...", "Import laeuft, bitte warten...");
 
   try {
     const response = await request("/api/admin/drc-man/import", {
@@ -3264,7 +3264,7 @@ async function handleDrcManBulkImport(dryRun) {
           `Vorschau: ${response.fileCount} Dateien, ${response.totalInserted || 0} Zeilen bereit.`
         )
       : langText(
-          `Yukleme tamam: ${response.totalInserted || 0} satir yazildi, ${response.totalDeleted || 0} eski satir silindi (${response.fileCount} dosya).`,
+          `Yukleme tamam: ${response.totalInserted || 0} satir yazıldı, ${response.totalDeleted || 0} eski satir silindi (${response.fileCount} dosya).`,
           `Import fertig: ${response.totalInserted || 0} Zeilen geschrieben, ${response.totalDeleted || 0} alte Zeilen geloescht (${response.fileCount} Dateien).`
         );
 
@@ -3382,8 +3382,8 @@ async function refreshData() {
     }
     if (data._networkError || data._transientError) {
       console.warn("[refreshData] gecici hata, oturum korunuyor:", data.error);
-      // UI'da ufak bir uyari cubugu goster — overlay kaldirildi, kullanici
-      // login'e atilmadi. state.user hala doldu, mevcut ekran calismaya devam.
+      // UI'da ufak bir uyari cubugu goster — overlay kaldirildi, kullanıcı
+      // login'e atilmadi. state.user hala doldu, mevcut ekran calışmaya devam.
       try {
         let bar = document.getElementById("transientErrorBar");
         if (!bar) {
@@ -3393,7 +3393,7 @@ async function refreshData() {
           document.body.appendChild(bar);
         }
         bar.textContent = langText(
-          "Sunucu yavas yanit verdi, oturum devam ediyor. Tekrar denemek icin sayfayi yenileyin.",
+          "Sunucu yavas yanit verdi, oturum devam ediyor. Tekrar denemek için sayfayi yenileyin.",
           "Server antwortete langsam, Sitzung bleibt aktiv. Bitte Seite neu laden."
         );
         setTimeout(() => { if (bar && bar.parentNode) bar.parentNode.removeChild(bar); }, 8000);
@@ -3434,15 +3434,15 @@ async function scheduleCustomerListLoad() {
     if (!data || data.error) return;
     state.customers = Array.isArray(data.customers) ? data.customers : [];
     state.customersLoaded = true;
-    renderCustomerDatalist();
+    renderCustomerDatalışt();
   } catch (_error) {
     // silent fail; customer dropdown just stays empty
   }
 }
 
-function renderCustomerDatalist() {
-  if (!refs.quoteCustomerDatalist) return;
-  refs.quoteCustomerDatalist.innerHTML = "";
+function renderCustomerDatalışt() {
+  if (!refs.quoteCustomerDatalışt) return;
+  refs.quoteCustomerDatalışt.innerHTML = "";
   state.customers.forEach((customer) => {
     const option = document.createElement("option");
     const label = customer.name || customer.username || customer.email || `#${customer.id}`;
@@ -3453,12 +3453,12 @@ function renderCustomerDatalist() {
     option.value = label;
     option.dataset.customerId = String(customer.id);
     if (extras.length) option.label = extras.join(" · ");
-    refs.quoteCustomerDatalist.append(option);
+    refs.quoteCustomerDatalışt.append(option);
   });
-  if (refs.quoteCustomerNameInput && !refs.quoteCustomerNameInput._drcDatalistBound) {
+  if (refs.quoteCustomerNameInput && !refs.quoteCustomerNameInput._drcDatalıştBound) {
     refs.quoteCustomerNameInput.addEventListener("input", syncQuoteCustomerSelection);
     refs.quoteCustomerNameInput.addEventListener("change", syncQuoteCustomerSelection);
-    refs.quoteCustomerNameInput._drcDatalistBound = true;
+    refs.quoteCustomerNameInput._drcDatalıştBound = true;
   }
   syncQuoteCustomerSelection();
 }
@@ -3876,12 +3876,12 @@ function scheduleInventoryWarmup() {
 function renderFilters() {
   const brands = uniqueValues("brand");
   const categories = uniqueValues("category");
-  populateSelect(refs.brandFilter, brands, langText("Tum Markalar", "Alle Marken"), state.filters.brand);
-  populateSelect(refs.categoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), state.filters.category);
-  populateSelect(refs.bulkBrandFilter, brands, langText("Tum Markalar", "Alle Marken"), refs.bulkBrandFilter.value || "all");
-  populateSelect(refs.bulkCategoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), refs.bulkCategoryFilter.value || "all");
-  populateSelect(refs.quoteBrandFilter, brands, langText("Tum Markalar", "Alle Marken"), state.quoteFilters.brand);
-  populateSelect(refs.quoteCategoryFilter, categories, langText("Tum Kategoriler", "Alle Kategorien"), state.quoteFilters.category);
+  populateSelect(refs.brandFilter, brands, langText("Tüm Markalar", "Alle Marken"), state.filters.brand);
+  populateSelect(refs.categoryFilter, categories, langText("Tüm Kategoriler", "Alle Kategorien"), state.filters.category);
+  populateSelect(refs.bulkBrandFilter, brands, langText("Tüm Markalar", "Alle Marken"), refs.bulkBrandFilter.value || "all");
+  populateSelect(refs.bulkCategoryFilter, categories, langText("Tüm Kategoriler", "Alle Kategorien"), refs.bulkCategoryFilter.value || "all");
+  populateSelect(refs.quoteBrandFilter, brands, langText("Tüm Markalar", "Alle Marken"), state.quoteFilters.brand);
+  populateSelect(refs.quoteCategoryFilter, categories, langText("Tüm Kategoriler", "Alle Kategorien"), state.quoteFilters.category);
 
   // Sync state with fallback ("all") if old value disappeared after brand/category normalize
   if (refs.brandFilter && state.filters.brand !== refs.brandFilter.value) state.filters.brand = refs.brandFilter.value || "all";
@@ -3946,7 +3946,7 @@ function statusMeta(level) {
     return { className: "status-progress", label: langText("Takip", "Beobachtung") };
   }
   if (level === "pending") {
-    return { className: "status-pending", label: langText("Hazirlaniyor", "Vorbereitung") };
+    return { className: "status-pending", label: langText("Hazırlanıyor", "Vorbereitung") };
   }
   return { className: "status-ok", label: langText("Hazir", "Online") };
 }
@@ -4015,23 +4015,23 @@ function buildOperationFocusLines(signals) {
   const lines = [];
   if (isCustomerUser()) {
     lines.push(signals.stockedItems > 0
-      ? langText(`${numberFormat.format(signals.stockedItems)} stoklu urun siparise hazir.`, `${numberFormat.format(signals.stockedItems)} lagernde Artikel sind bestellbereit.`)
-      : langText("Su anda siparise acik stok gorunmuyor.", "Aktuell ist kein lagernder Artikel fuer Bestellungen sichtbar."));
+      ? langText(`${numberFormat.format(signals.stockedItems)} stoklu ürün siparişe hazir.`, `${numberFormat.format(signals.stockedItems)} lagernde Artikel sind bestellbereit.`)
+      : langText("Su anda siparişe açık stok gorunmuyor.", "Aktuell ist kein lagernder Artikel fuer Bestellungen sichtbar."));
     lines.push(signals.pendingOrders > 0
-      ? langText(`${numberFormat.format(signals.pendingOrders)} siparisiniz takipte.`, `${numberFormat.format(signals.pendingOrders)} Ihrer Bestellungen sind in Bearbeitung.`)
-      : langText("Yeni siparis icin urunleri sepete ekleyebilirsiniz.", "Sie koennen jetzt neue Artikel in den Bestellkorb legen."));
+      ? langText(`${numberFormat.format(signals.pendingOrders)} siparişiniz takipte.`, `${numberFormat.format(signals.pendingOrders)} Ihrer Bestellungen sind in Bearbeitung.`)
+      : langText("Yeni sipariş için ürünleri sepete ekleyebilirsiniz.", "Sie koennen jetzt neue Artikel in den Bestellkorb legen."));
     lines.push(langText("DRC IoT ekranindan oda, alarm ve servis ozetini gorebilirsiniz.", "Im DRC-IoT-Bereich sehen Sie Raum-, Alarm- und Serviceuebersicht."));
     return lines;
   }
 
   lines.push(signals.criticalCount > 0
-    ? langText(`${numberFormat.format(signals.criticalCount)} kritik kart ilk sevkiyat ve servis turunu etkiliyor.`, `${numberFormat.format(signals.criticalCount)} kritische Karten beeinflussen die erste Auslieferungs- und Servicerunde.`)
+    ? langText(`${numberFormat.format(signals.criticalCount)} kritik kart ilk sevkiyat ve servis türünü etkiliyor.`, `${numberFormat.format(signals.criticalCount)} kritische Karten beeinflussen die erste Auslieferungs- und Servicerunde.`)
     : langText("Kritik stok baskisi dusuk, sevkiyat ritmi dengeli.", "Der kritische Lagerdruck ist niedrig, die Auslieferung wirkt stabil."));
   lines.push(signals.pendingOrders > 0
-    ? langText(`${numberFormat.format(signals.pendingOrders)} acik siparis hizli takip istiyor.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen brauchen einen kompakten Fokus.`)
-    : langText("Bekleyen siparis yok; bugun teklif ve saha planina odaklanabilirsiniz.", "Keine offenen Bestellungen; heute kann der Fokus auf Angebot und Feldplanung liegen."));
+    ? langText(`${numberFormat.format(signals.pendingOrders)} açık sipariş hızlı takip istiyor.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen brauchen einen kompakten Fokus.`)
+    : langText("Bekleyen sipariş yok; bugun teklif ve saha planina odaklanabilirsiniz.", "Keine offenen Bestellungen; heute kann der Fokus auf Angebot und Feldplanung liegen."));
   lines.push(signals.cashBalance <= 0
-    ? langText("Kasa girisleri sifirdan basliyor, tahsilatlari anlik yazmak iyi olur.", "Die Kasse startet bei null, Zahlungseintraege sollten direkt erfasst werden.")
+    ? langText("Kasa girişleri sifirdan basliyor, tahsilatlari anlik yazmak iyi olur.", "Die Kasse startet bei null, Zahlungseintraege sollten direkt erfasst werden.")
     : langText(`Hamburg kasasinda ${currency.format(signals.cashBalance)} gorunuyor.`, `In der Hamburg-Kasse stehen ${currency.format(signals.cashBalance)}.`));
   return lines;
 }
@@ -4112,8 +4112,8 @@ function buildIotEvents(signals, sites) {
       level: signals.pendingOrders > 0 ? "pending" : "ok",
       title: langText("Operasyon akisi", "Operationsfluss"),
       detail: signals.pendingOrders > 0
-        ? langText(`${numberFormat.format(signals.pendingOrders)} acik siparis DRC IoT panelinde saha onceligi ile eslestirilebilir.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen koennen im DRC-IoT mit Feldprioritaeten gekoppelt werden.`)
-        : langText("Bugun saha ritmi daha cok stok, teklif ve uzaktan izleme kalitesine odaklanabilir.", "Heute kann der Fokus staerker auf Lager, Angebot und Monitoringqualitaet liegen."),
+        ? langText(`${numberFormat.format(signals.pendingOrders)} açık sipariş DRC IoT panelinde saha onceligi ile eslestirilebilir.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen koennen im DRC-IoT mit Feldprioritaeten gekoppelt werden.`)
+        : langText("Bugun saha ritmi daha çok stok, teklif ve uzaktan izleme kalitesine odaklanabilir.", "Heute kann der Fokus staerker auf Lager, Angebot und Monitoringqualitaet liegen."),
     },
   ];
 }
@@ -4135,7 +4135,7 @@ function renderOverviewPanels() {
 
   if (refs.heroFocusPill) {
     refs.heroFocusPill.textContent = isCustomerUser()
-      ? langText(`Stokta ${numberFormat.format(signals.stockedItems)} urun acik`, `${numberFormat.format(signals.stockedItems)} Artikel auf Lager`)
+      ? langText(`Stokta ${numberFormat.format(signals.stockedItems)} ürün açık`, `${numberFormat.format(signals.stockedItems)} Artikel auf Lager`)
       : signals.criticalCount > 0
         ? langText(`${numberFormat.format(signals.criticalCount)} kritik stok takibi`, `${numberFormat.format(signals.criticalCount)} kritische Bestandskarte(n)`)
         : langText("Operasyon ritmi dengeli", "Stabiler Betriebsrhythmus");
@@ -4143,13 +4143,13 @@ function renderOverviewPanels() {
   if (refs.heroIotPill) {
     refs.heroIotPill.textContent = signals.iotAlarmCount > 0
       ? langText(`DRC IoT ${numberFormat.format(signals.iotAlarmCount)} alarm izliyor`, `DRC IoT beobachtet ${numberFormat.format(signals.iotAlarmCount)} Alarm(e)`)
-      : langText("DRC IoT tum odalarda online", "DRC IoT in allen Raeumen online");
+      : langText("DRC IoT tüm odalarda online", "DRC IoT in allen Raeumen online");
   }
 
   refs.opsOverview.innerHTML = `
     <div class="overview-head">
       <div>
-        <p class="eyebrow">${escapeHtml(langText("Bugun Once", "Heute zuerst"))}</p>
+        <p class="eyebrow">${escapeHtml(langText("Bugun Önce", "Heute zuerst"))}</p>
         <h2>${escapeHtml(langText("Sade operasyon akisi", "Klarer Operationsfluss"))}</h2>
       </div>
       <span class="status-pill ${signals.criticalCount > 0 ? "status-progress" : "status-ok"}">${escapeHtml(signals.criticalCount > 0 ? langText("Yakin takip", "Nahe dran") : langText("Akis temiz", "Sauber"))}</span>
@@ -4160,11 +4160,11 @@ function renderOverviewPanels() {
         <strong>${escapeHtml(numberFormat.format(signals.stockedItems))}</strong>
       </div>
       <div class="overview-metric">
-        <span>${escapeHtml(langText("Acik Siparis", "Offene Auftraege"))}</span>
+        <span>${escapeHtml(langText("Açık Sipariş", "Offene Auftraege"))}</span>
         <strong>${escapeHtml(numberFormat.format(signals.pendingOrders))}</strong>
       </div>
       <div class="overview-metric">
-        <span>${escapeHtml(langText("Satis Degeri", "Verkaufswert"))}</span>
+        <span>${escapeHtml(langText("Satış Değeri", "Verkaufswert"))}</span>
         <strong>${escapeHtml(currency.format(signals.stockSaleValue || 0))}</strong>
       </div>
     </div>
@@ -4313,7 +4313,7 @@ function renderIotMonitor(signals, sites = buildIotSites(signals), lastSync = nu
           </div>
           <span class="status-pill ${carbonBadge.className}">${escapeHtml(`${numberFormat.format(signals.carbonScore)}/100`)}</span>
         </div>
-        <p class="iot-card-copy">${escapeHtml(langText("Bu ekran, stok ve kontrol yogunlugundan uretilen hizli bir karbon azaltilim gorunumu sunar.", "Dieser Bildschirm zeigt eine schnelle Carbon-Reduktionssicht aus Lager- und Regelungsdichte."))}</p>
+        <p class="iot-card-copy">${escapeHtml(langText("Bu ekran, stok ve kontrol yogunlugundan uretilen hızlı bir karbon azaltilim görünümü sunar.", "Dieser Bildschirm zeigt eine schnelle Carbon-Reduktionssicht aus Lager- und Regelungsdichte."))}</p>
         <div class="carbon-meter" aria-hidden="true">
           <span class="carbon-meter-fill" style="width: ${signals.carbonScore}%"></span>
         </div>
@@ -4390,9 +4390,9 @@ function renderItems() {
     const actionMarkup = isAdminUser()
       ? `
         <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}" data-help="TR: Malzeme kartini duzenler. DE: Bearbeitet die Artikelkarte.">${t("common.edit")}</button>
-          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}" data-help="TR: Urunu aktif listeden arsive alir. DE: Verschiebt den Artikel ins Archiv.">${t("common.archive")}</button>
-          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}" data-help="TR: Hareketsiz urunu kalici siler. DE: Loescht einen Artikel ohne Bewegungen dauerhaft.">${t("common.delete")}</button>
+          <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}" data-help="TR: Malzeme kartını düzenler. DE: Bearbeitet die Artikelkarte.">${t("common.edit")}</button>
+          <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}" data-help="TR: Ürünü aktif listeden arşive alir. DE: Verschiebt den Artikel ins Archiv.">${t("common.archive")}</button>
+          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}" data-help="TR: Hareketsiz ürünü kalici siler. DE: Loescht einen Artikel ohne Bewegungen dauerhaft.">${t("common.delete")}</button>
         </div>
       `
       : `<span class="muted">${t("common.viewOnly")}</span>`;
@@ -4510,7 +4510,7 @@ function renderStockedItems(filteredItems) {
           <b>${escapeHtml(formatItemStock(item.currentStock, item.unit))}</b>
         </div>
         <div class="stocked-card-price">
-          <small>${langText("Net / Satis", "Netto / Verkauf")}</small>
+          <small>${langText("Net / Satış", "Netto / Verkauf")}</small>
           <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
         </div>
       </div>
@@ -4570,7 +4570,7 @@ function renderArchive() {
       <td>${listPrice ? currency.format(listPrice) : "-"}</td>
       <td>${salePrice ? currency.format(salePrice) : "-"}</td>
       <td>${escapeHtml(item.barcode || "")}</td>
-      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}" data-help="TR: Arsivdeki urunu tekrar aktif listeye alir. DE: Holt den archivierten Artikel in die aktive Liste zurueck.">${t("common.restore")}</button></td>
+      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}" data-help="TR: Arşivdeki ürünü tekrar aktif listeye alir. DE: Holt den archivierten Artikel in die aktive Liste zurueck.">${t("common.restore")}</button></td>
     `;
     refs.archiveTableBody.append(tr);
   });
@@ -4591,7 +4591,7 @@ function renderMovements() {
   state.movements.slice(0, 20).forEach((movement) => {
     const tr = document.createElement("tr");
     const movementTypeLabel = movement.type === "entry" ? t("common.in") : t("common.out");
-    let reverseMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}" data-help="TR: Hareketi ters kayitla geri alir. DE: Storniert die Bewegung mit einer Gegenbuchung.">${t("common.reverse")}</button>`;
+    let reverseMarkup = `<button class="mini-button secondary-button" type="button" data-reverse-movement="${movement.id}" data-help="TR: Hareketi ters kayıtla geri alir. DE: Storniert die Bewegung mit einer Gegenbuchung.">${t("common.reverse")}</button>`;
 
     if (movement.reversalOf) {
       reverseMarkup = `<span class="muted">${t("common.reverseRecord")}</span>`;
@@ -4649,7 +4649,7 @@ function renderExpenses() {
       <td>${escapeHtml(expense.note || "-")}</td>
       <td>${currency.format(expense.amount)}</td>
       <td>${escapeHtml(expense.userName || "-")}</td>
-      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydini siler. DE: Loescht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe loeschen")}</button></td>
+      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydını siler. DE: Loescht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe loeschen")}</button></td>
     `;
     refs.expensesTableBody.append(tr);
   });
@@ -4762,7 +4762,7 @@ function renderCashbook() {
   refs.cashbookTableBody.innerHTML = "";
   state.cashbook.slice(0, 20).forEach((entry) => {
     const saleHaystack = `${String(entry.title || "")} | ${String(entry.note || "")}`;
-    const isUnbilledSale = /faturasiz sati[sş]/i.test(saleHaystack);
+    const isUnbilledSale = /faturasız sati[sş]/i.test(saleHaystack);
     const isDirectSale = /direkt sati[sş]/i.test(saleHaystack);
     const isGenericSale = /\bsati[sş]\b|\bverkauf\b|\bperakende\b|DRC-\d{4}-\d{3,}/i.test(saleHaystack);
     const isSaleByType = entry.type === "in" && (entry.orderId || isGenericSale);
@@ -4778,7 +4778,7 @@ function renderCashbook() {
     const badges = [];
     const matchedQuoteNos = new Set(linkedQuotes.map((q) => String(q.quoteNo || "").toUpperCase()));
     linkedQuotes.forEach((quote) => {
-      badges.push(`<button type="button" class="cashbook-link-pill" data-cash-open-quote="${quote.id}" title="${langText("Teklif/satis PDF onizle", "Angebot/Verkauf PDF-Vorschau")}">📄 ${escapeHtml(quote.quoteNo || `#${quote.id}`)}</button>`);
+      badges.push(`<button type="button" class="cashbook-link-pill" data-cash-open-quote="${quote.id}" title="${langText("Teklif/satış PDF onizle", "Angebot/Verkauf PDF-Vorschau")}">📄 ${escapeHtml(quote.quoteNo || `#${quote.id}`)}</button>`);
     });
     // Quote numaras\u0131 not'ta var ama state.quotes'ta yok (son 20 d\u0131\u015f\u0131nda) - yaln\u0131z metin rozeti
     links.quoteNos.forEach((qn) => {
@@ -4800,7 +4800,7 @@ function renderCashbook() {
       ? `<button class="mini-button cashbook-detail-button" type="button" data-cash-sale-detail="${entry.id}" data-help="TR: Satış detayı - ürünler, müşteri, satıcı. DE: Verkaufsdetails - Positionen, Kunde, Verkäufer.">🔎 ${langText("Detay", "Details")}</button>`
       : "";
     const deleteButton = canManageCashbook()
-      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydini siler. DE: Loescht den Kasseneintrag.">${langText("Kaydi Sil", "Eintrag loeschen")}</button>`
+      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydını siler. DE: Loescht den Kasseneintrag.">${langText("Kaydı Sil", "Eintrag loeschen")}</button>`
       : "";
     const actionMarkup = detailButton || deleteButton
       ? `<div class="cashbook-action-stack">${detailButton}${deleteButton}</div>`
@@ -4883,7 +4883,7 @@ function renderCashbook() {
 function extractCustomerFromCashTitle(title) {
   if (!title) return "";
   const str = String(title);
-  // "Direkt satis tahsilati - Şenol" / "Faturasiz satis tahsilati - Musteri Adi"
+  // "Direkt satış tahsilati - Şenol" / "Faturasız satış tahsilati - Müşteri Adı"
   const match = str.match(/-\s*(.+)$/);
   return match ? match[1].trim() : "";
 }
@@ -5134,13 +5134,13 @@ function openSaleDetailFromMovement(movement) {
   }
 
   // 3) Fallback: pseudo cashbook entry (ürün bilgisini doğrudan movement'ten al)
-  const prefix = isDirect ? "Direkt satis tahsilati" : "Faturasiz satis tahsilati";
+  const prefix = isDirect ? "Direkt satış tahsilati" : "Faturasız satış tahsilati";
   const pseudo = {
     id: `mv-${movement.id}`,
     type: "in",
     title: customerHint ? `${prefix} - ${customerHint}` : prefix,
     date: movement.date,
-    note: isDirect ? "" : "Faturasiz satis",
+    note: isDirect ? "" : "Faturasız satış",
     amount: Number(movement.quantity || 0) * Number(movement.unitPrice || 0),
     userName: movement.userName,
     orderId: null,
@@ -5292,13 +5292,13 @@ function renderUsers() {
     const roleText = user.role === "admin"
       ? "Admin"
       : user.role === "customer"
-        ? langText("Musteri", "Kunde")
+        ? langText("Müşteri", "Kunde")
         : user.role === "operator"
           ? "Operator"
           : langText("Personel", "Personal");
     const isSelf = Number(user.id) === currentId;
     const delLabel = langText("Sil", "Löschen");
-    const editLabel = langText("Duzenle", "Bearbeiten");
+    const editLabel = langText("Düzenle", "Bearbeiten");
     const deleteBtn = isSelf
       ? `<span class="muted" title="${langText("Kendinizi silemezsiniz", "Eigenes Konto nicht löschbar")}">—</span>`
       : `<button class="secondary-button small-button" data-delete-user="${user.id}">${delLabel}</button>`;
@@ -5337,18 +5337,18 @@ function startEditUser(userId) {
   form.elements.password.required = false;
   form.elements.role.value = user.role || "staff";
   const title = document.getElementById("userFormTitle");
-  if (title) title.textContent = langText(`Kullanici Duzenle: ${user.name || user.username}`, `Benutzer bearbeiten: ${user.name || user.username}`);
+  if (title) title.textContent = langText(`Kullanıcı Düzenle: ${user.name || user.username}`, `Benutzer bearbeiten: ${user.name || user.username}`);
   const submitBtn = document.getElementById("userFormSubmit");
   if (submitBtn) submitBtn.textContent = langText("Kaydet", "Speichern");
   const cancelBtn = document.getElementById("userFormCancel");
   if (cancelBtn) cancelBtn.classList.remove("hidden");
   const hint = document.getElementById("userFormHint");
   if (hint) hint.textContent = langText(
-    "Sifre alani bos birakilirsa mevcut sifre korunur.",
+    "Şifre alani boş birakilirsa mevcut şifre korunur.",
     "Leere Passwort: aktuelles Passwort bleibt erhalten."
   );
   const pwLabel = document.getElementById("userPasswordLabel");
-  if (pwLabel) pwLabel.firstChild.textContent = langText("Yeni Sifre (opsiyonel)", "Neues Passwort (optional)");
+  if (pwLabel) pwLabel.firstChild.textContent = langText("Yeni Şifre (opsiyonel)", "Neues Passwort (optional)");
   if (typeof form.scrollIntoView === "function") form.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
@@ -5358,15 +5358,15 @@ function resetUserForm() {
   refs.userForm.elements.id.value = "";
   refs.userForm.elements.password.required = true;
   const title = document.getElementById("userFormTitle");
-  if (title) title.textContent = langText("Kullanici Ekle", "Benutzer anlegen");
+  if (title) title.textContent = langText("Kullanıcı Ekle", "Benutzer anlegen");
   const submitBtn = document.getElementById("userFormSubmit");
-  if (submitBtn) submitBtn.textContent = langText("Kullanici Ekle", "Benutzer anlegen");
+  if (submitBtn) submitBtn.textContent = langText("Kullanıcı Ekle", "Benutzer anlegen");
   const cancelBtn = document.getElementById("userFormCancel");
   if (cancelBtn) cancelBtn.classList.add("hidden");
   const hint = document.getElementById("userFormHint");
   if (hint) hint.textContent = "";
   const pwLabel = document.getElementById("userPasswordLabel");
-  if (pwLabel) pwLabel.firstChild.textContent = langText("Sifre", "Passwort");
+  if (pwLabel) pwLabel.firstChild.textContent = langText("Şifre", "Passwort");
 }
 
 async function handleDeleteUser(userId) {
@@ -5523,40 +5523,40 @@ function securitySeverityLabel(value) {
 
 function securityEventLabel(eventType) {
   const labels = {
-    login_success: langText("Giris basarili", "Login erfolgreich"),
-    login_failed: langText("Hatali giris", "Fehlgeschlagener Login"),
-    logout: langText("Cikis yapildi", "Abmeldung"),
+    login_success: langText("Giriş basarili", "Login erfolgreich"),
+    login_failed: langText("Hatali giriş", "Fehlgeschlagener Login"),
+    logout: langText("Çıkış yapıldı", "Abmeldung"),
     access_denied: langText("Yetki reddedildi", "Zugriff verweigert"),
-    password_reset_requested: langText("Sifre yenileme istendi", "Passwort-Reset angefordert"),
-    password_reset_completed: langText("Sifre yenilendi", "Passwort zurueckgesetzt"),
-    email_verified: langText("E-posta dogrulandi", "E-Mail bestaetigt"),
-    email_verification_resent: langText("Dogrulama maili tekrar gonderildi", "Bestaetigungs-E-Mail erneut gesendet"),
-    customer_registered: langText("Musteri kaydi", "Kundenregistrierung"),
-    item_created: langText("Urun olusturuldu", "Artikel erstellt"),
-    item_updated: langText("Urun guncellendi", "Artikel aktualisiert"),
-    item_deleted: langText("Urun silindi", "Artikel geloescht"),
-    item_archived: langText("Urun arsive alindi", "Artikel archiviert"),
-    item_restored: langText("Urun geri alindi", "Artikel wieder aktiviert"),
-    item_intake_created: langText("Yeni urun ve ilk stok", "Neuer Artikel mit Erstbestand"),
-    movement_entry_created: langText("Stok girisi", "Lagerzugang"),
-    movement_exit_created: langText("Stok cikisi", "Lagerausgang"),
+    password_reset_requested: langText("Şifre yenileme istendi", "Passwort-Reset angefordert"),
+    password_reset_completed: langText("Şifre yenilendi", "Passwort zurueckgesetzt"),
+    email_verified: langText("E-posta doğrulandı", "E-Mail bestaetigt"),
+    email_verification_resent: langText("Doğrulama maili tekrar gönderildi", "Bestaetigungs-E-Mail erneut gesendet"),
+    customer_registered: langText("Müşteri kaydı", "Kundenregistrierung"),
+    item_created: langText("Ürün oluşturuldu", "Artikel erstellt"),
+    item_updated: langText("Ürün güncellendi", "Artikel aktualışiert"),
+    item_deleted: langText("Ürün silindi", "Artikel geloescht"),
+    item_archived: langText("Ürün arşive alındı", "Artikel archiviert"),
+    item_restored: langText("Ürün geri alındı", "Artikel wieder aktiviert"),
+    item_intake_created: langText("Yeni ürün ve ilk stok", "Neuer Artikel mit Erstbestand"),
+    movement_entry_created: langText("Stok girişi", "Lagerzugang"),
+    movement_exit_created: langText("Stok çıkışi", "Lagerausgang"),
     movement_reversed: langText("Hareket iptal edildi", "Bewegung storniert"),
     expense_created: langText("Masraf eklendi", "Ausgabe erfasst"),
     expense_deleted: langText("Masraf silindi", "Ausgabe geloescht"),
-    cashbook_created: langText("Kasa kaydi eklendi", "Kasseneintrag erstellt"),
-    cashbook_deleted: langText("Kasa kaydi silindi", "Kasseneintrag geloescht"),
-    bulk_pricing_updated: langText("Toplu fiyat guncellendi", "Sammelpreise aktualisiert"),
+    cashbook_created: langText("Kasa kaydı eklendi", "Kasseneintrag erstellt"),
+    cashbook_deleted: langText("Kasa kaydı silindi", "Kasseneintrag geloescht"),
+    bulk_pricing_updated: langText("Toplu fiyat güncellendi", "Sammelpreise aktualışiert"),
     quote_created: langText("Teklif kaydedildi", "Angebot gespeichert"),
-    sale_completed: langText("Direkt satis tamamlandi", "Direktverkauf abgeschlossen"),
-    unbilled_sale_completed: langText("Faturasiz satis tamamlandi", "Verkauf ohne Rechnung abgeschlossen"),
-    order_created: langText("Siparis olusturuldu", "Bestellung erstellt"),
-    order_status_updated: langText("Siparis durumu guncellendi", "Bestellstatus aktualisiert"),
-    admin_message_created: langText("Admin mesaji gonderildi", "Admin-Nachricht gesendet"),
-    admin_message_status_updated: langText("Admin mesaji durumu guncellendi", "Admin-Nachricht aktualisiert"),
-    user_created: langText("Kullanici olusturuldu", "Benutzer erstellt"),
-    training_created: langText("DRC MAN egitimi eklendi", "DRC-MAN-Training erstellt"),
-    training_updated: langText("DRC MAN egitimi guncellendi", "DRC-MAN-Training aktualisiert"),
-    training_deleted: langText("DRC MAN egitimi silindi", "DRC-MAN-Training geloescht"),
+    sale_completed: langText("Direkt satış tamamlandı", "Direktverkauf abgeschlossen"),
+    unbilled_sale_completed: langText("Faturasız satış tamamlandı", "Verkauf ohne Rechnung abgeschlossen"),
+    order_created: langText("Sipariş oluşturuldu", "Bestellung erstellt"),
+    order_status_updated: langText("Sipariş durumu güncellendi", "Bestellstatus aktualışiert"),
+    admin_message_created: langText("Admin mesajı gönderildi", "Admin-Nachricht gesendet"),
+    admin_message_status_updated: langText("Admin mesajı durumu güncellendi", "Admin-Nachricht aktualışiert"),
+    user_created: langText("Kullanıcı oluşturuldu", "Benutzer erstellt"),
+    training_created: langText("DRC MAN eğitimi eklendi", "DRC-MAN-Training erstellt"),
+    training_updated: langText("DRC MAN eğitimi güncellendi", "DRC-MAN-Training aktualışiert"),
+    training_deleted: langText("DRC MAN eğitimi silindi", "DRC-MAN-Training geloescht"),
     origin_blocked: langText("Cross-site istek engellendi", "Cross-Site-Anfrage blockiert"),
     rate_limit_hit: langText("Istek limiti asildi", "Ratenlimit erreicht"),
     ip_blocked: langText("IP bloke edildi", "IP blockiert"),
@@ -5573,7 +5573,7 @@ function securityRoleLabel(role) {
     return langText("Personel", "Personal");
   }
   if (role === "customer") {
-    return langText("Musteri", "Kunde");
+    return langText("Müşteri", "Kunde");
   }
   return role || "-";
 }
@@ -5675,7 +5675,7 @@ function getSecurityEventPresentation(entry) {
   if (isCriticalSecurityOperation(entry)) {
     return {
       severityClass: "status-critical",
-      severityLabel: langText("Kritik Islem", "Kritischer Vorgang"),
+      severityLabel: langText("Kritik İşlem", "Kritischer Vorgang"),
       eventLabel: securityEventLabel(entry.eventType),
       detailText: summarizeSecurityDetails(entry.details),
     };
@@ -5708,7 +5708,7 @@ function renderSecurity() {
   const suspiciousCount = visibleRows.filter((entry) => isSuspiciousSecurityEvent(entry) || isCriticalSecurityOperation(entry)).length;
   if (refs.securitySummary) {
     const base = t("messages.securitySummary", events.length, blocks.length, activeBlocks);
-    refs.securitySummary.textContent = `${base} | ${suspiciousCount} ${langText("supheli/kritik", "verdaechtig/kritisch")} | ${hiddenAuthCount} ${langText("auth kaydi toplandi", "Auth-Eintraege gebuendelt")}`;
+    refs.securitySummary.textContent = `${base} | ${suspiciousCount} ${langText("supheli/kritik", "verdaechtig/kritisch")} | ${hiddenAuthCount} ${langText("auth kaydı toplandi", "Auth-Eintraege gebuendelt")}`;
   }
 
   refs.securityEventsTableBody.innerHTML = "";
@@ -5740,7 +5740,7 @@ function renderSecurity() {
   blocks.forEach((entry) => {
     const tr = document.createElement("tr");
     const actionMarkup = entry.isActive
-      ? `<button class="mini-button danger-button" type="button" data-release-block="${entry.id}" data-help="TR: IP blogunu kaldirir. DE: Hebt die IP-Sperre auf.">${t("common.release")}</button>`
+      ? `<button class="mini-button danger-button" type="button" data-release-block="${entry.id}" data-help="TR: IP bloğunu kaldirir. DE: Hebt die IP-Sperre auf.">${t("common.release")}</button>`
       : `<span class="muted">${langText("Kapali", "Inaktiv")}</span>`;
     tr.innerHTML = `
       <td>${escapeHtml(entry.ipAddress || "-")}</td>
@@ -5843,7 +5843,7 @@ function exportAuditCsv() {
     showToast(langText("Önce kayıtları yükle", "Erst Datensätze laden"), "warn");
     return;
   }
-  const rows = [["Tarih", "Seviye", "Olay", "Kullanici", "Rol", "IP", "Detay"]];
+  const rows = [["Tarih", "Seviye", "Olay", "Kullanıcı", "Rol", "IP", "Detay"]];
   for (const ev of events) {
     const detail = typeof ev.details === "object" ? JSON.stringify(ev.details) : String(ev.details || "");
     rows.push([
@@ -6178,9 +6178,9 @@ function trainingAudienceLabel(audience) {
     return langText("Admin + Personel", "Admin + Personal");
   }
   if (audience === "customer") {
-    return langText("Sadece Musteri", "Nur Kunde");
+    return langText("Sadece Müşteri", "Nur Kunde");
   }
-  return langText("Tum Kullanicilar", "Alle Benutzer");
+  return langText("Tüm Kullanıcılar", "Alle Benutzer");
 }
 
 function renderAssistantTraining() {
@@ -6190,7 +6190,7 @@ function renderAssistantTraining() {
 
   refs.assistantTrainingTableBody.innerHTML = "";
   if (!state.agentTrainingLoaded) {
-    refs.assistantTrainingSummary.textContent = langText("Egitim kayitlari yukleniyor...", "Trainingseintraege werden geladen...");
+    refs.assistantTrainingSummary.textContent = langText("Eğitim kayıtlari yukleniyor...", "Trainingseintraege werden geladen...");
     refs.assistantTrainingTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${langText("Yukleniyor...", "Wird geladen...")}</div></td></tr>`;
     return;
   }
@@ -6214,8 +6214,8 @@ function renderAssistantTraining() {
       <td>${escapeHtml(entry.createdByName || "-")}</td>
       <td class="table-action-cell">
         <div class="action-row">
-          <button class="mini-button secondary-button" type="button" data-edit-training="${entry.id}" data-help="TR: Egitim kaydini duzenler. DE: Bearbeitet den Trainingseintrag.">${t("common.edit")}</button>
-          <button class="mini-button danger-button" type="button" data-delete-training="${entry.id}" data-help="TR: Egitim kaydini siler. DE: Loescht den Trainingseintrag.">${t("common.delete")}</button>
+          <button class="mini-button secondary-button" type="button" data-edit-training="${entry.id}" data-help="TR: Eğitim kaydını düzenler. DE: Bearbeitet den Trainingseintrag.">${t("common.edit")}</button>
+          <button class="mini-button danger-button" type="button" data-delete-training="${entry.id}" data-help="TR: Eğitim kaydını siler. DE: Loescht den Trainingseintrag.">${t("common.delete")}</button>
         </div>
       </td>
     `;
@@ -6305,7 +6305,7 @@ function retrofitSelectLabel(fieldName, value) {
 
 function buildRetrofitChecklist(input) {
   const currentGas = retrofitGasLabel(input.currentGas);
-  const targetGas = input.targetGas ? retrofitGasLabel(input.targetGas) : langText("henuz net degil", "noch offen");
+  const targetGas = input.targetGas ? retrofitGasLabel(input.targetGas) : langText("henüz net değil", "noch offen");
   const summaryBits = [
     langText(`Kaynak gaz: ${currentGas}`, `Bestandskaeltemittel: ${currentGas}`),
     langText(`Planlanan gaz: ${targetGas}`, `Zielkaeltemittel: ${targetGas}`),
@@ -6315,7 +6315,7 @@ function buildRetrofitChecklist(input) {
 
   const decisionLines = [
     langText(
-      "1. Once bunun gercekten drop-in mi yoksa kismi redesign mi olduguna karar ver.",
+      "1. Önce bunun gercekten drop-in mi yoksa kismi redesign mi olduguna karar ver.",
       "1. Zuerst klaeren, ob das ein echtes Drop-in oder bereits ein Teil-Redesign ist."
     ),
     langText(
@@ -6327,7 +6327,7 @@ function buildRetrofitChecklist(input) {
   if (input.currentGas === "r404a") {
     decisionLines.push(
       langText(
-        "3. R404A tarafinda valf, glide ve etiket guncellemesi neredeyse her zaman ayri kontrol ister.",
+        "3. R404A tarafinda valf, glide ve etiket güncellemesi neredeyse her zaman ayri kontrol ister.",
         "3. Bei R404A-Retrofit muessen Ventil, Glide-Logik und Kennzeichnung fast immer separat geprueft werden."
       )
     );
@@ -6335,7 +6335,7 @@ function buildRetrofitChecklist(input) {
   if (["r290", "r744", "r717"].includes(input.targetGas || input.currentGas)) {
     decisionLines.push(
       langText(
-        "4. Yanicilik / yuksek basinc / toksisite tarafini normal gaz degisimi gibi degil, proje guvenligi gibi ele al.",
+        "4. Yanicilik / yuksek basinc / toksisite tarafini normal gaz degisimi gibi değil, proje güvenligi gibi ele al.",
         "4. Brennbarkeit / Hochdruck / Toxizitaet nicht wie einen normalen Kaeltemittelwechsel, sondern wie ein Sicherheitsprojekt behandeln."
       )
     );
@@ -6351,7 +6351,7 @@ function buildRetrofitChecklist(input) {
       `Oelzustand: ${retrofitSelectLabel("oilType", input.oilType)}. Falls noetig Spuelung, stufenweisen Oelwechsel und Ruecklaufkontrolle einplanen.`
     ),
     langText(
-      `Valf/orifis durumu: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, nozzle ve equalizer tarafi yeni gaza gore yeniden kontrol edilmeli.`,
+      `Valf/orifis durumu: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, nozzle ve equalizer tarafi yeni gaza göre yeniden kontrol edilmeli.`,
       `Ventil/Duese: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, Duesen und Equalizer auf das neue Kaeltemittel abstimmen.`
     ),
     langText(
@@ -6362,11 +6362,11 @@ function buildRetrofitChecklist(input) {
 
   const controlsLines = [
     langText(
-      `Kontrol ve emniyet: ${retrofitSelectLabel("controlsState", input.controlsState)}. Presostat, termostat, alarm ve defrost mantigi yeni basinc tablosuna gore bakilmali.`,
+      `Kontrol ve emniyet: ${retrofitSelectLabel("controlsState", input.controlsState)}. Presostat, termostat, alarm ve defrost mantigi yeni basinc tablosuna göre bakilmali.`,
       `Regelung und Sicherheit: ${retrofitSelectLabel("controlsState", input.controlsState)}. Druckschalter, Regler, Alarm und Abtauung auf die neue Drucklogik anpassen.`
     ),
     langText(
-      `Etiket ve evrak: ${retrofitSelectLabel("labelState", input.labelState)}. Gaz etiketi, sarj miktari, servis kaydi ve musteri bilgilendirmesi guncellenmeli.`,
+      `Etiket ve evrak: ${retrofitSelectLabel("labelState", input.labelState)}. Gaz etiketi, sarj miktari, servis kaydı ve müşteri bilgilendirmesi guncellenmeli.`,
       `Kennzeichnung und Unterlagen: ${retrofitSelectLabel("labelState", input.labelState)}. Kaeltemitteletikett, Fuellmenge, Serviceprotokoll und Kundeninfo aktualisieren.`
     ),
   ];
@@ -6374,7 +6374,7 @@ function buildRetrofitChecklist(input) {
   if (input.applicationType === "negative" || input.applicationType === "shock") {
     controlsLines.push(
       langText(
-        "Negatif / sok odada defrost sirasi, likit geri donusu ve basma sicakligi ekstra yakindan takip edilmeli.",
+        "Negatif / sok odada defrost sirasi, likit geri donusu ve basma sıcaklığı ekstra yakindan takip edilmeli.",
         "Bei Tiefkuehl- oder Schockanwendungen muessen Abtaulogik, Fluessigkeitsrueckkehr und Druckgastemperatur besonders eng beobachtet werden."
       )
     );
@@ -6386,11 +6386,11 @@ function buildRetrofitChecklist(input) {
       "Vakuum, Dichtheit, Fuellreihenfolge und die ersten Inbetriebnahme-Messwerte schriftlich festhalten."
     ),
     langText(
-      "Ilk calismada PT tablo, superheat ve subcool birlikte okunmali; sadece manometreye bakip karar verilmemeli.",
+      "Ilk calışmada PT tablo, superheat ve subcool birlikte okunmali; sadece manometreye bakip karar verilmemeli.",
       "Bei der Erstinbetriebnahme muessen PT-Logik, Superheat und Subcooling gemeinsam gelesen werden; ein Blick auf den Druck allein reicht nicht."
     ),
     langText(
-      "Yuk altinda ikinci kontrol yapilmali: bos calisma ve yuklu calisma ayni tabloyu vermez.",
+      "Yuk altinda ikinci kontrol yapilmali: boş calışma ve yuklu calışma aynı tabloyu vermez.",
       "Eine zweite Kontrolle unter Last ist Pflicht; Leerlauf und Lastbetrieb zeigen oft unterschiedliche Bilder."
     ),
   ];
@@ -6418,7 +6418,7 @@ function renderRetrofitChecklist() {
   }
 
   if (!state.retrofitChecklist) {
-    refs.retrofitChecklistOutput.innerHTML = `<div class="empty-state">${langText("Henuz checklist uretilmedi.", "Es wurde noch keine Checkliste erzeugt.")}</div>`;
+    refs.retrofitChecklistOutput.innerHTML = `<div class="empty-state">${langText("Henüz checklist uretilmedi.", "Es wurde noch keine Checkliste erzeugt.")}</div>`;
     return;
   }
 
@@ -6470,7 +6470,7 @@ function handleRetrofitChecklistGenerate(event) {
 
 async function copyRetrofitChecklist() {
   if (!state.retrofitChecklist) {
-    alert(langText("Once checklist uretin.", "Bitte zuerst eine Checkliste erzeugen."));
+    alert(langText("Önce checklist uretin.", "Bitte zuerst eine Checkliste erzeugen."));
     return;
   }
 
@@ -6675,7 +6675,7 @@ function renderPosCatalog() {
       </div>
       ${itemDetail ? `<div class="pos-card-note">${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</div>` : ""}
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : "-"}</div>
-      <button class="primary-button" type="button" data-add-quote-item="${item.id}" ${canSell ? "" : "disabled"} data-help="TR: Urunu satis sepetine ekler. DE: Legt den Artikel in den Verkaufswarenkorb.">${canSell ? t("common.addToCart") : langText("Fiyat Eksik", "Preis fehlt")}</button>
+      <button class="primary-button" type="button" data-add-quote-item="${item.id}" ${canSell ? "" : "disabled"} data-help="TR: Ürünü satış sepetine ekler. DE: Legt den Artikel in den Verkaufswarenkorb.">${canSell ? t("common.addToCart") : langText("Fiyat Eksik", "Preis fehlt")}</button>
     `;
     hydrateImageFallbacks(card);
     refs.posCatalogGrid.append(card);
@@ -6750,15 +6750,15 @@ function renderAdminOrders() {
       <td>${escapeHtml(order.note || "-")}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
       <td class="table-action-cell">
         <div class="action-row">
-          <button class="mini-button primary-button" type="button" data-order-edit="${order.id}" data-help="TR: Siparis satirlarinin fiyat ve miktarini duzenler. DE: Bearbeitet Preise/Mengen der Bestellpositionen.">${langText("Fiyat Düzenle","Preis bearbeiten")}</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparisi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing" data-help="TR: Siparisi hazirlaniyor durumuna alir. DE: Setzt die Bestellung auf in Vorbereitung.">${langText("Hazirla", "Vorbereiten")}</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparisi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschliessen")}</button>
-          <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled" data-help="TR: Siparisi iptal eder. DE: Storniert die Bestellung.">${t("common.cancelled")}</button>
+          <button class="mini-button primary-button" type="button" data-order-edit="${order.id}" data-help="TR: Sipariş satirlarinin fiyat ve miktarini düzenler. DE: Bearbeitet Preise/Mengen der Bestellpositionen.">${langText("Fiyat Düzenle","Preis bearbeiten")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparişi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing" data-help="TR: Siparişi hazırlanıyor durumuna alir. DE: Setzt die Bestellung auf in Vorbereitung.">${langText("Hazirla", "Vorbereiten")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparişi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschliessen")}</button>
+          <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled" data-help="TR: Siparişi iptal eder. DE: Storniert die Bestellung.">${t("common.cancelled")}</button>
           ${order.quoteId
-            ? `<button class="mini-button secondary-button" type="button" data-order-open-quote="${order.quoteId}" data-help="TR: Bagli teklifi acar. DE: Oeffnet verknuepftes Angebot.">${langText("Teklifi Aç","Angebot oeffnen")}</button>`
-            : `<button class="mini-button primary-button" type="button" data-order-convert="${order.id}" data-help="TR: Siparisi teklife cevirir. DE: Wandelt die Bestellung in ein Angebot um.">${langText("Teklife Çevir","In Angebot umwandeln")}</button>`}
-          ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}" data-help="TR: Musteriye hazir WhatsApp mesaji acar. DE: Oeffnet eine vorbereitete WhatsApp-Nachricht.">WhatsApp</button>` : ""}
+            ? `<button class="mini-button secondary-button" type="button" data-order-open-quote="${order.quoteId}" data-help="TR: Bağlı teklifi acar. DE: Oeffnet verknuepftes Angebot.">${langText("Teklifi Aç","Angebot oeffnen")}</button>`
+            : `<button class="mini-button primary-button" type="button" data-order-convert="${order.id}" data-help="TR: Siparişi teklife cevirir. DE: Wandelt die Bestellung in ein Angebot um.">${langText("Teklife Çevir","In Angebot umwandeln")}</button>`}
+          ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}" data-help="TR: Müşteriye hazir WhatsApp mesajı acar. DE: Oeffnet eine vorbereitete WhatsApp-Nachricht.">WhatsApp</button>` : ""}
         </div>
       </td>
     `;
@@ -6823,7 +6823,7 @@ async function openOrderItemEditor(orderId) {
   if (!orderId) return;
   const order = (state.orders || []).find((o) => Number(o.id) === Number(orderId));
   if (!order || !Array.isArray(order.items)) {
-    window.alert(langText("Siparis bulunamadi.", "Bestellung nicht gefunden."));
+    window.alert(langText("Sipariş bulunamadi.", "Bestellung nicht gefunden."));
     return;
   }
 
@@ -6970,7 +6970,7 @@ async function openOrderItemEditor(orderId) {
         : langText(" · Onaylandı.", " · Bestätigt.");
     }
 
-    const cashMsg = r2.cashbookInserted ? langText(" · Kasaya giriş yapıldı.", " · Kassenbuch aktualisiert.") : "";
+    const cashMsg = r2.cashbookInserted ? langText(" · Kasaya giriş yapıldı.", " · Kassenbuch aktualışiert.") : "";
     window.alert(langText("Sipariş kaydedildi.", "Bestellung gespeichert.") + cashMsg + statusMsg);
     close();
     await refreshData();
@@ -7059,7 +7059,7 @@ async function openOrderPaymentEditor(orderId) {
     });
     if (result.error) { window.alert(result.error); return; }
     if (result.cashbookInserted) {
-      window.alert(langText("Ödeme kaydedildi + kasa girişi yapıldı.","Zahlung gespeichert + Kassenbuch aktualisiert."));
+      window.alert(langText("Ödeme kaydedildi + kasa girişi yapıldı.","Zahlung gespeichert + Kassenbuch aktualışiert."));
     } else {
       window.alert(langText("Ödeme kaydedildi.","Zahlung gespeichert."));
     }
@@ -7124,7 +7124,7 @@ async function openCustomerAccounts() {
 async function convertOrderToQuote(orderId) {
   if (!orderId) return;
   const confirmMsg = langText(
-    "Bu siparis icin yeni bir teklif olusturulacak. Devam edilsin mi?",
+    "Bu sipariş için yeni bir teklif olusturulacak. Devam edilsin mi?",
     "Fuer diese Bestellung wird ein neues Angebot erstellt. Fortfahren?"
   );
   if (!window.confirm(confirmMsg)) return;
@@ -7137,7 +7137,7 @@ async function convertOrderToQuote(orderId) {
     return;
   }
   window.alert(langText(
-    `Teklif #${result.quoteId} olusturuldu.`,
+    `Teklif #${result.quoteId} oluşturuldu.`,
     `Angebot #${result.quoteId} erstellt.`
   ));
   await refreshData();
@@ -7266,7 +7266,7 @@ function renderCustomerCatalog() {
       </div>
       ${itemDetail ? `<div class="pos-card-note">${langText("Detay", "Detail")}: ${escapeHtml(itemDetail)}</div>` : ""}
       <div class="pos-card-price">${netPrice ? `${currency.format(netPrice)} ${langText("net", "netto")}` : langText("Fiyat sorunuz", "Preis auf Anfrage")}</div>
-      <button class="primary-button ${item.inStock === false ? 'is-backorder-cta' : ''}" type="button" data-add-order-item="${item.id}" data-help="${item.inStock === false ? 'TR: On siparis verir (' + (item.leadTimeDays || 10) + ' is gunu). DE: Vorbestellung (' + (item.leadTimeDays || 10) + ' Werktage).' : 'TR: Urunu sepete ekler. DE: Fuegt zum Warenkorb hinzu.'}">${item.inStock === false ? langText("🚚 Ön Sipariş", "🚚 Vorbestellen") : t("common.addToOrder")}</button>
+      <button class="primary-button ${item.inStock === false ? 'is-backorder-cta' : ''}" type="button" data-add-order-item="${item.id}" data-help="${item.inStock === false ? 'TR: On sipariş verir (' + (item.leadTimeDays || 10) + ' is gunu). DE: Vorbestellung (' + (item.leadTimeDays || 10) + ' Werktage).' : 'TR: Ürünü sepete ekler. DE: Fuegt zum Warenkorb hinzu.'}">${item.inStock === false ? langText("🚚 Ön Sipariş", "🚚 Vorbestellen") : t("common.addToOrder")}</button>
     `;
     hydrateImageFallbacks(card);
     refs.customerCatalogGrid.append(card);
@@ -7534,7 +7534,7 @@ function renderInventoryLoading(target) {
       <div class="loading-spinner" aria-hidden="true"></div>
       <div class="loading-text">
         <strong>${message}</strong>
-        <span class="muted">${langText("Binlerce urunun listesi hazirlaniyor, lutfen bekleyin.", "Tausende Artikel werden geladen, bitte warten.")}</span>
+        <span class="muted">${langText("Binlerce ürünün listesi hazırlanıyor, lutfen bekleyin.", "Tausende Artikel werden geladen, bitte warten.")}</span>
       </div>
     </div>`;
   if (target === "items") {
@@ -7583,7 +7583,7 @@ async function loadInventory(force = false, includeArchive = false) {
       renderFilters();
     })
     .catch((error) => {
-      window.alert(error.message || langText("Urun listesi yuklenemedi.", "Artikelliste konnte nicht geladen werden."));
+      window.alert(error.message || langText("Ürün listesi yuklenemedi.", "Artikelliste konnte nicht geladen werden."));
     })
     .finally(() => {
       state.inventoryLoadPromise = null;
@@ -7956,7 +7956,7 @@ function renderAssistantStatus() {
   }
 
   refs.assistantStatus.textContent = state.assistantStatus?.mode === "local_drc_man"
-    ? "DRC MAN yerel ajan bagli"
+    ? "DRC MAN yerel ajan bağlı"
     : "DRC MAN bilgi tabani aktif";
 }
 
@@ -8009,7 +8009,7 @@ async function handleAssistantSubmit(event) {
 
   state.assistantMessages.push({
     role: "assistant",
-    text: result.error || result.answer || langText("Bu soru icin net bir sonuc bulamadim.", "Ich konnte fuer diese Frage kein klares Ergebnis finden."),
+    text: result.error || result.answer || langText("Bu soru için net bir sonuc bulamadim.", "Ich konnte fuer diese Frage kein klares Ergebnis finden."),
   });
   renderAssistantMessages();
 }
@@ -8029,8 +8029,8 @@ function getAssistantWelcomeMessage() {
       : "DRC MAN Wissensbasis ist aktiv. Sie koennen nach Lagerbestand, Verkaufspreis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
   }
   return hasLocalAgent
-    ? "DRC MAN yerel ajan baglandi. Artik malzeme, proje, Hamburg stok ve soguk oda teknik sorularini daha detayli sorabilirsiniz."
-    : "DRC MAN bilgi tabani aktif. Stok, satis fiyati, kategori, kritik urun ve satis akisi ile ilgili soru sorabilirsiniz.";
+    ? "DRC MAN yerel ajan baglandi. Artik malzeme, proje, Hamburg stok ve soğuk oda teknik sorularini daha detayli sorabilirsiniz."
+    : "DRC MAN bilgi tabani aktif. Stok, satış fiyati, kategori, kritik ürün ve satış akisi ile ilgili soru sorabilirsiniz.";
 }
 
 function normalizeSearchText(value) {
@@ -8070,11 +8070,11 @@ function getItemSearchIndex(item) {
   });
 
   if (/r290/i.test(raw)) {
-    extras.push("propan", "propane", "gaz", "gazi", "sogutucu gaz", "refrigerant gas");
+    extras.push("propan", "propane", "gaz", "gazi", "soğutucu gaz", "refrigerant gas");
   }
 
-  if (/soğutucu akışkan|sogutucu akiskan|gaz|gas|refrigerant/i.test(raw)) {
-    extras.push("gaz", "gazi", "gas", "refrigerant", "sogutucu akiskan");
+  if (/soğutucu akışkan|soğutucu akiskan|gaz|gas|refrigerant/i.test(raw)) {
+    extras.push("gaz", "gazi", "gas", "refrigerant", "soğutucu akiskan");
   }
 
   return normalizeSearchText([source, ...extras].join(" "));
@@ -8087,7 +8087,7 @@ function getDisplayCategory(category) {
 
   const normalized = normalizeSearchText(category);
   const categoryMap = {
-    "sogutma yaglari": "Kuehloele",
+    "soğutma yaglari": "Kuehloele",
     "kompresorler": "Verdichter",
     "kompresor": "Verdichter",
     "kompresor scroll": "Verdichter > Scroll",
@@ -8110,16 +8110,16 @@ function getDisplayCategory(category) {
     "izolasyonlar ve bantlar": "Isolierung & Klebebaender",
     "izolasyonlu borular": "Isolierte Rohre",
     "montaj sarf": "Montagebedarf",
-    "sogutucu akiskanlar": "Kaeltemittel",
-    "sogutucu gaz": "Kaeltemittel",
+    "soğutucu akiskanlar": "Kaeltemittel",
+    "soğutucu gaz": "Kaeltemittel",
     "dikey tip buzdolaplari": "Vertikale Kuehlschraenke",
     "buzdolaplari ve vitrinler": "Kuehlschraenke & Vitrinen",
     "termostat": "Thermostate",
-    "sogutma malzemeleri": "Kuehltechnik-Zubehoer",
-    "soguk oda aksesuarlari": "Kuehlraum-Zubehoer",
-    "soguk oda kapilari": "Kuehlraumtueren",
+    "soğutma malzemeleri": "Kuehltechnik-Zubehoer",
+    "soğuk oda aksesuarlari": "Kuehlraum-Zubehoer",
+    "soğuk oda kapilari": "Kuehlraumtueren",
     "evaporatorler": "Verdampfer",
-    "sogutma gruplari": "Kuehlaggregate",
+    "soğutma gruplari": "Kuehlaggregate",
     "likit tanklar": "Sammler (Fluessigkeitsbehaelter)",
     "hat aksesuarlari": "Leitungszubehoer",
     "elektrik malzemeleri": "Elektromaterial",
@@ -8182,12 +8182,12 @@ function localizeItemDetail(detail) {
   const replacements = [
     [/\b(\d+)\s*x\s*(\d+)\s*l\b/gi, "$1x$2 L"],
     [/\b(\d+)\s*l(?:t)?\s*bidon\b/gi, "$1 L Gebinde"],
-    [/\b(\d+)\s*l(?:t)?\s*endustriyel bidon\b/gi, "$1 L Industriegebinde"],
+    [/\b(\d+)\s*l(?:t)?\s*endüstriyel bidon\b/gi, "$1 L Industriegebinde"],
     [/\b(\d+)\s*x\s*(\d+)\s*l\s*koli adet\b/gi, "$1x$2 L Karton"],
     [/\b(\d+)\s*x\s*(\d+)\s*l\s*koli\b/gi, "$1x$2 L Karton"],
     [/\b(\d+)\s*l(?:t)?\s*teneke\b/gi, "$1 L Kanister"],
     [/\b(\d+)\s*l(?:t)?\b/gi, "$1 L"],
-    [/\bendustriyel yag bidonu\b/gi, "Industrieoel-Gebinde"],
+    [/\bendüstriyel yag bidonu\b/gi, "Industrieoel-Gebinde"],
     [/\bmotorsuz\b/gi, "Ohne Motor"],
     [/\bdikey tip\b/gi, "Vertikal"],
     [/\byatay tip\b/gi, "Horizontal"],
@@ -8227,7 +8227,7 @@ function extractPackagingDetail(item) {
 
   const liters = literMatch[1].replace(".", ",");
   const literValue = Number(literMatch[1].replace(",", "."));
-  const isIndustrial = /\bendustriyel\b/.test(normalized);
+  const isIndustrial = /\bendüstriyel\b/.test(normalized);
   const isDrum = /\bbidon\b/.test(normalized) || isIndustrial;
   const isTin = /\bteneke\b/.test(normalized) || (/\byag\b/.test(normalized) && literValue === 5);
 
@@ -8242,7 +8242,7 @@ function extractPackagingDetail(item) {
   }
 
   if (isDrum) {
-    return `${liters} Lt endustriyel bidon`;
+    return `${liters} Lt endüstriyel bidon`;
   }
   if (isTin) {
     return `${liters} Lt teneke`;
@@ -8257,21 +8257,21 @@ function isPublicSafeNotePart(part) {
   if (!normalized) return false;
   if (/^\d+\s*[x×]\s*\d+\s*l\s*koli$/iu.test(String(part))) return false;
   return !normalized.startsWith("kaynak")
-    && !normalized.startsWith("urun kodu")
-    && !normalized.startsWith("daha once belirlenen fiyat")
-    && !normalized.startsWith("daha once belirlenen")
-    && !normalized.startsWith("ithalat klasoru gecmis kaydi")
+    && !normalized.startsWith("ürün kodu")
+    && !normalized.startsWith("daha önce belirlenen fiyat")
+    && !normalized.startsWith("daha önce belirlenen")
+    && !normalized.startsWith("ithalat klasoru gecmis kaydı")
     && !normalized.startsWith("tedarikci")
     && !normalized.includes("tedarikcisi")
     && !normalized.includes("fatura tedarikci")
     && !normalized.startsWith("kaynak dosya")
-    && !normalized.startsWith("eslesen aktif kart")
+    && !normalized.startsWith("eşleşen aktif kart")
     && !normalized.startsWith("id")
     && !normalized.startsWith("kod")
     && !normalized.startsWith("ad")
-    && !normalized.startsWith("arsiv")
+    && !normalized.startsWith("arşiv")
     && !normalized.startsWith("fiyat kaynagi")
-    && !normalized.startsWith("tahmini alis maliyeti");
+    && !normalized.startsWith("tahmini alış maliyeti");
 }
 
 // DE modunda notes_de varsa onu, yoksa TR notes'ı döndürür (localizeItemDetail regex fallback'i
@@ -8549,7 +8549,7 @@ function populateMovementItemSelect(options = {}) {
   if (matches.length === 0) {
     const option = document.createElement("option");
     option.value = "";
-    option.textContent = langText("Eslesen urun bulunamadi", "Kein passender Artikel gefunden");
+    option.textContent = langText("Eşleşen ürün bulunamadi", "Kein passender Artikel gefunden");
     select.append(option);
     select.value = "";
     syncMovementPrice();
@@ -8725,7 +8725,7 @@ function startItemEdit(itemId) {
   if (refs.itemForm.elements.notesDe) {
     refs.itemForm.elements.notesDe.value = item.notesDe || "";
   }
-  refs.itemSubmitButton.textContent = langText("Malzemeyi Guncelle", "Artikel aktualisieren");
+  refs.itemSubmitButton.textContent = langText("Malzemeyi Güncelle", "Artikel aktualışieren");
   refs.itemCancelEdit.classList.remove("hidden");
   activateTab("items");
 }
@@ -8874,20 +8874,20 @@ function addItemToQuote(itemId) {
     return;
   }
   if (Number(item.currentStock) <= 0) {
-    window.alert(langText("Bu urun stokta yok, sepete eklenemez.", "Dieser Artikel ist nicht auf Lager und kann nicht in den Warenkorb gelegt werden."));
+    window.alert(langText("Bu ürün stokta yok, sepete eklenemez.", "Dieser Artikel ist nicht auf Lager und kann nicht in den Warenkorb gelegt werden."));
     return;
   }
 
   const price = cartSalePrice(item, 1);
   if (price <= 0) {
-    window.alert(langText("Bu urunun satis fiyati yok. Once admin fiyat girmeli.", "Dieser Artikel hat keinen Verkaufspreis. Bitte zuerst durch Admin eintragen."));
+    window.alert(langText("Bu ürünün satış fiyati yok. Önce admin fiyat girmeli.", "Dieser Artikel hat keinen Verkaufspreis. Bitte zuerst durch Admin eintragen."));
     return;
   }
 
   const existing = state.quoteDraft.find((entry) => Number(entry.itemId) === Number(item.id));
   if (existing) {
     if (Number(existing.quantity) >= Number(item.currentStock)) {
-      window.alert(langText("Sepetteki miktar mevcut stogu gecemez.", "Die Warenkorbmenge darf den aktuellen Bestand nicht ueberschreiten."));
+      window.alert(langText("Sepetteki miktar mevcut stoğu gecemez.", "Die Warenkorbmenge darf den aktuellen Bestand nicht ueberschreiten."));
       return;
     }
     existing.quantity += 1;
@@ -9088,7 +9088,7 @@ function openOrderWhatsapp(orderId) {
   const itemSummary = order.items.map((item) => `${item.itemName} x ${numberFormat.format(item.quantity)}`).join(", ");
   const message = [
     `Merhaba ${order.customerName},`,
-    langText(`DRC siparis bilgilendirmesi: #${order.id}`, `DRC Bestellinformation: #${order.id}`),
+    langText(`DRC sipariş bilgilendirmesi: #${order.id}`, `DRC Bestellinformation: #${order.id}`),
     `${langText("Durum", "Status")}: ${statusText}`,
     `${langText("Tarih", "Datum")}: ${order.date}`,
     itemSummary ? `${langText("Kalemler", "Positionen")}: ${itemSummary}` : "",
@@ -9267,7 +9267,7 @@ async function request(url, options = {}) {
     // Kullanıcıyı login'e atmak yerine geçici bir hata dönelim — caller'lar
     // `result.error` kontrolüyle nazikçe bilgilendirsin, state silinmesin.
     return {
-      error: networkError?.message || "Baglanti hatasi. Lutfen tekrar deneyin.",
+      error: networkError?.message || "Bağlantı hatasi. Lutfen tekrar deneyin.",
       _networkError: true,
     };
   }
@@ -9409,9 +9409,9 @@ function openProjectForm(existing) {
     refs.projectForm.elements.projectType.value = "cold_room";
     refs.projectForm.elements.status.value = "draft";
   }
-  // Populate customer datalist
-  if (refs.projectCustomerDatalist) {
-    refs.projectCustomerDatalist.innerHTML = (state.customers || []).map(c =>
+  // Populate customer datalışt
+  if (refs.projectCustomerDatalışt) {
+    refs.projectCustomerDatalışt.innerHTML = (state.customers || []).map(c =>
       `<option value="${escapeHtml(c.name || c.username)}" data-customer-id="${c.id}"></option>`
     ).join("");
   }
@@ -9517,7 +9517,7 @@ function renderProjectDetail() {
   // Note
   refs.projectDetailNote.textContent = project.note || langText("(boş)", "(leer)");
 
-  // Item search datalist (stock only)
+  // Item search datalışt (stock only)
   if (refs.projectItemSuggestions) {
     refs.projectItemSuggestions.innerHTML = (state.items || [])
       .filter(i => Number(i.currentStock) > 0)
@@ -9815,7 +9815,7 @@ async function handleAuthUrlActions() {
     if (result.error) {
       refs.loginError.textContent = result.error;
     } else {
-      refs.customerRegisterSuccess.textContent = result.message || langText("E-posta adresiniz dogrulandi.", "Ihre E-Mail-Adresse wurde bestaetigt.");
+      refs.customerRegisterSuccess.textContent = result.message || langText("E-posta adresiniz doğrulandı.", "Ihre E-Mail-Adresse wurde bestaetigt.");
       state.user = result.user || null;
       if (state.user) {
         await refreshData();
