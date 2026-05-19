@@ -21,6 +21,7 @@
     "import:drcman:25k": "node scripts/import-drc-man-troubleshooting-25k.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "bwip-js": "^4.6.0",
     "cookie-session": "^2.1.1",
