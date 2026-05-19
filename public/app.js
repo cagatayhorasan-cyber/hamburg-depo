@@ -1418,10 +1418,23 @@ function normalizeItemImageUrl(value) {
     : `/assets/products/${cleaned}`;
 }
 
+// Cache-bust: sayfa yüklemesi başına bir kez üretilir (oturumda sabit).
+// Aynı oturumda URL stabil → browser cache çalışır.
+// Refresh edilince yeni cb değeri → DB'de image_url değişmemiş olsa bile fresh image gelir.
+const IMAGE_CACHE_BUST = String(Date.now());
+
+function appendImageCacheBust(url) {
+  if (!url) return url;
+  if (url.startsWith("data:")) return url;
+  if (url.startsWith("/assets/")) return url; // local SVG/PNG fallback'lere gerek yok
+  const sep = url.includes("?") ? "&" : "?";
+  return url + sep + "cb=" + IMAGE_CACHE_BUST;
+}
+
 function getItemImageSources(item) {
   const fallback = getBrandMedia(item).visual;
   const src = normalizeItemImageUrl(item?.imageUrl || "") || fallback;
-  return { src, fallback };
+  return { src: appendImageCacheBust(src), fallback: appendImageCacheBust(fallback) };
 }
 
 function bindImageFallback(node) {
