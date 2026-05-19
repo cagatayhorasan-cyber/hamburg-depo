@@ -2025,7 +2025,7 @@ function createApp() {
   });
 
   // Soft delete — kalıcı silmek yerine deleted_at atanır. Silme sebebi zorunlu.
-  app.delete("/api/cashbook/:id", requireStaffOrAdmin, async (req, res) => {
+  app.delete("/api/cashbook/:id", requireAdmin, async (req, res) => {
     const reason = cleanOptional(req.body?.reason || req.query?.reason);
     if (!reason || reason.length < 3) {
       return res.status(400).json({ error: "Silme sebebi zorunlu (en az 3 karakter)." });

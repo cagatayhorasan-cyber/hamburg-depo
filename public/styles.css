@@ -6518,3 +6518,162 @@ h3 {
   border-color: #008E80;
   box-shadow: 0 0 0 3px rgba(0, 142, 128, 0.14);
 }
+
+/* ========================================================================
+   KASA DEFTERI (cashbook) — KPI şeridi, IN/OUT toggle, filtre, satır renkleri
+   ======================================================================== */
+
+/* KPI şeridi (4 kart) */
+.cashbook-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 720px) {
+  .cashbook-kpi-row { grid-template-columns: repeat(2, 1fr); }
+}
+.cashbook-kpi {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+  border: 1px solid rgba(7, 44, 87, 0.10);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 2px rgba(7, 44, 87, 0.05);
+}
+.cashbook-kpi-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(26, 42, 61, 0.65);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.cashbook-kpi-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #082b4c;
+  font-variant-numeric: tabular-nums;
+}
+.cashbook-kpi-meta {
+  font-size: 11px;
+  color: rgba(26, 42, 61, 0.55);
+}
+.cashbook-kpi--primary { border-color: rgba(7, 44, 87, 0.20); background: linear-gradient(180deg, #f1f6fb 0%, #e6eef7 100%); }
+.cashbook-kpi--in { border-left: 4px solid #10b981; }
+.cashbook-kpi--out { border-left: 4px solid #ef4444; }
+.cashbook-kpi--net { border-left: 4px solid #6366f1; }
+.cashbook-kpi--in .cashbook-kpi-value { color: #047857; }
+.cashbook-kpi--out .cashbook-kpi-value { color: #b91c1c; }
+.cashbook-kpi-value--positive { color: #047857 !important; }
+.cashbook-kpi-value--negative { color: #b91c1c !important; }
+
+/* IN/OUT yön toggle */
+.cashbook-direction-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.cashbook-dir-btn {
+  border: 2px solid rgba(7, 44, 87, 0.12);
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  color: rgba(26, 42, 61, 0.7);
+  transition: all 0.15s;
+}
+.cashbook-dir-btn:hover { border-color: rgba(7, 44, 87, 0.25); color: #082b4c; }
+.cashbook-dir-btn--in.is-active {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  color: #047857;
+}
+.cashbook-dir-btn--out.is-active {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+  color: #b91c1c;
+}
+
+/* Filtre çubuğu */
+.cashbook-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0 14px;
+  padding: 10px 12px;
+  background: rgba(7, 44, 87, 0.03);
+  border-radius: 10px;
+}
+.cashbook-search-input {
+  flex: 1 1 240px;
+  min-width: 200px;
+  border: 1px solid rgba(7, 44, 87, 0.15);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #ffffff;
+}
+.cashbook-search-input:focus {
+  outline: none;
+  border-color: #008E80;
+  box-shadow: 0 0 0 3px rgba(0, 142, 128, 0.14);
+}
+.cashbook-filter-chips {
+  display: inline-flex;
+  gap: 4px;
+  background: #ffffff;
+  border: 1px solid rgba(7, 44, 87, 0.10);
+  border-radius: 8px;
+  padding: 2px;
+}
+.cashbook-chip {
+  border: 0;
+  background: transparent;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  color: rgba(26, 42, 61, 0.65);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.cashbook-chip:hover { background: rgba(7, 44, 87, 0.06); color: #082b4c; }
+.cashbook-chip.is-active { background: #082b4c; color: #ffffff; }
+.cashbook-chip--in.is-active { background: #10b981; }
+.cashbook-chip--out.is-active { background: #ef4444; }
+.cashbook-filter-count { font-size: 11.5px; margin-left: auto; }
+
+/* Tablo satır renkleri */
+.cashbook-table th.right, .cashbook-table td.right { text-align: right; }
+.cashbook-row--in { background: rgba(16, 185, 129, 0.04); }
+.cashbook-row--in:hover { background: rgba(16, 185, 129, 0.08); }
+.cashbook-row--out { background: rgba(239, 68, 68, 0.04); }
+.cashbook-row--out:hover { background: rgba(239, 68, 68, 0.08); }
+.cashbook-row--in .cashbook-amount-cell { color: #047857; }
+.cashbook-row--out .cashbook-amount-cell { color: #b91c1c; }
+
+/* Tip pill (tablo Tip sütununda) */
+.cashbook-type-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.cashbook-type-pill--in {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+}
+.cashbook-type-pill--out {
+  background: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+}

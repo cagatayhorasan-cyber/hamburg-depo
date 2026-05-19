@@ -2624,7 +2624,14 @@ function isStaffUser() {
 }
 
 function canManageCashbook() {
+  // Kasa ekleme/düzenleme — admin + staff
   return isAdminUser() || isStaffUser();
+}
+
+function canDeleteCashbook() {
+  // Kasa hareketi silme — yalnız admin (geri alınamaz finansal aksiyon).
+  // Backend de /api/cashbook/:id DELETE requireAdmin ile korumalı.
+  return isAdminUser();
 }
 
 function isCustomerUser() {
@@ -4729,24 +4736,80 @@ function populateCashCustomerOrderSelectors() {
     refs.cashForm.elements.date.value = today;
   }
 
-  // Bakiye widget
+  // KPI şeridi + (eski) bakiye widget
+  const all = state.cashbook || [];
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const monthStr = todayStr.slice(0, 7);
+  const monthEntries = all.filter((e) => String(e.date).startsWith(monthStr));
+  const balance = all.reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
+  const monthInEntries = monthEntries.filter((e) => e.type === 'in');
+  const monthOutEntries = monthEntries.filter((e) => e.type === 'out');
+  const monthIn = monthInEntries.reduce((s, e) => s + Number(e.amount || 0), 0);
+  const monthOut = monthOutEntries.reduce((s, e) => s + Number(e.amount || 0), 0);
+  const monthNet = monthIn - monthOut;
+
+  // Yeni KPI kartları
+  const setKpi = (id, value) => { const n = document.getElementById(id); if (n) n.textContent = value; };
+  setKpi("kpiBalance", `€${numberFormat.format(balance)}`);
+  setKpi("kpiBalanceMeta", `${all.length} hareket toplam`);
+  setKpi("kpiMonthIn", `€${numberFormat.format(monthIn)}`);
+  setKpi("kpiMonthInCount", `${monthInEntries.length} işlem`);
+  setKpi("kpiMonthOut", `€${numberFormat.format(monthOut)}`);
+  setKpi("kpiMonthOutCount", `${monthOutEntries.length} işlem`);
+  setKpi("kpiMonthNet", `${monthNet >= 0 ? '+' : ''}€${numberFormat.format(monthNet)}`);
+  const netNode = document.getElementById("kpiMonthNet");
+  if (netNode) {
+    netNode.classList.toggle("cashbook-kpi-value--positive", monthNet >= 0);
+    netNode.classList.toggle("cashbook-kpi-value--negative", monthNet < 0);
+  }
+  const balanceNode = document.getElementById("kpiBalance");
+  if (balanceNode) {
+    balanceNode.classList.toggle("cashbook-kpi-value--positive", balance >= 0);
+    balanceNode.classList.toggle("cashbook-kpi-value--negative", balance < 0);
+  }
+
+  // Eski tek-satır bakiye (legacy — gizli ama JS bağımlılığı için doldur)
   const balText = document.getElementById("cashbookBalanceText");
   if (balText) {
-    const all = state.cashbook || [];
-    const balance = all.reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
-    const todayStr = new Date().toISOString().slice(0,10);
-    const monthStr = todayStr.slice(0,7);
-    const todayNet = all.filter(e => String(e.date).startsWith(todayStr)).reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
-    const monthNet = all.filter(e => String(e.date).startsWith(monthStr)).reduce((s, e) => s + (e.type === 'in' ? Number(e.amount) : -Number(e.amount)), 0);
     const balColor = balance >= 0 ? 'var(--erp-success, #10b981)' : 'var(--erp-danger, #ef4444)';
-    balText.innerHTML = `
-      <span style="color:${balColor}; font-size:1.6em; font-weight:700;">€${numberFormat.format(balance)}</span>
-      <span class="muted" style="font-size:0.9em; margin-left:12px;">
-        bugün: ${todayNet >= 0 ? '+' : ''}€${numberFormat.format(todayNet)} ·
-        ay: ${monthNet >= 0 ? '+' : ''}€${numberFormat.format(monthNet)}
-      </span>
-    `;
+    balText.innerHTML = `<span style="color:${balColor};font-weight:700;">€${numberFormat.format(balance)}</span>`;
   }
+
+  // IN/OUT yön toggle — entryType select option'larını filtrele
+  setupCashbookDirectionToggle();
+}
+
+// IN/OUT yön toggle: aktif yöne göre entryType seçeneklerini gizler/gösterir
+function setupCashbookDirectionToggle() {
+  const buttons = document.querySelectorAll("[data-cash-dir]");
+  if (!buttons.length) return;
+  const select = document.getElementById("cashEntryType");
+  if (!select) return;
+  const applyDir = (dir) => {
+    buttons.forEach((b) => b.classList.toggle("is-active", b.dataset.cashDir === dir));
+    let firstVisible = null;
+    Array.from(select.options).forEach((opt) => {
+      const optDir = opt.getAttribute("data-dir");
+      const show = optDir === dir;
+      opt.hidden = !show;
+      opt.disabled = !show;
+      if (show && !firstVisible) firstVisible = opt;
+    });
+    // Mevcut seçim gizliyse ilk görünür opsiyona geç
+    const currentOpt = select.options[select.selectedIndex];
+    if (!currentOpt || currentOpt.hidden) {
+      if (firstVisible) select.value = firstVisible.value;
+    }
+    if (typeof updateCashFormVisibility === "function") updateCashFormVisibility();
+  };
+  buttons.forEach((b) => {
+    if (b._dirBound) return;
+    b._dirBound = true;
+    b.addEventListener("click", () => applyDir(b.dataset.cashDir));
+  });
+  // İlk yön: aktif olanı uygula, yoksa "in"
+  const initial = document.querySelector("[data-cash-dir].is-active")?.dataset.cashDir || "in";
+  applyDir(initial);
 }
 
 function extractCashbookLinks(entry) {
@@ -4770,10 +4833,85 @@ function extractCashbookLinks(entry) {
   return { quoteNos: Array.from(quoteNos), orderIds: Array.from(orderIds) };
 }
 
+// Cashbook filtre durumu — modul içi, sayfa boyunca persist
+const cashbookFilterState = { search: "", type: "all", period: "month" };
+
+function filterCashbookEntries(all) {
+  const search = String(cashbookFilterState.search || "").toLowerCase().trim();
+  const type = cashbookFilterState.type || "all";
+  const period = cashbookFilterState.period || "all";
+
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0, 10);
+  const monthStr = todayStr.slice(0, 7);
+  // ISO haftası başlangıcı (Pazartesi)
+  const weekStart = new Date(today);
+  const dayIdx = (today.getDay() + 6) % 7; // Mon=0
+  weekStart.setDate(today.getDate() - dayIdx);
+  const weekStartStr = weekStart.toISOString().slice(0, 10);
+
+  return (all || []).filter((e) => {
+    if (type !== "all" && e.type !== type) return false;
+    const dateStr = String(e.date || "").slice(0, 10);
+    if (period === "today" && dateStr !== todayStr) return false;
+    if (period === "week" && dateStr < weekStartStr) return false;
+    if (period === "month" && !dateStr.startsWith(monthStr)) return false;
+    if (search) {
+      const blob = [e.title, e.note, e.reference, e.supplierName, e.customerName, e.userName]
+        .filter(Boolean).join(" ").toLowerCase();
+      if (!blob.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+function setupCashbookFilterUi() {
+  const search = document.getElementById("cashbookSearch");
+  if (search && !search._cashBound) {
+    search._cashBound = true;
+    search.addEventListener("input", (e) => {
+      cashbookFilterState.search = e.target.value || "";
+      renderCashbook();
+    });
+  }
+  document.querySelectorAll("[data-cashbook-filter-type]").forEach((btn) => {
+    if (btn._cashBound) return;
+    btn._cashBound = true;
+    btn.addEventListener("click", () => {
+      cashbookFilterState.type = btn.dataset.cashbookFilterType;
+      document.querySelectorAll("[data-cashbook-filter-type]").forEach((b) =>
+        b.classList.toggle("is-active", b.dataset.cashbookFilterType === cashbookFilterState.type)
+      );
+      renderCashbook();
+    });
+  });
+  document.querySelectorAll("[data-cashbook-filter-period]").forEach((btn) => {
+    if (btn._cashBound) return;
+    btn._cashBound = true;
+    btn.addEventListener("click", () => {
+      cashbookFilterState.period = btn.dataset.cashbookFilterPeriod;
+      document.querySelectorAll("[data-cashbook-filter-period]").forEach((b) =>
+        b.classList.toggle("is-active", b.dataset.cashbookFilterPeriod === cashbookFilterState.period)
+      );
+      renderCashbook();
+    });
+  });
+}
+
 function renderCashbook() {
   populateCashCustomerOrderSelectors();
+  setupCashbookFilterUi();
   refs.cashbookTableBody.innerHTML = "";
-  state.cashbook.slice(0, 20).forEach((entry) => {
+  const filtered = filterCashbookEntries(state.cashbook || []);
+  // Toplam ve filtre sayısını göster
+  const countNode = document.getElementById("cashbookFilterCount");
+  if (countNode) {
+    const total = (state.cashbook || []).length;
+    countNode.textContent = filtered.length === total
+      ? `${total} kayıt`
+      : `${filtered.length} / ${total} kayıt gösteriliyor`;
+  }
+  filtered.slice(0, 200).forEach((entry) => {
     const saleHaystack = `${String(entry.title || "")} | ${String(entry.note || "")}`;
     const isUnbilledSale = /faturasız sati[sş]/i.test(saleHaystack);
     const isDirectSale = /direkt sati[sş]/i.test(saleHaystack);
@@ -4812,8 +4950,8 @@ function renderCashbook() {
     const detailButton = isSale
       ? `<button class="mini-button cashbook-detail-button" type="button" data-cash-sale-detail="${entry.id}" data-help="TR: Satış detayı - ürünler, müşteri, satıcı. DE: Verkaufsdetails - Positionen, Kunde, Verkäufer.">🔎 ${langText("Detay", "Details")}</button>`
       : "";
-    const deleteButton = canManageCashbook()
-      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydını siler. DE: Loescht den Kasseneintrag.">${langText("Kaydı Sil", "Eintrag loeschen")}</button>`
+    const deleteButton = canDeleteCashbook()
+      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydını siler (admin yetkisi). DE: Loescht den Kasseneintrag (Admin).">${langText("Kaydı Sil", "Eintrag loeschen")}</button>`
       : "";
     const actionMarkup = detailButton || deleteButton
       ? `<div class="cashbook-action-stack">${detailButton}${deleteButton}</div>`
@@ -4829,13 +4967,15 @@ function renderCashbook() {
       ? `<span class="cashbook-seller" title="${langText("Kaydı oluşturan personel", "Erfasst von")}">👤 <strong>${escapeHtml(entry.userName)}</strong></span>`
       : `<span class="muted">-</span>`;
     const tr = document.createElement("tr");
+    tr.className = entry.type === "in" ? "cashbook-row cashbook-row--in" : "cashbook-row cashbook-row--out";
+    const amountSign = entry.type === "in" ? "+" : "−";
     tr.innerHTML = `
       <td>${escapeHtml(entry.date || "")}</td>
-      <td>${escapeHtml(typeCell)}</td>
+      <td><span class="cashbook-type-pill cashbook-type-pill--${entry.type}">${entry.type === "in" ? "📥" : "📤"} ${escapeHtml(typeCell)}</span></td>
       <td>${escapeHtml(entry.title || "")}</td>
       <td>${referenceCell}</td>
       <td>${escapeHtml(entry.note || "-")}</td>
-      <td>${currency.format(entry.amount)}</td>
+      <td class="right cashbook-amount-cell"><strong>${amountSign}${currency.format(entry.amount)}</strong></td>
       <td>${sellerCell}</td>
       <td class="table-action-cell">${actionMarkup}</td>
     `;
@@ -4885,7 +5025,7 @@ function renderCashbook() {
     });
   });
 
-  if (canManageCashbook()) {
+  if (canDeleteCashbook()) {
     refs.cashbookTableBody.querySelectorAll("[data-delete-cash]").forEach((button) => {
       button.addEventListener("click", () => deleteCashEntry(Number(button.dataset.deleteCash)));
     });
