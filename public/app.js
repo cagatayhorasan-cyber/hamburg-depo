@@ -5509,6 +5509,21 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// CSP sertleştirme: inline onclick handler'ları yerine event delegation.
+// Eski 'onclick="..."' attribute'ları CSP script-src 'unsafe-inline' gerektiriyordu;
+// data-action="..." pattern ile aynı davranışı external JS'e taşıdık.
+document.addEventListener("click", (event) => {
+  const node = event.target.closest("[data-action]");
+  if (!node) return;
+  const action = node.dataset.action;
+  if (action === "open-cashbook-modal") {
+    document.getElementById("cashbookModal")?.classList.add("modal-open");
+    if (typeof renderCashbook === "function") renderCashbook();
+  } else if (action === "close-cashbook-modal") {
+    document.getElementById("cashbookModal")?.classList.remove("modal-open");
+  }
+});
+
 // ERP nav dropdown (Yönetim ▼) toggle/close handler
 function closeAllErpNavDropdowns() {
   document.querySelectorAll(".erp-nav-dropdown.is-open").forEach((wrap) => {

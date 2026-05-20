@@ -312,7 +312,7 @@
               <button class="tab-button admin-staff-only active" data-tab="items" type="button"><span class="erp-nav-icon">📦</span><span class="tab-title">Stok</span></button>
               <button class="tab-button admin-staff-only" data-tab="movements" type="button"><span class="erp-nav-icon">🔄</span><span class="tab-title">Hareketler</span></button>
               <button class="tab-button admin-staff-only" data-tab="quotes" type="button"><span class="erp-nav-icon">🛒</span><span class="tab-title">Satış</span></button>
-              <button class="tab-button admin-staff-only" type="button" onclick="document.getElementById('cashbookModal').classList.add('modal-open');if(typeof renderCashbook==='function')renderCashbook()"><span class="erp-nav-icon">💰</span><span class="tab-title">Kasa</span></button>
+              <button class="tab-button admin-staff-only" type="button" data-action="open-cashbook-modal"><span class="erp-nav-icon">💰</span><span class="tab-title">Kasa</span></button>
               <button class="tab-button admin-only" data-tab="orders" type="button"><span class="erp-nav-icon">📋</span><span class="tab-title">Siparişler</span></button>
               <button class="tab-button customer-only" data-tab="orders" type="button"><span class="erp-nav-icon">🛒</span><span class="tab-title">Sipariş Ver</span></button>
               <button class="tab-button" data-tab="projects" type="button"><span class="erp-nav-icon">🏗️</span><span class="tab-title">Projeler</span></button>
@@ -690,7 +690,7 @@
             <div class="fullscreen-modal-content">
               <div class="fullscreen-modal-header">
                 <h2>💰 Kasa Defteri</h2>
-                <button class="fullscreen-modal-close" onclick="document.getElementById('cashbookModal').classList.remove('modal-open')">&times;</button>
+                <button class="fullscreen-modal-close" type="button" data-action="close-cashbook-modal">&times;</button>
               </div>
               <div class="fullscreen-modal-body">
                 <!-- KPI ŞERİDİ: 4 kart (Mevcut Bakiye / Bu Ay IN / Bu Ay OUT / Bu Ay Net) -->

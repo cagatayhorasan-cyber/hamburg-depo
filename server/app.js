@@ -4168,9 +4168,12 @@ function buildContentSecurityPolicy(req) {
     "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
     // Supabase Storage çağrıları için *.supabase.co — REST + Storage CDN aynı
     "connect-src": ["'self'", "https://*.supabase.co"],
+    // 2026-05-20 sertleştirme: 'unsafe-inline' kaldırıldı.
+    // index.html'deki 2 onclick attribute'u data-action='...' pattern'ine taşındı (public/app.js event delegation).
+    // admin-tools alt route'unda 3rd-party CDN script (ColdRoomPro vs.) için 'unsafe-eval' korundu.
     "script-src": isAdminToolRequest
-      ? ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"]
-      : ["'self'", "'unsafe-inline'"],
+      ? ["'self'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"]
+      : ["'self'"],
   };
 
   const policy = Object.entries(directives)
