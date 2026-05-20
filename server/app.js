@@ -10,6 +10,8 @@ const bwipjs = require("bwip-js");
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const XLSX = require("xlsx");
+const multer = require("multer");
+const { saveItemImage, isSupabaseConfigured } = require("./lib/image-storage");
 const { dbPath, dbClient, initDatabase, query, get, execute, withTransaction } = require("./db");
 const { getSupplierCatalogRefsForItem } = require("./supplier-catalog");
 const { DRC_MAN_FAQ_MANIFEST } = require("./constants/drc-man-manifest");
@@ -1793,6 +1795,65 @@ function createApp() {
     });
 
     return res.json({ ok: true });
+  });
+
+  // ---- Ürün görseli yükleme (multipart/form-data) ----
+  // Supabase Storage configured ise oraya, değilse public/uploads/items/ dizinine kaydeder.
+  // Frontend field name: "image" (multer single file).
+  const ITEM_IMAGE_MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+  const ITEM_IMAGE_ALLOWED_MIMES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
+  const itemImageUpload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: ITEM_IMAGE_MAX_BYTES, files: 1 },
+    fileFilter: (_req, file, cb) => {
+      if (ITEM_IMAGE_ALLOWED_MIMES.has(file.mimetype)) return cb(null, true);
+      cb(new Error("Sadece JPEG / PNG / WebP / GIF formatları kabul edilir."));
+    },
+  });
+  app.post("/api/items/:id/image", requireAdmin, (req, res) => {
+    itemImageUpload.single("image")(req, res, async (uploadErr) => {
+      if (uploadErr) {
+        const msg = uploadErr.code === "LIMIT_FILE_SIZE"
+          ? "Dosya boyutu çok büyük (max 5 MB)."
+          : (uploadErr.message || "Görsel yüklenemedi.");
+        return res.status(400).json({ error: msg });
+      }
+      if (!req.file || !req.file.buffer) {
+        return res.status(400).json({ error: "Görsel dosyası bulunamadı (field: image)." });
+      }
+      const itemId = Number(req.params.id);
+      const item = await get("SELECT id, name FROM items WHERE id = ?", [itemId]);
+      if (!item) return res.status(404).json({ error: "Malzeme bulunamadı." });
+
+      try {
+        const { url, storage } = await saveItemImage(
+          req.file.buffer,
+          req.file.originalname,
+          itemId,
+          req.file.mimetype
+        );
+        await execute("UPDATE items SET image_url = ? WHERE id = ?", [url, itemId]);
+        queueSecurityEvent(req, {
+          user: req.session.user,
+          eventType: "item_image_uploaded",
+          severity: "info",
+          details: { itemId, storage, mime: req.file.mimetype, size: req.file.size, url },
+        });
+        return res.json({ ok: true, url, storage });
+      } catch (error) {
+        console.error("[/api/items/:id/image] upload error:", error?.message || error);
+        return res.status(500).json({ error: "Görsel yüklenirken hata: " + (error?.message || "bilinmeyen") });
+      }
+    });
+  });
+
+  // Storage durumunu döner (UI'ya bilgi: Supabase Storage aktif mi yoksa lokal mi)
+  app.get("/api/items/image/storage-info", requireAdmin, (_req, res) => {
+    res.json({
+      supabase: isSupabaseConfigured(),
+      maxBytes: ITEM_IMAGE_MAX_BYTES,
+      allowedMimes: Array.from(ITEM_IMAGE_ALLOWED_MIMES),
+    });
   });
 
   app.post("/api/items/intake", requireStaffOrAdmin, handleItemIntake);

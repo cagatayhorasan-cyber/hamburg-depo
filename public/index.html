@@ -469,9 +469,19 @@
                     <label class="form-span-2 image-url-field">
                       <span class="image-url-label">
                         Ürün Resmi
-                        <button type="button" class="mini-button image-search-trigger" data-image-search-trigger title="İnternette ürün resmi ara — yeni sekmede arama açar, resme sağ-tık ile adresini buraya yapıştırın">🔍 İnternette Ara</button>
+                        <span class="image-upload-actions">
+                          <label class="mini-button image-upload-trigger" data-item-image-upload-label>
+                            📤 Bilgisayardan Yükle
+                            <input type="file" data-item-image-input accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+                          </label>
+                          <button type="button" class="mini-button image-search-trigger" data-image-search-trigger title="İnternette ürün resmi ara — yeni sekmede arama açar, resme sağ-tık ile adresini buraya yapıştırın">🔍 İnternette Ara</button>
+                        </span>
                       </span>
-                      <input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://...">
+                      <div class="item-image-preview-row">
+                        <img data-item-image-preview src="" alt="Ürün görsel önizleme" style="display:none;max-width:120px;max-height:120px;border-radius:8px;border:1px solid rgba(7,44,87,0.12);object-fit:cover;">
+                        <span class="muted item-image-upload-status" data-item-image-upload-status></span>
+                      </div>
+                      <input name="imageUrl" type="text" placeholder="Dosya yükleyin veya /assets/products/ornek.jpg, https://… URL'i yapıştırın">
                       <div class="image-search-menu" data-image-search-menu hidden>
                         <button type="button" data-image-search="google">Google Görseller</button>
                         <button type="button" data-image-search="duckduckgo">DuckDuckGo Images</button>
@@ -585,9 +595,19 @@
                     <label class="form-span-2 image-url-field">
                       <span class="image-url-label">
                         Ürün Resmi
-                        <button type="button" class="mini-button image-search-trigger" data-image-search-trigger title="İnternette ürün resmi ara — yeni sekmede arama açar, resme sağ-tık ile adresini buraya yapıştırın">🔍 İnternette Ara</button>
+                        <span class="image-upload-actions">
+                          <label class="mini-button image-upload-trigger" data-item-image-upload-label>
+                            📤 Bilgisayardan Yükle
+                            <input type="file" data-item-image-input accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+                          </label>
+                          <button type="button" class="mini-button image-search-trigger" data-image-search-trigger title="İnternette ürün resmi ara — yeni sekmede arama açar, resme sağ-tık ile adresini buraya yapıştırın">🔍 İnternette Ara</button>
+                        </span>
                       </span>
-                      <input name="imageUrl" type="text" placeholder="/assets/products/ornek.jpg veya https://...">
+                      <div class="item-image-preview-row">
+                        <img data-item-image-preview src="" alt="Ürün görsel önizleme" style="display:none;max-width:120px;max-height:120px;border-radius:8px;border:1px solid rgba(7,44,87,0.12);object-fit:cover;">
+                        <span class="muted item-image-upload-status" data-item-image-upload-status></span>
+                      </div>
+                      <input name="imageUrl" type="text" placeholder="Dosya yükleyin veya /assets/products/ornek.jpg, https://… URL'i yapıştırın">
                       <div class="image-search-menu" data-image-search-menu hidden>
                         <button type="button" data-image-search="google">Google Görseller</button>
                         <button type="button" data-image-search="duckduckgo">DuckDuckGo Images</button>

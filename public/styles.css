@@ -6761,3 +6761,32 @@ h3 {
 .erp-nav-buttons > .tab-button .erp-nav-icon {
   font-size: 18px;
 }
+
+/* ========================================================================
+   ÜRÜN GÖRSELİ — Native dosya upload UI (Sprint C-1)
+   ======================================================================== */
+.image-upload-actions {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.image-upload-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.item-image-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+  min-height: 30px;
+}
+.item-image-preview-row img {
+  background: #f6f8fb;
+}
+.item-image-upload-status {
+  font-size: 12px;
+  flex: 1;
+}

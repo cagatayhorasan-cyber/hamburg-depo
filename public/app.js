@@ -3176,9 +3176,77 @@ async function handleItemSubmit(event) {
     return;
   }
 
+  // Eğer kullanıcı dosya seçtiyse: item ID şimdi var (POST → result.id, PUT → mevcut itemId).
+  // Beklemedeki dosyayı yükle, image_url'i güncelle.
+  const pendingFile = form._pendingImageFile;
+  const finalId = itemId || result.id;
+  if (pendingFile && finalId) {
+    try {
+      await uploadItemImageFile(finalId, pendingFile, form);
+    } catch (err) {
+      window.alert("Kart kaydedildi ancak görsel yüklenemedi: " + (err?.message || err));
+    }
+    form._pendingImageFile = null;
+  }
+
   resetItemForm();
   await refreshData();
 }
+
+// Ürün görseli yükleme — multipart/form-data POST
+async function uploadItemImageFile(itemId, file, formEl) {
+  const fd = new FormData();
+  fd.append("image", file, file.name);
+  const statusNode = formEl?.querySelector("[data-item-image-upload-status]");
+  if (statusNode) statusNode.textContent = "Yükleniyor…";
+  const res = await fetch(`/api/items/${itemId}/image`, {
+    method: "POST",
+    body: fd,
+    credentials: "include",
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || data?.error) {
+    if (statusNode) statusNode.textContent = "Hata: " + (data?.error || res.status);
+    throw new Error(data?.error || `HTTP ${res.status}`);
+  }
+  if (statusNode) statusNode.textContent = "Yüklendi ✓ (" + (data.storage || "?") + ")";
+  if (formEl?.elements?.imageUrl) formEl.elements.imageUrl.value = data.url || "";
+  return data;
+}
+
+// File picker bağlama — event delegation document seviyesinde
+document.addEventListener("change", (event) => {
+  const input = event.target.closest("[data-item-image-input]");
+  if (!input) return;
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const form = input.closest("form");
+  if (!form) return;
+  if (!file.type.startsWith("image/")) {
+    window.alert("Sadece görsel dosyalarını yükleyebilirsiniz (JPG/PNG/WebP/GIF).");
+    input.value = "";
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    window.alert("Dosya boyutu 5 MB'ı aşıyor.");
+    input.value = "";
+    return;
+  }
+  // Yerel preview
+  const previewImg = form.querySelector("[data-item-image-preview]");
+  const statusNode = form.querySelector("[data-item-image-upload-status]");
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    if (previewImg) {
+      previewImg.src = e.target.result;
+      previewImg.style.display = "";
+    }
+  };
+  reader.readAsDataURL(file);
+  if (statusNode) statusNode.textContent = `Hazır: ${file.name} (${(file.size / 1024).toFixed(0)} KB) — kaydet'e basınca yüklenecek`;
+  // Form gönderiminde upload edilmek üzere File objesini sakla
+  form._pendingImageFile = file;
+});
 
 async function handleStockIntakeSubmit(event) {
   event.preventDefault();
