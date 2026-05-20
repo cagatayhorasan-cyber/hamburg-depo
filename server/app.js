@@ -4333,7 +4333,7 @@ function buildContentSecurityPolicy(req) {
     "object-src": ["'none'"],
     "img-src": ["'self'", "data:", "blob:", "https:"],
     "font-src": ["'self'", "data:", "https://fonts.gstatic.com"],
-    "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+    "style-src": ["'self'", "https://fonts.googleapis.com"],
     // Supabase Storage çağrıları için *.supabase.co — REST + Storage CDN aynı
     "connect-src": ["'self'", "https://*.supabase.co"],
     // 2026-05-20 sertleştirme: 'unsafe-inline' kaldırıldı.

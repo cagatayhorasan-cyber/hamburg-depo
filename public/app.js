@@ -1015,13 +1015,13 @@ function showUpdateAvailableToast(applyUpdate) {
   toast.id = "swUpdateToast";
   toast.style.cssText = "position:fixed;bottom:20px;right:20px;z-index:99999;background:linear-gradient(135deg,#082b4c,#0f3d6b);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,0.3);font-family:Inter,sans-serif;font-size:13px;max-width:340px;display:flex;align-items:center;gap:10px;";
   toast.innerHTML = `
-    <span style="font-size:20px;">🔄</span>
-    <div style="flex:1;line-height:1.4;">
-      <strong style="display:block;font-size:13.5px;">Yeni güncelleme var</strong>
-      <span style="opacity:0.85;font-size:12px;">Programın yeni sürümü hazır.</span>
+    <span class="u-text-20">🔄</span>
+    <div class="u-flex-1-lh">
+      <strong class="u-display-block-13">Yeni güncelleme var</strong>
+      <span class="u-opacity-85-12">Programın yeni sürümü hazır.</span>
     </div>
-    <button id="swUpdateApplyBtn" style="background:#ff8a00;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;">Şimdi Yenile</button>
-    <button id="swUpdateDismissBtn" style="background:transparent;color:rgba(255,255,255,0.7);border:none;font-size:18px;cursor:pointer;line-height:1;">×</button>
+    <button id="swUpdateApplyBtn" class="sw-toast-apply">Şimdi Yenile</button>
+    <button id="swUpdateDismissBtn" class="sw-toast-dismiss">×</button>
   `;
   document.body.appendChild(toast);
   document.getElementById("swUpdateApplyBtn").addEventListener("click", () => {
@@ -1784,9 +1784,9 @@ function appendNotesEditUi(item) {
   const wrap = document.createElement("div");
   wrap.className = "notes-edit-area";
   wrap.innerHTML = `
-    <label style="font-size:12px;color:#475569;">${langText("Notlar (TR) — pipe \"|\" ile ayrı özellikler", "Notizen (TR) — Eigenschaften mit \"|\" trennen")}</label>
+    <label class="u-text-meta-12">${langText("Notlar (TR) — pipe \"|\" ile ayrı özellikler", "Notizen (TR) — Eigenschaften mit \"|\" trennen")}</label>
     <textarea data-notes-tr placeholder="örn: 50 kg | Voltaj: 230V | Soğutucu gaz: R134a"></textarea>
-    <label style="font-size:12px;color:#475569;">${langText("Notlar (DE)", "Notizen (DE)")}</label>
+    <label class="u-text-meta-12">${langText("Notlar (DE)", "Notizen (DE)")}</label>
     <textarea data-notes-de></textarea>
     <div class="notes-edit-row">
       <button type="button" class="secondary-button small-button" data-notes-cancel>${langText("İptal", "Abbrechen")}</button>
@@ -3618,7 +3618,7 @@ async function handleDrcManBulkImport(dryRun) {
     });
 
     if (response?.error) {
-      resultBox.innerHTML = `<span style="color:#b42318;">${response.error}</span>`;
+      resultBox.innerHTML = `<span class="u-text-danger">${response.error}</span>`;
       return;
     }
 
@@ -3641,20 +3641,20 @@ async function handleDrcManBulkImport(dryRun) {
         return `<li>${row.file}: ${row.prepared} satir haz\u0131r, ${row.skipped || 0} atlandi.</li>`;
       }
       if (row.status === "missing") {
-        return `<li style="color:#b54708;">${row.file}: deployda bulunamadi.</li>`;
+        return `<li class="u-text-warning">${row.file}: deployda bulunamadi.</li>`;
       }
       if (row.status === "parse_error") {
-        return `<li style="color:#b42318;">${row.file}: JSON parse hatasi - ${row.error}</li>`;
+        return `<li class="u-text-danger">${row.file}: JSON parse hatasi - ${row.error}</li>`;
       }
       if (row.status === "insert_error") {
-        return `<li style="color:#b42318;">${row.file}: insert hatasi - ${row.error}</li>`;
+        return `<li class="u-text-danger">${row.file}: insert hatasi - ${row.error}</li>`;
       }
       return `<li>${row.file}: ${row.status}</li>`;
     }).join("");
 
-    resultBox.innerHTML = `<div><strong>${headline}</strong></div><ul style="margin:6px 0 0 18px;padding:0;">${rowHtml}</ul>`;
+    resultBox.innerHTML = `<div><strong>${headline}</strong></div><ul class="diag-result-list">${rowHtml}</ul>`;
   } catch (error) {
-    resultBox.innerHTML = `<span style="color:#b42318;">${error?.message || error}</span>`;
+    resultBox.innerHTML = `<span class="u-text-danger">${error?.message || error}</span>`;
   } finally {
     if (mainBtn) mainBtn.disabled = false;
     if (dryBtn) dryBtn.disabled = false;
@@ -4566,7 +4566,7 @@ function renderOverviewPanels() {
       </div>
     </div>
     <div class="carbon-meter" aria-hidden="true">
-      <span class="carbon-meter-fill" style="width: ${signals.carbonScore}%"></span>
+      <span class="carbon-meter-fill" data-carbon-score="${signals.carbonScore}"></span>
     </div>
     <p class="overview-note">${escapeHtml(
       signals.criticalCount > 0
@@ -4685,7 +4685,7 @@ function renderIotMonitor(signals, sites = buildIotSites(signals), lastSync = nu
         </div>
         <p class="iot-card-copy">${escapeHtml(langText("Bu ekran, stok ve kontrol yogunlugundan uretilen hızlı bir karbon azaltilim görünümü sunar.", "Dieser Bildschirm zeigt eine schnelle Carbon-Reduktionssicht aus Lager- und Regelungsdichte."))}</p>
         <div class="carbon-meter" aria-hidden="true">
-          <span class="carbon-meter-fill" style="width: ${signals.carbonScore}%"></span>
+          <span class="carbon-meter-fill" data-carbon-score="${signals.carbonScore}"></span>
         </div>
         <div class="iot-carbon-points">
           <div><span>${escapeHtml(langText("Dusuk GWP kart", "Low-GWP Karten"))}</span><strong>${escapeHtml(numberFormat.format(signals.lowGwpReady))}</strong></div>
@@ -4734,6 +4734,11 @@ function renderIotMonitor(signals, sites = buildIotSites(signals), lastSync = nu
       }).join("")}
     </div>
   `;
+  // Carbon-meter dolgu genişliğini JS ile set et (CSP style-src inline'a izin vermiyor)
+  document.querySelectorAll(".carbon-meter-fill[data-carbon-score]").forEach((el) => {
+    const score = Math.max(0, Math.min(100, Number(el.dataset.carbonScore) || 0));
+    el.style.width = score + "%";
+  });
 }
 
 function renderItems() {
@@ -4829,7 +4834,7 @@ function renderStockedItems(filteredItems) {
       : t("messages.noStockedItems");
     refs.stockedItemsList.innerHTML = `<div class="empty-state">
       <strong>${msg}</strong>
-      ${hasFilter ? `<button type="button" class="secondary-button small-button" id="clearItemsFilterBtn" style="margin-top:10px;">${langText("Filtreleri Temizle", "Filter zurücksetzen")}</button>` : ""}
+      ${hasFilter ? `<button type="button" class="secondary-button small-button" id="clearItemsFilterBtn" class="u-mt-10">${langText("Filtreleri Temizle", "Filter zurücksetzen")}</button>` : ""}
     </div>`;
     if (hasFilter) {
       const btn = document.getElementById("clearItemsFilterBtn");
@@ -4955,7 +4960,7 @@ function renderMovements() {
   // (Arkada loadInventory çalışsa bile tablo anında render edilir.)
   refs.movementsTableBody.innerHTML = "";
   if (!Array.isArray(state.movements) || state.movements.length === 0) {
-    refs.movementsTableBody.innerHTML = `<tr><td colspan="7" class="muted" style="text-align:center; padding:18px;">${langText("Stok hareketi yok", "Keine Lagerbewegungen")}</td></tr>`;
+    refs.movementsTableBody.innerHTML = `<tr><td colspan="7" class="muted u-cell-center-pad">${langText("Stok hareketi yok", "Keine Lagerbewegungen")}</td></tr>`;
     return;
   }
   state.movements.slice(0, 20).forEach((movement) => {
@@ -5121,8 +5126,8 @@ function populateCashCustomerOrderSelectors() {
   // Eski tek-satır bakiye (legacy — gizli ama JS bağımlılığı için doldur)
   const balText = document.getElementById("cashbookBalanceText");
   if (balText) {
-    const balColor = balance >= 0 ? 'var(--erp-success, #10b981)' : 'var(--erp-danger, #ef4444)';
-    balText.innerHTML = `<span style="color:${balColor};font-weight:700;">€${numberFormat.format(balance)}</span>`;
+    const state = balance > 0 ? "positive" : (balance < 0 ? "negative" : "zero");
+    balText.innerHTML = `<span class="cashbook-balance-amount" data-state="${state}">€${numberFormat.format(balance)}</span>`;
   }
 
   // IN/OUT yön toggle — entryType select option'larını filtrele
@@ -6609,11 +6614,11 @@ function renderGlobalSearchResults(groups) {
       row.dataset.idx = String(idx);
       row.style.cssText = "display:flex;justify-content:space-between;align-items:center;width:100%;padding:8px 16px;background:none;border:none;cursor:pointer;text-align:left;font:inherit;color:inherit;border-radius:0;gap:12px;";
       row.innerHTML = `
-        <div style="flex:1;min-width:0;">
-          <div style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.title)}</div>
-          <div style="font-size:12px;color:var(--text-muted,#6b7280);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.subtitle)}</div>
+        <div class="u-flex-1-0">
+          <div class="u-text-overflow">${escapeHtml(item.title)}</div>
+          <div class="u-text-overflow-12">${escapeHtml(item.subtitle)}</div>
         </div>
-        ${item.meta ? `<div style="font-size:12px;color:var(--text-muted,#6b7280);white-space:nowrap;">${escapeHtml(item.meta)}</div>` : ""}
+        ${item.meta ? `<div class="u-meta-nowrap-12">${escapeHtml(item.meta)}</div>` : ""}
       `;
       row.addEventListener("mouseenter", () => {
         globalSearchSelectedIdx = idx;
@@ -7299,12 +7304,12 @@ function renderAdminOrders() {
       <td>${escapeHtml(order.customerName || "")}</td>
       <td>${order.items.map((item) => {
         const price = Number(item.unitPrice || 0);
-        const priceLabel = price > 0 ? ` <span class="muted" style="font-size:.85em;">(€${numberFormat.format(price)})</span>` : ` <span style="color:#dc2626;font-size:.85em;">(${langText("fiyat yok","kein Preis")})</span>`;
+        const priceLabel = price > 0 ? ` <span class="muted u-text-em-sm">(€${numberFormat.format(price)})</span>` : ` <span class="u-text-danger-em-sm">(${langText("fiyat yok","kein Preis")})</span>`;
         return `${escapeHtml(item.itemName)} x ${numberFormat.format(item.quantity)}${priceLabel}`;
       }).join("<br>")}</td>
-      <td><span class="status-pill ${statusClass}">${escapeHtml(getOrderStatusLabel(order.status))}</span>${order.stockDeductedAt ? `<br><span class="muted" style="font-size:.75em;">${langText("✓ stok düştü","✓ Lager abgezogen")}</span>` : ""}</td>
+      <td><span class="status-pill ${statusClass}">${escapeHtml(getOrderStatusLabel(order.status))}</span>${order.stockDeductedAt ? `<br><span class="muted u-text-em-xs">${langText("✓ stok düştü","✓ Lager abgezogen")}</span>` : ""}</td>
       <td>${renderPaymentCell(order)}</td>
-      <td>${escapeHtml(order.note || "-")}${order.quoteId ? `<br><span class="status-pill status-ok" style="margin-top:4px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
+      <td>${escapeHtml(order.note || "-")}${order.quoteId ? `<br><span class="status-pill status-ok u-mt-4">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}</td>
       <td class="table-action-cell">
         <div class="action-row">
           <button class="mini-button primary-button" type="button" data-order-edit="${order.id}" data-help="TR: Sipariş satirlarinin fiyat ve miktarini düzenler. DE: Bearbeitet Preise/Mengen der Bestellpositionen.">${langText("Fiyat Düzenle","Preis bearbeiten")}</button>
@@ -7399,41 +7404,41 @@ async function openOrderItemEditor(orderId) {
   modal.setAttribute("role", "dialog");
   modal.innerHTML = `
     <div class="auth-modal-backdrop" data-order-editor-close></div>
-    <div class="auth-modal-panel" role="document" style="max-width:920px;">
+    <div class="auth-modal-panel" role="document" class="u-max-w-920">
       <button type="button" class="auth-modal-close" data-order-editor-close>×</button>
       <h2>${langText("Sipariş Düzenle & Onayla","Bestellung bearbeiten & bestätigen")} #${order.id}</h2>
       <p class="muted">${langText("Müşteri:","Kunde:")} <strong>${escapeHtml(order.customerName || "")}</strong> · ${escapeHtml(order.date || "")}</p>
 
-      <div style="max-height:45vh;overflow-y:auto;margin:12px 0;">
+      <div class="u-scroll-y-45">
         <table class="data-table">
           <thead><tr>
             <th>${langText("Ürün","Artikel")}</th>
-            <th style="width:110px;">${langText("Miktar","Menge")}</th>
-            <th style="width:140px;">${langText("Birim Fiyat (€)","Einzelpreis (€)")}</th>
-            <th style="width:110px;">${langText("Toplam","Gesamt")}</th>
+            <th class="u-w-110">${langText("Miktar","Menge")}</th>
+            <th class="u-w-140">${langText("Birim Fiyat (€)","Einzelpreis (€)")}</th>
+            <th class="u-w-110">${langText("Toplam","Gesamt")}</th>
           </tr></thead>
           <tbody id="orderEditorBody">
             ${prefilled.map((it) => `
               <tr data-line="${it.id || ""}">
-                <td>${escapeHtml(it.itemName || "")}${it._suggestedPrice > 0 && !Number(it.unitPrice) ? `<br><span class="muted" style="font-size:.75em;">${langText("(öneri: stok fiyatı)","(Vorschlag: Listenpreis)")}</span>` : ""}</td>
-                <td><input type="number" min="0.01" step="0.01" value="${Number(it.quantity || 0)}" data-field="quantity" style="width:100%;"></td>
-                <td><input type="number" min="0" step="0.01" value="${Number(it._suggestedPrice || 0)}" data-field="unitPrice" style="width:100%;" placeholder="0,00"></td>
+                <td>${escapeHtml(it.itemName || "")}${it._suggestedPrice > 0 && !Number(it.unitPrice) ? `<br><span class="muted u-text-em-xs">${langText("(öneri: stok fiyatı)","(Vorschlag: Listenpreis)")}</span>` : ""}</td>
+                <td><input type="number" min="0.01" step="0.01" value="${Number(it.quantity || 0)}" data-field="quantity" class="u-w-full"></td>
+                <td><input type="number" min="0" step="0.01" value="${Number(it._suggestedPrice || 0)}" data-field="unitPrice" class="u-w-full" placeholder="0,00"></td>
                 <td class="line-total">€${numberFormat.format(Number(it.quantity || 0) * Number(it._suggestedPrice || 0))}</td>
               </tr>
             `).join("")}
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="3" style="text-align:right;"><strong>${langText("Sipariş Toplamı","Bestellsumme")}</strong></td>
+              <td colspan="3" class="u-text-right"><strong>${langText("Sipariş Toplamı","Bestellsumme")}</strong></td>
               <td id="orderEditorGrandTotal"><strong>€0</strong></td>
             </tr>
           </tfoot>
         </table>
       </div>
 
-      <fieldset style="border:1px solid rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin:16px 0;">
+      <fieldset class="section-box-tint">
         <legend>${langText("Ödeme & Onay","Zahlung & Bestätigung")}</legend>
-        <div class="form-grid" style="grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div class="form-grid u-grid-3">
           <label>${langText("Ödeme Türü","Zahlungsart")}
             <select name="paymentType">
               <option value="open_account" ${order.paymentType === "open_account" ? "selected" : ""}>${langText("Açık Hesap","Offenes Konto")}</option>
@@ -7453,14 +7458,14 @@ async function openOrderItemEditor(orderId) {
             <input type="number" name="paidAmount" min="0" step="0.01" value="${Number(order.paidAmount || 0)}">
           </label>
         </div>
-        <label style="display:block;margin-top:10px;">
+        <label class="u-mt-blk-10">
           <input type="checkbox" name="autoApprove" ${order.status === "pending" ? "checked" : ""}>
           ${langText("Siparişi onayla (Onaylandı) ve stoktan düş","Bestellung bestätigen (Genehmigt) und Lager abziehen")}
         </label>
-        <p class="muted" style="font-size:.8em;margin-top:6px;">${langText("Nakit/Havale + Ödendi/Kısmi seçilirse eklenen tutar otomatik kasa girişi olur. Açık Hesap borç olarak müşteri bakiyesine yazılır.","Bei Bar/Überweisung + Bezahlt/Teilweise wird der Differenzbetrag ins Kassenbuch gebucht. Offenes Konto verbleibt als Saldo beim Kunden.")}</p>
+        <p class="muted u-text-em-md-mt-6">${langText("Nakit/Havale + Ödendi/Kısmi seçilirse eklenen tutar otomatik kasa girişi olur. Açık Hesap borç olarak müşteri bakiyesine yazılır.","Bei Bar/Überweisung + Bezahlt/Teilweise wird der Differenzbetrag ins Kassenbuch gebucht. Offenes Konto verbleibt als Saldo beim Kunden.")}</p>
       </fieldset>
 
-      <div class="action-row" style="justify-content:flex-end;gap:8px;margin-top:12px;">
+      <div class="action-row u-flex-end-gap-8-mt-12">
         <button type="button" class="secondary-button" data-order-editor-close>${langText("Vazgeç","Abbrechen")}</button>
         <button type="button" class="primary-button" id="orderEditorSave">${langText("Kaydet","Speichern")}</button>
       </div>
@@ -7545,14 +7550,14 @@ function renderPaymentCell(order) {
   const statusLabel = { paid: langText("Ödendi","Bezahlt"), partial: langText("Kısmi","Teilweise"), unpaid: langText("Ödenmedi","Offen") }[status];
   return `
     <div class="order-payment-cell" data-order-payment-row="${order.id}">
-      <div style="font-size:.85em;">
+      <div class="u-text-em-sm">
         <strong>${escapeHtml(typeLabel)}</strong> · <span class="status-pill ${statusClass}">${escapeHtml(statusLabel)}</span>
       </div>
-      <div class="muted" style="font-size:.8em;margin-top:2px;">
+      <div class="muted u-text-em-md-mt-2">
         ${langText("Toplam","Ges.")}: €${numberFormat.format(total)} · ${langText("Ödenen","Bez.")}: €${numberFormat.format(paid)}
-        ${remaining > 0 ? ` · <span style="color:#dc2626;">${langText("Kalan","Rest")}: €${numberFormat.format(remaining)}</span>` : ""}
+        ${remaining > 0 ? ` · <span class="u-text-red-600">${langText("Kalan","Rest")}: €${numberFormat.format(remaining)}</span>` : ""}
       </div>
-      <button type="button" class="mini-button primary-button" style="margin-top:4px;" data-order-payment="${order.id}">${langText("Ödeme Al / Düzenle","Zahlung erfassen")}</button>
+      <button type="button" class="mini-button primary-button u-mt-4" data-order-payment="${order.id}">${langText("Ödeme Al / Düzenle","Zahlung erfassen")}</button>
     </div>
   `;
 }
@@ -7568,7 +7573,7 @@ async function openOrderPaymentEditor(orderId) {
   modal.className = "auth-modal";
   modal.innerHTML = `
     <div class="auth-modal-backdrop" data-pay-close></div>
-    <div class="auth-modal-panel" role="document" style="max-width:520px;">
+    <div class="auth-modal-panel" role="document" class="u-max-w-520">
       <button type="button" class="auth-modal-close" data-pay-close>×</button>
       <h2>${langText("Ödeme","Zahlung")} — Sipariş #${order.id}</h2>
       <p class="muted">${escapeHtml(order.customerName || "")} · ${langText("Toplam","Summe")}: <strong>€${numberFormat.format(total)}</strong></p>
@@ -7591,8 +7596,8 @@ async function openOrderPaymentEditor(orderId) {
         <label>${langText("Ödenen Tutar (€)","Bezahlter Betrag (€)")}
           <input type="number" name="paidAmount" min="0" step="0.01" value="${Number(order.paidAmount || 0)}">
         </label>
-        <p class="muted" style="font-size:.85em;">${langText("Nakit/Havale + Ödendi/Kısmi seçilirse, yeni eklenen tutar otomatik kasaya girer.","Bei Bar/Überweisung + Bezahlt/Teilweise wird der Differenzbetrag automatisch im Kassenbuch erfasst.")}</p>
-        <div class="action-row" style="justify-content:flex-end;gap:8px;">
+        <p class="muted u-text-em-sm">${langText("Nakit/Havale + Ödendi/Kısmi seçilirse, yeni eklenen tutar otomatik kasaya girer.","Bei Bar/Überweisung + Bezahlt/Teilweise wird der Differenzbetrag automatisch im Kassenbuch erfasst.")}</p>
+        <div class="action-row u-flex-end-gap-8">
           <button type="button" class="secondary-button" data-pay-close>${langText("Vazgeç","Abbrechen")}</button>
           <button type="submit" class="primary-button">${langText("Kaydet","Speichern")}</button>
         </div>
@@ -7636,20 +7641,20 @@ async function openCustomerAccounts() {
   modal.className = "auth-modal";
   modal.innerHTML = `
     <div class="auth-modal-backdrop" data-acc-close></div>
-    <div class="auth-modal-panel" role="document" style="max-width:960px;">
+    <div class="auth-modal-panel" role="document" class="u-max-w-960">
       <button type="button" class="auth-modal-close" data-acc-close>×</button>
       <h2>${langText("Müşteri Hesapları","Kundenkonten")}</h2>
       <p class="muted">${langText("Tüm müşterilerin sipariş toplamı, ödenen ve borç bakiyesi.","Gesamt, Bezahlt und Saldo je Kunde.")}</p>
-      <div class="table-wrap" style="max-height:60vh;overflow-y:auto;">
+      <div class="table-wrap u-scroll-y-60">
         <table class="data-table">
           <thead><tr>
             <th>${langText("Müşteri","Kunde")}</th>
             <th>${langText("Telefon","Tel.")}</th>
-            <th style="text-align:right;">${langText("Sipariş #","Bestellungen")}</th>
-            <th style="text-align:right;">${langText("Ödenmemiş","Offen")}</th>
-            <th style="text-align:right;">${langText("Toplam","Summe")}</th>
-            <th style="text-align:right;">${langText("Ödenen","Bezahlt")}</th>
-            <th style="text-align:right;">${langText("Bakiye","Saldo")}</th>
+            <th class="u-text-right">${langText("Sipariş #","Bestellungen")}</th>
+            <th class="u-text-right">${langText("Ödenmemiş","Offen")}</th>
+            <th class="u-text-right">${langText("Toplam","Summe")}</th>
+            <th class="u-text-right">${langText("Ödenen","Bezahlt")}</th>
+            <th class="u-text-right">${langText("Bakiye","Saldo")}</th>
           </tr></thead>
           <tbody>
             ${customers.map((c) => {
@@ -7658,13 +7663,13 @@ async function openCustomerAccounts() {
               const balance = Math.max(total - paid, 0);
               return `
                 <tr>
-                  <td><strong>${escapeHtml(c.name || c.username || "")}</strong>${c.email ? `<br><span class="muted" style="font-size:.8em;">${escapeHtml(c.email)}</span>` : ""}</td>
+                  <td><strong>${escapeHtml(c.name || c.username || "")}</strong>${c.email ? `<br><span class="muted u-text-em-md">${escapeHtml(c.email)}</span>` : ""}</td>
                   <td>${escapeHtml(c.phone || "-")}</td>
-                  <td style="text-align:right;">${c.orderCount || 0}</td>
-                  <td style="text-align:right;">${Number(c.unpaidCount || 0) > 0 ? `<span style="color:#dc2626;font-weight:600;">${c.unpaidCount}</span>` : "0"}</td>
-                  <td style="text-align:right;">€${numberFormat.format(total)}</td>
-                  <td style="text-align:right;">€${numberFormat.format(paid)}</td>
-                  <td style="text-align:right;">${balance > 0 ? `<strong style="color:#dc2626;">€${numberFormat.format(balance)}</strong>` : `<span style="color:#16a34a;">€0</span>`}</td>
+                  <td class="u-text-right">${c.orderCount || 0}</td>
+                  <td class="u-text-right">${Number(c.unpaidCount || 0) > 0 ? `<span class="u-text-danger-bold">${c.unpaidCount}</span>` : "0"}</td>
+                  <td class="u-text-right">€${numberFormat.format(total)}</td>
+                  <td class="u-text-right">€${numberFormat.format(paid)}</td>
+                  <td class="u-text-right">${balance > 0 ? `<strong class="u-text-red-600">€${numberFormat.format(balance)}</strong>` : `<span class="u-text-emerald">€0</span>`}</td>
                 </tr>
               `;
             }).join("")}
@@ -8010,18 +8015,18 @@ function renderCustomerOrders() {
       <header class="customer-order-head">
         <div>
           <strong>${langText("Siparişim", "Meine Bestellung")} #${order.id}</strong>
-          ${order.quoteId ? `<span class="status-pill status-ok" style="margin-left:8px;">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}
+          ${order.quoteId ? `<span class="status-pill status-ok u-ml-8">${langText("Teklif #","Angebot #")}${order.quoteId}</span>` : ""}
         </div>
         <span class="status-pill ${statusClass}">${escapeHtml(getOrderStatusLabel(order.status))}</span>
       </header>
-      <p class="muted" style="margin:4px 0;">${langText("Tarih","Datum")}: ${escapeHtml(formatOrderDate(order.date))}</p>
-      <table class="customer-order-lines" style="width:100%; border-collapse:collapse; font-size:0.9em; margin-top:8px;">
+      <p class="muted u-my-4">${langText("Tarih","Datum")}: ${escapeHtml(formatOrderDate(order.date))}</p>
+      <table class="customer-order-lines diag-table">
         <thead>
-          <tr style="background:rgba(255,255,255,0.04);">
-            <th style="text-align:left; padding:4px 6px;">${langText("Ürün","Artikel")}</th>
-            <th style="text-align:right; padding:4px 6px;">${langText("Miktar","Menge")}</th>
-            <th style="text-align:right; padding:4px 6px;">${langText("Birim","Einzelpreis")}</th>
-            <th style="text-align:right; padding:4px 6px;">${langText("Satır","Zeile")}</th>
+          <tr class="u-tr-tint">
+            <th class="u-td-left">${langText("Ürün","Artikel")}</th>
+            <th class="u-td-right">${langText("Miktar","Menge")}</th>
+            <th class="u-td-right">${langText("Birim","Einzelpreis")}</th>
+            <th class="u-td-right">${langText("Satır","Zeile")}</th>
           </tr>
         </thead>
         <tbody>
@@ -8032,20 +8037,20 @@ function renderCustomerOrders() {
             const linked = it.itemId ? (state.items || []).find((x) => Number(x.id) === Number(it.itemId)) : null;
             const displayName = linked ? resolveLocalizedName(linked) : (it.itemName || "");
             return `<tr>
-              <td style="padding:4px 6px;">${escapeHtml(displayName)}</td>
-              <td style="text-align:right; padding:4px 6px;">${numberFormat.format(qty)} ${escapeHtml(it.unit || "ad")}</td>
-              <td style="text-align:right; padding:4px 6px;">${up > 0 ? currency.format(up) : "—"}</td>
-              <td style="text-align:right; padding:4px 6px;"><strong>${lineTot > 0 ? currency.format(lineTot) : "—"}</strong></td>
+              <td class="u-td-pad">${escapeHtml(displayName)}</td>
+              <td class="u-td-right">${numberFormat.format(qty)} ${escapeHtml(it.unit || "ad")}</td>
+              <td class="u-td-right">${up > 0 ? currency.format(up) : "—"}</td>
+              <td class="u-td-right"><strong>${lineTot > 0 ? currency.format(lineTot) : "—"}</strong></td>
             </tr>`;
           }).join("")}
         </tbody>
         ${netTotal > 0 ? `<tfoot>
-          <tr><td colspan="3" style="text-align:right; padding:4px 6px;">${langText("Net","Netto")}:</td><td style="text-align:right; padding:4px 6px;"><strong>${currency.format(netTotal)}</strong></td></tr>
-          <tr><td colspan="3" style="text-align:right; padding:4px 6px;">${langText("KDV","MwSt")} %${vatRate}:</td><td style="text-align:right; padding:4px 6px;">${currency.format(vatAmount)}</td></tr>
-          <tr><td colspan="3" style="text-align:right; padding:4px 6px;"><strong>${langText("Toplam (KDV dahil)","Gesamt (inkl. MwSt)")}:</strong></td><td style="text-align:right; padding:4px 6px;"><strong>${currency.format(grossTotal)}</strong></td></tr>
+          <tr><td colspan="3" class="u-td-right">${langText("Net","Netto")}:</td><td class="u-td-right"><strong>${currency.format(netTotal)}</strong></td></tr>
+          <tr><td colspan="3" class="u-td-right">${langText("KDV","MwSt")} %${vatRate}:</td><td class="u-td-right">${currency.format(vatAmount)}</td></tr>
+          <tr><td colspan="3" class="u-td-right"><strong>${langText("Toplam (KDV dahil)","Gesamt (inkl. MwSt)")}:</strong></td><td class="u-td-right"><strong>${currency.format(grossTotal)}</strong></td></tr>
         </tfoot>` : ""}
       </table>
-      ${order.note ? `<p class="muted" style="margin-top:8px;"><em>${langText("Not","Notiz")}: ${escapeHtml(order.note)}</em></p>` : ""}
+      ${order.note ? `<p class="muted u-mt-8"><em>${langText("Not","Notiz")}: ${escapeHtml(order.note)}</em></p>` : ""}
     `;
     refs.customerOrdersList.append(div);
   });
@@ -10077,7 +10082,7 @@ function renderProjectDetail() {
             </div>
             <span class="muted">${numberFormat.format(it.quantity)} ${escapeHtml(it.unit || "")}</span>
             <span>${currency.format(it.unit_price || 0)}</span>
-            <div style="display:flex;gap:6px;align-items:center;">
+            <div class="u-flex-row-gap-6">
               <strong>${currency.format(lineTotal)}</strong>
               ${canEdit ? `<button class="mini-button danger-button" type="button" data-del-project-item="${it.id}">×</button>` : ""}
             </div>
@@ -10453,7 +10458,7 @@ async function loadActivityTab() {
   } catch (e) {
     console.error("[activity] load error:", e);
     const tl = document.getElementById("activityTimeline");
-    if (tl) tl.innerHTML = '<div class="muted" style="padding:24px;text-align:center;color:#b91c1c;">Yükleme hatası: ' + escapeHtml(e.message) + '</div>';
+    if (tl) tl.innerHTML = '<div class="muted u-cell-center-error">Yükleme hatası: ' + escapeHtml(e.message) + '</div>';
   }
 }
 
@@ -10492,10 +10497,10 @@ function renderActivityStats(stats) {
     { label: "Top olay tipi", value: (stats.topEvents[0]?.eventType || "—"), icon: "🎯", sub: stats.topEvents[0]?.count + " kez" },
   ];
   root.innerHTML = cards.map(c => `
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:14px 16px;">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;margin-bottom:4px;">${c.icon} ${escapeHtml(c.label)}</div>
-      <div style="font-size:16px;font-weight:700;color:#1f2937;line-height:1.3;">${escapeHtml(String(c.value || ""))}</div>
-      ${c.sub ? `<div style="font-size:11px;color:#6b7280;margin-top:2px;">${escapeHtml(c.sub)}</div>` : ""}
+    <div class="user-card-wrap">
+      <div class="user-card-label">${c.icon} ${escapeHtml(c.label)}</div>
+      <div class="user-card-title">${escapeHtml(String(c.value || ""))}</div>
+      ${c.sub ? `<div class="u-text-meta-11">${escapeHtml(c.sub)}</div>` : ""}
     </div>
   `).join("");
 }
@@ -10504,7 +10509,7 @@ function renderActiveUsers(users) {
   const root = document.getElementById("activeUsersTable");
   if (!root) return;
   if (!users.length) {
-    root.innerHTML = '<div class="muted" style="padding:16px;">Son 7 günde aktif kullanıcı yok.</div>';
+    root.innerHTML = '<div class="muted user-card-section">Son 7 günde aktif kullanıcı yok.</div>';
     return;
   }
   const rows = users.map(u => {
@@ -10512,37 +10517,41 @@ function renderActiveUsers(users) {
     const roleClass = u.role === "admin" ? "#7c3aed" : (u.role === "staff" ? "#0070c0" : (u.role === "customer" ? "#16a34a" : "#6b7280"));
     return `
       <tr>
-        <td style="padding:8px 12px;">
+        <td class="u-th-base">
           <a href="#" data-activity-user-id="${u.userId || ''}" class="link-button">${escapeHtml(u.name)}</a>
-          <div style="font-size:11px;color:#6b7280;">${escapeHtml(u.username || "")}</div>
+          <div class="u-text-meta-11-only">${escapeHtml(u.username || "")}</div>
         </td>
-        <td style="padding:8px 12px;"><span style="background:${roleClass};color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">${escapeHtml(u.role)}</span></td>
-        <td style="padding:8px 12px;text-align:right;">${u.eventCount}</td>
-        <td style="padding:8px 12px;text-align:right;">${u.productViews}</td>
-        <td style="padding:8px 12px;text-align:right;">${u.searches}</td>
-        <td style="padding:8px 12px;text-align:right;">${u.cartAdds}</td>
-        <td style="padding:8px 12px;text-align:right;">${u.ordersPlaced}</td>
-        <td style="padding:8px 12px;font-size:11px;color:#6b7280;">${lastSeen}</td>
+        <td class="u-th-base"><span class="user-role-pill" data-role-bg="${roleClass}">${escapeHtml(u.role)}</span></td>
+        <td class="u-th-right">${u.eventCount}</td>
+        <td class="u-th-right">${u.productViews}</td>
+        <td class="u-th-right">${u.searches}</td>
+        <td class="u-th-right">${u.cartAdds}</td>
+        <td class="u-th-right">${u.ordersPlaced}</td>
+        <td class="u-th-meta-plain">${lastSeen}</td>
       </tr>
     `;
   }).join("");
   root.innerHTML = `
-    <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e7eb;border-radius:6px;font-size:13px;">
-      <thead style="background:#f9fafb;">
+    <table class="diag-table-thick">
+      <thead class="u-tr-stripe">
         <tr>
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#6b7280;">Kullanıcı</th>
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#6b7280;">Rol</th>
-          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Olay</th>
-          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Ürün</th>
-          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Arama</th>
-          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Sepet</th>
-          <th style="padding:8px 12px;text-align:right;font-size:11px;text-transform:uppercase;color:#6b7280;">Sipariş</th>
-          <th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;color:#6b7280;">Son</th>
+          <th class="u-th-meta-left">Kullanıcı</th>
+          <th class="u-th-meta-left">Rol</th>
+          <th class="u-th-meta-right">Olay</th>
+          <th class="u-th-meta-right">Ürün</th>
+          <th class="u-th-meta-right">Arama</th>
+          <th class="u-th-meta-right">Sepet</th>
+          <th class="u-th-meta-right">Sipariş</th>
+          <th class="u-th-meta-left">Son</th>
         </tr>
       </thead>
       <tbody>${rows}</tbody>
     </table>
   `;
+  // Role pill arka plan rengini JS ile set et (CSP style-src inline'a izin vermiyor)
+  root.querySelectorAll(".user-role-pill[data-role-bg]").forEach((pill) => {
+    pill.style.background = pill.dataset.roleBg || "#6b7280";
+  });
   // Bir kullanıcıya tıklayınca timeline filtreli yükle
   root.querySelectorAll("[data-activity-user-id]").forEach(a => {
     a.addEventListener("click", (e) => {
@@ -10563,7 +10572,7 @@ function renderActivityTimeline(events) {
     ? events.filter(e => (e.eventLabel || "").toLowerCase().includes(searchFilter) || (e.pagePath || "").toLowerCase().includes(searchFilter))
     : events;
   if (!filtered.length) {
-    root.innerHTML = '<div class="muted" style="padding:24px;text-align:center;">Bu filtrelerle eşleşen aktivite yok.</div>';
+    root.innerHTML = '<div class="muted u-cell-center-empty">Bu filtrelerle eşleşen aktivite yok.</div>';
     return;
   }
   const eventIcons = {
@@ -10577,28 +10586,28 @@ function renderActivityTimeline(events) {
     const ago = humanizeAgo(new Date(ev.createdAt));
     const icon = eventIcons[ev.eventType] || "📌";
     const userBadge = ev.userId
-      ? `<a href="#" data-activity-user-id="${ev.userId}" class="link-button" style="font-weight:600;">${escapeHtml(ev.userName || "U#" + ev.userId)}</a>`
-      : `<span style="color:#9ca3af;">Anonim</span>`;
+      ? `<a href="#" data-activity-user-id="${ev.userId}" class="link-button u-font-bold">${escapeHtml(ev.userName || "U#" + ev.userId)}</a>`
+      : `<span class="u-text-gray-400">Anonim</span>`;
     const roleBadge = ev.userRole
-      ? `<span style="background:#e5e7eb;color:#374151;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:600;">${escapeHtml(ev.userRole)}</span>`
+      ? `<span class="user-detail-mini-tag">${escapeHtml(ev.userRole)}</span>`
       : "";
     return `
-      <div style="display:grid;grid-template-columns:36px 1fr auto;gap:12px;padding:12px 16px;border-bottom:1px solid #f3f4f6;align-items:start;">
-        <div style="font-size:22px;line-height:1;">${icon}</div>
+      <div class="user-detail-row">
+        <div class="u-text-22">${icon}</div>
         <div>
-          <div style="font-size:13px;">
+          <div class="u-text-13">
             ${userBadge} ${roleBadge}
-            <strong style="color:#374151;">${escapeHtml(ev.eventType)}</strong>
-            ${ev.eventLabel ? '— <span style="color:#1f2937;">' + escapeHtml(ev.eventLabel) + '</span>' : ""}
+            <strong class="u-text-gray-700">${escapeHtml(ev.eventType)}</strong>
+            ${ev.eventLabel ? '— <span class="u-text-gray-800">' + escapeHtml(ev.eventLabel) + '</span>' : ""}
           </div>
-          <div style="font-size:11px;color:#6b7280;margin-top:2px;">
+          <div class="u-text-meta-11">
             ${ev.pagePath ? '📍 ' + escapeHtml(ev.pagePath) : ""}
             ${ev.targetType ? ' · ' + escapeHtml(ev.targetType) + (ev.targetId ? "#" + ev.targetId : "") : ""}
             ${ev.ipAddress ? ' · ' + escapeHtml(ev.ipAddress) : ""}
           </div>
         </div>
-        <div style="font-size:11px;color:#9ca3af;text-align:right;white-space:nowrap;">
-          ${escapeHtml(ago)}<br/><span style="font-size:10px;">${when}</span>
+        <div class="u-text-meta-right-11">
+          ${escapeHtml(ago)}<br/><span class="u-text-10">${when}</span>
         </div>
       </div>
     `;

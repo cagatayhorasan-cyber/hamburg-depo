@@ -160,11 +160,11 @@
       <!-- Global Arama (Cmd+K / Ctrl+K) — tüm rollere açık, role'e göre içerik filtrelenir -->
       <div id="globalSearchModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="globalSearchTitle" hidden>
         <div class="auth-modal-backdrop" data-global-search-close></div>
-        <div class="auth-modal-panel global-search-panel" role="document" class="global-search-panel-shell">
+        <div class="auth-modal-panel global-search-panel-shell" role="document">
           <div class="global-search-input-row">
             <span class="global-search-input-icon">🔍</span>
             <input id="globalSearchInput" type="search" placeholder="Ara: ürün, müşteri, sipariş, proje..." autocomplete="off" class="global-search-input" />
-            <span class="muted" class="u-mono-key">ESC</span>
+            <span class="muted u-mono-key">ESC</span>
           </div>
           <div id="globalSearchResults" class="global-search-results-area">
             <div id="globalSearchHint" class="muted" class="global-search-hint-empty">
@@ -416,7 +416,7 @@
                     <button id="resetDeButton" class="secondary-button" type="button" title="Mevcut (eski rule-based) DE çevirilerini sil — yeni çeviri öncesi temizlik için" >🗑️ DE Çevirilerini Sil</button>
                   </div>
                 </div>
-                <div id="bulkTranslateProgress" class="muted" style="display:none;margin:4px 0;font-size:13px;"></div>
+                <div id="bulkTranslateProgress" class="muted bulk-translate-progress"></div>
                 <div id="stockedItemsList" class="stocked-grid"></div>
               </section>
               <details class="secondary-drawer items-list-drawer">
