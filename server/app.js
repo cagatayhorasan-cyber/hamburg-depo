@@ -4084,6 +4084,11 @@ function createApp() {
     return next(error);
   });
 
+  // API fall-through: tanımlanmamış /api/* yollarına SPA HTML yerine 404 JSON dön.
+  app.use("/api/*", (req, res) => {
+    res.status(404).json({ error: "not_found", path: req.originalUrl });
+  });
+
   app.get("*", (_req, res) => {
     res.sendFile(path.join(__dirname, "..", "public", "index.html"));
   });
