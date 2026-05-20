@@ -354,7 +354,7 @@ const UI_TEXT = {
     companyName: "D-R-C Kältetechnik GmbH",
     authLocationLine: "Hamm & Börnsen bei Hamburg, Deutschland",
     authShowcaseTitle: "Kältetechnik, Lager & Angebot – Alles in einem Portal",
-    authShowcaseCopy: "Von Kuehlraumsystemen bis zu Steuerungskomponenten verwalten Sie Produkte und Prozesse zentral in einem Portal.",
+    authShowcaseCopy: "Von Kühlraumsystemen bis zu Steuerungskomponenten verwalten Sie Produkte und Prozesse zentral in einem Portal.",
     authHeroPrimary: "Produkte entdecken",
     authHeroSecondary: "Angebot anfordern",
     authLocationCards: [
@@ -366,10 +366,10 @@ const UI_TEXT = {
     solutionsEyebrow: "Unsere Lösungen",
     solutionsTitle: "Kühlräume, Regelung und Service in einem Ablauf",
     brandWallTitle: "Portfolio Marken",
-    brandWallCopy: "Kernmarken aus dem D-R-C Portfolio fuer Verkauf, Lager und Projekteinsatz.",
+    brandWallCopy: "Kernmarken aus dem D-R-C Portfolio für Verkauf, Lager und Projekteinsatz.",
     productFamilies: ["Kühlräume", "Evaporatoren", "Kondensatoren", "Steuerungssysteme", "Kühlraumtüren", "Panel Systeme", "Service & Support"],
     aboutTitle: "Über uns",
-    aboutCopy: "D-R-C Kältetechnik GmbH ist auf industrielle Kältelösungen spezialışiert und vereint Materialversorgung, Lagerorganisation und Angebotsprozesse in einer modernen Plattform.",
+    aboutCopy: "D-R-C Kältetechnik GmbH ist auf industrielle Kältelösungen spezialisiert und vereint Materialversorgung, Lagerorganisation und Angebotsprozesse in einer modernen Plattform.",
     addressesTitle: "Standorte",
     contactTitle: "Kontakt",
     contactLabels: ["Telefon", "E-Mail"],
@@ -381,7 +381,7 @@ const UI_TEXT = {
     badgeSecondary: "DRC PEYK Remote Control",
     peykEyebrow: "DRC PEYK",
     peykTitle: "Fernmonitoring- und Steuerungssystem",
-    peykCopy: "Raumtemperatur, Alarm, Abtauung und Serviceeingriffe werden zentral ueber ein Panel verwaltet.",
+    peykCopy: "Raumtemperatur, Alarm, Abtauung und Serviceeingriffe werden zentral über ein Panel verwaltet.",
     peykPoints: ["Live Monitoring", "Alarmmeldungen", "Fernzugriff"],
     leanEyebrow: "B2B Portal · Hamm & Hamburg",
     leanTopbarTagline: "Hamm & Hamburg",
@@ -404,7 +404,7 @@ const UI_TEXT = {
     leanPreviewTitle: "Bestand & Bestellungen",
     leanPreviewBadge: "Live",
     leanPreviewKpiLabels: ["Artikel", "Aktive Bestellung", "Offene Angebote"],
-    leanPreviewStockUnit: "Lager",
+    leanPreviewStockUnit: "Bestand",
     leanFooterLabels: ["Hauptsitz", "Lager Hamburg", "Kontakt"],
     leanBrandStripLabel: "Vertriebspartner führender Marken",
     leanLegalImpressum: "Impressum",
@@ -421,7 +421,7 @@ const UI_TEXT = {
     forgotButton: "Reset-Link senden",
     noCustomerAccount: "Noch kein Kundenkonto?",
     registerTitle: "Kundenregistrierung",
-    registerDesc: "Hier koennen Sie Ihr Kundenkonto anlegen.",
+    registerDesc: "Hier können Sie Ihr Kundenkonto anlegen.",
     fullName: "Vor- und Nachname",
     email: "E-Mail",
     phone: "Telefon / WhatsApp",
@@ -429,30 +429,30 @@ const UI_TEXT = {
     optionalUsernamePlaceholder: "Leer lassen, dann wird automatisch einer erzeugt",
     registerButton: "Kundenkonto anlegen",
     resetTitle: "Neues Passwort festlegen",
-    resetDesc: "Wenn Sie ueber einen Link gekommen sind, koennen Sie hier ein neues Passwort setzen.",
+    resetDesc: "Wenn Sie über einen Link gekommen sind, können Sie hier ein neues Passwort setzen.",
     resetButton: "Passwort speichern",
     appLabel: "Anwendung:",
     heroTitle: "Operations- und Verkaufszentrale",
-    heroSubtitle: "Lager, Verkauf, Angebote, Carbon-Fokus und DRC-IoT auf einen Blick.",
+    heroSubtitle: "Lager, Verkauf, Angebote, CO₂-Bilanz und DRC-IoT auf einen Blick.",
     downloadXlsx: "Excel Export",
-    downloadPdf: "PDF Uebersicht",
+    downloadPdf: "PDF Übersicht",
     logout: "Abmelden",
     tabQuotes: "Schnellverkauf",
     tabQuotesDesc: "Angebote, Warenkorb und Direktverkauf",
     tabItems: "Artikel",
     tabItemsDesc: "Artikelkarten, Filter und Lagerliste",
     tabArchive: "Archiv",
-    tabArchiveDesc: "Passive Artikel verwalten und zurueckholen",
-    tabMovements: "Lager",
-    tabMovementsDesc: "Eingang, Ausgang und neuer Artikel",
+    tabArchiveDesc: "Passive Artikel verwalten und zurückholen",
+    tabMovements: "Bewegungen",
+    tabMovementsDesc: "Wareneingang, Warenausgang und neuer Artikel",
     tabExpenses: "Ausgaben",
     tabExpensesDesc: "Betriebsausgaben verwalten",
     tabCashbook: "Kasse",
     tabCashbookDesc: "Zahlungen und Kassenbewegungen",
     tabOrders: "Bestellungen",
-    tabOrdersDesc: "Bestellungen pruefen und Status pflegen",
+    tabOrdersDesc: "Bestellungen prüfen und Status pflegen",
     tabCustomerOrders: "Bestellen",
-    tabCustomerOrdersDesc: "Verfuegbare Artikel ansehen und anfragen",
+    tabCustomerOrdersDesc: "Verfügbare Artikel ansehen und anfragen",
     tabMessages: "An Admin",
     tabMessagesDesc: "Wunsch, Beschwerde und Support senden",
     tabIot: "DRC IoT",
@@ -462,13 +462,13 @@ const UI_TEXT = {
     tabSecurity: "Sicherheit",
     tabSecurityDesc: "Ereignisprotokoll, blockierte IPs und Zugriffsversuche",
     tabTools: "Projektwerkzeuge",
-    tabToolsDesc: "Zeichnung und Berechnung fuer Kuehlraeume",
+    tabToolsDesc: "Zeichnung und Berechnung für Kühlräume",
     tabTraining: "DRC MAN Training",
-    tabTrainingDesc: "Frage-Antwort, Kaeltemitteltraining und Retrofit-Hilfen",
-    roles: { admin: "admin", staff: "personal", customer: "kunde" },
+    tabTrainingDesc: "Frage-Antwort, Kältemitteltraining und Retrofit-Hilfen",
+    roles: { admin: "Admin", staff: "Personal", customer: "Kunde" },
     stats: {
       customerItems: "Artikel auf Lager",
-      customerItemsDesc: "Aktive Artikel fuer Bestellungen",
+      customerItemsDesc: "Aktive Artikel für Bestellungen",
       critical: "Kritische Artikel",
       criticalDesc: "Artikel mit niedrigem Bestand",
       totalItems: "Artikelanzahl",
@@ -486,13 +486,13 @@ const UI_TEXT = {
     },
     common: {
       edit: "Bearbeiten",
-      delete: "Loeschen",
+      delete: "Löschen",
       cancelEdit: "Bearbeitung abbrechen",
       save: "Speichern",
       addToCart: "In den Warenkorb",
       addToOrder: "Zur Bestellung",
       viewOnly: "Nur Ansicht",
-      restore: "Zurueckholen",
+      restore: "Zurückholen",
       archive: "Archivieren",
       reverse: "Stornieren",
       reversed: "Storniert",
@@ -502,7 +502,7 @@ const UI_TEXT = {
       in: "Eingang",
       out: "Ausgang",
       unbilledSale: "Verkauf ohne Rechnung",
-      approved: "Bestaetigt",
+      approved: "Bestätigt",
       preparing: "In Vorbereitung",
       completed: "Abgeschlossen",
       cancelled: "Storniert",
@@ -511,29 +511,29 @@ const UI_TEXT = {
       inland: "Inland",
       release: "Freigeben",
       markRead: "Gelesen",
-      close: "Schliessen",
+      close: "Schließen",
     },
     messages: {
-      welcome: (name, needsVerify) => `Angemeldet als ${name}${needsVerify ? " | E-Mail noch nicht bestaetigt" : ""}`,
-      customerRegisterMailSent: "Ihr Konto wurde erstellt. Die Bestaetigungs-E-Mail wurde versendet und Sie befinden sich jetzt im Kundenbereich.",
-      customerRegisterNoMail: "Ihr Konto wurde erstellt, aber das Mail-System ist noch nicht aktiv. Deshalb konnte keine Bestaetigung versendet werden.",
+      welcome: (name, needsVerify) => `Angemeldet als ${name}${needsVerify ? " | E-Mail noch nicht bestätigt" : ""}`,
+      customerRegisterMailSent: "Ihr Konto wurde erstellt. Die Bestätigungs-E-Mail wurde versendet und Sie befinden sich jetzt im Kundenbereich.",
+      customerRegisterNoMail: "Ihr Konto wurde erstellt, aber das Mail-System ist noch nicht aktiv. Deshalb konnte keine Bestätigung versendet werden.",
       operationDone: "Vorgang abgeschlossen.",
-      passwordUpdated: "Ihr Passwort wurde aktualışiert.",
+      passwordUpdated: "Ihr Passwort wurde aktualisiert.",
       stockIntakeSaved: "Neuer Artikel und erster Lagerbestand wurden erfolgreich gespeichert.",
-      bulkUpdated: (count) => `Die Verkaufspreise von ${count} Datensaetzen wurden aktualışiert.`,
+      bulkUpdated: (count) => `Die Verkaufspreise von ${count} Datensätzen wurden aktualisiert.`,
       itemsSummaryShort: (count, total) => `${count} / ${total} Artikel werden angezeigt`,
-      itemsSummaryLong: (count, total, max) => `${count} / ${total} Artikel gefunden. Aus Performancegruenden werden nur die ersten ${max} angezeigt.`,
+      itemsSummaryLong: (count, total, max) => `${count} / ${total} Artikel gefunden. Aus Performancegründen werden nur die ersten ${max} angezeigt.`,
       stockedSummary: (count) => `${count} Artikel auf Lager`,
       noStockedItems: "Keine lagernden Artikel gefunden.",
       archiveSummary: (count) => `${count} passive Artikel befinden sich im Archiv.`,
       noArchive: "Keine archivierten Artikel vorhanden.",
       noQuotes: "Noch keine Angebote vorhanden.",
-      emptyQuoteDraft: "Der Warenkorb ist leer. Links koennen Artikel hinzugefuegt werden.",
+      emptyQuoteDraft: "Der Warenkorb ist leer. Links können Artikel hinzugefügt werden.",
       quoteSummary: (_subtotal, _discount, _netTotal, _vatAmount, grossTotal, collectedAmount, remaining, unbilledTotal, unbilledRemaining) => `Mit Rechnung: ${grossTotal} | Ohne Rechnung: ${unbilledTotal} | Bezahlt: ${collectedAmount} | Offen: ${remaining} | Ohne Rechnung offen: ${unbilledRemaining}`,
-      noPosItems: "Keine passenden Artikel fuer die Suche gefunden.",
+      noPosItems: "Keine passenden Artikel für die Suche gefunden.",
       noAdminOrders: "Noch keine Kundenbestellungen vorhanden.",
       noCustomerCatalog: "Keine bestellbaren Artikel mit Bestand vorhanden.",
-      emptyCustomerCart: "Ihr Warenkorb ist leer. Links koennen lagernde Artikel hinzugefuegt werden.",
+      emptyCustomerCart: "Ihr Warenkorb ist leer. Links können lagernde Artikel hinzugefügt werden.",
       noCustomerOrderLines: "Noch keine Bestellpositionen vorhanden.",
       customerOrderSummary: (lines, units, total) => `${lines} Positionen | Gesamtmenge: ${units}${total ? ` | Voraussichtlich: ${total}` : ""}`,
       noCustomerOrders: "Es gibt noch keinen gesendeten Bestellverlauf.",
@@ -546,25 +546,25 @@ const UI_TEXT = {
       adminMessageSent: "Ihre Nachricht wurde an das Admin-Team gesendet.",
       noSecurityEvents: "Aktuell gibt es keinen sicherheitsrelevanten Eintrag mit Handlungsbedarf.",
       noSecurityBlocks: "Aktuell gibt es keine offene IP-Sperre.",
-      securitySummary: (events, blocks, activeBlocks) => `${events} Eintraege | ${blocks} Sperrverlauf | ${activeBlocks} aktiv`,
-      trainingSummary: (count) => `${count} Trainingseintraege vorhanden. DRC MAN prueft diese zuerst.`,
-      noTraining: "Noch kein Training vorhanden. Links koennen Sie das erste Frage-Antwort-Paar anlegen.",
+      securitySummary: (events, blocks, activeBlocks) => `${events} Einträge | ${blocks} Sperrverlauf | ${activeBlocks} aktiv`,
+      trainingSummary: (count) => `${count} Trainingseinträge vorhanden. DRC MAN prüft diese zuerst.`,
+      noTraining: "Noch kein Training vorhanden. Links können Sie das erste Frage-Antwort-Paar anlegen.",
       trainingSaved: "Training speichern",
-      trainingUpdated: "Training aktualışieren",
-      quoteSaved: (id) => `Angebot gespeichert. Es erscheint unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unveraendert.`,
+      trainingUpdated: "Training aktualisieren",
+      quoteSaved: (id) => `Angebot gespeichert. Es erscheint unter Letzte Angebote als #${id}. Bestand und Kasse bleiben unverändert.`,
       orderSent: "Ihre Bestellung wurde aufgenommen. Den Status sehen Sie im Bestellverlauf.",
       directSaleDone: (id, paid, remaining, hasCash) => `Direktverkauf abgeschlossen. Bestand wurde reduziert und der Eintrag unter Letzte Angebote sowie Lagerbewegungen gespeichert${hasCash ? "; die Zahlung steht auch im Kassenbuch" : ""}. Nr.: #${id} | Bezahlt: ${paid} | Offen: ${remaining}`,
       unbilledDone: (total, paid, remaining, hasCash, cashEntryId) => `Verkauf ohne Rechnung gespeichert. Bestand wurde reduziert${hasCash ? `; die Zahlung steht auch im Kassenbuch${cashEntryId ? ` (#${cashEntryId})` : ""}` : ""}. Gesamt: ${total} | Bezahlt: ${paid} | Offen: ${remaining}`,
-      noOrderPhone: "Fuer diese Bestellung ist keine Telefonnummer hinterlegt.",
-      invalidWhatsappPhone: "Die Telefonnummer ist fuer WhatsApp nicht gueltig.",
-      addQuoteFirst: "Bitte zuerst mindestens eine Angebotsposition hinzufuegen.",
+      noOrderPhone: "Für diese Bestellung ist keine Telefonnummer hinterlegt.",
+      invalidWhatsappPhone: "Die Telefonnummer ist für WhatsApp nicht gültig.",
+      addQuoteFirst: "Bitte zuerst mindestens eine Angebotsposition hinzufügen.",
       addCartFirst: "Bitte zuerst Artikel in den Warenkorb legen.",
       addOrderFirst: "Bitte vor dem Senden mindestens einen Artikel in den Warenkorb legen.",
-      deleteTrainingConfirm: "Soll dieser Trainingseintrag wirklich geloescht werden?",
-      deleteItemConfirm: "Soll diese Artikelkarte wirklich geloescht werden?",
+      deleteTrainingConfirm: "Soll dieser Trainingseintrag wirklich gelöscht werden?",
+      deleteItemConfirm: "Soll diese Artikelkarte wirklich gelöscht werden?",
       archiveItemConfirm: "Soll dieser Artikel aus der aktiven Liste ins Archiv verschoben werden?",
-      deleteExpenseConfirm: "Soll dieser Ausgabeneintrag wirklich geloescht werden?",
-      deleteCashConfirm: "Soll diese Kassenbewegung wirklich geloescht werden?",
+      deleteExpenseConfirm: "Soll dieser Ausgabeneintrag wirklich gelöscht werden?",
+      deleteCashConfirm: "Soll diese Kassenbewegung wirklich gelöscht werden?",
       reverseMovementConfirm: "Soll diese Lagerbewegung mit einer Gegenbuchung storniert werden?",
     },
   },
@@ -1110,16 +1110,16 @@ function getMobileTabMeta(tab) {
     orders: {
       title: isCustomerUser() ? t("tabCustomerOrders") : t("tabOrders"),
       hint: isCustomerUser()
-        ? langText("Stoktaki ürünleri secip sipariş talebinizi hızlı gönderin.", "Waehlen Sie Lagerartikel und senden Sie Ihre Bestellung schnell.")
-        : langText("Sipariş onayi, durum takibi ve müşteri donusu burada.", "Bestellfreigabe, Status und Kundenrueckmeldung laufen hier."),
+        ? langText("Stoktaki ürünleri secip sipariş talebinizi hızlı gönderin.", "Wählen Sie Lagerartikel und senden Sie Ihre Bestellung schnell.")
+        : langText("Sipariş onayi, durum takibi ve müşteri donusu burada.", "Bestellfreigabe, Status und Kundenrückmeldung laufen hier."),
     },
     items: {
       title: t("tabItems"),
-      hint: langText("Satışta en çok sorulan ürün, stok ve fiyat aramasi burada.", "Hier finden Sie die haeufigsten Produkt-, Lager- und Preisabfragen."),
+      hint: langText("Satışta en çok sorulan ürün, stok ve fiyat aramasi burada.", "Hier finden Sie die häufigsten Produkt-, Lager- und Preisabfragen."),
     },
     tools: {
       title: t("tabTools"),
-      hint: langText("Sahada hızlı proje ve hesap araçları burada.", "Schnelle Projekt- und Berechnungstools fuer unterwegs."),
+      hint: langText("Sahada hızlı proje ve hesap araçları burada.", "Schnelle Projekt- und Berechnungstools für unterwegs."),
     },
     projects: {
       title: langText("Projeler", "Projekte"),
@@ -1127,7 +1127,7 @@ function getMobileTabMeta(tab) {
     },
     messages: {
       title: t("tabMessages"),
-      hint: langText("Müşteri ve ekip yazismalari için hızlı kanal.", "Schneller Kanal fuer Nachrichten mit Kunde oder Team."),
+      hint: langText("Müşteri ve ekip yazismalari için hızlı kanal.", "Schneller Kanal für Nachrichten mit Kunde oder Team."),
     },
     movements: {
       title: t("tabMovements"),
@@ -1149,23 +1149,23 @@ function getMobileSalesAssistantMeta(tab = state.activeTab) {
   const metaMap = {
     quotes: {
       title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
-      hint: langText("Fiyat, stok, muadil ve usta cozumunu tek mesajda sor.", "Preis, Bestand, Alternative und Meisterloesung in einer Nachricht fragen."),
-      prompt: langText("DCB31 fiyat stok kullanildigi yer muadil ve usta alternatifi ozetle", "DCB31 Preis Bestand Einsatz Alternative und Meisterloesung zusammenfassen"),
+      hint: langText("Fiyat, stok, muadil ve usta cozumunu tek mesajda sor.", "Preis, Bestand, Alternative und Meisterlösung in einer Nachricht fragen."),
+      prompt: langText("DCB31 fiyat stok kullanildigi yer muadil ve usta alternatifi ozetle", "DCB31 Preis Bestand Einsatz Alternative und Meisterlösung zusammenfassen"),
     },
     items: {
       title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
       hint: langText("Kod, stok, muadil ve katalog referansini hızlı sor.", "Code, Bestand, Alternative und Katalogreferenz schnell abfragen."),
-      prompt: langText("DCB31 muadili var mi?", "Gibt es eine Alternative fuer DCB31?"),
+      prompt: langText("DCB31 muadili var mi?", "Gibt es eine Alternative für DCB31?"),
     },
     orders: {
       title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
       hint: langText("Siparişe uygun stoklu ürünleri ve hızlı sevk adaylarini sor.", "Nach lagernden Artikeln und schnell lieferbaren Kandidaten fragen."),
-      prompt: langText("Stokta hızlı sevk edilebilecek kontrol cihazlari hangileri?", "Welche Steuergeraete sind lagernd und schnell lieferbar?"),
+      prompt: langText("Stokta hızlı sevk edilebilecek kontrol cihazlari hangileri?", "Welche Steuergeräte sind lagernd und schnell lieferbar?"),
     },
     tools: {
       title: langText("Hızlı Satış Asistani", "Schneller Verkaufsassistent"),
-      hint: langText("Proje için uygun ürün ve teknik adaylari sor.", "Geeignete Produkte und Technik-Kandidaten fuer das Projekt fragen."),
-      prompt: langText("Kucuk soğuk oda için uygun kontrol ve servis valfi oner", "Geeignete Regelung und Serviceventil fuer einen kleinen Kuehlraum vorschlagen"),
+      hint: langText("Proje için uygun ürün ve teknik adaylari sor.", "Geeignete Produkte und Technik-Kandidaten für das Projekt fragen."),
+      prompt: langText("Kucuk soğuk oda için uygun kontrol ve servis valfi oner", "Geeignete Regelung und Serviceventil für einen kleinen Kühlraum vorschlagen"),
     },
   };
 
@@ -1532,7 +1532,7 @@ function buildItemTechFacts(item) {
   } else {
     facts.push([
       langText("Durum", "Status"),
-      langText("Teknik veri bu karta daha sonra eklenecek.", "Technische Daten werden spaeter fuer diese Karte ergaenzt."),
+      langText("Teknik veri bu karta daha sonra eklenecek.", "Technische Daten werden spaeter für diese Karte ergaenzt."),
     ]);
   }
   return facts;
@@ -1547,7 +1547,7 @@ function buildItemPricingFacts(item) {
     [langText("Alış", "Einkauf"), formatMoneyOrDash(purchase)],
     [langText("Net / Satış", "Netto / Verkauf"), formatMoneyOrDash(net)],
     [langText("Liste", "Liste"), formatMoneyOrDash(list)],
-    [langText("1 Adet Fiyati", "Einzelstueck"), formatMoneyOrDash(single)],
+    [langText("1 Adet Fiyati", "Einzelstück"), formatMoneyOrDash(single)],
   ];
   if (net > 0 && purchase > 0) {
     const marginValue = Number((net - purchase).toFixed(2));
@@ -1573,7 +1573,7 @@ function buildItemNotesFacts(item) {
   if (!notes.length) {
     return supplierRows.length ? supplierRows : [[
       langText("Not", "Notiz"),
-      langText("Bu ürün için ozel not veya kullanim aciklamasi henüz girilmedi.", "Fuer diesen Artikel wurde noch keine spezielle Notiz hinterlegt."),
+      langText("Bu ürün için ozel not veya kullanim aciklamasi henüz girilmedi.", "Für diesen Artikel wurde noch keine spezielle Notiz hinterlegt."),
     ]];
   }
   return [
@@ -1607,7 +1607,7 @@ function renderItemDocuments(target, documents) {
         <strong>${escapeHtml(langText("Hazir katalog veya PDF bulunamadi", "Kein passender Katalog oder PDF gefunden"))}</strong>
         <p>${escapeHtml(langText(
           "Bu ürün için yerel katalog, OCR kaynagi veya datasheet daha sonra eklenecek.",
-          "Fuer diesen Artikel wird spaeter ein lokaler Katalog, eine OCR-Quelle oder ein Datenblatt hinterlegt."
+          "Für diesen Artikel wird spaeter ein lokaler Katalog, eine OCR-Quelle oder ein Datenblatt hinterlegt."
         ))}</p>
       </div>
     `;
@@ -1625,7 +1625,7 @@ function renderItemDocuments(target, documents) {
         href="${escapeHtml(String(doc.openUrl || "#"))}"
         target="_blank"
         rel="noopener noreferrer"
-      >${escapeHtml(doc.kind === "catalog" ? langText("Katalog Aç", "Katalog oeffnen") : langText("PDF Aç", "PDF oeffnen"))}</a>
+      >${escapeHtml(doc.kind === "catalog" ? langText("Katalog Aç", "Katalog öffnen") : langText("PDF Aç", "PDF öffnen"))}</a>
     </article>
   `).join("");
 }
@@ -1737,7 +1737,7 @@ function openItemDetailModal(item) {
     } else {
       refs.itemDetailDescription.textContent = langText(
         "Bu ürün için teknik ozellik henüz girilmedi.",
-        "Fuer diesen Artikel wurden noch keine technischen Daten hinterlegt."
+        "Für diesen Artikel wurden noch keine technischen Daten hinterlegt."
       );
     }
   }
@@ -2163,7 +2163,7 @@ function applyUiTranslations() {
   setFieldPlaceholder(refs.itemForm, "brand", langText("Orn. Embraco, Hisense", "z. B. Embraco, Hisense"));
   setFieldPlaceholder(refs.itemForm, "barcode", langText("DRC-00001 gibi", "z. B. DRC-00001"));
   setFieldPlaceholder(refs.itemForm, "imageUrl", langText("/assets/products/ornek.jpg veya https://...", "/assets/products/beispiel.jpg oder https://..."));
-  setFieldPlaceholder(refs.itemForm, "notes", langText("Türkçe ürün notu — müşteri TR modunda bunu görür", "Tuerkische Notiz — wird Kunden im TR-Modus angezeigt"));
+  setFieldPlaceholder(refs.itemForm, "notes", langText("Türkçe ürün notu — müşteri TR modunda bunu görür", "Türkische Notiz — wird Kunden im TR-Modus angezeigt"));
   setFieldPlaceholder(refs.itemForm, "notesDe", langText("Almanca ürün notu (boş bırakırsan TR gösterilir)", "Deutsche Artikelnotiz (leer = TR-Fallback)"));
   refs.itemSubmitButton.textContent = refs.itemForm?.elements?.id?.value
     ? langText("Malzemeyi Güncelle", "Artikel aktualisieren")
@@ -2193,7 +2193,7 @@ function applyUiTranslations() {
     movementsSections[0]?.querySelector(".section-tip"),
     langText(
       "Bu form mevcut urunlerde stok giriş ve çıkış için kullanilir. Ustteki arama kutusuna harf yazdikca ürün listesi otomatik daralir.",
-      "Dieses Formular wird fuer Lagerzugang und -ausgang bei vorhandenen Artikeln verwendet. Beim Tippen im Suchfeld wird die Artikelliste automatisch eingegrenzt."
+      "Dieses Formular wird für Lagerzugang und -ausgang bei vorhandenen Artikeln verwendet. Beim Tippen im Suchfeld wird die Artikelliste automatisch eingegrenzt."
     )
   );
   replaceLabelText(refs.movementItemSearch?.closest("label"), langText("Ürün Arama", "Artikelsuche"));
@@ -2203,7 +2203,7 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.movementForm, "itemId", langText("Malzeme", "Artikel"));
   setFormFieldLabel(refs.movementForm, "type", langText("İşlem", "Vorgang"));
   setFormFieldLabel(refs.movementForm, "quantity", langText("Miktar", "Menge"));
-  setFormFieldLabel(refs.movementForm, "unitPrice", langText("Birim Maliyet", "Stueckpreis"));
+  setFormFieldLabel(refs.movementForm, "unitPrice", langText("Birim Maliyet", "Stückpreis"));
   setFormFieldLabel(refs.movementForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.movementForm, "note", langText("Açıklama", "Beschreibung"));
   setSelectOptionTexts(refs.movementForm?.elements?.type, {
@@ -2211,7 +2211,7 @@ function applyUiTranslations() {
     exit: langText("Çıkış", "Ausgang"),
   });
   setText("#movementForm button[type='submit']", langText("Hareket Kaydet", "Bewegung speichern"));
-  setText(refs.movementAutoCostHint, langText("Maliyet bilgisi sistemde otomatik uygulanir.", "Der Kostenwert wird automatisch aus dem System uebernommen."));
+  setText(refs.movementAutoCostHint, langText("Maliyet bilgisi sistemde otomatik uygulanir.", "Der Kostenwert wird automatisch aus dem System übernommen."));
 
   const stockIntakePanel = document.querySelector("[data-tab-content='movements'] .panel-lite");
   setText(stockIntakePanel?.querySelector("h3"), langText("Yeni Ürün + Ilk Stok Girişi", "Neuer Artikel + Erstbestand"));
@@ -2255,7 +2255,7 @@ function applyUiTranslations() {
   });
   setText("#expenseForm button[type='submit']", langText("Masraf Kaydet", "Ausgabe speichern"));
   setText(expenseSections[1]?.querySelector("h2"), langText("Masraf Listesi", "Ausgabenliste"));
-  setText(expenseSections[1]?.querySelector(".section-tip"), langText("Her kaydı satirin sagindaki sil butonundan kaldirabilirsiniz.", "Jeden Eintrag koennen Sie ueber die rechte Loeschen-Schaltflaeche entfernen."));
+  setText(expenseSections[1]?.querySelector(".section-tip"), langText("Her kaydı satirin sagindaki sil butonundan kaldirabilirsiniz.", "Jeden Eintrag können Sie über die rechte Löschen-Schaltflaeche entfernen."));
 
   const cashSections = document.querySelectorAll("[data-tab-content='cashbook'] .two-column > section");
   setText(cashSections[0]?.querySelector("h2"), langText("Kasa Hareketi", "Kassenbewegung"));
@@ -2277,7 +2277,7 @@ function applyUiTranslations() {
     cashSections[1]?.querySelector(".section-tip"),
     langText(
       "Kasa girisleri, çıkışları ve faturasız satış hareketleri burada listelenir. Referans alani fis, havale, kart slipi veya banka aciklamasi için; Not alani ise serbest açıklama icindir.",
-      "Hier werden Kassen-Eingaenge, -Ausgaenge und Verkaeufe ohne Rechnung gelistet. Das Referenzfeld ist fuer Beleg, Ueberweisung, Kartenslip oder Bankreferenz; das Notizfeld fuer freie Ergaenzungen."
+      "Hier werden Kassen-Eingaenge, -Ausgaenge und Verkaeufe ohne Rechnung gelistet. Das Referenzfeld ist für Beleg, Überweisung, Kartenslip oder Bankreferenz; das Notizfeld für freie Ergaenzungen."
     )
   );
 
@@ -2299,9 +2299,9 @@ function applyUiTranslations() {
   setFormFieldLabel(refs.quoteForm, "collectedAmount", langText("Tahsil Edilen", "Erhalten"));
   setFormFieldLabel(refs.quoteForm, "reference", langText("Referans", "Referenz"));
   setFormFieldLabel(refs.quoteForm, "note", langText("Not", "Notiz"));
-  setFieldPlaceholder(refs.quoteForm, "title", langText("Orn. Soğuk Oda Teklifi", "z. B. Kuehlraum-Angebot"));
-  setFieldPlaceholder(refs.quoteForm, "reference", langText("Fis, havale, kart sonu", "Beleg, Ueberweisung, Kartenreferenz"));
-  setSelectOptionTexts(refs.quoteForm?.elements?.language, { de: "Deutsch", tr: langText("Turkce", "Tuerkisch") });
+  setFieldPlaceholder(refs.quoteForm, "title", langText("Orn. Soğuk Oda Teklifi", "z. B. Kühlraum-Angebot"));
+  setFieldPlaceholder(refs.quoteForm, "reference", langText("Fis, havale, kart sonu", "Beleg, Überweisung, Kartenreferenz"));
+  setSelectOptionTexts(refs.quoteForm?.elements?.language, { de: "Deutsch", tr: langText("Turkce", "Türkisch") });
   setSelectOptionTexts(refs.quoteForm?.elements?.isExport, {
     true: langText("Yurt Dışı - KDV Yok", "Export - ohne MwSt"),
     false: langText("Yurt İçi - KDV Dahil", "Inland - inkl. MwSt"),
@@ -2311,7 +2311,7 @@ function applyUiTranslations() {
     bank: langText("Banka", "Bank"),
     card: langText("Kart", "Karte"),
   });
-  setText("[data-tab-content='quotes'] .section-tip", langText("Direkt Satış stok dusurur; tahsilat yazdiysaniz Kasa Defteri'ne de isler. Teklif Olarak Kaydet sadece Son Teklifler listesine kaydeder, stok ve kasa değişmez. Faturasız satış butonunda sepette gorunen tutar son satış tutaridir; ekstra KDV eklenmez.", "Direktverkauf reduziert den Bestand; bei eingetragener Zahlung wird auch das Kassenbuch aktualışiert. Als Angebot speichern legt nur einen Eintrag unter Letzte Angebote an, Bestand und Kasse bleiben unveraendert. Beim Verkauf ohne Rechnung gilt der sichtbare Warenkorbwert als Endsumme; es wird keine zusaetzliche MwSt hinzugefuegt."));
+  setText("[data-tab-content='quotes'] .section-tip", langText("Direkt Satış stok dusurur; tahsilat yazdiysaniz Kasa Defteri'ne de isler. Teklif Olarak Kaydet sadece Son Teklifler listesine kaydeder, stok ve kasa değişmez. Faturasız satış butonunda sepette gorunen tutar son satış tutaridir; ekstra KDV eklenmez.", "Direktverkauf reduziert den Bestand; bei eingetragener Zahlung wird auch das Kassenbuch aktualisiert. Als Angebot speichern legt nur einen Eintrag unter Letzte Angebote an, Bestand und Kasse bleiben unverändert. Beim Verkauf ohne Rechnung gilt der sichtbare Warenkorbwert als Endsumme; es wird keine zusätzliche MwSt hinzugefügt."));
   setText(refs.checkoutSaleButton, langText("Direkt Satış Yap", "Direktverkauf"));
   setText(refs.checkoutUnbilledSaleButton, langText("Faturasız Satış", "Ohne Rechnung"));
   setText(refs.saveQuoteButton, langText("Teklif Olarak Kaydet", "Als Angebot speichern"));
@@ -2320,13 +2320,13 @@ function applyUiTranslations() {
   const ordersSection = document.querySelector("[data-tab-content='orders'] .admin-only section");
   setText(ordersSection?.querySelector("h2"), langText("Sipariş Takibi", "Bestellverfolgung"));
   setText(ordersSection?.querySelector(".section-tip"), langText("Müşteri siparişleri burada toplanir ve durumlari takip edilir.", "Hier werden Kundenbestellungen gesammelt und im Status verfolgt."));
-  setText("#customerVerificationBanner h3", langText("E-Posta Doğrulamasi Bekleniyor", "E-Mail-Bestaetigung ausstehend"));
-  setText("#customerVerificationBanner p.muted", langText("Sipariş bildirimleri ve şifre yenileme bağlantılari için e-posta adresinizi doğrulamaniz onerilir.", "Fuer Bestellhinweise und Passwortlinks wird eine bestaetigte E-Mail empfohlen."));
-  setText(refs.resendVerificationButton, langText("Doğrulama Mailini Tekrar Gönder", "Bestaetigungs-E-Mail erneut senden"));
-  setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Ürünler", "Verfuegbare Artikel"));
+  setText("#customerVerificationBanner h3", langText("E-Posta Doğrulamasi Bekleniyor", "E-Mail-Bestätigung ausstehend"));
+  setText("#customerVerificationBanner p.muted", langText("Sipariş bildirimleri ve şifre yenileme bağlantılari için e-posta adresinizi doğrulamaniz onerilir.", "Für Bestellhinweise und Passwortlinks wird eine bestätigte E-Mail empfohlen."));
+  setText(refs.resendVerificationButton, langText("Doğrulama Mailini Tekrar Gönder", "Bestätigungs-E-Mail erneut senden"));
+  setText("[data-tab-content='orders'] .customer-only .pos-catalog h2", langText("Stoktaki Ürünler", "Verfügbare Artikel"));
   setText("[data-tab-content='orders'] .customer-only .pos-catalog .muted", langText("Stoktaki ürünler, stok adedi ve satış fiyatlari burada gosterilir.", "Hier sehen Sie lagernde Artikel, Bestandsmenge und Verkaufspreise."));
   setText("[data-tab-content='orders'] .customer-only .pos-cart h2", langText("Sipariş Sepeti", "Bestellkorb"));
-  setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz ürünleri secip sipariş talebi gönderebilirsiniz.", "Waehlen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
+  setText("[data-tab-content='orders'] .customer-only .pos-cart .muted", langText("Istediginiz ürünleri secip sipariş talebi gönderebilirsiniz.", "Wählen Sie die gewuenschten Artikel und senden Sie Ihre Bestellung."));
   setFormFieldLabel(refs.customerOrderForm, "date", langText("Tarih", "Datum"));
   setFormFieldLabel(refs.customerOrderForm, "note", langText("Sipariş Notu", "Bestellnotiz"));
   setFieldPlaceholder(refs.customerOrderForm, "note", langText("Teslim tarihi, açıklama veya ozel not", "Lieferdatum, Beschreibung oder Sondernotiz"));
@@ -2334,7 +2334,7 @@ function applyUiTranslations() {
   setText("[data-tab-content='orders'] .customer-only .recent-quotes h2", langText("Sipariş Geçmişi", "Bestellverlauf"));
 
   setText("[data-tab-content='messages'] .admin-only h2", langText("Admin Mesaj Kutusu", "Admin-Nachrichten"));
-  setText(refs.adminMessagesSummary, langText("Yeni istekler, şikayetler ve destek mesajlari burada toplanir.", "Hier laufen neue Wuensche, Beschwerden und Support-Nachrichten zusammen."));
+  setText(refs.adminMessagesSummary, langText("Yeni istekler, şikayetler ve destek mesajlari burada toplanir.", "Hier laufen neue Wünsche, Beschwerden und Support-Nachrichten zusammen."));
   setText("[data-tab-content='messages'] .non-admin-only section:first-child h2", langText("Admin'e Mesaj Gönder", "Nachricht an Admin"));
   setText("[data-tab-content='messages'] .non-admin-only section:first-child .muted", langText("Sikayet, istek, destek talebi veya oneri mesajınızı admin ekibine yazın.", "Schreiben Sie hier Wunsch, Beschwerde, Support-Anfrage oder Vorschlag an das Admin-Team."));
   setText("[data-tab-content='messages'] .non-admin-only section:last-child h2", langText("Mesaj Gecmisim", "Mein Nachrichtenverlauf"));
@@ -2373,20 +2373,20 @@ function applyUiTranslations() {
   const toolsPanel = document.querySelector("[data-tab-content='tools'] .tools-panel");
   const iotPanel = document.querySelector("[data-tab-content='iot'] .iot-panel");
   setText(iotPanel?.querySelector(".section-head h2"), langText("DRC IoT Pack", "DRC IoT Pack"));
-  setText(iotPanel?.querySelector(".section-head .muted"), langText("Uzaktan izleme ekraninda oda durumu, alarm akisi, karbon odagi ve saha karar notlari tek yerde toplanir.", "Im Fernmonitoring-Bildschirm laufen Raumstatus, Alarme, Carbon-Fokus und Feldnotizen an einem Ort zusammen."));
+  setText(iotPanel?.querySelector(".section-head .muted"), langText("Uzaktan izleme ekraninda oda durumu, alarm akisi, karbon odagi ve saha karar notlari tek yerde toplanir.", "Im Fernmonitoring-Bildschirm laufen Raumstatus, Alarme, CO₂-Bilanz und Feldnotizen an einem Ort zusammen."));
   setText(toolsPanel?.querySelector(".section-head h2"), langText("Proje Araclari", "Projektwerkzeuge"));
-  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soğuk oda hesaplama, 3D çizim, borulama ve teklif hazirligi için kullanılan araçlar burada toplandi. Bu bolume tüm kullanıcılar erisebilir.", "Werkzeuge fuer Kuehlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist fuer alle angemeldeten Benutzer offen."));
+  setText(toolsPanel?.querySelector(".section-head .muted"), langText("Soğuk oda hesaplama, 3D çizim, borulama ve teklif hazirligi için kullanılan araçlar burada toplandi. Bu bolume tüm kullanıcılar erisebilir.", "Werkzeuge für Kühlraum-Berechnung, 3D-Zeichnung, Rohrfuehrung und Angebotsvorbereitung sind hier gesammelt. Dieser Bereich ist für alle angemeldeten Benutzer offen."));
   const toolCards = toolsPanel?.querySelectorAll(".tool-card") || [];
-  setText(toolCards[0]?.querySelector("h3"), langText("Soğuk Oda Proje Hesaplayici", "Kuehlraum-Projektrechner"));
-  setText(toolCards[0]?.querySelector(".muted"), langText("Kapasite, malzeme, teklif ve proje akisi için kullandiginiz ana ColdRoomPro uygulamasi.", "Die ColdRoomPro-Anwendung fuer Kapazitaet, Material, Angebot und Projektablauf."));
-  setText(toolCards[0]?.querySelector(".tool-link"), langText("Yeni Sekmede Aç", "In neuem Tab oeffnen"));
-  setText(toolCards[1]?.querySelector("h3"), langText("Soğuk Oda Cizim Pro", "Kuehlraum-Zeichnung Pro"));
-  setText(toolCards[1]?.querySelector(".muted"), langText("Yan yana oda, ortak duvar, borulama, 3D görünüm ve PDF/PNG ciktilari için tam çizim araci.", "Zeichenwerkzeug fuer nebeneinanderliegende Raeume, gemeinsame Waende, Rohrfuehrung, 3D-Ansicht und PDF/PNG-Ausgaben."));
-  setText(toolCards[1]?.querySelector(".tool-link"), langText("Yeni Sekmede Aç", "In neuem Tab oeffnen"));
+  setText(toolCards[0]?.querySelector("h3"), langText("Soğuk Oda Proje Hesaplayici", "Kühlraum-Projektrechner"));
+  setText(toolCards[0]?.querySelector(".muted"), langText("Kapasite, malzeme, teklif ve proje akisi için kullandiginiz ana ColdRoomPro uygulamasi.", "Die ColdRoomPro-Anwendung für Kapazitaet, Material, Angebot und Projektablauf."));
+  setText(toolCards[0]?.querySelector(".tool-link"), langText("Yeni Sekmede Aç", "In neuem Tab öffnen"));
+  setText(toolCards[1]?.querySelector("h3"), langText("Soğuk Oda Cizim Pro", "Kühlraum-Zeichnung Pro"));
+  setText(toolCards[1]?.querySelector(".muted"), langText("Yan yana oda, ortak duvar, borulama, 3D görünüm ve PDF/PNG ciktilari için tam çizim araci.", "Zeichenwerkzeug für nebeneinanderliegende Raeume, gemeinsame Waende, Rohrfuehrung, 3D-Ansicht und PDF/PNG-Ausgaben."));
+  setText(toolCards[1]?.querySelector(".tool-link"), langText("Yeni Sekmede Aç", "In neuem Tab öffnen"));
 
   const trainingSections = document.querySelectorAll("[data-tab-content='training'] .two-column > section");
   setText(trainingSections[0]?.querySelector("h2"), langText("DRC MAN Eğitim Kaydı", "DRC MAN Trainingseintrag"));
-  setText(trainingSections[0]?.querySelector("p.muted"), langText("Buraya eklenen soru-cevaplar önce DRC MAN tarafinda denenir. Eğitim kayitlari admin tarafindan duzenlenir ve tüm yerel kullanıcılar aynı bilgiyi alir.", "Hier hinterlegte Fragen und Antworten werden zuerst von DRC MAN verwendet. Trainings werden vom Admin gepflegt und fuer alle lokalen Benutzer genutzt."));
+  setText(trainingSections[0]?.querySelector("p.muted"), langText("Buraya eklenen soru-cevaplar önce DRC MAN tarafinda denenir. Eğitim kayitlari admin tarafindan duzenlenir ve tüm yerel kullanıcılar aynı bilgiyi alir.", "Hier hinterlegte Fragen und Antworten werden zuerst von DRC MAN verwendet. Trainings werden vom Admin gepflegt und für alle lokalen Benutzer genutzt."));
   setFormFieldLabel(refs.assistantTrainingForm, "topic", langText("Konu", "Thema"));
   setFormFieldLabel(refs.assistantTrainingForm, "audience", langText("Hedef Kullanıcı", "Zielgruppe"));
   setFormFieldLabel(refs.assistantTrainingForm, "keywords", langText("Anahtar Kelimeler", "Schluesselwoerter"));
@@ -2399,7 +2399,7 @@ function applyUiTranslations() {
   setFieldPlaceholder(refs.assistantTrainingForm, "topic", langText("Orn. Faturasız satış akisi", "z. B. Ablauf Verkauf ohne Rechnung"));
   setFieldPlaceholder(refs.assistantTrainingForm, "keywords", langText("stok girişi, malzeme girişi, wareneingang", "wareneingang, lagerzugang, materialeingang"));
   setFieldPlaceholder(refs.assistantTrainingForm, "trQuestion", langText("Orn. stok girişi nasil yapilir", "z. B. wie buche ich wareneingang"));
-  setFieldPlaceholder(refs.assistantTrainingForm, "trAnswer", langText("Bu soruya verilecek net operasyon cevabi", "Klare operative Antwort fuer diese Frage"));
+  setFieldPlaceholder(refs.assistantTrainingForm, "trAnswer", langText("Bu soruya verilecek net operasyon cevabi", "Klare operative Antwort für diese Frage"));
   setFieldPlaceholder(refs.assistantTrainingForm, "deQuestion", langText("Orn. wie buche ich wareneingang", "z. B. wie buche ich wareneingang"));
   setFieldPlaceholder(refs.assistantTrainingForm, "deAnswer", langText("Almanca cevap opsiyoneldir, boş kalirsa Turkce cevap kullanilir", "Deutsche Antwort ist optional; leer bedeutet, dass die tuerkische Antwort genutzt wird."));
   setFieldPlaceholder(refs.assistantTrainingForm, "suggestions", langText("virgulle ayirin: stok çıkışı nasil yapilir, hareket iptali nasil olur", "mit Komma trennen: wie buche ich lagerausgang, wie storniere ich eine bewegung"));
@@ -2425,11 +2425,11 @@ function applyUiTranslations() {
     retrofitPanel?.querySelector(".section-head .muted"),
     langText(
       "Mevcut gazdan yeni gaza gecis dusunulurken sahada atlanmamasi gereken adimlari bu arac hızlı toparlar.",
-      "Dieses Werkzeug fasst die wichtigen Schritte zusammen, die bei einer Umruestung auf ein anderes Kaeltemittel im Feld nicht uebersehen werden sollten."
+      "Dieses Werkzeug fasst die wichtigen Schritte zusammen, die bei einer Umruestung auf ein anderes Kältemittel im Feld nicht übersehen werden sollten."
     )
   );
   setFormFieldLabel(refs.retrofitChecklistForm, "currentGas", langText("Mevcut Gaz", "Bestandskaeltemittel"));
-  setFormFieldLabel(refs.retrofitChecklistForm, "targetGas", langText("Planlanan Gaz", "Geplantes Kaeltemittel"));
+  setFormFieldLabel(refs.retrofitChecklistForm, "targetGas", langText("Planlanan Gaz", "Geplantes Kältemittel"));
   setFormFieldLabel(refs.retrofitChecklistForm, "applicationType", langText("Uygulama", "Anwendung"));
   setFormFieldLabel(refs.retrofitChecklistForm, "systemType", langText("Sistem Tipi", "Anlagentyp"));
   setFormFieldLabel(refs.retrofitChecklistForm, "oilType", langText("Yag Durumu", "Oelzustand"));
@@ -2450,8 +2450,8 @@ function applyUiTranslations() {
     "": langText("Henüz Net Degil", "Noch offen"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.applicationType, {
-    positive: langText("Arti Muhafaza", "Pluskuehlung"),
-    negative: langText("Negatif Depo", "Tiefkuehlung"),
+    positive: langText("Arti Muhafaza", "Pluskühlung"),
+    negative: langText("Negatif Depo", "Tiefkühlung"),
     shock: langText("Sok Oda", "Schockraum"),
     compact: langText("Kompakt Sistem", "Kompakte Anlage"),
     industrial: langText("Endustriyel Tesis", "Industrieanlage"),
@@ -2468,25 +2468,25 @@ function applyUiTranslations() {
     poe: "POE",
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.compressorApproval, {
-    unknown: langText("Henüz Kontrol Edilmedi", "Noch nicht geprueft"),
+    unknown: langText("Henüz Kontrol Edilmedi", "Noch nicht geprüft"),
     approved: langText("Onaylı", "Freigegeben"),
     not_approved: langText("Uyumsuz / Onaysiz", "Nicht freigegeben / kritisch"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.valveState, {
-    unchecked: langText("Henüz Kontrol Edilmedi", "Noch nicht geprueft"),
-    checked: langText("Kontrol Edildi", "Geprueft"),
+    unchecked: langText("Henüz Kontrol Edilmedi", "Noch nicht geprüft"),
+    checked: langText("Kontrol Edildi", "Geprüft"),
     replace: langText("Degisim Gerekebilir", "Tausch moeglich"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.controlsState, {
-    unchecked: langText("Henüz Kontrol Edilmedi", "Noch nicht geprueft"),
-    checked: langText("Kontrol Edildi", "Geprueft"),
+    unchecked: langText("Henüz Kontrol Edilmedi", "Noch nicht geprüft"),
+    checked: langText("Kontrol Edildi", "Geprüft"),
     update_required: langText("Ayar / Guncelleme Gerekli", "Anpassung erforderlich"),
   });
   setSelectOptionTexts(refs.retrofitChecklistForm?.elements?.labelState, {
     pending: langText("Bekliyor", "Offen"),
     updated: langText("Güncellendi", "Aktualisiert"),
   });
-  setText(refs.retrofitChecklistTitle, langText("Saha Kontrol Ciktisi", "Ausgabe fuer den Feldeinsatz"));
+  setText(refs.retrofitChecklistTitle, langText("Saha Kontrol Ciktisi", "Ausgabe für den Feldeinsatz"));
   setText(
     refs.retrofitChecklistHint,
     langText(
@@ -2499,8 +2499,8 @@ function applyUiTranslations() {
 
   setText(".assistant-head .eyebrow", langText("Soru Cevap", "Fragen und Antworten"));
   replaceLabelText(refs.assistantLanguage?.closest("label"), langText("Dil", "Sprache"));
-  setText(refs.assistantClose, langText("Kapat", "Schliessen"));
-  refs.assistantClose.setAttribute("aria-label", langText("DRC MAN panelini kapat", "DRC MAN Panel schliessen"));
+  setText(refs.assistantClose, langText("Kapat", "Schließen"));
+  refs.assistantClose.setAttribute("aria-label", langText("DRC MAN panelini kapat", "DRC MAN Panel schließen"));
   refs.assistantInput.placeholder = langText("Orn. En pahali ürün hangisi?", "z. B. Welcher Artikel ist am teuersten?");
   setText("#assistantForm button[type='submit']", langText("Sor", "Fragen"));
 
@@ -3256,7 +3256,7 @@ async function handleDrcManBulkImport(dryRun) {
 
   if (!dryRun && !window.confirm(langText(
     "Tüm FAQ dosyalari canli Postgres'e yazilacak. Mevcut aynı kaynak satirlari silinip yeniden eklenir. Devam edilsin mi?",
-    "Alle FAQ-Dateien werden in die Live-Postgres geschrieben. Bestehende Zeilen mit derselben Quelle werden geloescht und neu eingefuegt. Fortfahren?"
+    "Alle FAQ-Dateien werden in die Live-Postgres geschrieben. Bestehende Zeilen mit derselben Quelle werden gelöscht und neu eingefügt. Fortfahren?"
   ))) {
     return;
   }
@@ -3285,7 +3285,7 @@ async function handleDrcManBulkImport(dryRun) {
         )
       : langText(
           `Yukleme tamam: ${response.totalInserted || 0} satir yazıldı, ${response.totalDeleted || 0} eski satir silindi (${response.fileCount} dosya).`,
-          `Import fertig: ${response.totalInserted || 0} Zeilen geschrieben, ${response.totalDeleted || 0} alte Zeilen geloescht (${response.fileCount} Dateien).`
+          `Import fertig: ${response.totalInserted || 0} Zeilen geschrieben, ${response.totalDeleted || 0} alte Zeilen gelöscht (${response.fileCount} Dateien).`
         );
 
     const rows = Array.isArray(response.results) ? response.results : [];
@@ -4036,11 +4036,11 @@ function buildOperationFocusLines(signals) {
   if (isCustomerUser()) {
     lines.push(signals.stockedItems > 0
       ? langText(`${numberFormat.format(signals.stockedItems)} stoklu ürün siparişe hazir.`, `${numberFormat.format(signals.stockedItems)} lagernde Artikel sind bestellbereit.`)
-      : langText("Su anda siparişe açık stok gorunmuyor.", "Aktuell ist kein lagernder Artikel fuer Bestellungen sichtbar."));
+      : langText("Su anda siparişe açık stok gorunmuyor.", "Aktuell ist kein lagernder Artikel für Bestellungen sichtbar."));
     lines.push(signals.pendingOrders > 0
       ? langText(`${numberFormat.format(signals.pendingOrders)} siparişiniz takipte.`, `${numberFormat.format(signals.pendingOrders)} Ihrer Bestellungen sind in Bearbeitung.`)
-      : langText("Yeni sipariş için ürünleri sepete ekleyebilirsiniz.", "Sie koennen jetzt neue Artikel in den Bestellkorb legen."));
-    lines.push(langText("DRC IoT ekranindan oda, alarm ve servis ozetini gorebilirsiniz.", "Im DRC-IoT-Bereich sehen Sie Raum-, Alarm- und Serviceuebersicht."));
+      : langText("Yeni sipariş için ürünleri sepete ekleyebilirsiniz.", "Sie können jetzt neue Artikel in den Bestellkorb legen."));
+    lines.push(langText("DRC IoT ekranindan oda, alarm ve servis ozetini gorebilirsiniz.", "Im DRC-IoT-Bereich sehen Sie Raum-, Alarm- und Serviceübersicht."));
     return lines;
   }
 
@@ -4051,7 +4051,7 @@ function buildOperationFocusLines(signals) {
     ? langText(`${numberFormat.format(signals.pendingOrders)} açık sipariş hızlı takip istiyor.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen brauchen einen kompakten Fokus.`)
     : langText("Bekleyen sipariş yok; bugun teklif ve saha planina odaklanabilirsiniz.", "Keine offenen Bestellungen; heute kann der Fokus auf Angebot und Feldplanung liegen."));
   lines.push(signals.cashBalance <= 0
-    ? langText("Kasa girişleri sifirdan basliyor, tahsilatlari anlik yazmak iyi olur.", "Die Kasse startet bei null, Zahlungseintraege sollten direkt erfasst werden.")
+    ? langText("Kasa girişleri sifirdan basliyor, tahsilatlari anlik yazmak iyi olur.", "Die Kasse startet bei null, Zahlungseinträge sollten direkt erfasst werden.")
     : langText(`Hamburg kasasinda ${currency.format(signals.cashBalance)} gorunuyor.`, `In der Hamburg-Kasse stehen ${currency.format(signals.cashBalance)}.`));
   return lines;
 }
@@ -4061,14 +4061,14 @@ function buildIotSites(signals) {
     {
       key: "bornsen-plus",
       name: langText("Bornsen Pozitif Oda", "Plusraum Boernsen"),
-      zone: langText("Pozitif Depo", "Pluskuehlung"),
+      zone: langText("Pozitif Depo", "Pluskühlung"),
       setpoint: 4,
       humidity: 66,
     },
     {
       key: "bornsen-shock",
       name: langText("Bornsen Sok Oda", "Schockraum Boernsen"),
-      zone: langText("Negatif Hat", "Tiefkuehlstrecke"),
+      zone: langText("Negatif Hat", "Tiefkühlstrecke"),
       setpoint: -20,
       humidity: 58,
     },
@@ -4090,8 +4090,8 @@ function buildIotSites(signals) {
     const delta = Math.abs(actual - site.setpoint);
     const level = delta >= 1.2 ? "critical" : delta >= 0.55 ? "progress" : "ok";
     const doorStatus = index === 0 && signals.iotAlarmCount > 0
-      ? langText("Kapi trafigi yogun", "Hohe Tuerfrequenz")
-      : langText("Kapi kapali", "Tuer geschlossen");
+      ? langText("Kapi trafigi yogun", "Hohe Türfrequenz")
+      : langText("Kapi kapali", "Tür geschlossen");
 
     return {
       ...site,
@@ -4119,20 +4119,20 @@ function buildIotEvents(signals, sites) {
         : langText("Alarm akisinda kritik durum yok", "Kein kritischer Alarm im Strom"),
       detail: signals.iotAlarmCount > 0
         ? langText(`${numberFormat.format(signals.iotAlarmCount)} saha uyarisi gorunuyor; ilk bakis ${hottestSite.name} ustunde.`, `${numberFormat.format(signals.iotAlarmCount)} Feldhinweise sichtbar; erster Blick auf ${hottestSite.name}.`)
-        : langText("Kapilar, defrost ve kompresor yukleri dengeli akiyor.", "Tueren, Abtauung und Verdichterlasten wirken ruhig."),
+        : langText("Kapilar, defrost ve kompresor yukleri dengeli akiyor.", "Türen, Abtauung und Verdichterlasten wirken ruhig."),
     },
     {
       level: signals.carbonLevel,
-      title: langText("Karbon odagi", "Carbon-Fokus"),
+      title: langText("Karbon odagi", "CO₂-Bilanz"),
       detail: signals.carbonScore >= 74
-        ? langText("Dusuk GWP ve izleme yogunlugu guclu; servis turleri daha kontrollu planlanabilir.", "Niedriger GWP und Monitoringdichte sind stark; Servicerouten koennen kontrollierter geplant werden.")
+        ? langText("Dusuk GWP ve izleme yogunlugu guclu; servis turleri daha kontrollu planlanabilir.", "Niedriger GWP und Monitoringdichte sind stark; Servicerouten können kontrollierter geplant werden.")
         : langText("Retrofit, sensor ve alarm yogunlugu arttikca karbon paneli daha dengeli olur.", "Mit mehr Retrofit-, Sensor- und Alarmdichte stabilisiert sich das Carbon-Panel."),
     },
     {
       level: signals.pendingOrders > 0 ? "pending" : "ok",
       title: langText("Operasyon akisi", "Operationsfluss"),
       detail: signals.pendingOrders > 0
-        ? langText(`${numberFormat.format(signals.pendingOrders)} açık sipariş DRC IoT panelinde saha onceligi ile eslestirilebilir.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen koennen im DRC-IoT mit Feldprioritaeten gekoppelt werden.`)
+        ? langText(`${numberFormat.format(signals.pendingOrders)} açık sipariş DRC IoT panelinde saha onceligi ile eslestirilebilir.`, `${numberFormat.format(signals.pendingOrders)} offene Bestellungen können im DRC-IoT mit Feldprioritaeten gekoppelt werden.`)
         : langText("Bugun saha ritmi daha çok stok, teklif ve uzaktan izleme kalitesine odaklanabilir.", "Heute kann der Fokus staerker auf Lager, Angebot und Monitoringqualitaet liegen."),
     },
   ];
@@ -4180,7 +4180,7 @@ function renderOverviewPanels() {
         <strong>${escapeHtml(numberFormat.format(signals.stockedItems))}</strong>
       </div>
       <div class="overview-metric">
-        <span>${escapeHtml(langText("Açık Sipariş", "Offene Auftraege"))}</span>
+        <span>${escapeHtml(langText("Açık Sipariş", "Offene Aufträge"))}</span>
         <strong>${escapeHtml(numberFormat.format(signals.pendingOrders))}</strong>
       </div>
       <div class="overview-metric">
@@ -4220,7 +4220,7 @@ function renderOverviewPanels() {
     </div>
     <p class="overview-note">${escapeHtml(
       signals.criticalCount > 0
-        ? langText(`${numberFormat.format(signals.criticalCount)} kritik kart enerji kacagi ve servis turunu buyutebilir.`, `${numberFormat.format(signals.criticalCount)} kritische Karten koennen Energieverlust und Servicerouten vergroessern.`)
+        ? langText(`${numberFormat.format(signals.criticalCount)} kritik kart enerji kacagi ve servis turunu buyutebilir.`, `${numberFormat.format(signals.criticalCount)} kritische Karten können Energieverlust und Servicerouten vergroessern.`)
         : langText("Kritik stok baskisi dusuk; karbon paneli retrofit ve izleme yogunluguna odaklanabilir.", "Der kritische Lagerdruck ist niedrig; das Carbon-Panel kann sich auf Retrofit und Monitoringdichte konzentrieren.")
     )}</p>
     <div class="overview-tag-row">
@@ -4267,7 +4267,7 @@ function renderOverviewPanels() {
         `;
       }).join("")}
     </div>
-    <p class="overview-note">${escapeHtml(langText("Kapilar, defrost, sicaklik ve saha alarmlari DRC IoT sekmesinde detayli gorunur.", "Tueren, Abtauung, Temperaturen und Feldalarme erscheinen im DRC-IoT-Tab im Detail."))}</p>
+    <p class="overview-note">${escapeHtml(langText("Kapilar, defrost, sicaklik ve saha alarmlari DRC IoT sekmesinde detayli gorunur.", "Türen, Abtauung, Temperaturen und Feldalarme erscheinen im DRC-IoT-Tab im Detail."))}</p>
   `;
 
   renderIotMonitor(signals, sites, lastSync);
@@ -4412,7 +4412,7 @@ function renderItems() {
         <div class="action-row">
           <button class="mini-button secondary-button" type="button" data-action="edit-item" data-id="${item.id}" data-help="TR: Malzeme kartını düzenler. DE: Bearbeitet die Artikelkarte.">${t("common.edit")}</button>
           <button class="mini-button secondary-button" type="button" data-action="archive-item" data-id="${item.id}" data-help="TR: Ürünü aktif listeden arşive alir. DE: Verschiebt den Artikel ins Archiv.">${t("common.archive")}</button>
-          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}" data-help="TR: Hareketsiz ürünü kalici siler. DE: Loescht einen Artikel ohne Bewegungen dauerhaft.">${t("common.delete")}</button>
+          <button class="mini-button danger-button" type="button" data-action="delete-item" data-id="${item.id}" data-help="TR: Hareketsiz ürünü kalici siler. DE: Löscht einen Artikel ohne Bewegungen dauerhaft.">${t("common.delete")}</button>
         </div>
       `
       : `<span class="muted">${t("common.viewOnly")}</span>`;
@@ -4590,7 +4590,7 @@ function renderArchive() {
       <td>${listPrice ? currency.format(listPrice) : "-"}</td>
       <td>${salePrice ? currency.format(salePrice) : "-"}</td>
       <td>${escapeHtml(item.barcode || "")}</td>
-      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}" data-help="TR: Arşivdeki ürünü tekrar aktif listeye alir. DE: Holt den archivierten Artikel in die aktive Liste zurueck.">${t("common.restore")}</button></td>
+      <td><button class="mini-button secondary-button" type="button" data-action="restore-item" data-id="${item.id}" data-help="TR: Arşivdeki ürünü tekrar aktif listeye alir. DE: Holt den archivierten Artikel in die aktive Liste zurück.">${t("common.restore")}</button></td>
     `;
     refs.archiveTableBody.append(tr);
   });
@@ -4669,7 +4669,7 @@ function renderExpenses() {
       <td>${escapeHtml(expense.note || "-")}</td>
       <td>${currency.format(expense.amount)}</td>
       <td>${escapeHtml(expense.userName || "-")}</td>
-      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydını siler. DE: Loescht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe loeschen")}</button></td>
+      <td class="table-action-cell"><button class="mini-button table-delete-button" type="button" data-delete-expense="${expense.id}" data-help="TR: Gider kaydını siler. DE: Löscht den Ausgabeneintrag.">${langText("Masraf Sil", "Ausgabe löschen")}</button></td>
     `;
     refs.expensesTableBody.append(tr);
   });
@@ -4934,7 +4934,7 @@ function renderCashbook() {
     // Quote numaras\u0131 not'ta var ama state.quotes'ta yok (son 20 d\u0131\u015f\u0131nda) - yaln\u0131z metin rozeti
     links.quoteNos.forEach((qn) => {
       if (!matchedQuoteNos.has(qn)) {
-        badges.push(`<span class="cashbook-link-pill cashbook-link-pill-inactive" title="${langText("Bu teklif son 20 kay\u0131t aras\u0131nda de\u011fil, PDF'i Teklifler sekmesinden acabilirsiniz", "Angebot nicht in den letzten 20 \u2014 PDF ueber Angebote-Tab oeffnen")}">📄 ${escapeHtml(qn)}</span>`);
+        badges.push(`<span class="cashbook-link-pill cashbook-link-pill-inactive" title="${langText("Bu teklif son 20 kay\u0131t aras\u0131nda de\u011fil, PDF'i Teklifler sekmesinden acabilirsiniz", "Angebot nicht in den letzten 20 \u2014 PDF über Angebote-Tab öffnen")}">📄 ${escapeHtml(qn)}</span>`);
       }
     });
     linkedOrders.forEach((order) => {
@@ -4951,7 +4951,7 @@ function renderCashbook() {
       ? `<button class="mini-button cashbook-detail-button" type="button" data-cash-sale-detail="${entry.id}" data-help="TR: Satış detayı - ürünler, müşteri, satıcı. DE: Verkaufsdetails - Positionen, Kunde, Verkäufer.">🔎 ${langText("Detay", "Details")}</button>`
       : "";
     const deleteButton = canDeleteCashbook()
-      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydını siler (admin yetkisi). DE: Loescht den Kasseneintrag (Admin).">${langText("Kaydı Sil", "Eintrag loeschen")}</button>`
+      ? `<button class="mini-button table-delete-button" type="button" data-delete-cash="${entry.id}" data-help="TR: Kasa kaydını siler (admin yetkisi). DE: Löscht den Kasseneintrag (Admin).">${langText("Kaydı Sil", "Eintrag löschen")}</button>`
       : "";
     const actionMarkup = detailButton || deleteButton
       ? `<div class="cashbook-action-stack">${detailButton}${deleteButton}</div>`
@@ -5720,13 +5720,13 @@ function securityEventLabel(eventType) {
     logout: langText("Çıkış yapıldı", "Abmeldung"),
     access_denied: langText("Yetki reddedildi", "Zugriff verweigert"),
     password_reset_requested: langText("Şifre yenileme istendi", "Passwort-Reset angefordert"),
-    password_reset_completed: langText("Şifre yenilendi", "Passwort zurueckgesetzt"),
-    email_verified: langText("E-posta doğrulandı", "E-Mail bestaetigt"),
-    email_verification_resent: langText("Doğrulama maili tekrar gönderildi", "Bestaetigungs-E-Mail erneut gesendet"),
+    password_reset_completed: langText("Şifre yenilendi", "Passwort zurückgesetzt"),
+    email_verified: langText("E-posta doğrulandı", "E-Mail bestätigt"),
+    email_verification_resent: langText("Doğrulama maili tekrar gönderildi", "Bestätigungs-E-Mail erneut gesendet"),
     customer_registered: langText("Müşteri kaydı", "Kundenregistrierung"),
     item_created: langText("Ürün oluşturuldu", "Artikel erstellt"),
-    item_updated: langText("Ürün güncellendi", "Artikel aktualışiert"),
-    item_deleted: langText("Ürün silindi", "Artikel geloescht"),
+    item_updated: langText("Ürün güncellendi", "Artikel aktualisiert"),
+    item_deleted: langText("Ürün silindi", "Artikel gelöscht"),
     item_archived: langText("Ürün arşive alındı", "Artikel archiviert"),
     item_restored: langText("Ürün geri alındı", "Artikel wieder aktiviert"),
     item_intake_created: langText("Yeni ürün ve ilk stok", "Neuer Artikel mit Erstbestand"),
@@ -5734,21 +5734,21 @@ function securityEventLabel(eventType) {
     movement_exit_created: langText("Stok çıkışi", "Lagerausgang"),
     movement_reversed: langText("Hareket iptal edildi", "Bewegung storniert"),
     expense_created: langText("Masraf eklendi", "Ausgabe erfasst"),
-    expense_deleted: langText("Masraf silindi", "Ausgabe geloescht"),
+    expense_deleted: langText("Masraf silindi", "Ausgabe gelöscht"),
     cashbook_created: langText("Kasa kaydı eklendi", "Kasseneintrag erstellt"),
-    cashbook_deleted: langText("Kasa kaydı silindi", "Kasseneintrag geloescht"),
-    bulk_pricing_updated: langText("Toplu fiyat güncellendi", "Sammelpreise aktualışiert"),
+    cashbook_deleted: langText("Kasa kaydı silindi", "Kasseneintrag gelöscht"),
+    bulk_pricing_updated: langText("Toplu fiyat güncellendi", "Sammelpreise aktualisiert"),
     quote_created: langText("Teklif kaydedildi", "Angebot gespeichert"),
     sale_completed: langText("Direkt satış tamamlandı", "Direktverkauf abgeschlossen"),
     unbilled_sale_completed: langText("Faturasız satış tamamlandı", "Verkauf ohne Rechnung abgeschlossen"),
     order_created: langText("Sipariş oluşturuldu", "Bestellung erstellt"),
-    order_status_updated: langText("Sipariş durumu güncellendi", "Bestellstatus aktualışiert"),
+    order_status_updated: langText("Sipariş durumu güncellendi", "Bestellstatus aktualisiert"),
     admin_message_created: langText("Admin mesajı gönderildi", "Admin-Nachricht gesendet"),
-    admin_message_status_updated: langText("Admin mesajı durumu güncellendi", "Admin-Nachricht aktualışiert"),
+    admin_message_status_updated: langText("Admin mesajı durumu güncellendi", "Admin-Nachricht aktualisiert"),
     user_created: langText("Kullanıcı oluşturuldu", "Benutzer erstellt"),
     training_created: langText("DRC MAN eğitimi eklendi", "DRC-MAN-Training erstellt"),
-    training_updated: langText("DRC MAN eğitimi güncellendi", "DRC-MAN-Training aktualışiert"),
-    training_deleted: langText("DRC MAN eğitimi silindi", "DRC-MAN-Training geloescht"),
+    training_updated: langText("DRC MAN eğitimi güncellendi", "DRC-MAN-Training aktualisiert"),
+    training_deleted: langText("DRC MAN eğitimi silindi", "DRC-MAN-Training gelöscht"),
     origin_blocked: langText("Cross-site istek engellendi", "Cross-Site-Anfrage blockiert"),
     rate_limit_hit: langText("Istek limiti asildi", "Ratenlimit erreicht"),
     ip_blocked: langText("IP bloke edildi", "IP blockiert"),
@@ -5900,7 +5900,7 @@ function renderSecurity() {
   const suspiciousCount = visibleRows.filter((entry) => isSuspiciousSecurityEvent(entry) || isCriticalSecurityOperation(entry)).length;
   if (refs.securitySummary) {
     const base = t("messages.securitySummary", events.length, blocks.length, activeBlocks);
-    refs.securitySummary.textContent = `${base} | ${suspiciousCount} ${langText("supheli/kritik", "verdaechtig/kritisch")} | ${hiddenAuthCount} ${langText("auth kaydı toplandi", "Auth-Eintraege gebuendelt")}`;
+    refs.securitySummary.textContent = `${base} | ${suspiciousCount} ${langText("supheli/kritik", "verdaechtig/kritisch")} | ${hiddenAuthCount} ${langText("auth kaydı toplandi", "Auth-Einträge gebuendelt")}`;
   }
 
   refs.securityEventsTableBody.innerHTML = "";
@@ -6382,7 +6382,7 @@ function renderAssistantTraining() {
 
   refs.assistantTrainingTableBody.innerHTML = "";
   if (!state.agentTrainingLoaded) {
-    refs.assistantTrainingSummary.textContent = langText("Eğitim kayıtlari yukleniyor...", "Trainingseintraege werden geladen...");
+    refs.assistantTrainingSummary.textContent = langText("Eğitim kayıtlari yukleniyor...", "Trainingseinträge werden geladen...");
     refs.assistantTrainingTableBody.innerHTML = `<tr><td colspan="7"><div class="empty-state">${langText("Yukleniyor...", "Wird geladen...")}</div></td></tr>`;
     return;
   }
@@ -6407,7 +6407,7 @@ function renderAssistantTraining() {
       <td class="table-action-cell">
         <div class="action-row">
           <button class="mini-button secondary-button" type="button" data-edit-training="${entry.id}" data-help="TR: Eğitim kaydını düzenler. DE: Bearbeitet den Trainingseintrag.">${t("common.edit")}</button>
-          <button class="mini-button danger-button" type="button" data-delete-training="${entry.id}" data-help="TR: Eğitim kaydını siler. DE: Loescht den Trainingseintrag.">${t("common.delete")}</button>
+          <button class="mini-button danger-button" type="button" data-delete-training="${entry.id}" data-help="TR: Eğitim kaydını siler. DE: Löscht den Trainingseintrag.">${t("common.delete")}</button>
         </div>
       </td>
     `;
@@ -6520,7 +6520,7 @@ function buildRetrofitChecklist(input) {
     decisionLines.push(
       langText(
         "3. R404A tarafinda valf, glide ve etiket güncellemesi neredeyse her zaman ayri kontrol ister.",
-        "3. Bei R404A-Retrofit muessen Ventil, Glide-Logik und Kennzeichnung fast immer separat geprueft werden."
+        "3. Bei R404A-Retrofit muessen Ventil, Glide-Logik und Kennzeichnung fast immer separat geprüft werden."
       )
     );
   }
@@ -6528,7 +6528,7 @@ function buildRetrofitChecklist(input) {
     decisionLines.push(
       langText(
         "4. Yanicilik / yuksek basinc / toksisite tarafini normal gaz degisimi gibi değil, proje güvenligi gibi ele al.",
-        "4. Brennbarkeit / Hochdruck / Toxizitaet nicht wie einen normalen Kaeltemittelwechsel, sondern wie ein Sicherheitsprojekt behandeln."
+        "4. Brennbarkeit / Hochdruck / Toxizitaet nicht wie einen normalen Kältemittelwechsel, sondern wie ein Sicherheitsprojekt behandeln."
       )
     );
   }
@@ -6544,11 +6544,11 @@ function buildRetrofitChecklist(input) {
     ),
     langText(
       `Valf/orifis durumu: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, nozzle ve equalizer tarafi yeni gaza göre yeniden kontrol edilmeli.`,
-      `Ventil/Duese: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, Duesen und Equalizer auf das neue Kaeltemittel abstimmen.`
+      `Ventil/Duese: ${retrofitSelectLabel("valveState", input.valveState)}. TXV/EEV, Duesen und Equalizer auf das neue Kältemittel abstimmen.`
     ),
     langText(
       "Filtre drier, sight glass, servis vanalari ve likit hattinda daralma ihtimalini mekanik kontrolde ayri not et.",
-      "Filtertrockner, Schauglas, Serviceventile und moegliche Verengungen in der Fluessigkeitsleitung separat pruefen."
+      "Filtertrockner, Schauglas, Serviceventile und moegliche Verengungen in der Fluessigkeitsleitung separat prüfen."
     ),
   ];
 
@@ -6559,7 +6559,7 @@ function buildRetrofitChecklist(input) {
     ),
     langText(
       `Etiket ve evrak: ${retrofitSelectLabel("labelState", input.labelState)}. Gaz etiketi, sarj miktari, servis kaydı ve müşteri bilgilendirmesi guncellenmeli.`,
-      `Kennzeichnung und Unterlagen: ${retrofitSelectLabel("labelState", input.labelState)}. Kaeltemitteletikett, Fuellmenge, Serviceprotokoll und Kundeninfo aktualisieren.`
+      `Kennzeichnung und Unterlagen: ${retrofitSelectLabel("labelState", input.labelState)}. Kältemitteletikett, Fuellmenge, Serviceprotokoll und Kundeninfo aktualisieren.`
     ),
   ];
 
@@ -6567,7 +6567,7 @@ function buildRetrofitChecklist(input) {
     controlsLines.push(
       langText(
         "Negatif / sok odada defrost sirasi, likit geri donusu ve basma sıcaklığı ekstra yakindan takip edilmeli.",
-        "Bei Tiefkuehl- oder Schockanwendungen muessen Abtaulogik, Fluessigkeitsrueckkehr und Druckgastemperatur besonders eng beobachtet werden."
+        "Bei Tiefkühl- oder Schockanwendungen muessen Abtaulogik, Fluessigkeitsrueckkehr und Druckgastemperatur besonders eng beobachtet werden."
       )
     );
   }
@@ -6943,12 +6943,12 @@ function renderAdminOrders() {
       <td class="table-action-cell">
         <div class="action-row">
           <button class="mini-button primary-button" type="button" data-order-edit="${order.id}" data-help="TR: Sipariş satirlarinin fiyat ve miktarini düzenler. DE: Bearbeitet Preise/Mengen der Bestellpositionen.">${langText("Fiyat Düzenle","Preis bearbeiten")}</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparişi onaylar. DE: Bestaetigt die Bestellung.">${langText("Onayla", "Bestaetigen")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="approved" data-help="TR: Siparişi onaylar. DE: Bestätigt die Bestellung.">${langText("Onayla", "Bestätigen")}</button>
           <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="preparing" data-help="TR: Siparişi hazırlanıyor durumuna alir. DE: Setzt die Bestellung auf in Vorbereitung.">${langText("Hazirla", "Vorbereiten")}</button>
-          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparişi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschliessen")}</button>
+          <button class="mini-button secondary-button" type="button" data-order-status="${order.id}" data-status="completed" data-help="TR: Siparişi tamamlanmis yapar. DE: Markiert die Bestellung als abgeschlossen.">${langText("Tamamla", "Abschließen")}</button>
           <button class="mini-button danger-button" type="button" data-order-status="${order.id}" data-status="cancelled" data-help="TR: Siparişi iptal eder. DE: Storniert die Bestellung.">${t("common.cancelled")}</button>
           ${order.quoteId
-            ? `<button class="mini-button secondary-button" type="button" data-order-open-quote="${order.quoteId}" data-help="TR: Bağlı teklifi acar. DE: Oeffnet verknuepftes Angebot.">${langText("Teklifi Aç","Angebot oeffnen")}</button>`
+            ? `<button class="mini-button secondary-button" type="button" data-order-open-quote="${order.quoteId}" data-help="TR: Bağlı teklifi acar. DE: Oeffnet verknuepftes Angebot.">${langText("Teklifi Aç","Angebot öffnen")}</button>`
             : `<button class="mini-button primary-button" type="button" data-order-convert="${order.id}" data-help="TR: Siparişi teklife cevirir. DE: Wandelt die Bestellung in ein Angebot um.">${langText("Teklife Çevir","In Angebot umwandeln")}</button>`}
           ${order.phone ? `<button class="mini-button secondary-button" type="button" data-order-whatsapp="${order.id}" data-help="TR: Müşteriye hazir WhatsApp mesajı acar. DE: Oeffnet eine vorbereitete WhatsApp-Nachricht.">WhatsApp</button>` : ""}
         </div>
@@ -7162,7 +7162,7 @@ async function openOrderItemEditor(orderId) {
         : langText(" · Onaylandı.", " · Bestätigt.");
     }
 
-    const cashMsg = r2.cashbookInserted ? langText(" · Kasaya giriş yapıldı.", " · Kassenbuch aktualışiert.") : "";
+    const cashMsg = r2.cashbookInserted ? langText(" · Kasaya giriş yapıldı.", " · Kassenbuch aktualisiert.") : "";
     window.alert(langText("Sipariş kaydedildi.", "Bestellung gespeichert.") + cashMsg + statusMsg);
     close();
     await refreshData();
@@ -7251,7 +7251,7 @@ async function openOrderPaymentEditor(orderId) {
     });
     if (result.error) { window.alert(result.error); return; }
     if (result.cashbookInserted) {
-      window.alert(langText("Ödeme kaydedildi + kasa girişi yapıldı.","Zahlung gespeichert + Kassenbuch aktualışiert."));
+      window.alert(langText("Ödeme kaydedildi + kasa girişi yapıldı.","Zahlung gespeichert + Kassenbuch aktualisiert."));
     } else {
       window.alert(langText("Ödeme kaydedildi.","Zahlung gespeichert."));
     }
@@ -7317,7 +7317,7 @@ async function convertOrderToQuote(orderId) {
   if (!orderId) return;
   const confirmMsg = langText(
     "Bu sipariş için yeni bir teklif olusturulacak. Devam edilsin mi?",
-    "Fuer diese Bestellung wird ein neues Angebot erstellt. Fortfahren?"
+    "Für diese Bestellung wird ein neues Angebot erstellt. Fortfahren?"
   );
   if (!window.confirm(confirmMsg)) return;
   const result = await request(`/api/orders/${orderId}/convert-to-quote`, {
@@ -8201,7 +8201,7 @@ async function handleAssistantSubmit(event) {
 
   state.assistantMessages.push({
     role: "assistant",
-    text: result.error || result.answer || langText("Bu soru için net bir sonuc bulamadim.", "Ich konnte fuer diese Frage kein klares Ergebnis finden."),
+    text: result.error || result.answer || langText("Bu soru için net bir sonuc bulamadim.", "Ich konnte für diese Frage kein klares Ergebnis finden."),
   });
   renderAssistantMessages();
 }
@@ -8217,8 +8217,8 @@ function getAssistantWelcomeMessage() {
   const hasLocalAgent = state.assistantStatus?.mode === "local_drc_man";
   if (state.assistantLanguage === "de") {
     return hasLocalAgent
-      ? "DRC MAN ist lokal verbunden. Sie koennen jetzt detaillierte Fragen zu Material, Projekt, Hamburg-Bestand und Kaltetechnik stellen."
-      : "DRC MAN Wissensbasis ist aktiv. Sie koennen nach Lagerbestand, Verkaufspreis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
+      ? "DRC MAN ist lokal verbunden. Sie können jetzt detaillierte Fragen zu Material, Projekt, Hamburg-Bestand und Kaltetechnik stellen."
+      : "DRC MAN Wissensbasis ist aktiv. Sie können nach Lagerbestand, Verkaufspreis, Kategorie, kritischen Artikeln oder Verkaufsablauf fragen.";
   }
   return hasLocalAgent
     ? "DRC MAN yerel ajan baglandi. Artik malzeme, proje, Hamburg stok ve soğuk oda teknik sorularini daha detayli sorabilirsiniz."
@@ -8279,14 +8279,14 @@ function getDisplayCategory(category) {
 
   const normalized = normalizeSearchText(category);
   const categoryMap = {
-    "soğutma yaglari": "Kuehloele",
+    "soğutma yaglari": "Kühlöle",
     "kompresorler": "Verdichter",
     "kompresor": "Verdichter",
     "kompresor scroll": "Verdichter > Scroll",
     "kondenserler": "Verfluessiger",
     "kondenser uniteleri": "Verfluessigereinheiten",
     "vrf sistemleri": "VRF-Systeme",
-    "vrf ic uniteleri": "VRF-Innengeraete",
+    "vrf ic uniteleri": "VRF-Innengeräte",
     "klima sistemleri": "Klimasysteme",
     "kontrol panelleri": "Steuerungen",
     "elektronik kontrolorler": "Elektronische Regler",
@@ -8302,18 +8302,18 @@ function getDisplayCategory(category) {
     "izolasyonlar ve bantlar": "Isolierung & Klebebaender",
     "izolasyonlu borular": "Isolierte Rohre",
     "montaj sarf": "Montagebedarf",
-    "soğutucu akiskanlar": "Kaeltemittel",
-    "soğutucu gaz": "Kaeltemittel",
-    "dikey tip buzdolaplari": "Vertikale Kuehlschraenke",
-    "buzdolaplari ve vitrinler": "Kuehlschraenke & Vitrinen",
+    "soğutucu akiskanlar": "Kältemittel",
+    "soğutucu gaz": "Kältemittel",
+    "dikey tip buzdolaplari": "Vertikale Kühlschränke",
+    "buzdolaplari ve vitrinler": "Kühlschränke & Vitrinen",
     "termostat": "Thermostate",
-    "soğutma malzemeleri": "Kuehltechnik-Zubehoer",
-    "soğuk oda aksesuarlari": "Kuehlraum-Zubehoer",
-    "soğuk oda kapilari": "Kuehlraumtueren",
+    "soğutma malzemeleri": "Kühltechnik-Zubehörr",
+    "soğuk oda aksesuarlari": "Kühlraum-Zubehörr",
+    "soğuk oda kapilari": "Kühlraumtueren",
     "evaporatorler": "Verdampfer",
-    "soğutma gruplari": "Kuehlaggregate",
+    "soğutma gruplari": "Kühlaggregate",
     "likit tanklar": "Sammler (Fluessigkeitsbehaelter)",
-    "hat aksesuarlari": "Leitungszubehoer",
+    "hat aksesuarlari": "Leitungszubehörr",
     "elektrik malzemeleri": "Elektromaterial",
     "pompa ve drenaj": "Pumpen & Entwaesserung",
     "valfler genlesme valfleri": "Ventile & Expansionsventile",
@@ -8917,7 +8917,7 @@ function startItemEdit(itemId) {
   if (refs.itemForm.elements.notesDe) {
     refs.itemForm.elements.notesDe.value = item.notesDe || "";
   }
-  refs.itemSubmitButton.textContent = langText("Malzemeyi Güncelle", "Artikel aktualışieren");
+  refs.itemSubmitButton.textContent = langText("Malzemeyi Güncelle", "Artikel aktualisieren");
   refs.itemCancelEdit.classList.remove("hidden");
   activateTab("items");
 }
@@ -8974,7 +8974,7 @@ async function deleteExpense(expenseId) {
 async function deleteCashEntry(entryId) {
   const reason = window.prompt(langText(
     "Bu kasa kaydını silmek için sebep yazın (en az 3 karakter):",
-    "Grund fuer Loeschung eingeben (min. 3 Zeichen):"
+    "Grund für Löschung eingeben (min. 3 Zeichen):"
   ));
   if (!reason || reason.trim().length < 3) {
     if (reason !== null) window.alert(langText("Silme sebebi zorunlu.", "Grund erforderlich."));
@@ -9079,7 +9079,7 @@ function addItemToQuote(itemId) {
   const existing = state.quoteDraft.find((entry) => Number(entry.itemId) === Number(item.id));
   if (existing) {
     if (Number(existing.quantity) >= Number(item.currentStock)) {
-      window.alert(langText("Sepetteki miktar mevcut stoğu gecemez.", "Die Warenkorbmenge darf den aktuellen Bestand nicht ueberschreiten."));
+      window.alert(langText("Sepetteki miktar mevcut stoğu gecemez.", "Die Warenkorbmenge darf den aktuellen Bestand nicht überschreiten."));
       return;
     }
     existing.quantity += 1;
@@ -10007,7 +10007,7 @@ async function handleAuthUrlActions() {
     if (result.error) {
       refs.loginError.textContent = result.error;
     } else {
-      refs.customerRegisterSuccess.textContent = result.message || langText("E-posta adresiniz doğrulandı.", "Ihre E-Mail-Adresse wurde bestaetigt.");
+      refs.customerRegisterSuccess.textContent = result.message || langText("E-posta adresiniz doğrulandı.", "Ihre E-Mail-Adresse wurde bestätigt.");
       state.user = result.user || null;
       if (state.user) {
         await refreshData();
