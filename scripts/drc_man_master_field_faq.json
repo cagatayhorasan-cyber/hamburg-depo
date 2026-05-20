@@ -3,192 +3,1753 @@
     "id": "master_oil_return_logic",
     "tr_subject": "yag donusu mantigi",
     "de_subject": "oelrueckfuehrung",
-    "keywords": ["yag donusu", "oelrueckfuehrung", "oil return", "yag donusu mantigi"],
-    "tr_questions": ["yag donusu mantigi nasil kurulur", "yag donusu neden onemli", "usta yag donusunu nasil dusunur", "soguk odada yag donusu nasil okunur"],
-    "de_questions": ["wie denkt ein meister ueber oelrueckfuehrung", "warum ist oelrueckfuehrung wichtig", "wie plant man oelrueckfuehrung", "oelrueckfuehrung im kuehlraum erklaeren"],
+    "keywords": [
+      "yag donusu",
+      "oelrueckfuehrung",
+      "oil return",
+      "yag donusu mantigi"
+    ],
+    "tr_questions": [
+      "yag donusu mantigi nasil kurulur",
+      "yag donusu neden onemli",
+      "usta yag donusunu nasil dusunur",
+      "soguk odada yag donusu nasil okunur"
+    ],
+    "de_questions": [
+      "wie denkt ein meister ueber oelrueckfuehrung",
+      "warum ist oelrueckfuehrung wichtig",
+      "wie plant man oelrueckfuehrung",
+      "oelrueckfuehrung im kuehlraum erklaeren"
+    ],
     "tr_answer": "Yag donusu usta icin sadece boruya egim vermek degildir; gaz hizi, boru capi, yuk durumu ve dikey cikislar birlikte dusunulur. Kompresorun sagligi icin yag devreden geri gelebilmelidir. Bunun teknik sebebi kompresorun uzun sure yagsiz kalirsa asinma, isinma ve valf problemiyle karsilasmasidir. Usta burada once minimum ve maksimum yukte gaz hizini, dikey rise varsa trap ihtiyacini, evaporator konumunu ve kompresorun calisma rejimini okur. En sik hata boruyu sadece fiziksel olarak baglayip yag donusu icin yeterli hiz saglanip saglanmadigina bakmamaktir.",
     "de_answer": "Oelrueckfuehrung ist fuer einen Meister weit mehr als nur Gefaelle im Rohr. Gasgeschwindigkeit, Rohrdurchmesser, Lastbereich und vertikale Steigleitungen muessen zusammen betrachtet werden. Der technische Grund ist klar: Wenn das Oel nicht sauber zum Verdichter zurueckkommt, folgen Verschleiss, Ueberhitzung und Ventilprobleme. Deshalb schaut ein Meister zuerst auf minimale und maximale Last, notwendige Oelfallen in Steigleitungen, Verdampferlage und den realen Betriebsbereich des Verdichters. Der haeufigste Fehler ist, die Leitung mechanisch sauber zu bauen, aber die Rueckfuehrungsgeschwindigkeit nie wirklich mitzudenken.",
-    "suggestions": ["emiş boru capi nasil secilir", "dikey rise trap ne zaman gerekir", "kompresor neden yag kaybeder"],
+    "suggestions": [
+      "emiş boru capi nasil secilir",
+      "dikey rise trap ne zaman gerekir",
+      "kompresor neden yag kaybeder"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_suction_line_sizing",
     "tr_subject": "emis hatti cap secimi",
     "de_subject": "dimensionierung der saugleitung",
-    "keywords": ["emis hatti capi", "saugleitung", "suction line sizing", "boru capi"],
-    "tr_questions": ["emiş boru capi nasil secilir", "suction line sizing mantigi nedir", "emis hattini usta nasil boyutlar", "boru capi fazla buyukse ne olur"],
-    "de_questions": ["wie waehlt man den saugleitungsdurchmesser", "was ist die logik der suction line sizing", "wie dimensioniert ein meister die saugleitung", "was passiert wenn die saugleitung zu gross ist"],
+    "keywords": [
+      "emis hatti capi",
+      "saugleitung",
+      "suction line sizing",
+      "boru capi"
+    ],
+    "tr_questions": [
+      "emiş boru capi nasil secilir",
+      "suction line sizing mantigi nedir",
+      "emis hattini usta nasil boyutlar",
+      "boru capi fazla buyukse ne olur"
+    ],
+    "de_questions": [
+      "wie waehlt man den saugleitungsdurchmesser",
+      "was ist die logik der suction line sizing",
+      "wie dimensioniert ein meister die saugleitung",
+      "was passiert wenn die saugleitung zu gross ist"
+    ],
     "tr_answer": "Emis hatti capi seciminde usta tek hedefe bakmaz. Basinç kaybi dusuk olmali ama yag donusu icin de hiz yeterli kalmalidir. Bunun teknik sebebi fazla kucuk cap kompresoru basinç kaybiyla bozar, fazla buyuk cap ise yag donusunu zayiflatir. O yuzden kapasite, boru uzunlugu, dikey fark ve minimum yuk birlikte okunur. En sik hata sadece katalog cizelgesine bakip saha boyunu, fitting kaybini ve moduler calismayi hesaba katmamaktir.",
     "de_answer": "Bei der Auswahl des Saugleitungsdurchmessers verfolgt ein Meister nie nur ein Ziel. Der Druckverlust muss begrenzt sein, gleichzeitig muss die Gasgeschwindigkeit fuer eine sichere Oelrueckfuehrung reichen. Technisch bedeutet das: Zu kleine Rohre belasten den Verdichter mit unnoetigem Druckverlust, zu grosse Rohre schwächen die Oelrueckkehr. Deshalb werden Leistung, Laenge, Hoehenunterschied und Teillast gemeinsam betrachtet. Ein haeufiger Fehler ist, nur die Tabelle anzusehen und reale Leitungslage, Boegen und Teillastbetrieb zu ignorieren.",
-    "suggestions": ["yag donusu mantigi nasil kurulur", "dikey rise trap ne zaman gerekir", "suction line izolasyonu neden onemli"],
+    "suggestions": [
+      "yag donusu mantigi nasil kurulur",
+      "dikey rise trap ne zaman gerekir",
+      "suction line izolasyonu neden onemli"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_riser_trap_logic",
     "tr_subject": "dikey rise ve trap mantigi",
     "de_subject": "steigleitung und oelfalle",
-    "keywords": ["rise trap", "oelfalle", "dikey cikis", "riser trap"],
-    "tr_questions": ["dikey rise trap ne zaman gerekir", "oelfalle mantigi nedir", "dikey cikista yag nasil tasinir", "trap kullanimi nasil dusunulur"],
-    "de_questions": ["wann braucht man eine oelfalle", "was ist die logik einer steigleitung", "wie fuehrt man oel in steigleitungen", "wie denkt man ueber oelfallen nach"],
+    "keywords": [
+      "rise trap",
+      "oelfalle",
+      "dikey cikis",
+      "riser trap"
+    ],
+    "tr_questions": [
+      "dikey rise trap ne zaman gerekir",
+      "oelfalle mantigi nedir",
+      "dikey cikista yag nasil tasinir",
+      "trap kullanimi nasil dusunulur"
+    ],
+    "de_questions": [
+      "wann braucht man eine oelfalle",
+      "was ist die logik einer steigleitung",
+      "wie fuehrt man oel in steigleitungen",
+      "wie denkt man ueber oelfallen nach"
+    ],
     "tr_answer": "Dikey rise olan emiş hattinda usta once gaz hizinin yagi yukari tasiyip tasiyamayacagina bakar. Eger hiz sinirda ise trap veya cift rise mantigi gerekir. Bunun teknik sebebi yag alt noktada birikip kompresore geri donemeyebilir. Ama her dikey hatta da ezbere trap atilmaz; cunku yanlis trap uygulamasi da devrede fazladan yag stoklar. Usta burada hat boyu, yuk araligi ve kompresor calisma suresini birlikte degerlendirir.",
     "de_answer": "Bei vertikalen Saugleitungen prueft ein Meister zuerst, ob die Gasgeschwindigkeit ausreicht, um Oel sicher nach oben mitzunehmen. Reicht sie nicht, kommen Oelfalle oder Doppelsteigleitung in Betracht. Der technische Grund ist, dass sich Oel sonst im unteren Bereich sammelt und nicht sauber zum Verdichter zurueckkehrt. Dennoch setzt ein Meister nicht blind ueberall Oelfallen, weil falsch platzierte Fallen selbst zu Oelsammelstellen werden koennen. Leitungshoehe, Lastbereich und Laufzeit muessen zusammen bewertet werden.",
-    "suggestions": ["emiş boru capi nasil secilir", "yag donusu neden onemli", "cift rise ne zaman gerekir"],
+    "suggestions": [
+      "emiş boru capi nasil secilir",
+      "yag donusu neden onemli",
+      "cift rise ne zaman gerekir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_crankcase_heater_logic",
     "tr_subject": "crankcase heater mantigi",
     "de_subject": "kurbelgehaeuseheizung",
-    "keywords": ["crankcase heater", "kurbelgehaeuseheizung", "karter rezistansi", "kompresor isitici"],
-    "tr_questions": ["crankcase heater neden onemli", "karter rezistansi ne ise yarar", "usta crankcase heateri nasil degerlendirir", "kompresor isitici neden gerekir"],
-    "de_questions": ["warum ist die kurbelgehaeuseheizung wichtig", "wofuer ist der crankcase heater", "wie bewertet ein meister die kurbelgehaeuseheizung", "warum braucht der verdichter eine heizung"],
+    "keywords": [
+      "crankcase heater",
+      "kurbelgehaeuseheizung",
+      "karter rezistansi",
+      "kompresor isitici"
+    ],
+    "tr_questions": [
+      "crankcase heater neden onemli",
+      "karter rezistansi ne ise yarar",
+      "usta crankcase heateri nasil degerlendirir",
+      "kompresor isitici neden gerekir"
+    ],
+    "de_questions": [
+      "warum ist die kurbelgehaeuseheizung wichtig",
+      "wofuer ist der crankcase heater",
+      "wie bewertet ein meister die kurbelgehaeuseheizung",
+      "warum braucht der verdichter eine heizung"
+    ],
     "tr_answer": "Crankcase heater kompresor dururken sogutucu akiskanin kartere yuruyup yagi seyreltmesini onlemek icin kullanilir. Usta bunu sadece aksesuar degil, kompresor koruma parcasi gibi gorur. Bunun teknik sebebi seyrelmis yag ilk kalkista yeterli film olusturmaz ve mekanik hasar baslatabilir. Ozellikle dusuk ortam, uzun stop ve buyuk sarjli sistemlerde daha kritik hale gelir. En sik hata heater var sanip gerilim alip almadigini veya gercekten isitip isitmadigini kontrol etmemektir.",
     "de_answer": "Die Kurbelgehaeuseheizung soll verhindern, dass waehrend des Stillstands Kaeltemittel in den Verdichter sumpf wandert und das Oel verduennt. Ein Meister sieht sie nicht als Nebenbauteil, sondern als echten Verdichterschutz. Der technische Grund ist, dass verduenntes Oel beim Start keinen stabilen Schmierfilm bildet und mechanische Schaeden ausloesen kann. Besonders wichtig wird das bei niedrigen Umgebungstemperaturen, langen Stillstandzeiten und groesseren Fuellungen. Ein haeufiger Fehler ist, die Heizung optisch als vorhanden anzusehen, aber Spannung, Leistung und reale Erwarmung nie zu pruefen.",
-    "suggestions": ["pump down mantigi nedir", "kompresor koruma zinciri nasil kurulur", "dusuk ortamda kondenser nasil kontrol edilir"],
+    "suggestions": [
+      "pump down mantigi nedir",
+      "kompresor koruma zinciri nasil kurulur",
+      "dusuk ortamda kondenser nasil kontrol edilir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_pump_down_logic",
     "tr_subject": "pump down mantigi",
     "de_subject": "pump-down-logik",
-    "keywords": ["pump down", "pumpdown", "magnetventil", "solenoid sequence"],
-    "tr_questions": ["pump down mantigi nedir", "pump down neden kullanilir", "usta pump down sirasini nasil kontrol eder", "solenoid kapaninca neye bakilir"],
-    "de_questions": ["was ist die pump-down-logik", "warum nutzt man pump-down", "wie kontrolliert ein meister pump-down", "worauf schaut man wenn das magnetventil schliesst"],
+    "keywords": [
+      "pump down",
+      "pumpdown",
+      "magnetventil",
+      "solenoid sequence"
+    ],
+    "tr_questions": [
+      "pump down mantigi nedir",
+      "pump down neden kullanilir",
+      "usta pump down sirasini nasil kontrol eder",
+      "solenoid kapaninca neye bakilir"
+    ],
+    "de_questions": [
+      "was ist die pump-down-logik",
+      "warum nutzt man pump-down",
+      "wie kontrolliert ein meister pump-down",
+      "worauf schaut man wenn das magnetventil schliesst"
+    ],
     "tr_answer": "Pump down mantigi evaporator tarafini kontrollu bosaltip kompresoru dusuk basinctan durdurmak icin kurulur. Usta bunu gazi bir yere saklamak gibi degil, durus anindaki sivi yuruyusunu ve kalkis emniyetini yonetmek gibi dusunur. Bunun teknik sebebi solenoid, presostat ve kompresor sirasi bozuksa ya floodback ya da kisa devre gibi isletme sorunlari cikabilmesidir. Saha kontrolunde usta once solenoid kapanis anini, presostat setlerini ve yeniden devreye giris davranisini birlikte izler.",
     "de_answer": "Die Pump-down-Logik wird aufgebaut, um die Verdampferseite kontrolliert leer zu ziehen und den Verdichter ueber den Niederdruck abzuschalten. Ein Meister betrachtet das nicht als simples Verschieben von Kaeltemittel, sondern als Steuerung von Fluessigkeitsbewegung und Startsicherheit. Der technische Grund ist, dass bei falscher Reihenfolge von Magnetventil, Druckschalter und Verdichter schnell Floodback oder instabile Starts entstehen. In der Feldkontrolle beobachtet der Meister Schliessmoment des Magnetventils, Schaltpunkte des Niederdrucks und das Verhalten beim Neustart gemeinsam.",
-    "suggestions": ["crankcase heater neden onemli", "solenoid arizasi nasil okunur", "kompresore sivi donusu neden olur"],
+    "suggestions": [
+      "crankcase heater neden onemli",
+      "solenoid arizasi nasil okunur",
+      "kompresore sivi donusu neden olur"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_head_pressure_control",
     "tr_subject": "head pressure kontrolu",
     "de_subject": "hochdruckregelung",
-    "keywords": ["head pressure", "hochdruckregelung", "fan speed control", "kondenser fan kontrol"],
-    "tr_questions": ["head pressure kontrolu neden onemli", "kondenser fan kontrolu nasil kurulur", "usta low ambientte head pressurei nasil korur", "fan speed control mantigi nedir"],
-    "de_questions": ["warum ist die hochdruckregelung wichtig", "wie baut man die verfluessiger fanregelung auf", "wie haelt ein meister bei low ambient den head pressure", "was ist die logik von fan speed control"],
+    "keywords": [
+      "head pressure",
+      "hochdruckregelung",
+      "fan speed control",
+      "kondenser fan kontrol"
+    ],
+    "tr_questions": [
+      "head pressure kontrolu neden onemli",
+      "kondenser fan kontrolu nasil kurulur",
+      "usta low ambientte head pressurei nasil korur",
+      "fan speed control mantigi nedir"
+    ],
+    "de_questions": [
+      "warum ist die hochdruckregelung wichtig",
+      "wie baut man die verfluessiger fanregelung auf",
+      "wie haelt ein meister bei low ambient den head pressure",
+      "was ist die logik von fan speed control"
+    ],
     "tr_answer": "Head pressure kontrolu valfin saglikli beslenmesi ve sistemin kararsizlasa kararsizlasmamasini onlemek icin kritik olur. Usta dusuk hava kosullarinda kondens basincinin cok dusmesine izin vermez; cunku likit tarafi kararsizlasir ve superheat/subcool tablosu bozulur. Bunun teknik sebebi valfin onune yeterli basinç farki gitmezse evaporator beslemesinin bozulmasidir. Fan step, fan speed controller veya baska yontemler secilirken proje olcegi, ses, enerji ve stabilite birlikte okunur.",
     "de_answer": "Die Hochdruckregelung ist entscheidend, damit das Expansionsventil stabil versorgt wird und die Anlage auch bei kalter Aussenluft nicht unruhig wird. Ein Meister laesst den Verfluessigungsdruck bei niedriger Umgebung nicht unkontrolliert absinken, weil dann die Fluessigkeitsseite instabil wird und die ganze Superheat/Subcool-Logik kippt. Technisch braucht das Ventil eine brauchbare Druckdifferenz. Ob Stufenschaltung, Drehzahlregelung oder eine andere Methode sinnvoll ist, entscheidet sich ueber Projektgroesse, Geraeusch, Energie und Stabilitaet zusammen.",
-    "suggestions": ["dusuk ortamda kondenser nasil kontrol edilir", "subcool neden onemli", "valf neden avlanir"],
+    "suggestions": [
+      "dusuk ortamda kondenser nasil kontrol edilir",
+      "subcool neden onemli",
+      "valf neden avlanir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_low_ambient_operation",
     "tr_subject": "dusuk ortamda calisma mantigi",
     "de_subject": "betrieb bei niedriger umgebung",
-    "keywords": ["low ambient", "dusuk ortam", "winterbetrieb", "kis calismasi"],
-    "tr_questions": ["dusuk ortamda kondenser nasil kontrol edilir", "kis calismasi nasil dusunulur", "low ambientte sistem neden bozulur", "usta winter operationi nasil kurar"],
-    "de_questions": ["wie kontrolliert man den verfluessiger bei low ambient", "wie denkt man ueber winterbetrieb", "warum wird die anlage bei niedriger umgebung instabil", "wie baut ein meister low ambient betrieb auf"],
+    "keywords": [
+      "low ambient",
+      "dusuk ortam",
+      "winterbetrieb",
+      "kis calismasi"
+    ],
+    "tr_questions": [
+      "dusuk ortamda kondenser nasil kontrol edilir",
+      "kis calismasi nasil dusunulur",
+      "low ambientte sistem neden bozulur",
+      "usta winter operationi nasil kurar"
+    ],
+    "de_questions": [
+      "wie kontrolliert man den verfluessiger bei low ambient",
+      "wie denkt man ueber winterbetrieb",
+      "warum wird die anlage bei niedriger umgebung instabil",
+      "wie baut ein meister low ambient betrieb auf"
+    ],
     "tr_answer": "Dusuk ortam kosullarinda soguk oda sistemi yazdaki gibi davranmaz. Usta burada kondens basinci, receiver durumu, fan kontrolu ve crankcase heater tarafini birlikte dusunur. Bunun teknik sebebi ortam cok sogudukca likit kolonunun ve valf fark basincinin bozulabilmesidir. Ayrica dur-kalkta kompresore sivi yuruyusu riski artar. Yani kis calismasi icin sadece fan kapatmak degil, tum isletme mantigini stabilize etmek gerekir.",
     "de_answer": "Bei niedrigen Umgebungstemperaturen verhaelt sich eine Kuehlanlage nicht wie im Sommer. Ein Meister betrachtet dann Verfluessigungsdruck, Receiverzustand, Ventilatorregelung und Kurbelgehaeuseheizung als gemeinsames System. Der technische Grund ist, dass mit sinkender Aussenluft die Fluessigkeitssaeule und die Druckdifferenz am Ventil instabil werden koennen. Gleichzeitig steigt das Risiko von Fluessigkeitswanderung zum Verdichter. Winterbetrieb bedeutet deshalb nicht nur Ventilatoren anders zu schalten, sondern die gesamte Betriebslogik zu stabilisieren.",
-    "suggestions": ["head pressure kontrolu neden onemli", "crankcase heater ne ise yarar", "receiver ne zaman gerekir"],
+    "suggestions": [
+      "head pressure kontrolu neden onemli",
+      "crankcase heater ne ise yarar",
+      "receiver ne zaman gerekir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_defrost_interval_logic",
     "tr_subject": "defrost aralik ayari",
     "de_subject": "abtautakt und einstellung",
-    "keywords": ["defrost araligi", "abtautakt", "defrost interval", "abtauintervall"],
-    "tr_questions": ["defrost araligi nasil ayarlanir", "usta defrost sayisini neye gore belirler", "cok defrost ne bozar", "az defrost ne bozar"],
-    "de_questions": ["wie stellt man den abtautakt ein", "wonach bestimmt ein meister die abtauhaeufigkeit", "was schadet zu haeufiges abtauen", "was schadet zu seltenes abtauen"],
+    "keywords": [
+      "defrost araligi",
+      "abtautakt",
+      "defrost interval",
+      "abtauintervall"
+    ],
+    "tr_questions": [
+      "defrost araligi nasil ayarlanir",
+      "usta defrost sayisini neye gore belirler",
+      "cok defrost ne bozar",
+      "az defrost ne bozar"
+    ],
+    "de_questions": [
+      "wie stellt man den abtautakt ein",
+      "wonach bestimmt ein meister die abtauhaeufigkeit",
+      "was schadet zu haeufiges abtauen",
+      "was schadet zu seltenes abtauen"
+    ],
     "tr_answer": "Defrost araligini usta ezbere belirlemez. Oda sicakligi, nem yuk, kapı trafigi, urun karakteri ve evaporator boyutu birlikte okunur. Bunun teknik sebebi gereksiz sik defrost kapasiteyi ve enerji verimini bozar, yetersiz defrost ise hava akisina ve serpantin verimine zarar verir. Usta burada buz birikiminin hangi surede geldiginin izini surer ve sensor / timer mantigini buna gore ayarlar. En sik hata her odada ayni defrost sayisini kullanmaktir.",
     "de_answer": "Ein Meister stellt den Abtautakt nie nach Gefuehl ein. Raumtemperatur, Feuchtelast, Tuernutzung, Produktcharakter und Verdampfergroesse muessen gemeinsam gelesen werden. Der technische Grund ist, dass zu haeufiges Abtauen Leistung und Effizienz kostet, waehrend zu seltenes Abtauen Luftmenge und Lamellenwirkung zerstoert. Deshalb beobachtet ein Meister, wie schnell die Vereisung tatsaechlich entsteht, und passt Timer bzw. Sensorlogik genau daran an. Der haeufigste Fehler ist, in jedem Raum denselben Standardtakt zu verwenden.",
-    "suggestions": ["fan delay ne ise yarar", "drain heater neden onemli", "evaporator neden hizli buz yapar"],
+    "suggestions": [
+      "fan delay ne ise yarar",
+      "drain heater neden onemli",
+      "evaporator neden hizli buz yapar"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_fan_delay_logic",
     "tr_subject": "fan delay mantigi",
     "de_subject": "fan-delay-logik",
-    "keywords": ["fan delay", "fan gecikme", "ventilatorverzoegerung"],
-    "tr_questions": ["fan delay ne ise yarar", "defrost sonrasi fan neden gecikmeli acar", "usta fan delayi nasil ayarlar", "fan delay olmazsa ne olur"],
-    "de_questions": ["wofuer ist fan delay", "warum startet der ventilator nach dem abtauen verzoegert", "wie stellt ein meister den fan delay ein", "was passiert ohne fan delay"],
+    "keywords": [
+      "fan delay",
+      "fan gecikme",
+      "ventilatorverzoegerung"
+    ],
+    "tr_questions": [
+      "fan delay ne ise yarar",
+      "defrost sonrasi fan neden gecikmeli acar",
+      "usta fan delayi nasil ayarlar",
+      "fan delay olmazsa ne olur"
+    ],
+    "de_questions": [
+      "wofuer ist fan delay",
+      "warum startet der ventilator nach dem abtauen verzoegert",
+      "wie stellt ein meister den fan delay ein",
+      "was passiert ohne fan delay"
+    ],
     "tr_answer": "Fan delay, defrost sonrasinda serpantin yuzeyi ve drenaj biraz toparlanmadan hava vermemek icin kullanilir. Usta bunu konfor icin degil, odaya sis, su ve gereksiz isi vermemek icin ayarlar. Bunun teknik sebebi defrost bitince evaporator hemen kuru ve dengeli hale gelmez; fan erken acarsa bu su buharini ve isi odaya tasir. Usta burada coil sicakligi, defrost tipi ve urun hassasiyetine gore gecikmeyi ayarlar.",
     "de_answer": "Fan Delay wird genutzt, damit nach dem Abtauen nicht sofort warme, feuchte Luft aus einem noch nicht stabilisierten Verdampfer in den Raum geblasen wird. Ein Meister stellt das nicht aus Komfortgruenden ein, sondern um Nebel, Wasser und unnoetige Waermeeintraege zu vermeiden. Technisch ist der Verdampfer direkt nach dem Abtauende noch nicht trocken und stabil. Startet der Ventilator zu frueh, wird genau diese Instabilitaet in den Raum getragen. Die Einstellung richtet sich nach Registertemperatur, Abtauart und Produktempfindlichkeit.",
-    "suggestions": ["defrost araligi nasil ayarlanir", "drain heater ne ise yarar", "kapidan nem yuksek gelirse ne olur"],
+    "suggestions": [
+      "defrost araligi nasil ayarlanir",
+      "drain heater ne ise yarar",
+      "kapidan nem yuksek gelirse ne olur"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_drain_heater_logic",
     "tr_subject": "drain heater ve tahliye mantigi",
     "de_subject": "ablaufheizung und ablauflogik",
-    "keywords": ["drain heater", "ablaufheizung", "tahliye rezistansi", "drenaj"],
-    "tr_questions": ["drain heater neden onemli", "tahliye rezistansi ne ise yarar", "usta drenaj hattini nasil kontrol eder", "drenaj buz tutarsa ne olur"],
-    "de_questions": ["warum ist die ablaufheizung wichtig", "wofuer ist die drain heater", "wie kontrolliert ein meister die ablaufleitung", "was passiert wenn der ablauf vereist"],
+    "keywords": [
+      "drain heater",
+      "ablaufheizung",
+      "tahliye rezistansi",
+      "drenaj"
+    ],
+    "tr_questions": [
+      "drain heater neden onemli",
+      "tahliye rezistansi ne ise yarar",
+      "usta drenaj hattini nasil kontrol eder",
+      "drenaj buz tutarsa ne olur"
+    ],
+    "de_questions": [
+      "warum ist die ablaufheizung wichtig",
+      "wofuer ist die drain heater",
+      "wie kontrolliert ein meister die ablaufleitung",
+      "was passiert wenn der ablauf vereist"
+    ],
     "tr_answer": "Drain heater ve tahliye hatti negatif odalarda gizli ariza kaynagidir. Usta sadece defrostun calistigina bakmaz; cikan suyun rahat tahliye olup olmadigini da kontrol eder. Bunun teknik sebebi tahliye donarsa su tavada birikir, sonra yeniden donar ve fan kanadi, serpantin veya hava akisina zarar verir. O yuzden rezistans, hat egimi, izole durumu ve suyun son noktada nereye gittigi birlikte kontrol edilir.",
     "de_answer": "Ablaufheizung und Ablaufleitung sind in Tiefkuehlraeumen oft versteckte Fehlerquellen. Ein Meister prueft nicht nur, ob die Abtauung startet, sondern auch, ob das Wasser wirklich sauber abfliessen kann. Der technische Grund ist, dass ein vereister Ablauf zu Wasserstau fuehrt, der spaeter erneut einfriert und Ventilator, Lamellen oder Luftstrom stoeren kann. Deshalb werden Heizung, Gefaelle, Isolierung und der komplette Ablaufweg gemeinsam kontrolliert.",
-    "suggestions": ["defrost araligi nasil ayarlanir", "fan delay ne ise yarar", "kapı rezistansi ne zaman gerekir"],
+    "suggestions": [
+      "defrost araligi nasil ayarlanir",
+      "fan delay ne ise yarar",
+      "kapı rezistansi ne zaman gerekir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_door_heater_logic",
     "tr_subject": "kapi rezistansi ve sizdirmazlik",
     "de_subject": "tuerheizung und dichtheit",
-    "keywords": ["kapi rezistansi", "tuerheizung", "sizdirmazlik", "door heater"],
-    "tr_questions": ["kapi rezistansi ne zaman gerekir", "soguk oda kapisi neden terleme yapar", "usta kapı sizdirmazligini nasil kontrol eder", "door heater mantigi nedir"],
-    "de_questions": ["wann braucht man eine tuerheizung", "warum schwitzt die kuehlraumtuer", "wie prueft ein meister die tuerabdichtung", "was ist die logik einer door heater"],
+    "keywords": [
+      "kapi rezistansi",
+      "tuerheizung",
+      "sizdirmazlik",
+      "door heater"
+    ],
+    "tr_questions": [
+      "kapi rezistansi ne zaman gerekir",
+      "soguk oda kapisi neden terleme yapar",
+      "usta kapı sizdirmazligini nasil kontrol eder",
+      "door heater mantigi nedir"
+    ],
+    "de_questions": [
+      "wann braucht man eine tuerheizung",
+      "warum schwitzt die kuehlraumtuer",
+      "wie prueft ein meister die tuerabdichtung",
+      "was ist die logik einer door heater"
+    ],
     "tr_answer": "Soguk oda kapisinda rezistans ve sizdirmazlik birlikte dusunulur. Usta sadece terlemeyi silmez; nedenini bulur. Bunun teknik sebebi hava kacagi ve yuzey sicakligi problemi birlestiginde terleme, buzlanma ve kapinin yapismasi baslar. Kapi fitili, kasa temaslari, rezistans calismasi ve kapı trafigi birlikte okunur. En sik hata fitil kacirirken sadece rezistansi guclendirmeye calismaktir.",
     "de_answer": "Bei Kuehlraumtueren muessen Heizung und Dichtheit gemeinsam gedacht werden. Ein Meister wischt Kondenswasser nicht einfach weg, sondern sucht die Ursache. Technisch entsteht das Problem aus Luftleckage plus kritischer Oberflaechentemperatur, was zu Schwitzen, Vereisung und klemmenden Tueren fuehrt. Dichtung, Rahmenkontakt, Heizfunktion und Tuerfrequenz werden zusammen bewertet. Ein haeufiger Fehler ist, bei undichter Dichtung nur die Heizung staerker betreiben zu wollen.",
-    "suggestions": ["kapı trafiği soguk odayi nasil etkiler", "nem yuksekse ne olur", "fan delay ne ise yarar"],
+    "suggestions": [
+      "kapı trafiği soguk odayi nasil etkiler",
+      "nem yuksekse ne olur",
+      "fan delay ne ise yarar"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_probe_placement_logic",
     "tr_subject": "sensor ve probe yerlesimi",
     "de_subject": "fuehler und sensor platzierung",
-    "keywords": ["sensor yeri", "probe yerlesimi", "fuehler position", "sensor placement"],
-    "tr_questions": ["oda sensoru nereye konur", "probe yerlesimini usta nasil dusunur", "yanlis sensor yeri ne bozar", "evaporator sensoru nereye takilir"],
-    "de_questions": ["wo setzt man den raumfuehler", "wie denkt ein meister ueber fuehlerposition nach", "was zerstoert ein falscher sensorplatz", "wo montiert man den verdampferfuehler"],
+    "keywords": [
+      "sensor yeri",
+      "probe yerlesimi",
+      "fuehler position",
+      "sensor placement"
+    ],
+    "tr_questions": [
+      "oda sensoru nereye konur",
+      "probe yerlesimini usta nasil dusunur",
+      "yanlis sensor yeri ne bozar",
+      "evaporator sensoru nereye takilir"
+    ],
+    "de_questions": [
+      "wo setzt man den raumfuehler",
+      "wie denkt ein meister ueber fuehlerposition nach",
+      "was zerstoert ein falscher sensorplatz",
+      "wo montiert man den verdampferfuehler"
+    ],
     "tr_answer": "Sensor yerlesimi dogru degilse iyi cihaz da kotu kontrol eder. Usta sensoru kapidan gelen ani hava, fan cıkısı veya lokal soguk nokta gibi aldatici yerlere koymaz. Bunun teknik sebebi regulatorun yalanci veriyle defrost, fan, kompresor ve alarm karari vermesidir. Oda sensoru ortalama urun alanini temsil etmeli, coil sensori ise gercek register davranisini gormelidir. En sik hata montaj kolay diye sensori en yakin uygun gorunen yere birakmaktir.",
     "de_answer": "Wenn Fuehler falsch sitzen, regelt auch gute Technik schlecht. Ein Meister setzt Sensoren nicht an Tuerzonen, direkte Luftausblaese oder lokale Kaltpunkte, die den Raum falsch darstellen. Der technische Grund ist, dass der Regler sonst mit Scheindaten ueber Abtauung, Ventilator, Verdichter und Alarm entscheidet. Der Raumfuehler muss den echten Produktbereich repraesentieren, der Registerfuehler das reale Verhalten des Verdampfers. Ein haeufiger Fehler ist, den Fuehler nur dort zu montieren, wo es mechanisch gerade bequem ist.",
-    "suggestions": ["defrost araligi nasil ayarlanir", "fan delay ne ise yarar", "oda neden yalanci alarm verir"],
+    "suggestions": [
+      "defrost araligi nasil ayarlanir",
+      "fan delay ne ise yarar",
+      "oda neden yalanci alarm verir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_compressor_protection_chain",
     "tr_subject": "kompresor koruma zinciri",
     "de_subject": "verdichter-schutzkette",
-    "keywords": ["kompresor koruma", "verdichter schutz", "protection chain", "termik presostat"],
-    "tr_questions": ["kompresor koruma zinciri nasil kurulur", "usta kompresor korumalarini nasil kontrol eder", "presostat termik zinciri neden onemli", "koruma zinciri eksikse ne olur"],
-    "de_questions": ["wie baut man die verdichter schutzkette auf", "wie prueft ein meister die verdichterschutzfunktionen", "warum sind presostat und motorschutz wichtig", "was passiert wenn die schutzkette fehlt"],
+    "keywords": [
+      "kompresor koruma",
+      "verdichter schutz",
+      "protection chain",
+      "termik presostat"
+    ],
+    "tr_questions": [
+      "kompresor koruma zinciri nasil kurulur",
+      "usta kompresor korumalarini nasil kontrol eder",
+      "presostat termik zinciri neden onemli",
+      "koruma zinciri eksikse ne olur"
+    ],
+    "de_questions": [
+      "wie baut man die verdichter schutzkette auf",
+      "wie prueft ein meister die verdichterschutzfunktionen",
+      "warum sind presostat und motorschutz wichtig",
+      "was passiert wenn die schutzkette fehlt"
+    ],
     "tr_answer": "Kompresor koruma zinciri termik, basinç switch, faz koruma, kontaktor ve kumanda izinlerinin birlikte calistigi guvenlik hatti gibi dusunulmelidir. Usta burada sadece kablo surekliligine bakmaz; gercekten dogru yerde dogru sinyalle actirip actirmadigini test eder. Bunun teknik sebebi kompresoru tek bir ariza turu bozmaz; elektrik, basinç ve isletme hatalari birlikte gelir. En sik hata korumayi sadece devre kesen eleman gibi gormek, set ve davranis mantigini hic test etmemektir.",
     "de_answer": "Die Verdichterschutzkette ist die gemeinsame Sicherheitslogik aus Motorschutz, Druckschaltern, Phasenueberwachung, Schuetz und Freigaben. Ein Meister prueft nicht nur Durchgang, sondern ob jedes Schutzglied im richtigen Moment und mit der richtigen Logik wirklich eingreift. Der technische Grund ist, dass Verdichter selten nur an einer einzigen Fehlerart scheitern; elektrische, druckseitige und betriebliche Einfluesse kommen zusammen. Ein haeufiger Fehler ist, Schutzbauteile nur als Abschalter zu sehen und nie ihre Setzwerte und ihr reales Verhalten zu pruefen.",
-    "suggestions": ["crankcase heater neden onemli", "pump down mantigi nedir", "kontaktor cekmiyorsa ne sirayla bakilir"],
+    "suggestions": [
+      "crankcase heater neden onemli",
+      "pump down mantigi nedir",
+      "kontaktor cekmiyorsa ne sirayla bakilir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_commissioning_measurement_order",
     "tr_subject": "devreye alma olcu sirasi",
     "de_subject": "messreihenfolge bei inbetriebnahme",
-    "keywords": ["devreye alma", "inbetriebnahme", "measurement order", "olcu sirasi"],
-    "tr_questions": ["devreye alma olcu sirasi ne olmali", "usta ilk devreye almada neye sira ile bakar", "soguk oda devreye alma checklisti nasil ilerler", "ilk calismada hangi olculer alinir"],
-    "de_questions": ["wie ist die messreihenfolge bei der inbetriebnahme", "worauf schaut ein meister zuerst bei der ersten inbetriebnahme", "wie laeuft die inbetriebnahme checklist im kuehlraum", "welche werte nimmt man beim ersten start auf"],
+    "keywords": [
+      "devreye alma",
+      "inbetriebnahme",
+      "measurement order",
+      "olcu sirasi"
+    ],
+    "tr_questions": [
+      "devreye alma olcu sirasi ne olmali",
+      "usta ilk devreye almada neye sira ile bakar",
+      "soguk oda devreye alma checklisti nasil ilerler",
+      "ilk calismada hangi olculer alinir"
+    ],
+    "de_questions": [
+      "wie ist die messreihenfolge bei der inbetriebnahme",
+      "worauf schaut ein meister zuerst bei der ersten inbetriebnahme",
+      "wie laeuft die inbetriebnahme checklist im kuehlraum",
+      "welche werte nimmt man beim ersten start auf"
+    ],
     "tr_answer": "Ilk devreye almada usta once mekanik temizlik ve sizdirmazligi dogrular. Sonra elektrik besleme, faz, kontaktor ve koruma zincirini kontrol eder. Ardindan vakum, sarj, basma-emis, superheat, subcool, akim ve hava tarafini birlikte okur. Bunun teknik sebebi tek bir veriye bakarak ilk karari vermenin sahte guven vermesidir. Ilk kalkista yazili olcu almak, ikinci kontrolde yuk altinda ayni verileri tekrar gormek gerekir. En sik hata cihaz sogutuyor diye devreye alma raporunu eksik birakmaktir.",
     "de_answer": "Bei der ersten Inbetriebnahme bestaetigt ein Meister zuerst mechanische Sauberkeit und Dichtheit. Danach folgen Versorgung, Phasenlage, Schuetz und Schutzkette. Anschliessend werden Vakuum, Fuellung, Hoch-/Niederdruck, Superheat, Subcooling, Strom und Luftseite gemeinsam bewertet. Der technische Grund ist, dass ein Einzelwert beim Erststart leicht falsche Sicherheit erzeugt. Gute Inbetriebnahme heisst: Werte schriftlich aufnehmen und unter Last ein zweites Mal kontrollieren. Ein haeufiger Fehler ist, den Start als gelungen zu werten, nur weil die Anlage schon etwas kaelter wird.",
-    "suggestions": ["pt tablo mantigi nedir", "superheat ve subcool birlikte nasil okunur", "vakum neden aceleye gelmez"],
+    "suggestions": [
+      "pt tablo mantigi nedir",
+      "superheat ve subcool birlikte nasil okunur",
+      "vakum neden aceleye gelmez"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_vibration_and_pipe_support",
     "tr_subject": "vibrasyon ve boru destegi",
     "de_subject": "vibration und rohrabstuetzung",
-    "keywords": ["vibrasyon", "rohrhalter", "pipe support", "boru destegi"],
-    "tr_questions": ["boru destegi neden onemli", "vibrasyon usta tarafinda nasil kontrol edilir", "soguk odada boru neden catlar", "titreşim ve destek mantigi nedir"],
-    "de_questions": ["warum ist die rohrabstuetzung wichtig", "wie kontrolliert ein meister vibration", "warum reissen leitungen im kuehlraum", "was ist die logik von vibration und halterung"],
+    "keywords": [
+      "vibrasyon",
+      "rohrhalter",
+      "pipe support",
+      "boru destegi"
+    ],
+    "tr_questions": [
+      "boru destegi neden onemli",
+      "vibrasyon usta tarafinda nasil kontrol edilir",
+      "soguk odada boru neden catlar",
+      "titreşim ve destek mantigi nedir"
+    ],
+    "de_questions": [
+      "warum ist die rohrabstuetzung wichtig",
+      "wie kontrolliert ein meister vibration",
+      "warum reissen leitungen im kuehlraum",
+      "was ist die logik von vibration und halterung"
+    ],
     "tr_answer": "Boru destegi ve vibrasyon kontrolu sahada cok kucuk gorunen ama buyuk hasar cikaran konulardandir. Usta burada sadece boru dusmesin diye kelepce atmaz; termal hareket, kompresor vibrasyonu ve lehim noktalarinin yorulmasini da dusunur. Bunun teknik sebebi titreşim ve genlesme birikirse kacaga, lehim kirigina ve kompresor baglanti stresine donmesidir. En sik hata hortum veya vibrasyon ayirici gereken yerde rijit baglantiya zorlamaktir.",
     "de_answer": "Rohrabstuetzung und Vibrationskontrolle wirken auf der Baustelle klein, verursachen aber grosse Schaeden. Ein Meister setzt Halterungen nicht nur gegen Durchhaengen, sondern denkt auch an thermische Bewegung, Verdichterschwingung und Ermuedung an Loetstellen. Der technische Grund ist, dass Schwingung und Spannungen mit der Zeit zu Leckagen, Rissen und Verdichteranschlussproblemen fuehren. Ein haeufiger Fehler ist, dort starr zu bauen, wo eigentlich Entkopplung oder flexiblere Fuehrung noetig waere.",
-    "suggestions": ["yag donusu neden onemli", "emis hatti capi nasil secilir", "nitrojen testi neden sakin yapılir"],
+    "suggestions": [
+      "yag donusu neden onemli",
+      "emis hatti capi nasil secilir",
+      "nitrojen testi neden sakin yapılir"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   },
   {
     "id": "master_nitrogen_test_logic",
     "tr_subject": "nitrojen test mantigi",
     "de_subject": "stickstoff-druckprobe",
-    "keywords": ["nitrojen testi", "stickstoff pruefung", "pressure test", "azot testi"],
-    "tr_questions": ["nitrojen testi neden sakin yapilir", "azot basinc testi nasil dusunulur", "usta sizdirmazlik testini nasil yonetir", "pressure test mantigi nedir"],
-    "de_questions": ["warum macht man die stickstoffpruefung mit ruhe", "wie denkt man ueber die druckprobe", "wie fuehrt ein meister die dichtheitspruefung", "was ist die logik der pressure test"],
+    "keywords": [
+      "nitrojen testi",
+      "stickstoff pruefung",
+      "pressure test",
+      "azot testi"
+    ],
+    "tr_questions": [
+      "nitrojen testi neden sakin yapilir",
+      "azot basinc testi nasil dusunulur",
+      "usta sizdirmazlik testini nasil yonetir",
+      "pressure test mantigi nedir"
+    ],
+    "de_questions": [
+      "warum macht man die stickstoffpruefung mit ruhe",
+      "wie denkt man ueber die druckprobe",
+      "wie fuehrt ein meister die dichtheitspruefung",
+      "was ist die logik der pressure test"
+    ],
     "tr_answer": "Nitrojen testi usta icin sadece yuksek basinç vermek degildir; kontrollu, guvenli ve yorumlanabilir bir sizdirmazlik sinavidir. Bunun teknik sebebi hizli ve hoyrat basinç verme ile hem ekipman zorlanir hem de saglikli kacak yorumu zorlasir. Usta burada uygun basinç seviyesi, sicaklik etkisi, bekleme suresi ve sabun / elektronik kacagi birlikte kullanir. En sik hata test sonucu netlesmeden gaz doldurup sorunu montaj sonrasi aramaya calismaktir.",
     "de_answer": "Die Stickstoff-Druckprobe bedeutet fuer einen Meister nicht einfach moeglichst viel Druck, sondern eine kontrollierte, sichere und auswertbare Dichtheitspruefung. Der technische Grund ist, dass hektisches Aufdruecken Bauteile belastet und die Leckbewertung verschlechtert. Ein Meister kombiniert passende Druckhoehe, Temperaturbezug, Wartezeit und Lecksuche mit Schaum oder Geraet. Ein haeufiger Fehler ist, vor klarer Dichtheitsbestaetigung bereits Kaeltemittel einzufuellen und das Problem erst spaeter zu suchen.",
-    "suggestions": ["vakum neden aceleye gelmez", "devreye alma olcu sirasi ne olmali", "nitrojen altinda lehim hatasi nasil bulunur"],
+    "suggestions": [
+      "vakum neden aceleye gelmez",
+      "devreye alma olcu sirasi ne olmali",
+      "nitrojen altinda lehim hatasi nasil bulunur"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_vacuum_500_micron",
+    "tr_subject": "500 micron vakum",
+    "de_subject": "500 micron vakuum",
+    "keywords": [
+      "vakum",
+      "vacuum",
+      "500 micron",
+      "mikron",
+      "dehidratasyon",
+      "nem",
+      "torr"
+    ],
+    "tr_questions": [
+      "vakum kac micron olmali",
+      "500 mikron neden hedef",
+      "vakum tutmuyor ne yapilir",
+      "triple evacuation nedir",
+      "mikron metre nereye baglanir"
+    ],
+    "de_questions": [
+      "wie tief vakuum ziehen",
+      "warum 500 micron",
+      "vakuum haelt nicht",
+      "triple evacuation",
+      "wo schliesst man das vakuummeter an"
+    ],
+    "tr_answer": "500 mikron veya altina vakum suyu buharlaştıran kritik esik. Atmosfer 760.000 mikron; 500 mikron praktikte sistemin nemden temizlendigini gosterir. Pompayı kapattiktan sonra 30 dakikada 1000 mikron uzeri yukseliyorsa sistemde nem veya kacak var. Triple evacuation: vakum cek, kuru nitrojen ile %5-10 basinçta sok ver (sıkıştirma), tekrar vakum cek; iki defa daha tekrar. Bu yontem agir gomulmuş nem icin etkilidir. Mikron metre evaporator yakini, son nokta olarak baglanir; pompa girisi degil. Usta vakum kontrol bekleme suresinde sigara icmez — minik kacak nem iceri girer.",
+    "de_answer": "500 micron oder darunter ist die Schwelle, ab der Restfeuchte verdampft. Atmosphere = 760.000 micron; 500 micron zeigt, dass die Anlage feuchtefrei ist. Wenn der Druck nach Pumpenstopp innerhalb von 30 Minuten ueber 1.000 micron steigt, gibt es Feuchtigkeit oder ein Leck. Triple Evacuation: Vakuum ziehen, mit trockenem Stickstoff auf 5-10 % Druck setzen, erneut Vakuum, dies dreimal. Wirksam gegen tief sitzende Feuchte. Mikronmeter wird am weitesten entfernten Punkt der Anlage installiert, nicht am Pumpeneingang. Ein Meister verzichtet beim Halten auf Rauchen — kleinste Lecks ziehen Feuchte rein.",
+    "suggestions": [
+      "nitrojen ile sok",
+      "ne kadar vakum tut",
+      "pompa secimi"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_nitrogen_pressure_test",
+    "tr_subject": "nitrojen ile basinç testi",
+    "de_subject": "stickstoff drucktest",
+    "keywords": [
+      "nitrojen test",
+      "drucktest",
+      "nitrogen",
+      "kacak",
+      "bubble test",
+      "seife"
+    ],
+    "tr_questions": [
+      "nitrojen basinç testi kac bar",
+      "ne kadar sure tutulur",
+      "kacak nasil aranir",
+      "sabunlu su yeterli mi",
+      "nitrojen tüpü guvenligi"
+    ],
+    "de_questions": [
+      "mit wieviel bar testet man",
+      "wie lange halten",
+      "wie sucht man lecks",
+      "reicht seifenwasser",
+      "stickstoffflaschen-sicherheit"
+    ],
+    "tr_answer": "Nitrojen basinç testi tipik calisma basincinin 1.5 katinda yapilir; R134a sistem icin ~25 bar, R404A icin ~35 bar, R290 icin ~20 bar. Sure: ilk 15 dakikada ortam sicaklik degişimine gore minor dusus normal, sonra 24 saat sabit kalmali. Kacak aramayi sabunlu su (deterjan + su) ile yapmak temel yontem; elektronik kacak dedektoru basinç altında daha hassas. Sabunla yetinme: kucuk kacaklarda hava kabarcığı kaybolur, dedektor kullan. Nitrojen tüpü regulatörsiz sisteme verilmez — tup ic basinç 200 bar, regulator olmadan parça paramparca olur. Usta nitrojen tüpu acmadan once dik konum, regulator + manometre takili durumu, sistem isolasyon valfini kontrol eder.",
+    "de_answer": "Stickstoff-Drucktest mit 1,5-fachem Betriebsdruck: R134a ca. 25 bar, R404A ca. 35 bar, R290 ca. 20 bar. Innerhalb der ersten 15 Minuten ist ein leichter Druckabfall durch Temperaturausgleich normal, danach soll der Druck 24 Stunden stabil bleiben. Lecksuche mit Seifenwasser (Spuelmittel + Wasser); elektronischer Detektor unter Druck noch empfindlicher. Bei kleinen Lecks verschwindet die Blase, daher Detektor verwenden. Stickstoffflasche niemals ohne Druckregler ans System — Flaschendruck 200 bar zerlegt Teile. Vor dem Oeffnen Flasche aufrecht, Regler + Manometer montiert, Anlage isoliert.",
+    "suggestions": [
+      "regulator olcum",
+      "sabun mu dedektor mu",
+      "sistem ne ile soguruyor"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_charge_by_weight",
+    "tr_subject": "tartili gaz dolumu",
+    "de_subject": "gewichtsbasierte fuellung",
+    "keywords": [
+      "sarj",
+      "fuellung",
+      "tarti",
+      "scale",
+      "weight charge",
+      "superheat",
+      "subcool"
+    ],
+    "tr_questions": [
+      "gaz tarti ile mi gozyle mi",
+      "kac kilo gaz koymali",
+      "tarti hassasligi",
+      "sigorta degeri sonrasi yeniden tart",
+      "subcool ile sarj kontrol"
+    ],
+    "de_questions": [
+      "gewicht oder per sicht",
+      "wie viel kaeltemittel",
+      "wie genau die waage",
+      "nach absicherung neu wiegen",
+      "subcool fuer fuellung"
+    ],
+    "tr_answer": "Modern sistemler tarti ile sarj edilir; uretici sistem etiketinde 'charge: X kg' deger verir, ona uyulur. Goz (sight glass + kabarcik) yontemi tek basina yeterli degil — ortam sicakligi, kondens basinç ve sistem konfigurasyonu bu okumayi degistirir. Tarti hassasligi minimum 10 gram (kucuk system) veya 50 gram (orta sistem). Sarj sirasinda likid hatti acik valf, suction yavaş dosaj. Sigorta degerlerinden (HP/LP setpoint) sonra ek 'topping' degeri 50-100 g. Kontrol icin subcool 4-8 K, superheat 4-10 K olmasi gerekir; ikisi de iyi ise sarj tamam. Usta gozluyle 'biraz koy biraz koy' diyenleri uzaktan tanır.",
+    "de_answer": "Moderne Anlagen werden gewichtsgenau befuellt; das Typenschild gibt 'Charge: X kg' vor, daran wird sich gehalten. Sichtmethode (Schauglas + Blasen) reicht allein nicht — Umgebungstemperatur, Verfluessigungsdruck und Konfiguration verfaelschen. Waage mindestens 10 g (kleine Anlage) oder 50 g (mittel). Beim Fuellen Fluessigkeitsventil offen, Saugseite langsam dosieren. Nach den Sicherheitsschaltern (HP/LP-Setpoint) noch 50-100 g 'topping'. Kontrolle ueber Subcool 4-8 K, Superheat 4-10 K; beide gut, dann ist die Charge stimmig. Ein Meister erkennt 'Augenmass-Fueller' aus der Ferne.",
+    "suggestions": [
+      "sight glass ne anlatir",
+      "subcool olcumu",
+      "tarti tipleri"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_brazing_nitrogen_flow",
+    "tr_subject": "lehimde nitrojen akisi",
+    "de_subject": "stickstoffspuelung beim loeten",
+    "keywords": [
+      "nitrogen flow",
+      "spuelung",
+      "oksit",
+      "kapali sistem",
+      "baca nitrojen",
+      "drycore"
+    ],
+    "tr_questions": [
+      "lehim sirasinda kac psi nitrojen",
+      "akisi nereden kontrol",
+      "sistem aciksa nitrojen israfi",
+      "oksit olmadan nasil bilinir",
+      "lehim sonrasi nitrojen ne zaman kesilir"
+    ],
+    "de_questions": [
+      "wie viel psi stickstoff beim loeten",
+      "wie wird der fluss kontrolliert",
+      "stickstoffverlust bei offener anlage",
+      "wie erkennt man oxidfreies loeten",
+      "wann stickstoff stoppen"
+    ],
+    "tr_answer": "Lehim sirasinda nitrojen 3-5 PSI duşuk basinç altinda surekli akmali; akış sistemin diger ucundan dışarı (acik vent) cikmali. Akıs sayacli regulator yoksa, elini cikis ucuna koyup sıcaklik veya hava hissi ile kontrol et — soguk akış var demektir. Sistem aciksa (vent yok) nitrojen pres altinda kalır; bu durum tehlikeli, valf cikartilmali. Oksit yoksa bakir parlak gri-bakir, oksit varsa siyah lekeli. Lehim bittikten 30 saniye sonra nitrojen kesilir; sıcak halde kesince icerde oksit hızla olusur. Usta nitrojeni hicbir zaman 'ucuz olmasi icin' kismet; lehim kalitesi nitrojen miktarindan cok daha pahali bir hataya yol açar.",
+    "de_answer": "Beim Hartloeten Stickstoff bei 3-5 PSI als Schutzgas dauerhaft durch das Rohr leiten; Austritt am anderen Ende offen halten. Ohne Durchflussmesser am Auslass die Hand halten — kuehler Luftstrom = OK. Bei geschlossener Anlage steht Stickstoff unter Druck; gefaehrlich, immer einen Ausgang vorsehen. Oxidfreie Loetung: Kupfer hell-grau-kupferfarben, mit Oxidation dunkel-schwarz. Nach dem Loeten Stickstoff noch 30 Sekunden weiterstroemen lassen; bei heisser Stelle sofortiges Schliessen erzeugt Oxidation. Ein Meister geizt nie mit Stickstoff; ein Loetfehler kostet weit mehr.",
+    "suggestions": [
+      "regulator olcum nasil",
+      "baca olcum",
+      "cikis nasil acilir"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_recovery_procedure",
+    "tr_subject": "gaz toplama prosedur",
+    "de_subject": "rueckgewinnungsablauf",
+    "keywords": [
+      "recovery",
+      "rueckgewinnung",
+      "makine",
+      "tüp",
+      "sıvı",
+      "vapor",
+      "procedure"
+    ],
+    "tr_questions": [
+      "recovery makinesi nasil bağlanır",
+      "sıvı mı vapor mu cekilir",
+      "tüp dolma kontrol",
+      "recovery sonrası vakum gerek mi",
+      "atik gaz nasil teslim edilir"
+    ],
+    "de_questions": [
+      "wie wird das recovery-geraet angeschlossen",
+      "fluessig oder gasfoermig absaugen",
+      "wie pruefe ich die zylinderfuellung",
+      "brauche ich vakuum nach recovery",
+      "wie wird altgas abgegeben"
+    ],
+    "tr_answer": "Recovery makine giris hortumu sistemin suction servis portuna, cikis tup'un sıvı portuna baglanir. Once sıvı cekilir (TXV oncesi receiver veya likid hat servisinden); sıvı bittikten sonra vapor moduna gec, tum tarafa basinç inene kadar. Tüp dolusu %80 brüt agirlık; uzeri patlama riski. Recovery sonrası sistemin vakum cekilmesi nem icin sart degil ama atmosfere acilmis ise gerek. Atik gaz F-Gas sertifikali toplama firmasina teslim; DRC Hamburg yakini partnerlere yonlendirir, fatura uzerinde 'gaz teslim sertifikasi' bilgi. Usta recovery oncesi makine yag bakimi, filtre kontrolü ve tüp etiket dogrulamasi yapar.",
+    "de_answer": "Saugseite des Recovery-Geraets an den Saugservice der Anlage, Druckseite an den Fluessigkeitsanschluss der Flasche. Erst Fluessigkeit absaugen (vor dem TXV oder ueber den Sammler), dann auf Dampfmodus umschalten, bis der Druck im System ausgeglichen ist. Flasche bis maximal 80 % Bruttogewicht fuellen; daruber Explosionsgefahr. Nach Recovery ist Vakuum nur noetig, wenn die Anlage geoeffnet wurde. Altgas wird an F-Gas-zertifizierte Sammelstellen abgegeben; DRC vermittelt Hamburg-Partner, das Sammelzertifikat wird auf der Rechnung dokumentiert. Vor dem Recovery prueft ein Meister Geraeteoel, Filter und Flaschenetikett.",
+    "suggestions": [
+      "tüp dolma %80 sebep",
+      "recovery filtre",
+      "sertifika nasil alinir"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_superheat_field_measure",
+    "tr_subject": "sahada superheat olcumu",
+    "de_subject": "superheat im feld",
+    "keywords": [
+      "superheat",
+      "ueberhitzung",
+      "saha olcum",
+      "emis sicaklik",
+      "pt tablo",
+      "manifold"
+    ],
+    "tr_questions": [
+      "superheat sahada nasil olculur",
+      "emis basinç sicakliga nasil cevrilir",
+      "superheat dusukse ne olur",
+      "yuksek superheat ne anlama gelir",
+      "clamp termocouple konum"
+    ],
+    "de_questions": [
+      "wie misst man superheat",
+      "saugdruck zu temperatur",
+      "niedriges superheat",
+      "hohes superheat",
+      "clamp thermoelement position"
+    ],
+    "tr_answer": "Superheat = (sahada olculen emis hatti sicakligi) - (emis basinçina karsilik gelen doyma sicakligi). Manifold ile emis basinçı oku (PSI veya bar), PT tablo ya da manifold cetveline gore doyma sicakligi bulunur. Termokupl (T-tipi yaprak) emis hattindan kompresor giris 15-30 cm yakinında, izolasyon altinda baglanir. Dusuk superheat (<3 K) likid donus riski; yuksek superheat (>10 K) gaz aclik veya TXV az açik. Dogru bir TXV genelde 4-8 K stabil tutar. Usta superheat olcumunde paralel olarak subcool da olcer; ikisini birlikte degerlendirir.",
+    "de_answer": "Superheat = gemessene Saugleitungstemperatur - Saettigungstemperatur des Saugdrucks. Manifold liest Saugdruck, PT-Tabelle oder Skala gibt die Saettigung. Thermoelement (T-Typ) auf dem Saugrohr, 15-30 cm vor dem Verdichter, unter der Isolierung anbringen. Superheat unter 3 K bedeutet Fluessigkeitsrueckkehrrisiko; ueber 10 K Hunger oder TXV zu wenig offen. Ein gut eingestelltes TXV haelt stabil 4-8 K. Ein Meister misst gleichzeitig Subcool und bewertet beide zusammen.",
+    "suggestions": [
+      "pt tablo nasil okunur",
+      "clamp baglanti yontemi",
+      "subcool olcumu"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_subcool_field_measure",
+    "tr_subject": "sahada subcool olcumu",
+    "de_subject": "subcool im feld",
+    "keywords": [
+      "subcool",
+      "unterkuehlung",
+      "likid sicaklik",
+      "kondens sicaklik",
+      "pt tablo",
+      "manifold",
+      "head"
+    ],
+    "tr_questions": [
+      "subcool sahada nasil olculur",
+      "kondens sicakligi nasil bulunur",
+      "subcool 0 ise ne olur",
+      "subcool yuksekse ne",
+      "head pressure ile iliski"
+    ],
+    "de_questions": [
+      "wie misst man subcool",
+      "wie findet man verfluessigungstemperatur",
+      "null subcool was bedeutet",
+      "hohes subcool",
+      "verfluessigungsdruck und subcool"
+    ],
+    "tr_answer": "Subcool = (kondens basinçina karsilik gelen doyma sicakligi) - (likid hatti sicakligi). Manifold high tarafından kondens basinç oku, PT tabloyla doyma sicaklik bul. Termokupl likid hatti uzerinde, kondens cıkısından 30-60 cm sonra, izolasyon altinda. Subcool 0 sistemde gaz az veya kondens basinçı düşük; subcool >12 K aşıri gaz veya filtre tıkanikligi. Doğru 4-8 K hedef. Subcool head pressure ile dogrudan baglantılı: head düşerse subcool azalir. Usta olcumde dış ortam sicakligi, hava akış engeli (fan veya kondenser kirli) ve kondens sicakligi karsilastirması yapar.",
+    "de_answer": "Subcool = Saettigungstemperatur des Verfluessigungsdrucks - Fluessigkeitsleitungstemperatur. Hochdruck am Manifold lesen, PT-Tabelle gibt die Saettigung. Thermoelement auf der Fluessigkeitsleitung, 30-60 cm nach dem Verfluessigerauslass, unter der Isolierung. Subcool 0 deutet auf Kaeltemittelmangel oder niedrigen Verfluessigungsdruck; > 12 K auf Ueberfuellung oder Filterverstopfung. Ziel 4-8 K. Subcool und Verfluessigungsdruck haengen zusammen: Bei sinkendem Hochdruck faellt Subcool. Ein Meister vergleicht parallel Umgebungstemperatur, Luftstrom (Luefter, Verschmutzung) und Verfluessigungstemperatur.",
+    "suggestions": [
+      "head pressure neden onemli",
+      "filtre tikanikligi",
+      "gaz fazlaligi belirti"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_leak_detection_methods",
+    "tr_subject": "kacak arama yontemleri",
+    "de_subject": "lecksuche methoden",
+    "keywords": [
+      "kacak",
+      "leak",
+      "bubble",
+      "electronic",
+      "uv",
+      "halide",
+      "seife",
+      "detektor"
+    ],
+    "tr_questions": [
+      "kacak nasil bulunur",
+      "sabun mu dedektor mu",
+      "uv boya mantigi",
+      "halide torch eski mi",
+      "kacak konumu zor"
+    ],
+    "de_questions": [
+      "wie sucht man lecks",
+      "seife oder detektor",
+      "wie funktioniert uv-farbe",
+      "halide-torch noch zeitgemaess",
+      "schwierige leckorte"
+    ],
+    "tr_answer": "Kacak arama yontemleri: (1) Sabunlu su klasik, gozle gorunur ama kucuk kacak kaybolur. (2) Elektronik dedektor (heater diode veya electrochemical) sensitif, R290 icin ozel sensor; periyodik kalibrasyon sart. (3) UV boya sıvı haldeyken sisteme sürür sürür; UV lamba ile sızıntı noktasinda parlama. (4) Halide torch eski yontem, R22 icin alev rengi gosterir; modern HFC/HFO icin etkisiz, F-Gas mevzuatinda yer almaz. Zor lokasyonlar (kondens panele icine, evaporator pannel arkasi) icin kombine yontem onerilir: oz boya + UV + dedektor. Usta kacak ararken once acilan baglantilari sonra olusan yag lekelerine (eski sızıntı işareti) bakar.",
+    "de_answer": "Lecksuchmethoden: (1) Seifenwasser klassisch, sichtbar, aber feine Lecks verschwinden. (2) Elektronischer Detektor (Heater-Diode oder elektrochemisch) sehr empfindlich, fuer R290 spezielle Sensoren; regelmaessige Kalibrierung Pflicht. (3) UV-Farbstoff in der Fluessigleitung injizieren; UV-Lampe macht das Leck sichtbar. (4) Halide-Brenner ist historisch fuer R22, fuer moderne HFC/HFO unwirksam, nicht F-Gas-konform. Schwierige Stellen (im Verfluessigungs-Panel, hinter dem Verdampfer-Panel) erfordern Kombination aus UV + Detektor. Ein Meister sucht zuerst nach geoeffneten Verbindungen und alten Oelflecken (Hinweis auf Leckage).",
+    "suggestions": [
+      "uv boya nasil sürer",
+      "r290 dedektor",
+      "yag lekesi ne anlatir"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_amp_draw_check",
+    "tr_subject": "akim cekisi kontrol",
+    "de_subject": "strompruefung",
+    "keywords": [
+      "amp draw",
+      "stromaufnahme",
+      "rla",
+      "fla",
+      "pinza",
+      "klemme",
+      "klamp",
+      "faz dengesizlik"
+    ],
+    "tr_questions": [
+      "motor amperi nasil olculur",
+      "rla nedir fla nedir",
+      "amper yuksekse sebep",
+      "faz dengesizlik nasil bulunur",
+      "klamp metre kullanimi"
+    ],
+    "de_questions": [
+      "wie misst man motorstrom",
+      "was ist rla und fla",
+      "hoher strom ursachen",
+      "wie findet man phasenungleichgewicht",
+      "stromzange anwenden"
+    ],
+    "tr_answer": "Motor akimi klamp metre ile her faz uzerinde olculur. RLA (rated load amps) tipik calisma amperi, FLA (full load amps) tam yukteki maksimum. Akim yuksekse sebep: yuksek discharge basinç (kondens kirli, fan donmuyor), mekanik tikanma, faz dengesizlik, voltaj dususu, fazla gaz. Faz dengesizlik = (en yuksek - en dusuk) / ortalama; %2 uzeri uyari, %5 uzeri durdur. Klamp metre olcurken kabloyu cumlasan ortalanmis tutar, ferromagnetik bozulma olmaz. Voltaj olcumde nominal +-%10 tolerans; daha fazla saparsa transformator veya kablo sorunu var. Usta amperi her ay logla — trend yukseliyorsa erken uyari, bilesik ariza.",
+    "de_answer": "Motorstrom mit Stromzange auf jeder Phase messen. RLA (Rated Load Amps) ist der Nennstrom im Betrieb, FLA (Full Load Amps) der Maximalstrom. Erhoehter Strom kommt von hohem Druck (verschmutzter Verfluessiger, Luefter aus), mechanischer Blockade, Phasenungleichgewicht, Unterspannung, Ueberfuellung. Phasenungleichgewicht = (max - min) / Mittel; ueber 2 % Warnung, ueber 5 % Abschaltung. Stromzange mittig um die Leitung legen. Spannungstoleranz Nenn +/- 10 %; mehr deutet auf Trafo- oder Kabelproblem. Strom monatlich loggen — Trend nach oben ist ein Fruehindikator.",
+    "suggestions": [
+      "voltaj olcumu",
+      "rla fla fark",
+      "trend takip cizelge"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_pump_down_procedure",
+    "tr_subject": "pump down prosedur",
+    "de_subject": "pump down ablauf",
+    "keywords": [
+      "pump down",
+      "abpumpen",
+      "solenoid",
+      "lp salter",
+      "yagi koruma",
+      "start stop",
+      "prosedur"
+    ],
+    "tr_questions": [
+      "pump down nasil yapilir",
+      "manuel vs otomatik pump down",
+      "pump down kac defa baslar",
+      "lp salter ayar pump down",
+      "kompresor durmasi sonrasi"
+    ],
+    "de_questions": [
+      "wie funktioniert pump down",
+      "manuell oder automatisch pump down",
+      "wie oft startet pump down",
+      "lp-schalter setpoint pump down",
+      "verhalten nach abschaltung"
+    ],
+    "tr_answer": "Pump down: termostat hedef sicakliga ulasinca once solenoid valf kapatilir; kompresor calismaya devam eder ve evaporator + likid hattindaki gazi receiver veya kondensere basar. LP salter cut-out ayariyla kompresor durur. Avantaj: durdugunda evaporator + suction tarafinda gaz az, migration olmaz, yag seyrelmesi olmaz. Manuel pump down servis icin: solenoidi kapat, LP duşusunu izle, pompa-aşaği inince kompresoru kapat. Otomatik pump down kart programi yapar. LP cut-out tipik 0.5-1 bar (sistem gazina gore); cut-in 1.5-2 bar. Cok dusuk olursa kompresor sik calismaya baslar (recycle). Usta pump down sırasında LP basinçina dikkat eder; sifira inerse kompresor vakum cekiyor demektir, valfi tek seferlik check eder.",
+    "de_answer": "Pump-Down-Ablauf: Bei Erreichen der Solltemperatur schliesst zuerst das Magnetventil; der Verdichter laeuft weiter und foerdert das Restkaeltemittel aus Verdampfer und Fluessigkeitsleitung in den Sammler oder Verfluessiger. Der LP-Schalter schaltet bei Cut-Out aus. Vorteil: weniger Migration und Oelverduennung im Stillstand. Manueller Pump-Down: Magnetventil schliessen, LP-Druck beobachten, bei Erreichen abschalten. Automatik macht das per Regler. LP-Cut-Out typisch 0,5-1 bar (gasabhaengig), Cut-In 1,5-2 bar. Zu niedrig fuehrt zu kurzem Wiedereinschalten (Recycling). Beim Pump-Down achtet ein Meister auf den LP-Druck; faellt er auf null, zieht der Verdichter Vakuum.",
+    "suggestions": [
+      "lp salter ayari",
+      "solenoid kapali kontrol",
+      "kompresor recycle"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_oil_charge_field",
+    "tr_subject": "yag ekleme sahada",
+    "de_subject": "oel nachfuellen",
+    "keywords": [
+      "yag ekleme",
+      "oel nachfuellen",
+      "sight glass",
+      "oil sight",
+      "pump",
+      "manual",
+      "trash"
+    ],
+    "tr_questions": [
+      "yag eksigi nasil eklenir",
+      "sight glass orta seviye",
+      "yag tarti",
+      "pumpa ile mi vakum ile mi",
+      "yag karistirma riski"
+    ],
+    "de_questions": [
+      "wie wird oel nachgefuellt",
+      "ist die haelfte am schauglas korrekt",
+      "oel-gewicht",
+      "mit pumpe oder vakuum",
+      "oel-vermischung risiken"
+    ],
+    "tr_answer": "Yag ekleme: sistem calisirken sight glass kontrolu; yag seviyesi orta ile 3/4 arasi tipik. Az ise once neden bulun (kacak, yag donus problemi); ezbere yag eklemek migrationla problemi maskeler. Eklemek icin: yag pompasi yag tüpunden suction servis portuna baglanir, regulator ile 'small dose' yapilir. Vakum ile cekme (sistem vakumdayken yag emerge dik) garantisiz; pompa onerilir. Yag tipi degisirse karistirma sakat; eski yagi tahliye et, sistemi yikat. Usta yag eklemeden once sistem calistirma saatini (op hours), kompresor titresimini ve yag analizi yapar (gerekirse lab).",
+    "de_answer": "Oel nachfuellen: bei laufender Anlage Schauglas pruefen; Standhoehe zwischen Mitte und 3/4 typisch. Bei niedrigerem Stand zuerst Ursache klaeren (Leck, Oelrueckfuehrungsproblem); blindes Nachfuellen verdeckt Migrationsprobleme. Nachfuellen: Oelpumpe von Oelflasche an Saugservice anschliessen und in kleinen Dosen einleiten. Selbsteinsaugen ueber Vakuum ist riskant; Pumpe ist sicherer. Oeltypen nicht mischen; alten Oel ablassen und System spuelen. Vor dem Nachfuellen prueft ein Meister Betriebsstunden, Vibrationen und ggf. Oelanalyse im Labor.",
+    "suggestions": [
+      "yag donus probleminin sebep",
+      "sight glass okuma",
+      "kompresor titresim"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_calibration_manifold",
+    "tr_subject": "manifold kalibrasyonu",
+    "de_subject": "manifold kalibrierung",
+    "keywords": [
+      "manifold",
+      "kalibrasyon",
+      "sifir",
+      "atmosfer",
+      "gaz tipi",
+      "blue red",
+      "manometre"
+    ],
+    "tr_questions": [
+      "manifold sifir kalibrasyonu",
+      "atmosfer basinci sifir mi",
+      "gaz tipi etikette",
+      "blue red farki",
+      "kalibrasyon ne zaman"
+    ],
+    "de_questions": [
+      "manifold nullen",
+      "atmosphaere null",
+      "gastyp am skalenring",
+      "blau und rot unterscheiden",
+      "wann kalibrieren"
+    ],
+    "tr_answer": "Manifold sifir kalibrasyonu atmosfer basinci 0 olarak ayarlanir; her gauge'nin merkezindeki kucuk vida ile yapilır. Bu ayar elasik zaman içinde kayabilir; ozellikle dususler sonrasi tekrar yapilmali. Mavi (low side) emis tarafi, kirmizi (high side) discharge tarafi — kabloyu yanlis takmamak icin renge bagli kal. Gaz tipi etiket halkasi merkezde 'R134a / R404A / R22' gibi gosterir; degerleri okuyarak doyma sicakligini bulun (PT tablo gerekmez). Dijital manifold otomatik gaz tipi secimi yapar, hassas (+-1%). Usta manifold kalibrasyon disiplini: her ay sıfırla, dususten sonra tekrar, ariza ihtimalinde olcumden 5 dakika once isındır.",
+    "de_answer": "Nullkalibrierung am Manifold: Atmosphaerendruck = null, ueber kleine Schraube in der Mitte jedes Manometers einstellen. Der Wert kann sich mit der Zeit verschieben, vor allem nach Stuerzen erneut nullen. Blau ist Niederdruck, Rot Hochdruck — nicht vertauschen. Der Gastyp steht am Skalenring (R134a, R404A, R22), so kann die Saettigung direkt abgelesen werden, ohne PT-Tabelle. Digitalmanifolds waehlen den Gastyp automatisch, +/- 1 % Genauigkeit. Ein Meister nullt monatlich, nach jedem Sturz und vor Diagnosen 5 Minuten warmlaufen lassen.",
+    "suggestions": [
+      "pt tablo ezbere",
+      "dijital manifold",
+      "gaz tipi karisik"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_emergency_safety",
+    "tr_subject": "saha guvenlik",
+    "de_subject": "sicherheit im feld",
+    "keywords": [
+      "guvenlik",
+      "sicherheit",
+      "ppe",
+      "r290",
+      "cigarette",
+      "statik",
+      "yangin"
+    ],
+    "tr_questions": [
+      "r290 ile calismada nelere dikkat",
+      "ppe ne giymeli",
+      "ariza sirasinda yangın",
+      "statik elektrik",
+      "sicak gaz lehimlemesi"
+    ],
+    "de_questions": [
+      "was bei r290 beachten",
+      "welche psa",
+      "brandgefahr",
+      "statische entladung",
+      "heissgas am loeten"
+    ],
+    "tr_answer": "Saha guvenlik: (1) R290 (propan) yaniciligi nedeniyle: havalandırma, kibrit/sigara yasak, statik desarjı topraklı, dedektor kullanim. (2) PPE: nitril eldiven, safety glasses (gaz sıçraması), kulaklik (kompresor gurultusu), is ayakkabısı, sıcak yuzeyler icin yanmaz eldiven. (3) Sıcak gaz lehimleme sırasında: yangin tüpu yakini, koru elinde değil, çevre tehlike kaynağından temiz. (4) Yüksek basinçlı sistem acilirken once Bleed valf araciligyla basinç bos. (5) Karbon dioksit (CO2) sistemde basinçti 40-50 bar; ozel sertifika gerek. Usta sahada her zaman 'iki kişi' kuralı uygular; tek başına yüksek basinç ile çalışma yasak.",
+    "de_answer": "Sicherheit im Feld: (1) Bei R290 (Propan) Belueftung, kein Feuer/keine Zigarette, statische Entladung erden, Detektor benutzen. (2) PSA: Nitril-Handschuhe, Schutzbrille, Gehoerschutz, Sicherheitsschuhe, Loethandschuhe. (3) Beim Heissgasloeten Feuerloescher in der Naehe, Holz/Folie nicht in der Umgebung. (4) Hochdrucksystem vor dem Oeffnen ueber Ablassventil entspannen. (5) CO2-Anlagen haben 40-50 bar, Sonderzertifikat erforderlich. Ein Meister arbeitet im Feld nach der Zwei-Mann-Regel; allein an Hochdruck nicht.",
+    "suggestions": [
+      "r290 dedektor",
+      "yangin tüpu tipi",
+      "co2 sertifikasi"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_acid_test_kit",
+    "tr_subject": "asit testi",
+    "de_subject": "saeuretest",
+    "keywords": [
+      "asit",
+      "acid",
+      "ph",
+      "test kit",
+      "poe",
+      "color",
+      "yag yandıktan sonra"
+    ],
+    "tr_questions": [
+      "asit testi nasil",
+      "yandiktan sonra ph kac",
+      "test kit hangisi",
+      "poe yag asitleşme",
+      "filtre yenileme"
+    ],
+    "de_questions": [
+      "wie macht man saeuretest",
+      "wie ist der ph nach brand",
+      "welches testkit",
+      "poe-saeurebildung",
+      "filterwechsel nach brand"
+    ],
+    "tr_answer": "Asit testi yagin asitleşmesini gosterir; pH cikartılır veya renk degisimli test kiti kullanilir. Normal POE yag asitlik 0.02 mg KOH/g altinda; yanmis kompresor sonrasi 0.5 üstu olabilir. Test kit (Sporlan, Watsco) yagi şişeye doldur, indikator ekle, renk ile pH tahmini. POE özellikle nem ile birleşince asit üretir (hydrolysis); bu yuzden POE sistemlerinde dryer pivotal. Yanma sonrasi: kompresor + dryer + akumulator + yag degisimi; 24-72 saat calistirip tekrar test, hala asitse ek dryer + yag degisim. Usta yanma sonrasi ezbere temizlemez; asit testi disiplinli yapılır.",
+    "de_answer": "Saeuretest zeigt die Saeurebildung im Oel; pH oder Farbtest-Kit. Frisches POE-Oel liegt unter 0,02 mg KOH/g; nach Verdichterbrand kann es ueber 0,5 sein. Testkit (Sporlan, Watsco): Oel in Pruefroehrchen, Indikator zugeben, Farbumschlag deuten. POE saeuerlt mit Feuchte (Hydrolyse); deshalb sind Trockner zentral. Nach Brand: Verdichter + Trockner + Accumulator + Oelwechsel; 24-72 Stunden Lauf, dann erneut Test, bei Restsaeure weiterer Trockner und Oelwechsel. Ein Meister reinigt nicht aus dem Bauch, sondern misst diszipliniert.",
+    "suggestions": [
+      "poe asitlesme nasil",
+      "filtre degisim periyodu",
+      "yanmis sistem temizleme"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_blower_door_test",
+    "tr_subject": "oda sızdırmazlık testi",
+    "de_subject": "raum dichtigkeitspruefung",
+    "keywords": [
+      "sızdırmaz",
+      "oda kacak",
+      "blower",
+      "fan",
+      "panel kacak",
+      "conta",
+      "sicak hava"
+    ],
+    "tr_questions": [
+      "oda sızdırmazlık nasil test edilir",
+      "blower test gerek mi",
+      "panel kacak nereden",
+      "conta sızdırmasi",
+      "negatif basinç testi"
+    ],
+    "de_questions": [
+      "wie pruefe ich die raumdichtigkeit",
+      "blower-test",
+      "panel-leckage",
+      "dichtungsleck",
+      "unterdruckpruefung"
+    ],
+    "tr_answer": "Soguk oda sızdırmazlık: fan ile odaya 50 Pa eksi basinç verilir, dış kaynak hava akış miktari ölçülür (m³/h). Çok yüksek akış sızıntı çoktur. Praktik test: tütsü/duman çubuğu dışarıdan tutulur ve panel uçları, conta, kapı çevresi, kablo geçişleri gözlemlenir. Sıcak hava sızıntısı genelde kapı menteşesi alt yan, panel ekleme, kablo geçiş, drenaj borusu cevresi. Negatif basinç testi profesyonel; saha icin gözlem + duman yeterli. Usta sızıntı puzzelinde önce gözle, sonra dokunarak, sonra sıcaklik tarayicisi (infrared cam) ile yapar.",
+    "de_answer": "Kuehlraum-Dichtigkeitspruefung: Mit Geblaese -50 Pa Unterdruck erzeugen und den Volumenstrom (m³/h) messen; hoher Strom bedeutet viele Lecks. Praxis: Rauchpatrone von aussen, Beobachtung an Paneelfugen, Dichtungen, Tueren, Kabel- und Abflussdurchfuehrungen. Warmluftinfiltration tritt meist an Tuerunterseite, Paneelnaht, Kabel- oder Abflussdurchfuehrung auf. Profi-Unterdrucktest ist genauer; im Feld reichen Rauch und Beobachtung. Ein Meister sucht erst visuell, dann mit Tastsinn, dann mit Infrarotkamera.",
+    "suggestions": [
+      "infrared cam kullanim",
+      "panel ekleme conta",
+      "kapi alt sızıntı"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_thermometer",
+    "tr_subject": "sahada sicaklik olcumu",
+    "de_subject": "temperaturmessung im feld",
+    "keywords": [
+      "termometre",
+      "thermometer",
+      "ntc",
+      "pt100",
+      "cam thermometer",
+      "ihtiyat",
+      "sertifika"
+    ],
+    "tr_questions": [
+      "hangi sıcaklik sensoru",
+      "ntc pt100 fark",
+      "cam thermometer hassas mi",
+      "sertifikalı kalibrasyon",
+      "oda ortalama sicaklik"
+    ],
+    "de_questions": [
+      "welcher temperatursensor",
+      "unterschied ntc und pt100",
+      "glasthermometer genauigkeit",
+      "kalibriertes geraet",
+      "raumtemperatur mitteln"
+    ],
+    "tr_answer": "Saha sıcaklik olcumu: NTC tipi 10kΩ basit, hassas degil (+-1 °C); Pt100/Pt1000 platin dirençli, +-0.1 °C hassas, profesyonel; T-tipi thermokupl yuzey olcumu icin pratik. Cam termometre cıvalı veya alkollu, hassas tabaka olarak +-0.5 °C; kırılgan. Oda ortalama sıcaklik tek noktadan olculmez; mevki 4-6 nokta (urun seviyesi, kapi yakini, fan altı, fan ortası) ortalaması alınır. Yıllık sertifikali kalibrasyon eğer yasal kayıt (gida, ilaç) gerekiyorsa şart. Usta dijital göstergede tek değer okumaz; sensor + display ikili kontrol eder.",
+    "de_answer": "Temperaturmessung im Feld: NTC 10kΩ einfach, +/- 1 °C; Pt100/Pt1000 Platin-Wiederstand +/- 0,1 °C, professionell; T-Typ-Thermoelement gut fuer Oberflaechen. Glasthermometer (Quecksilber oder Alkohol) +/- 0,5 °C, zerbrechlich. Eine Raumtemperatur darf nicht aus einem einzigen Punkt abgeleitet werden; 4-6 Messpunkte (Warenebene, Tuernaehe, Luefterbereich) gemittelt. Bei gesetzlicher Aufzeichnung (Lebensmittel, Pharma) ist eine jaehrliche kalibrierte Messung Pflicht. Ein Meister liest nie nur einen Display-Wert; Sensor + Anzeige werden gemeinsam geprueft.",
+    "suggestions": [
+      "pt100 baglantı",
+      "oda 6 nokta",
+      "kalibrasyon sertifika"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_long_run_logbook",
+    "tr_subject": "calistirma kayit",
+    "de_subject": "betriebsprotokoll",
+    "keywords": [
+      "log",
+      "kayit",
+      "protokoll",
+      "trendi",
+      "servis kaydı",
+      "work order",
+      "reading"
+    ],
+    "tr_questions": [
+      "calistirma kaydı nasil tutulur",
+      "servis log neyi icermeli",
+      "trend analizi",
+      "sicaklik basinç ne sıkliklarda",
+      "sezon sonu rapor"
+    ],
+    "de_questions": [
+      "wie fuehrt man ein betriebsprotokoll",
+      "was gehoert ins service-log",
+      "trendanalyse",
+      "wie oft druck und temperatur",
+      "saisonbericht"
+    ],
+    "tr_answer": "Calistirma kaydı: günluk veya haftalık basinç (HP, LP), motor akimi, evaporator + kondens sıcakliği, oda sıcaklığı, defrost suresi, alarm sayisi. Servis log ek olarak: filtre degisim tarihi, gaz dolum miktari, yag analiz sonuc, kapi conta degisim, fan motor degisim. Trend analizi: ayda bir grafiklere bak — yukselen trend (basinç, akım, sicaklık) erken uyari. Sezon sonu rapor: yıllik tuketim (kWh), bakim sayisi, alarm dagılimi, oneriler. Usta servis log tutmayan tesisleri 'şanstan calisiyor' olarak görür; bir disiplin olarak musteri ile birlikte excel/cloud sistem kurarsin.",
+    "de_answer": "Betriebsprotokoll: taeglich/woechentlich Druck (HD/ND), Motorstrom, Verdampfer- und Verfluessigungstemperatur, Raumtemperatur, Abtaudauer, Alarmzahl. Service-Log zusaetzlich: Filterwechsel, Gasfuellmenge, Oelanalyse, Tuerdichtung, Luefterwechsel. Trendanalyse monatlich; steigende Trends sind Fruehwarnungen. Saisonbericht: Jahresverbrauch (kWh), Wartungsanzahl, Alarmverteilung, Empfehlungen. Ein Meister sieht Anlagen ohne Logbuch als 'gluecksbasiert' und richtet mit dem Kunden Excel/Cloud-Logging ein.",
+    "suggestions": [
+      "alarm trend yorum",
+      "yag analiz cycle",
+      "kwh log nasil"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_burnout_cleanup",
+    "tr_subject": "yanma sonrasi temizleme",
+    "de_subject": "reinigung nach brand",
+    "keywords": [
+      "yanma",
+      "burnout",
+      "temizleme",
+      "reinigung",
+      "ek filtre",
+      "yag tahliye",
+      "yikama"
+    ],
+    "tr_questions": [
+      "kompresor yanmasi sonrasi sirayla ne",
+      "ek serisi filtre nasil",
+      "kac defa yag degisim",
+      "sistem yikama mantigi",
+      "yeniden test ne zaman"
+    ],
+    "de_questions": [
+      "was tun nach verdichterbrand",
+      "wie wird der ek filter eingesetzt",
+      "wie oft oelwechsel",
+      "systemspuelung",
+      "wann erneut testen"
+    ],
+    "tr_answer": "Yanma sonrasi temizleme sirasi: (1) Recovery + sistem acma. (2) Yanmis kompresor + yag tahliye + akumulator + dryer cikartilir. (3) Sistem nitrojen + hat icin ozel cozucu (R141b kullanılmaz artik, alternative cleaner) ile yikanir. (4) Yeni kompresor + EK serisi acid-removal filtre takılır (genelde discharge tarafına ek dryer). (5) Yag konulur, vakum cekilir, sarj yapilir. (6) 24-48 saat calistir, asit testi yap; pozitif ise yagi degistir + EK filtre yenile. (7) 72 saat sonra tekrar test, sonra normal XH7/XH9 dryer ile kalıcı duruma gec. Usta yanma sonrası en az 3 defa yag + dryer degisimi planlar; aksi takdirde yeni kompresor da yanar.",
+    "de_answer": "Cleanup nach Brand: (1) Recovery und System oeffnen. (2) Verbranner Verdichter + Oel ablassen + Accumulator + Trockner ausbauen. (3) Mit Stickstoff und geeignetem Reiniger (R141b nicht mehr zulaessig, Alternativen) spuelen. (4) Neuer Verdichter + EK-Serie als Saeureentferner einbauen (oft Druckseite). (5) Oel einfuellen, Vakuum, Charge. (6) 24-48 Stunden laufen, Saeuretest; positiv → Oelwechsel + EK-Erneuerung. (7) Nach 72 Stunden Test, dann auf Standardtrockner XH7/XH9 wechseln. Ein Meister plant nach Brand mindestens 3 Oel- und Trocknerwechsel; sonst raucht auch der neue Verdichter ab.",
+    "suggestions": [
+      "yanma test asit",
+      "ek serisi degisim",
+      "yikama cozucu"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_documentation",
+    "tr_subject": "saha belgeleme",
+    "de_subject": "feld-dokumentation",
+    "keywords": [
+      "belge",
+      "abnahme",
+      "protokoll",
+      "commissioning",
+      "montaj kaydı",
+      "photo",
+      "fatura"
+    ],
+    "tr_questions": [
+      "montaj sonrasi hangi belge",
+      "abnahme protokol icerigi",
+      "foto neyin",
+      "musteri imzasi",
+      "garanti kaydı"
+    ],
+    "de_questions": [
+      "welche dokumente nach montage",
+      "inhalt des abnahmeprotokolls",
+      "welche fotos",
+      "kundenunterschrift",
+      "garantieregistrierung"
+    ],
+    "tr_answer": "Saha belgeleme: (1) Abnahme protokol: marka + seri no + montaj tarihi + test sonuçlari (vakum mikron, basinç testi sonuc, sarj kg, superheat, subcool, akim her faz). (2) Foto: kompresor etiket, panel, evaporator, kapi conta, izolasyon durumu, gaz tüpü etiket, recovery sertifikası. (3) Musteri imzasi zorunlu, tarih + isim. (4) Garanti kaydı uretici portali (Tecumseh, Bitzer) uzerinden online; seri no + DRC fatura no + montaj tarihi. (5) Kopya musteriye verilir, DRC arşivine konur (Anil supervize). Servis kaydı sonraki bakimlar icin bir zincir olusturur. Usta belge eksikse montaji teslim etmez; eksik belge musteri sikayetinde DRC'yi zayif bırakir.",
+    "de_answer": "Feld-Dokumentation: (1) Abnahmeprotokoll: Marke + Seriennummer + Montagedatum + Testwerte (Vakuum-Mikron, Drucktest, Charge kg, Superheat, Subcool, Strom je Phase). (2) Fotos: Verdichter-Typenschild, Schaltschrank, Verdampfer, Tuerdichtung, Daemmung, Gasflasche-Etikett, Recovery-Zertifikat. (3) Kundenunterschrift Pflicht, mit Datum und Name. (4) Garantieregistrierung beim Hersteller (Tecumseh, Bitzer) online; Seriennummer + DRC-Rechnungsnummer + Montagedatum. (5) Kopie an den Kunden, Original im DRC-Archiv (Anil supervidiert). Service-Log baut darauf auf. Ein Meister gibt die Anlage ohne komplette Dokumentation nicht ab; fehlende Belege schwaechen DRC bei Reklamationen.",
+    "suggestions": [
+      "seri no nereden bulunur",
+      "arşiv format pdf",
+      "servis kaydı nasil baslar"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_capacity_check",
+    "tr_subject": "kapasite kontrolu sahada",
+    "de_subject": "leistungsmessung im feld",
+    "keywords": [
+      "kapasite",
+      "leistung",
+      "pull down",
+      "cooling capacity",
+      "td",
+      "akım",
+      "saatlik kwh"
+    ],
+    "tr_questions": [
+      "sistem kapasitesi sahada nasil olculur",
+      "pull down testi nedir",
+      "td bakarak kapasite",
+      "akım üzerinden tahmin",
+      "kWh ile dogrulama"
+    ],
+    "de_questions": [
+      "wie messe ich die kuehlleistung",
+      "was ist der pull-down-test",
+      "leistung ueber td",
+      "leistung ueber strom abschaetzen",
+      "kwh-bestaetigung"
+    ],
+    "tr_answer": "Saha kapasite kontrolu: (1) Pull-down testi: bos veya hesaplanabilir yukle oda sıcakliğı baslangic noktasından hedef noktaya inişine kadar geçen sure olculur; uretici tablosuyla karşılaştir. (2) TD üzerinden: evaporator giris-cikiş hava sıcaklik farki + havalandirma debi → kapasite ~ debi × cp × ΔT. (3) Akim üzerinden tahmin: kompresor RLA seviyesinde calisiyorsa nominal kapasite; %20 düşük akim ise %20 düşük kapasite. (4) kWh dogrulama: uzun süreli kWh tüketimi / oda yuk hesabi. Sistemde gaz az ise kapasite duser ama akım da duser, korelasyon iyidir. Usta saha kapasite testi yapmadan musteriye 'sistem yetersiz' demez; ölçüm + datasheet karşılaştırma şart.",
+    "de_answer": "Feld-Leistungsmessung: (1) Pull-Down: Zeit fuer das Erreichen der Solltemperatur mit bekannter Last gegen den Herstellerwert. (2) Ueber TD: Lufttemperatur am Verdampfer ein-/ausgang × Volumenstrom × cp ergibt die Leistung. (3) Ueber Strom: Verdichter im RLA-Bereich entspricht Nennkapazitaet; 20 % weniger Strom ~ 20 % weniger Leistung. (4) kWh-Bilanz: Stromverbrauch ueber Zeit gegen die berechnete Raumlast. Bei Gasmangel sinkt Leistung und Strom korreliert. Ein Meister erklaert dem Kunden 'nicht ausreichend' nie ohne Messung und Datenblattvergleich.",
+    "suggestions": [
+      "debi olcumu",
+      "pull down sablon",
+      "kWh trend"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_first_start_routine",
+    "tr_subject": "ilk calistirma rutini",
+    "de_subject": "erstinbetriebnahme",
+    "keywords": [
+      "ilk calistirma",
+      "erstinbetriebnahme",
+      "first start",
+      "commissioning",
+      "kontrol listesi",
+      "checklist"
+    ],
+    "tr_questions": [
+      "ilk calistirma adim adim",
+      "ne kontrol etmeli",
+      "kac saat gozlem",
+      "ilk hata sirasinda ne",
+      "abnahme baslangic"
+    ],
+    "de_questions": [
+      "erstinbetriebnahme schritt fuer schritt",
+      "was kontrollieren",
+      "wie viele stunden ueberwachen",
+      "was bei ersten fehlern",
+      "abnahme starten"
+    ],
+    "tr_answer": "Ilk calistirma rutini: (1) Vakum tamam + sarj tamam onayla. (2) Manuel modda: solenoid aç, TXV ayar set, fan + kompresor sirayla baslat. (3) Manometre + termometre + akim olcum: HP, LP, suction sicaklik, discharge sicaklik, evaporator giris-cikiş, akim her faz. (4) 15-30 dakika gozlem: alarm yok, kompresor sicaklığı stabil, sight glass temiz, akım stabil. (5) Modu otomatige al, oda hedef sıcakliga inişi izle. (6) 4 saat min gozlem; tam pull-down tamamlandiktan sonra abnahme protokolü doldur. Ilk hatada (alarm, kacak, beklenmedik basinç) durdur, sebebi bul, tekrar baslat. Usta ilk calistirmaya tek başına gitmez; iki kişi guvenli ve hızlı.",
+    "de_answer": "Erstinbetriebnahme: (1) Vakuum + Charge bestaetigt. (2) Manuell: Magnetventil oeffnen, TXV vorab eingestellt, Luefter + Verdichter sequenziell starten. (3) Mit Manifold + Thermometer + Stromzange: HP, LP, Saug-/Druckgastemperatur, Verdampfer ein-/aus, Strom je Phase. (4) 15-30 Minuten beobachten: kein Alarm, Verdichtertemperatur stabil, Schauglas sauber, Strom stabil. (5) Auf Automatik schalten, Pull-Down beobachten. (6) Mindestens 4 Stunden begleiten; nach komplettem Pull-Down Abnahmeprotokoll. Bei Erstfehler stoppen, Ursache klaeren, neu starten. Ein Meister geht nicht alleine zur Erstinbetriebnahme; zwei Personen sind sicher und schnell.",
+    "suggestions": [
+      "abnahme protokol",
+      "tek kişi calistirma riski",
+      "pull down hedef sure"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_winter_summer_settings",
+    "tr_subject": "yaz kis ayarlari",
+    "de_subject": "sommer winter einstellung",
+    "keywords": [
+      "mevsim ayari",
+      "jahreszeit",
+      "head pressure",
+      "fan control",
+      "ambient",
+      "setpoint"
+    ],
+    "tr_questions": [
+      "yaz kis arasi parametre fark",
+      "head pressure kis",
+      "fan speed kontrol mevsim",
+      "setpoint adjusment",
+      "floating head"
+    ],
+    "de_questions": [
+      "sommer winter parameter",
+      "verfluessigungsdruck im winter",
+      "luefter speed jahreszeit",
+      "setpoint anpassung",
+      "floating head pressure"
+    ],
+    "tr_answer": "Yaz/kis ayarlari: (1) Yaz: ambient sicaklik yuksek, head pressure 14-18 bar (gas tipine gore), tum fan tam hizda, TXV genis. (2) Kis: ambient sicaklik dusuk, head pressure 8-12 bar olabilir, ama 'cok dusuk' (örnek 6 bar altı) TXV beslenemez; floating head pressure kontrol yöntem — kart fan hizini ambient ile birlikte modulasyon yapar. (3) Setpoint ayni kalır (oda sıcakliği), ama parametrik kontrol mevsimi okur. (4) Defrost programı: kişda az nem icin frekansi düşür, yazda yüksek nemde artir. (5) Energy save mod: bazi kart geceleri (kapali isletme) setpoint -2 °C tolerans verir. Usta yaz/kis arasi sistem davranısını trend grafiginden okur ve parametre kayitlarini günceller.",
+    "de_answer": "Sommer/Winter-Einstellungen: (1) Sommer: hohe Umgebung, Verfluessigungsdruck 14-18 bar (gasabhaengig), Luefter Vollast, TXV weit offen. (2) Winter: niedrige Umgebung, Hochdruck 8-12 bar, aber zu niedrig (< 6 bar) speist TXV nicht — Floating Head Pressure ueber Luefterdrehzahl + Umgebungsabhaengigkeit. (3) Setpoint bleibt (Raumtemperatur), aber Regler kennt die Jahreszeit. (4) Abtauprogramm: weniger Frequenz im Winter, mehr im Sommer. (5) Energiesparmodus: nachts (geschlossener Betrieb) +/- 2 °C Toleranz. Ein Meister liest Verlaeufe aus Trends und passt Parameter saisonal an.",
+    "suggestions": [
+      "floating head detay",
+      "defrost frekans",
+      "energy save nasil aktif"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_data_logger_use",
+    "tr_subject": "data logger kullanımı",
+    "de_subject": "datenlogger nutzen",
+    "keywords": [
+      "data logger",
+      "datenlogger",
+      "temperatur",
+      "kayit",
+      "haccp",
+      "cold chain",
+      "ihlal"
+    ],
+    "tr_questions": [
+      "data logger neye yarar",
+      "haccp icin gerek mi",
+      "cold chain ihlal",
+      "kaç noktadan logger",
+      "kayit periyodu"
+    ],
+    "de_questions": [
+      "wofuer datenlogger",
+      "haccp pflicht",
+      "kaltkettenverstoss",
+      "wie viele datenlogger",
+      "aufzeichnungsintervall"
+    ],
+    "tr_answer": "Data logger oda sıcakligini sürekli kaydeder, USB veya kablosuz olarak yıllik raporlama saglar. HACCP, IFS, BRC gibi sertifikalarda zorunlu; gida saglik kontrolu denetiminde sicaklik kayitlari sart. Soguk zincir ihlal — sicaklik hedefin üstüne cıktığında kayit gosterir, sigorta + sertifika kayitlari icin önemli. Bir orta soguk oda icin 2-4 logger: orta, ürün seviyesi, kapı yakın, fan altı. Kayit periyodu typically 10-15 dakika; daha sik (1 dk) detayli analiz, daha geniş (1 saat) genel trend. Usta logger pillerini yılda bir kontrol eder, kalibrasyon her 2 yilda sertifikalı laboratuvarda.",
+    "de_answer": "Datenlogger speichern fortlaufend die Raumtemperatur und ermoeglichen jaehrliche Auswertung. Bei HACCP, IFS und BRC Pflicht; bei Lebensmittelkontrollen ist die Aufzeichnung verbindlich. Kaltkettenverstoss = Ueberschreitung des Sollbereichs; Datenlogger dokumentiert es. Mittelgrosse Kuehlraeume brauchen 2-4 Logger: Mitte, Warenebene, Tuernaehe, Luefterbereich. Aufzeichnungsintervall typisch 10-15 Minuten; 1 Minute fuer Detailanalyse, 1 Stunde fuer Trend. Ein Meister prueft jaehrlich die Batterie, alle 2 Jahre kalibriert er im Labor.",
+    "suggestions": [
+      "haccp belge",
+      "logger marka",
+      "ihlal alarm"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_voltage_imbalance",
+    "tr_subject": "voltaj dengesizligi",
+    "de_subject": "spannungsungleichgewicht",
+    "keywords": [
+      "voltaj",
+      "spannung",
+      "dengesizlik",
+      "ungleichgewicht",
+      "faz",
+      "yıldız",
+      "ucgen",
+      "trafo"
+    ],
+    "tr_questions": [
+      "voltaj dengesizligi nasil olculur",
+      "%2 sınır neden",
+      "yıldız üçgen baglanti",
+      "trafo sebep",
+      "fix nasil"
+    ],
+    "de_questions": [
+      "wie misst man spannungsungleichgewicht",
+      "warum 2 prozent grenze",
+      "stern dreieck",
+      "trafo ursache",
+      "wie beheben"
+    ],
+    "tr_answer": "Voltaj dengesizligi: (max - min) / ortalama. %2 üstu motor sargi asıri ısınır, omur kısalir; %3.5+ overheating. Yıldız (Y) ve üçgen (Δ) baglantilarinda farklı voltaj seviyesi (380 V vs 220 V tipik AB sisteminde), yanlış baglanti motoru yakar — etiket kontrol şart. Trafo bir fazda yüklü ise dengesizlik artar; başvuru kabini yenden dengelendirilir. Fix: müşterinin elektrik provider'ı ile birlikte trafo + ana panonun yük dağılımı yenden ayarlanır. Geçici cözüm voltage stabilizer (AVR) ekleyerek motor besleme dengeli yapilir. Usta voltaj olcumde yıldız nokta (N) sebep nedenli her zaman 3 fazi degil 4 noktayı (N dahil) olcer.",
+    "de_answer": "Spannungsungleichgewicht = (max - min) / Mittel. Ueber 2 % verkuerzt es die Wicklungslebensdauer; ueber 3,5 % gibt es Ueberhitzung. Stern (Y) und Dreieck (Δ) liefern unterschiedliche Spannungen (380 V vs. 220 V im EU-Netz); falsche Schaltung verbrennt den Motor. Etikettpruefung Pflicht. Bei einphasig belastetem Trafo steigt das Ungleichgewicht; Hauptanlage muss neu balanciert werden. Loesung mit dem Energieversorger des Kunden: Trafo + Hauptverteilung neu auslegen. Provisorisch hilft ein AVR (Automatic Voltage Regulator). Ein Meister misst nicht nur 3 Phasen, sondern auch den Neutralleiter.",
+    "suggestions": [
+      "avr ne kadar",
+      "yıldız ucgen tablo",
+      "trafo dengeleme"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_communication",
+    "tr_subject": "saha iletisim disiplini",
+    "de_subject": "feld-kommunikation",
+    "keywords": [
+      "iletisim",
+      "kommunikation",
+      "musteri brief",
+      "yazili kayit",
+      "whatsapp",
+      "fotograf"
+    ],
+    "tr_questions": [
+      "sahada musteri ile nasil konusulur",
+      "fotograf ne zaman gerekli",
+      "whatsapp uzerinden onay",
+      "beklemediği bulgu nasil iletilir",
+      "sözlü anlasma riski"
+    ],
+    "de_questions": [
+      "wie kommuniziert man im feld",
+      "wann sind fotos noetig",
+      "whatsapp-freigabe",
+      "unerwartete befunde",
+      "mundliches risiko"
+    ],
+    "tr_answer": "Saha iletisim: (1) Her bulgu fotograf + tarih + konum etiketi ile dokumante edilir. (2) Beklemediği bulgu (örnek izolasyon eksik, panel cürümüş) musteriye anında bildirilir, çözüm önerisiyle birlikte. (3) WhatsApp grubu DRC + musteri + saha ekibi olarak; sozlu anlasma yerine yazi + foto kayit yapılir — yarın 'olmadi' diyemez. (4) Acil karar gerekirse Anil/Cagatay'ı sesli ara, mesaj ile teyit et. (5) Sözlu anlasma riski yüksek (yarın inkar edilir); 'WhatsApp' veya 'e-posta' onayını bekle. Usta iletişim için bir 'iş paket' (work order) doldurur: ne yapıldı, ne istendi, ne ertelendi.",
+    "de_answer": "Feld-Kommunikation: (1) Jeder Befund mit Foto + Datum + Ortsangabe dokumentieren. (2) Unerwartete Befunde (z. B. fehlende Daemmung, beschaedigtes Paneel) sofort an den Kunden mit Loesungsvorschlag melden. (3) WhatsApp-Gruppe DRC + Kunde + Vor-Ort-Team; statt muendlicher Absprache schriftlich + Foto, damit niemand spaeter sagt 'das hatten wir nicht'. (4) Eilentscheidung: Anil/Cagatay anrufen, per Nachricht bestaetigen. (5) Muendlich ist riskant; immer WhatsApp/E-Mail-Bestaetigung. Ein Meister fuehrt einen Auftragsschein: was wurde gemacht, was wurde verlangt, was vertagt.",
+    "suggestions": [
+      "foto format gostergesi",
+      "whatsapp grup yonetimi",
+      "work order sablon"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_water_drain_evaporator",
+    "tr_subject": "evaporator drenaj",
+    "de_subject": "verdampferablauf",
+    "keywords": [
+      "drenaj",
+      "abfluss",
+      "drain",
+      "kondensat",
+      "heat trace",
+      "ısıtici",
+      "gocuk"
+    ],
+    "tr_questions": [
+      "evaporator drenaj nasil",
+      "ısıtici neden gerek",
+      "drenaj donmasi",
+      "gocuk sifon",
+      "drenaj egim"
+    ],
+    "de_questions": [
+      "wie wird der ablauf gefuehrt",
+      "wozu heat trace",
+      "ablauf eingefroren",
+      "sifon notwendig",
+      "gefaelle ablauf"
+    ],
+    "tr_answer": "Evaporator drenajı yerçekimi ile dısarı akmali, minimum 1-2% egim. Sifon (gooseneck) drenaj ucunda donmus hava akimini engeller — eksik sifonlu drenaj donar. Heat trace (drenaj ısıtici) drenaj boru çevresinde, sıcaklik altinda donmemesini saglar; özellikle dondurulmus oda (−18 °C) icin sart. Donmus drenaj evaporator altinda su birikir, kapidan dışarı sızıntı yapabilir, panel veya elektrik panosu icine girer. Drenaj boru cap genelde 22 mm (3/4 inch); soguk zincir test sırası tüm drenajlar test edilir (su dökerek). Usta drenaj ısıticı akimini her 6 ayda bir kontrol eder, donmuş drenaj soguk oda ekipmaninin %30'unda gorulen problemdir.",
+    "de_answer": "Verdampferablauf erfolgt durch Schwerkraft, mit 1-2 % Gefaelle. Sifon am Auslass verhindert kalten Luftrueckschlag — ohne Sifon friert er. Heat-Trace-Heizband am Ablaufrohr verhindert Vereisung, vor allem in Tiefkuehlraeumen (-18 °C). Eingefrorener Ablauf laesst Wasser unter dem Verdampfer austreten, eventuell in den Schaltschrank. Ablaufdurchmesser typisch 22 mm (3/4 Zoll); beim Abnahmetest werden alle Ablaeufe mit Wasser geprueft. Ein Meister kontrolliert das Heat-Trace alle 6 Monate; eingefrorene Ablaeufe sind in 30 % der Kuehlanlagen die Ursache.",
+    "suggestions": [
+      "heat trace olcum",
+      "sifon yokse risk",
+      "drenaj test su"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_modulation_tune",
+    "tr_subject": "modulasyon ince ayar",
+    "de_subject": "modulation feintuning",
+    "keywords": [
+      "modulasyon",
+      "tuning",
+      "p i",
+      "pid",
+      "kart parametre",
+      "feinabstimmung",
+      "instabil"
+    ],
+    "tr_questions": [
+      "modulasyon kararsiz hunting",
+      "pid p i ayar",
+      "kart parametre nereden okur",
+      "ince ayar nasil",
+      "modulasyon avantaj"
+    ],
+    "de_questions": [
+      "modulation instabil hunting",
+      "p i einstellung",
+      "wo parameter ablesen",
+      "feintuning",
+      "vorteile modulation"
+    ],
+    "tr_answer": "Modulasyon hunting (kararsiz osilasyon) genelde P (proportional) cok yuksek veya I (integral) cok dusukten gelir. P artirinca tepki hizli ama overshoot; I artirinca uzun süreli hata azalir ama sluggish. Ince ayar: P'yi yarisina indir, sistemi gozle; sabitse I artir, hala overshoot varsa P daha azalt. PID kart parametreleri her marka için farklı isimlendirilir (Carel: rPo, rdt, rTo); manuel sart. Sistem modulasyon avantaj: enerji tasarruf, sicaklik dalgalanmasi azalir, kompresor omru uzar. Usta modulasyon ayarini ezbere degil, scope (gercek zamanli grafik) ile yapar; süresel response gozlemleyerek karar verir.",
+    "de_answer": "Modulation-Hunting kommt meist von zu hohem P (Proportional) oder zu niedrigem I (Integral). P erhoeht Reaktion, kann ueberschwingen; I beseitigt langfristigen Fehler, macht aber traege. Tuning: P halbieren, beobachten; stabil → I erhoehen, bleibt Overshoot → P weiter senken. PID-Parameter heissen je nach Hersteller anders (Carel: rPo, rdt, rTo); Handbuch Pflicht. Vorteile: Energieeinsparung, geringere Temperaturschwankung, laengere Verdichterlebensdauer. Ein Meister tuned mit Trace, nicht aus dem Bauch; Reaktion ueber Zeit beobachtet.",
+    "suggestions": [
+      "pid scope nasil",
+      "carel parametre",
+      "overshoot ne kadar"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_remote_monitor",
+    "tr_subject": "uzaktan izleme",
+    "de_subject": "fernueberwachung",
+    "keywords": [
+      "remote",
+      "fern",
+      "monitor",
+      "cloud",
+      "wifi",
+      "modbus",
+      "ekol",
+      "carel boss"
+    ],
+    "tr_questions": [
+      "uzaktan izleme nasil",
+      "modbus gateway",
+      "cloud platform",
+      "alarm sms",
+      "abonelik"
+    ],
+    "de_questions": [
+      "wie funktioniert fernueberwachung",
+      "modbus gateway",
+      "cloud-plattform",
+      "alarm per sms",
+      "abonnement"
+    ],
+    "tr_answer": "Uzaktan izleme: panodaki kontrol kartı (Carel BOSS, Eliwell, Danfoss AK-SM) Modbus RTU/TCP veya Ethernet uzerinden gateway'e baglanir; gateway internete cıkar (WiFi/4G). Cloud platform (BOSS Cloud, Climalife, Eliwell Televis) sıcaklik, basinç, alarm gosterir; SMS/e-posta otomatik. Abonelik tipik €30-€80/ay/sistem; tek seferlik kurulum €500-€1500. Kuyumcu eden faydalar: erken alarm, trend analizi, servis tetik, HACCP raporu. DRC partner üzerinden Carel BOSS kurulumu yapar; musteri kendi VPN uzerinden de calistirabilir. Usta uzaktan izleme kurarken ag güvenligi (VPN, firewall) ve veri gizliliğini gozetir; kurum acik bırakılmamali.",
+    "de_answer": "Fernueberwachung: Schaltschrankregler (Carel BOSS, Eliwell, Danfoss AK-SM) ueber Modbus RTU/TCP oder Ethernet zum Gateway; das Gateway geht ueber WiFi/4G ins Internet. Cloud-Plattformen (BOSS Cloud, Climalife, Eliwell Televis) zeigen Temperatur, Druck, Alarme; SMS/E-Mail automatisch. Abo typisch 30-80 €/Monat/System; Einmalkosten 500-1500 €. Vorteile: Frueher Alarm, Trends, Wartungssignal, HACCP-Berichte. DRC-Partner installiert Carel BOSS; Kunde kann auch eigene VPN nutzen. Ein Meister achtet auf Netzwerksicherheit (VPN, Firewall) und Datenschutz; kein offener Zugang.",
+    "suggestions": [
+      "carel boss kurulum",
+      "abonelik fiyat",
+      "vpn neden gerek"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_seasonal_service",
+    "tr_subject": "sezonluk servis",
+    "de_subject": "saisonservice",
+    "keywords": [
+      "servis",
+      "wartung",
+      "yıllik bakim",
+      "sezon basi",
+      "seasonal",
+      "preventive"
+    ],
+    "tr_questions": [
+      "yıllık servis ne icerir",
+      "yaz öncesi yapılması gereken",
+      "sezon başında kontrol listesi",
+      "preventive vs reactive",
+      "servis süresi"
+    ],
+    "de_questions": [
+      "was umfasst die jahreswartung",
+      "vor sommer was machen",
+      "saisonbeginn-checkliste",
+      "preventive oder reaktive",
+      "service-dauer"
+    ],
+    "tr_answer": "Yıllik servis (Wartung) içerigi: (1) Görsel kontrol (kacak, koruzyon, izolasyon). (2) Kondenser temizligi (toz alma, suyla nazikçe). (3) Filtre dryer durumu, gerekirse degisim. (4) Yag seviyesi + asit testi. (5) Sarj kontrol (subcool, superheat). (6) Akım olcumu her faz. (7) Elektrik panosu kontrol (vidalar, kontaktor). (8) Defrost programı + termostat kalibrasyon. (9) Kapi conta + tuer onaylama. (10) Data logger battery kontrol. Yaz oncesi (mart-mayis): kondenser temizliği özelle, fan motor kontrol, soğutma kapasitesinin yaza hazirlığı. Servis suresi 2-4 saat, kompleks tesislerde 1 gün. Preventive servis bedelidir ama reactive (ariza) servisine kıyasla %30-50 tasarruf.",
+    "de_answer": "Jahreswartung: (1) Sichtkontrolle (Leck, Korrosion, Daemmung). (2) Verfluessigerreinigung (Staub, vorsichtig mit Wasser). (3) Trocknerpruefung, ggf. Wechsel. (4) Oelstand + Saeuretest. (5) Charge-Pruefung (Subcool, Superheat). (6) Stromkontrolle pro Phase. (7) Schaltschrank (Schrauben, Schuetze). (8) Abtauprogramm + Thermostatkalibrierung. (9) Tuerdichtung. (10) Datenlogger-Batterie. Vor Sommer (Maerz-Mai): Verfluessiger besonders sauber, Luefter pruefen, Sommerlast vorbereiten. Dauer 2-4 Stunden, komplexe Anlagen einen Tag. Preventive Wartung ist kostenpflichtig, spart aber 30-50 % gegenueber Notdienst.",
+    "suggestions": [
+      "preventive sözlesme",
+      "kondenser temizlik",
+      "yaz hazirlik liste"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_co2_systems",
+    "tr_subject": "co2 sistemleri",
+    "de_subject": "co2-anlagen",
+    "keywords": [
+      "co2",
+      "r744",
+      "transcritical",
+      "subcritical",
+      "yuksek basinç",
+      "sertifika",
+      "modern"
+    ],
+    "tr_questions": [
+      "co2 sistem neden tercih",
+      "transcritical ne demek",
+      "co2 basinç sınırı",
+      "co2 sertifika",
+      "co2 kacak risk"
+    ],
+    "de_questions": [
+      "warum co2-systeme",
+      "was ist transkritisch",
+      "druckgrenze co2",
+      "co2-zertifikat",
+      "leckage co2"
+    ],
+    "tr_answer": "CO2 (R744) doğal soğutucu, GWP=1, F-Gas regulasyondan etkilenmiyor. Trans-kritik sistem yuksek ambient sıcaklikta CO2 kritik nokta (31 °C / 73 bar) uzerine cıkar; özel kompresor + valf gerek. Sub-kritik (cascade veya çıkıs alanı sınırlı) düşuk sıcaklıkta normal davranır. CO2 sistemler 40-100 bar basinçta calisir; standart manometre ve tüpu yetmez, ozel R744 manometre ve recovery makinasi sart. Sertifika: F-Gas Kategori 1 + CO2 ek modulu (Almanya'da Spezialkurs). Kacak riski: yuksek konsantrasyonda boğulma, koku yok — alarm dedektor sart. DRC Hamburg lokasyonundan CO2 sistemler için partner integratorler ile çalışir, dogrudan satis yapmaz.",
+    "de_answer": "CO2 (R744) ist ein natuerliches Kaeltemittel, GWP=1, nicht von F-Gas-Auflagen betroffen. Transkritisch arbeitet ueber dem kritischen Punkt (31 °C / 73 bar) bei hohen Umgebungstemperaturen; spezielle Verdichter und Ventile noetig. Subkritisch (Kaskade) bei niedrigen Temperaturen normal. CO2-Systeme arbeiten bei 40-100 bar; Standard-Manifold und Flaschen unzureichend, R744-Manifold und Recovery Pflicht. Zertifikat: F-Gas-Kategorie 1 + CO2-Spezialschulung. Leckagerisiko: hohe Konzentration kann ersticken, ohne Geruch — Detektor Pflicht. DRC bietet CO2 nicht direkt an, vermittelt Partnerintegratoren.",
+    "suggestions": [
+      "co2 manifold tipi",
+      "cascade sistem",
+      "r744 dedektor"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_handover",
+    "tr_subject": "sistem teslim",
+    "de_subject": "systemuebergabe",
+    "keywords": [
+      "handover",
+      "uebergabe",
+      "abnahme",
+      "operator",
+      "egitim",
+      "training",
+      "kullanim kilavuz"
+    ],
+    "tr_questions": [
+      "sistem teslim sirasi",
+      "musteri egitimi kac saat",
+      "kullanim kilavuz",
+      "ariza durum kim aranir",
+      "operator yetki"
+    ],
+    "de_questions": [
+      "wie laeuft die uebergabe",
+      "wie viele stunden schulung",
+      "betriebsanleitung",
+      "ansprechpartner stoerung",
+      "operator-rechte"
+    ],
+    "tr_answer": "Sistem teslim: (1) Abnahme protokol imza. (2) Musteri egitimi minimum 1-2 saat: kontrol kart kullanimi, alarm yorumlama, kapi disiplini, basit gunluk kontrol. (3) Kullanim kilavuzu PDF + (gerek varsa) basili kopya teslimi; iletisim listesi (DRC Anil, partner teknisyen, marka servis). (4) Acil durum: musteri once DRC asistan + Anil arayabilir; eger fiziksel mudahale gerek ise Hamburg partner teknisyen 2-4 saatte sahaya. (5) Operator yetki: basit reset, manuel defrost yetkili; sistem parametresi degistirme yasak. Usta teslimden 30 gun sonra arar — 'her sey nasıl?'; bu küçük adim DRC reputation icin altın.",
+    "de_answer": "Systemuebergabe: (1) Abnahmeprotokoll-Unterschrift. (2) Schulung mind. 1-2 Stunden: Regler-Bedienung, Alarminterpretation, Tuerdisziplin, taegliche Kontrolle. (3) Bedienungsanleitung als PDF + ggf. Print, Notfallkontakte (DRC Anil, Partnertechniker, Hersteller). (4) Notfall: erst DRC-Assistent + Anil; bei Bedarf Partnertechniker in 2-4 Stunden vor Ort. (5) Operator: einfacher Reset, manuelle Abtauung; Parameter-Aenderungen verboten. Ein Meister ruft 30 Tage nach Uebergabe an — 'alles okay?'; das ist Gold fuer die DRC-Reputation.",
+    "suggestions": [
+      "egitim sablon",
+      "manuel reset prosedur",
+      "30 gun follow up"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_troubleshoot_flow",
+    "tr_subject": "saha ariza akisi",
+    "de_subject": "feld-stoerungsablauf",
+    "keywords": [
+      "ariza",
+      "stoerung",
+      "sorun cözme",
+      "akış",
+      "triage",
+      "priorite",
+      "onceleme"
+    ],
+    "tr_questions": [
+      "ariza akisi nasil",
+      "triage onceleme",
+      "ilk dakikada ne",
+      "ariza zincir",
+      "customer hangi bilgi"
+    ],
+    "de_questions": [
+      "wie ist der stoerungsablauf",
+      "triage",
+      "was in der ersten minute",
+      "fehlerketten",
+      "welche kundeninfos"
+    ],
+    "tr_answer": "Saha ariza akisi: (1) **Triage (1-2 dk)**: kritik mi (urun risk altinda, soguma yok), beklemeli mi (servis seviyesinde calisma)? (2) **Ilk dakika kontrol listesi**: kompresor calisiyor mu, fan donuyor mu, alarm gosterimi, oda termometresi. (3) **Hizli soru zinciri**: ne zaman basladi, gunluk islem degisti mi, son servis ne zaman, daha onceki ariza tekrari mi? (4) **Onceleme**: kritik = ayni gun saha; orta = 1-2 gun; dusuk = sezon icin planli. (5) **Customer'dan iste**: kontrol kart ekran foto, oda termometre gostergesi, tek dakikalik kompresor sesi videosu, dış pano lambalar. Bu bilgiler + asistanin troubleshooting bank match'i, %60 vakaya uzaktan tani vermek yeterli. Usta ariza akisini script gibi ezbere yapmaz, ama her seferinde ayni 4 adimı izler.",
+    "de_answer": "Feld-Stoerungsablauf: (1) **Triage (1-2 min)**: kritisch (Ware in Gefahr, keine Kuehlung) oder wartbar (Servicelauf)? (2) **Erste-Minute-Check**: laeuft der Verdichter, dreht der Luefter, welcher Alarm, Raumtemperatur? (3) **Schnellfragen**: wann begann es, hat sich der Betrieb geaendert, letzter Service, frueherer Ausfall? (4) **Priorisierung**: kritisch = noch heute vor Ort; mittel = 1-2 Tage; niedrig = saisonal. (5) **Vom Kunden anfordern**: Foto vom Regler, Foto Raumthermometer, 1 Minute Verdichtergeraeusch-Video, Schaltschrank-Statuslampen. Mit diesen Daten + Troubleshooting-Bank-Match koennen 60 % der Faelle ferndiagnostiziert werden. Ein Meister merkt sich die 4 Schritte, ohne sie auswendig zu sagen.",
+    "suggestions": [
+      "triage matrisi",
+      "video foto checklist",
+      "troubleshooting bank match"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_first_aid",
+    "tr_subject": "sahada ilk yardim",
+    "de_subject": "erste hilfe im feld",
+    "keywords": [
+      "ilk yardim",
+      "first aid",
+      "gaz teması",
+      "yanma",
+      "cilt",
+      "goz",
+      "r290 yangin"
+    ],
+    "tr_questions": [
+      "gaz spreyi cilde temas etti ne yapilir",
+      "yanma elektrik temasi",
+      "goze gaz girdi",
+      "r290 yangin sonrasi",
+      "acil sayilarini hatirlatma"
+    ],
+    "de_questions": [
+      "kaeltemittel auf der haut was tun",
+      "verbrennung am stromschlag",
+      "gas im auge",
+      "nach r290-brand",
+      "notfallnummern"
+    ],
+    "tr_answer": "Saha ilk yardim: (1) Soguk akiskan cilde temas = frostbite riski; bol akan ılık (38-40 °C, asla sıcak) su altinda yıkayın 15-20 dakika; kabarcık olursa stop, doktora. (2) Elektrik teması ve elektrikten dolayı yanma = once güç kes, sonra suya tutma; ciddi yanmada hastane. (3) Goze gaz: ılık su ile 15 dakika yıkat, doktora. (4) R290 yangini: yaklasik 30 metre uzak dur, yangin tüpü (CO2 veya kuru toz) ile; su dökmeyin (yağ varsa yayilir). (5) Acil sayilarını her ekipte ezbere: 112 (Almanya genel), Anil mobil. Usta sahaya gitmeden önce ilk yardim canta + R290 dedektor + CO2 yangin tüpü kontrolu yapar.",
+    "de_answer": "Erste Hilfe im Feld: (1) Kaeltemittel auf der Haut → Frostgefahr; mit lauwarmem (38-40 °C, nicht heiss) Wasser 15-20 Minuten spuelen; bei Blasen Arzt. (2) Stromkontakt mit Verbrennung → erst Strom abschalten, dann mit Wasser kuehlen; bei schwerer Verbrennung Notarzt. (3) Gas im Auge → 15 Minuten Wasser, Arzt. (4) R290-Brand → 30 m Abstand, CO2- oder Pulverloescher; kein Wasser (Oel verteilt sich). (5) Notfallnummern auswendig: 112 (Deutschland), Anil-Handy. Ein Meister kontrolliert vor jedem Einsatz Erste-Hilfe-Tasche, R290-Detektor und CO2-Feuerloescher.",
+    "suggestions": [
+      "frostbite belirti",
+      "co2 söndürücü dolum",
+      "ilk yardim canta icerik"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_environmental",
+    "tr_subject": "cevre disiplini",
+    "de_subject": "umweltdisziplin",
+    "keywords": [
+      "cevre",
+      "umwelt",
+      "atik",
+      "entsorgung",
+      "yag atimi",
+      "plastik",
+      "metal",
+      "servis sonrasi"
+    ],
+    "tr_questions": [
+      "servis sonrasi atik nereye",
+      "yag atimi",
+      "plastik kart",
+      "metal hurda",
+      "ambalaj atimi"
+    ],
+    "de_questions": [
+      "was passiert mit dem servicedienst-muell",
+      "oelentsorgung",
+      "kunststoffabfall",
+      "metallschrott",
+      "verpackungsentsorgung"
+    ],
+    "tr_answer": "Cevre disiplini: (1) Eski yag tehlikeli atik; sızıntı sebep olmayan kapakli bir kutuda toplanir, F-Gas sertifikali servis firmasina teslim edilir. (2) Eski filtre, dryer, akumulator metal hurdaya gider (Schrott); icindeki yag dısari dökülmeden. (3) Plastik (kapak, conta, kablo izolasyonu) gri kutu evdeki gibi; PVC kuçük miktar normal. (4) Karton ambalaj geri donusum (mavi). (5) Eski elektronik kart (PCB) WEEE atik akış toplama merkezine. (6) Asla atikları muşteri tesisinde birakma — DRC firmasinin etik standardi. (7) Servis sonrası tek bir torba 'DRC servis atik' etiketli, hurda merkezine taşinir. Usta servis arabasinda her zaman ucuk atik kutusu, plastik torba, yag damacasi tasir.",
+    "de_answer": "Umweltdisziplin: (1) Altoel ist Gefahrgut; in dichter Kanne sammeln und an zertifizierten Entsorger geben. (2) Alte Filter, Trockner, Accumulator → Metallschrott, das Oel bleibt drin. (3) Kunststoff (Deckel, Dichtung, Kabelisolierung) in den Gelben Sack; PVC in Kleinmengen erlaubt. (4) Karton in Papier-Sammlung. (5) Alte Platinen (PCB) → WEEE-Sammelstelle. (6) Niemals Muell beim Kunden lassen — DRC-Standard. (7) Eine 'DRC-Servicemuell'-Beutel zum Entsorger fahren. Ein Meister hat im Auto immer eine Oelkanne, einen Schrott-Beutel und einen Restmuell-Sack.",
+    "suggestions": [
+      "weee toplama merkezi",
+      "oel atim sertifika",
+      "plastik nerede"
+    ],
+    "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
+  },
+  {
+    "id": "master_field_invoice_proof",
+    "tr_subject": "saha hizmeti fatura kanıt",
+    "de_subject": "servicerechnung beleg",
+    "keywords": [
+      "fatura",
+      "servis ucret",
+      "beleg",
+      "saat",
+      "is paket",
+      "work order",
+      "kanit"
+    ],
+    "tr_questions": [
+      "saha servisi ne kadar fatura",
+      "saat sayma",
+      "is paket sablon",
+      "fotograf kanit",
+      "alis hizmet farki"
+    ],
+    "de_questions": [
+      "wie wird der service abgerechnet",
+      "stunden zaehlen",
+      "auftragsschein vorlage",
+      "fotobeleg",
+      "leistungs-detail"
+    ],
+    "tr_answer": "Saha servisi fatura: (1) Saatlik tarife €60-€90 (zorluk + acil etiketi), seyahat €0.45/km veya sabit Hamburg ici €30. (2) Saat sayma 'iste basla' ve 'iste bitir' fotograf veya WhatsApp mesaj zamanı esas; toleransli 15 dakika. (3) Is paket (work order): yapılan iş, kullanılan malzeme, sure, sonuç bulgu, ileride yapılması gereken not. (4) Fotograf kanit: oncesi + sonrasi durum, sayac okumalari, kullanılan parça etiketi. (5) Fatura kalemleri ayrı ayrı: 'Servis isciligi X saat', 'Yedek parca DRC-NNNNN x N', 'Yol €Y', 'Acil zammi (varsa)'. Saydam fatura musteri guvenini artirir; gizli kalem ekleme DRC reputasyonu kotuler. Usta is paket olmadan saha çikartma yapmaz.",
+    "de_answer": "Servicerechnung im Feld: (1) Stundentarif 60-90 € (Schwierigkeit + Eil-Tag), Anfahrt 0,45 €/km oder Pauschale 30 € in Hamburg. (2) Stundenrechnung anhand Anfangs- und Endfoto/Nachricht, 15 min Toleranz. (3) Auftragsschein: durchgefuehrte Arbeiten, verwendetes Material, Dauer, Befund, Empfehlungen. (4) Fotobeleg: vorher/nachher, Ablesungen, Teil-Etiketten. (5) Rechnungsposten getrennt: 'Servicestunden X', 'Ersatzteil DRC-NNNNN x N', 'Anfahrt Y €', 'Eilzuschlag (falls)'. Transparente Rechnung baut Kundenvertrauen; versteckte Posten zerstoeren die Reputation. Ein Meister verlaesst die Anlage nicht ohne Auftragsschein.",
+    "suggestions": [
+      "acil zammi tipik",
+      "work order pdf",
+      "yol ucreti hesaplama"
+    ],
     "source_summary": "DRC MAN soguk oda saha ustasi ileri egitimi"
   }
 ]

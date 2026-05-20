@@ -185,5 +185,1540 @@
       "Net vs brut farki gorsel olarak nasil?"
     ],
     "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_006_quote_validity",
+    "keywords": [
+      "teklif gecerlilik",
+      "valid until",
+      "gultig bis",
+      "teklif suresi",
+      "teklif eskiyince",
+      "expired quote"
+    ],
+    "tr_questions": [
+      "Teklif ne kadar sure gecerli?",
+      "Eski teklifi yenileyebilir miyim?",
+      "Teklif suresi gecince ne olur?",
+      "Teklif uzerinde 'gultig bis' nasil cikar?",
+      "Teklif suresi gecmis musteri ne yapmali?"
+    ],
+    "de_questions": [
+      "Wie lange ist ein Angebot gueltig?",
+      "Kann ich ein altes Angebot erneuern?",
+      "Was passiert nach Ablauf der Angebotsfrist?",
+      "Wie erscheint 'gueltig bis' auf dem Angebot?",
+      "Was tut ein Kunde mit abgelaufenem Angebot?"
+    ],
+    "tr_answer": "Teklifler standart olarak 14 gun gecerlidir. PDF'in alt kosesinde 'Gecerlilik / gultig bis' tarihi otomatik basilir (olusturma + 14 gun). Suresi gecmis teklifi siparise cevirme islemi POS'ta uyari verir; admin onayi olmadan eski fiyatla satis yapilmaz. Musteri suresi gecmis teklifi ileterse cevap: 'Bu teklifin tarihi gecmis, guncel fiyatlar ve stok durumuyla yeni teklif hazirlayim, 5 dakika icinde geri donerim.' Hammadde dalgalanmasi yoksek olan kalemlerde (bakir boru, R32, R290) sure 7 gune kisilabilir; teklif notuna 'kisa gecerlilik' yazilir.",
+    "de_answer": "Angebote sind standardmaessig 14 Tage gueltig. In der Fusszeile des PDFs wird 'gueltig bis' (Erstellung + 14 Tage) automatisch gedruckt. Ein abgelaufenes Angebot in eine Bestellung umzuwandeln loest im POS eine Warnung aus; ohne Admin-Freigabe wird der alte Preis nicht uebernommen. Wenn ein Kunde ein altes Angebot vorlegt: 'Das Angebot ist abgelaufen. Ich erstelle in 5 Minuten ein neues Angebot mit aktuellem Preis und Bestand.' Bei volatilen Positionen (Kupferrohr, R32, R290) kann die Frist auf 7 Tage reduziert werden; Hinweis 'kurze Gueltigkeit' wird in der Angebotsnotiz vermerkt.",
+    "suggestions": [
+      "Teklifi nasil siparise cevirebilirim?",
+      "Kim fiyat kontrolu yapar?",
+      "Hammadde dalgalanmasinda nasil davranilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_007_volume_discount",
+    "keywords": [
+      "miktar indirimi",
+      "toplu siparis",
+      "bulk",
+      "menge rabatt",
+      "volume discount",
+      "iskonto",
+      "indirim onay"
+    ],
+    "tr_questions": [
+      "Toplu siparise indirim verebilir miyim?",
+      "Kac adetten sonra iskonto cikar?",
+      "Bulk indirimi otomatik mi geliyor?",
+      "Musteri 50 adet alirsa ne fiyat?",
+      "Volume discount kim onaylar?"
+    ],
+    "de_questions": [
+      "Gibt es einen Mengenrabatt?",
+      "Ab welcher Stueckzahl gibt es Rabatt?",
+      "Wird der Mengenrabatt automatisch berechnet?",
+      "Welcher Preis gilt bei 50 Stueck?",
+      "Wer genehmigt einen Mengenrabatt?"
+    ],
+    "tr_answer": "DRC otomatik bulk indirim uygulamaz; her toplu talep admin (Anil/Cagatay) tarafindan kalem-bazli degerlendirilir. Yaklasik referans: 10-24 adet %3, 25-49 adet %5, 50-99 adet %8, 100+ adet ozel teklif. Bu rakamlar garanti degil; satis fiyati, marka kar marji, tedarik suresi ve odemeye gore degisir. Cevap: 'X adet icin admin'den ozel teklif istiyorum, 1 saat icinde toplu fiyat gelir.' Musteriye '%5 verdik' demek yerine 'ozel teklif hazirlaniyor' diyerek bekletilir. Discount onayi POS notuna islenir; otomatik flag yoktur.",
+    "de_answer": "DRC vergibt keine automatischen Mengenrabatte; jede Bulk-Anfrage wird positionsweise vom Admin (Anil/Cagatay) bewertet. Richtwerte: 10-24 Stk. ~3 %, 25-49 Stk. ~5 %, 50-99 Stk. ~8 %, ab 100 Stk. Sonderangebot. Diese Werte sind nicht garantiert; Verkaufspreis, Markenmarge, Lieferzeit und Zahlungsweise beeinflussen die Entscheidung. Antwort: 'Fuer X Stueck hole ich ein Sonderangebot vom Admin, innerhalb von 1 Stunde liegt der Bulk-Preis vor.' Anstatt 'Sie bekommen 5 %' zu sagen, wird der Kunde mit 'Sonderangebot wird vorbereitet' vertroestet. Die Genehmigung wird in der POS-Notiz vermerkt; es gibt keine automatische Markierung.",
+    "suggestions": [
+      "Indirim onayini nasil iletirim?",
+      "Tedarik suresi nasil sorgulanir?",
+      "Ozel teklif nasil hazirlanir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_008_payment_terms",
+    "keywords": [
+      "odeme",
+      "vade",
+      "kapida",
+      "havale",
+      "iban",
+      "rechnung",
+      "zahlung",
+      "bezahlung",
+      "vorkasse",
+      "ueberweisung"
+    ],
+    "tr_questions": [
+      "Hangi odeme yontemleri var?",
+      "Vadeli satis yapiyor muyuz?",
+      "IBAN bilgisi nereden alinir?",
+      "Musteri vade istedi, ne yapayim?",
+      "Yeni musteriye odeme kosulu nedir?"
+    ],
+    "de_questions": [
+      "Welche Zahlungsarten gibt es?",
+      "Bieten wir Ratenzahlung an?",
+      "Wo bekomme ich die IBAN?",
+      "Kunde will Zahlungsziel, was tun?",
+      "Welche Zahlungsbedingung gilt fuer Neukunden?"
+    ],
+    "tr_answer": "Odeme yontemleri: (1) Banka havalesi/EFT (varsayilan, IBAN faturada). (2) Kapida nakit teslim (sadece Hamburg yerel, sahısa). (3) PayPal sadece kucuk tutar (< €500) ve mevcut musteride. Vade: Yeni musteriye **vade yok** — pesin/odeme sonrasi sevkiyat. Bilinen musteride 7-14-30 gun vade ancak Anil onayiyla; otomatik vade verilmez. Cevap: 'Standart odeme banka havalesi/EFT, IBAN faturada gorunur. Vade veya ozel kosul icin Anil ile birlikte hazirliyoruz.' Asla 'evet vadeli olur' deme; sadece 'admin ile gorusulecek' de.",
+    "de_answer": "Zahlungsarten: (1) Banküberweisung/SEPA (Standard, IBAN auf der Rechnung). (2) Barzahlung bei Selbstabholung (nur Hamburg, an Privatperson). (3) PayPal nur fuer kleine Betraege (< 500 €) und bei Bestandskunden. Zahlungsziel: Bei Neukunden **kein Ziel** — Vorkasse / Bezahlung vor Versand. Bei bekannten Kunden 7-14-30 Tage nur mit Anil-Freigabe; kein automatisches Zahlungsziel. Antwort: 'Standardzahlung ist SEPA, die IBAN steht auf der Rechnung. Fuer Zahlungsziele oder Sonderkonditionen sprechen wir mit Anil ab.' Niemals 'ja, mit Zahlungsziel' sagen; nur 'wir koordinieren mit dem Admin'.",
+    "suggestions": [
+      "Yeni musteri kaydi nasil acilir?",
+      "Vade onayi nasil dokumante edilir?",
+      "PayPal ne zaman kabul edilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_009_returns_warranty",
+    "keywords": [
+      "iade",
+      "garanti",
+      "geri donus",
+      "rueckgabe",
+      "garantie",
+      "rma",
+      "warranty",
+      "defective",
+      "arizali urun"
+    ],
+    "tr_questions": [
+      "Urun iadesi nasil yapilir?",
+      "Garanti suresi nedir?",
+      "Arizali kompresor iadesinde ne olur?",
+      "Garanti istegi geldiginde ne yaparim?",
+      "RMA kodu nereden alinir?"
+    ],
+    "de_questions": [
+      "Wie funktioniert die Rueckgabe?",
+      "Wie lang ist die Garantie?",
+      "Was passiert bei defektem Verdichter?",
+      "Was tun bei Garantieanfrage?",
+      "Woher kommt die RMA-Nummer?"
+    ],
+    "tr_answer": "Iade kurallari: (1) 14 gun cayma hakki sadece sahis musteride (B2C); B2B'de yok. (2) Acilmamis-orijinal ambalaj sart, fatura zorunlu. (3) Garanti: Kompresor (Tecumseh/Embraco/Danfoss) 12-24 ay marka garantisi; vana/sensor 12 ay; elektronik kart 6 ay. Detay urunun katalogundaki 'warranty' alaninda. Arizali urun iadesinde: musteri fotograf + seri no + ariza videosu gonderir, Ramazan/Cagatay ariza tipini onaylar, marka temsilcisiyle RMA acilir. Cevap: 'Garanti talebinizi acmak icin urun resmi, seri numarasi ve kisa ariza videosu gonderin; 1 is gunu icinde RMA numarasini iletiriz.' Asla 'paranizi geri verecegiz' deme; sureyi netlestir.",
+    "de_answer": "Rueckgaberegeln: (1) 14 Tage Widerrufsrecht nur fuer Privatkunden (B2C); B2B keine Rueckgabe. (2) Originalverpackung unversiegelt, Rechnung erforderlich. (3) Garantie: Verdichter (Tecumseh/Embraco/Danfoss) 12-24 Monate Herstellergarantie; Ventile/Sensoren 12 Monate; Elektronikplatinen 6 Monate. Genaues Detail im Artikelfeld 'warranty'. Bei defektem Artikel: Kunde sendet Foto + Seriennummer + kurzes Fehlervideo, Ramazan/Cagatay bestaetigen den Fehlertyp, RMA wird beim Hersteller eroeffnet. Antwort: 'Fuer den Garantieantrag bitte Artikelfoto, Seriennummer und kurzes Fehlervideo senden; innerhalb von 1 Werktag erhalten Sie die RMA-Nummer.' Nicht 'Geld zurueck' versprechen; den Ablauf benennen.",
+    "suggestions": [
+      "Hangi marka garantisi en uzun?",
+      "Seri numarasi nereden gorulur?",
+      "RMA islemi kac gun surer?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_010_delivery_time",
+    "keywords": [
+      "teslimat",
+      "kargo",
+      "lieferung",
+      "versand",
+      "ne zaman gelir",
+      "ayni gun",
+      "express",
+      "dhl",
+      "ups"
+    ],
+    "tr_questions": [
+      "Siparis ne zaman teslim olur?",
+      "Ayni gun gonderim var mi?",
+      "Hamburg disina kargo kac gun?",
+      "Express seçenek var mi?",
+      "Kargo ucretini nasil hesaplarim?"
+    ],
+    "de_questions": [
+      "Wann wird die Bestellung geliefert?",
+      "Gibt es Versand am gleichen Tag?",
+      "Wie lange dauert der Versand ausserhalb Hamburgs?",
+      "Gibt es eine Express-Option?",
+      "Wie berechne ich die Versandkosten?"
+    ],
+    "tr_answer": "Teslimat: (1) Hamburg ici 14:00'a kadar verilen siparisler **ayni gun** gonderim; saat 17:00'ye kadar elden teslim/kurye. (2) Almanya ici DHL standart 1-2 is gunu; express 1 gun. (3) AB ici (Avusturya, Hollanda, Belçika...) 2-4 is gunu. (4) Turkiye'ye gonderim opsiyonel — fatura + lieferschein + carnet hazirlanir, sure 5-10 is gunu. Kargo ucreti: 30kg altinda €15 sabit Almanya ici, uzeri tartim x €0.45/kg. Cevap: 'Saat X'e gore ayni gun veya yarin yola cikar, takip numarasi e-postaya gider.' Asla 'yarin elinizde olur' garantisi verme; DHL gecikmesi mumkun, 'planlanan' tarih ver.",
+    "de_answer": "Lieferung: (1) Bestellungen bis 14:00 in Hamburg werden **am gleichen Tag** versandt; bis 17:00 Kurier/Selbstabholung moeglich. (2) Deutschland DHL Standard 1-2 Werktage; Express 1 Tag. (3) EU (Oesterreich, Niederlande, Belgien...) 2-4 Werktage. (4) Versand in die Tuerkei optional - Rechnung + Lieferschein + Carnet werden vorbereitet, 5-10 Werktage. Versandkosten: bis 30 kg innerhalb Deutschland pauschal 15 €, darueber Gewicht × 0,45 €/kg. Antwort: 'Je nach Uhrzeit heute oder morgen Versand, Tracking-Nummer kommt per E-Mail.' Nicht 'morgen bei Ihnen' garantieren; nur 'geplant' nennen, da DHL-Verzoegerungen vorkommen.",
+    "suggestions": [
+      "Ihracat icin hangi belgeler gerek?",
+      "Sevkiyat sonrasi ne olur?",
+      "Kargo takibi nasil yapilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_011_alternative_brand",
+    "keywords": [
+      "alternatif urun",
+      "muadil",
+      "marka degisikligi",
+      "ersatz",
+      "alternative",
+      "muadili var mi",
+      "yedek marka"
+    ],
+    "tr_questions": [
+      "Tukenen urun yerine muadil var mi?",
+      "Marka degistirebilir miyim?",
+      "Tecumseh yerine Embraco verebilirim mi?",
+      "Alternatif urun nasil onerilir?",
+      "Muadil onerirken nelere bakilir?"
+    ],
+    "de_questions": [
+      "Gibt es eine Alternative zum ausverkauften Artikel?",
+      "Kann die Marke gewechselt werden?",
+      "Kann Embraco statt Tecumseh angeboten werden?",
+      "Wie schlaegt man Alternativen vor?",
+      "Worauf achtet man bei einer Alternative?"
+    ],
+    "tr_answer": "Muadil onerme kurallari: (1) Sadece **teknik denk** olan oneri (kapasite ±10%, ayni gaz tipi, ayni voltaj/faz, ayni baglanti). (2) Marka prestiji farkliysa musteriye soyle: 'X marka yerine Y marka var, fiyat farkliloi €Z, performans tablosu ekte.' (3) Asla sessizce marka degistirme — fatura uzerinde net marka yazilir. (4) Tecumseh ↔ Embraco genelde degistirilebilir (ayni segment, Brazil-Italy menseili); Danfoss ↔ Bitzer **degistirilemez** (semi-hermetic vs scroll farki). (5) Kontak (DRC ozel) muadiline gecisinde maliyet farki ozel teklif gerektirir. Cevap: 'Bu urun stokta yok ama denk performansta Y var: kapasite X kW, gaz R134a, fiyat €Z. Onaylarsaniz hemen teklif hazirlarim.'",
+    "de_answer": "Regeln fuer Alternativen: (1) Nur **technisch gleichwertige** Vorschlaege (Leistung ±10 %, gleiches Kaeltemittel, gleiche Spannung/Phase, gleicher Anschluss). (2) Bei Markenunterschied dem Kunden klar sagen: 'Statt X gibt es Y, Preisdifferenz Z €, Leistungstabelle anbei.' (3) Niemals stillschweigend die Marke wechseln — Rechnung nennt die Marke. (4) Tecumseh ↔ Embraco meist austauschbar (gleiches Segment, Brasilien-Italien); Danfoss ↔ Bitzer **nicht austauschbar** (semihermetisch vs. scroll). (5) Kontak (DRC-Eigenmarke) → Wechsel braucht ein Sonderangebot wegen Kostenstruktur. Antwort: 'Dieser Artikel ist nicht verfuegbar, aber als Aequivalent gibt es Y: Leistung X kW, R134a, Preis Z €. Mit Ihrer Zustimmung erstelle ich sofort ein Angebot.'",
+    "suggestions": [
+      "Tukenen urun ne zaman gelir?",
+      "Marka karsilastirma tablosu var mi?",
+      "Ozel teklif nasil hazirlanir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_012_customer_registration",
+    "keywords": [
+      "yeni musteri",
+      "kayit",
+      "registration",
+      "neukunde",
+      "anmeldung",
+      "musteri ekleme",
+      "kvk",
+      "kyc"
+    ],
+    "tr_questions": [
+      "Yeni musteri nasil kaydedilir?",
+      "Musteri kayit formu nerede?",
+      "B2B musteri icin ne gerek?",
+      "Vergi numarasi neden gerekiyor?",
+      "Musteri rolu nasil atanir?"
+    ],
+    "de_questions": [
+      "Wie melde ich einen Neukunden an?",
+      "Wo ist das Kundenregistrierungsformular?",
+      "Was braucht ein B2B-Kunde?",
+      "Warum brauchen wir die USt-IdNr.?",
+      "Wie wird die Kundenrolle vergeben?"
+    ],
+    "tr_answer": "Yeni musteri kaydi: (1) Portalda 'Musteri Kaydi' sekmesinden form acilir (login ekraninda Müsteri Kayit). (2) Zorunlu alanlar: Ad Soyad, e-posta, telefon, sirket adi (B2B ise), VAT-ID (AB ici B2B sart). (3) E-posta dogrulamasi otomatik gonderilir; musteri linki tiklayinca aktiflesir. (4) Vergi numarasi ihracat / KDV durumunu belirler — yanlis girilirse fatura yenden kesilir, zaman kaybi. (5) Rol varsayilan 'customer'; staff'a yukseltme sadece Anil tarafindan yapilir, asistan yapamaz. Cevap: 'Site ust kosesindeki 'Musteri Kaydi' butonuna basın, formu doldurun, e-postaniza onay linki gelecek. 1 dakika icinde aktif olursunuz.'",
+    "de_answer": "Neukunden-Anmeldung: (1) Im Portal ueber 'Kundenregistrierung' (auf der Login-Seite) das Formular oeffnen. (2) Pflichtfelder: Name, E-Mail, Telefon, Firmenname (bei B2B), USt-IdNr. (bei EU-B2B Pflicht). (3) E-Mail-Verifizierung wird automatisch versendet; nach Klick auf den Link ist das Konto aktiv. (4) USt-IdNr. entscheidet ueber Export/MwSt. — falsche Angabe fuehrt zu Rechnungsneudruck und Zeitverlust. (5) Rolle ist standardmaessig 'customer'; Hochstufung zu Staff erfolgt nur durch Anil, niemals durch den Assistenten. Antwort: 'Oben rechts auf der Login-Seite 'Kundenregistrierung' druecken, Formular ausfuellen, Bestaetigungs-E-Mail anklicken. Innerhalb 1 Minute ist Ihr Konto aktiv.'",
+    "suggestions": [
+      "VAT-ID girildiginde ne degisir?",
+      "Musteri rolu nedir?",
+      "E-posta dogrulama gelmediyse?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_013_quote_to_order",
+    "keywords": [
+      "teklifi siparise cevir",
+      "convert quote",
+      "angebot zu bestellung",
+      "siparis acma",
+      "quote conversion",
+      "stok dusur"
+    ],
+    "tr_questions": [
+      "Teklifi siparise nasil cevirebilirim?",
+      "Teklif onaylandi, ne yapayim?",
+      "Stok ne zaman dusulur?",
+      "Conversion da fiyat degisir mi?",
+      "Siparis acildiktan sonra ne olur?"
+    ],
+    "de_questions": [
+      "Wie wandle ich ein Angebot in eine Bestellung um?",
+      "Angebot ist freigegeben, was nun?",
+      "Wann wird der Bestand reduziert?",
+      "Aendert sich der Preis bei der Umwandlung?",
+      "Was passiert nach Bestellanlegung?"
+    ],
+    "tr_answer": "Teklif → Siparis: (1) POS sekmesini ac → 'Teklifler' listesinden ilgili teklif uzerine 'Siparise Cevir' tikla. (2) Sistem stokta kalan miktari kontrol eder; eksikse uyari verir ve siparisi acmaz. (3) Teklif fiyati **kilitli** kalir — Stok ekraninda fiyat artmis olsa bile teklifteki fiyat uygulanir (gecerlilik suresi icinde). Bu kural musteri korumasidir. (4) Siparis acildiginda stok hareketi otomatik kayit edilir (movement: out), fatura draft olusur. (5) Iletim notu, teslimat adresi, fatura adresi son kontrol edilir. Cevap: 'POS'tan teklifi acin, 'Siparise Cevir' butonuna basın; stok ve fiyat otomatik kilitlenir, fatura draftina gecer.'",
+    "de_answer": "Angebot → Bestellung: (1) POS-Tab oeffnen → in der Angebotsliste auf 'In Bestellung umwandeln' beim entsprechenden Angebot klicken. (2) Das System prueft den Bestand; bei Fehlbestand erscheint eine Warnung und die Bestellung wird nicht angelegt. (3) Der Angebotspreis ist **gesperrt** — selbst wenn der Lagerpreis inzwischen gestiegen ist, gilt der Angebotspreis (innerhalb der Gueltigkeit). Das ist Kundenschutz. (4) Bei Bestellanlegung wird die Lagerbewegung automatisch erfasst (movement: out), der Rechnungsentwurf erstellt. (5) Liefernotiz, Lieferadresse, Rechnungsadresse abschliessend pruefen. Antwort: 'Im POS das Angebot oeffnen, auf 'In Bestellung umwandeln' druecken; Bestand und Preis werden automatisch gesperrt, Rechnungsentwurf erscheint.'",
+    "suggestions": [
+      "Stok eksikse ne olur?",
+      "Iletim notu nasil yazilir?",
+      "Fatura draftini nasil gonderirim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_014_invoice_address",
+    "keywords": [
+      "fatura adresi",
+      "teslimat adresi",
+      "rechnungsadresse",
+      "lieferadresse",
+      "farkli adres",
+      "ihracat fatura"
+    ],
+    "tr_questions": [
+      "Fatura adresi ile teslimat adresi farkli olabilir mi?",
+      "Ihracat faturasinda adres degisir mi?",
+      "Yurtdisi musteriye fatura nasil cikarilir?",
+      "Sirket faturasi kisisel adrese gelir mi?",
+      "Adres degisikligi sonradan yapilir mi?"
+    ],
+    "de_questions": [
+      "Koennen Rechnungs- und Lieferadresse unterschiedlich sein?",
+      "Aendert sich die Adresse bei Exportrechnung?",
+      "Wie wird die Rechnung fuer Auslandskunden ausgestellt?",
+      "Kann die Firmenrechnung an die Privatadresse gehen?",
+      "Kann die Adresse nachtraeglich geaendert werden?"
+    ],
+    "tr_answer": "Adres mantigi: (1) Musteri profilinde 2 ayri adres tutulur: 'Fatura' ve 'Teslimat'. (2) Ihracatta fatura adresi musterinin yurtdisi tuzel kisilik adresi olmali (VAT-ID dogrulamasiyla), teslimat AB icindeki bir transit/warehouse olabilir (carnet sart). (3) Sirket faturasi kisisel adrese cikmaz — fatura adresi sirket kunye adresi olmak zorunda (vergi mevzuati). (4) Adres degisikligi: siparis 'Hazirlaniyor' asamasindaysa serbest; 'Sevk Edildi' ise sadece teslimat adresi degistirilemez, fatura adresi adminle gecirilir. Cevap: 'Fatura ve teslimat adresinizi profilden ayri ayri ekleyebilirsiniz; ihracat icin VAT-ID gereklidir.'",
+    "de_answer": "Adresslogik: (1) Im Kundenprofil werden 2 Adressen gefuehrt: 'Rechnung' und 'Lieferung'. (2) Bei Export muss die Rechnungsadresse die juristische Auslandsadresse sein (mit USt-IdNr.-Verifikation), die Lieferadresse darf ein Transit-/Warehouse innerhalb der EU sein (Carnet erforderlich). (3) Firmenrechnung an Privatadresse geht nicht — Rechnungsadresse muss der Firmensitz sein (Steuerrecht). (4) Adressaenderung: Bei Status 'In Vorbereitung' frei aenderbar; bei 'Versendet' ist die Lieferadresse fest, die Rechnungsadresse wird nur ueber Admin geaendert. Antwort: 'Rechnungs- und Lieferadresse koennen im Profil separat hinterlegt werden; fuer Export benoetigen wir Ihre USt-IdNr.'",
+    "suggestions": [
+      "Ihracat icin hangi belgeler gerek?",
+      "Adresimi nasil guncellerim?",
+      "Carnet ne ise yarar?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_015_pdf_quote",
+    "keywords": [
+      "pdf teklif",
+      "teklif pdf",
+      "angebot pdf",
+      "indir",
+      "download",
+      "e-posta gonder",
+      "share link"
+    ],
+    "tr_questions": [
+      "Teklifi PDF olarak nasil indiririm?",
+      "Musteriye PDF e-posta ile nasil gonderilir?",
+      "PDF'te logo neden cikmiyor?",
+      "PDF dili musteriye gore degisir mi?",
+      "PDF'i Vercel uzerinden mi acariz?"
+    ],
+    "de_questions": [
+      "Wie lade ich das Angebot als PDF herunter?",
+      "Wie schicke ich das PDF an den Kunden?",
+      "Warum erscheint das Logo im PDF nicht?",
+      "Aendert sich die PDF-Sprache je nach Kunde?",
+      "Wird das PDF ueber Vercel erstellt?"
+    ],
+    "tr_answer": "PDF teklif: (1) Teklif kartinda 'PDF Indir' butonu var; tarayicide hemen indirilir, dosya adi 'Teklif_NR_TARIH.pdf' formatinda. (2) E-posta gondermek icin 'E-postayla Gonder' butonu — musterinin kayitli e-postasina otomatik gider, body Türkçe veya Almanca (musteri dili). (3) Logo cikmazsa: SVG asset eksik veya CSP image-src bloku — F12 console'da hata gorulur, /assets/drc-logo.svg kontrol et. (4) PDF dili musteri profil dili 'tr' veya 'de' ise ona gore basilir; eger profil yoksa varsayilan tr. (5) PDF Vercel serverless function ile uretilir (pdfkit), 1-3 saniye gecikme normal. Cevap: 'Teklif kartinda PDF Indir butonuna basın; alternatif olarak musterinin e-postasina otomatik gonderebilirsiniz.'",
+    "de_answer": "Angebot-PDF: (1) Auf der Angebotskarte gibt es 'PDF herunterladen'; Datei wird sofort heruntergeladen mit dem Namen 'Angebot_NR_DATUM.pdf'. (2) 'Per E-Mail senden' verschickt das PDF an die hinterlegte E-Mail des Kunden, Sprache abhaengig vom Kundenprofil. (3) Wenn das Logo fehlt: SVG-Asset fehlt oder CSP img-src blockiert — in F12-Console pruefbar, /assets/drc-logo.svg testen. (4) Die PDF-Sprache richtet sich nach dem Profil 'tr' oder 'de'; ohne Profil ist Standard 'tr'. (5) Die PDF wird ueber Vercel Serverless (pdfkit) erstellt, 1-3 Sekunden Latenz sind normal. Antwort: 'Klicken Sie auf der Angebotskarte 'PDF herunterladen', oder versenden Sie es direkt per E-Mail an den Kunden.'",
+    "suggestions": [
+      "PDF dilini nasil degistiririm?",
+      "Logo neden cikmiyor?",
+      "Vercel gecikmesi normal mi?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_016_lieferschein",
+    "keywords": [
+      "irsaliye",
+      "lieferschein",
+      "sevk belgesi",
+      "delivery note",
+      "carnet",
+      "ihracat belgesi",
+      "ata"
+    ],
+    "tr_questions": [
+      "Irsaliye nasil hazirlanir?",
+      "Lieferschein zorunlu mu?",
+      "Ihracatta hangi belgeler gerek?",
+      "Carnet ATA ne ise yarar?",
+      "Irsaliye e-fatura'ya bagli mi?"
+    ],
+    "de_questions": [
+      "Wie wird der Lieferschein erstellt?",
+      "Ist der Lieferschein Pflicht?",
+      "Welche Dokumente werden beim Export gebraucht?",
+      "Wozu dient das Carnet ATA?",
+      "Ist der Lieferschein an die E-Rechnung gekoppelt?"
+    ],
+    "tr_answer": "Belge mantigi: (1) Almanya icinde sevkiyatta **Lieferschein** zorunlu degil ama tavsiye edilir; portaldan PDF olarak otomatik uretilir (Siparis kartinda 'Lieferschein Yazdir' butonu). (2) AB ici nakliyatta Lieferschein + Rechnung yeterli. (3) AB disi ihracatta: Handelsrechnung (commercial invoice) + Packing list + EUR.1 Sertifikasi (gerekirse) + Carnet ATA (transit ulkeleri icin). (4) Carnet ATA bir gumruk geçis belgesidir; ozellikle Turkiye-Almanya-Turkiye fuar/sergi malzemesi icin. (5) Almanya'da e-fatura (XRechnung) 2025'ten bu yana B2B'de zorunlu — Lieferschein PDF + XRechnung XML birlikte gonderilir. Cevap: 'Lieferschein siparis kartindan PDF olarak hazirlanir; ihracatta ek olarak Carnet/EUR.1 admin tarafindan eklenir.'",
+    "de_answer": "Dokumentenlogik: (1) Innerhalb Deutschlands ist der **Lieferschein** keine Pflicht, aber empfohlen; im Portal automatisch als PDF (Bestellkarte 'Lieferschein drucken'). (2) Bei EU-Versand reichen Lieferschein + Rechnung. (3) Bei Export ausserhalb der EU: Handelsrechnung + Packliste + EUR.1-Zertifikat (falls noetig) + Carnet ATA (fuer Durchfuhrlaender). (4) Carnet ATA ist ein Zolltransitdokument, vor allem fuer Tuerkei-Deutschland-Tuerkei-Messeware. (5) In Deutschland ist die E-Rechnung (XRechnung) seit 2025 fuer B2B Pflicht — Lieferschein-PDF + XRechnung-XML werden zusammen versendet. Antwort: 'Der Lieferschein wird auf der Bestellkarte als PDF erstellt; beim Export ergaenzt der Admin Carnet/EUR.1.'",
+    "suggestions": [
+      "E-fatura nasil olusturulur?",
+      "EUR.1 ne icin gerek?",
+      "Ihracat siparisi nasil acilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_017_order_status",
+    "keywords": [
+      "siparis durumu",
+      "order status",
+      "bestellstatus",
+      "hazirlaniyor",
+      "sevkedildi",
+      "teslim",
+      "iptal",
+      "draft"
+    ],
+    "tr_questions": [
+      "Siparis hangi durumlardan gecer?",
+      "Sevk Edildi durumu ne anlama gelir?",
+      "Siparis iptal edilebilir mi?",
+      "Draft siparis nedir?",
+      "Teslim Edildi flag'i ne zaman duser?"
+    ],
+    "de_questions": [
+      "Welche Status durchlaeuft eine Bestellung?",
+      "Was bedeutet 'Versendet'?",
+      "Kann eine Bestellung storniert werden?",
+      "Was ist eine Draft-Bestellung?",
+      "Wann wird der Status 'Geliefert' gesetzt?"
+    ],
+    "tr_answer": "Siparis durumlari: (1) **Draft (Taslak)**: olusturuldu, ödeme/stok kilitlenmedi. (2) **Hazirlaniyor**: ödeme alindi/teyit, stok kilitlendi, paketleme baslayacak. (3) **Sevk Edildi**: kargoya verildi, takip numarasi e-postaya gonderildi. (4) **Teslim Edildi**: DHL teyit veya elden teslim onayi; otomatik degil — admin/staff manuel flag. (5) **Iptal**: sadece 'Draft' veya 'Hazirlaniyor' asamasinda; 'Sevk Edildi' ise iade prosedurune girer. Iptal nedeni POS notuna yazilir; stok geri yuklenir. Cevap: 'Siparisinizin durumunu admin panelinden takip edebiliriz; X asamasinda, sonraki adim Y.'",
+    "de_answer": "Bestellstatus: (1) **Draft (Entwurf)**: erstellt, Zahlung/Bestand noch nicht gebunden. (2) **In Vorbereitung**: Zahlung erhalten/bestaetigt, Bestand reserviert, Verpackung beginnt. (3) **Versendet**: an Spediteur uebergeben, Tracking-Nummer per E-Mail. (4) **Geliefert**: DHL-Bestaetigung oder Quittung bei Selbstabholung; nicht automatisch — Admin/Staff setzt das Flag manuell. (5) **Storniert**: nur bei 'Draft' oder 'In Vorbereitung'; bei 'Versendet' Rueckgabeprozess. Stornogrund wird in der POS-Notiz vermerkt; Bestand wird zurueckgesetzt. Antwort: 'Ihre Bestellung steht im Admin-Panel im Status X, der naechste Schritt ist Y.'",
+    "suggestions": [
+      "Stok kilidi nasil cozulur?",
+      "Iptal sonra ne olur?",
+      "Takip numarasini nasil gonderirim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_018_customer_complaint",
+    "keywords": [
+      "sikayet",
+      "memnuniyetsiz",
+      "complaint",
+      "beschwerde",
+      "musteri kizgin",
+      "iade istiyor",
+      "geri donus"
+    ],
+    "tr_questions": [
+      "Musteri sikayet gonderdi, ne yaparim?",
+      "Memnuniyetsiz musteriyi nasil yatistiririm?",
+      "Sikayet nereye iletilir?",
+      "Iade tehdidi olursa cevap nedir?",
+      "Negatif yorum nasil yanitlanir?"
+    ],
+    "de_questions": [
+      "Kunde hat sich beschwert, was tun?",
+      "Wie beruhige ich einen unzufriedenen Kunden?",
+      "Wohin geht die Beschwerde?",
+      "Was sage ich bei Rueckgabeforderung?",
+      "Wie reagiere ich auf negative Rezensionen?"
+    ],
+    "tr_answer": "Sikayet protokolu: (1) **Once dinle, savunma yapma.** Musterinin sikayetini tekrar et: 'Anladiklarima gore X yasandi, Y bekliyordunuz.' (2) Hemen cozum vaadetme; 'Anil ile birlikte degerlendiriyoruz' diyebilirsin. (3) Sikayet portaldaki 'Admin Mesaj Kutusu'na yansir (anlamlik bir kayit icin). (4) Tazminat/iade konusu **sadece admin** karariyla; 'Geri odeme yapilacak' veya '50% indirim' gibi vaad asla kendi basina verilmez. (5) 24 saat icinde geri donus garantilenir. Cevap: 'Yasadiginiz icin uzgunum. Olayi tum detayiyla Anil'a iletiyorum, 24 saat icinde size baglanacagiz. Bu arada ek bilgi/foto isterseniz ekleyebilirsiniz.' Tonu nazik tut, kabahat kendinde olsa bile musteriyi suclama.",
+    "de_answer": "Beschwerdeprotokoll: (1) **Erst zuhoeren, nicht verteidigen.** Die Beschwerde wiederholen: 'So wie ich verstehe, ist X passiert, und Sie haben Y erwartet.' (2) Keine vorschnellen Loesungen versprechen; 'Wir bewerten das mit Anil' ist die richtige Formel. (3) Die Beschwerde landet im 'Admin-Nachrichtenkasten' des Portals (zur Nachverfolgung). (4) Erstattung/Rueckgabe **nur per Admin-Entscheidung**; 'Wir erstatten' oder '50 % Rabatt' werden nie eigenmaechtig versprochen. (5) Rueckmeldung innerhalb 24 Stunden garantiert. Antwort: 'Es tut mir leid, dass das so erlebt wurde. Ich gebe den Fall vollstaendig an Anil weiter, wir melden uns innerhalb 24 Stunden. Sie koennen gerne weitere Details/Fotos ergaenzen.' Ton bleibt freundlich; auch wenn Schuld bei uns liegt, den Kunden nicht angreifen.",
+    "suggestions": [
+      "Admin Mesaj Kutusu nasil gorulur?",
+      "Iade prosedur nasil baslar?",
+      "Memnun edici cevap kalibi nedir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_019_upsell",
+    "keywords": [
+      "upsell",
+      "cross sell",
+      "ek satis",
+      "tamamlayici urun",
+      "yedek parca onerme",
+      "filtre",
+      "kuruyucu"
+    ],
+    "tr_questions": [
+      "Sepete urun onerirken neye dikkat ederim?",
+      "Kompresor satarken ne ek satilir?",
+      "Upsell ne zaman dogru?",
+      "Ek urun musteriyi raghatsiz eder mi?",
+      "Hangi tamamlayici parcalar var?"
+    ],
+    "de_questions": [
+      "Worauf achte ich beim Upselling?",
+      "Was wird beim Verdichterkauf zusaetzlich angeboten?",
+      "Wann ist Upselling sinnvoll?",
+      "Stoert ein Zusatzartikel den Kunden?",
+      "Welche Komplementaerteile gibt es?"
+    ],
+    "tr_answer": "Upsell mantigi: (1) **Sadece teknik mantikli oneri**, satis rakami icin push degil. (2) Kompresor alirken otomatik onerilenler: filtre kuruyucu (XH7/XH9), sight glass, schrader valf, baglanti rakorlari. (3) Soguk oda projesinde: panel + kapi + kilit + lamba + alarm bundle. (4) Gaz alirken: gaz sarj egri, hose set, scale (terazi), nitrojen icin manifold. (5) Onerirken: 'Bu kompresor icin XH7 filtre tavsiye edilir, bira lifa korur ve €25-€40 arasinda, isterseniz teklif kalemine eklenebilir.' Asla 'mecbur bu da almaniz lazim' deme. Musteri reddederse Israr etmeden notunu duser. POS otomatik 'sik birlikte alinan' oneri gosterir.",
+    "de_answer": "Upselling-Logik: (1) **Nur technisch sinnvolle Vorschlaege**, nicht zur Umsatzsteigerung. (2) Beim Verdichterkauf automatisch empfohlen: Trockenfilter (XH7/XH9), Schauglas, Schrader-Ventil, Anschluss-Verschraubungen. (3) Bei Kuehlraumprojekten: Paneel + Tuer + Schloss + Beleuchtung + Alarm-Paket. (4) Beim Kaeltemittelkauf: Schwingmesszubehoer, Schlauch-Set, Waage, Manifold fuer Stickstoff. (5) Formulierung: 'Fuer diesen Verdichter wird ein XH7-Filter empfohlen, er schuetzt die Lebensdauer und kostet 25-40 €, optional auf Angebotsposition aufnehmen.' Niemals 'das muessen Sie auch nehmen' sagen. Bei Ablehnung kein Drueck; POS zeigt automatisch 'oft zusammen gekauft'.",
+    "suggestions": [
+      "Filtre kuruyucu nasil secilir?",
+      "Bundle teklif nasil hazirlanir?",
+      "Sik birlikte alinan urunler nelerdir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_020_gdpr",
+    "keywords": [
+      "gdpr",
+      "kvkk",
+      "kvk",
+      "veri koruma",
+      "datenschutz",
+      "musteri verisi",
+      "iletisim izni"
+    ],
+    "tr_questions": [
+      "Musteri verisini nasil koruyoruz?",
+      "GDPR uyumlu muyuz?",
+      "Iletisim izni nasil aliniyor?",
+      "Veri silme talebine ne yaparim?",
+      "Hangi veriler tutulur?"
+    ],
+    "de_questions": [
+      "Wie schuetzen wir Kundendaten?",
+      "Sind wir DSGVO-konform?",
+      "Wie wird die Kommunikationsfreigabe eingeholt?",
+      "Was tun bei Loeschanfrage?",
+      "Welche Daten werden gespeichert?"
+    ],
+    "tr_answer": "Veri koruma: (1) DRC GDPR (AB) ve KVK (Turkiye) uyumlu calisir. Veriler Supabase (AB-Frankfurt sunucusu) ile tutulur. (2) Kayit anindaki onay kutusu: e-posta ile iletisim + pazarlama izni — opt-in (varsayilan kapali). (3) Saklanan veri: ad, e-posta, telefon, fatura/teslimat adresi, siparis gecmisi, fiyat teklifleri. **Sifre hash'lenmis** (bcrypt), kart bilgisi tutulmaz (PayPal/banka transferi). (4) Silme talebi: musteri 'verilerimi sil' istegi gondererse Anil 30 gun icinde anonimlestirir; fatura kayitlari yasal saklama (10 yil) icin tutulur. (5) Veri ihlali olursa 72 saat icinde BfDI'ye bildirim zorunlu. Cevap: 'Verileriniz AB sunucusunda tutulur, dilediginiz zaman silinme talebi acabilirsiniz.'",
+    "de_answer": "Datenschutz: (1) DRC arbeitet DSGVO (EU) und KVK (Tuerkei) konform. Daten liegen bei Supabase (EU-Frankfurt-Server). (2) Einwilligungs-Checkbox bei der Registrierung: E-Mail-Kontakt + Marketing-Erlaubnis — Opt-in (standardmaessig aus). (3) Gespeicherte Daten: Name, E-Mail, Telefon, Rechnungs-/Lieferadresse, Bestellhistorie, Angebote. **Passwoerter sind gehasht** (bcrypt), keine Kartendaten (PayPal/SEPA). (4) Loeschungsanfrage: Auf Wunsch anonymisiert Anil innerhalb 30 Tagen; Rechnungsbelege bleiben gesetzlich (10 Jahre) erhalten. (5) Datenschutzvorfall ist binnen 72 Stunden an BfDI zu melden. Antwort: 'Ihre Daten liegen auf EU-Servern, eine Loeschanfrage koennen Sie jederzeit stellen.'",
+    "suggestions": [
+      "Silme talebini nasil acarim?",
+      "Sifre nasil sifirlanir?",
+      "Veri ihlali nasil raporlanir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_021_currency",
+    "keywords": [
+      "doviz",
+      "kur",
+      "euro",
+      "tl",
+      "currency",
+      "waehrung",
+      "wechselkurs",
+      "tutar para birimi"
+    ],
+    "tr_questions": [
+      "Fiyatlar hangi parada?",
+      "TL teklif verir miyiz?",
+      "Doviz kuru ne zaman guncellenir?",
+      "Yurtdisi musteriye TL fiyat anlamli mi?",
+      "Kur dalgalanmasi nasil yansir?"
+    ],
+    "de_questions": [
+      "In welcher Waehrung sind die Preise?",
+      "Bieten wir Preise in TRY an?",
+      "Wann wird der Wechselkurs aktualisiert?",
+      "Macht ein TRY-Preis fuer Auslandskunden Sinn?",
+      "Wie wirken sich Kursschwankungen aus?"
+    ],
+    "tr_answer": "Para birimi politikasi: (1) **Tum portal fiyatlari EUR**, varsayilan baseline. (2) TL teklif vermez — Turkiye'ye ihracatta da fatura EUR keser, musteri o gunku Merkez Bankasi efektif satis kuruyla TL'ye cevirir. (3) Kur dalgalanmasi DRC'yi etkilemez; risk musteride. (4) Bazi vintage kalemler (esen, frigotechnik) TL maliyetli ama fiyat EUR'a sabitlenmis ve kar marji EUR uzerinden hesaplanir. (5) Doviz kazanci ekstra bir indirim sebebi degildir; admin onaylamadan kur konusu ile indirim verilmez. Cevap: 'Tum fiyatlar EUR, fatura da EUR olarak duzenlenir. TL'ye cevirmek isterseniz gunluk Merkez Bankasi kurunu kullanabilirsiniz.'",
+    "de_answer": "Waehrungspolitik: (1) **Alle Portalpreise in EUR**, Standard-Baseline. (2) Kein TRY-Angebot — auch bei Export in die Tuerkei wird die Rechnung in EUR ausgestellt, der Kunde rechnet selbst zum tagesaktuellen Zentralbankkurs um. (3) Kursschwankungen treffen DRC nicht; das Risiko liegt beim Kunden. (4) Manche Vintage-Positionen (Esen, Frigotechnik) haben TRY-Kosten, der Preis ist aber EUR-fixiert, die Marge wird in EUR gerechnet. (5) Devisengewinn ist kein Rabattgrund; ohne Admin-Freigabe kein wechselkursbedingter Nachlass. Antwort: 'Alle Preise sind EUR, auch die Rechnung. Fuer TRY-Umrechnung verwenden Sie bitte den tagesaktuellen Zentralbankkurs.'",
+    "suggestions": [
+      "Ihracat KDV nedir?",
+      "Indirim onayini nasil isterim?",
+      "Fatura EUR olarak nasil kesilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_022_warranty_field",
+    "keywords": [
+      "saha garantisi",
+      "marka garanti",
+      "warranty field",
+      "garantie",
+      "garanti suresi",
+      "field warranty"
+    ],
+    "tr_questions": [
+      "Saha garantisi nedir?",
+      "Marka garantisi nasil isler?",
+      "Garanti suresinde montaj hatasi olursa?",
+      "Garanti ile resmi servis farki nedir?",
+      "Garanti baslangic tarihi ne zaman?"
+    ],
+    "de_questions": [
+      "Was ist eine Feldgarantie?",
+      "Wie laeuft die Herstellergarantie?",
+      "Was ist bei Montagefehler in der Garantiezeit?",
+      "Was ist der Unterschied zwischen Garantie und Service?",
+      "Wann beginnt die Garantiezeit?"
+    ],
+    "tr_answer": "Garanti mantigi: (1) **Saha garantisi = DRC sorumluluk** + marka garantisi = Tecumseh/Embraco/Danfoss sorumluluk; ikisi farkli zincir. (2) DRC saha garantisi 6 ay (yanlis paketleme, transit hasari, dogru parca degil); marka garantisi 12-24 ay (uretim hatasi). (3) Garanti baslangic: **fatura tarihi**, montaj tarihi degil — bu cogu zaman karistirilir. (4) Montaj hatasi (yanlis brazing, kotu sarj, yanlis yagi) garanti **disinda**; rapor + foto delili Bitzer/Danfoss tarafindan reddedilir. (5) Resmi servis ucretli — yedek parca + iscilik + sevkiyat. Cevap: 'Garanti baslangici fatura tarihi; montaj hatasi disinda DRC ve marka garantisi devreye girer. Detayli rapor ve fotograflarla RMA aciyoruz.'",
+    "de_answer": "Garantielogik: (1) **Feldgarantie = DRC-Verantwortung** + Herstellergarantie = Tecumseh/Embraco/Danfoss-Verantwortung; zwei getrennte Ketten. (2) DRC-Feldgarantie 6 Monate (Verpackungsfehler, Transitschaden, falsche Teil); Herstellergarantie 12-24 Monate (Produktionsfehler). (3) Garantiebeginn: **Rechnungsdatum**, nicht Montagedatum — wird oft verwechselt. (4) Montagefehler (falsches Loeten, schlechte Befuellung, falsches Oel) ist **ausserhalb** der Garantie; Bericht + Foto werden vom Hersteller abgelehnt. (5) Service ist kostenpflichtig — Ersatzteile + Arbeit + Versand. Antwort: 'Garantiebeginn ist das Rechnungsdatum; bei Montagefehlern greift weder DRC- noch Herstellergarantie. Mit detailliertem Bericht und Fotos eroeffnen wir die RMA.'",
+    "suggestions": [
+      "RMA nasil acilir?",
+      "Resmi servis ucreti nedir?",
+      "Marka garantisi ne kadar?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_023_reservation",
+    "keywords": [
+      "rezervasyon",
+      "ayirma",
+      "reservierung",
+      "reserve",
+      "stok kilitleme",
+      "musteri icin tut"
+    ],
+    "tr_questions": [
+      "Bir urunu musteri icin rezerve edebilir miyim?",
+      "Rezervasyon kac gun gecerli?",
+      "Rezervasyonu nasil iptal ederim?",
+      "Birden fazla rezervasyon olur mu?",
+      "Rezervasyon ucretli mi?"
+    ],
+    "de_questions": [
+      "Kann ich einen Artikel fuer einen Kunden reservieren?",
+      "Wie lange gilt eine Reservierung?",
+      "Wie storniere ich eine Reservierung?",
+      "Sind mehrere Reservierungen moeglich?",
+      "Ist eine Reservierung kostenpflichtig?"
+    ],
+    "tr_answer": "Rezervasyon: (1) Resmi rezervasyon mekanizmasi yok; ama 'Teklif Kaydet' rezervasyon islevi gorur — fiyat ve niyet kilitlenir, **stok kilitlenmez**. (2) Stok kilidi icin **'Hazirlaniyor' siparis acilir**, ödeme alindiginda etkin. (3) Bekleme suresi: teklifte 14 gun gecerli. Bu sure musteri kararsizsa rezervasyon olarak gorulur. (4) Cok hizli giden urunler (kompresor sezon, R290) icin Anil onayi gerekli — yoksa baska musteri stoku alabilir. (5) Birden fazla teklif kaydedilebilir, hepsi parallel — siparise donen kazanir. Cevap: 'Stok kilidi sadece siparis ile aktive olur, ama 14 gunluk teklif kaydedebiliriz — bu sure icinde fiyatiniz sabit, ödeme tamam olunca stok kilitlenir.'",
+    "de_answer": "Reservierung: (1) Es gibt keine formale Reservierungsfunktion; aber 'Angebot speichern' dient als Reservierung — Preis und Absicht sind gesperrt, **der Bestand jedoch nicht**. (2) Fuer eine Bestandssperre muss eine **Bestellung im Status 'In Vorbereitung'** angelegt werden, aktiviert bei Zahlungseingang. (3) Bei Angebot gilt 14 Tage. Wenn der Kunde unentschlossen ist, fungiert das als Reservierung. (4) Bei schnelldrehenden Artikeln (Saisonverdichter, R290) ist Anil-Freigabe noetig — sonst kann der Bestand an einen anderen Kunden gehen. (5) Mehrere Angebote koennen parallel laufen; das zuerst umgewandelte gewinnt. Antwort: 'Bestandsperre erfolgt erst mit Bestellung; ein 14-Tage-Angebot speichert Preis und Absicht, bei Zahlung wird der Bestand verbindlich gebunden.'",
+    "suggestions": [
+      "Teklif suresi nedir?",
+      "Stok kilidi nasil cozulur?",
+      "Hizla satilan urun nedir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_024_bundle_pricing",
+    "keywords": [
+      "paket",
+      "bundle",
+      "set",
+      "kombinasyon",
+      "package deal",
+      "soguk oda paketi",
+      "kompresor seti"
+    ],
+    "tr_questions": [
+      "Bundle teklif nasil yapilir?",
+      "Soguk oda paketi var mi?",
+      "Kompresor + kondenser set fiyati?",
+      "Bundle indirim oranlari?",
+      "Hazir bundle mi ozel mi?"
+    ],
+    "de_questions": [
+      "Wie funktioniert ein Bundle-Angebot?",
+      "Gibt es ein Kuehlraum-Paket?",
+      "Verdichter + Verfluessiger als Set?",
+      "Welche Bundle-Rabatte gibt es?",
+      "Fertige Bundles oder individuell?"
+    ],
+    "tr_answer": "Bundle satis: (1) DRC'de hazir bundle SKU yok; her bundle **musteriye ozel teklif** (POS'ta multi-line). (2) Soguk oda paketi ornek: panel (m²) + kompresor + kondenser + evaporator + kapi + lamba + elektrik panosu. (3) Bundle indirim 'soguk oda paketi' notuyla %5-15 arasinda admin onayiyla; otomatik degil. (4) ColdRoomPro araci hesaplama yaparken otomatik bundle olusturur — fiyatlar canli DB'den gelir (npm run sync:shared-admin-catalog sonrasi). (5) Bundle satildiktan sonra her kalem ayri stok hareketi (out) yapar — bundle silinince hepsi geri yuklenir. Cevap: 'Soguk oda projeniz icin ColdRoomPro'da kapasite hesabi yapalim, otomatik bundle olusur, admin onayiyla %5-15 indirim eklenebilir.'",
+    "de_answer": "Bundle-Verkauf: (1) Bei DRC gibt es keine vorgefertigten Bundle-SKUs; jedes Bundle ist ein **kundenindividuelles Angebot** (POS Multi-Line). (2) Beispiel Kuehlraum-Paket: Paneel (m²) + Verdichter + Verfluessiger + Verdampfer + Tuer + Beleuchtung + Schaltschrank. (3) Bundle-Rabatt mit Notiz 'Kuehlraum-Paket' zwischen 5-15 % mit Admin-Freigabe; nicht automatisch. (4) ColdRoomPro erstellt das Bundle automatisch — Preise live aus der DB (nach 'npm run sync:shared-admin-catalog'). (5) Beim Verkauf wird jede Position eine eigene Bestandsbewegung (out); bei Bundle-Storno wird alles zurueckgesetzt. Antwort: 'Lassen Sie uns die Kapazitaet in ColdRoomPro berechnen, das Bundle wird automatisch erstellt, mit Admin-Freigabe 5-15 % Bundle-Rabatt moeglich.'",
+    "suggestions": [
+      "ColdRoomPro nasil acilir?",
+      "Bundle indirimi kim onaylar?",
+      "Paket teklifte stok nasil dusulur?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_025_emergency_order",
+    "keywords": [
+      "acil",
+      "emergency",
+      "express",
+      "ayni gun",
+      "kritik servis",
+      "soguk oda bozuldu",
+      "urgent"
+    ],
+    "tr_questions": [
+      "Acil siparis nasil gecirilir?",
+      "Soguk oda bozuldu, en hizli ne yapilir?",
+      "Ayni gun teslimat var mi?",
+      "Acil siparise ek ucret var mi?",
+      "Gece/hafta sonu siparisi mumkun mu?"
+    ],
+    "de_questions": [
+      "Wie wird ein Notfallauftrag bearbeitet?",
+      "Kuehlraum kaputt, was geht am schnellsten?",
+      "Gibt es Lieferung am gleichen Tag?",
+      "Gibt es einen Eilzuschlag?",
+      "Sind Wochenend-/Nachtbestellungen moeglich?"
+    ],
+    "tr_answer": "Acil siparis: (1) Hamburg ici saat 14:00'a kadar gelirse **ayni gun teslimat**, sonra ertesi sabah. Acil etiketi POS notuna 'EMERGENCY' yazilir. (2) AB ici Express DHL 1 gun (+€25-€45 ek ucret). (3) Hafta sonu/gece: stoktan elden teslim **sadece Anil veya Cagatay** ile koordineli, ozel ucret. (4) Soguk oda acil cagrilarda once tani: gaz kacagi mi, kompresor mi, kontak mi? Buna gore parça onerilir, asistan ust seviyede 'kritik servis' notunu duser. (5) Anil/Cagatay'in telefonu ozel acil hat olarak verilebilir (musteriye sadece tedarik durumunda). Cevap: 'Acil durumda saat 14'e kadar siparisi 'Hazirlaniyor'a alalim, 17:00'da elden veya DHL Express, ek ucret €25-€45.'",
+    "de_answer": "Notfallauftrag: (1) In Hamburg bis 14:00 → **Lieferung am gleichen Tag**, danach am naechsten Morgen. POS-Notiz 'EMERGENCY' setzen. (2) EU-Express DHL 1 Tag (+25-45 € Zuschlag). (3) Wochenende/Nacht: Selbstabholung **nur in Absprache mit Anil oder Cagatay**, Sonderkosten. (4) Bei Kuehlraum-Notfall zuerst Diagnose: Gaslecks? Verdichter? Schaltung? Danach Teil empfehlen, Assistent setzt 'kritischer Service'-Hinweis. (5) Anil/Cagatay-Handy als Notfallleitung kann genannt werden (nur in echten Versorgungsfaellen). Antwort: 'Im Notfall bis 14:00 als 'In Vorbereitung' anlegen, 17:00 Selbstabholung oder DHL Express, Zuschlag 25-45 €.'",
+    "suggestions": [
+      "Soguk oda tani nasil yapilir?",
+      "Anil'in telefonunu ne zaman veririm?",
+      "DHL Express maliyeti?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_026_lead_qualification",
+    "keywords": [
+      "potansiyel musteri",
+      "lead",
+      "qualification",
+      "fiyat soran",
+      "ciddi mi",
+      "nitelendirme",
+      "satis hunisi"
+    ],
+    "tr_questions": [
+      "Bir potansiyel musteri nasil degerlendirilir?",
+      "Sadece fiyat soran musteri ciddi mi?",
+      "Lead qualification sorulari neler?",
+      "Yeterli bilgisi olmayan musteriye ne yapilir?",
+      "Hangi musteri admin'e iletilmeli?"
+    ],
+    "de_questions": [
+      "Wie qualifiziere ich einen Lead?",
+      "Ist ein reiner Preisanfrager ernst?",
+      "Welche Fragen helfen bei der Qualifizierung?",
+      "Was tun bei unklaren Kundenanfragen?",
+      "Welcher Kunde wird an Admin uebergeben?"
+    ],
+    "tr_answer": "Lead qualification: 4 soru: (1) **Kim?** sirket ismi, sektor (kasap, otel, market, lokanta?). (2) **Ne icin?** soguk oda buyukluk ve tip (taze et, dondurulmuş, sebze)? (3) **Ne zaman?** acil mi, planli proje mi, butce ne zaman? (4) **Butce?** yaklasik ne kadar dusunuyor (bu en zoru, dolayli sor: 'benzer projelerde €X-€Y arası butce kullanilir'). Eğer 3/4 cevap netse → siparis hunisi 'sicak lead', Anil'a yonlendir. Sadece 'fiyat ne kadar' diyene 'Once size dogru oneriyi yapabilmem icin kucuk birkac soru sorayim' formuluyle nitelendir. **Asla sadece fiyat verme** — once musteriyi anla, sonra cozum sun. Cevap: 'Cok memnun olurum. Ufak birkac soru: hangi sektor, nasil bir kapasite, ne zaman montaj dusunuyorsunuz? Sonra size en uygun teklifi hazirlayim.'",
+    "de_answer": "Lead-Qualifizierung: 4 Fragen: (1) **Wer?** Firma, Branche (Metzgerei, Hotel, Markt, Restaurant?). (2) **Wofuer?** Kuehlraumgroesse und -typ (Fleisch, Tiefkuehl, Gemuese)? (3) **Wann?** Notfall, geplantes Projekt, Budget wann verfuegbar? (4) **Budget?** Ungefaehre Vorstellung (am schwersten, indirekt fragen: 'Aehnliche Projekte liegen bei X-Y €'). Wenn 3/4 Antworten klar → 'heisser Lead', an Anil weiterleiten. Bei reinen Preisanfragen mit 'Lassen Sie mich ein paar kurze Fragen stellen' qualifizieren. **Niemals direkt nur den Preis** — zuerst den Kunden verstehen, dann eine Loesung anbieten. Antwort: 'Gerne. Kurze Fragen: welche Branche, welche Kapazitaet, geplanter Montagezeitraum? Dann erstelle ich Ihnen das passende Angebot.'",
+    "suggestions": [
+      "Sicak lead'i admin'e nasil iletirim?",
+      "Butce sorusunu nazikçe nasil sorarim?",
+      "Kasap musteri icin standart soruları?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_027_competitor_mention",
+    "keywords": [
+      "rakip",
+      "competitor",
+      "rakipte daha ucuz",
+      "wettbewerber",
+      "mitbewerber",
+      "konkurrenz",
+      "ulker",
+      "biçer",
+      "soguklab"
+    ],
+    "tr_questions": [
+      "Rakip ismini sorerken ne yapayim?",
+      "Musteri rakipten fiyat aldigini soyledi, ne derim?",
+      "Rakibi kotuleyebilir miyim?",
+      "Soguklab/Ulker fiyatlari karsisinda nasil davranayim?",
+      "Bizim avantajimiz nedir?"
+    ],
+    "de_questions": [
+      "Was tun, wenn Wettbewerber genannt werden?",
+      "Kunde hat Angebot von Wettbewerber, was sage ich?",
+      "Darf ich Wettbewerber schlechtmachen?",
+      "Wie reagiere ich auf Soguklab/Ulker-Preise?",
+      "Was ist unser Vorteil?"
+    ],
+    "tr_answer": "Rakip stratejisi: (1) **Rakibi asla kotuleme.** Ulker, Soguklab, Bicer Frigo gibi isimler gecince once 'Tabii, onlar da iyi firmalar, biz farkli alanlara odakleniyoruz' diye nazik baslang. (2) DRC avantajlari: Hamburg yerel stok (ayni gun gonderi), Almanca + Türkçe tam destek, marka cesitliligi (Tecumseh+Embraco+Danfoss+Bitzer+Kontak), proje arac taban (ColdRoomPro hesaplama), garanti durumunu Almanya icinden takip. (3) Fiyat farki olunca: 'Bizdeki fiyat bu marka icin EUR €X net. Onlardaki teslim suresi ve garanti durumu nasil? Hamburg'dan ayni gun gonderim avantajimizdir.' (4) Asla 'biz daha ucuzuz' iddiasi etme; degeri sat. (5) Eger gercekten %15+ daha pahaliyiz, admin fiyat kontrolu iste. Cevap: 'Onlar da iyi firma, biz hizli teslim ve cok markali stokla farklilasiyoruz. Teslim suresi ve garanti suresini birlikte degerlendirirsek farkli bir resim cikar.'",
+    "de_answer": "Wettbewerberstrategie: (1) **Niemals den Wettbewerber schlechtmachen.** Bei Ulker, Soguklab, Bicer Frigo nett beginnen: 'Klar, das sind gute Firmen, wir fokussieren uns auf andere Bereiche.' (2) DRC-Vorteile: Hamburg-Lager (Versand am gleichen Tag), Deutsch + Tuerkisch Vollservice, Markenvielfalt (Tecumseh+Embraco+Danfoss+Bitzer+Kontak), Projekttools (ColdRoomPro), Garantieabwicklung aus Deutschland. (3) Bei Preisdifferenz: 'Unser Preis fuer diese Marke ist X EUR netto. Wie sind dort Lieferzeit und Garantie? Hamburg-Versand am gleichen Tag ist unser Vorteil.' (4) Niemals 'wir sind billiger' behaupten; den Wert verkaufen. (5) Wenn echt 15 %+ teurer, Admin-Preispruefung anfordern. Antwort: 'Auch gute Firmen, aber wir differenzieren uns mit Schnellversand und Markenvielfalt. Wenn Lieferzeit und Garantie mit eingerechnet werden, sieht es anders aus.'",
+    "suggestions": [
+      "Hangi avantajlari soyleyebilirim?",
+      "Admin fiyat kontrolu nasil istenir?",
+      "Marka cesitliligi nasil avantaj?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_028_after_sales",
+    "keywords": [
+      "satis sonrasi",
+      "after sales",
+      "follow up",
+      "memnuniyet",
+      "nachverkauf",
+      "kundenpflege",
+      "satis sonrasi servis"
+    ],
+    "tr_questions": [
+      "Satistan sonra musteriyle nasil iletisim kurarim?",
+      "Kac gun sonra arayalim?",
+      "Memnuniyet aramasinda ne sorulur?",
+      "Follow-up'i kim yapar?",
+      "Satis sonrasi ek satis yapilir mi?"
+    ],
+    "de_questions": [
+      "Wie kontaktiere ich den Kunden nach dem Verkauf?",
+      "Wann ist der Nachfass-Anruf?",
+      "Was wird beim Zufriedenheitsanruf gefragt?",
+      "Wer macht das Follow-up?",
+      "Gibt es Nachverkauf?"
+    ],
+    "tr_answer": "Satis sonrasi: (1) **3 gun sonra** kisa SMS/e-posta: 'Siparisinizi aldiniz mi? Bir sorun yasaniyorsaniz hemen yazin.' (2) **2 hafta sonra** memnuniyet aramasi (sadece B2B veya buyuk B2C): 'Calismasi nasil? Beklediginiz performansi veriyor mu? Ek bir ihtiyac var mi?' (3) **3 ay sonra** sezon hazirlik notu: 'Yaz/kis donemine girerken servis ihtiyaci olur mu?' (4) Follow-up'i staff yapar, soluk lead'leri Anil takip eder. (5) Follow-up'ta ek satis natural — 'Filtre kuruyucusu degisim donemi yaklasti, sticker aktarayim mi?' DRC'de sezgisel satis musteri ihtiyacindan dogar, push degil. Cevap: 'Siparisinizden 3 gun sonra hızlı kontrol, 2 hafta sonra memnuniyet, 3 ay sonra sezon hazirlik takvimi var.'",
+    "de_answer": "After-Sales: (1) **Nach 3 Tagen** kurze SMS/E-Mail: 'Ist Ihre Bestellung angekommen? Wenn etwas nicht passt, schreiben Sie sofort.' (2) **Nach 2 Wochen** Zufriedenheitsanruf (nur B2B oder grosse B2C): 'Wie laeuft es? Erreicht die Anlage die erwartete Leistung? Brauchen Sie etwas?' (3) **Nach 3 Monaten** Saison-Erinnerung: 'Vor Sommer/Winter Servicebedarf?' (4) Follow-up macht Staff, kalte Leads verfolgt Anil. (5) Nachverkauf ist natuerlich — 'Filtertrockner-Wechselzeit naht, soll ich ein Angebot vorbereiten?' DRC-Verkauf entsteht aus Kundenbedarf, nicht aus Druck. Antwort: '3 Tage nach Versand kurze Pruefung, 2 Wochen Zufriedenheit, 3 Monate Saison-Vorbereitung.'",
+    "suggestions": [
+      "Memnuniyet sorulari nelerdir?",
+      "Soluk lead nasil takip edilir?",
+      "Sezon hazirlik nedir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_029_refrigerant_phase_out",
+    "keywords": [
+      "gaz cıkarma",
+      "phase out",
+      "f-gas",
+      "r404a",
+      "r22",
+      "r134a",
+      "alternatif gaz",
+      "EU regulation"
+    ],
+    "tr_questions": [
+      "R404A hala satilir mi?",
+      "F-Gas duzenlemesi nedir?",
+      "R22 yerine ne onerilir?",
+      "Hangi gazlar yasakli?",
+      "Yeni soguk oda icin gaz secimi?"
+    ],
+    "de_questions": [
+      "Wird R404A noch verkauft?",
+      "Was ist die F-Gas-Verordnung?",
+      "Was ersetzt R22?",
+      "Welche Gase sind verboten?",
+      "Welches Gas fuer neue Kuehlraeume?"
+    ],
+    "tr_answer": "F-Gas (AB 517/2014, 2024 guncellemesi): (1) **R22 yasak** (2010+); sadece servis/ikinci el sistemde minimum miktarda. (2) **R404A GWP 3922** — yeni sistemde 2025+ yasak; servis icin reclaim sart, taze sarj yasak. (3) **R134a GWP 1430** — mobil klima 2017+ yasak, ticari soguturma 2030'a kadar surekli azalma. (4) **Onerilen alternatifler**: R290 (GWP 3, propane, kucuk hermetic), R448A/R449A (R404A retrofit, GWP ~1300), R513A (R134a retrofit), R1234yf (mobil). (5) DRC'de gaz satisi: F-Gas sertifikali kisi ile (musteri kategori 1 sahibi olmali); sertifika no fatura kayidina yazilir. Yeni soguk oda projesinde DRC standart olarak R290 veya R448A onerir. Cevap: 'R404A sadece servis amaçli, yeni proje icin R448A retrofit veya R290 doga dostu seçeneklerimiz var.'",
+    "de_answer": "F-Gas (EU 517/2014, Update 2024): (1) **R22 verboten** (seit 2010); nur Service/Aufrechterhaltung minimal. (2) **R404A GWP 3922** — fuer Neuanlagen ab 2025 verboten; Service nur mit Reclaim, kein Neufuell. (3) **R134a GWP 1430** — Mobilklima seit 2017 verboten, kommerzielle Kuehlung bis 2030 phasen-out. (4) **Empfohlene Alternativen**: R290 (GWP 3, Propan, kleine Hermetik), R448A/R449A (R404A-Retrofit, GWP ~1300), R513A (R134a-Retrofit), R1234yf (mobil). (5) DRC-Gasverkauf nur an F-Gas-zertifizierte Person (Kunde Kategorie 1); Zertifikatsnummer auf der Rechnung. Fuer Neuanlagen empfiehlt DRC standardmaessig R290 oder R448A. Antwort: 'R404A nur fuer Service; fuer Neuanlagen R448A-Retrofit oder R290 als umweltfreundliche Optionen.'",
+    "suggestions": [
+      "R290 ile uygun urunler?",
+      "R448A retrofit nasil yapilir?",
+      "F-Gas sertifikasi nasil alinir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_030_mobile_pos",
+    "keywords": [
+      "mobil pos",
+      "mobile sales",
+      "saha satis",
+      "tablet",
+      "outdoor",
+      "showroom dis",
+      "sahada teklif"
+    ],
+    "tr_questions": [
+      "Tablet/telefondan satis yapabilir miyim?",
+      "Mobil POS arayuzu var mi?",
+      "Sahada teklif hazirlanir mi?",
+      "Internet kesilirse ne olur?",
+      "PWA olarak yuklenir mi?"
+    ],
+    "de_questions": [
+      "Kann ich vom Tablet/Smartphone aus verkaufen?",
+      "Gibt es eine Mobile-POS-Oberflaeche?",
+      "Kann ich vor Ort ein Angebot erstellen?",
+      "Was ist offline?",
+      "Kann ich das Portal als PWA installieren?"
+    ],
+    "tr_answer": "Mobil satis: (1) Portal **PWA (Progressive Web App)** olarak yuklenebilir — login ekraninda 'Uygulamayi Yukle' butonu (Android Chrome/iOS Safari). Ana ekrana eklenir, native gibi acilir. (2) Mobile shortcut: alt navigation barda 'Sales Assistant' butonu (admin/staff icin). (3) Tabletten POS calismasi normal — sepete urun ekle, teklif olustur, e-postaya yolla, PDF indir. (4) **Internet kesintisinde**: SW cache ile statik sayfa acilir ama POST/PUT (siparis/teklif) bloklanir; geri geldiginde manuel tekrar gerek. (5) Saha satisi yapan staff icin: musteriyi profile kaydet, sipari aci, lokasyondan PDF gonder. Cevap: 'Mobil tarayicidan portali ana ekrana ekleyin, login sonrasi POS sekmesi tabletten birebir calisir, PDF/e-posta da hazır.'",
+    "de_answer": "Mobiler Verkauf: (1) Das Portal kann als **PWA (Progressive Web App)** installiert werden — Login-Seite hat 'App installieren' (Android Chrome/iOS Safari). Es erscheint auf dem Startbildschirm wie nativ. (2) Mobile-Shortcut: in der unteren Navigation 'Sales Assistant' (fuer Admin/Staff). (3) Tablet-POS funktioniert normal — Warenkorb, Angebot, E-Mail-Versand, PDF-Download. (4) **Bei Internetausfall**: SW-Cache zeigt statische Seiten, aber POST/PUT (Bestellungen/Angebote) sind blockiert; bei Wiederverbindung erneuter Versuch noetig. (5) Aussendienst: Kunde im Profil anlegen, Bestellung eroeffnen, PDF aus dem Feld senden. Antwort: 'Im mobilen Browser das Portal zum Startbildschirm hinzufuegen; POS funktioniert auch auf Tablet, PDF/E-Mail einsatzbereit.'",
+    "suggestions": [
+      "PWA nasil yuklenir?",
+      "Offline calismayan islemler?",
+      "Sales Assistant mobilden nasil acilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_031_b2c_vs_b2b",
+    "keywords": [
+      "b2c",
+      "b2b",
+      "sahis",
+      "firma",
+      "tuzel kisi",
+      "privatperson",
+      "endverbraucher",
+      "fiyat farki rol"
+    ],
+    "tr_questions": [
+      "B2C ile B2B farki nedir?",
+      "Sahis musterinin fiyati farkli mi?",
+      "Yeni musteri B2C mi B2B mi?",
+      "B2B'de ozel kosul var mi?",
+      "Firma kaydi ne zaman gerekli?"
+    ],
+    "de_questions": [
+      "Was ist der Unterschied B2C/B2B?",
+      "Bekommt eine Privatperson andere Preise?",
+      "Ist der Neukunde B2C oder B2B?",
+      "Gibt es B2B-Sonderkonditionen?",
+      "Wann ist die Firmenregistrierung Pflicht?"
+    ],
+    "tr_answer": "B2C vs B2B: (1) **B2C** (sahıs): KDV dahil brut fiyat, 14 gun cayma hakki, kucuk sipari, kapida teslim secenegi, kredi karti/PayPal yaygin. (2) **B2B** (sirket/serbest meslek): KDV haric net fiyat, AB ici reverse charge, cayma yok, vade imkani (admin onayli), buyuk teklif/proje. (3) Portal hem ikisini destekler — musteri profilinde 'Sirket Adi' alani doluysa B2B olarak isaretlenir, USt-IdNr istenir. (4) Fiyatlar **ayni baseline**; B2B'de admin onayiyla volume discount, B2C'de Almanya icinde fiyatlar gross (€ + %19 KDV). (5) Yeni musteri sahis ise: 'sahis musteri olarak kayit acabiliriz; sirket faturasi isterseniz Sirket adi + USt-IdNr ekleyebilirim.' Cevap: 'B2C ve B2B kayitlari otomatik ayirilir; sirket bilgisi girerseniz net fiyat + USt-IdNr akisi, sahis ise brut fiyat + cayma haakkimiz aktiflesir.'",
+    "de_answer": "B2C vs. B2B: (1) **B2C** (Privatperson): Bruttopreis inkl. MwSt., 14 Tage Widerruf, kleine Bestellung, Bar bei Selbstabholung, Karte/PayPal verbreitet. (2) **B2B** (Firma/Selbstaendig): Nettopreis ohne MwSt., EU Reverse Charge, kein Widerruf, Zahlungsziel (admin-genehmigt), grosse Angebote/Projekte. (3) Portal unterstuetzt beides — bei ausgefuelltem 'Firmenname' wird B2B markiert, USt-IdNr angefordert. (4) Preisbaseline **gleich**; B2B mit Admin-Freigabe Mengenrabatt, B2C in Deutschland brutto (€ + 19 % MwSt.). (5) Bei Neukunden als Privatperson: 'Privatkundenkonto moeglich; fuer Firmenrechnung Firmenname + USt-IdNr eingeben.' Antwort: 'B2C/B2B trennt sich automatisch; mit Firmenangabe gilt Netto + USt-IdNr, ohne gilt Brutto + Widerruf.'",
+    "suggestions": [
+      "VAT-ID girildiginde ne degisir?",
+      "B2B vade onayi nasil isteyim?",
+      "Cayma hakki kac gun?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_032_ce_marking",
+    "keywords": [
+      "ce isareti",
+      "ce marking",
+      "uygunluk",
+      "konformitaet",
+      "ce belgesi",
+      "konformität",
+      "ce zorunlu"
+    ],
+    "tr_questions": [
+      "CE isareti ne ifade eder?",
+      "Sattigimiz urunler CE'li mi?",
+      "Musteri CE belgesi istedi, ne yapayim?",
+      "Konformitätserklärung ne demek?",
+      "CE olmayan urun satilir mi?"
+    ],
+    "de_questions": [
+      "Was bedeutet CE?",
+      "Sind unsere Produkte CE-konform?",
+      "Kunde verlangt CE-Erklaerung, was tun?",
+      "Was ist die Konformitaetserklaerung?",
+      "Verkaufen wir nicht-CE-Produkte?"
+    ],
+    "tr_answer": "CE isareti: (1) AB pazarinda satilan tum makinе/elektrikli urunde **zorunlu** (Maschinenrichtlinie 2006/42/EG, EMV 2014/30/EU, Niederspannung 2014/35/EU). (2) DRC'de sattigimiz Tecumseh, Embraco, Danfoss, Bitzer, Cantaş, Kontak markalari CE'li — uretici Konformitätserklärung verir, DRC dosyalar. (3) Musteri CE belgesi isterse: 'Marka uretim seri numarasini paylasin, 1 is gunu icinde marka temsilcisinden Konformitätserklärung PDF'i iletim. ' Bizzat biz uretmedigimiz icin direkt belge kesimi yapmayiz. (4) DRC ozel marka 'Kontak' urunlerinde CE markaheri elimizdedir; istenince hemen gonderilir. (5) CE olmayan urun **kesinlikle satilmaz** — yasak. Ozellikle aliexpress'ten gelmis urunlerde dikkat. Cevap: 'Sattigimiz tum urunler CE belgelidir; istediğinizde marka uretim no ile Konformitätserklärung'i 1 is gunu icinde iletim.'",
+    "de_answer": "CE-Kennzeichen: (1) Auf dem EU-Markt fuer alle Maschinen/Elektrogeraete **Pflicht** (Maschinenrichtlinie 2006/42/EG, EMV 2014/30/EU, Niederspannung 2014/35/EU). (2) Bei DRC verkaufte Marken Tecumseh, Embraco, Danfoss, Bitzer, Cantaş, Kontak sind CE-konform — Hersteller liefert Konformitaetserklaerung, DRC archiviert. (3) Wenn Kunde CE-Erklaerung anfordert: 'Bitte Hersteller-Seriennummer nennen, innerhalb 1 Werktags reiche ich die Konformitaetserklaerung-PDF.' Wir selbst stellen keine Erklaerung aus, da wir keine Hersteller sind. (4) Bei DRC-Eigenmarke 'Kontak' liegt die CE-Akte bei uns; sofort versendbar. (5) Nicht-CE-Produkte werden **niemals** verkauft — verboten. Vorsicht bei Aliexpress-Importen. Antwort: 'Alle unsere Produkte sind CE-konform; mit Hersteller-Seriennummer liefere ich die Konformitaetserklaerung in 1 Werktag.'",
+    "suggestions": [
+      "Konformitätserklärung nereden gelir?",
+      "Marka temsilcisini nasil bulurum?",
+      "Kontak CE belgesi nerede?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_033_stock_code",
+    "keywords": [
+      "stok kodu",
+      "barkod",
+      "sku",
+      "drc",
+      "stock code",
+      "ürün kodu",
+      "arama kodu"
+    ],
+    "tr_questions": [
+      "Stok kodu nedir, nasil olusur?",
+      "DRC-04813 gibi kodlar ne anlama gelir?",
+      "Stok kodu degistirilebilir mi?",
+      "Iki urun ayni kodu kullanabilir mi?",
+      "Barkod ile stok kodu ayni mi?"
+    ],
+    "de_questions": [
+      "Was ist ein Stock-Code, wie entsteht er?",
+      "Was bedeutet DRC-04813?",
+      "Kann der Stock-Code geaendert werden?",
+      "Koennen zwei Artikel denselben Code haben?",
+      "Sind Barcode und Stock-Code dasselbe?"
+    ],
+    "tr_answer": "Stok kodu: (1) DRC'de **DRC-NNNNN** formati (5 hane sira no). Ornek: DRC-04813. (2) Bu kod benzersizdir — iki urun ayni kodu kullanamaz (DB constraint). (3) Stok kodu degistirilebilir ama gecmis fatura/teklifte eski kod kalir — eski koda referans veriliyorsa otomatik linklenir. (4) **Barkod** ayri bir alan — fiziksel etikette EAN/Code-128 olarak basilir, stok koduyla ayni olabilir veya marka kendi barkodunu kullanabilir. (5) Frigotechnik, Esen gibi tedarikci kodlari ek alanlarda tutulur (supplierCode), arama bunlardan da çalisir. (6) Yeni urun eklerken sistem otomatik bir sonraki numarayi onerir (max+1). Cevap: 'DRC-NNNNN formatinda her urun icin benzersiz; tedarikci kodu ek alanda tutulur, ikisi de arama icin kullanilir.'",
+    "de_answer": "Stock-Code: (1) Format **DRC-NNNNN** (5-stellige Laufnummer). Beispiel: DRC-04813. (2) Eindeutig — zwei Artikel duerfen denselben Code nicht haben (DB-Constraint). (3) Aenderbar; alte Rechnungen/Angebote behalten den frueheren Code, Referenzen werden auto-verlinkt. (4) **Barcode** ist ein separates Feld — auf dem physischen Etikett als EAN/Code-128 gedruckt, kann gleich oder herstellerspezifisch sein. (5) Lieferanten-Codes (Frigotechnik, Esen) liegen in Zusatzfeldern (supplierCode); Suche greift auch darauf. (6) Beim Neuanlegen schlaegt das System die naechste Nummer (max+1) vor. Antwort: 'DRC-NNNNN ist eindeutig je Artikel; Lieferanten-Code im Zusatzfeld, beide sind suchbar.'",
+    "suggestions": [
+      "Tedarikci kodu nasil aranir?",
+      "Yeni urun eklerken kod otomatik mi?",
+      "Barkod etiketi nasil basilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_034_minimum_stock",
+    "keywords": [
+      "minimum stok",
+      "kritik seviye",
+      "mindestbestand",
+      "min stock",
+      "uyari",
+      "kritik stok",
+      "stok alarmi"
+    ],
+    "tr_questions": [
+      "Minimum stok ne ise yarar?",
+      "Kritik seviyeye dustugunde ne olur?",
+      "Min stok degeri nasil belirlenir?",
+      "Otomatik tedarik mi yapilir?",
+      "Kritik stok admin'e bildirilir mi?"
+    ],
+    "de_questions": [
+      "Wozu dient der Mindestbestand?",
+      "Was passiert beim Erreichen des kritischen Werts?",
+      "Wie wird der Mindestwert festgelegt?",
+      "Wird automatisch nachbestellt?",
+      "Wird der Admin bei kritischem Bestand benachrichtigt?"
+    ],
+    "tr_answer": "Minimum stok mantigi: (1) Her urunde 'minStock' alani var (varsayilan 0); bu deger altina dustuyse urun 'kritik' isaretlenir. (2) Admin overview ekraninda 'criticalCount' KPI olarak gosterilir; kritik kalemler kirmizi pill ile gorulur. (3) Otomatik tedarik **yok** — sadece uyari verir; Ramazan (satinalma) manuel siparis acar. (4) Min stok degeri tipik olarak: hizli giden urun = haftalik tuketim x 2 (2 hafta tampon); yavas giden = 0 veya 1. (5) Soguk oda parcalari icin kritik liste: filtre kuruyucu, sight glass, common boyut bakir boru, R290/R134a gaz. (6) Asistan kullaniciya 'X kritik seviyede' diyebilir ama 'yarin gelir' garanti edemez. Cevap: 'Kritik seviyenin altina düşen urunlerde otomatik tedarik degil, admin uyarisi olur; Ramazan tedarikçiye baglanır.'",
+    "de_answer": "Mindestbestandslogik: (1) Jeder Artikel hat 'minStock' (Standard 0); unterhalb wird er 'kritisch' markiert. (2) Im Admin-Overview erscheint 'criticalCount' als KPI; kritische Posten in roter Pille. (3) **Keine** Automatik-Nachbestellung — nur Warnung; Ramazan (Einkauf) bestellt manuell. (4) Mindestwert typisch: schnell drehender Artikel = Wochenverbrauch × 2 (2 Wochen Puffer); langsam = 0 oder 1. (5) Kritische Liste fuer Kuehlraum: Trockenfilter, Schauglas, gangige Kupferrohrgroessen, R290/R134a-Gas. (6) Der Assistent darf sagen 'X im kritischen Bereich', aber kein 'morgen verfuegbar' garantieren. Antwort: 'Unter Mindestbestand keine Auto-Bestellung, aber Admin-Warnung; Ramazan kontaktiert den Lieferanten.'",
+    "suggestions": [
+      "Kritik kalemleri nereden gorurum?",
+      "Tedarik suresi nasil sorulur?",
+      "Min stok degerini nasil duzenlerim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_035_cold_call",
+    "keywords": [
+      "cold call",
+      "sicak arama",
+      "satis arama",
+      "telefonla satis",
+      "kaltakquise",
+      "phone sales"
+    ],
+    "tr_questions": [
+      "Cold call yapilir mi?",
+      "Telefonla yeni musteri kazanma?",
+      "Hangi sektore arama yapariz?",
+      "Telefonda ilk cumle nedir?",
+      "Cold call hangi gun/saat dogru?"
+    ],
+    "de_questions": [
+      "Machen wir Kaltakquise?",
+      "Telefonische Neukundengewinnung?",
+      "Welche Branchen rufen wir an?",
+      "Welcher erste Satz am Telefon?",
+      "Welcher Tag/Uhr fuer Kaltakquise?"
+    ],
+    "tr_answer": "Cold call: DRC tek bir cold call rutini var — yaz/kis sezonu oncesi (mart, ekim) Almanya ici Türk restoran ve kasaplara liste taranir. (1) Telefon: 'Merhaba, Anil DRC Kältetechnik'ten. Hamburg'da soğutma teknigi tedarikçisiyiz. Bu ara önümüzdeki sezonu hazırlik amacli arıyoruz — yaz oncesi soguk oda servisi planliyor musunuz?' (2) Hedef sektörler: kasap, restaurant, market, helal market, otel, dondurma uretici. (3) Doğru zaman: hafta ici 10:00-12:00 ve 14:00-16:00; pazar/cumartesi sabah uygunsuz. (4) Cold call'i sadece staff'lar yapar (Anil/Cagatay) — asistan otomatik aramaz. Asistan sadece kaydedilen lead'lerden randevu hatirlatir. (5) **Asla agresif satis dili** kullanma; merak uyandir, randevu/teklif istegine doner. Cevap: 'Cold call admin tarafindan sezon oncesi yapilir; ben yeni lead kaydini hizlandiribilirim.'",
+    "de_answer": "Kaltakquise: DRC hat eine Routine — vor Sommer/Winter (Maerz, Oktober) werden tuerkische Restaurants und Metzgereien in Deutschland angerufen. (1) Telefon: 'Hallo, Anil von DRC Kältetechnik in Hamburg. Wir sind Kaeltetechnik-Lieferant. Vor der Saison fragen wir an — planen Sie Kuehlraum-Service vor dem Sommer?' (2) Zielsegmente: Metzger, Restaurant, Supermarkt, Halal-Markt, Hotel, Speiseeisherstellung. (3) Beste Zeit: Werktag 10:00-12:00 und 14:00-16:00; Sonntag/Samstag morgens nicht. (4) Kaltakquise macht nur Staff (Anil/Cagatay); der Assistent ruft nicht. Er erinnert nur an gespeicherte Leads. (5) **Niemals aggressive Verkaufssprache**; Neugier wecken, dann Termin/Angebot anfordern. Antwort: 'Kaltakquise erfolgt vom Admin vor der Saison; ich beschleunige neue Lead-Eintraege.'",
+    "suggestions": [
+      "Lead nasil kaydedilir?",
+      "Sezon oncesi takvim ne zaman?",
+      "Yeni musteri formu nerede?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_036_promo_pricing",
+    "keywords": [
+      "promosyon",
+      "kampanya",
+      "indirim haftasi",
+      "rabattaktion",
+      "sonderpreis",
+      "promotion",
+      "yaz indirimi"
+    ],
+    "tr_questions": [
+      "Promosyon fiyatlari nasil aciliyor?",
+      "Kampanya donemleri var mi?",
+      "Indirim flag'i nereden yansiyor?",
+      "Promosyon stogu nasil ayirilir?",
+      "Kampanya bittikten sonra ne olur?"
+    ],
+    "de_questions": [
+      "Wie werden Aktionen freigeschaltet?",
+      "Gibt es Kampagnenzeitraeume?",
+      "Wo erscheint der Rabattmarker?",
+      "Wie wird Aktionsbestand getrennt?",
+      "Was passiert nach der Kampagne?"
+    ],
+    "tr_answer": "Promosyon mantigi: (1) DRC dort donem promosyon yapar: **mart sezon hazirligi (kompresor +%5 indirim)**, **temmuz yaz indirimi (gaz/filtre)**, **eylul okul/restaurant (komplet soguk oda)**, **kasim Black Friday (genel %5-10)**. (2) Kampanya admin tarafindan acilir; urunlerin 'promoPrice' alanina manuel deger yazilir, 'promoExpiresAt' tarih girilir. (3) UI'de promosyonlu urunlerin yaninda 'kampanya' badge cikar. (4) Stok ayri ayrılmaz — tum stok kampanya fiyatlidir. Kampanya bittiginde fiyat orijinaline geri doner; mevcut teklif/siparis var ise kampanya fiyati korunur (musteri korumasi). (5) Yeni musteriye 'promosyon var mi' sorusuna once kayitli kampanyalari kontrol et, sonra cevap: 'Su an X marka %5 kampanyada; baska oneri icin Anil ile gorusebilirim.'",
+    "de_answer": "Aktionslogik: (1) DRC hat 4 Promo-Phasen: **Maerz Saisonvorbereitung (Verdichter -5 %)**, **Juli Sommeraktion (Gas/Filter)**, **September Schule/Restaurant (komplette Kuehlraeume)**, **November Black Friday (allgemein 5-10 %)**. (2) Vom Admin aktiviert; 'promoPrice'-Feld der Artikel wird manuell gesetzt, 'promoExpiresAt'-Datum hinterlegt. (3) UI zeigt 'Aktion'-Badge bei Aktionsartikeln. (4) Bestand wird nicht getrennt — gesamter Bestand zum Aktionspreis. Nach Kampagnenende kehrt der Preis zurueck; bestehende Angebote/Bestellungen behalten den Aktionspreis (Kundenschutz). (5) Auf 'gibt es Aktionen?' zuerst gespeicherte Kampagnen pruefen, dann: 'Aktuell laeuft Marke X mit 5 %; weitere Vorschlaege gerne mit Anil abstimmen.'",
+    "suggestions": [
+      "Hangi marka su an indirimde?",
+      "Kampanya bittikten sonra ne olur?",
+      "Yeni kampanya nasil acilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_037_invoice_correction",
+    "keywords": [
+      "fatura duzeltme",
+      "rechnungskorrektur",
+      "iade faturasi",
+      "stornorechnung",
+      "fatura hatasi",
+      "ek fatura"
+    ],
+    "tr_questions": [
+      "Fatura yanlis cikti, nasil duzeltirim?",
+      "Iade faturasi nasil olusur?",
+      "Tutar fazla geldi, ne yapayim?",
+      "Storno fatura kim acar?",
+      "Fatura tarihinden sonra duzeltme mumkun mu?"
+    ],
+    "de_questions": [
+      "Wie korrigiere ich eine falsche Rechnung?",
+      "Wie wird eine Storno-Rechnung erstellt?",
+      "Zu viel berechnet, was tun?",
+      "Wer eroeffnet die Storno-Rechnung?",
+      "Kann nach Rechnungsdatum korrigiert werden?"
+    ],
+    "tr_answer": "Fatura duzeltme: (1) Almanya'da fatura kesildikten sonra **direk silinemez** — Storno (iptal) fatura ile karşilanir; tutar negatif olan yeni belge. (2) DRC portalda: Admin > Faturalar > 'Storno Olustur' > yeni fatura otomatik (-tutar) cikar. (3) Yanlis tutar varsa once Storno, sonra dogru tutarlı **yeni fatura** kesilir. Iki fatura net etki = dogru tutar. (4) Tarihi degisemez — tum kayitlar sirayli, vergi denetimi icin sart. (5) Musteri 'fatura yanlis' derse: 'Hemen kontrol ediyorum, dogru tutar X ise Y storno + Z yeni fatura gonderiyorum, 30 dakikada e-postanizda olur.' (6) Asistan storno **olusturamaz** — sadece admin yapabilir; asistan musteriye yanlis tutari teyitler ve Anil'a yonlendirir. Cevap: 'Fatura tutarini Anil ile birlikte kontrol edip Storno + yeni fatura olusturuyoruz, 30 dakikada e-postanıza gelir.'",
+    "de_answer": "Rechnungskorrektur: (1) In Deutschland kann eine ausgestellte Rechnung **nicht geloescht** werden — Storno-Rechnung mit negativem Betrag wird ausgestellt. (2) Im DRC-Portal: Admin > Rechnungen > 'Storno erstellen' > neue Rechnung automatisch (-Betrag). (3) Bei falschem Betrag: zuerst Storno, dann **neue Rechnung** mit korrektem Betrag. Nettoeffekt beider Rechnungen = richtiger Betrag. (4) Datum bleibt — alle Belege fortlaufend, Pflicht fuer die Steuerpruefung. (5) Kunde sagt 'Rechnung falsch': 'Ich pruefe sofort; bei Korrektur sende ich Y Storno + Z neue Rechnung innerhalb 30 Minuten an Ihre E-Mail.' (6) Assistent kann **kein Storno** ausstellen — nur Admin; Assistent bestaetigt den falschen Betrag und leitet an Anil weiter. Antwort: 'Wir pruefen den Rechnungsbetrag mit Anil und erstellen Storno + neue Rechnung; in 30 Minuten in Ihrer E-Mail.'",
+    "suggestions": [
+      "Iade faturasi alirim mi?",
+      "Yeni fatura ne zaman geliyor?",
+      "Kim storno olusturabilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_038_anti_bribery",
+    "keywords": [
+      "rusvet",
+      "hediye",
+      "bribery",
+      "kickback",
+      "compliance",
+      "ethik",
+      "etik",
+      "tedarikci hediye"
+    ],
+    "tr_questions": [
+      "Musteriden/tedarikciden hediye kabul edilir mi?",
+      "Rusvet politikamiz nedir?",
+      "Buyuk siparis sonrasi yemek davetine gidilebilir mi?",
+      "Hangi limit asilamaz?",
+      "Etik ihlalini kime bildiririm?"
+    ],
+    "de_questions": [
+      "Geschenke von Kunden/Lieferanten erlaubt?",
+      "Was ist die Antikorruptionspolitik?",
+      "Darf man Essenseinladungen annehmen?",
+      "Welche Grenze gilt?",
+      "Wem melde ich ethische Verstoesse?"
+    ],
+    "tr_answer": "Etik: (1) **Hediye limiti €50** — sembolik teşekkür (cikolata, takvim, sirket dergisi) kabul edilebilir; uzeri reddedilir. (2) Para/altın/elektronik **asla** alinmaz; verene gen el sezonu hediyesi sonrasi iade veya bagis. (3) Yemek daveti business meal pratiği — kabul edilebilir, ama hesap sirasi adil paylasilir; ozellikle ihale donemi ise reddedilir. (4) Kickback (gizli komisyon) **kesinlikle yasak** — anlasma cezasiyla iste cikartma sebebi. (5) Etik ihlali (rüsvet teklifi, hizzli istek, baski) Anil'a direkt bildirilir (e-posta veya yuz yuze); musterinin onunde tepki gosterilmez. Cevap: 'Hediye €50'ye kadar sembolik kabul edilir; rusvet teklifi ihtimalinde sessizce Anil'a bildirim sart.' Bu kural staff dahil herkes icin baglayicidir.",
+    "de_answer": "Ethik: (1) **Geschenkgrenze 50 €** — symbolische Aufmerksamkeit (Schokolade, Kalender, Firmenzeitschrift) erlaubt; darueber abgelehnt. (2) Bargeld/Gold/Elektronik **niemals**; bei Erhalt Rueckgabe oder Spende. (3) Geschaeftsessen ist uebliche Praxis — annehmbar, aber Rechnung fair geteilt; in Ausschreibungsphasen abgelehnt. (4) Kickback (verdeckte Provision) **strengstens verboten** — Kuendigungsgrund plus Strafanzeige. (5) Bei ethischem Verstoss (Bestechungsangebot, Druck, Forderung) direkt an Anil melden (E-Mail oder persoenlich); vor dem Kunden keine Reaktion zeigen. Antwort: 'Geschenke bis 50 € symbolisch ok; bei Bestechungsverdacht still an Anil melden.' Gilt fuer alle Mitarbeiter, auch Staff.",
+    "suggestions": [
+      "Hediye nasil reddedilir nazikçe?",
+      "Anil'a etik ihlal nasil bildirilir?",
+      "Yemek davetinde ne yaparim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_039_seasonal_planning",
+    "keywords": [
+      "sezon",
+      "yaz",
+      "kis",
+      "mevsim",
+      "season",
+      "saison",
+      "talep dalgalanmasi",
+      "satis planlama"
+    ],
+    "tr_questions": [
+      "Yaz/kis sezonu satis farkı?",
+      "Hangi urunler sezonluk?",
+      "Sezon hazirligi ne zaman?",
+      "Hangi sezonda hangi stok artirilir?",
+      "Sezon disi satis nasil?"
+    ],
+    "de_questions": [
+      "Verkaufsunterschied Sommer/Winter?",
+      "Welche Artikel sind saisonal?",
+      "Wann beginnt die Saisonvorbereitung?",
+      "Welcher Bestand in welcher Saison?",
+      "Wie laeuft der Verkauf ausserhalb der Saison?"
+    ],
+    "tr_answer": "Sezon mantigi: (1) **Yaz (mayis-eylul)**: Soguk oda kompresor, R290/R134a gaz, kondenser fan, soguk hava parcalari. Talep %150-200 artar. (2) **Kis (kasım-mart)**: Donuk muhafaza, derin dondurucu, defrost elemanlari, kalorifer/buz tutucusu. (3) **Aralik-ocak**: yeni proje teklifleri (ihale donemi) — soguk oda planlama. (4) Sezon hazirligi 2 ay onceden — Mart icin Ocak'tan stok artirilir; Anil ve Ramazan birlikte tedarik planlamasi yapar. (5) Sezon disi: muhabbet musteri ile baglantı, eğitim videolari paylas, RMA/garanti islerini hizlandir, atik gaz toplamasi. Asistan sezona gore otomatik soneri sunabilir: 'Mart yaklasiyor, kompresor stok hazirligi onerirsem' notu. Cevap: 'Yaz oncesi kompresor + gaz onceliği, kis oncesi donuk muhafaza odaklaniriz; size hangisi yaklasik?'",
+    "de_answer": "Saisonlogik: (1) **Sommer (Mai-Sept)**: Kuehlraum-Verdichter, R290/R134a-Gas, Verfluessigerventilatoren, Kuehltechnik. Nachfrage +150-200 %. (2) **Winter (Nov-Maerz)**: Tiefkuehl, Gefrierfach, Abtau-Elemente, Heizband/Eisschutz. (3) **Dez-Jan**: Neuprojekte (Ausschreibungsphase) — Kuehlraumplanung. (4) Saisonvorbereitung 2 Monate vorher — fuer Maerz Lager im Januar; Anil und Ramazan planen die Beschaffung zusammen. (5) Nebensaison: Kundenpflege, Schulungsvideos, RMA/Garantiebearbeitung, Altgas-Sammlung. Der Assistent kann automatisch saisonale Empfehlungen geben: 'Maerz naht, soll ich Verdichterbestand vorschlagen?' Antwort: 'Vor Sommer Verdichter + Gas, vor Winter Tiefkuehl — welcher Zeitraum interessiert Sie?'",
+    "suggestions": [
+      "Hangi marka yaz icin uygun?",
+      "Tedarik suresi sezon oncesi nedir?",
+      "Sezon disi promo nasil?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_040_assistant_limit",
+    "keywords": [
+      "asistan ne yapabilir",
+      "drcman limits",
+      "asistan yapamaz",
+      "limitations",
+      "ai grenzen",
+      "rol siniri"
+    ],
+    "tr_questions": [
+      "DRC MAN neyi yapabilir, neyi yapamaz?",
+      "Asistan otomatik siparis acabilir mi?",
+      "Fiyat degistirebilir mi?",
+      "Asistana ne sormalıyim?",
+      "Asistanin guvenlik sınirı nedir?"
+    ],
+    "de_questions": [
+      "Was kann DRC MAN, was nicht?",
+      "Kann der Assistent Bestellungen automatisch erstellen?",
+      "Kann er Preise aendern?",
+      "Was sollte ich fragen?",
+      "Wo sind die Sicherheitsgrenzen?"
+    ],
+    "tr_answer": "DRC MAN sinirlari: (1) **Yapabilir**: Urun tavsiyesi, fiyat bilgisi (rolune gore), stok bilgisi, teknik veri, garanti aciklamasi, sevkiyat bilgisi, training Q&A, soguk oda kapasite hesabi (ColdRoomPro yonelendirme), arıza ön-tanı. (2) **Yapamaz**: (a) Otomatik siparis acma — sadece insan acabilir. (b) Fiyat indirme/degistirme — admin yetkisi. (c) Alis fiyatini soyleme — guvenlik kuralı, role gore filtrelenir. (d) Vade/garantii vaadi — sadece admin. (e) Musteri kayit/silme — admin. (f) Stok hareketi (giris-cikis) — staff/admin yapar. (3) Asistan bilmedigi seyi 'Anil'a iletiyorum' diye yonlendirir; **uydurmaz**. (4) Tehlikeli soru (rusvet, hacking, izinsiz erisim) policy ile reddedilir, security event olarak loglanir. (5) Daha cok yapmasi gerekenler icin admin paneli > training pack ekle. Cevap: 'Urun bilgisi, fiyat, stok, teknik soru, soguk oda hesabi — net cevap veririm. Siparis acma/fiyat degistirme insan kullanicidan gelir.'",
+    "de_answer": "DRC MAN-Grenzen: (1) **Kann**: Produktempfehlung, Preisinfo (rollenbasiert), Bestandsabfrage, technische Daten, Garantieerklaerung, Versandinfo, Training Q&A, Kuehlraumkapazitaet (ColdRoomPro-Hinweis), Stoerung-Vorabdiagnose. (2) **Kann nicht**: (a) Bestellungen anlegen — nur Mensch. (b) Preise senken/aendern — Admin-Recht. (c) Einkaufspreis nennen — Sicherheitsregel, rollenbasiert gefiltert. (d) Zahlungsziel/Garantie versprechen — nur Admin. (e) Kunden anlegen/loeschen — Admin. (f) Lagerbewegung (Eingang/Ausgang) — Staff/Admin. (3) Bei Unwissen leitet der Assistent mit 'Ich frage Anil' weiter; **erfindet nichts**. (4) Heikle Fragen (Bestechung, Hacking, unbefugter Zugriff) werden per Policy abgelehnt, als Sicherheitsereignis geloggt. (5) Mehr Wissen kommt ueber Admin > Training-Pack-Erweiterung. Antwort: 'Produktinfo, Preis, Bestand, Technik, Kuehlraum-Berechnung — sofort klar. Bestellanlage/Preisaenderung kommt vom Menschen.'",
+    "suggestions": [
+      "Yeni training pack nasil eklenir?",
+      "Security event nedir?",
+      "Hangi sorulari sorabilirim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_041_payment_overdue",
+    "keywords": [
+      "odeme gecikti",
+      "vade dolmus",
+      "alacak",
+      "overdue",
+      "saumnis",
+      "tahsilat",
+      "mahnung",
+      "ihtar"
+    ],
+    "tr_questions": [
+      "Vade dolmus odeme nasil takip edilir?",
+      "Musteri odemiyor, ne yapilir?",
+      "Mahnung nedir?",
+      "Tahsilat takvimi var mi?",
+      "Avukata gondermek ne zaman?"
+    ],
+    "de_questions": [
+      "Wie wird ueberfaellige Zahlung verfolgt?",
+      "Kunde zahlt nicht, was tun?",
+      "Was ist eine Mahnung?",
+      "Gibt es einen Mahnplan?",
+      "Wann zum Anwalt?"
+    ],
+    "tr_answer": "Vade takibi: (1) Almanya'da 3 mahnung (uyari) sistemi: (a) Vade + 7 gun = 1. mahnung (nazik hatirlatma). (b) +14 gun = 2. mahnung (resmiare hatirlatma + %5 gecikme faizi). (c) +21 gun = 3. mahnung + zorunlu uyari (avukata gönderme tehdidi). (2) DRC portal'da admin 'tahsilat takvimi' gorunumunde alacaklari gorur — kirmizi flag 30+ gun, sarı 14-30 gun. (3) Asistan musteriden gelirse: 'Anil ile birlikte odeme planini gozden geciriyoruz, 24 saat icinde size baglanir.' Asla 'odemediginiz icin sizi keseriz' tonu kullanma. (4) Avukata gonderme 3. mahnung sonrasi sadece Anil onayiyla; tutar > €500 ise mantikli. (5) Kucuk tutarda inkasso (Forderung) ofisi araciligiyla hizla cozulebilir. Cevap: 'Vade dolan odemeyi sessiz hatirlatma + 7 gun, sonra resmi mahnung; Anil her durumu birey degerlendirir.'",
+    "de_answer": "Mahnverfahren: (1) Deutschland kennt 3 Mahnstufen: (a) Faelligkeit + 7 Tage = 1. Mahnung (freundliche Erinnerung). (b) +14 Tage = 2. Mahnung (offiziell + 5 % Verzugszinsen). (c) +21 Tage = 3. Mahnung mit Anwaltsandrohung. (2) Im DRC-Portal sieht Admin im 'Forderungs-Dashboard' alle offenen Posten — rot 30+ Tage, gelb 14-30 Tage. (3) Wenn Kunde fragt: 'Wir pruefen mit Anil einen Zahlungsplan, melden uns innerhalb 24 Stunden.' Niemals 'wir sperren Sie' androhen. (4) Anwaltsuebergabe erst nach 3. Mahnung mit Anil-Freigabe; sinnvoll ab > 500 €. (5) Kleine Forderungen via Inkassobuero schneller loesbar. Antwort: 'Faellige Zahlung still erinnern + 7 Tage, dann offizielle Mahnung; Anil beurteilt jeden Fall individuell.'",
+    "suggestions": [
+      "Mahnung uçreti nedir?",
+      "Inkasso ne ise yarar?",
+      "Vade uzatma nasil olur?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_042_quote_split",
+    "keywords": [
+      "teklif bolme",
+      "kismi siparis",
+      "teilauftrag",
+      "split quote",
+      "partial order",
+      "asamali teslim"
+    ],
+    "tr_questions": [
+      "Bir teklifi parcalara ayirabilir miyim?",
+      "Kismi siparis nasil olur?",
+      "Bir teklifin yarisi gelse?",
+      "Asamali teslim mumkun mu?",
+      "Bir kismi simdi, bir kismi sonra?"
+    ],
+    "de_questions": [
+      "Kann ein Angebot aufgeteilt werden?",
+      "Wie funktioniert ein Teilauftrag?",
+      "Was bei halber Bestellung?",
+      "Stufenweise Lieferung moeglich?",
+      "Erst Teil, dann Rest?"
+    ],
+    "tr_answer": "Teklif bolme: (1) POS'ta bir teklifte coklu kalem var ise, 'Siparise Cevir' alternatifi 'Secili kalemleri siparise cevir' — checkbox ile bazı kalemleri tutar, digerlerini teklifte birakir. (2) Kismi siparisli stok hemen dusulur (cevrilen kalemler icin); kalan teklif acık kalir, 14 gun gecerlilik suresi sayar. (3) Kismi teslimat (1 partide degil) icin: siparisi tek olarak ac, ama 'Sevk Edildi' isaretini parcali yap — ilk parti kargolanir, lieferschein notuna '1/2' yazilir, ikinci parti hazır olunca '2/2'. (4) Bu yaklasim ozellikle proje siparislerinde kullanilir (kompresor + kondenser ayri ayri tedarikte). (5) Musteri 'sadece kompresoru hemen al, gerisi sonra' derse asistan 'Tabii, kompresoru ayri teklif kalemi olarak siparise ceviriyoruz, gerisi 14 gun teklif olarak kalır.' Cevap: 'Teklifi kismi siparise cevirmek mumkun — secili kalemler siparise gider, kalan teklif acık kalir.'",
+    "de_answer": "Angebotsaufteilung: (1) Bei einem Angebot mit mehreren Positionen bietet POS 'Ausgewaehlte Positionen umwandeln' — Checkbox haelt manche Positionen im Angebot, schickt andere als Bestellung. (2) Teilauftrag reduziert sofort den Bestand (nur umgewandelte Positionen); Rest bleibt 14 Tage gueltig im Angebot. (3) Stufenweise Lieferung (nicht eine Sendung): Bestellung als ganzes anlegen, 'Versendet' geteilt setzen — erste Lieferung mit Lieferschein '1/2', zweite '2/2'. (4) Besonders bei Projektbestellungen (Verdichter + Verfluessiger separat). (5) Wenn Kunde sagt 'erst Verdichter, Rest spaeter': 'Gerne, Verdichter als Teilauftrag, Rest bleibt 14 Tage im Angebot.' Antwort: 'Teilauftrag moeglich — ausgewaehlte Positionen werden Bestellung, Rest bleibt offen im Angebot.'",
+    "suggestions": [
+      "Kismi teslimat nasil isaretlenir?",
+      "Lieferschein 1/2 nedir?",
+      "Proje teslimati kac asamada?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_043_pricing_negotiation",
+    "keywords": [
+      "pazarlik",
+      "fiyat pazarligi",
+      "preisverhandlung",
+      "indirim isteyen",
+      "ne kadar verirsin",
+      "son fiyat"
+    ],
+    "tr_questions": [
+      "Musteri 'son fiyat' diye sordu, ne derim?",
+      "Pazarliga nasil yaklasayim?",
+      "Kac TL indirim verebilirim?",
+      "Fiyat pazarliginda ne yapilmaz?",
+      "Musteriye 'hayir' nasil denir?"
+    ],
+    "de_questions": [
+      "Kunde fragt 'letzter Preis', was sage ich?",
+      "Wie verhandele ich?",
+      "Wie viel Rabatt kann ich geben?",
+      "Was wird in der Verhandlung nicht gemacht?",
+      "Wie sage ich 'nein' zum Kunden?"
+    ],
+    "tr_answer": "Pazarlik kuralı: (1) **Asistan fiyat indirme yetkisi yok** — '%5 vereyim' veya 'sizin icin €X olsun' demek bantanetik. Tum indirim Anil onayiyla. (2) 'Son fiyat' sorulduginda cevap: 'Bu kalem icin satis fiyatim X EUR net; volume ve teslimat detaylarini birlikte bakarsak Anil ile son fiyati netlestirebilirim. Hangi adet/sure dusunuyorsunuz?' (3) Pazarligi degere cevir: garanti, ayni gun teslim, marka çesitliligi, faturasi Almanya, support Türkçe+Almanca. (4) **Asla** rakip fiyatla esitle (rakipten dusuk olamayiz mantigi); kendi degerimizi sun. (5) Musteri 'olmazsa baska yere giderim' derse: 'Saygi duyariz, baska tedarikciden daha iyi fiyat bulursaniz aliniz; biz kalite + hizli teslimat odakliyiz, ihtiyac duydugunuzda kapimiz acik.' Asla 'olur olur veririm' deme. Cevap: 'Anil ile birlikte volume + tedarik detayina bakarsak en iyi fiyati netlestiririz.'",
+    "de_answer": "Verhandlungsregel: (1) **Assistent darf nicht senken** — '5 % gewaehre ich' oder 'fuer Sie X €' ist unzulaessig. Alle Rabatte ueber Anil. (2) Bei 'letzter Preis?': 'Fuer diese Position liegt der Nettopreis bei X EUR; mit Volumen und Lieferdetails kann Anil den endgueltigen Preis bestaetigen. Wie viel Stueck/welcher Zeitraum?' (3) Verhandlung in Wert umlenken: Garantie, taggleiche Lieferung, Markenvielfalt, Deutschland-Rechnung, Support TR+DE. (4) **Niemals** Wettbewerberpreis matchen (nicht billiger als andere); eigenen Wert verkaufen. (5) Bei 'sonst gehe ich woanders hin': 'Verstehen wir; wenn Sie woanders besser kaufen, gerne. Wir setzen auf Qualitaet und Schnellversand, bei Bedarf sind wir da.' Niemals 'ja ja, ich gebe nach' sagen. Antwort: 'Mit Anil und Volumen-/Lieferdetails finden wir den besten Preis.'",
+    "suggestions": [
+      "Degeri nasil sunarim?",
+      "Indirim onayini nasil isterim?",
+      "Rakip karsisinda ne yapmam?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_044_referral",
+    "keywords": [
+      "tavsiye",
+      "referans",
+      "referral",
+      "musteri getirme",
+      "weiterempfehlung",
+      "tavsiye edenle",
+      "kupon"
+    ],
+    "tr_questions": [
+      "Tavsiye eden musteriye ne veririz?",
+      "Referans programi var mi?",
+      "Yeni musteri getiren odul aliyor mu?",
+      "Tavsiye kuponu var mi?",
+      "Word-of-mouth nasil destekleniyor?"
+    ],
+    "de_questions": [
+      "Was bekommt ein Kunde fuer Empfehlung?",
+      "Gibt es ein Empfehlungsprogramm?",
+      "Belohnung fuer Neukundenwerbung?",
+      "Gibt es einen Empfehlungs-Gutschein?",
+      "Wie wird Mundpropaganda gefoerdert?"
+    ],
+    "tr_answer": "Referans: (1) DRC'de **resmi referans programi yok**, ama informel olarak: yeni musteri 'X bey/hanim tavsiye etti' derse, ilk siparise %3-5 indirim verilir (admin onayiyla). (2) Tavsiye eden mevcut musteriye 'tesekkur kuponu' (€20-€50) yeni siparisinde indirim olarak yansir. (3) Bu hediye kayıtlari Anil tarafindan POS notuna 'referans: [isim]' yazilarak izlenir. (4) Asistan musteriden 'kim tavsiye etti?' sorusunu nazikçe sorar; cevap gelirse Anil'a not düşer. (5) Sosyal medya / web yorumu referans sayilir — DRC web tanitim sitesinde Google review veya yıldız sistem oncelikli; ozel kupon olabilir. Cevap: 'Tavsiye eden musterimize tesekkur kuponu (€20-€50) eklenir, yeni musteri olarak siz de ilk siparisinizde admin'le birlikte %3-5 hosgeldin avantaji isterse.'",
+    "de_answer": "Empfehlung: (1) DRC hat **kein formelles Empfehlungsprogramm**, aber informell: Bei 'Herr/Frau X hat empfohlen' gibt es 3-5 % Rabatt auf die erste Bestellung (mit Admin-Freigabe). (2) Der empfehlende Bestandskunde erhaelt einen 'Dankeschoen-Gutschein' (20-50 €) auf seine naechste Bestellung. (3) Anil traegt das in der POS-Notiz 'Empfehlung: [Name]' ein. (4) Der Assistent fragt freundlich nach: 'Wer hat empfohlen?' und meldet es an Anil. (5) Social Media / Google-Bewertung zaehlt als Empfehlung — DRC-Praesenz hat Prioritaet auf Google Reviews; Spezialgutschein moeglich. Antwort: 'Dem empfehlenden Kunden gibt es einen Dankeschoen-Gutschein (20-50 €); Sie als Neukunde bekommen mit Admin-Freigabe 3-5 % Willkommensvorteil bei der ersten Bestellung.'",
+    "suggestions": [
+      "Hosgeldin avantaji nasil aktif?",
+      "Google review nasil yapilir?",
+      "Yeni musteriden referans nasil alirim?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_045_remote_assistance",
+    "keywords": [
+      "uzaktan destek",
+      "video call",
+      "whatsapp",
+      "fern-support",
+      "remote help",
+      "destek arama"
+    ],
+    "tr_questions": [
+      "Uzaktan teknik destek var mi?",
+      "WhatsApp video ile yardim aliriz mi?",
+      "Saha teknisyenine bagli misiniz?",
+      "Uzaktan tani nasil yapilir?",
+      "Destek ucretli mi?"
+    ],
+    "de_questions": [
+      "Gibt es Fernsupport?",
+      "Hilfe per WhatsApp-Videocall?",
+      "Habt ihr Servicetechniker im Feld?",
+      "Wie funktioniert Ferndiagnose?",
+      "Ist Support kostenpflichtig?"
+    ],
+    "tr_answer": "Uzaktan destek: (1) DRC kendisi saha teknisyenligi yapmiyor — DRC tedarikci. Saha servis ihtiyacinda Hamburg cevresinde Anil'in onerdigi partner teknisyenler (Frigotechnik, Cantaş) devreye girer. (2) **Uzaktan tani**: WhatsApp video call (Anil/Cagatay) veya portal asistandan ekran goruntusu + arıza videosu paylasimi. Ortalama 15-30 dakikada ön tani verilir. (3) Bu destek **garanti suresindeki musteriye ucretsiz**; garanti disinda saatlik tarife (€60/saat). (4) Tipik akıs: 1) Musteri urun seri no + ariza videosu gonderir; 2) Asistan yontem sunar (troubleshooting bank match); 3) Cözulmezse Anil ile video call randevu; 4) Yedek parca gerekirse hemen kargolanir. (5) Acil servis için Hamburg yerel teknik partneri 2-4 saat icinde yerinde olabilir (ek ucret). Cevap: 'Uzaktan tani WhatsApp video ile mumkun, garanti suresinde ucretsiz; saha icin Hamburg partner teknisyenimizi yonelendiririm.'",
+    "de_answer": "Fernsupport: (1) DRC selbst hat keinen Feldservice — wir sind Lieferant. Bei Servicebedarf im Hamburg-Umfeld vermittelt Anil Partnertechniker (Frigotechnik, Cantaş). (2) **Ferndiagnose**: WhatsApp-Videocall mit Anil/Cagatay oder Bildschirmfoto + Fehlervideo via Portal-Assistent. Vorabdiagnose meist in 15-30 Minuten. (3) Dieser Support ist **innerhalb der Garantie kostenlos**; ausserhalb stundensatz (60 €/Stunde). (4) Typischer Ablauf: 1) Kunde sendet Hersteller-Seriennummer + Fehlervideo; 2) Assistent schlaegt Loesung vor (Troubleshooting-Bank-Match); 3) Falls noetig Video-Termin mit Anil; 4) Ersatzteil sofort versandbereit. (5) Notfall vor Ort: Hamburg-Partnertechniker innerhalb 2-4 Stunden moeglich (Zuschlag). Antwort: 'Ferndiagnose per WhatsApp-Video, innerhalb Garantie kostenlos; Feldservice vermittele ich an Hamburg-Partner.'",
+    "suggestions": [
+      "Hangi partner teknisyenler var?",
+      "Garanti disi servis ucreti?",
+      "Acil saha cagrisi nasil acilir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_046_quote_pdf_branding",
+    "keywords": [
+      "teklif branding",
+      "logo",
+      "iletisim",
+      "letterhead",
+      "imza",
+      "fußzeile",
+      "footer",
+      "antetli"
+    ],
+    "tr_questions": [
+      "Teklif PDF'inde DRC logosu var mi?",
+      "Iletisim bilgileri nereye yazilir?",
+      "Imza alani var mi?",
+      "Footer'da neler yazılır?",
+      "Custom branding yapilır mi?"
+    ],
+    "de_questions": [
+      "Steht das DRC-Logo im Angebots-PDF?",
+      "Wo stehen die Kontaktdaten?",
+      "Gibt es ein Unterschriftsfeld?",
+      "Was steht in der Fusszeile?",
+      "Ist Custom Branding moeglich?"
+    ],
+    "tr_answer": "PDF branding: (1) Her teklif PDF'i ust sol kosede DRC logosu, ust sag kosede teklif no + tarih + 'gueltig bis' bilgisi. (2) Header altinda DRC iletisim bloku: 'D-R-C Kältetechnik GmbH, Hamm & Hamburg, info@drckaltetechnik.com, +49 ...' (3) Tablo gövdesinde kalem listesi: stok kodu, marka, ad, adet, birim fiyat, ara toplam, KDV, brut toplam. (4) Footer (altsayfa): adres, IBAN/BIC, USt-IdNr, Handelsregister numarasi, web URL, sayfa numarasi. (5) Imza alani: teklif sayfasinin altinda 'Hazirlayan: [Staff adi]' + tarih; musteri imzasi PDF'te yok, ayri belge ile alinir. (6) Custom branding (musteri logosu eklenmesi vb.) yok — DRC standart sablonu kullaniliyor. Cevap: 'PDF'te DRC logo, iletisim, IBAN, USt-IdNr otomatik basilir; teklif uretici (staff) adi alt kosede gorulur.'",
+    "de_answer": "PDF-Branding: (1) Jedes Angebot-PDF hat oben links das DRC-Logo, oben rechts Angebotsnummer + Datum + 'gueltig bis'. (2) Unter dem Header der DRC-Kontaktblock: 'D-R-C Kältetechnik GmbH, Hamm & Hamburg, info@drckaltetechnik.com, +49 ...'. (3) Im Tabellenkoerper Positionsliste: Stock-Code, Marke, Bezeichnung, Menge, Einzelpreis, Zwischensumme, MwSt., Bruttosumme. (4) Fusszeile: Adresse, IBAN/BIC, USt-IdNr., HR-Nummer, Web-URL, Seitenzahl. (5) Unterschriftsfeld: unten 'Erstellt von: [Staff-Name]' + Datum; Kundenunterschrift kommt separat. (6) Custom-Branding (z. B. Kundenlogo) nicht moeglich — DRC-Standard-Template. Antwort: 'Im PDF erscheinen Logo, Kontakt, IBAN, USt-IdNr automatisch; der Bearbeiter (Staff) steht unten.'",
+    "suggestions": [
+      "Footer'da hangi kayitlar var?",
+      "USt-IdNr nereden alinir?",
+      "Custom branding mumkun mu?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_047_partial_payment",
+    "keywords": [
+      "pesinat",
+      "kapora",
+      "anzahlung",
+      "vorauszahlung",
+      "kismi odeme",
+      "down payment",
+      "yarisi simdi"
+    ],
+    "tr_questions": [
+      "Pesinat alinabilir mi?",
+      "Kismi odeme kabul edilir mi?",
+      "Buyuk siparise yarisi pesin verilir mi?",
+      "Kapora oranı nedir?",
+      "Anzahlung nasil yansiyor?"
+    ],
+    "de_questions": [
+      "Akzeptieren wir Anzahlung?",
+      "Wird Teilzahlung akzeptiert?",
+      "Halbe Anzahlung bei grossen Auftragen?",
+      "Wie hoch ist die Anzahlung?",
+      "Wie erscheint die Anzahlung?"
+    ],
+    "tr_answer": "Pesinat (Anzahlung): (1) Buyuk siparislerde (> €5.000) DRC pesinat **ister**, %30 standart. (2) Soguk oda komple projesi (> €10.000) icin %50 pesinat, sevkiyatta kalan %50. (3) Yeni musteride (B2C) sahis siparisinde **tam pesin** istenir, sonra sevk. (4) Anzahlung PayPal/SEPA ile alinir, fatura draftina 'Anzahlung €X erhalten, Restbetrag €Y bei Lieferung'. (5) Anzahlung sonrasi musteri vazgecerse iade kosulu sözlesmede belirtilir; tipik olarak %10 iade kesintisi (planning + tedarik maliyeti). (6) Asistan musteriye 'pesinat var mi?' sorusuna direkt 'evet/hayir' cevabi yerine 'Bu siparis tutarinda Anzahlung gerekebilir, Anil ile son detayi netlestiririz' demeli. Cevap: 'Buyuk siparis veya proje icin %30-50 anzahlung tipik; her durum Anil ile bireysel hazirlanir.'",
+    "de_answer": "Anzahlung: (1) Bei grossen Auftraegen (> 5.000 €) **erforderlich**, Standard 30 %. (2) Kuehlraum-Komplettprojekt (> 10.000 €): 50 % Anzahlung, Rest bei Lieferung. (3) Bei Neukunden (B2C-Privat) **Vollvorkasse**, dann Versand. (4) Anzahlung via PayPal/SEPA, Rechnungsentwurf 'Anzahlung X € erhalten, Restbetrag Y € bei Lieferung'. (5) Bei Stornierung nach Anzahlung Rueckerstattungsklausel im Vertrag; typisch 10 % Stornogebuehr (Planung + Beschaffung). (6) Auf 'gibt es eine Anzahlung?' antwortet der Assistent nicht direkt 'ja/nein', sondern 'Bei dieser Auftragshoehe kann Anzahlung erforderlich sein, Anil bestaetigt die Details.' Antwort: 'Grossauftrag oder Projekt: 30-50 % Anzahlung typisch; Anil bereitet individuell vor.'",
+    "suggestions": [
+      "Iptal sonrasi iade nasil olur?",
+      "Anzahlung makbuzu nasil duzenlenir?",
+      "Restbetrag ne zaman alinir?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_048_assistant_language",
+    "keywords": [
+      "asistan dil",
+      "tr de",
+      "language switch",
+      "sprachumschaltung",
+      "dil secimi",
+      "iki dilli"
+    ],
+    "tr_questions": [
+      "Asistan hangi dillerde konusur?",
+      "Almanca soru sorabilir miyim?",
+      "Asistan dilini nasil degistiririm?",
+      "Cevap dili kim belirler?",
+      "TR/DE arada gecis mumkun mu?"
+    ],
+    "de_questions": [
+      "In welchen Sprachen spricht der Assistent?",
+      "Kann ich auf Deutsch fragen?",
+      "Wie wechsele ich die Assistentensprache?",
+      "Wer bestimmt die Antwortsprache?",
+      "Wechsel TR/DE moeglich?"
+    ],
+    "tr_answer": "Asistan dili: (1) DRC MAN TR ve DE iki dili tam destekler. Her training kayitinda hem 'tr_answer' hem 'de_answer' alani vardir. (2) Dil secimi: ust right corner UI dropdown (TR/DE); sectiginiz dilde cevap gelir. (3) Eger soruyu farklı bir dilde sorarsan iz, sistem dile gore yanitlamayi tercih eder ama egitim datadaki dil oncelik. (4) Karisik soru ('combined ozellikler')'te asistan ek bir not der: 'Cevabi TR olarak verdim, gerekirse DE'ye cevirebilirim'. (5) Bazi teknik terimler (refrigerant kodu R290 vs Propan) iki dilde de ayni — degistirmez. (6) Ingilizce ile sorulursa cevap eldeki TR/DE dilinde verilir, Ingilizce destek henuz yok. Cevap: 'TR ve DE tam destek; sag ust dropdown ile gecis yap, soru hangi dilde ise o dilde cevap verim.'",
+    "de_answer": "Assistent-Sprache: (1) DRC MAN unterstuetzt TR und DE vollstaendig. Jedes Training-Element hat 'tr_answer' und 'de_answer'. (2) Sprachwahl: oben rechts UI-Dropdown (TR/DE); Antwort in gewaehlter Sprache. (3) Bei Frage in anderer Sprache versucht das System anzupassen, aber Trainingsdaten haben Vorrang. (4) Bei gemischter Frage Hinweis: 'Antwort auf TR; bei Bedarf uebersetze ich auf DE'. (5) Manche Fachbegriffe (Kaeltemittel R290 vs. Propan) sind in beiden Sprachen gleich. (6) Englische Fragen werden in der verfuegbaren TR/DE-Sprache beantwortet, English-Support fehlt. Antwort: 'TR und DE vollstaendig; oben rechts Dropdown wechseln, Antwort in der Frage-Sprache.'",
+    "suggestions": [
+      "Ingilizce destek gelecek mi?",
+      "Hangi terimler iki dilde ayni?",
+      "Soru tipik karisik ise?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_049_share_quote_link",
+    "keywords": [
+      "teklif paylasim",
+      "share link",
+      "musteriye gonder",
+      "link share",
+      "teklif e-posta",
+      "teklif baglantisi"
+    ],
+    "tr_questions": [
+      "Teklifi nasil musteriye gondereyim?",
+      "Web linki olusturulur mu?",
+      "PDF ek olarak gider mi?",
+      "Musteri linki tikladiginda ne gorur?",
+      "Linkin gecerlilik suresi var mi?"
+    ],
+    "de_questions": [
+      "Wie sende ich das Angebot an den Kunden?",
+      "Wird ein Weblink erzeugt?",
+      "Geht das PDF als Anhang?",
+      "Was sieht der Kunde beim Klick?",
+      "Hat der Link eine Gueltigkeit?"
+    ],
+    "tr_answer": "Teklif paylasimi: (1) **Iki yontem**: (a) E-posta + PDF ek (varsayilan). (b) Paylasim linki: musteri portala login olmadan PDF'i goruntuler (signed URL). (2) Paylasim linki teklif kartinda 'Link Olustur' butonu — 14 gun gecerli, sonra otomatik expire. (3) Musteri linki tikladiginda: DRC branded landing sayfa + PDF onizleme + 'Onayla' butonu (musteri direkt onaylar, teklif siparise donusur). (4) Onaylanan teklif: stok kilitlenir, Anil bildirim alir, fatura draft hazirlanir. (5) E-posta gonderiminde tracking yok (acildi/açilmadi belirsiz) ama paylasim linkinde tıklama logo gorulur. Cevap: 'PDF e-postaya ekleyebilirim veya 14 gun gecerli paylasim linki olustururum, musteri linkten direkt onaylasin.'",
+    "de_answer": "Angebotsversand: (1) **Zwei Wege**: (a) E-Mail + PDF-Anhang (Standard). (b) Share-Link: Kunde sieht PDF ohne Portal-Login (signierte URL). (2) 'Link erstellen' auf der Angebotskarte — 14 Tage gueltig, danach automatisch abgelaufen. (3) Klick fuehrt zu DRC-Branding-Landingpage + PDF-Vorschau + 'Bestaetigen'-Button (Kunde wandelt direkt in Bestellung um). (4) Bei Bestaetigung: Bestand gesperrt, Anil-Benachrichtigung, Rechnungsentwurf bereit. (5) E-Mail-Versand hat kein Tracking (geoeffnet/ungelesen unbekannt), aber Share-Link zeigt Klick im Log. Antwort: 'PDF per E-Mail oder 14-Tage-Share-Link, Kunde kann direkt vom Link bestaetigen.'",
+    "suggestions": [
+      "Paylasim linki expire olunca?",
+      "Onaylanan teklif ne olur?",
+      "Musteri direkt onaylar mi?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
+  },
+  {
+    "id": "hamburg_sales_instinct_050_post_install_check",
+    "keywords": [
+      "montaj sonrasi",
+      "test",
+      "kabul testleri",
+      "abnahme",
+      "commissioning",
+      "monteurseller",
+      "test ve kabul"
+    ],
+    "tr_questions": [
+      "Montaj sonrasi hangi testler yapilir?",
+      "Sistem teslimi nasil onaylanir?",
+      "Commissioning protokolu var mi?",
+      "Abnahme imzasi gerek mi?",
+      "Test sonrasi servis paketi?"
+    ],
+    "de_questions": [
+      "Welche Tests nach Montage?",
+      "Wie wird das System abgenommen?",
+      "Gibt es ein Commissioning-Protokoll?",
+      "Ist eine Abnahmesignatur Pflicht?",
+      "Service-Paket nach Test?"
+    ],
+    "tr_answer": "Montaj sonrasi testler: (1) **Vakum testi** (500 micron veya altina, 30 dakika tutar). (2) **Basinç testi** (nitrojen ile, calisma basinci x 1.5, 1 saat). (3) **Sızdırmazlik testi** (kabarcik testi + elektronik dedektör + UV boya). (4) **Sarj testi** (gaz miktari + superheat + subcool olcum). (5) **Akim testi** (kompresor amper, fan amper, baslangic-calisma akimi). (6) **Performans testi** (oda hedef sicakliga ne kadar surede ulasiyor). (7) Abnahme protokolu: Anil veya partner teknisyenin imzasi + musteri imzasi + tarih + tum test deger PDF; bu belge garanti baslangici. (8) Commissioning paketi: 6 ay sonra ilk servis dahil (filtre kontrol, sarj kontrol) — bedelsiz garanti kapsaminda. Cevap: 'Montaj sonrasi 6 standart test yapilir; Anil/partner teknisyen imzasiyla abnahme protokolu hazirlanir, 6 aylik ilk servis bedelsiz.'",
+    "de_answer": "Tests nach Montage: (1) **Vakuumtest** (unter 500 micron, 30 min haltend). (2) **Drucktest** (Stickstoff, Betriebsdruck × 1,5, 1 Stunde). (3) **Dichtheitstest** (Blasentest + Elektronik-Detektor + UV-Farbstoff). (4) **Fuelltest** (Kaeltemittelmenge + Superheat + Subcool). (5) **Stromtest** (Verdichter-Ampere, Ventilator-Ampere, Anlauf-Betriebsstrom). (6) **Leistungstest** (Zeit bis Sollwert). (7) Abnahmeprotokoll: Unterschrift Anil oder Partnertechniker + Kunde + Datum + alle Messwerte im PDF; dieses Dokument startet die Garantie. (8) Commissioning-Paket: erste Wartung nach 6 Monaten inklusive (Filterpruefung, Fuellpruefung) — kostenfrei in Garantie. Antwort: 'Nach Montage 6 Standard-Tests; Abnahmeprotokoll mit Anil/Partner-Unterschrift, erste Wartung nach 6 Monaten gratis.'",
+    "suggestions": [
+      "Vakum testi nasil yapilir?",
+      "Abnahme protokolu sablonu var mi?",
+      "Garanti baslangici ne zaman?"
+    ],
+    "source_summary": "DRC MAN satis refleksi"
   }
 ]

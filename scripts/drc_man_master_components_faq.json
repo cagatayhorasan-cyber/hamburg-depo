@@ -3,156 +3,1798 @@
     "id": "master_compressor_valve_leak",
     "tr_subject": "kompresor valf kacagi mantigi",
     "de_subject": "verdichterventil undichtigkeit",
-    "keywords": ["kompresor valf", "valf kacagi", "verdichterventil", "valve leak"],
-    "tr_questions": ["kompresor valf kacagi nasil anlasilir", "usta kompresor valflerini nasil test eder", "kompresor valf kaciriyorsa ne gorulur", "valf kacagi mantigini anlat"],
-    "de_questions": ["wie erkennt man undichte verdichterventile", "wie prueft ein meister verdichterventile", "was sieht man wenn verdichterventile lecken", "erklaere die logik bei ventilundichtigkeit"],
+    "keywords": [
+      "kompresor valf",
+      "valf kacagi",
+      "verdichterventil",
+      "valve leak"
+    ],
+    "tr_questions": [
+      "kompresor valf kacagi nasil anlasilir",
+      "usta kompresor valflerini nasil test eder",
+      "kompresor valf kaciriyorsa ne gorulur",
+      "valf kacagi mantigini anlat"
+    ],
+    "de_questions": [
+      "wie erkennt man undichte verdichterventile",
+      "wie prueft ein meister verdichterventile",
+      "was sieht man wenn verdichterventile lecken",
+      "erklaere die logik bei ventilundichtigkeit"
+    ],
     "tr_answer": "Kompresor valf kacagi oldugunda usta tek bir belirtiye bakmaz. Basinç farki zayiflar, kapasite duser, bazen basma sicakligi ve ses karakteri degisir ama bunlar tek basina hukum verdirmez. Bunun teknik sebebi ayni semptomu mekanik yorgunluk, sivi vuruntu gecmisi veya yanlis valfleme davranisi da uretebilir. Usta once basma-emis davranisini, akim cekisini, geri dengeleme hizini ve yuk altindaki performansi birlikte okur. En sik hata kompresoru hemen mahkum etmek ya da tam tersine sadece gazi suclayip ic valf ihtimalini hic sorgulamamaktir.",
     "de_answer": "Bei undichten Verdichterventilen betrachtet ein Meister nie nur ein einzelnes Symptom. Der Druckaufbau wird schwach, die Leistung sinkt und oft veraendern sich Druckgastemperatur oder Geraeuschbild, aber das reicht allein nicht fuer ein Urteil. Der technische Grund ist, dass aehnliche Symptome auch von mechanischer Ermuedung, frueherem Fluessigkeitsschlag oder falscher Ventilierung kommen koennen. Deshalb liest ein Meister Hoch-/Niederdruck, Stromaufnahme, Rueckausgleich und Verhalten unter Last gemeinsam. Der haeufigste Fehler ist, den Verdichter vorschnell zu verurteilen oder umgekehrt nur das Kaeltemittel zu beschuldigen und innere Ventilschaeden gar nicht zu pruefen.",
-    "suggestions": ["kompresorde sivi vurmasi nasil anlasilir", "basma sicakligi neden yukselir", "kompresor neden performans kaybeder"],
+    "suggestions": [
+      "kompresorde sivi vurmasi nasil anlasilir",
+      "basma sicakligi neden yukselir",
+      "kompresor neden performans kaybeder"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_liquid_slugging_vs_floodback",
     "tr_subject": "sivi vurmasi ve floodback farki",
     "de_subject": "unterschied slugging und floodback",
-    "keywords": ["sivi vurmasi", "slugging", "floodback", "sivi donusu"],
-    "tr_questions": ["kompresorde sivi vurmasi nasil anlasilir", "slugging ile floodback farki nedir", "usta sivi vurmasini nasil ayirir", "sivi donusu ile slugging ayni sey mi"],
-    "de_questions": ["wie erkennt man fluessigkeitsschlag im verdichter", "was ist der unterschied zwischen slugging und floodback", "wie trennt ein meister slugging von floodback", "ist fluessigkeitsrueckkehr gleich slugging"],
+    "keywords": [
+      "sivi vurmasi",
+      "slugging",
+      "floodback",
+      "sivi donusu"
+    ],
+    "tr_questions": [
+      "kompresorde sivi vurmasi nasil anlasilir",
+      "slugging ile floodback farki nedir",
+      "usta sivi vurmasini nasil ayirir",
+      "sivi donusu ile slugging ayni sey mi"
+    ],
+    "de_questions": [
+      "wie erkennt man fluessigkeitsschlag im verdichter",
+      "was ist der unterschied zwischen slugging und floodback",
+      "wie trennt ein meister slugging von floodback",
+      "ist fluessigkeitsrueckkehr gleich slugging"
+    ],
     "tr_answer": "Slugging ve floodback ayni kelimeler gibi kullanilsa da usta ikisini ayirir. Slugging daha cok kompresore ani ve agir sivi girisiyle mekanik darbe karakteri tasir. Floodback ise daha surekli, superheat dusuklugu ve karter seyreltmesi tarafinda ilerler. Bunun teknik sebebi biri mekanik kirilma riskiyle, digeri daha cok uzun vadeli yag bozulmasi ve asiri asinamla kendini gosterebilir. Usta burada ses, superheat, defrost sonrasi davranis, karter durumu ve valf tarafini birlikte okur. En sik hata kompresore gelen her sivi belirtisini tek isimle anlatip kok sebebi kacirmaktir.",
     "de_answer": "Slugging und Floodback werden im Feld oft gleichgesetzt, ein Meister trennt sie aber klar. Slugging ist eher ein ploetzlicher, schwerer Fluessigkeitseintritt mit mechanischem Schlagcharakter. Floodback ist dagegen meist ein dauerhafteres Ruecklaufen mit sehr niedrigem Superheat und Oelverduennung im Verdichter. Der technische Grund ist, dass das eine schneller zu direkter mechanischer Zerstoerung fuehren kann, waehrend das andere oft ueber Oel- und Schmierungsprobleme Schaden macht. Ein Meister liest deshalb Geraeusch, Superheat, Verhalten nach der Abtauung, Kurbelgehaeusezustand und Ventilseite zusammen. Ein haeufiger Fehler ist, jede Fluessigkeitsspur gleich zu benennen und dadurch die Ursache zu verfehlen.",
-    "suggestions": ["superheat dusukse ne olur", "defrost sonrasi neden sivi doner", "kompresor valf kacagi nasil anlasilir"],
+    "suggestions": [
+      "superheat dusukse ne olur",
+      "defrost sonrasi neden sivi doner",
+      "kompresor valf kacagi nasil anlasilir"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_high_discharge_temperature",
     "tr_subject": "basma sicakligi yuksekse",
     "de_subject": "hohe druckgastemperatur",
-    "keywords": ["basma sicakligi", "druckgas", "discharge temperature"],
-    "tr_questions": ["basma sicakligi neden yukselir", "usta yuksek basma sicakligini nasil okur", "discharge temperature yuksekse ne olur", "kompresor neden cok isinır"],
-    "de_questions": ["warum steigt die druckgastemperatur", "wie liest ein meister hohe druckgastemperatur", "was bedeutet hohe discharge temperature", "warum wird der verdichter zu heiss"],
+    "keywords": [
+      "basma sicakligi",
+      "druckgas",
+      "discharge temperature"
+    ],
+    "tr_questions": [
+      "basma sicakligi neden yukselir",
+      "usta yuksek basma sicakligini nasil okur",
+      "discharge temperature yuksekse ne olur",
+      "kompresor neden cok isinır"
+    ],
+    "de_questions": [
+      "warum steigt die druckgastemperatur",
+      "wie liest ein meister hohe druckgastemperatur",
+      "was bedeutet hohe discharge temperature",
+      "warum wird der verdichter zu heiss"
+    ],
     "tr_answer": "Basma sicakligi yuksek goruldugunde usta hemen kompresoru kotu ilan etmez. Yuksek superheat, aclik, zayif sogutma, yuksek basinç veya yag problemi ayni tabloyu uretebilir. Bunun teknik sebebi basma sicakliginin kompresorun sadece ic mekanigini degil, emiş tarafindaki beslenmeyi de anlatiyor olmasidir. Usta burada superheat, emiş hattı sicakligi, kondens kosullari ve akim davranisini birlikte okur. En sik hata yalnizca fan veya gaz tarafina odaklanip kompresorun neden bu kadar sicak calistigini sistem resminden koparmaktir.",
     "de_answer": "Bei hoher Druckgastemperatur verurteilt ein Meister den Verdichter nicht sofort. Hohes Superheat, Hunger, schlechte Kuehlung, hoher Verfluessigungsdruck oder Oelprobleme koennen ein aehnliches Bild erzeugen. Der technische Grund ist, dass die Druckgastemperatur nicht nur etwas ueber die innere Mechanik, sondern auch ueber die Sauggasversorgung aussagt. Deshalb bewertet ein Meister Superheat, Saugleitungstemperatur, Verfluessigungsbedingungen und Stromaufnahme gemeinsam. Ein haeufiger Fehler ist, sich nur auf Ventilator oder Kaeltemittel zu fixieren und die Gesamtursache aus dem Systembild zu verlieren.",
-    "suggestions": ["superheat yuksekse ne olur", "head pressure neden onemli", "kompresor neden yag kaybeder"],
+    "suggestions": [
+      "superheat yuksekse ne olur",
+      "head pressure neden onemli",
+      "kompresor neden yag kaybeder"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_compressor_current_interpretation",
     "tr_subject": "kompresor akim yorumlama",
     "de_subject": "verdichter strominterpretation",
-    "keywords": ["kompresor akimi", "stromaufnahme", "akim dengesiz", "current interpretation"],
-    "tr_questions": ["usta kompresor akimini nasil yorumlar", "kompresor akimi neden dengesiz olur", "akim degeri kompresor hakkinda ne soyler", "akim yuksekse neye bakilir"],
-    "de_questions": ["wie interpretiert ein meister die stromaufnahme des verdichters", "warum ist der strom des verdichters ungleich", "was sagt der strom ueber den verdichter", "worauf schaut man bei hohem strom"],
+    "keywords": [
+      "kompresor akimi",
+      "stromaufnahme",
+      "akim dengesiz",
+      "current interpretation"
+    ],
+    "tr_questions": [
+      "usta kompresor akimini nasil yorumlar",
+      "kompresor akimi neden dengesiz olur",
+      "akim degeri kompresor hakkinda ne soyler",
+      "akim yuksekse neye bakilir"
+    ],
+    "de_questions": [
+      "wie interpretiert ein meister die stromaufnahme des verdichters",
+      "warum ist der strom des verdichters ungleich",
+      "was sagt der strom ueber den verdichter",
+      "worauf schaut man bei hohem strom"
+    ],
     "tr_answer": "Kompresor akimi tek basina ariza ismi vermez ama yuk durumunu ve zorlanmayi gosterir. Usta nominal deger, anlik cekis, fazlar arasi denge ve basma-emis kosulunu birlikte okur. Bunun teknik sebebi yuksek akimin bazen yuksek basinçtan, bazen dusuk gerilimden, bazen de mekanik zorlanmadan kaynaklanabilmesidir. Dusuk akim da her zaman iyi degildir; kapasite kaybi veya valf kacaklariyla birlikte gelebilir. En sik hata sadece etiket amperine bakip sistem kosulunu okumadan sonuc cikarmaktir.",
     "de_answer": "Die Stromaufnahme des Verdichters liefert nicht direkt einen Fehlernamen, aber sie zeigt Last und Belastung sehr klar. Ein Meister liest Nennwert, Ist-Strom, Phasengleichheit und Hoch-/Niederdruck zusammen. Der technische Grund ist, dass hoher Strom aus hohem Druck, Unterspannung oder mechanischer Ueberlastung entstehen kann. Niedriger Strom ist ebenfalls nicht automatisch gut; er kann auch mit Leistungsabfall oder undichten Ventilen einhergehen. Ein haeufiger Fehler ist, nur den Nennstrom vom Typenschild anzusehen und die Betriebsbedingungen nicht mitzulesen.",
-    "suggestions": ["faz eksik olursa ne olur", "basma sicakligi neden yukselir", "motorschutz neden atar"],
+    "suggestions": [
+      "faz eksik olursa ne olur",
+      "basma sicakligi neden yukselir",
+      "motorschutz neden atar"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_txv_adjustment_discipline",
     "tr_subject": "txv ayar disiplini",
     "de_subject": "disziplin bei txv einstellung",
-    "keywords": ["txv ayari", "tev ayari", "expansionsventil einstellen", "superheat ayari"],
-    "tr_questions": ["usta txv ayarini nasil yapar", "superheat ayari neden acele yapilmaz", "genlesme valfi ayari nasil dusunulur", "txv vidasi neye gore cevrilir"],
-    "de_questions": ["wie stellt ein meister ein txv ein", "warum verstellt man superheat nicht hektisch", "wie denkt man ueber expansionsventil einstellung", "wonach dreht man an der txv schraube"],
+    "keywords": [
+      "txv ayari",
+      "tev ayari",
+      "expansionsventil einstellen",
+      "superheat ayari"
+    ],
+    "tr_questions": [
+      "usta txv ayarini nasil yapar",
+      "superheat ayari neden acele yapilmaz",
+      "genlesme valfi ayari nasil dusunulur",
+      "txv vidasi neye gore cevrilir"
+    ],
+    "de_questions": [
+      "wie stellt ein meister ein txv ein",
+      "warum verstellt man superheat nicht hektisch",
+      "wie denkt man ueber expansionsventil einstellung",
+      "wonach dreht man an der txv schraube"
+    ],
     "tr_answer": "Usta TXV ayarini tornavidayla degil veriyle yapar. Superheat olcumu oturmadan, fan ve yuk kosulu netlesmeden valf vidasina dokunmaz. Bunun teknik sebebi valfin davranisini sadece kendi ayari degil; ampul yeri, orifis, equalizer, hava debisi ve likit tarafi da etkiler. Yani erken veya buyuk ayar hareketi yanlis teshisi gizleyebilir. En sik hata iki tur cevirmek gibi kaba mudahale yapip sonra sistemi oldugu gibi beklemektir.",
     "de_answer": "Ein Meister stellt ein TXV nicht mit dem Schraubendreher, sondern mit Daten ein. Solange Superheat, Luftseite und Last nicht sauber stabil sind, wird die Ventilschraube nicht angefasst. Der technische Grund ist, dass das Ventilverhalten nicht nur von der Federstellung, sondern auch von Fuehlerlage, Duesengroesse, Equalizer, Luftmenge und Fluessigkeitsseite abhaengt. Zu fruehe oder zu grosse Korrekturen verdecken leicht die eigentliche Ursache. Ein haeufiger Fehler ist es, das Ventil grob zu verdrehen und danach zu erwarten, dass sich das Problem von selbst sauber erklaert.",
-    "suggestions": ["superheat nasil hesaplanir", "ampul nereye baglanir", "valf neden avlanir"],
+    "suggestions": [
+      "superheat nasil hesaplanir",
+      "ampul nereye baglanir",
+      "valf neden avlanir"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_equalizer_logic",
     "tr_subject": "equalizer hatti mantigi",
     "de_subject": "equalizer logik",
-    "keywords": ["equalizer", "equalizer hatti", "external equalizer", "harici equalizer"],
-    "tr_questions": ["equalizer ne ise yarar", "equalizer hatti neden onemli", "usta equalizeri nasil kontrol eder", "equalizer tikaliysa ne olur"],
-    "de_questions": ["wofuer ist der equalizer", "warum ist die equalizerleitung wichtig", "wie prueft ein meister den equalizer", "was passiert wenn der equalizer verstopft ist"],
+    "keywords": [
+      "equalizer",
+      "equalizer hatti",
+      "external equalizer",
+      "harici equalizer"
+    ],
+    "tr_questions": [
+      "equalizer ne ise yarar",
+      "equalizer hatti neden onemli",
+      "usta equalizeri nasil kontrol eder",
+      "equalizer tikaliysa ne olur"
+    ],
+    "de_questions": [
+      "wofuer ist der equalizer",
+      "warum ist die equalizerleitung wichtig",
+      "wie prueft ein meister den equalizer",
+      "was passiert wenn der equalizer verstopft ist"
+    ],
     "tr_answer": "Harici equalizer hattinin gorevi evaporator sonundaki gercek basinç bilgisini valfe tasimaktir. Usta bunu kucuk bir boru gibi degil, valfin gozleri gibi gorur. Bunun teknik sebebi valf evaporatorun sonunu dogru gormezse superheat ayari kagit ustunde dogru olsa bile saha davranisi yanlis olur. Tikaniklik, yanlis baglanti veya kacak varsa valf ya fazla besler ya da aclik yaratir. En sik hata equalizerin varligina bakip gercekten islev gordugunu test etmemektir.",
     "de_answer": "Die Aufgabe der externen Equalizerleitung ist, dem Ventil den echten Druck am Verdampferende zu melden. Ein Meister sieht sie nicht als Nebenrohr, sondern als Auge des Ventils. Der technische Grund ist, dass ein Ventil bei falscher Druckrueckmeldung trotz scheinbar richtiger Einstellung im Feld falsch reagiert. Verstopfung, Leckage oder falscher Anschluss fuehren leicht zu Ueberversorgung oder Hunger. Ein haeufiger Fehler ist, die Leitung optisch zu sehen, aber ihre Funktion nie wirklich zu pruefen.",
-    "suggestions": ["txv ayari neden acele yapilmaz", "ampul nereye baglanir", "superheat neden sasirir"],
+    "suggestions": [
+      "txv ayari neden acele yapilmaz",
+      "ampul nereye baglanir",
+      "superheat neden sasirir"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_bulb_mounting_logic",
     "tr_subject": "ampul montaji mantigi",
     "de_subject": "fuehlermontage am expansionsventil",
-    "keywords": ["ampul", "bulb", "fuehler montaj", "txv bulb"],
-    "tr_questions": ["ampul nereye baglanir", "txv ampulu neden yanlis okur", "usta ampul montajini nasil kontrol eder", "ampul izolesizse ne olur"],
-    "de_questions": ["wo montiert man den txv fuehler", "warum liest der bulb falsch", "wie prueft ein meister die bulb montage", "was passiert ohne isolierung am bulb"],
+    "keywords": [
+      "ampul",
+      "bulb",
+      "fuehler montaj",
+      "txv bulb"
+    ],
+    "tr_questions": [
+      "ampul nereye baglanir",
+      "txv ampulu neden yanlis okur",
+      "usta ampul montajini nasil kontrol eder",
+      "ampul izolesizse ne olur"
+    ],
+    "de_questions": [
+      "wo montiert man den txv fuehler",
+      "warum liest der bulb falsch",
+      "wie prueft ein meister die bulb montage",
+      "was passiert ohne isolierung am bulb"
+    ],
     "tr_answer": "TXV ampulunun yeri valfin karakterini dogrudan degistirir. Usta ampulu borunun uygun pozisyonuna, iyi temasla ve gerekli izolasyonla baglar. Bunun teknik sebebi ampul dis ortamdan veya yanlis temas noktasindan etkilendiyse evaporatorun gercek cikisini degil sahte bir sicakligi gormesidir. Sonuc olarak valf gereksiz acabilir, kisabilir veya avlanabilir. En sik hata ampulu musait olan herhangi bir noktaya koyup sonra superheat hatasini valfe yuklemektir.",
     "de_answer": "Die Montage des TXV-Fuehlers beeinflusst das Ventilverhalten direkt. Ein Meister setzt den Fuehler an die richtige Position, mit gutem Kontakt und noetiger Isolierung. Der technische Grund ist, dass der Fuehler sonst nicht die echte Austrittssituation des Verdampfers, sondern eine Stoertemperatur sieht. Das fuehrt zu falscher Oeffnung, zu starkem Schliessen oder Hunting. Ein haeufiger Fehler ist, den Fuehler einfach an irgendeiner freien Stelle zu befestigen und spaeter das Ventil fuer den Superheat-Fehler verantwortlich zu machen.",
-    "suggestions": ["equalizer ne ise yarar", "txv ayari nasil yapilir", "superheat nasil hesaplanir"],
+    "suggestions": [
+      "equalizer ne ise yarar",
+      "txv ayari nasil yapilir",
+      "superheat nasil hesaplanir"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_hunting_logic",
     "tr_subject": "valf hunting mantigi",
     "de_subject": "ventil hunting",
-    "keywords": ["hunting", "valf avlaniyor", "txv hunting", "ventil schwingt"],
-    "tr_questions": ["valf neden avlanir", "hunting nasil anlasilir", "usta txv huntingi nasil ayirir", "genlesme valfi avlaniyorsa neye bakilir"],
-    "de_questions": ["warum jagt das ventil", "wie erkennt man hunting", "wie trennt ein meister txv hunting", "worauf schaut man wenn das expansionsventil schwingt"],
+    "keywords": [
+      "hunting",
+      "valf avlaniyor",
+      "txv hunting",
+      "ventil schwingt"
+    ],
+    "tr_questions": [
+      "valf neden avlanir",
+      "hunting nasil anlasilir",
+      "usta txv huntingi nasil ayirir",
+      "genlesme valfi avlaniyorsa neye bakilir"
+    ],
+    "de_questions": [
+      "warum jagt das ventil",
+      "wie erkennt man hunting",
+      "wie trennt ein meister txv hunting",
+      "worauf schaut man wenn das expansionsventil schwingt"
+    ],
     "tr_answer": "Hunting durumunda usta sadece valfi suclamaz; sistemin valfi kararsizliga itip itmedigine bakar. Yuk dalgalanmasi, zayif likit kolon, yanlis ampul montaji, equalizer sorunu veya agresif ayar hunting uretebilir. Bunun teknik sebebi valfin evaporatoru takip etmeye calisirken gecikmeli ve hatali bilgiyle salinima girmesidir. Usta burada superheat trendini, valf tepkisini ve likit taraf stabilitesini birlikte izler. En sik hata hunting gorur gormez buyuk mekanik ayar degisiklikleri yapmaktir.",
     "de_answer": "Bei Hunting beschuldigt ein Meister nicht sofort das Ventil, sondern prueft, ob das System das Ventil ueberhaupt in diese Instabilitaet zwingt. Lastschwankung, schwache Fluessigkeitssaeule, falsche Fuehlermontage, Equalizerprobleme oder zu aggressive Einstellung koennen Hunting erzeugen. Der technische Grund ist, dass das Ventil mit verzoegerter oder falscher Rueckmeldung in eine Schwingung geraet. Ein Meister beobachtet deshalb Superheat-Verlauf, Ventilreaktion und Stabilitaet der Fluessigkeitsseite gemeinsam. Ein haeufiger Fehler ist es, beim ersten Hunting-Bild sofort grobe mechanische Verstellungen vorzunehmen.",
-    "suggestions": ["txv ayari neden acele yapilmaz", "subcool neden onemli", "equalizer ne ise yarar"],
+    "suggestions": [
+      "txv ayari neden acele yapilmaz",
+      "subcool neden onemli",
+      "equalizer ne ise yarar"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_contactor_chatter_logic",
     "tr_subject": "kontaktor titremesi ve chatter",
     "de_subject": "schuetzflattern",
-    "keywords": ["kontaktor titriyor", "contactor chatter", "schuetz flattert", "bobin gerilimi"],
-    "tr_questions": ["kontaktor neden titrer", "usta kontaktor chatterini nasil okur", "bobin gerilimi dusukse ne olur", "kontaktor cekiyor ama tutmuyorsa neye bakilir"],
-    "de_questions": ["warum flattert das schuetz", "wie liest ein meister contactor chatter", "was passiert bei zu niedriger spulenspannung", "worauf schaut man wenn das schuetz anzieht aber nicht haelt"],
+    "keywords": [
+      "kontaktor titriyor",
+      "contactor chatter",
+      "schuetz flattert",
+      "bobin gerilimi"
+    ],
+    "tr_questions": [
+      "kontaktor neden titrer",
+      "usta kontaktor chatterini nasil okur",
+      "bobin gerilimi dusukse ne olur",
+      "kontaktor cekiyor ama tutmuyorsa neye bakilir"
+    ],
+    "de_questions": [
+      "warum flattert das schuetz",
+      "wie liest ein meister contactor chatter",
+      "was passiert bei zu niedriger spulenspannung",
+      "worauf schaut man wenn das schuetz anzieht aber nicht haelt"
+    ],
     "tr_answer": "Kontaktor titremesi gordugunde usta hemen kontaktoru degistirmez. Bobin gerilimi, kumanda hattindaki dusum, gevsek kontakt, yanlis bobin tipi veya koruma zincirindeki kesik davranisi ayni tabloyu verebilir. Bunun teknik sebebi chatterin sadece mekanik asina degil, yetersiz manyetik cekim veya kesik kumanda sinyaliyle de olusabilmesidir. Usta burada bobin ucundaki gerilimi gercek calisma aninda olcer ve kumanda zincirini basamak basamak takip eder. En sik hata sadece kontaktor degisip sorunun geri donmesine sasirmaktir.",
     "de_answer": "Wenn ein Schuetz flattert, tauscht ein Meister es nicht sofort. Spulenspannung, Spannungsfall in der Steuerung, lockere Kontakte, falscher Spulentyp oder eine unterbrochene Schutzkette koennen das gleiche Bild erzeugen. Der technische Grund ist, dass Flattern nicht nur mechanischer Verschleiss, sondern auch mangelnde Magnetkraft oder instabile Ansteuerung sein kann. Deshalb misst ein Meister die reale Spulenspannung im Betrieb und verfolgt die Steuerkette Schritt fuer Schritt. Ein haeufiger Fehler ist, nur das Schuetz zu ersetzen und sich spaeter ueber das wiederkehrende Problem zu wundern.",
-    "suggestions": ["kompresor koruma zinciri nasil kurulur", "faz eksik olursa ne olur", "motorschutz neden atar"],
+    "suggestions": [
+      "kompresor koruma zinciri nasil kurulur",
+      "faz eksik olursa ne olur",
+      "motorschutz neden atar"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_high_pressure_switch_logic",
     "tr_subject": "high pressure switch mantigi",
     "de_subject": "hochdruckschalter logik",
-    "keywords": ["high pressure switch", "hp switch", "hochdruckschalter", "basinc presostati"],
-    "tr_questions": ["high pressure switch neden atar", "usta hp switch arizasini nasil okur", "basinc presostati aciyorsa neye bakilir", "yuksek basinç swichi neden tekrar eder"],
-    "de_questions": ["warum loest der hochdruckschalter aus", "wie liest ein meister hp switch stoerungen", "worauf schaut man wenn der hochdruckschalter abschaltet", "warum wiederholt sich die hochdruckabschaltung"],
+    "keywords": [
+      "high pressure switch",
+      "hp switch",
+      "hochdruckschalter",
+      "basinc presostati"
+    ],
+    "tr_questions": [
+      "high pressure switch neden atar",
+      "usta hp switch arizasini nasil okur",
+      "basinc presostati aciyorsa neye bakilir",
+      "yuksek basinç swichi neden tekrar eder"
+    ],
+    "de_questions": [
+      "warum loest der hochdruckschalter aus",
+      "wie liest ein meister hp switch stoerungen",
+      "worauf schaut man wenn der hochdruckschalter abschaltet",
+      "warum wiederholt sich die hochdruckabschaltung"
+    ],
     "tr_answer": "HP switch actiginda usta bunu sadece koruma elemani olarak degil, sistemin bir sey anlattigi mesaj olarak gorur. Kondenser kirli olabilir, fanlar yetersiz olabilir, sarj fazla olabilir ya da hava dolaşimi bozulmus olabilir. Bunun teknik sebebi yuksek basinç anahtarinin sonucu kesmesi, ama sebebin genelde isi atamama veya akisin bozulmasi olmasidir. Usta once kondenser ve hava tarafini, sonra sarj ve likit taraftaki direncleri kontrol eder. En sik hata switchi resetleyip sistemi izlemeye devam etmek ama kok sebebi bulmamaktir.",
     "de_answer": "Wenn der Hochdruckschalter ausloest, sieht ein Meister darin nicht nur eine Abschaltung, sondern eine klare Botschaft des Systems. Der Verfluessiger kann verschmutzt sein, Ventilatoren koennen schwach laufen, die Fuellung kann zu hoch sein oder der Luftstrom stimmt nicht. Der technische Grund ist, dass der Schalter nur das Ergebnis trennt, waehrend die Ursache meist in schlechter Waermeabgabe oder Flussstoerung liegt. Deshalb prueft ein Meister zuerst Verfluessiger und Luftseite, danach Fuellung und moegliche Widerstaende in der Fluessigkeitsseite. Ein haeufiger Fehler ist, den Schalter nur zu resetten und die Ursache nicht sauber einzugrenzen.",
-    "suggestions": ["head pressure neden onemli", "kondenser fan kontrolu nasil kurulur", "kasa fanlari neden zayiflar"],
+    "suggestions": [
+      "head pressure neden onemli",
+      "kondenser fan kontrolu nasil kurulur",
+      "kasa fanlari neden zayiflar"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_low_pressure_switch_logic",
     "tr_subject": "low pressure switch mantigi",
     "de_subject": "niederdruckschalter logik",
-    "keywords": ["low pressure switch", "lp switch", "niederdruckschalter", "dusuk basinç presostati"],
-    "tr_questions": ["low pressure switch neden dusurur", "usta lp switch davranisini nasil okur", "dusuk basinç presostati neden tekrar eder", "lp switch aciyorsa neye bakilir"],
-    "de_questions": ["warum schaltet der niederdruckschalter ab", "wie liest ein meister lp switch verhalten", "warum wiederholt sich die niederdruckabschaltung", "worauf schaut man wenn der lp switch faellt"],
+    "keywords": [
+      "low pressure switch",
+      "lp switch",
+      "niederdruckschalter",
+      "dusuk basinç presostati"
+    ],
+    "tr_questions": [
+      "low pressure switch neden dusurur",
+      "usta lp switch davranisini nasil okur",
+      "dusuk basinç presostati neden tekrar eder",
+      "lp switch aciyorsa neye bakilir"
+    ],
+    "de_questions": [
+      "warum schaltet der niederdruckschalter ab",
+      "wie liest ein meister lp switch verhalten",
+      "warum wiederholt sich die niederdruckabschaltung",
+      "worauf schaut man wenn der lp switch faellt"
+    ],
     "tr_answer": "LP switch dusuyorsa usta bunu sadece gaz eksigi olarak okumaz. Besleme eksikligi, valf sorunu, daralma, fan problemi, kapı kullanimi veya pump-down mantigi gibi pek cok neden ayni tabloyu verebilir. Bunun teknik sebebi dusuk basinç presostatinin sonucu gostermesi, ama kok sebebin beslenme veya yuk tarafinda saklanabilmesidir. Usta burada superheat, subcool, hava akisı ve solenoid/pump-down sirasi ile birlikte karar verir. En sik hata presostat setini oynatip temel sebebi gizlemektir.",
     "de_answer": "Wenn der Niederdruckschalter faellt, liest ein Meister das nicht automatisch als Kaeltemittelmangel. Unterversorgung, Ventilfehler, Verengungen, Luftprobleme, Tuernutzung oder Pump-down-Logik koennen aehnlich wirken. Der technische Grund ist, dass der Schalter nur das Ergebnis zeigt, waehrend die eigentliche Ursache auf der Einspeise- oder Lastseite liegen kann. Deshalb bewertet ein Meister Superheat, Subcooling, Luftstrom und Magnetventil-/Pump-down-Reihenfolge gemeinsam. Ein haeufiger Fehler ist, die Schaltpunkte zu veraendern und damit die eigentliche Ursache nur zu kaschieren.",
-    "suggestions": ["pump down mantigi nedir", "superheat ve subcool birlikte nasil okunur", "valf neden avlanir"],
+    "suggestions": [
+      "pump down mantigi nedir",
+      "superheat ve subcool birlikte nasil okunur",
+      "valf neden avlanir"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_phase_loss_and_sequence",
     "tr_subject": "faz eksikligi ve faz sirasi",
     "de_subject": "phasenausfall und phasenfolge",
-    "keywords": ["faz eksik", "faz sirasi", "phase loss", "phase sequence", "phasenfolge"],
-    "tr_questions": ["faz eksik olursa ne olur", "faz sirasi neden onemli", "usta faz problemini nasil okur", "kompresor ters donerse neye bakilir"],
-    "de_questions": ["was passiert bei phasenausfall", "warum ist die phasenfolge wichtig", "wie liest ein meister phasenprobleme", "worauf schaut man wenn der verdichter falsch dreht"],
+    "keywords": [
+      "faz eksik",
+      "faz sirasi",
+      "phase loss",
+      "phase sequence",
+      "phasenfolge"
+    ],
+    "tr_questions": [
+      "faz eksik olursa ne olur",
+      "faz sirasi neden onemli",
+      "usta faz problemini nasil okur",
+      "kompresor ters donerse neye bakilir"
+    ],
+    "de_questions": [
+      "was passiert bei phasenausfall",
+      "warum ist die phasenfolge wichtig",
+      "wie liest ein meister phasenprobleme",
+      "worauf schaut man wenn der verdichter falsch dreht"
+    ],
     "tr_answer": "Uc fazli sistemde faz eksikligi veya yanlis faz sirasi usta icin temel koruma basligidir. Faz eksikse motor zorlanir, akim dengesizlesir ve termik atabilir. Faz sirasi yanlissa bazi kompresor ve fanlarda donus yonu bozulur. Bunun teknik sebebi elektriksel beslemenin mekanik davranisi dogrudan etkilemesidir. Usta burada sadece faz var yok bakmaz; fazlar arasi gerilim, akim dengesi, donus yonu ve faz koruma rolesinin davranisini birlikte kontrol eder. En sik hata kompresor zorlanirken yalnizca mekanik ariza sanmaktir.",
     "de_answer": "In Dreiphasensystemen sind Phasenausfall und falsche Phasenfolge fuer einen Meister zentrale Schutzthemen. Bei Phasenausfall steigt die Belastung, die Stroeme laufen auseinander und der Motorschutz kann fallen. Bei falscher Reihenfolge drehen manche Verdichter oder Ventilatoren in die falsche Richtung. Der technische Grund ist, dass die elektrische Versorgung das mechanische Verhalten direkt bestimmt. Ein Meister schaut deshalb nicht nur auf vorhanden oder nicht vorhanden, sondern auf Spannungen, Strombalance, Drehrichtung und das reale Verhalten der Phasenueberwachung. Ein haeufiger Fehler ist, mechanische Stoerung zu vermuten, obwohl die Ursache elektrisch ist.",
-    "suggestions": ["kompresor akimi nasil yorumlanir", "kontaktor neden titrer", "motorschutz neden atar"],
+    "suggestions": [
+      "kompresor akimi nasil yorumlanir",
+      "kontaktor neden titrer",
+      "motorschutz neden atar"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   },
   {
     "id": "master_panel_diagnosis_order",
     "tr_subject": "pano ariza sirasi",
     "de_subject": "diagnosefolge im schaltschrank",
-    "keywords": ["pano ariza", "panel diagnosis", "schaltschrank", "kontrol panosu"],
-    "tr_questions": ["pano arizasinda usta ne sirayla bakar", "elektrik panosunu nasil teshis ederiz", "kontrol panosunda ariza arama sirasi nedir", "pano teshisini adim adim anlat"],
-    "de_questions": ["in welcher reihenfolge diagnostiziert ein meister den schaltschrank", "wie prueft man den schaltschrank", "wie ist die diagnosefolge im bedienfeld", "erklaere die schaltschrank diagnose schritt fuer schritt"],
+    "keywords": [
+      "pano ariza",
+      "panel diagnosis",
+      "schaltschrank",
+      "kontrol panosu"
+    ],
+    "tr_questions": [
+      "pano arizasinda usta ne sirayla bakar",
+      "elektrik panosunu nasil teshis ederiz",
+      "kontrol panosunda ariza arama sirasi nedir",
+      "pano teshisini adim adim anlat"
+    ],
+    "de_questions": [
+      "in welcher reihenfolge diagnostiziert ein meister den schaltschrank",
+      "wie prueft man den schaltschrank",
+      "wie ist die diagnosefolge im bedienfeld",
+      "erklaere die schaltschrank diagnose schritt fuer schritt"
+    ],
     "tr_answer": "Pano teshisinde usta once enerji var mi diye bakip durmaz; enerjinin nereye kadar saglikli gittigini izler. Genel sira sunun gibidir: ana besleme, sigorta / otomatik, faz kontrol, kumanda trafosu veya besleme, emniyet zinciri, presostatlar, termik, kontaktor bobini, cikislar ve saha geri bildirimleri. Bunun teknik sebebi arizayi ortadan rastgele aramak yerine akisin koptugu noktayi bulmanin daha hizli ve dogru olmasidir. En sik hata paneli parca parca degistirip sinyal akisini hic izlememektir.",
     "de_answer": "Bei der Schaltschrankdiagnose schaut ein Meister nicht nur, ob irgendwo Spannung da ist, sondern wie weit die Spannung gesund und logisch durch die Kette geht. Die Reihenfolge ist typischerweise: Hauptversorgung, Sicherungen, Phasenueberwachung, Hilfsversorgung oder Steuertrafo, Sicherheitskette, Druckschalter, Motorschutz, Schuetzspule, Ausgaenge und Rueckmeldungen aus dem Feld. Der technische Grund ist, dass man so den echten Unterbrechungspunkt findet, statt zufaellig in der Mitte Teile zu tauschen. Ein haeufiger Fehler ist, einzelne Bauteile blind zu ersetzen und die Signalfolge nie sauber zu verfolgen.",
-    "suggestions": ["kontaktor neden titrer", "kompresor koruma zinciri nasil kurulur", "faz eksik olursa ne olur"],
+    "suggestions": [
+      "kontaktor neden titrer",
+      "kompresor koruma zinciri nasil kurulur",
+      "faz eksik olursa ne olur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_compressor_types_overview",
+    "tr_subject": "kompresor tipleri arasi fark",
+    "de_subject": "vergleich der verdichtertypen",
+    "keywords": [
+      "hermetik",
+      "yari hermetik",
+      "scroll",
+      "piston",
+      "reciprocating",
+      "semi hermetic",
+      "verdichtertyp"
+    ],
+    "tr_questions": [
+      "hermetik yari hermetik scroll arasi nasil secilir",
+      "kompresor tipleri arasinda gercek fark nedir",
+      "piston ve scroll farki nedir",
+      "semi hermetic ne demek pratikte",
+      "hangi tip ne icin kullanilir"
+    ],
+    "de_questions": [
+      "wie waehlt man zwischen hermetik halbhermetik und scroll",
+      "was unterscheidet die verdichtertypen wirklich",
+      "was ist der unterschied zwischen kolben und scroll",
+      "was bedeutet halbhermetisch in der praxis",
+      "welcher typ wofuer"
+    ],
+    "tr_answer": "Hermetik kucuk kapasite ve sik calisma start-stop icin idealdir; yedek parca yok, ariza halinde komple degisir. Yari hermetik (semi-hermetic) buyuk kapasite ve uzun servis omru icin tasarlanmistir; valf plakasi, motor sargi yenilenebilir. Scroll daha az parcali, dusuk titresim ve modulasyon icin uygundur ama valf yok, basinç dengesi farkli okunur. Usta tipi secerken kapasite, calisma rejimi, sik start-stop, modulasyon ihtiyaci ve yedek parca lojistigini birlikte degerlendirir. En sik hata sirf 'ucuza geldi' diye hermetik tercih edilip 5 yil sonra komple degisim maliyetiyle karsilasilmasidir.",
+    "de_answer": "Hermetisch ist ideal fuer kleine Leistung und haeufiges Start-Stopp; nicht reparierbar, im Fehlerfall Komplettwechsel. Halbhermetisch ist auf grosse Leistung und lange Standzeit ausgelegt; Ventilplatte und Motorwicklung sind erneuerbar. Scroll hat weniger Teile, niedrige Vibration und gute Modulationsfaehigkeit, aber keine Ventile; Druckverhalten wird anders gelesen. Ein Meister waehlt nach Leistung, Betriebsrhythmus, Start-Stopp-Frequenz, Modulationsbedarf und Ersatzteillogistik. Haeufigster Fehler ist, allein wegen Anschaffungspreis hermetisch zu nehmen und nach 5 Jahren mit Komplettkosten dazustehen.",
+    "suggestions": [
+      "scroll modulasyonu nasil isler",
+      "semi hermetic icin hangi yag",
+      "start stop ne zaman sorundur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_capacitor_start_run",
+    "tr_subject": "start ve run kondansatoru",
+    "de_subject": "start- und betriebskondensator",
+    "keywords": [
+      "start kondansator",
+      "run kondansator",
+      "betriebskondensator",
+      "ptc",
+      "relay",
+      "kompresor demarraj"
+    ],
+    "tr_questions": [
+      "start ile run kondansator farki nedir",
+      "kompresor calismiyor kondansator nasil test edilir",
+      "ptc relay ne yapar",
+      "sigara paketi gibi kondansator ne icin",
+      "baslangic kondansatoru patlamis ne olur"
+    ],
+    "de_questions": [
+      "unterschied zwischen start und betriebskondensator",
+      "verdichter laeuft nicht wie testet man den kondensator",
+      "was macht das ptc relais",
+      "wofuer ist der zylindrische kondensator",
+      "start kondensator durchgebrannt was passiert"
+    ],
+    "tr_answer": "Start kondansatoru anlik yuksek tork verir, motor donmeye baslayinca PTC veya rolesiyle devreden cikar; surekli devrede kalirsa yanar. Run kondansatoru her zaman devrede, faz kaymasi saglar ve verimi yukseltir. Usta olcer: kapasitans mikrofarad olarak datasheet'le karsilastirir; %10 sapmasi tolere edilir, ustu disardir. PTC saglamliği omhmetreyle (soğukken dusuk, ısındikça yukselir) okunur. En sik hata start kondansatorunu run yerine baglayıp veya tersini yapıp motoru yakmaktir.",
+    "de_answer": "Der Startkondensator liefert kurzes Hoch-Drehmoment und wird per PTC oder Relais nach dem Anlauf abgeschaltet; bleibt er drin, brennt er durch. Der Betriebskondensator ist staendig in Reihe, sorgt fuer Phasenverschiebung und Wirkungsgrad. Ein Meister misst die Kapazitaet in Mikrofarad gegen den Datenblattwert; bis 10 % Abweichung ist tolerierbar, darueber raus. PTC wird mit Ohmmeter geprueft (kalt niedrig, mit Temperatur steigend). Haeufigster Fehler ist, Start- und Betriebskondensator zu vertauschen und damit den Motor zu zerstoeren.",
+    "suggestions": [
+      "kompresor neden hic calismaz",
+      "faz kaymasi neden onemli",
+      "run kondansator olmadan ne olur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_filter_drier_selection",
+    "tr_subject": "filtre kuruyucu secimi",
+    "de_subject": "trockenfilter auswahl",
+    "keywords": [
+      "filtre kuruyucu",
+      "xh7",
+      "xh9",
+      "ek",
+      "trockenfilter",
+      "filtersizing",
+      "drycore"
+    ],
+    "tr_questions": [
+      "xh7 ile xh9 farki nedir",
+      "filtre kuruyucu nasil secilir",
+      "ek serisi neye iyidir",
+      "filtre tikanikligi nasil anlasilir",
+      "yanma sonrasi hangi filtre"
+    ],
+    "de_questions": [
+      "unterschied xh7 und xh9",
+      "wie waehlt man trockenfilter",
+      "wozu die ek-serie",
+      "wie erkennt man filterverstopfung",
+      "welcher filter nach brand"
+    ],
+    "tr_answer": "XH7 alperjenik tip, HFC ve mineral yagli sistemler icin standart kuruluk + filtreleme yapar. XH9 POE/PAG yagli, daha modern (HFO dahil) gazlara dayanikli, asit yutucu kapasitesi yuksek. EK serisi acidik durum (kompresor yanmasi sonrasi) icin tasarlandı; tek seferlik degisim, ardindan normal XH'ye gecilir. Usta secimi yaparken gaz tipi, yag tipi, kapasite (boru capi) ve montaj akış yonu (likit hatti / suction) birlikte degerlendirir. Tikanik filtre giriş-çikis arasinda sicaklik farki yaratir; ilk göstergesi sight glass'ta gercek geçis hizinin azalmasi.",
+    "de_answer": "XH7 ist Standard fuer HFC mit Mineraloel, gute Trocknung und Filtration. XH9 ist fuer POE/PAG-Oel und moderne Gase (auch HFO) ausgelegt, hoehere Saeureaufnahme. EK-Serie ist Einmal-Filter nach Verdichterbrand; danach Wechsel auf normalen XH. Ein Meister waehlt nach Gas, Oel, Leistung (Rohrgroesse) und Einbaurichtung (Fluessigkeits- oder Saugleitung). Verstopfter Filter erzeugt Temperaturdifferenz zwischen Ein- und Ausgang; erstes Zeichen ist sinkende Durchflussrate im Schauglas.",
+    "suggestions": [
+      "kompresor yanmasi sonrasi temizleme",
+      "sight glass nasil okunur",
+      "suction filtre ne zaman"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_txv_operation",
+    "tr_subject": "termostatik genlesme valfi",
+    "de_subject": "thermostatisches expansionsventil",
+    "keywords": [
+      "txv",
+      "tev",
+      "termostatik genlesme",
+      "expansion valve",
+      "superheat",
+      "mss"
+    ],
+    "tr_questions": [
+      "txv nasil calisir",
+      "superheat ayari nasil yapilir",
+      "txv hunting nedir",
+      "txv kurulumu nelere dikkat",
+      "mss ne anlama gelir"
+    ],
+    "de_questions": [
+      "wie funktioniert ein txv",
+      "wie stellt man den superheat",
+      "was ist txv-hunting",
+      "worauf bei der txv montage achten",
+      "was bedeutet mss"
+    ],
+    "tr_answer": "TXV evaporator cikisina takilan duyargasiyla emis sicakligini olcer ve kalibre yayindaki baski araciligyla diaframa baski uygulayarak akış miktarini ayarlar. Amac stabil bir superheat (genelde 4-8 K) tutmak. Ayar civatasini saat yonunde sikmak superheat'i artirir, gevsetmek azaltir; her seferinde 1/4 tur ile bekle. Hunting (kararsiz cap acma) genelde duyarga yanlis konumu, yetersiz boru temasi, fazla guc ya da yanlis charge'dan olur. MSS (maximum stable superheat) o yukte sistemin daha asagi inemeyecegi alt sinir; altina inerse hunting baslar. Usta TXV'yi degistirmeden once daima sarj, filtre ve duyarga konumunu kontrol eder.",
+    "de_answer": "Ein TXV misst mit dem Fuehler am Verdampferaustritt die Saugtemperatur und reguliert ueber die Membran und Feder den Massenstrom. Ziel ist stabiler Superheat (typisch 4-8 K). Stellschraube im Uhrzeigersinn erhoeht Superheat, gegen den Uhrzeigersinn senkt. Jeweils 1/4 Umdrehung und warten. Hunting kommt meist von falschem Fuehlerort, schlechtem Rohrkontakt, Ueberkapazitaet oder falscher Fuellmenge. MSS (maximum stable superheat) ist die untere Grenze, unter der das Ventil instabil wird. Ein Meister tauscht das TXV erst nach Pruefung von Fuellung, Filter und Fuehlerort.",
+    "suggestions": [
+      "superheat yuksekse ne olur",
+      "duyarga konumu nasil olmali",
+      "eev ile txv farki nedir"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_eev_advantages",
+    "tr_subject": "elektronik genlesme valfi",
+    "de_subject": "elektronisches expansionsventil",
+    "keywords": [
+      "eev",
+      "elektronik genlesme",
+      "stepper motor",
+      "superheat kontrol",
+      "preset",
+      "modulating"
+    ],
+    "tr_questions": [
+      "eev neden tercih edilir",
+      "stepper motorlu valf nasil isler",
+      "eev ile dusuk yukte performans",
+      "eev kalibrasyonu nasil",
+      "eev arizalanirsa belirti"
+    ],
+    "de_questions": [
+      "warum elektronisches expansionsventil",
+      "wie arbeitet ein stepper motor ventil",
+      "wie verhaelt sich ein eev bei teillast",
+      "wie wird ein eev kalibriert",
+      "welche fehlerzeichen bei defektem eev"
+    ],
+    "tr_answer": "EEV mekanik yay yerine adim motoru ile bobinli iglesini hareket ettirir; kontrol kartı superheat sensorlerini okur ve milisaniye-saniyeler icinde acikligi ayarlar. Avantaj: dusuk yukte daha hassas, modulasyonlu calisma, baslangic dolumda hizli tepkili, geri donus ve enerji verimi yuksek. Kalibrasyon kontrol parametrelerinden yapilir (P ve I terimleri); ustanın elinde tornavida yok. Arızada genelde sensor hatasi, ic kabin sticking veya kart bobinine ariza okur. Usta EEV'yi mahkum etmeden once kart logu, sensor ohmu ve elektrik baglantilarini kontrol eder.",
+    "de_answer": "Ein EEV ersetzt die mechanische Feder durch einen Stepper-Motor, die Regelung liest Superheat-Sensoren und justiert die Oeffnung in Millisekunden bis Sekunden. Vorteile: praezise Teillast, modulierbar, schnelle Reaktion beim Anfahren, hoehere Energieeffizienz. Kalibrierung erfolgt ueber Regler-Parameter (P/I); kein Schraubendreher noetig. Im Fehlerfall meist Sensorfehler, Klemmer im Sitz oder Spulenfehler. Ein Meister prueft vor dem Tausch das Reglerlog, den Sensorwiderstand und die Verkabelung.",
+    "suggestions": [
+      "txv mi eev mi tercih edilir",
+      "superheat sensor nerede olur",
+      "stepper motor kac adim"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_capillary_tube_logic",
+    "tr_subject": "kapiler boru mantigi",
+    "de_subject": "kapillarrohrlogik",
+    "keywords": [
+      "kapiler",
+      "capillary",
+      "sabit kisme",
+      "kapillarrohr",
+      "preset metering"
+    ],
+    "tr_questions": [
+      "kapiler boru nasil secilir",
+      "kapiler ile txv arasinda secim",
+      "kapiler degisirken sarj nasil",
+      "tikanmis kapiler belirtileri",
+      "kapiler sistemde superheat kontrol"
+    ],
+    "de_questions": [
+      "wie waehlt man ein kapillarrohr",
+      "kapillar oder txv",
+      "wie verhaelt sich der fuellstand beim kapillarwechsel",
+      "welche symptome bei verstopftem kapillar",
+      "superheat-regelung mit kapillar"
+    ],
+    "tr_answer": "Kapiler boru sabit kismedir; akış sadece basinç farki ve cap-uzunluk kombinasyonuyla belirlenir, regulasyon yapmaz. Bu yuzden sabit yuk koşulli, kucuk hermetik (buzdolabi, kucuk soguk vitrin) icin uygun. Cap (mm cinsinden veya 0.026 inch gibi) ve uzunluk kapasiteyi belirler; uretici tablo soyler. Sarj kritik: cok az gaz superheat fırlamasi, fazla gaz liquid back gerçekleştirir; tartı ile sabit dozaj sart. Tikanma genelde nem veya parcacık birikmesinden, giris-çikis arasi belirgin sicaklik düşmesi belirtir. Buyuk modulasyonlu sistemde kapiler kullanma; superheat sürekli oynar.",
+    "de_answer": "Ein Kapillarrohr ist eine starre Drossel; der Massenstrom haengt allein von Differenzdruck und Geometrie ab, keine Regelung. Daher passt es nur fuer Lasten mit stabilen Betriebspunkten, kleine Hermetik (Haushaltskuehler, kleine Vitrinen). Innendurchmesser und Laenge legen die Leistung fest; Hersteller liefert die Tabelle. Fuellmenge ist kritisch: zu wenig fuehrt zu Superheat-Spitzen, zu viel zu Liquid-Back; gewichtsbasierte Dosierung Pflicht. Verstopfung kommt meist von Feuchte oder Partikeln und zeigt sich an deutlichem Temperaturabfall am Kapillarende. Fuer modulierende grosse Anlagen ist Kapillar ungeeignet.",
+    "suggestions": [
+      "kapiler tikanikligi nasil cozulur",
+      "tartili sarj nasil yapilir",
+      "kucuk hermetic icin hangi gaz"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_solenoid_valve_logic",
+    "tr_subject": "solenoid valf mantigi",
+    "de_subject": "magnetventil logik",
+    "keywords": [
+      "solenoid",
+      "magnetventil",
+      "nc",
+      "no",
+      "pilot valve",
+      "pump down"
+    ],
+    "tr_questions": [
+      "solenoid valf neden lazim",
+      "nc no farki nedir",
+      "pump down icin solenoid nerede",
+      "solenoid valf gureguri ses",
+      "pilot valve nasil isler"
+    ],
+    "de_questions": [
+      "wozu ein magnetventil",
+      "unterschied nc und no",
+      "wo sitzt das pump down magnetventil",
+      "brummen am magnetventil",
+      "wie funktioniert ein pilotventil"
+    ],
+    "tr_answer": "Solenoid valf elektrik akimiyla bobin uzerinden iglesini hareket ettirip akış yolunu acar/kapatir. Likit hatti uzerinde, evaporator girisi yakinindadir; kompresor durunca akış kesilir ve pump-down devresi gercekleşir (kalan gaz LP'ye basilir). NC (normally closed) bobin enerjisiz iken kapali; NO (normally open) tersi. Pilot tipte ic membran kucuk delik araciligyla devresel basinç farkiyla acilir; minimum acma basinci sart. Gureguri ses sıklıkla bobin titremesi, AC harmonik veya yanlis voltajdan kaynaklanır. Usta degisimde once tipi (NC/NO), voltaji ve cikartim yonunu kontrol eder.",
+    "de_answer": "Ein Magnetventil oeffnet/schliesst die Leitung ueber den Anker, der von der Spule bewegt wird. Sitzt meist auf der Fluessigkeitsleitung vor dem Verdampfer und ermoeglicht Pump-Down (Restkaeltemittel wird in den ND gefoerdert). NC (normally closed) im stromlosen Zustand geschlossen, NO umgekehrt. Pilotventile oeffnen ueber eine kleine Druckdifferenz und benoetigen einen Mindestdruck. Brummgeraeusche kommen von Spulenflattern, AC-Oberschwingungen oder falscher Spannung. Ein Meister prueft beim Tausch zuerst Typ (NC/NO), Spannung und Durchflussrichtung.",
+    "suggestions": [
+      "pump down devresi nedir",
+      "minimum acma basinci",
+      "valf bobini nasil olculur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_check_valve_placement",
+    "tr_subject": "check valf konumu",
+    "de_subject": "rueckschlagventil position",
+    "keywords": [
+      "check valve",
+      "rueckschlagventil",
+      "tek yon",
+      "reverse flow",
+      "kompresor cikis",
+      "discharge"
+    ],
+    "tr_questions": [
+      "check valf nereye konur",
+      "check valf neden lazim",
+      "reverse flow nasil engellenir",
+      "discharge check farki",
+      "check valf tikanikligi belirtisi"
+    ],
+    "de_questions": [
+      "wo wird ein rueckschlagventil eingebaut",
+      "wozu rueckschlagventil",
+      "wie verhindert man rueckfluss",
+      "check ventil auf der druckseite",
+      "wie erkennt man verstopftes rueckschlagventil"
+    ],
+    "tr_answer": "Check valf akış yonunu garantilemek icin koyulur. Cok evaporatorlu sistemde, paralel kompresorlerde veya defrost sonrasi yetersiz pump-down olan tesislerde ters akışı engeller. Kompresor cikisindaki discharge check valf, makine durunca sicak gazin geri donup karteri buharlasmasini engeller. Konumu kompresore yakin (sıcak tarafta) tutulmaz; titresimden orta uzaklikta, dik olmayan acida birakılır. Tikanma valf giris-çikis sicakliginda fark yaratır, kapasiteyi düşürür ve guru guru ses verir. Usta degisimde montaj yonunu (ok yonu akış yonu) kontrol eder.",
+    "de_answer": "Ein Rueckschlagventil sichert die Flussrichtung. Bei Mehrverdampfersystemen, Parallelverdichtern oder unzureichendem Pump-Down nach Abtauung verhindert es Rueckfluss. Das Druckventil hinter dem Verdichter verhindert, dass Heissgas in den Verdichter zurueckkriecht und das Oel verdampft. Es wird nicht direkt am Verdichter, sondern mit Abstand und auf einem nicht-senkrechten Stueck eingebaut. Verstopfung erzeugt Temperaturdifferenz zwischen Ein- und Ausgang, mindert die Leistung und macht Geraeusche. Ein Meister prueft beim Tausch Einbaurichtung (Pfeil = Stroemung).",
+    "suggestions": [
+      "pump down basinci",
+      "cok evaporatorlu sistem",
+      "ses ve titresim kontrolu"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_oil_separator_function",
+    "tr_subject": "yag ayirici fonksiyonu",
+    "de_subject": "oelabscheider funktion",
+    "keywords": [
+      "yag ayirici",
+      "oelabscheider",
+      "oil separator",
+      "helical",
+      "centrifugal",
+      "yag donus"
+    ],
+    "tr_questions": [
+      "yag ayirici neden gerek",
+      "yag ayirici nasil isler",
+      "helical mi centrifugal mi",
+      "yag ayirici cikisi nereye",
+      "yag seviyesi dusukse"
+    ],
+    "de_questions": [
+      "wozu ein oelabscheider",
+      "wie funktioniert ein oelabscheider",
+      "helical oder zentrifugal",
+      "oelabscheider rueckfuehrung",
+      "was bei niedrigem oelstand"
+    ],
+    "tr_answer": "Yag ayirici discharge'dan gelen sicak gaz icindeki yag damlaciklarini ayirip kompresor karterine geri yollar. Cok kompresorlu, uzun hatli veya yari hermetik sistemde sart. Helical (sarmal) tip pasif, dusuk basinç düşmesi; centrifugal tip yuksek verim ama daha gureklu ses. Cikis yag donus hattindan flotorlu valf veya sabit kismeden geçerek karterin alt seviyesine baglanir. Yag seviyesi düşukse oncelikle: hat tikalimi mi, ayirici cıkisi acik mi, flotor yapışmis mi, sistem belki uzun likid eylem kontrol et. Usta yag ayiriciyi anlamadan yag eksigine 'sistem yag kaybediyor' diye yenisini doldurmaz.",
+    "de_answer": "Ein Oelabscheider trennt Oeltroepfchen aus dem heissen Druckgas und fuehrt sie ins Kurbelgehaeuse zurueck. Pflicht bei Mehrverdichtersystemen, langen Leitungen oder Halbhermetik. Helical-Typen sind passiv und druckverlustarm; zentrifugal effizienter, aber lauter. Der Rueckweg fuehrt ueber Schwimmerventil oder feste Drossel zum Oelsumpf zurueck. Bei niedrigem Oelstand zuerst pruefen: Leitung verstopft, Auslass offen, Schwimmer haengt, Anlage moeglicherweise im Dauer-Fluessigkeitsbetrieb. Ein Meister fuellt nicht einfach Oel nach, ohne den Pfad zu verstehen.",
+    "suggestions": [
+      "yag seviyesi azalmasi",
+      "floatorlu valf kontrolu",
+      "cok kompresorlu sistemde dengeleme"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_sight_glass_indicators",
+    "tr_subject": "sight glass okuma",
+    "de_subject": "schauglas lesen",
+    "keywords": [
+      "sight glass",
+      "schauglas",
+      "moisture indicator",
+      "sari yesil",
+      "bubbles",
+      "kabarcik"
+    ],
+    "tr_questions": [
+      "sight glassda kabarcik ne anlama gelir",
+      "moisture indicator sari ne demek",
+      "sari yesil renk farki",
+      "sight glass tertemiz ama sorun var",
+      "sight glass nereye konur"
+    ],
+    "de_questions": [
+      "was bedeuten blasen im schauglas",
+      "gelb beim moisture indicator",
+      "unterschied gelb gruen",
+      "schauglas sauber aber problem",
+      "wo wird das schauglas eingebaut"
+    ],
+    "tr_answer": "Sight glass likid hattinda, dryer'in arkasinda, evaporatorden once konulur. Camda kabarcik gormek genelde gaz eksigi veya yetersiz subcooling demektir; ancak sicak ortam, yuksek kondensasyon basinci veya likid hat tikanikligi da kabarcik uretir. Moisture indicator nokta sari ise sistemde nem var demektir (vakum/dryer yetersiz); yesil ise kuru. Cam tertemiz gorulup hala kabarcık varsa filtre tıkalı veya likid hatta basinç düşmüs olabilir. Usta sadece kabarcığa bakip 'gaz az' diye sarj yapmaz; once subcool, kondens basinç ve hat şartlarını birlikte değerlendirir.",
+    "de_answer": "Das Schauglas sitzt auf der Fluessigkeitsleitung hinter dem Trockner und vor dem Verdampfer. Blasen bedeuten meist Kaeltemittelmangel oder unzureichendes Subcooling; aber auch heisse Umgebung, hoher Verfluessigungsdruck oder Leitungsdrosselung erzeugen Blasen. Der Feuchteindikator gelb signalisiert Feuchtigkeit (Vakuum/Trockner unzureichend), gruen ist trocken. Wenn das Glas sauber wirkt und das Problem bleibt, sind Filter oder Druckabfall in der Leitung Verdaechtige. Ein Meister ergaenzt nicht einfach Kaeltemittel, sondern wertet Subcooling, Verfluessigungsdruck und Leitungszustand zusammen aus.",
+    "suggestions": [
+      "subcooling nasil olculur",
+      "filtre tikanikligi belirtileri",
+      "kondens basinci neden onemli"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_pressure_switch_types",
+    "tr_subject": "basinç salteri tipleri",
+    "de_subject": "druckschalter typen",
+    "keywords": [
+      "basinç salteri",
+      "druckschalter",
+      "hp",
+      "lp",
+      "dual",
+      "kp",
+      "ranco",
+      "danfoss"
+    ],
+    "tr_questions": [
+      "hp ve lp salter farki",
+      "dual pressure switch nasil isler",
+      "kp salter ayari",
+      "ranco fischer salter sade mi",
+      "pressure transducer mi switch mi"
+    ],
+    "de_questions": [
+      "unterschied hp und lp druckschalter",
+      "wie arbeitet ein dual druckschalter",
+      "kp einstellung",
+      "ranco fischer schalter ausreichend",
+      "druckwaechter oder druckaufnehmer"
+    ],
+    "tr_answer": "HP (high pressure) salter discharge tarafinda, kondens basinç asilirsa motoru durdurur (manuel reset onerilir). LP (low pressure) emis basinçi cok dusunce devre disi birakir; otomatik reset cogu uygulamada. Dual tip iki bagımsız salterin tek kasada paketlenmis halidir; Danfoss KP serisi bunun klasigidir. Ayarlar 'cut-out' (durdur) ve 'cut-in' (calistir) olarak iki rakamla yapilir; differential isimli ucuncu deger ikisi arasi farktir. Pressure transducer ise sayisal okuma yapar, dis kart histerez gibi ayar mantigini saglar. Usta bir saltere bakarken once tip etiketi, sonra ayar deger çizelgesini okur.",
+    "de_answer": "Ein HP-Schalter (Hochdruck) auf der Druckseite schaltet den Verdichter bei Ueberdruck ab (manueller Reset empfohlen). LP (Niederdruck) schaltet bei zu niedrigem Saugdruck ab, in vielen Anwendungen mit Auto-Reset. Dualtypen kombinieren beides in einem Gehaeuse; Danfoss KP ist der Klassiker. Einstellungen werden mit Cut-Out (Abschalten) und Cut-In (Einschalten) gemacht, mit Differential als drittem Wert. Ein Druckaufnehmer liefert ein analoges Signal an die Regelung, Histerese erfolgt extern. Ein Meister liest am Schalter erst Typ und Datenblatt, dann die Sollwerte.",
+    "suggestions": [
+      "kp ayar tablosu",
+      "cut in cut out fark",
+      "danfoss serisi karsilastirma"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_contactor_inspection",
+    "tr_subject": "kontaktor kontrolu",
+    "de_subject": "schuetzpruefung",
+    "keywords": [
+      "kontaktor",
+      "schuetz",
+      "kontakt",
+      "ark",
+      "verschweisst",
+      "yanik",
+      "temas direnci"
+    ],
+    "tr_questions": [
+      "kontaktor temizligi nasil",
+      "yanik kontaktor belirtisi",
+      "kaynaklanmis kontak nasil anlasilir",
+      "temas direnci olcumu",
+      "kontaktor secimi"
+    ],
+    "de_questions": [
+      "wie pruefe ich ein schuetz",
+      "verbrannte schuetzkontakte erkennen",
+      "wie erkennt man verschweisste kontakte",
+      "kontaktwiderstand messen",
+      "schuetzauswahl"
+    ],
+    "tr_answer": "Kontaktor kontagi ark, kararma, yapışma ve damlacık gormekle anlasilir. Yanik kontaktor genelde 'on' pozisyonunda kalir veya aralikli temas yapar. Olcum: enerji kesik halde uctan uca multimetre ile direnc 0.1 omh altinda olmali; uzerinde sicaklik farki yaratiyorsa direnc artmis demektir. Kaynaklanmis (welded) kontak bobinin gucuyle ayrilmaz, fiziksel ayrı kontrol gerekir. Secimde kompresorun nominal akiminin 1.25-1.5 kati ayarlanir; AC-3 sınıfı endüktif yuke uygun. Usta degisimde sadece kontaktoru yenisi yerine, kontroller, role ve termik koruyucuyu birlikte kontrol eder.",
+    "de_answer": "Schuetzkontakte werden auf Lichtbogen, Verfaerbung, Verschweissung und Krater untersucht. Verbrannte Kontakte bleiben oft in der 'Ein'-Stellung haengen oder schalten unregelmaessig. Messung: stromlos den Durchgangswiderstand mit Multimeter pruefen, unter 0,1 Ohm; bei Temperaturanstieg im Betrieb hat sich der Widerstand erhoeht. Verschweisste Kontakte trennen sich nicht durch Spulenrueckzug, sondern muessen manuell zerlegt werden. Auswahl 1,25-1,5-fach Nennstrom des Verdichters, AC-3-Klasse fuer induktive Last. Ein Meister wechselt nicht nur das Schuetz, sondern prueft Steuerlogik, Relais und Thermoschutz mit.",
+    "suggestions": [
+      "termik koruyucu nasil ayarlanir",
+      "ac3 sınıfı ne demek",
+      "bobin direnci olcumu"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_overload_protection",
+    "tr_subject": "asiri yuk korumasi",
+    "de_subject": "ueberlastschutz",
+    "keywords": [
+      "termik",
+      "thermistor",
+      "ptc thermistor",
+      "klixon",
+      "overload",
+      "aşiri yuk",
+      "koruyucu"
+    ],
+    "tr_questions": [
+      "aşiri yuk korumasi nasil isler",
+      "termik ile thermistor farki",
+      "klixon ne demek",
+      "hangi koruma ne icin",
+      "koruma cabuk atiyor"
+    ],
+    "de_questions": [
+      "wie funktioniert ueberlastschutz",
+      "unterschied bimetall und thermistor",
+      "was ist klixon",
+      "welche schutzart wofuer",
+      "schutz loest haeufig aus"
+    ],
+    "tr_answer": "Aşiri yuk korumasi genelde uc tipte: bimetalik (mekanik), termistor (NTC veya PTC ile elektronik), ve dahili motor sargi termiği (klixon). Bimetalik sabit veya ayarli; sicaklikla bukulup kontak acar. Termistor sürekli sicaklik okur, kart degerlendirir, daha hassas tepkili. Klixon kapali motorun ic kismina yerlestirilmis ufak disk, sicakliga göre devre acar. Sik atan koruma genelde aşiri akim (faz dengesizliği, dusuk voltaj, mekanik tikanma) veya sicaklik probleminden olur; korumayi 'bypass etmek' degil sebebi cozmek lazim. Usta sebebi bulmadan once daha buyuk koruyucu takmayi reddeder.",
+    "de_answer": "Ueberlastschutz gibt es typischerweise in drei Varianten: Bimetall (mechanisch), Thermistor (NTC/PTC mit Elektronik) und im Motor eingebauter Klixon-Schalter. Bimetallschutz arbeitet ueber Verformung bei Temperatur. Thermistor liest die Temperatur kontinuierlich, die Steuerung interpretiert. Klixon ist ein kleiner Bimetallschalter direkt am Motor. Haeufige Auswurfe deuten auf Ueberstrom (Phasenungleichgewicht, Unterspannung, mechanische Blockade) oder Temperaturproblem. Den Schutz zu bruecken ist falsch; die Ursache muss geklaert werden. Ein Meister tauscht nie gegen einen groesseren Schutz, ohne die Wurzel zu finden.",
+    "suggestions": [
+      "faz dengesizligi nasil bulunur",
+      "motor sargi olcumu",
+      "ptc thermistor degeri"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_compressor_oil_types",
+    "tr_subject": "kompresor yag tipleri",
+    "de_subject": "verdichter oeltypen",
+    "keywords": [
+      "poe",
+      "pag",
+      "mineral",
+      "alkylbenzene",
+      "oel",
+      "yag tipleri",
+      "kompatibilite"
+    ],
+    "tr_questions": [
+      "mineral poe pag farki",
+      "hangi gaz hangi yag",
+      "poe icin nem onemli",
+      "yag karistirma yasak mi",
+      "yag viskozitesi nasil okunur"
+    ],
+    "de_questions": [
+      "unterschied mineraloel poe pag",
+      "welches kaeltemittel welches oel",
+      "feuchte und poe",
+      "oele mischen verboten",
+      "wie liest man die viskositaet"
+    ],
+    "tr_answer": "Mineral yag eski R22, R12 sistemde standartti; HFC ile karismaz, ayrismayi yapar. POE (polyolester) HFC ve HFO icin sart, fakat higroskopik — havadaki nemi hizla cekiyor. PAG mobil klimada (R1234yf, R134a) yaygin, su iceriyor ve agresif. Alkylbenzene ara cozum, eski sistemleri HFC'ye gecirirken kullanilir. Karistirma yasak; eski yag tamamen tahliye edilmeli, sistem temizlenmeli, sonra yenisi konulmali. Viskozite ISO VG (32, 46, 68 vb.) olarak okunur; uretici manuelinden secilir. Usta yag tipi bilinmeden hicbir kompresore yag eklemez; degerli kalemler etiketten okunup gerekirse kompresor uretici doğrulanir.",
+    "de_answer": "Mineraloel war Standard fuer R22 und R12; mit HFC nicht mischbar, fuehrt zu Trennung. POE (Polyolester) ist Pflicht fuer HFC und HFO, aber hygroskopisch und zieht Luftfeuchte schnell an. PAG findet sich in der Mobilklima (R1234yf, R134a), ist wasserloeslich und aggressiv. Alkylbenzol ist Uebergangsoel fuer Umruestungen auf HFC. Vermischen ist verboten; das alte Oel muss komplett abgelassen und das System gespuelt werden. Viskositaet wird in ISO VG (32, 46, 68 etc.) angegeben und nach Herstellerhandbuch gewaehlt. Ein Meister fuellt nichts ohne Oeltyp; Etikett lesen und im Zweifel den Hersteller anfragen.",
+    "suggestions": [
+      "poe yag nem testi",
+      "viskozite tablosu nereden",
+      "yag tamamen tahliye nasil"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_fan_motor_types",
+    "tr_subject": "fan motor tipleri",
+    "de_subject": "luefter motortypen",
+    "keywords": [
+      "fan motor",
+      "psc",
+      "ecm",
+      "capacitor",
+      "ec motor",
+      "bldc",
+      "kondansator",
+      "yon"
+    ],
+    "tr_questions": [
+      "psc ecm fark",
+      "ec motor avantaji",
+      "fan donmuyor neden",
+      "fan yonu nasil degisir",
+      "kondansatorlu fan ne zaman tercih"
+    ],
+    "de_questions": [
+      "unterschied psc und ecm",
+      "ec motor vorteile",
+      "luefter dreht nicht warum",
+      "wie aendert man die drehrichtung",
+      "kondensatormotor wann"
+    ],
+    "tr_answer": "PSC (permanent split capacitor) fan motoru tek sargi + sürekli devrede kondansator ile çalışir; basit, dayanikli ama hizi sabit. ECM (electronically commutated motor) DC motor + entegre kontrol, hizi adim adim modulasyon yapabilir, %30-50 daha verimli. Fan donmuyorsa: kondansator olcumu, motor sargi direnci (genelde 5-30 ohm), pala dengesi, blokaj kontrol. Yon degisimi ucler arası degisim (PSC) veya kart parametreyle (ECM) yapilir. Pasivli soguk oda fan motoru genelde IP54/IP55, yagli rulmanli, yuksek nem icin ozel kaplama. Usta motor degisiminden once kontrol kartini ve baglantilari netler.",
+    "de_answer": "PSC-Motor (permanent split capacitor) arbeitet mit Hilfswicklung und dauerhaftem Kondensator; einfach und robust, aber feste Drehzahl. ECM (electronically commutated motor) ist ein DC-Motor mit integrierter Regelung und stufenloser Modulation, 30-50 % effizienter. Wenn der Luefter nicht laeuft: Kondensator messen, Wicklungswiderstand (5-30 Ohm), Schaufelfreigaengigkeit pruefen. Drehrichtung wird per Anschluesse (PSC) oder Parameter (ECM) umgekehrt. Industrielle Luefter in Kuehlraeumen sind meist IP54/IP55, mit Wartungsgelagern und Feuchteschutz-Beschichtung. Ein Meister prueft Steuerung und Verkabelung, bevor er einen Motor tauscht.",
+    "suggestions": [
+      "kondansator olcumu",
+      "ec motor parametre",
+      "ip55 ne demek"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_defrost_heater_types",
+    "tr_subject": "defrost ısıticı tipleri",
+    "de_subject": "abtauheizung typen",
+    "keywords": [
+      "defrost",
+      "abtau",
+      "heater",
+      "cam tüp",
+      "kalrod",
+      "glass tube",
+      "calrod",
+      "hot gas"
+    ],
+    "tr_questions": [
+      "elektrik defrost ile sicak gaz farki",
+      "calrod glass tube tercih",
+      "defrost suresi",
+      "defrost terminasyon",
+      "defrost amperi"
+    ],
+    "de_questions": [
+      "elektrische versus heissgas-abtauung",
+      "calrod oder glasrohr",
+      "abtaudauer",
+      "abtau-beendigung",
+      "abtau-strom"
+    ],
+    "tr_answer": "Elektrik defrost kalrod (gemi-metal kapakli kostlu element) veya glass tube (cam icinde rezistans) seklinde olur; kalrod dayanikli, glass tube daha temiz radyant isi verir. Sicak gaz defrost ise discharge gazini evaporatore yonlendirir, hizli ve enerji verimli ama valf kontrolu cok kritik. Defrost suresi tipik 20-45 dakika, terminasyon termostatla (~10-15 °C) sicaklik veya zaman + maksimum sicaklik kombinasyonu olarak yapilir. Defrost cok uzunsa ürünler isinir; cok kisa olursa evaporator buz tutar. Akimın bekleneni vermesi (W = U×I) ısitma dogru calistigini soyler; eksikse rezistans bozulmus demektir.",
+    "de_answer": "Elektrische Abtauung erfolgt ueber Calrod (Metallummantelte Heizelemente) oder Glasrohr-Heizungen; Calrod ist robust, Glasrohr strahlt sauberer. Heissgas-Abtauung leitet das Verdichter-Heissgas in den Verdampfer, schnell und energieeffizient, aber Ventilsteuerung ist kritisch. Abtaudauer typisch 20-45 Minuten, Beendigung per Temperaturthermostat (~10-15 °C) oder Zeit + Maximaltemperatur. Zu lange Abtauung erwaermt die Ware; zu kurz fuehrt zur Eisbildung. Der Soll-Strom (W = U×I) zeigt, ob die Heizung arbeitet; bei Abweichung ist das Element defekt.",
+    "suggestions": [
+      "defrost terminasyon termostati",
+      "sicak gaz valfi kontrolu",
+      "defrost cikis sicakligi"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_evaporator_design",
+    "tr_subject": "evaporator tasarim",
+    "de_subject": "verdampfer auslegung",
+    "keywords": [
+      "evaporator",
+      "verdampfer",
+      "fan coil",
+      "fin tube",
+      "kapasite",
+      "selection",
+      "td",
+      "oda"
+    ],
+    "tr_questions": [
+      "evaporator nasil secilir",
+      "fin spacing onemi",
+      "td degeri nedir",
+      "evaporator kapasitesi neye gore",
+      "fan sayisi yetiyor mu"
+    ],
+    "de_questions": [
+      "wie waehlt man einen verdampfer",
+      "fin spacing",
+      "was ist td",
+      "verdampferkapazitaet wonach",
+      "reichen die luefter"
+    ],
+    "tr_answer": "Evaporator secimi oda yuku, hedef sicaklik, hedef nem ve gaz tipine gore yapilir. TD (temperature difference) evaporator gaz sicakligi ile oda sicakligi arasi fark; tipik taze ürün 6-8 K, dondurulmus 4-5 K. Fin spacing dar olursa daha cok yuzey ama buz tutma riski; geniş olursa daha az kapasite. Kapasite W cinsinden, oda yukunun 1.1-1.2 katı seçilir; fan sayisi hava akimini esit dagıtmali. Usta evaporator degisimi yapmadan once oda izolasyonu, kapi açma sikliği, defrost programi ve yuk dagılimini birlikte değerlendirir.",
+    "de_answer": "Die Verdampferauswahl basiert auf Raumlast, Solltemperatur, Sollluftfeuchte und Kaeltemittel. TD (Temperaturdifferenz) ist die Differenz zwischen Verdampfungstemperatur und Raumluft; typisch 6-8 K bei Frischware, 4-5 K bei Tiefkuehl. Enger Lamellenabstand bringt mehr Flaeche, aber hoehere Vereisungsneigung; weiter beduetet weniger Leistung. Die Kapazitaet wird in W mit 1,1-1,2-facher Raumlast gewaehlt; die Luefter muessen gleichmaessig verteilen. Ein Meister wechselt einen Verdampfer nie ohne Pruefung der Raumdaemmung, Tueroeffnungen, Abtauprogramm und Lastverteilung.",
+    "suggestions": [
+      "fin spacing nasil okunur",
+      "td hesabi",
+      "oda yuku nasil bulunur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_condenser_design",
+    "tr_subject": "kondenser tasarim",
+    "de_subject": "verfluessiger auslegung",
+    "keywords": [
+      "kondenser",
+      "verfluessiger",
+      "luftgekuehlt",
+      "wassergekuehlt",
+      "ambient",
+      "tc",
+      "head pressure"
+    ],
+    "tr_questions": [
+      "kondenser kapasitesi nasil secilir",
+      "hava ile su sogutmali fark",
+      "ambient sicaklik etkisi",
+      "tc nedir",
+      "head pressure kontrolu"
+    ],
+    "de_questions": [
+      "wie waehlt man einen verfluessiger",
+      "luft gegen wassergekuehlt",
+      "einfluss umgebungstemperatur",
+      "was ist tc",
+      "wie regelt man den verfluessigungsdruck"
+    ],
+    "tr_answer": "Kondenser hava sogutmali veya su sogutmali olabilir. Hava sogutmali ucuz ve bakım az, ama yazın kondens basinç yukselir (TC tipik ambient + 12-15 K). Su sogutmali kompakt ve sabit performans, ama su tedariki ve scaling sorunu var. Kondens kapasitesi kompresor cikis enerjisinin 1.2-1.3 katı; ambient sicaklik artar artmaz performans düşer. Head pressure kontrol icin fan hizi modulasyonu, su debi ayari veya by-pass valf kullanilir. Usta sicak iklimde dimensioned olmadan satilmis bir kondenseri ilk yazda problem cikartirken bulur; baslangic seciminde max ambient onceligi sart.",
+    "de_answer": "Verfluessiger gibt es luftgekuehlt oder wassergekuehlt. Luftkuehlung ist billig und wartungsarm, im Sommer steigt der Verfluessigungsdruck (TC typisch Umgebung + 12-15 K). Wasserkuehlung ist kompakt und stabil, aber Wasserversorgung und Verkalkung sind Themen. Die Verfluessigerkapazitaet wird 1,2-1,3-fach der Verdichterausgangsleistung gewaehlt; mit steigender Umgebungstemperatur sinkt die Performance. Verfluessigungsdruckregelung ueber Luefterdrehzahl, Wasserdurchfluss oder Bypass-Ventil. Ein Meister bemerkt unterdimensionierte Verfluessiger oft erst im ersten Sommer; bei der Auswahl ist die Max-Umgebungstemperatur zwingend.",
+    "suggestions": [
+      "fan hizi modulasyonu",
+      "scaling nasil engellenir",
+      "head pressure ayar deger"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_subcooler_logic",
+    "tr_subject": "subcooler mantigi",
+    "de_subject": "unterkuehler logik",
+    "keywords": [
+      "subcooler",
+      "unterkuehler",
+      "mechanical",
+      "liquid subcool",
+      "kapasite artisi",
+      "verim"
+    ],
+    "tr_questions": [
+      "subcooler ne yapar",
+      "mekanik subcooler ne zaman gerek",
+      "subcool degeri kac olmali",
+      "subcooler kapasite artirir mi",
+      "sicak iklimde subcooler"
+    ],
+    "de_questions": [
+      "wozu ein unterkuehler",
+      "wann mechanischer unterkuehler",
+      "welcher subcooling-wert",
+      "erhoeht unterkuehlung die leistung",
+      "unterkuehler in heisser umgebung"
+    ],
+    "tr_answer": "Subcooler likid hatti gazi kondens sicakligindan asagi soguturur; bu sayede TXV girisinde 100% likid garantili ve kapasite artar. Tipik subcool 4-8 K; daha fazlasi mekanik subcooler ile saglanir (kucuk evap-kondens cifti). Sicak iklimde gerek artar — yuksek ambient kondens sicakligini yukseltir, subcool olmadan flash gaz olusup TXV kararsizlasir. Subcool tutmamak hat boyu mesafesi uzun veya dikey yukselti varsa kritik. Usta subcooler eklemeden once likid hatti yalitimi, dryer durumu ve likid hatti basinç dusurucu cözeklerini kontrol eder; cogu zaman izolasyon eksigi temel sebep.",
+    "de_answer": "Ein Unterkuehler kuehlt das fluessige Kaeltemittel unter die Verfluessigungstemperatur und sichert reine Fluessigkeit am TXV-Eingang; das erhoeht die Kapazitaet. Typisch 4-8 K Subcooling, hoeher mit mechanischem Unterkuehler (kleiner Verdampfer-Verfluessiger-Pair). In heissem Klima steigt der Bedarf — hohe Umgebung erhoeht Verfluessigungstemperatur, ohne Subcooling entstehen Flash-Gase und TXV wird instabil. Bei langen Leitungen oder Steigleitungen kritisch. Ein Meister prueft vor dem Einbau Daemmung, Trocknerzustand und Druckverlust in der Leitung; oft fehlt nur die Isolierung.",
+    "suggestions": [
+      "flash gas nedir",
+      "likid hatti yalitimi",
+      "mekanik subcooler ornek"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_receiver_sizing",
+    "tr_subject": "likid biriktirici boyutlandirma",
+    "de_subject": "sammler dimensionierung",
+    "keywords": [
+      "receiver",
+      "sammler",
+      "liquid receiver",
+      "kapasite",
+      "reservoir",
+      "pump down volume"
+    ],
+    "tr_questions": [
+      "likid biriktirici ne kadar olmali",
+      "pump down hacmi nasil hesaplanir",
+      "receiver fazla buyuk olursa",
+      "tek mi ikili receiver",
+      "receiver konum"
+    ],
+    "de_questions": [
+      "wie gross sollte der sammler sein",
+      "wie berechnet man das pump down volumen",
+      "zu grosser sammler",
+      "ein oder zwei sammler",
+      "sammler einbauort"
+    ],
+    "tr_answer": "Likid biriktirici (receiver) sistemin gaz miktarini guvenle saklayabilecek hacme sahip olmali, ozellikle pump-down sırasi LP'ye gönderilen gazin tamamini icermeli. Tipik kural: max sistem doluşunun 1.5 katı hacim. Cok kucuk receiver basinç dengesi bozulur, cok büyukse maliyet ve dolma süresi sorun. Çoklu evaporatorlu sistemde receiver evaporator sonrasi degil, kondens cikisinda olur. Konum kondenserin altinda, dikey hatla bağlı; basinçlı pozisyona yerleştirilir. Usta hesabını uretici programıyla teyit eder, ezbere gözle takdir etmez.",
+    "de_answer": "Der Fluessigkeitssammler muss das gesamte Kaeltemittel sicher aufnehmen koennen, vor allem im Pump-Down. Faustregel: 1,5-fache Fuellmenge. Zu kleiner Sammler bringt Druckaufbauprobleme, zu grosser kostet und braucht Zeit. Bei Mehrverdampferanlagen sitzt der Sammler hinter dem Verfluessiger, nicht hinter den Verdampfern. Einbauort unter dem Verfluessiger mit vertikaler Anbindung. Ein Meister bestaetigt die Berechnung mit Herstellersoftware, nicht ueber Augenmass.",
+    "suggestions": [
+      "pump down basinci",
+      "kompresor calismayinca receiver",
+      "gaz dolum miktari"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_accumulator_function",
+    "tr_subject": "sivi akumulator gorevi",
+    "de_subject": "saugleitungsabscheider funktion",
+    "keywords": [
+      "accumulator",
+      "sivi akumulator",
+      "suction accumulator",
+      "floodback",
+      "sicaklik",
+      "baffle"
+    ],
+    "tr_questions": [
+      "sivi akumulator ne ise yarar",
+      "floodback risk var mi accumulator",
+      "accumulator ile receiver fark",
+      "accumulator boyut",
+      "ic baffle gerek mi"
+    ],
+    "de_questions": [
+      "wozu ein saugleitungsabscheider",
+      "schuetzt accumulator vor floodback",
+      "unterschied accumulator und sammler",
+      "wie gross der accumulator",
+      "baffle erforderlich"
+    ],
+    "tr_answer": "Sivi akumulator (suction accumulator) kompresor onunde, evaporatorden gelen kismi sivi haldeki gazi tutar; sadece buhar uzerinden kompresore gonderir. Floodback ihtimali yuksek sistemde (defrostlu, modulasyonlu, uzun hat) sart. Receiverdan farki: receiver basinçli likid tarafinda, akumulator dusuk basinç buhar tarafinda. Boyut tipik 40-60% sistem dolusunu tutabilecek hacim. Baffle (ic perde) sivi-buhar ayrımini iyilestirir; cok kucuk akumulator zaten yetersiz, baffle olmasi sart. Usta accumulator eksik sistemde defrost sonrasi sivi vurmasi sik gormekten dolayi montaj defalarinda akumulator kontrolü yapar.",
+    "de_answer": "Ein Saugleitungsabscheider (Accumulator) sitzt vor dem Verdichter und sammelt Fluessigkeitsanteile aus dem Verdampfer; nur Gasphase erreicht den Verdichter. Bei Anlagen mit Abtauung, Modulation oder langen Leitungen Pflicht. Unterschied zum Sammler: Sammler steht auf der Hochdruck-Fluessigkeitsseite, Accumulator auf der Niederdruck-Gasseite. Groesse typisch 40-60 % der Fuellmenge. Innere Trennwand (Baffle) verbessert die Phasentrennung. Ein Meister sieht bei fehlendem Accumulator oft Fluessigkeitsschlaege nach der Abtauung und prueft das bei jeder Montage.",
+    "suggestions": [
+      "floodback belirtileri",
+      "defrost sonrasi sicaklik",
+      "accumulator yag donusu"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_crankcase_heater",
+    "tr_subject": "karter isiticisi",
+    "de_subject": "kurbelgehaeuseheizung",
+    "keywords": [
+      "karter isitici",
+      "crankcase heater",
+      "migration",
+      "yag seyreltme",
+      "oil dilution"
+    ],
+    "tr_questions": [
+      "karter isiticisi neden gerek",
+      "migration ne demek",
+      "kompresor calismasa da isitma neden",
+      "karter isitici akimi",
+      "yag seyreltmesi onlenir mi"
+    ],
+    "de_questions": [
+      "wozu kurbelgehaeuseheizung",
+      "was ist migration",
+      "heizung obwohl verdichter steht",
+      "strom der kurbelgehaeuseheizung",
+      "verhindert oeldilution"
+    ],
+    "tr_answer": "Karter isiticisi (crankcase heater) kompresor durdugunda yagi sıcak tutar; ortam soguksa gaz yaga migrasyon yapar (gaz yağa karışir), yeniden basladiginda kopuk yag sirkulasyonu olur ve mekanik hasar görür. Genellikle 50-100 W; surekli devrede degil, termostatlı tetikleme veya kompresor durmusken aktif. Migration en cok 12 saatten uzun durusta, ortam 10 °C altinda gorulur. Karter ısıtıcı temizliği motoru asla kurtarmaz; sadece migrasyon kaynakli problemi onler. Usta bir kompresor 'baslangictan kısa surede stop' yapiyorsa once karter ısıtıcı akımı, yağ seviyesi ve migration ihtimalini birlikte kontrol eder.",
+    "de_answer": "Eine Kurbelgehaeuseheizung haelt im Stillstand das Oel warm; wenn die Umgebung kalt ist, wandert Kaeltemittel ins Oel (Migration), beim Anlauf bricht die Schmierung kurz ab. Typisch 50-100 W, nicht dauerhaft, sondern thermostatgesteuert oder waehrend des Stillstands aktiv. Migration tritt vor allem nach Stillstaenden ueber 12 Stunden bei < 10 °C auf. Eine Karter-Heizung schuetzt keinen brennenden Motor, sondern verhindert Migrationsprobleme. Bei einem Verdichter, der nach dem Start schnell wieder abschaltet, prueft ein Meister Heizung, Oelstand und Migrationsverdacht zusammen.",
+    "suggestions": [
+      "yag seyreltmesi nasil olur",
+      "kompresor anlik durmasi",
+      "ortam sicaklik etkisi"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_compressor_mounting",
+    "tr_subject": "kompresor montaj",
+    "de_subject": "verdichtermontage",
+    "keywords": [
+      "montaj",
+      "mounting",
+      "vibrasyon",
+      "yay",
+      "silentblock",
+      "damper",
+      "kompresor titresim"
+    ],
+    "tr_questions": [
+      "kompresor titresimi nasil engellenir",
+      "silentblock ne ise yarar",
+      "yay montaj mi solid mi",
+      "titresim borulara nasil yansir",
+      "montaj sirasinda hizalama"
+    ],
+    "de_questions": [
+      "wie verhindert man verdichtervibration",
+      "wozu silentblock",
+      "federmontage oder fest",
+      "wie wirkt vibration auf rohre",
+      "ausrichtung bei der montage"
+    ],
+    "tr_answer": "Kompresor montajinda titresim kontrolu sart. Silentblock (kauçuk-metal kombinasyon) hermetik kucuk kompresorlerde standart; yari hermetik buyuk kompresorlerde yay + kauçuk birlikte. Solid (sabit) montaj iyi izole edilmis taban gerekli — yer panellerinde rezonans olusturur. Boruda titresim cikan sok absorber (vibration absorber) ile dengelenir; iki yaylı esnek bağlanti tipik. Hizalama: kompresor seviyesi yer paralel, civatalar esit gerilim altinda. Yanlis montaj 5 yıl sonra valf calmasi, yag pompasi ariza ve boru cızılganlik problemi yaratir. Usta montajda titresim olcer kullanir (eksen + hertz).",
+    "de_answer": "Bei der Verdichtermontage ist Vibrationskontrolle Pflicht. Silentblocks (Gummi-Metall) sind Standard fuer kleine Hermetik; Halbhermetik nutzt Federn + Gummi. Direktverschraubung erfordert einen vollstaendig schwingungsentkoppelten Boden, sonst entsteht Resonanz. In der Leitung gleichen Vibrationsdaempfer (zweifache federnde Flexverbindungen) aus. Ausrichtung: Verdichter horizontal, Schrauben gleichmaessig angezogen. Falsche Montage fuehrt nach Jahren zu Ventil-Schlag, Oelpumpenstoerung und Rohrrissen. Ein Meister nutzt ein Vibrometer (Achse + Hertz) bei der Montage.",
+    "suggestions": [
+      "vibration absorber tipleri",
+      "rezonans nasil engellenir",
+      "titresim olcumu nasil yapilir"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_brazing_techniques",
+    "tr_subject": "sert lehim teknikleri",
+    "de_subject": "hartloeten technik",
+    "keywords": [
+      "brazing",
+      "sert lehim",
+      "silver",
+      "copper phosphorus",
+      "oksigen",
+      "azot",
+      "baca",
+      "loetnaht"
+    ],
+    "tr_questions": [
+      "sert lehimde nitrojen neden lazim",
+      "gumus alasimi mi bakir mi",
+      "sicaklik nereye",
+      "yanmis bakir belirtisi",
+      "sızdırmaz lehim nasil yapilir"
+    ],
+    "de_questions": [
+      "warum stickstoff beim hartloeten",
+      "silberhartlot oder kupferphosphorlot",
+      "welche temperatur",
+      "verbranntes kupfer erkennen",
+      "wie macht man dichte loetnaht"
+    ],
+    "tr_answer": "Sert lehimde nitrojen (3-5 PSI dusuk basinç akış) baca tarafinda oksigeni iter, bakir icine kara oksit (CuO) olusumunu engeller; bu oksit sistemde scale yaratir, filtre tikar. Gumus alasim daha yumusak, dusuk sicaklik (650-750 °C); bakir-fosfor alasim yuksek (800+°C) ama daha sert nokta — fitting bakirsa fosforlu yeterli, celik veya pirinc varsa gumus. Yanmis bakir koyu/siyah lehim noktasi cizgisi gosterir; bu noktada sızdırmaz olsa bile ic kalitesi düşmüş. Doğru lehim parlak yumusak gumus gri tonu; etraf bakir koyu degil acık. Usta lehimden once parcanin temizliği, fluks tipi (eger gerekli), nitrojen akış ve mesafe disiplinine dikkat eder.",
+    "de_answer": "Beim Hartloeten dient Stickstoff (3-5 PSI Schutzgasstrom) zur Verdraengung des Sauerstoffs und verhindert Kupferoxid-Bildung (CuO), das spaeter Filter verstopft. Silberlot schmilzt niedriger (650-750 °C), Kupferphosphor hoeher (800+ °C) und ist haerter — Kupfer-zu-Kupfer reicht Phosphor, mit Stahl oder Messing braucht es Silberlot. Ueberbranntes Kupfer hat dunkle Schlieren in der Naht; auch wenn dicht, ist die Innenqualitaet beeintraechtigt. Eine gute Naht ist hellgrau und glaenzend, Umgebung kupferfarben hell. Vor dem Loeten achtet ein Meister auf Sauberkeit, Flussmittel (falls noetig), Stickstoffstrom und Abstand.",
+    "suggestions": [
+      "nitrojen akış miktari",
+      "fluks ne zaman",
+      "cu cu lehim sicaklik"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_pressure_transducer_use",
+    "tr_subject": "basinç transduseri kullanimi",
+    "de_subject": "druckaufnehmer einsatz",
+    "keywords": [
+      "pressure transducer",
+      "drucksensor",
+      "4-20 ma",
+      "analog",
+      "modulasyon",
+      "kontrol",
+      "sayisal"
+    ],
+    "tr_questions": [
+      "transducer ile switch farki",
+      "4-20 ma cıkış nasil okunur",
+      "modulasyon icin transducer gerek",
+      "kalibrasyon nasil",
+      "ariza belirtisi"
+    ],
+    "de_questions": [
+      "unterschied transducer und switch",
+      "wie liest man 4-20 ma",
+      "brauche ich transducer fuer modulation",
+      "wie kalibriere ich",
+      "fehlerbild"
+    ],
+    "tr_answer": "Pressure transducer surekli analog cıkış (genelde 4-20 mA veya 0-10 V) verir; bu sayede regulasyon kartı veya PLC P/I kontrol uygulayabilir. Switch sadece on/off; modulating sistemde kullanılamaz. Kalibrasyon iki nokta (sifir basinç ve maks basinç) ile yapilir; uretici prosedurune göre. Ariza belirtileri: sabit cıkış değeri, dalgalanma, kart hatasi okumasi. Doğru ortam icin transducerin basinç aralığı sistem aralığını kapsamali (örn kondens icin 0-40 bar, emis icin 0-20 bar). Usta transducerı kart parametreleriyle birlikte degerlendirir; tek bir okuma ile mahkum etmez.",
+    "de_answer": "Ein Druckaufnehmer (Transducer) liefert ein analoges Signal (4-20 mA oder 0-10 V) und ermoeglicht P/I-Regelung am Regler/PLC. Schalter sind nur On/Off; fuer Modulation untauglich. Kalibrierung erfolgt in zwei Punkten (Null und Max) nach Herstellerangaben. Fehlerbilder: konstanter Ausgang, schwankendes Signal, Plausibilitaetsfehler im Regler. Messbereich muss zum System passen (z. B. 0-40 bar Hochdruck, 0-20 bar Niederdruck). Ein Meister bewertet das Signal stets im Kontext der Regelparameter, nicht aufgrund eines einzelnen Messwerts.",
+    "suggestions": [
+      "modulasyon kontrol P I",
+      "analog cikti karistirma",
+      "plc nasil okur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_thermostat_types",
+    "tr_subject": "termostat tipleri",
+    "de_subject": "thermostat typen",
+    "keywords": [
+      "termostat",
+      "thermostat",
+      "mekanik",
+      "elektronik",
+      "kontrol",
+      "ranco",
+      "danfoss",
+      "carel"
+    ],
+    "tr_questions": [
+      "mekanik elektronik termostat farki",
+      "carel kartı ne yapar",
+      "termostat ofseti",
+      "oda termostatı konumu",
+      "dijital kontrolör ne avantaj"
+    ],
+    "de_questions": [
+      "mekanischer und elektronischer thermostat",
+      "was macht eine carel-platine",
+      "thermostat-offset",
+      "wo platziert man den raumthermostat",
+      "welche vorteile bringt der digitale regler"
+    ],
+    "tr_answer": "Mekanik termostat (Ranco serisi) gas dolu duyargasi ile baski uretir, fiziksel histerez ve cut-in/cut-out ayarlari. Elektronik termostat (Carel, Eliwell, Danfoss EKC) sicaklik sensoru + ekran + parametreyle modulasyon yapar. Carel kartı tipik IRtronic veya MasterCella serisi: defrost kontrol, alarm role, hemzemin sıcaklık + nem kontrol icerir. Offset değeri sensorun gercek deger ile gosterdigi arasi düzeltme. Oda termostat sensoru evaporator yakini olmamali (yanlis okuma); urun seviyesinde, kapidan uzakta, hava akış ortalamasini gormeli. Usta degisimde parametre yedeğini (file veya manuel) tutar, yeni karta yukler.",
+    "de_answer": "Mechanischer Thermostat (Ranco-Serie) arbeitet mit Gasdosis im Fuehler und Membrandruck, mit fester Hysterese und Cut-in/Cut-out. Elektronische Thermostate (Carel, Eliwell, Danfoss EKC) lesen Sensor, zeigen am Display und modulieren ueber Parameter. Eine Carel-Platine (IRtronic, MasterCella) deckt Abtauung, Alarmrelais, Temperatur- und Feuchteregelung ab. Offset ist die Korrektur zwischen Sensor und tatsaechlicher Temperatur. Der Raumfuehler darf nicht am Verdampfer sitzen; er gehoert auf Hoehe der Ware, fern der Tuer, im Mittel des Luftstroms. Beim Tausch sichert ein Meister die Parameter und uebertraegt sie.",
+    "suggestions": [
+      "sensor konumu nasil olmali",
+      "parametre yedegi nasil alinir",
+      "defrost kontrol parametresi"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_megger_motor_test",
+    "tr_subject": "motor megger testi",
+    "de_subject": "motormegger pruefung",
+    "keywords": [
+      "megger",
+      "insulation",
+      "yalitim direnci",
+      "motor sargi",
+      "wicklung",
+      "500 v"
+    ],
+    "tr_questions": [
+      "motor yalitim direnci nasil olcer",
+      "megger okumasi kac mq olmali",
+      "sarsintili motor ne demek",
+      "kompresor yanmasi sonrasi megger",
+      "megger uygulama voltaji"
+    ],
+    "de_questions": [
+      "wie misst man den isolationswiderstand",
+      "welche mq beim megger",
+      "was ist windungsschluss",
+      "megger nach brand",
+      "welche pruefspannung"
+    ],
+    "tr_answer": "Megger 500 VDC (kucuk motor) veya 1000 VDC (buyuk motor) uygulayarak motor sargi-toprak yalitim direncini olcer. Yeni motor > 100 MΩ, ariza eşigi tipik 2 MΩ altinda; ezberi 1 MΩ altina düşerse motor sak. Kompresor yanmasi sonrasi megger okumasi belirgin düşer; sistem temizlik suresince bir kac defa olculur, stabil yuksek değer çikmazsa motor degisir. Sarsıntılı motor (winding short) görsel olarak fark edilmez; megger + ohm karşılaştırması (faz arası direnc esit olmali) kullanılir. Usta megger oncesi kompresoru cikartmaz, ama besleme baglantilarinı acar, motora dogrudan uygular.",
+    "de_answer": "Ein Megger legt 500 VDC (kleine Motoren) oder 1000 VDC (grosse Motoren) zwischen Wicklung und Gehaeuse und misst den Isolationswiderstand. Neu > 100 MΩ, Fehlerschwelle meist unter 2 MΩ; alles unter 1 MΩ ist kritisch. Nach Verdichterbrand bricht der Wert oft ein; waehrend der Reinigung wird er mehrfach geprueft und bei keiner Stabilisierung der Verdichter ersetzt. Wicklungsschluesse erkennt man nicht visuell; Megger plus Phasen-Phasenwiderstand (gleich) sind die Methode. Vor der Messung trennt der Meister die Speisung, misst aber direkt am Motor.",
+    "suggestions": [
+      "faz arasi direnc karsi",
+      "megger 500 mu 1000 mu",
+      "yalitim direnci dususu sebep"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_compressor_dry_run",
+    "tr_subject": "kuru calistirma",
+    "de_subject": "trockenlauf",
+    "keywords": [
+      "dry run",
+      "kuru calistirma",
+      "yag olmadan",
+      "gaz olmadan",
+      "test",
+      "mengeleer"
+    ],
+    "tr_questions": [
+      "kuru calistirma yapilir mi",
+      "kompresor gaz olmadan calisir mi",
+      "montaj sonrasi ilk calistirma",
+      "kuru test sureli",
+      "dry run riski"
+    ],
+    "de_questions": [
+      "wann darf man trocken laufen lassen",
+      "verdichter ohne kaeltemittel",
+      "erste inbetriebnahme",
+      "wie lange trocken lassen",
+      "risiken trockenlauf"
+    ],
+    "tr_answer": "Kompresoru kuru (gazsiz) calistirma kesinlikle önerilmez; yagsiz uzun calismaya benzer, valf ve piston yuzeyleri yipranır. Eger zorunlu test (motor rotasyon yonu) yapilacaksa max 3-5 saniye, ondan sonra durdur. Montaj sonrasi ilk calistirma vakum tamamlandiktan ve gaz sarjından sonra olmali; gaz yoksa calistirma kompresor garantisini iptal eder. Dry run riski: yataklarda yag filmi yok, motor sargi soguma sorun, valf plaka erken yipranma. Usta hicbir zaman 'sadece bir defa cevirelim' demez; her zaman gaz hazır iken calistirir.",
+    "de_answer": "Trockenlauf eines Verdichters ist nicht empfohlen; aehnliche Folgen wie Oelmangel, Ventile und Kolbenflaechen werden geschaedigt. Wenn fuer einen Rotationstest noetig, maximal 3-5 Sekunden, dann ausschalten. Erste Inbetriebnahme nach Montage erfolgt erst nach Vakuum und Fuellung; ein Trockenstart laesst die Garantie verfallen. Risiken: kein Oelfilm in Lagern, keine Kuehlung der Wicklung, vorzeitiger Ventilverschleiss. Ein Meister sagt nie 'einmal kurz drehen'; immer mit Gas im System starten.",
+    "suggestions": [
+      "motor rotasyon yonu test",
+      "ilk calistirma sirasi",
+      "vakum sonrasi gaz"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_panel_wiring_logic",
+    "tr_subject": "pano kablolama mantigi",
+    "de_subject": "schaltschrank verdrahtung",
+    "keywords": [
+      "pano",
+      "schaltschrank",
+      "plc",
+      "kontrol semasi",
+      "relay logic",
+      "ladder",
+      "baglantı"
+    ],
+    "tr_questions": [
+      "pano semasi nasil okunur",
+      "ladder logic mantigi",
+      "relay ile plc fark",
+      "kompresor kontrolu pano nereye",
+      "sema okuma sirası"
+    ],
+    "de_questions": [
+      "wie liest man einen schaltplan",
+      "was ist ladder logic",
+      "relais oder plc",
+      "wo sitzt die verdichterregelung",
+      "reihenfolge plan lesen"
+    ],
+    "tr_answer": "Pano semasi yukaridan asagiya: ust kismi guc (faz, sigorta, kontaktor), orta kontrol (role, termostat, basinç salteri), alt kismi cikis (klemensler) seklinde okunur. Ladder logic kontak ve bobinleri merdiven adimlari gibi gosterir; her satir bir mantik dali. Relay logic eski usul; PLC daha esnek, programlanabilir, modulasyon kolayligi yaratir. Kompresor kontrolu genelde panonun orta kontrol bolumune girer; basinç salteri, termostat ve manuel reset orada zincir olusturur. Sema okurken once toprak hatti, sonra faz, sonra her bir devre dali izlenir; usta hicbir teli renge gore degil pin numarasina gore takip eder.",
+    "de_answer": "Ein Schaltplan wird von oben nach unten gelesen: oben Leistung (Phase, Sicherung, Schuetz), Mitte Steuerung (Relais, Thermostat, Druckwaechter), unten Ausgaenge (Klemmen). Ladder Logic stellt Kontakte und Spulen wie Leitersprossen dar; jede Zeile ist ein Logikzweig. Relais-Logik ist klassisch, PLC ist flexibler und modulationsfaehig. Die Verdichterregelung liegt in der Mitte; Druckwaechter, Thermostat und manueller Reset bilden dort eine Kette. Beim Lesen folgt man zuerst Erde, dann Phase, dann jedem Stromzweig. Ein Meister verlaesst sich nicht auf Drahtfarben, sondern auf Klemmennummern.",
+    "suggestions": [
+      "ladder ornek",
+      "plc programlama",
+      "klemens numaralandirma"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_alarm_handling",
+    "tr_subject": "alarm yonetimi",
+    "de_subject": "alarmbehandlung",
+    "keywords": [
+      "alarm",
+      "stoerung",
+      "high pressure",
+      "low pressure",
+      "overload",
+      "reset",
+      "auto manual"
+    ],
+    "tr_questions": [
+      "alarm reset nasil yapilir",
+      "yuksek basinç alarmi sebep",
+      "alarm log nereden okunur",
+      "manual auto reset farki",
+      "alarm sırasında ne yapilmamali"
+    ],
+    "de_questions": [
+      "wie wird ein alarm zurueckgesetzt",
+      "ursachen hochdruckalarm",
+      "alarmprotokoll lesen",
+      "unterschied manuell automatisch",
+      "was nicht tun beim alarm"
+    ],
+    "tr_answer": "Alarm reset oncesi sebep bulunur. Yuksek basinç alarmi tipik sebep: kondenser tikalı, fan donmuyor, gaz fazlasi, ambient cok yuksek. Dusuk basinç alarmi: gaz az, filtre tikali, evaporator bloku, fan donmuyor, TXV tikali. Modern panolarda alarm log ekrandan okunur; kac saatte kac defa atti goren mantigi anlatir. Manual reset alarmlari tekrar dusturmemek icin usta tarafindan acilmali; auto reset kritik degil alarmlar icin (kucuk gecikmeler). Alarm sirasinda 'bypass etmek' veya kabloyu cekmek tehlikelidir; kompresor zarar gormeden once devreye giriyor.",
+    "de_answer": "Vor jedem Reset wird die Ursache geklaert. Hochdruckalarm typisch: Verfluessiger verstopft, Luefter aus, Ueberfuellung, hohe Umgebung. Niederdruckalarm: Gasmangel, Filterverstopfung, Verdampferblock, Luefter aus, TXV verstopft. Moderne Panele zeigen das Alarmlog: wie oft und wie lang. Manueller Reset ist Meisterarbeit, damit der Fehler nicht uebersehen wird; Auto-Reset nur fuer unkritische Toleranzbrueche. Alarm zu 'bruecken' oder Draht zu ziehen ist gefaehrlich; die Schutzfunktion bewahrt den Verdichter.",
+    "suggestions": [
+      "log okuma",
+      "manual reset prosedur",
+      "bypass riski"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_fuses_circuit_breaker",
+    "tr_subject": "sigorta ve kesici",
+    "de_subject": "sicherungen und leistungsschalter",
+    "keywords": [
+      "sigorta",
+      "fuse",
+      "kesici",
+      "mcb",
+      "mccb",
+      "amper",
+      "selection",
+      "sıcaklik egrisi"
+    ],
+    "tr_questions": [
+      "sigorta sececek nasil",
+      "mcb b c d egrisi farki",
+      "mccb ne zaman tercih",
+      "sigorta sik atiyor",
+      "faz dengesizligi sigorta"
+    ],
+    "de_questions": [
+      "wie wird die sicherung gewaehlt",
+      "mcb b c d kennlinie",
+      "wann mccb",
+      "sicherung loest oft aus",
+      "phasenungleichgewicht und sicherung"
+    ],
+    "tr_answer": "Sigorta secimi motorun nominal akimina gore: tipik 1.25-1.5 katı boyut, ama indirme egrisine dikkat. MCB B egrisi (3-5 In) genel kullanim; C egrisi (5-10 In) motorlu yuk; D egrisi (10-14 In) yuksek kalkis akimı (buyuk kompresor). Mccb buyuk akimda (>63 A) tercih edilir, ayarlanabilir trip. Sik atan sigorta sebepleri: faz dengesizliği, dusuk voltaj, mekanik tikanma, koruyucu yanlış degerde. Usta sigortayi 'buyuten' degil; sebebi cozer, sistem ayarlanmali. Aksi takdirde kablo + motor + pano zarar gorur.",
+    "de_answer": "Sicherungswahl nach Nennstrom: 1,25-1,5-fach Boundary, aber Aufmerksamkeit auf die Kennlinie. MCB B-Kennlinie (3-5 In) ist allgemein; C-Kennlinie (5-10 In) motorlastig; D-Kennlinie (10-14 In) hohe Anlaufstrome (grosse Verdichter). MCCB lohnt sich ab 63 A mit einstellbarer Ausloesung. Haeufige Aussetzer: Phasenungleichgewicht, Unterspannung, mechanische Blockade, falsche Schutzgroesse. Ein Meister vergroessert die Sicherung nicht, sondern findet die Ursache. Sonst leiden Kabel, Motor und Schaltschrank.",
+    "suggestions": [
+      "mcb egrisi karsilastirma",
+      "faz dengesizligi olcumu",
+      "kalkis akimi nasil okunur"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_compressor_lifetime",
+    "tr_subject": "kompresor omru",
+    "de_subject": "verdichter lebensdauer",
+    "keywords": [
+      "omur",
+      "lebensdauer",
+      "yıllar",
+      "calistirma saati",
+      "mtbf",
+      "amortisman"
+    ],
+    "tr_questions": [
+      "kompresor omru ne kadar",
+      "mtbf nedir",
+      "yari hermetic ne kadar dayanır",
+      "sik start stop omru etkiler mi",
+      "amortisman süresi"
+    ],
+    "de_questions": [
+      "wie lange haelt ein verdichter",
+      "was ist mtbf",
+      "wie lange laeuft halbhermetik",
+      "verkuerzt start-stopp die lebensdauer",
+      "amortisationszeit"
+    ],
+    "tr_answer": "Tipik omur: hermetik 8-12 yil, yari hermetik 15-25 yil, scroll 10-15 yil. MTBF (mean time between failure) tipik 40.000-80.000 saat — yaklasik 5-10 yil sürekli calisma. Sik start-stop (saat basina 10+) omru ciddi azaltır; modulasyon veya buyuk receiver kullanarak start sayısını dusurmek dogru. Amortisman süresi yaklasık 4-8 yıl operasyonda; sonrasi tasarruf. Usta omur tahminini calisma saati (saatlik sayac), basinç dengeleri ve titresim trendine bakarak yapar; sadece takvime degil.",
+    "de_answer": "Typische Lebensdauer: Hermetik 8-12 Jahre, Halbhermetik 15-25 Jahre, Scroll 10-15 Jahre. MTBF (mean time between failure) liegt bei 40.000-80.000 Stunden, also ca. 5-10 Jahre Dauerlauf. Haeufige Start-Stopps (>10/h) verkuerzen die Lebensdauer; Modulation oder grosser Sammler senkt die Schaltzahl. Amortisation 4-8 Jahre, danach Einsparungen. Ein Meister schaetzt Lebenszeit aus Betriebsstunden, Druckverlauf und Vibrationstrend, nicht nur aus dem Kalender.",
+    "suggestions": [
+      "calistirma saati sayaci",
+      "modulasyon nasil isler",
+      "vibration trendi"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_refrigerant_recovery",
+    "tr_subject": "gaz toplama mantigi",
+    "de_subject": "kaeltemittel rueckgewinnung",
+    "keywords": [
+      "recovery",
+      "rueckgewinnung",
+      "reclaim",
+      "atik gaz",
+      "f-gas",
+      "tüp",
+      "cylinder"
+    ],
+    "tr_questions": [
+      "gaz toplama nasil yapilir",
+      "recovery ile reclaim fark",
+      "atik gaz nereye",
+      "f gas sertifika gerek mi",
+      "tüp dolma sınırı"
+    ],
+    "de_questions": [
+      "wie macht man die rueckgewinnung",
+      "unterschied recovery und reclaim",
+      "wo bleibt das altgas",
+      "wer braucht f gas zertifikat",
+      "fuellgrenze des zylinders"
+    ],
+    "tr_answer": "Recovery sistemdeki gazi atmosfere salmadan tup'a toplama islemidir; ayri makine (recovery unit), sıvı + buhar emiş hatti, dehidratasyon filtre kullanir. Reclaim ise toplanan gazin lab şartlarinda yeniden saflaştirilmasi — saha icin uygun degil, fabrika işi. Atik gaz F-Gas mevzuati gereği sertifikali toplama firmasina (DRC tarafindan Hamburg yakini partnerleri) teslim edilir; cevreye salinim yasak ve ceza var. F-Gas sertifikasi (kategori 1) recovery yapmak icin sart. Tüp dolma siniri brut ağirlığın %80'ini gecmemeli (genleşmeye karsi guvenlik). Usta tüpe atmadan once gazi etiketler (tip + saflık) ve eski etiketleri silmez.",
+    "de_answer": "Rueckgewinnung (Recovery) ist das Einsammeln des Kaeltemittels ohne Atmosphaerenfreisetzung; separates Recovery-Geraet, Saug- und Fluessigkeitsleitung, Trocknerfilter. Reclaim ist das Wiederaufbereiten in einer Werkstatt zu Specs — keine Feldtaetigkeit. Altgas wird nach F-Gas-Verordnung an zertifizierte Stellen abgegeben (DRC nutzt Hamburg-Partner); Freilassen ist verboten und strafbar. F-Gas-Zertifikat Kategorie 1 ist Pflicht. Fuellgrenze des Zylinders 80 % vom Bruttogewicht (Sicherheitsabstand). Vor dem Befuellen wird das Gas etikettiert (Typ + Reinheit); Etiketten werden nicht ueberschrieben.",
+    "suggestions": [
+      "f gas kategorisi nedir",
+      "tüp etiketleme nasil",
+      "reclaim ile dolum farki"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_glycol_chiller",
+    "tr_subject": "glikol ile soguturma",
+    "de_subject": "glykol-kuehlung",
+    "keywords": [
+      "glikol",
+      "glycol",
+      "secondary",
+      "brine",
+      "sekonder akiskan",
+      "propilen glikol",
+      "etilen glikol"
+    ],
+    "tr_questions": [
+      "glikol ne zaman tercih",
+      "etilen propilen fark",
+      "glikol konsantrasyon",
+      "viskozite etkisi",
+      "glikol degisim periyodu"
+    ],
+    "de_questions": [
+      "wann setzt man glykol ein",
+      "ethylen oder propylen",
+      "glykolkonzentration",
+      "viskositaetseinfluss",
+      "wartungsintervall"
+    ],
+    "tr_answer": "Sistem dondan korumasi gerekli sicakliklarda (örn -10 °C altinda donus) veya gaz teması istenmeyen yerlerde (gida) sekonder akiskan kullanilir. Glikol cözeltisi tipik propilen glikol (gida güvenli, fakat viskoz) veya etilen glikol (daha verimli, ama toksik). Konsantrasyon donma noktasina göre %20-50; %35 -20 °C koruma standart. Viskozite kompresor + pompa yukunu artirir; pompa secimi gercek konsantrasyona göre yapilmali. Glikol 3-5 yilda degisir, pH ve katki kontrol edilmeli (asitleşme korozyona yol acar). Usta glikol kalitesini renk + pH stripi + viskozite ile değerlendirir.",
+    "de_answer": "Wenn Frostschutz noetig ist (z. B. unter -10 °C) oder Gas keinen Direktkontakt haben darf (Lebensmittel), kommt ein Sekundaerkreislauf zum Einsatz. Glykolloesung: typischerweise Propylenglykol (lebensmittelsicher, hochviskos) oder Ethylenglykol (effizienter, giftig). Konzentration je nach Gefrierpunkt 20-50 %; 35 % schuetzen bis -20 °C. Hohe Viskositaet erhoeht Pumpenleistung; Pumpenauswahl muss zur Konzentration passen. Wechsel alle 3-5 Jahre, pH und Inhibitoren pruefen (Saeurebildung fuehrt zu Korrosion). Ein Meister beurteilt Glykolqualitaet ueber Farbe, pH-Strip und Viskositaet.",
+    "suggestions": [
+      "pompa secimi glikol",
+      "ph degerleri",
+      "gida onayli secim"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_panel_grounding",
+    "tr_subject": "pano topraklama",
+    "de_subject": "schaltschrank erdung",
+    "keywords": [
+      "topraklama",
+      "erdung",
+      "grounding",
+      "earth bar",
+      "pe",
+      "trafo",
+      "sifirlama",
+      "emc"
+    ],
+    "tr_questions": [
+      "pano topraklama nasil olmali",
+      "earth bar gorevi",
+      "pe ile sifirlama farki",
+      "emc filtre topraklama",
+      "topraklama olcumu"
+    ],
+    "de_questions": [
+      "wie wird das schaltschrank erdet",
+      "wofuer der erdungsschiene",
+      "pe versus null",
+      "emc filter erden",
+      "erdungsmessung"
+    ],
+    "tr_answer": "Pano topraklama saglam, dusuk dirence sahip ve tek nokta birlestirilmis olmali. Earth bar (toprak baras) tum pe iletkenlerini bir noktada birlestirir; cesitli devre toprakları buraya gelir, sonra tek kabloyla saha topraklama sistemine gider. PE (protective earth) yasal koruma; sifirlama (TN-S sistemi) calismayan iletken, karistirilmamali. EMC filtre topraklama kisa ve genis kesitle yapilir, frequency tepkisi icin kritik. Topraklama olcumu MΩ ile yapilmaz, megger DC degil; toprak direnci olcumu (clamp veya 3-pole) kullanilir, hedef < 4 Ω. Usta topraklamayi bir kez yapip unutmaz, yilda olcer.",
+    "de_answer": "Schaltschrank-Erdung muss niederohmig und an einer Stelle gebuendelt sein. Erdungsschiene sammelt alle PE-Leitungen an einem Punkt, ein einziges Kabel fuehrt zur Anlagenerdung. PE (Schutzleiter) ist gesetzlich vorgeschrieben; Nullleiter darf nicht mit PE verwechselt werden. EMC-Filter sind kurz und mit breitem Querschnitt zu erden, fuer den Frequenzgang kritisch. Erdungsmessung erfolgt nicht mit Megger, sondern Erdungsmesszange oder 3-Punkt-Verfahren, Ziel < 4 Ohm. Ein Meister misst die Erdung nicht einmal und vergisst sie, sondern jaehrlich.",
+    "suggestions": [
+      "clamp olcum nasil",
+      "emc filtre baglanti",
+      "tn s sistemi nedir"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_inverter_drive",
+    "tr_subject": "frekans konvertoru",
+    "de_subject": "frequenzumrichter",
+    "keywords": [
+      "fc",
+      "inverter",
+      "danfoss vlt",
+      "abb",
+      "frekans donusturucu",
+      "hız kontrol",
+      "vektor"
+    ],
+    "tr_questions": [
+      "frekans donusturucu ne yapar",
+      "inverter kompresor avantaj",
+      "parametre ayari",
+      "vektor kontrol nedir",
+      "fc arızasinda ne"
+    ],
+    "de_questions": [
+      "was macht ein frequenzumrichter",
+      "invertergesteuerter verdichter",
+      "parameter einstellung",
+      "was ist vektorregelung",
+      "was tun bei fu-fehler"
+    ],
+    "tr_answer": "Frekans donusturucu (FC/inverter) motorun beslemesini degisken frekans + voltajla saglayarak hizini sürekli ayarlar; sabit hizli motorda 'on/off' yerine modulasyon. Avantaj: enerji tasarrufu (kapasite ihtiyacına gore), yumusak baslangic (inrush yok), dusuk titresim, uzun motor omru. Parametre ayarinda nominal akim, hizi rampasi (ramp up/down), maximum frekans, kayna pmw frekansi (genelde 4 kHz) ve over-current trip belirlenir. Vektor kontrol motor magnetik akış vektoru izleyerek hassas tork kontrolu yapar — fan ve pompada degil, kompresor + buyuk motorda anlamli. FC arizasinda once parametre saklama (parameter download), sonra hata kodu, sonra DC bara olcumu yapilir. Usta hicbir FC parametresini ezberden degil, uretici el kitabindan ayarlar.",
+    "de_answer": "Ein Frequenzumrichter (FU) speist den Motor mit variabler Frequenz und Spannung und reguliert die Drehzahl stufenlos; statt On/Off bei festem Antrieb. Vorteile: Energieeinsparung, sanftes Anlaufen (kein Stromstoss), niedrige Vibration, laengere Motorlebensdauer. Parametereinstellung: Nennstrom, Rampe (auf/ab), Max-Frequenz, PWM-Traegerfrequenz (typ. 4 kHz), Ueberstrom-Trip. Vektorregelung folgt dem Magnetfeldvektor und ermoeglicht praezise Drehmomentregelung — bei grossen Verdichtern relevant. Bei FU-Fehler zuerst Parameter sichern, dann Fehlercode, dann DC-Zwischenkreis messen. Ein Meister stellt nie aus dem Kopf, sondern nach Handbuch.",
+    "suggestions": [
+      "pwm frekansi etkisi",
+      "dc bara olcumu",
+      "yumusak start nasil ayar"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_compressor_unloader",
+    "tr_subject": "kapasite kontrolu unloader",
+    "de_subject": "leistungsregelung unloader",
+    "keywords": [
+      "unloader",
+      "kapasite kontrol",
+      "capacity control",
+      "solenoid unloader",
+      "bypass",
+      "yari hermetic"
+    ],
+    "tr_questions": [
+      "unloader nasil isler",
+      "yari hermetic kapasite kontrol",
+      "bypass unloader avantaj",
+      "unloader baglanti hattı",
+      "kapasite oranlari"
+    ],
+    "de_questions": [
+      "wie funktioniert ein unloader",
+      "leistungsregelung halbhermetik",
+      "vorteile bypass unloader",
+      "unloader anschluss",
+      "kapazitaetsstufen"
+    ],
+    "tr_answer": "Unloader yari hermetic kompresorde silindirleri secici olarak devre disi birakir; piston suction yerine discharge'a 'bypass' yapar. Solenoid valfle kontrol edilir, kart sıcaklik veya basinçtan tetikler. Tipik 4 silindirli kompresor 100% / 75% / 50% / 25% kapasiteye iner. Avantaj: modulasyon, sik start-stop azalmasi, enerji tasarrufu. Bypass tipi tek bobinle birden cok silindiri devre disi birakir; daha ucuz. Unloader baglanti hattı discharge baspis tarafindan suction'a 1/4 inç boru ile gelir; sıcak gaz kompresore donduğu icin yag sıcakligi yukselebilir, kontrol kart bu yuzden sıcaklık limit gozetir. Usta unloader testinde elini boru sıcakligina bakar, valf bobin akimini olcer.",
+    "de_answer": "Ein Unloader schaltet einzelne Zylinder eines halbhermetischen Verdichters ab; der Kolben pumpt nicht in den Hochdruck, sondern bypassiert auf die Saugseite. Steuerung per Magnetventil, vom Regler nach Temperatur oder Druck getriggert. Typisch bei 4-Zylinder: 100 / 75 / 50 / 25 %. Vorteile: Modulation, weniger Start-Stopps, Energieeinsparung. Bypass-Typen schalten mit einer Spule mehrere Zylinder ab; guenstiger. Anschluss vom Druckkopf zur Saugseite ueber 1/4 inch Rohr; durch zurueckkehrendes Heissgas kann die Oeltemperatur steigen, deshalb hat der Regler eine Sicherheitsabschaltung. Ein Meister fuehlt das Rohr und misst die Spulenstromaufnahme.",
+    "suggestions": [
+      "solenoid akim olcumu",
+      "kapasite oranlari karsi",
+      "modulasyon karsisi inverter"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_water_chiller_basics",
+    "tr_subject": "su chiller temel",
+    "de_subject": "wasserchiller grundlagen",
+    "keywords": [
+      "chiller",
+      "su chiller",
+      "wasserchiller",
+      "plate",
+      "plaka esanjor",
+      "scroll",
+      "tnk",
+      "akumulator"
+    ],
+    "tr_questions": [
+      "su chiller plaka esanjor",
+      "scroll chiller calismasi",
+      "tnk akumulator gorevi",
+      "sicaklik kontrol mantigi",
+      "su debi etkisi"
+    ],
+    "de_questions": [
+      "wasserchiller plattenwaermetauscher",
+      "scroll-chiller funktionsweise",
+      "wozu ein pufferspeicher",
+      "temperaturregelung",
+      "einfluss wasserdurchfluss"
+    ],
+    "tr_answer": "Su chillerinde primer (gaz) tarafindan plaka esanjor uzerinden suya ısı transfer edilir. Plaka esanjor kompakt, yuksek verim ama temizlik kritik (suyun sertligi). Scroll kompresor + plate evaporator + receiver + TXV + brazed condenser tipik konfigurasyon. Tnk (puffer) akumulator suyun stabil sıcaklikta tutulmasini saglar, sik start-stop azalir. Sicaklik kontrol mantigi: cikis suyu sicakligi temel, geri donus suyu fark icin secondary input. Su debi degisirse TD (sıcaklik farki) ve evaporator basinç değisir; alarm tetikleyebilir. Usta chiller kurarken puffer hacmini sistem TDK x 5-10 dakika olarak alır (genel formul).",
+    "de_answer": "Bei einem Wasserchiller wird primaerseitig (Kaeltemittel) ueber einen Plattenwaermetauscher Waerme an das Wasser uebertragen. Plattentauscher sind kompakt und effizient, aber wasserseitige Sauberkeit ist kritisch (Wasserhaerte). Typische Konfiguration: Scroll-Verdichter + Platten-Verdampfer + Sammler + TXV + verloeteter Verfluessiger. Ein Pufferspeicher haelt das Wasser stabil temperiert und reduziert Start-Stopps. Regelung: Vorlauftemperatur als Hauptgroesse, Ruecklauf als Sekundaersignal. Aenderung des Durchflusses verschiebt TD und Verdampfungsdruck und kann Alarme ausloesen. Ein Meister dimensioniert das Pufferspeichervolumen mit Anlagen-TDK × 5-10 Minuten.",
+    "suggestions": [
+      "puffer hacmi formul",
+      "plaka esanjor temizlik",
+      "cikis donus sicakligi"
+    ],
+    "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
+  },
+  {
+    "id": "master_cold_room_door_seal",
+    "tr_subject": "soguk oda kapi conta",
+    "de_subject": "kuehlraum tuerdichtung",
+    "keywords": [
+      "kapi conta",
+      "tuerdichtung",
+      "silikon",
+      "epdm",
+      "magnetik",
+      "door seal",
+      "kapi sızıntısı"
+    ],
+    "tr_questions": [
+      "kapi conta neden onemli",
+      "silikon epdm fark",
+      "magnetik conta nasil",
+      "conta degisim periyodu",
+      "sicak hava sızıntısı"
+    ],
+    "de_questions": [
+      "warum ist die tuerdichtung wichtig",
+      "silikon oder epdm",
+      "magnetdichtung",
+      "wartungsintervall der dichtung",
+      "warmluft-leckage"
+    ],
+    "tr_answer": "Soguk oda kapi contasi sicak hava girisinin %20-40'ina yol acar; bozulmus conta enerji kaybi + buz tutma + nem icin temel sebep. Silikon yumusak ama UV ve fiziksel yorgunluga karsi az dayanikli; EPDM dayanikli, soguk hava icin standart secim. Magnetik conta evdeki buzdolabi tipi, dovme kapamayla iyi otomatik kapanma. Conta omru 3-5 yil; deformasyon, çatlak, magnetik gücün zayiflamasi degisim sebebi. Sicak hava sızıntısı tespiti: anemometre veya egzoz dumani testi, conta cevresinde sıcaklık farki, conta üzerinde buz birikimi belirti. Usta kapi conta degisimini bir bakım disiplini olarak yıllık planlar.",
+    "de_answer": "Die Tuerdichtung verursacht 20-40 % der Warmluftinfiltration; eine schadhafte Dichtung fuehrt zu Energieverlust, Eisbildung und Feuchtigkeit. Silikon ist weich, aber UV- und mechanisch weniger bestaendig; EPDM ist robust und Standard fuer Kuehlraeume. Magnetdichtungen aus dem Haushaltskuehler bieten automatisches Schliessen. Lebensdauer 3-5 Jahre; Verformung, Risse oder nachlassende Magnetkraft sind Wechselgruende. Leckpruefung mit Anemometer oder Rauchtest, Temperaturdifferenz und Eisbildung an der Dichtung. Ein Meister plant den Wechsel als jaehrliche Wartung.",
+    "suggestions": [
+      "egzoz dumani testi",
+      "magnetik conta gucu",
+      "epdm dayanim"
+    ],
     "source_summary": "DRC MAN kompresor valf ve pano ustasi egitimi"
   }
 ]
