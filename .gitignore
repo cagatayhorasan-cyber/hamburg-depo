@@ -49,3 +49,6 @@ scripts/drc_man_malzeme_vs_ustalik_faq.json
 
 # .env yedekleri
 .env.backup-*
+
+# Archived scratch scripts (lokal only)
+admin-tools/archive/
