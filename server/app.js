@@ -1646,6 +1646,20 @@ function createApp() {
       return res.status(400).json({ error: "Malzeme fiyat ve stok alanlari sifir veya pozitif sayi olmali." });
     }
 
+    // Stok kodu (barcode) duplicate ön-doğrulaması: aynı kodu kullanan başka kayıt var mı?
+    const cleanBarcode = cleanOptional(barcode) || null;
+    if (cleanBarcode) {
+      const existing = await get("SELECT id, name FROM items WHERE barcode = ?", [cleanBarcode]);
+      if (existing) {
+        return res.status(400).json({
+          error: `Bu stok kodu zaten kullanılıyor: "${existing.name}" (id #${existing.id}). Lütfen farklı bir kod seçin.`,
+          conflictField: "barcode",
+          existingItemId: Number(existing.id),
+          existingItemName: existing.name,
+        });
+      }
+    }
+
     try {
       const result = await execute(
         `
@@ -1660,7 +1674,7 @@ function createApp() {
           category.trim(),
           unit.trim(),
           numericFields.minStock,
-          cleanOptional(barcode) || null,
+          cleanBarcode,
           normalizeItemImageUrl(imageUrl),
           cleanOptional(notes),
           cleanOptional(notesDe),
@@ -1679,7 +1693,8 @@ function createApp() {
 
       return res.json({ id: Number(result.rows[0]?.id || result.lastInsertId) });
     } catch (_error) {
-      return res.status(400).json({ error: "Malzeme kaydi olusturulamadi. Barkod benzersiz olmali." });
+      // Veritabanı UNIQUE constraint son kale — pre-validation kaçırırsa bu yakalar
+      return res.status(400).json({ error: "Malzeme kaydı oluşturulamadı. Stok kodu benzersiz olmalı." });
     }
   });
 
@@ -1691,6 +1706,24 @@ function createApp() {
     const numericFields = parseItemNumericFields({ minStock, defaultPrice, listPrice, salePrice });
     if (!numericFields) {
       return res.status(400).json({ error: "Malzeme fiyat ve stok alanlari sifir veya pozitif sayi olmali." });
+    }
+
+    // Stok kodu (barcode) duplicate ön-doğrulaması: BAŞKA bir kayıt bu kodu kullanıyor mu?
+    const itemId = Number(req.params.id);
+    const cleanBarcode = cleanOptional(barcode) || null;
+    if (cleanBarcode) {
+      const existing = await get(
+        "SELECT id, name FROM items WHERE barcode = ? AND id <> ?",
+        [cleanBarcode, itemId]
+      );
+      if (existing) {
+        return res.status(400).json({
+          error: `Bu stok kodu zaten kullanılıyor: "${existing.name}" (id #${existing.id}). Lütfen farklı bir kod seçin.`,
+          conflictField: "barcode",
+          existingItemId: Number(existing.id),
+          existingItemName: existing.name,
+        });
+      }
     }
 
     try {
@@ -1707,14 +1740,14 @@ function createApp() {
           category.trim(),
           unit.trim(),
           numericFields.minStock,
-          cleanOptional(barcode) || null,
+          cleanBarcode,
           normalizeItemImageUrl(imageUrl),
           cleanOptional(notes),
           cleanOptional(notesDe),
           numericFields.defaultPrice,
           numericFields.listPrice,
           numericFields.salePrice,
-          Number(req.params.id),
+          itemId,
         ]
       );
 
@@ -1731,7 +1764,7 @@ function createApp() {
 
       return res.json({ ok: true });
     } catch (_error) {
-      return res.status(400).json({ error: "Malzeme guncellenemedi. Barkod benzersiz olmali." });
+      return res.status(400).json({ error: "Malzeme güncellenemedi. Stok kodu benzersiz olmalı." });
     }
   });
 
