@@ -4166,15 +4166,18 @@ function buildContentSecurityPolicy(req) {
     "img-src": ["'self'", "data:", "blob:", "https:"],
     "font-src": ["'self'", "data:", "https://fonts.gstatic.com"],
     "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-    "connect-src": ["'self'"],
+    // Supabase Storage çağrıları için *.supabase.co — REST + Storage CDN aynı
+    "connect-src": ["'self'", "https://*.supabase.co"],
     "script-src": isAdminToolRequest
       ? ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"]
       : ["'self'", "'unsafe-inline'"],
   };
 
-  return Object.entries(directives)
+  const policy = Object.entries(directives)
     .map(([directive, values]) => `${directive} ${values.join(" ")}`)
     .join("; ");
+  // HTTPS zorla — HTTP referanslarını otomatik HTTPS'e yükselt
+  return policy + "; upgrade-insecure-requests";
 }
 
 async function validateBrowserRequestOrigin(req, res, next) {
