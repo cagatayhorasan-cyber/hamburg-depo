@@ -4864,48 +4864,55 @@ function renderStockedItems(filteredItems) {
     return;
   }
 
-  stockedItems.slice(0, 300).forEach((item) => {
-    const listPrice = visibleListPrice(item);
-    const price = cartSalePrice(item);
-    const itemDetail = getPublicItemDetail(item);
-    const itemCode = item.barcode || item.productCode || "-";
-    const card = document.createElement("article");
-    card.className = "stocked-card";
-    card.setAttribute("role", "button");
-    card.setAttribute("tabindex", "0");
-    card.dataset.itemDetailId = String(item.id);
-    card.innerHTML = `
-      ${getItemImageMarkup(item, {
-        wrapperClass: "stocked-card-media",
-        imageClass: "stocked-card-image",
-      })}
-      <div class="stocked-card-top">
-        <div class="stocked-card-heading">
-          <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
-          <span class="stocked-card-code mono">${escapeHtml(itemCode)}</span>
-        </div>
-        <button class="stocked-card-more" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
-      </div>
-      <strong class="stocked-card-title">${escapeHtml(resolveLocalizedName(item))}</strong>
-      <div class="stocked-card-subline">
-        <span class="stocked-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
-        ${listPrice ? `<span class="stocked-card-list">${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
-      </div>
-      ${itemDetail ? `<span class="stocked-card-detail">${langText("Kisa not", "Kurzinfo")}: ${escapeHtml(itemDetail)}</span>` : ""}
-      <div class="stocked-card-footer">
-        <div class="stocked-card-stock">
-          <small>${langText("Stok", "Bestand")}</small>
-          <b>${escapeHtml(formatItemStock(item.currentStock, item.unit))}</b>
-        </div>
-        <div class="stocked-card-price">
-          <small>${langText("Net / Satış", "Netto / Verkauf")}</small>
-          <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
-        </div>
-      </div>
-    `;
-    hydrateImageFallbacks(card);
-    refs.stockedItemsList.append(card);
-  });
+  // Kategori filtresi aktifse veya arama aktifse → düz liste; aksi takdirde kategorik grup
+  const categoryFilterActive = state.filters?.category && state.filters.category !== "all";
+  const searchActive = Boolean((state.filters?.search || "").trim());
+  const shouldGroup = !categoryFilterActive && !searchActive;
+
+  if (!shouldGroup) {
+    // Düz liste (mevcut akış, 300 limit korunur)
+    stockedItems.slice(0, 300).forEach((item) => {
+      refs.stockedItemsList.append(buildStockedCard(item));
+    });
+  } else {
+    // Kategorik grup — tüm stoktaki ürünler kategori bazlı bölünür
+    const groups = new Map();
+    for (const item of stockedItems) {
+      const cat = getDisplayCategory(item.category) || langText("Kategorisiz", "Ohne Kategorie");
+      if (!groups.has(cat)) groups.set(cat, []);
+      groups.get(cat).push(item);
+    }
+    // Sayıya göre sırala (en kalabalik üstte)
+    const sortedGroups = Array.from(groups.entries()).sort((a, b) => b[1].length - a[1].length);
+    for (const [catName, items] of sortedGroups) {
+      const section = document.createElement("section");
+      section.className = "stocked-group";
+      const header = document.createElement("h3");
+      header.className = "stocked-group-header";
+      header.innerHTML = `
+        <span class="stocked-group-title">${escapeHtml(catName)}</span>
+        <span class="stocked-group-count">${items.length}</span>
+      `;
+      section.append(header);
+      const grid = document.createElement("div");
+      grid.className = "stocked-grid stocked-group-grid";
+      // Her kategori için max 100 kart göster (perf), aşılırsa "+X daha" linki
+      const MAX_PER_GROUP = 100;
+      const visibleItems = items.slice(0, MAX_PER_GROUP);
+      for (const item of visibleItems) grid.append(buildStockedCard(item));
+      section.append(grid);
+      if (items.length > MAX_PER_GROUP) {
+        const more = document.createElement("p");
+        more.className = "stocked-group-more muted";
+        more.textContent = langText(
+          `+${items.length - MAX_PER_GROUP} ürün daha bu kategoride var (filtreleyerek görebilirsiniz)`,
+          `+${items.length - MAX_PER_GROUP} weitere Artikel in dieser Kategorie (Filter benutzen)`
+        );
+        section.append(more);
+      }
+      refs.stockedItemsList.append(section);
+    }
+  }
 
   refs.stockedItemsList.querySelectorAll("[data-open-item-detail]").forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -4927,6 +4934,47 @@ function renderStockedItems(filteredItems) {
       }
     });
   });
+}
+
+// Tek bir stoklu ürün kartını üretir (hem düz hem gruplu render bunu kullanır)
+function buildStockedCard(item) {
+  const listPrice = visibleListPrice(item);
+  const price = cartSalePrice(item);
+  const itemDetail = getPublicItemDetail(item);
+  const itemCode = item.barcode || item.productCode || "-";
+  const card = document.createElement("article");
+  card.className = "stocked-card";
+  card.setAttribute("role", "button");
+  card.setAttribute("tabindex", "0");
+  card.dataset.itemDetailId = String(item.id);
+  card.innerHTML = `
+    ${getItemImageMarkup(item, { wrapperClass: "stocked-card-media", imageClass: "stocked-card-image" })}
+    <div class="stocked-card-top">
+      <div class="stocked-card-heading">
+        <span class="stocked-card-chip">${escapeHtml(item.brand || langText("Genel", "Allgemein"))}</span>
+        <span class="stocked-card-code mono">${escapeHtml(itemCode)}</span>
+      </div>
+      <button class="stocked-card-more" type="button" data-open-item-detail="${item.id}">${langText("Detay", "Detail")}</button>
+    </div>
+    <strong class="stocked-card-title">${escapeHtml(resolveLocalizedName(item))}</strong>
+    <div class="stocked-card-subline">
+      <span class="stocked-card-category">${escapeHtml(getDisplayCategory(item.category))}</span>
+      ${listPrice ? `<span class="stocked-card-list">${langText("Liste", "Liste")}: ${currency.format(listPrice)}</span>` : ""}
+    </div>
+    ${itemDetail ? `<span class="stocked-card-detail">${langText("Kisa not", "Kurzinfo")}: ${escapeHtml(itemDetail)}</span>` : ""}
+    <div class="stocked-card-footer">
+      <div class="stocked-card-stock">
+        <small>${langText("Stok", "Bestand")}</small>
+        <b>${escapeHtml(formatItemStock(item.currentStock, item.unit))}</b>
+      </div>
+      <div class="stocked-card-price">
+        <small>${langText("Net / Satış", "Netto / Verkauf")}</small>
+        <b>${price ? `${currency.format(price)} ${langText("net", "netto")}` : "-"}</b>
+      </div>
+    </div>
+  `;
+  hydrateImageFallbacks(card);
+  return card;
 }
 
 function renderArchive() {
