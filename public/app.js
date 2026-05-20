@@ -8575,19 +8575,16 @@ function handleAssistantLanguageChange() {
 
 // DRC MAN modlari — "servis" (varsayilan) | "malzeme" | "coldroom"
 state.assistantMode = state.assistantMode || "servis";
-state.coldroomWizard = state.coldroomWizard || null; // aktif iken wizard durumu
 
 function setAssistantMode(newMode) {
   const validModes = ["servis", "malzeme", "coldroom"];
   if (!validModes.includes(newMode)) return;
   state.assistantMode = newMode;
-  // Buton aktif sınıfı
   document.querySelectorAll(".assistant-mode").forEach((btn) => {
     const isActive = btn.dataset.asstMode === newMode;
     btn.classList.toggle("is-active", isActive);
     btn.setAttribute("aria-selected", isActive ? "true" : "false");
   });
-  // Placeholder ve form durumu güncelle
   if (refs.assistantInput) {
     if (newMode === "servis") {
       refs.assistantInput.placeholder = langText(
@@ -8596,23 +8593,18 @@ function setAssistantMode(newMode) {
       );
     } else if (newMode === "malzeme") {
       refs.assistantInput.placeholder = langText(
-        "Örn. R290 sigaz fiyati nedir?",
+        "Örn. R290 gaz fiyati nedir?",
         "z. B. Was kostet R290?"
       );
     } else {
       refs.assistantInput.placeholder = langText(
-        "Yaz: 'baslat' veya soğuk oda parametrelerini gir",
-        "Schreibe 'start' oder Kuehlraum-Parameter eingeben"
+        "Soğuk oda için ColdRoomPro aracını açıyor...",
+        "ColdRoomPro wird geoeffnet..."
       );
     }
   }
-  // Modu değiştirince wizard'ı sıfırla
-  if (newMode !== "coldroom") {
-    state.coldroomWizard = null;
-  }
 }
 
-// Mode butonlarini bağla (DOMContentLoaded sonrası tek seferlik)
 function bindAssistantModes() {
   document.querySelectorAll(".assistant-mode[data-asst-mode]").forEach((btn) => {
     if (btn._drcModeBound) return;
@@ -8620,11 +8612,39 @@ function bindAssistantModes() {
     btn.addEventListener("click", () => {
       setAssistantMode(btn.dataset.asstMode);
       if (state.assistantMode === "coldroom") {
-        startColdroomWizard();
+        startColdroomFlow();
+      } else {
+        refs.assistantInput?.focus();
       }
-      refs.assistantInput?.focus();
     });
   });
+}
+
+// Soğuk Oda modu: ColdRoomPro çok detaylı bir hesap aracı (panel + kapı + zemin + borular +
+// dijital kontrol + uzaktan izleme + Cantaş otomatik seçim — 2882 satır algoritma). DRC MAN
+// onun yerini almaya çalışmaz; direkt o aracı açar ve müşteriyi yönlendirir.
+function startColdroomFlow() {
+  const msg = state.assistantLanguage === "de"
+    ? "🧊 **Kuehlraum-Angebot**\n\nFuer eine detaillierte Berechnung (Paneele, Tueren, Boden, Rohre, digitale Regelung, Cantaş-Auswahl und Fernueberwachung) oeffne ich jetzt **ColdRoomPro** — unser professionelles Auslegungstool.\n\nDie Berechnung erfolgt dort mit aktuellen Preisen und vollstaendiger Stueckliste. Nach der Berechnung koennen Sie das Projekt direkt speichern."
+    : "🧊 **Soğuk Oda Teklifi**\n\nDetaylı hesap için (panel, kapı, zemin, borular, dijital kontrol, Cantaş otomatik seçim, uzaktan izleme) **ColdRoomPro** aracımızı açıyorum — profesyonel hesap motoru.\n\nGüncel fiyatlarla tam malzeme listesi orada üretilir. Hesap sonrası 'Projeye Kaydet' ile doğrudan kaydedilebilir.";
+  state.assistantMessages.push({ role: "assistant", text: msg });
+  state.assistantMessages.push({
+    role: "assistant",
+    text: state.assistantLanguage === "de"
+      ? "👉 ColdRoomPro 2 saniye içinde açılacak..."
+      : "👉 ColdRoomPro 2 saniye içinde açılacak..."
+  });
+  renderAssistantMessages();
+  setTimeout(() => {
+    if (typeof openColdRoomProModal === "function") {
+      openColdRoomProModal();
+    } else {
+      // Fallback: doğrudan iframe sayfasına git
+      window.open("/admin-tools/coldroompro/", "_blank", "noopener");
+    }
+    // Mod'u 'servis'e geri al ki dönüşte panel doğru çalışsın
+    setAssistantMode("servis");
+  }, 2000);
 }
 
 async function handleAssistantSubmit(event) {
@@ -8636,9 +8656,17 @@ async function handleAssistantSubmit(event) {
   refs.assistantInput.value = "";
   renderAssistantMessages();
 
-  // Soğuk Oda wizard akışı — backend'e gitmez, lokal hesaplar
   if (state.assistantMode === "coldroom") {
-    await handleColdroomWizardStep(message);
+    // Bu modda input gönderimi normalde gerçekleşmez (mod tıklanır tıklanmaz ColdRoomPro açılır)
+    // ama kullanıcı yine de yazarsa kibarca yönlendir.
+    state.assistantMessages.push({
+      role: "assistant",
+      text: langText(
+        "Soğuk oda hesabı için ColdRoomPro aracını kullanın. Bu modu tekrar tıklayın veya 'Servis'/'Malzeme' moduna geçin.",
+        "Fuer Kuehlraum-Berechnungen bitte ColdRoomPro nutzen. Modus erneut klicken oder zu 'Servis'/'Material' wechseln."
+      ),
+    });
+    renderAssistantMessages();
     return;
   }
 
@@ -8657,189 +8685,6 @@ async function handleAssistantSubmit(event) {
     text: result.error || result.answer || langText("Bu soru için net bir sonuc bulamadim.", "Ich konnte für diese Frage kein klares Ergebnis finden."),
   });
   renderAssistantMessages();
-}
-
-// ---- Soğuk Oda Teklif Wizard ----
-// Adımlar: en → boy → yükseklik → hedef sıcaklık → oda tipi → gaz → SONUÇ (kapasite + BOM + teklif)
-const COLDROOM_STEPS = [
-  { key: "width",  prompt_tr: "1) Oda eni kaç metre? (örn 3.0)", prompt_de: "1) Raumbreite in Metern? (z. B. 3.0)", parse: parseNumber },
-  { key: "length", prompt_tr: "2) Oda boyu kaç metre? (örn 4.0)", prompt_de: "2) Raumlaenge in Metern? (z. B. 4.0)", parse: parseNumber },
-  { key: "height", prompt_tr: "3) Yükseklik kaç metre? (örn 2.5)", prompt_de: "3) Hoehe in Metern? (z. B. 2.5)", parse: parseNumber },
-  { key: "targetC", prompt_tr: "4) Hedef sıcaklık? (+4 / 0 / -18 / -24)", prompt_de: "4) Solltemperatur? (+4 / 0 / -18 / -24)", parse: parseInteger },
-  { key: "roomType", prompt_tr: "5) Oda tipi? (1=Sebze/meyve, 2=Et/süt, 3=Dondurulmuş, 4=Şok)", prompt_de: "5) Raumtyp? (1=Obst/Gemüse, 2=Fleisch/Milch, 3=Tiefkuehl, 4=Schock)", parse: parseRoomType },
-  { key: "panel", prompt_tr: "6) Panel kalınlığı? (60/80/100/120/150/200 mm)", prompt_de: "6) Paneeldicke? (60/80/100/120/150/200 mm)", parse: parsePanelThickness },
-];
-
-function parseNumber(s) { const n = Number(String(s).replace(",", ".")); return Number.isFinite(n) && n > 0 ? n : null; }
-function parseInteger(s) { const n = Number(String(s).replace(",", ".").replace(/[^-0-9.]/g, "")); return Number.isFinite(n) ? Math.round(n) : null; }
-function parseRoomType(s) { const n = parseInteger(s); return [1, 2, 3, 4].includes(n) ? n : null; }
-function parsePanelThickness(s) {
-  const n = parseInteger(s);
-  return [60, 80, 100, 120, 150, 200].includes(n) ? n : null;
-}
-
-function startColdroomWizard() {
-  state.coldroomWizard = { step: 0, answers: {} };
-  const intro = langText(
-    "🧊 Soğuk Oda Teklif sihirbazı başladı. Her soruyu tek satırda cevapla. 6 soru sonunda kapasite + malzeme listesi + tahmini teklif vereceğim.",
-    "🧊 Kuehlraum-Angebots-Assistent gestartet. Antworten Sie auf jede Frage einzeln. Nach 6 Fragen erhalten Sie Leistung + Stueckliste + Richtangebot."
-  );
-  state.assistantMessages.push({ role: "assistant", text: intro });
-  state.assistantMessages.push({
-    role: "assistant",
-    text: state.assistantLanguage === "de" ? COLDROOM_STEPS[0].prompt_de : COLDROOM_STEPS[0].prompt_tr,
-  });
-  renderAssistantMessages();
-}
-
-async function handleColdroomWizardStep(message) {
-  if (!state.coldroomWizard) startColdroomWizard();
-  const w = state.coldroomWizard;
-  // Yeni başlat
-  if (/^(baslat|başlat|start|reset|yeni)$/i.test(message.trim())) {
-    startColdroomWizard();
-    return;
-  }
-  const currentStep = COLDROOM_STEPS[w.step];
-  const parsed = currentStep.parse(message);
-  if (parsed === null) {
-    state.assistantMessages.push({
-      role: "assistant",
-      text: langText(
-        `❌ Bu cevap anlaşılamadı. Tekrar dene: ${currentStep.prompt_tr}`,
-        `❌ Antwort unklar. Erneut: ${currentStep.prompt_de}`
-      ),
-    });
-    renderAssistantMessages();
-    return;
-  }
-  w.answers[currentStep.key] = parsed;
-  w.step += 1;
-  if (w.step < COLDROOM_STEPS.length) {
-    const next = COLDROOM_STEPS[w.step];
-    state.assistantMessages.push({
-      role: "assistant",
-      text: state.assistantLanguage === "de" ? next.prompt_de : next.prompt_tr,
-    });
-    renderAssistantMessages();
-  } else {
-    // Tamamlandı — hesapla
-    const result = await computeColdroomQuote(w.answers);
-    state.assistantMessages.push({ role: "assistant", text: result });
-    state.coldroomWizard = null;
-    renderAssistantMessages();
-  }
-}
-
-async function loadColdroomCatalog() {
-  if (state.coldroomCatalog) return state.coldroomCatalog;
-  try {
-    const resp = await fetch("/shared-admin-catalog.json", { credentials: "same-origin" });
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const data = await resp.json();
-    state.coldroomCatalog = data;
-    return data;
-  } catch (e) {
-    console.warn("[coldroom] catalog yüklenemedi:", e.message);
-    return null;
-  }
-}
-
-async function computeColdroomQuote(a) {
-  const cat = await loadColdroomCatalog();
-  if (!cat) {
-    return langText(
-      "❌ Katalog yüklenemedi. Lütfen Projeler > ColdRoomPro araç üzerinden devam edin.",
-      "❌ Katalog konnte nicht geladen werden. Bitte Projekte > ColdRoomPro nutzen."
-    );
-  }
-  const volume = a.width * a.length * a.height;
-  // Yüzey alanı (panel m²): 2(W·H + L·H) duvar + 2(W·L) tavan+taban
-  const wallArea = 2 * (a.width * a.height + a.length * a.height);
-  const ceilingArea = a.width * a.length;
-  const panelM2 = Math.ceil(wallArea + 2 * ceilingArea);
-  // Kabaca yük: hedef sicaklik + oda tipi faktörü
-  const baseLoadPerM3 = {
-    "4": 40,  // taze
-    "0": 50,
-    "-18": 80, // dondurulmus
-    "-24": 100, // sok
-  };
-  const closest = Object.keys(baseLoadPerM3).reduce((p, c) =>
-    Math.abs(Number(c) - a.targetC) < Math.abs(Number(p) - a.targetC) ? c : p
-  );
-  const roomFactor = { 1: 1.0, 2: 1.1, 3: 1.15, 4: 1.4 }[a.roomType] || 1.1;
-  const capacityW = Math.ceil(volume * baseLoadPerM3[closest] * roomFactor * 1.2);
-  const capacityKW = (capacityW / 1000).toFixed(2);
-
-  // Fiyatlar — ColdRoomPro pricingProfile + katalog
-  const panelPrice = cat.pricingProfiles?.sogukOdaV3?.panelM2?.[a.panel] || 28;
-  const doorPrice = cat.pricingProfiles?.sogukOdaV3?.doorUnit?.[a.panel] || 335;
-  const panelTotal = panelM2 * panelPrice;
-  // Komponentler — kataloğdan yaklaşık uygun
-  const compressorPrice = pickComponentByCapacity(cat.items, "kompresor", capacityW);
-  const condenserPrice = pickComponentByCapacity(cat.items, "kondans", capacityW);
-  const evaporatorPrice = pickComponentByCapacity(cat.items, "evapor", capacityW);
-  const accessoriesPrice = 250; // sabit: filtre dryer, sight glass, valf, baglanti vb.
-
-  const total = panelTotal + doorPrice + compressorPrice + condenserPrice + evaporatorPrice + accessoriesPrice;
-  const formatEur = (n) => `€${(n || 0).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-  if (state.assistantLanguage === "de") {
-    return [
-      `🧊 **Kuehlraum-Richtangebot**`,
-      `Volumen: ${volume.toFixed(1)} m³ · Paneelflaeche: ${panelM2} m² · Solltemp: ${a.targetC} °C`,
-      `Berechnete Leistung: **${capacityKW} kW** (mit 1.2 Sicherheitsfaktor)`,
-      ``,
-      `📦 **Stueckliste**`,
-      `• Paneel ${a.panel}mm — ${panelM2} m² × ${formatEur(panelPrice)} = ${formatEur(panelTotal)}`,
-      `• Tuere ${a.panel}mm — ${formatEur(doorPrice)}`,
-      `• Verdichter (~${capacityKW} kW) — ${formatEur(compressorPrice)}`,
-      `• Verfluessiger — ${formatEur(condenserPrice)}`,
-      `• Verdampfer — ${formatEur(evaporatorPrice)}`,
-      `• Zubehoer (Trockner, Schauglas, Ventile) — ${formatEur(accessoriesPrice)}`,
-      ``,
-      `💶 **Gesamt netto: ${formatEur(total)}**`,
-      ``,
-      `⚠️ Richtwert. Verbindliches Angebot via Projekte > ColdRoomPro oder durch das DRC-Team.`,
-      `Neu starten: "start" schreiben.`,
-    ].join("\n");
-  }
-  return [
-    `🧊 **Soğuk Oda Tahmini Teklif**`,
-    `Hacim: ${volume.toFixed(1)} m³ · Panel: ${panelM2} m² · Hedef: ${a.targetC} °C`,
-    `Hesaplanan kapasite: **${capacityKW} kW** (1.2 emniyet faktörü dahil)`,
-    ``,
-    `📦 **Malzeme Listesi**`,
-    `• Panel ${a.panel}mm — ${panelM2} m² × ${formatEur(panelPrice)} = ${formatEur(panelTotal)}`,
-    `• Kapı ${a.panel}mm — ${formatEur(doorPrice)}`,
-    `• Kompresor (~${capacityKW} kW) — ${formatEur(compressorPrice)}`,
-    `• Kondenser — ${formatEur(condenserPrice)}`,
-    `• Evaporator — ${formatEur(evaporatorPrice)}`,
-    `• Aksesuar (kuruyucu, sight glass, valf) — ${formatEur(accessoriesPrice)}`,
-    ``,
-    `💶 **Net Toplam: ${formatEur(total)}**`,
-    ``,
-    `⚠️ Tahmini değer. Kesin teklif için Projeler > ColdRoomPro veya DRC ekibine ulaşın.`,
-    `Yeniden başlat: "baslat" yaz.`,
-  ].join("\n");
-}
-
-function pickComponentByCapacity(items, keyword, targetW) {
-  if (!Array.isArray(items)) return 1500;
-  const candidates = items.filter((it) => {
-    const blob = `${it.name || ""} ${it.category || ""}`.toLowerCase();
-    return blob.includes(keyword);
-  });
-  if (!candidates.length) {
-    // fallback approxim
-    return keyword === "kompresor" ? 1500 : keyword === "kondans" ? 800 : 600;
-  }
-  // En yakın visiblePrice değerini al (kapasiteye göre filtrelemiyoruz — basit yaklaşım)
-  // Median fiyat — uç değerler yanıltmaz
-  const prices = candidates.map((it) => Number(it.visiblePrice || 0)).filter((p) => p > 0).sort((a, b) => a - b);
-  if (!prices.length) return 1000;
-  return prices[Math.floor(prices.length / 2)];
 }
 
 function assistantLabel(role) {
