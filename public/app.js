@@ -2007,17 +2007,26 @@ function bindItemDetailModal() {
       if (!file) return;
       const item = state.itemDetailSelection;
       if (!item) return;
-      if (status) status.textContent = langText("Yükleniyor…", "Wird hochgeladen…");
+      // 5 MB üstü dosyayı önceden reddet (sunucu zaten 5 MB sınırlı)
+      const MAX_BYTES = 5 * 1024 * 1024;
+      if (file.size > MAX_BYTES) {
+        if (status) status.textContent = `❌ ${langText("Dosya çok büyük (max 5 MB).", "Datei zu gross (max 5 MB).")}`;
+        imgInput.value = "";
+        return;
+      }
+      if (status) status.textContent = `${langText("Yükleniyor", "Wird hochgeladen")} (${Math.round(file.size / 1024)} KB)…`;
       const fd = new FormData();
       fd.append("image", file);
+      const ctrl = new AbortController();
+      const timeout = setTimeout(() => ctrl.abort(), 45000);
       try {
-        const resp = await fetch(`/api/items/${item.id}/image`, { method: "POST", body: fd });
+        const resp = await fetch(`/api/items/${item.id}/image`, { method: "POST", body: fd, signal: ctrl.signal });
+        clearTimeout(timeout);
         const data = await resp.json().catch(() => ({}));
-        if (!resp.ok) throw new Error(data.error || "Sunucu hatası");
+        if (!resp.ok) throw new Error(data.error || `HTTP ${resp.status}`);
         if (status) status.textContent = "✓ " + langText("Yüklendi", "Hochgeladen");
         const bust = `?v=${Date.now()}`;
         if (refs.itemDetailImage) refs.itemDetailImage.src = data.url + bust;
-        // Local state güncelle
         const idx = state.items.findIndex((entry) => Number(entry.id) === Number(item.id));
         if (idx >= 0) {
           state.items[idx].imageUrl = data.url;
@@ -2027,7 +2036,11 @@ function bindItemDetailModal() {
         imgInput.value = "";
         if (typeof renderItems === "function") renderItems();
       } catch (e) {
-        if (status) status.textContent = `❌ ${e.message}`;
+        clearTimeout(timeout);
+        const msg = e.name === "AbortError"
+          ? langText("Yükleme zaman aşımına uğradı (45 sn). Tekrar deneyin veya admin'e bildirin.", "Upload-Timeout (45s). Bitte erneut versuchen oder Admin informieren.")
+          : e.message;
+        if (status) status.textContent = `❌ ${msg}`;
       }
     });
   }

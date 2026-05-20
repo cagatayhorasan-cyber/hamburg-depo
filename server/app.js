@@ -1825,6 +1825,16 @@ function createApp() {
       const item = await get("SELECT id, name FROM items WHERE id = ?", [itemId]);
       if (!item) return res.status(404).json({ error: "Malzeme bulunamadı." });
 
+      // Vercel serverless: dosya sistemi read-only. Supabase Storage yapılandırılmadıysa
+      // local upload'ı denemeyip net hata dön (kullanıcıya 'donmuş gibi' gelmesin).
+      const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+      if (isServerless && !isSupabaseConfigured()) {
+        return res.status(503).json({
+          error: "Görsel yükleme için Supabase Storage yapılandırılmamış. Lütfen yönetici (Anıl) ile iletişime geçin: SUPABASE_URL ve SUPABASE_SERVICE_ROLE_KEY env değişkenleri Vercel'e eklenmeli + 'item-images' adında public bucket oluşturulmalı.",
+          code: "storage_not_configured",
+        });
+      }
+
       try {
         const { url, storage } = await saveItemImage(
           req.file.buffer,
@@ -1917,6 +1927,14 @@ function createApp() {
       const itemId = Number(req.params.id);
       const item = await get("SELECT id FROM items WHERE id = ?", [itemId]);
       if (!item) return res.status(404).json({ error: "Malzeme bulunamadı." });
+
+      const isServerlessDs = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+      if (isServerlessDs && !isSupabaseConfigured()) {
+        return res.status(503).json({
+          error: "Datasheet yüklemek için Supabase Storage yapılandırılmamış. Yönetici (Anıl) Vercel'e SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY env değişkenlerini eklemeli ve 'item-images' bucket'i açmalı.",
+          code: "storage_not_configured",
+        });
+      }
 
       try {
         const { url, storagePath, storage } = await saveItemDatasheet(
