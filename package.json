@@ -18,7 +18,10 @@
     "train:drcman": "node scripts/train-drc-man-all.js",
     "generate:drcman:25k": "node scripts/generate_drc_man_troubleshooting_25k.js",
     "generate:drcman:deep": "node scripts/generate_drc_man_troubleshooting_deep_packs.js",
-    "import:drcman:25k": "node scripts/import-drc-man-troubleshooting-25k.js"
+    "import:drcman:25k": "node scripts/import-drc-man-troubleshooting-25k.js",
+    "audit:security": "bash scripts/security-audit.sh",
+    "audit:security:live": "bash scripts/security-audit.sh --live",
+    "audit:security:json": "bash scripts/security-audit.sh --json"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.0",
