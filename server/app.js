@@ -677,6 +677,9 @@ function createApp() {
     const message = cleanOptional(req.body?.message);
     const language = req.body?.language === "de" ? "de" : "tr";
     const history = Array.isArray(req.body?.history) ? req.body.history : [];
+    // Frontend'ten gelen mod (servis|malzeme|coldroom) — log ve gelecek pack filtrelemesi icin
+    const mode = ["servis", "malzeme", "coldroom"].includes(req.body?.mode) ? req.body.mode : "servis";
+    req.session._lastAssistantMode = mode;
     const normalizedMessage = normalizeAssistantText(message);
     const answerLevel = resolveAssistantAnswerLevel(message, req.session.user);
     let assistantItems = null;

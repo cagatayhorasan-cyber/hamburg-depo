@@ -1707,8 +1707,13 @@
         </div>
       </div>
       <div id="assistantMessages" class="assistant-messages"></div>
+      <div class="assistant-modes" role="tablist" aria-label="DRC MAN mod">
+        <button type="button" data-asst-mode="servis" class="assistant-mode is-active" role="tab" aria-selected="true">🔧 Servis</button>
+        <button type="button" data-asst-mode="malzeme" class="assistant-mode" role="tab" aria-selected="false">📦 Malzeme</button>
+        <button type="button" data-asst-mode="coldroom" class="assistant-mode" role="tab" aria-selected="false">🧊 Soğuk Oda Teklifi</button>
+      </div>
       <form id="assistantForm" class="assistant-form">
-        <input id="assistantInput" type="text" placeholder="Orn. En pahali urun hangisi?" autocomplete="off" required>
+        <input id="assistantInput" type="text" placeholder="Örn. Kompresor çalışmıyor neden olur?" autocomplete="off" required>
         <button class="primary-button" type="submit">Sor</button>
       </form>
     </section>

@@ -7,7 +7,7 @@
 // Cache version her deploy'da artırılır. Eski version'lar 'activate'te
 // otomatik temizlenir + "controllerchange" event'i ile sayfa otomatik yenilenir.
 
-const CACHE_VERSION = "v20260520-items-sorted";
+const CACHE_VERSION = "v20260521-drcman-modes";
 const STATIC_CACHE = `drc-portal-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `drc-portal-runtime-${CACHE_VERSION}`;
 
