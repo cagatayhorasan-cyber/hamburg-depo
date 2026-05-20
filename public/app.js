@@ -3412,6 +3412,12 @@ function resetItemForm() {
   refs.itemForm.elements.id.value = "";
   refs.itemSubmitButton.textContent = langText("Malzeme Ekle", "Artikel anlegen");
   refs.itemCancelEdit.classList.add("hidden");
+  // Görsel preview + pending file temizliği
+  const previewImg = refs.itemForm.querySelector("[data-item-image-preview]");
+  if (previewImg) { previewImg.src = ""; previewImg.style.display = "none"; }
+  const previewStatus = refs.itemForm.querySelector("[data-item-image-upload-status]");
+  if (previewStatus) previewStatus.textContent = "";
+  refs.itemForm._pendingImageFile = null;
 }
 
 function invalidateInventoryUiCaches() {
@@ -8981,6 +8987,23 @@ function startItemEdit(itemId) {
   if (refs.itemForm.elements.imageUrl) {
     refs.itemForm.elements.imageUrl.value = item.imageUrl || "";
   }
+  // Edit moduna girince mevcut görsel preview'da görünsün
+  const previewImg = refs.itemForm.querySelector("[data-item-image-preview]");
+  const previewStatus = refs.itemForm.querySelector("[data-item-image-upload-status]");
+  if (previewImg) {
+    if (item.imageUrl) {
+      previewImg.src = item.imageUrl;
+      previewImg.style.display = "";
+    } else {
+      previewImg.src = "";
+      previewImg.style.display = "none";
+    }
+  }
+  if (previewStatus) previewStatus.textContent = item.imageUrl ? "Mevcut görsel — değiştirmek için yeni dosya seç" : "";
+  // Eski pending file varsa sıfırla (önceki edit'ten kalmış olabilir)
+  refs.itemForm._pendingImageFile = null;
+  const fileInput = refs.itemForm.querySelector("[data-item-image-input]");
+  if (fileInput) fileInput.value = "";
   refs.itemForm.elements.notes.value = item.notes || "";
   if (refs.itemForm.elements.notesDe) {
     refs.itemForm.elements.notesDe.value = item.notesDe || "";
