@@ -11,7 +11,7 @@ const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const XLSX = require("xlsx");
 const multer = require("multer");
-const { saveItemImage, isSupabaseConfigured } = require("./lib/image-storage");
+const { saveItemImage, deleteItemImage, saveItemDatasheet, deleteItemDatasheet, isSupabaseConfigured } = require("./lib/image-storage");
 const { dbPath, dbClient, initDatabase, query, get, execute, withTransaction } = require("./db");
 const { getSupplierCatalogRefsForItem } = require("./supplier-catalog");
 const { DRC_MAN_FAQ_MANIFEST } = require("./constants/drc-man-manifest");
@@ -1854,6 +1854,174 @@ function createApp() {
       maxBytes: ITEM_IMAGE_MAX_BYTES,
       allowedMimes: Array.from(ITEM_IMAGE_ALLOWED_MIMES),
     });
+  });
+
+  // ---- Ürün görseli silme ----
+  // DB'deki image_url alanını NULL'a çeker ve storage'taki dosyayı siler (Supabase veya lokal).
+  app.delete("/api/items/:id/image", requireAdmin, async (req, res) => {
+    const itemId = Number(req.params.id);
+    if (!Number.isFinite(itemId) || itemId <= 0) {
+      return res.status(400).json({ error: "Geçersiz malzeme id." });
+    }
+    const item = await get("SELECT id, image_url FROM items WHERE id = ?", [itemId]);
+    if (!item) return res.status(404).json({ error: "Malzeme bulunamadı." });
+    const oldUrl = item.image_url || item.imageUrl || null;
+    try {
+      await execute("UPDATE items SET image_url = NULL WHERE id = ?", [itemId]);
+      const result = oldUrl ? await deleteItemImage(oldUrl) : { ok: true, storage: "skipped" };
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "item_image_deleted",
+        severity: "info",
+        details: { itemId, oldUrl, storage: result.storage, reason: result.reason || null },
+      });
+      return res.json({ ok: true, storage: result.storage });
+    } catch (error) {
+      console.error("[DELETE /api/items/:id/image] error:", error?.message || error);
+      return res.status(500).json({ error: "Görsel silinemedi: " + (error?.message || "bilinmeyen") });
+    }
+  });
+
+  // ---- Ürün datasheet/PDF yükleme ----
+  const ITEM_DATASHEET_MAX_BYTES = 20 * 1024 * 1024; // 20 MB
+  const ITEM_DATASHEET_ALLOWED_MIMES = new Set([
+    "application/pdf",
+    "image/png",
+    "image/jpeg",
+    "image/webp",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  ]);
+  const itemDatasheetUpload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: ITEM_DATASHEET_MAX_BYTES, files: 1 },
+    fileFilter: (_req, file, cb) => {
+      if (ITEM_DATASHEET_ALLOWED_MIMES.has(file.mimetype)) return cb(null, true);
+      cb(new Error("Sadece PDF / Word / Excel / Görsel formatları kabul edilir."));
+    },
+  });
+
+  app.post("/api/items/:id/datasheet", requireAdmin, (req, res) => {
+    itemDatasheetUpload.single("datasheet")(req, res, async (uploadErr) => {
+      if (uploadErr) {
+        const msg = uploadErr.code === "LIMIT_FILE_SIZE"
+          ? "Dosya boyutu çok büyük (max 20 MB)."
+          : (uploadErr.message || "Dosya yüklenemedi.");
+        return res.status(400).json({ error: msg });
+      }
+      if (!req.file || !req.file.buffer) {
+        return res.status(400).json({ error: "Datasheet dosyası bulunamadı (field: datasheet)." });
+      }
+      const itemId = Number(req.params.id);
+      const item = await get("SELECT id FROM items WHERE id = ?", [itemId]);
+      if (!item) return res.status(404).json({ error: "Malzeme bulunamadı." });
+
+      try {
+        const { url, storagePath, storage } = await saveItemDatasheet(
+          req.file.buffer,
+          req.file.originalname,
+          itemId,
+          req.file.mimetype
+        );
+        const userId = Number(req.session.user?.id) || null;
+        await execute(
+          `INSERT INTO documents (owner_type, owner_id, filename, storage_path, size_bytes, mime, uploaded_by_user_id)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          ["item", itemId, req.file.originalname || "datasheet", url, req.file.size || 0, req.file.mimetype || "application/octet-stream", userId]
+        );
+        queueSecurityEvent(req, {
+          user: req.session.user,
+          eventType: "item_datasheet_uploaded",
+          severity: "info",
+          details: { itemId, storage, mime: req.file.mimetype, size: req.file.size, url, storagePath },
+        });
+        return res.json({ ok: true, url, storage });
+      } catch (error) {
+        console.error("[/api/items/:id/datasheet] upload error:", error?.message || error);
+        return res.status(500).json({ error: "Dosya yüklenirken hata: " + (error?.message || "bilinmeyen") });
+      }
+    });
+  });
+
+  app.get("/api/items/:id/datasheets", requireAuth, async (req, res) => {
+    const itemId = Number(req.params.id);
+    if (!Number.isFinite(itemId) || itemId <= 0) {
+      return res.status(400).json({ error: "Geçersiz malzeme id." });
+    }
+    const rows = await query(
+      `SELECT id, filename, storage_path, size_bytes, mime, uploaded_by_user_id, created_at
+         FROM documents
+         WHERE owner_type = ? AND owner_id = ?
+         ORDER BY created_at DESC`,
+      ["item", itemId]
+    );
+    return res.json({
+      datasheets: rows.map((row) => ({
+        id: Number(row.id),
+        filename: row.filename,
+        url: row.storage_path,
+        sizeBytes: Number(row.size_bytes) || 0,
+        mime: row.mime,
+        uploadedAt: row.created_at,
+      })),
+    });
+  });
+
+  app.delete("/api/items/:id/datasheet/:docId", requireAdmin, async (req, res) => {
+    const itemId = Number(req.params.id);
+    const docId = Number(req.params.docId);
+    if (!Number.isFinite(itemId) || !Number.isFinite(docId)) {
+      return res.status(400).json({ error: "Geçersiz id." });
+    }
+    const doc = await get(
+      "SELECT id, owner_type, owner_id, storage_path FROM documents WHERE id = ?",
+      [docId]
+    );
+    if (!doc || doc.owner_type !== "item" || Number(doc.owner_id) !== itemId) {
+      return res.status(404).json({ error: "Datasheet bulunamadı." });
+    }
+    try {
+      await execute("DELETE FROM documents WHERE id = ?", [docId]);
+      const result = await deleteItemDatasheet(doc.storage_path);
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "item_datasheet_deleted",
+        severity: "info",
+        details: { itemId, docId, storagePath: doc.storage_path, storage: result.storage, reason: result.reason || null },
+      });
+      return res.json({ ok: true, storage: result.storage });
+    } catch (error) {
+      console.error("[DELETE /api/items/:id/datasheet/:docId] error:", error?.message || error);
+      return res.status(500).json({ error: "Datasheet silinemedi: " + (error?.message || "bilinmeyen") });
+    }
+  });
+
+  // ---- Sadece notlar (teknik veri) güncelleme ----
+  app.patch("/api/items/:id/notes", requireAdmin, async (req, res) => {
+    const itemId = Number(req.params.id);
+    if (!Number.isFinite(itemId) || itemId <= 0) {
+      return res.status(400).json({ error: "Geçersiz malzeme id." });
+    }
+    const { notes, notesDe } = req.body || {};
+    const cleanedTr = cleanOptional(notes);
+    const cleanedDe = cleanOptional(notesDe);
+    const item = await get("SELECT id FROM items WHERE id = ?", [itemId]);
+    if (!item) return res.status(404).json({ error: "Malzeme bulunamadı." });
+    try {
+      await execute("UPDATE items SET notes = ?, notes_de = ? WHERE id = ?", [cleanedTr, cleanedDe, itemId]);
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "item_notes_updated",
+        severity: "info",
+        details: { itemId, lenTr: cleanedTr?.length || 0, lenDe: cleanedDe?.length || 0 },
+      });
+      return res.json({ ok: true });
+    } catch (error) {
+      console.error("[PATCH /api/items/:id/notes] error:", error?.message || error);
+      return res.status(500).json({ error: "Notlar güncellenemedi: " + (error?.message || "bilinmeyen") });
+    }
   });
 
   app.post("/api/items/intake", requireStaffOrAdmin, handleItemIntake);

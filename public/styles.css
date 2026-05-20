@@ -2434,6 +2434,120 @@ label {
     linear-gradient(180deg, #fbfdff, #f3f7ff);
 }
 
+/* ========================================================================
+   Sağdan kayan ürün detay paneli (auth-modal--side-right)
+   2026-05-20: itemDetailModal merkez modal yerine sağdan slide-in panel.
+   ======================================================================== */
+.auth-modal.auth-modal--side-right {
+  place-items: stretch end;
+  padding: 0;
+}
+.auth-modal.auth-modal--side-right .auth-modal-panel.product-detail-side {
+  width: min(520px, 100%);
+  max-width: 520px;
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: -24px 0 60px rgba(4, 12, 22, 0.32);
+  animation: drcSideSlideIn 220ms ease-out;
+}
+.auth-modal.auth-modal--side-right .product-detail-shell {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 22px 22px 12px;
+}
+.product-detail-actions {
+  border-top: 1px solid rgba(15, 39, 72, 0.10);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  position: sticky;
+  bottom: 0;
+}
+.product-detail-actions:empty { display: none; }
+.product-detail-image-admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  align-items: center;
+}
+.product-detail-image-admin .small-button { padding: 6px 10px; font-size: 12px; }
+.danger-text { color: #b21f1f; }
+.danger-text:hover { background: rgba(178, 31, 31, 0.08); }
+.datasheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.datasheet-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(15, 39, 72, 0.10);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+.datasheet-list-item .ds-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.datasheet-list-item .ds-meta { font-size: 11px; color: #6b7280; }
+.datasheet-upload-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+}
+.notes-edit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.notes-edit-area textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 10px;
+  border: 1px solid rgba(15, 39, 72, 0.18);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+.notes-edit-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.product-detail-actions .primary-button,
+.product-detail-actions .secondary-button {
+  min-width: 120px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+@keyframes drcSideSlideIn {
+  from { transform: translateX(100%); opacity: 0.4; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@media (max-width: 720px) {
+  .auth-modal.auth-modal--side-right .auth-modal-panel.product-detail-side {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
+
 .product-detail-shell {
   padding: 22px;
 }
@@ -6676,6 +6790,199 @@ h3 {
 .cashbook-type-pill--out {
   background: rgba(239, 68, 68, 0.15);
   color: #b91c1c;
+}
+
+/* ========================================================================
+   UTILITY CLASSES — inline style'lardan taşınanlar (CSP style-src sertleştirme)
+   2026-05-20: 67 inline style attribute + 8 JS template literal class'a taşındı,
+   style-src 'unsafe-inline' kalktı.
+   ======================================================================== */
+.u-hidden { display: none !important; }
+.u-hidden-soft { display: none; }
+.u-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.u-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.u-flex-gap-12 { display: flex; align-items: center; gap: 12px; }
+.u-flex-gap-8 { display: flex; gap: 8px; align-items: center; }
+.u-text-center { text-align: center; }
+.u-block-strong-small {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.u-section-subhead {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin: 0 0 10px;
+}
+.u-muted-small { font-size: 12px; }
+.u-muted-tiny { font-size: 11px; color: rgba(26, 42, 61, 0.55); }
+.u-card-subnote { font-size: 12px; opacity: 0.85; }
+.u-mt-10 { margin-top: 10px; }
+.u-mt-12 { margin-top: 12px; }
+.u-mb-24 { margin-bottom: 24px; }
+.u-min-w-200-flex1 { min-width: 200px; flex: 1; }
+.u-min-w-220-flex1 { min-width: 220px; flex: 1; }
+.u-margin-left-auto { margin-left: auto; font-size: 12px; }
+.u-flex-1-flex { flex: 1; min-width: 200px; }
+.u-overflow-x-auto { overflow-x: auto; }
+.u-padding-12 { padding: 12px; }
+.u-mono-key {
+  font-size: 11px;
+  font-family: monospace;
+  padding: 2px 6px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 4px;
+}
+.u-load-more-row { text-align: center; margin-top: 12px; }
+.u-spinning-light { padding: 24px; text-align: center; }
+.u-progress-line { margin: 4px 0; font-size: 13px; }
+
+/* Semantic — Install (PWA) modal */
+.install-modal-panel { max-width: 440px; text-align: center; }
+.install-modal-icon { font-size: 48px; line-height: 1; margin-bottom: 8px; }
+.install-modal-title { margin: 0 0 4px; font-size: 20px; color: #082b4c; }
+.install-modal-desc { margin: 0 0 18px; color: #475569; font-size: 13.5px; }
+.install-card { padding: 14px; border-radius: 12px; margin-bottom: 14px; color: #fff; }
+.install-card--android { background: linear-gradient(135deg, #082b4c, #0f3d6b); }
+.install-card--ios { background: linear-gradient(135deg, #0f3d6b, #082b4c); }
+.install-card--desktop {
+  background: rgba(0, 169, 143, 0.10);
+  color: #00665a;
+  border: 1px solid rgba(0, 169, 143, 0.32);
+}
+.install-modal-ios-steps {
+  text-align: left;
+  margin: 0;
+  padding-left: 22px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #1a2a3d;
+}
+.install-modal-footnote { margin: 14px 0 0; font-size: 11px; color: #94a3b8; }
+.install-android-btn-full { width: 100%; padding: 14px; font-size: 14px; font-weight: 700; }
+
+/* Semantic — Global search modal */
+.global-search-panel-shell { max-width: 680px; padding: 0; }
+.global-search-input-row {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.global-search-input-icon { font-size: 18px; }
+.global-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+  color: inherit;
+}
+.global-search-results-area {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+.global-search-hint-empty { padding: 24px; text-align: center; font-size: 13px; }
+.global-search-footer {
+  padding: 8px 16px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+  background: var(--bg-secondary, #f9fafb);
+  font-size: 11px;
+  color: var(--text-muted, #6b7280);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Semantic — Item image preview (form'larda) */
+.item-image-preview-img {
+  display: none;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 8px;
+  border: 1px solid rgba(7, 44, 87, 0.12);
+  object-fit: cover;
+}
+.item-image-preview-img.is-visible { display: inline-block; }
+
+/* Semantic — ColdRoomPro modal */
+.coldroom-pro-modal-shell {
+  max-width: min(1200px, 95vw);
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.coldroom-pro-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.coldroom-pro-modal-title { margin: 0; font-size: 18px; }
+.coldroom-pro-modal-actions { display: flex; gap: 8px; align-items: center; }
+.coldroom-pro-modal-newtab-link { font-size: 12px; }
+.coldroom-pro-modal-close-btn { position: relative; inset: auto; }
+.coldroom-pro-iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+.coldroom-pro-footnote {
+  padding: 8px 20px;
+  margin: 0;
+  font-size: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Semantic — DRC MAN Toplu Eğitim Yükle card */
+.drcman-bulk-card {
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  background: linear-gradient(180deg, #f4f8ff, #eef3ff);
+  border: 1px solid #cfd9ef;
+  border-radius: 10px;
+}
+.drcman-bulk-card .section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.drcman-bulk-card h2 { margin: 0 0 4px 0; }
+.drcman-bulk-help { margin: 0; max-width: 640px; }
+.drcman-bulk-result { margin-top: 10px; font-size: 13px; }
+
+/* Semantic — Activity / IoT / Audit section utility */
+.activity-timeline {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.activity-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.cash-form-preview { font-size: 0.9em; color: var(--erp-accent); margin-top: -4px; }
+.danger-button-soft {
+  background: rgba(248, 81, 73, 0.12);
+  color: #f85149;
+  border-color: rgba(248, 81, 73, 0.4);
 }
 
 /* ========================================================================

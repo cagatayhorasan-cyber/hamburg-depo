@@ -41,28 +41,28 @@
       <!-- PWA install modal — Android ve iOS uyumlu -->
       <div id="installPwaModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
         <div class="auth-modal-backdrop" data-install-close></div>
-        <div class="auth-modal-panel" role="document" style="max-width:440px;text-align:center;">
+        <div class="auth-modal-panel" role="document" class="install-modal-panel">
           <button type="button" class="auth-modal-close" data-install-close aria-label="Kapat">×</button>
-          <div style="font-size:48px;line-height:1;margin-bottom:8px;">📲</div>
-          <h2 style="margin:0 0 4px;font-size:20px;color:#082b4c;">DRC Portal Uygulaması</h2>
-          <p style="margin:0 0 18px;color:#475569;font-size:13.5px;">Tarayıcı yerine doğrudan ana ekrandan açın — daha hızlı, çevrimdışı stok görme, push güncelleme.</p>
+          <div class="install-modal-icon">📲</div>
+          <h2 class="install-modal-title">DRC Portal Uygulaması</h2>
+          <p class="install-modal-desc">Tarayıcı yerine doğrudan ana ekrandan açın — daha hızlı, çevrimdışı stok görme, push güncelleme.</p>
 
           <!-- Android Chrome (beforeinstallprompt) -->
-          <div id="installAndroidPanel" style="display:none;">
-            <div style="background:linear-gradient(135deg,#082b4c,#0f3d6b);color:#fff;padding:14px;border-radius:12px;margin-bottom:14px;">
-              <strong style="display:block;font-size:14px;margin-bottom:4px;">📱 Android (Chrome)</strong>
-              <span style="font-size:12px;opacity:0.85;">Tek tıkla ana ekrana eklenir.</span>
+          <div id="installAndroidPanel" hidden>
+            <div class="install-card install-card--android">
+              <strong class="u-block-strong-small">📱 Android (Chrome)</strong>
+              <span class="u-card-subnote">Tek tıkla ana ekrana eklenir.</span>
             </div>
-            <button type="button" id="installAndroidBtn" class="primary-button" style="width:100%;padding:14px;font-size:14px;font-weight:700;">⬇ Şimdi Kur</button>
+            <button type="button" id="installAndroidBtn" class="primary-button"  install-android-btn-full>⬇ Şimdi Kur</button>
           </div>
 
           <!-- iOS Safari (manuel) -->
-          <div id="installIosPanel" style="display:none;">
-            <div style="background:linear-gradient(135deg,#0f3d6b,#082b4c);color:#fff;padding:14px;border-radius:12px;margin-bottom:14px;">
-              <strong style="display:block;font-size:14px;margin-bottom:4px;">🍏 iPhone / iPad (Safari)</strong>
-              <span style="font-size:12px;opacity:0.85;">Ana ekrana ekleme adımları:</span>
+          <div id="installIosPanel" hidden>
+            <div class="install-card install-card--ios">
+              <strong class="u-block-strong-small">🍏 iPhone / iPad (Safari)</strong>
+              <span class="u-card-subnote">Ana ekrana ekleme adımları:</span>
             </div>
-            <ol style="text-align:left;margin:0;padding-left:22px;font-size:13px;line-height:1.7;color:#1a2a3d;">
+            <ol class="install-modal-ios-steps">
               <li>Safari'de altta <strong>Paylaş</strong> simgesine ⎙ bas</li>
               <li>Listeden <strong>"Ana Ekrana Ekle"</strong> seç</li>
               <li>Sağ üstte <strong>Ekle</strong>'ye dokun</li>
@@ -70,14 +70,14 @@
           </div>
 
           <!-- Desktop / fallback -->
-          <div id="installDesktopPanel" style="display:none;">
-            <div style="background:rgba(0,169,143,0.10);color:#00665a;padding:14px;border-radius:12px;border:1px solid rgba(0,169,143,0.32);">
-              <strong style="display:block;font-size:14px;margin-bottom:4px;">💻 Bilgisayar / Diğer</strong>
-              <span style="font-size:12px;">Chrome adres çubuğunda <strong>⊕ kur</strong> simgesini tıklayın. Edge/Brave de destekler.</span>
+          <div id="installDesktopPanel" hidden>
+            <div class="install-card install-card--desktop">
+              <strong class="u-block-strong-small">💻 Bilgisayar / Diğer</strong>
+              <span class="u-muted-small">Chrome adres çubuğunda <strong>⊕ kur</strong> simgesini tıklayın. Edge/Brave de destekler.</span>
             </div>
           </div>
 
-          <p style="margin:14px 0 0;font-size:11px;color:#94a3b8;">Uygulama yer kaplamaz — site bağlantısı (PWA), tek dokunuşla açılır.</p>
+          <p class="install-modal-footnote">Uygulama yer kaplamaz — site bağlantısı (PWA), tek dokunuşla açılır.</p>
         </div>
       </div>
 
@@ -160,18 +160,18 @@
       <!-- Global Arama (Cmd+K / Ctrl+K) — tüm rollere açık, role'e göre içerik filtrelenir -->
       <div id="globalSearchModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="globalSearchTitle" hidden>
         <div class="auth-modal-backdrop" data-global-search-close></div>
-        <div class="auth-modal-panel global-search-panel" role="document" style="max-width:680px;padding:0;">
-          <div style="padding:16px 20px;border-bottom:1px solid var(--border-color,#e5e7eb);display:flex;align-items:center;gap:12px;">
-            <span style="font-size:18px;">🔍</span>
-            <input id="globalSearchInput" type="search" placeholder="Ara: ürün, müşteri, sipariş, proje..." autocomplete="off" style="flex:1;border:none;outline:none;font-size:16px;background:transparent;color:inherit;" />
-            <span class="muted" style="font-size:11px;font-family:monospace;padding:2px 6px;border:1px solid var(--border-color,#e5e7eb);border-radius:4px;">ESC</span>
+        <div class="auth-modal-panel global-search-panel" role="document" class="global-search-panel-shell">
+          <div class="global-search-input-row">
+            <span class="global-search-input-icon">🔍</span>
+            <input id="globalSearchInput" type="search" placeholder="Ara: ürün, müşteri, sipariş, proje..." autocomplete="off" class="global-search-input" />
+            <span class="muted" class="u-mono-key">ESC</span>
           </div>
-          <div id="globalSearchResults" style="max-height:60vh;overflow-y:auto;padding:8px 0;">
-            <div id="globalSearchHint" class="muted" style="padding:24px;text-align:center;font-size:13px;">
+          <div id="globalSearchResults" class="global-search-results-area">
+            <div id="globalSearchHint" class="muted" class="global-search-hint-empty">
               En az 2 karakter yaz — ürün adı, marka, kod, müşteri, sipariş #, proje adı...
             </div>
           </div>
-          <div style="padding:8px 16px;border-top:1px solid var(--border-color,#e5e7eb);background:var(--bg-secondary,#f9fafb);font-size:11px;color:var(--text-muted,#6b7280);display:flex;justify-content:space-between;">
+          <div class="global-search-footer">
             <span>↑ ↓ gez · Enter aç · ESC kapat</span>
             <span id="globalSearchCount"></span>
           </div>
@@ -196,9 +196,9 @@
         </div>
       </div>
 
-      <div id="itemDetailModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="itemDetailTitle" hidden>
+      <div id="itemDetailModal" class="auth-modal auth-modal--side-right" role="dialog" aria-modal="true" aria-labelledby="itemDetailTitle" hidden>
         <div class="auth-modal-backdrop" data-item-detail-close></div>
-        <div class="auth-modal-panel product-detail-modal" role="document">
+        <div class="auth-modal-panel product-detail-modal product-detail-side" role="document">
           <button type="button" class="auth-modal-close" data-item-detail-close aria-label="Kapat">×</button>
           <section class="product-detail-shell">
             <div class="product-detail-topline">
@@ -217,6 +217,12 @@
               </div>
               <div class="product-detail-visual-card">
                 <img id="itemDetailImage" class="product-detail-visual" src="/assets/drc-product-showcase.svg" alt="Ürün gorseli">
+                <div class="product-detail-image-admin admin-only" id="itemDetailImageAdmin" hidden>
+                  <input type="file" id="itemDetailImageInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+                  <button type="button" class="ghost-button small-button" data-item-image-change>📷 Değiştir</button>
+                  <button type="button" class="ghost-button small-button danger-text" data-item-image-delete>🗑️ Sil</button>
+                  <p id="itemDetailImageStatus" class="muted u-muted-tiny" aria-live="polite"></p>
+                </div>
               </div>
             </div>
 
@@ -270,6 +276,7 @@
               </article>
             </div>
           </section>
+          <footer class="product-detail-actions" id="itemDetailActions" data-item-detail-actions></footer>
         </div>
       </div>
 
@@ -377,7 +384,7 @@
         <section class="overview-grid">
           <article id="opsOverview" class="overview-card overview-card-ops"></article>
           <article id="carbonOverview" class="overview-card overview-card-carbon"></article>
-          <article id="iotOverview" class="overview-card overview-card-iot" style="display:none"></article>
+          <article id="iotOverview" class="overview-card overview-card-iot" hidden></article>
         </section>
 
         <section class="stats-grid" id="statsGrid"></section>
@@ -404,9 +411,9 @@
                     <h3>Stokta Olan Ürünler</h3>
                     <p id="stockedItemsSummary" class="muted"></p>
                   </div>
-                  <div class="action-row admin-only" style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <div class="action-row admin-only u-flex-row">
                     <button id="bulkTranslateDeButton" class="secondary-button" type="button" title="Google Translate ile TR→DE otomatik çeviri (keysiz, yaklaşık 30 dk 10K ürün)">🌐 Google TR→DE Çevir</button>
-                    <button id="resetDeButton" class="secondary-button" type="button" title="Mevcut (eski rule-based) DE çevirilerini sil — yeni çeviri öncesi temizlik için" style="background:rgba(248,81,73,0.12);color:#f85149;border-color:rgba(248,81,73,0.4);">🗑️ DE Çevirilerini Sil</button>
+                    <button id="resetDeButton" class="secondary-button" type="button" title="Mevcut (eski rule-based) DE çevirilerini sil — yeni çeviri öncesi temizlik için" >🗑️ DE Çevirilerini Sil</button>
                   </div>
                 </div>
                 <div id="bulkTranslateProgress" class="muted" style="display:none;margin:4px 0;font-size:13px;"></div>
@@ -478,7 +485,7 @@
                         </span>
                       </span>
                       <div class="item-image-preview-row">
-                        <img data-item-image-preview src="" alt="Ürün görsel önizleme" style="display:none;max-width:120px;max-height:120px;border-radius:8px;border:1px solid rgba(7,44,87,0.12);object-fit:cover;">
+                        <img data-item-image-preview src="" alt="Ürün görsel önizleme" class="item-image-preview-img">
                         <span class="muted item-image-upload-status" data-item-image-upload-status></span>
                       </div>
                       <input name="imageUrl" type="text" placeholder="Dosya yükleyin veya /assets/products/ornek.jpg, https://… URL'i yapıştırın">
@@ -604,7 +611,7 @@
                         </span>
                       </span>
                       <div class="item-image-preview-row">
-                        <img data-item-image-preview src="" alt="Ürün görsel önizleme" style="display:none;max-width:120px;max-height:120px;border-radius:8px;border:1px solid rgba(7,44,87,0.12);object-fit:cover;">
+                        <img data-item-image-preview src="" alt="Ürün görsel önizleme" class="item-image-preview-img">
                         <span class="muted item-image-upload-status" data-item-image-upload-status></span>
                       </div>
                       <input name="imageUrl" type="text" placeholder="Dosya yükleyin veya /assets/products/ornek.jpg, https://… URL'i yapıştırın">
@@ -683,7 +690,7 @@
           </div>
 
           <!-- Kasa Defteri artık tab-content olarak da kalıyor (app.js renderTabData uyumu için) ama görünmez -->
-          <div class="tab-content admin-staff-only" data-tab-content="cashbook" style="display:none !important"></div>
+          <div class="tab-content admin-staff-only" data-tab-content="cashbook" hidden></div>
 
           <!-- Kasa Modal -->
           <div id="cashbookModal" class="fullscreen-modal">
@@ -718,11 +725,11 @@
                 </section>
 
                 <!-- Eski tek-satır bakiye barı (gizli, JS bağımlılığı için tutuluyor) -->
-                <section style="display:none" id="cashbookBalanceBar">
+                <section hidden id="cashbookBalanceBar">
                   <h3 id="cashbookBalanceText" class="muted">Yükleniyor...</h3>
                 </section>
 
-                <section class="cashbook-form-section" style="margin-bottom:24px">
+                <section class="cashbook-form-section" class="u-mb-24">
                   <h3>Yeni Kasa Hareketi</h3>
                   <!-- IN/OUT yön seçici (büyük toggle) -->
                   <div class="cashbook-direction-toggle" role="tablist">
@@ -774,7 +781,7 @@
                     <label class="form-span-2"><span>Not (en az 3 karakter) <em class="muted">zorunlu</em></span>
                       <input name="note" type="text" required minlength="3" placeholder="Detaylı açıklama zorunludur">
                     </label>
-                    <div class="form-span-2" id="cashFormPreview" style="font-size:0.9em;color:var(--erp-accent);margin-top:-4px;"></div>
+                    <div class="form-span-2" id="cashFormPreview" class="cash-form-preview"></div>
                     <button class="primary-button form-span-2" type="submit">✓ Kasa Kaydet</button>
                   </form>
                 </section>
@@ -1109,7 +1116,7 @@
                   </div>
                 </div>
 
-                <div class="filters-row" id="auditFilters" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;">
+                <div class="filters-row" id="auditFilters" >
                   <select id="auditCategoryFilter" class="mini-select" data-help="TR: Eylem kategorisi. DE: Aktionskategorie.">
                     <option value="">Tüm kategoriler</option>
                     <option value="mutations">Veri değişimi (yarat/güncelle/sil)</option>
@@ -1135,9 +1142,9 @@
                     <option value="7d">Son 7 gün</option>
                     <option value="30d">Son 30 gün</option>
                   </select>
-                  <input id="auditSearchFilter" class="mini-input" type="search" placeholder="Ara: kullanıcı, IP, detay..." style="min-width:200px;flex:1;">
+                  <input id="auditSearchFilter" class="mini-input" type="search" placeholder="Ara: kullanıcı, IP, detay..." class="u-min-w-200-flex1">
                   <button id="auditApplyFilterButton" class="primary-button mini-button" type="button">Filtrele</button>
-                  <span id="auditResultCount" class="muted" style="margin-left:auto;font-size:12px;"></span>
+                  <span id="auditResultCount" class="muted" class="u-margin-left-auto"></span>
                 </div>
 
                 <div class="table-wrap">
@@ -1156,8 +1163,8 @@
                     <tbody id="securityEventsTableBody"></tbody>
                   </table>
                 </div>
-                <div style="text-align:center;margin-top:12px;">
-                  <button id="auditLoadMoreButton" class="secondary-button" type="button" style="display:none;">Daha fazla yükle</button>
+                <div class="u-load-more-row">
+                  <button id="auditLoadMoreButton" class="secondary-button" type="button" hidden>Daha fazla yükle</button>
                 </div>
               </section>
               <section>
@@ -1196,7 +1203,7 @@
                 </div>
               </div>
 
-              <div class="filters-row" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;">
+              <div class="filters-row" >
                 <select id="activityUserFilter" class="mini-select">
                   <option value="">Tüm kullanıcılar</option>
                 </select>
@@ -1221,29 +1228,29 @@
                   <option value="7d">Son 7 gün</option>
                   <option value="30d">Son 30 gün</option>
                 </select>
-                <input type="search" id="activitySearch" class="mini-input" placeholder="Etiket içinde ara..." style="flex:1;min-width:220px;" />
+                <input type="search" id="activitySearch" class="mini-input" placeholder="Etiket içinde ara..." class="u-min-w-220-flex1" />
               </div>
 
               <!-- Stats kartları -->
-              <div id="activityStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;"></div>
+              <div id="activityStats" class="activity-stats-grid"></div>
 
               <!-- Aktif kullanıcı listesi -->
-              <div style="margin-bottom:24px;">
-                <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;">Son 7 günde aktif kullanıcılar</h3>
-                <div id="activeUsersTable" style="overflow-x:auto;">
-                  <div class="muted" style="padding:12px;">Yükleniyor...</div>
+              <div class="u-mb-24">
+                <h3 class="u-section-subhead">Son 7 günde aktif kullanıcılar</h3>
+                <div id="activeUsersTable" class="u-overflow-x-auto">
+                  <div class="muted" class="u-padding-12">Yükleniyor...</div>
                 </div>
               </div>
 
               <!-- Aktivite timeline -->
-              <h3 style="font-size:14px;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;">Olay akışı (timeline)</h3>
-              <div id="activityTimeline" style="background:#fff;border:1px solid #e5e7eb;border-radius:6px;max-height:600px;overflow-y:auto;">
-                <div class="muted" style="padding:24px;text-align:center;">Yükleniyor...</div>
+              <h3 class="u-section-subhead">Olay akışı (timeline)</h3>
+              <div id="activityTimeline" class="activity-timeline">
+                <div class="muted" class="u-spinning-light">Yükleniyor...</div>
               </div>
             </section>
           </div>
 
-          <div class="tab-content" data-tab-content="iot" style="display:none"></div>
+          <div class="tab-content" data-tab-content="iot" hidden></div>
 
           <div class="tab-content" data-tab-content="projects">
             <section class="projects-panel">
@@ -1387,16 +1394,16 @@
             <!-- ColdRoomPro Launcher Modal -->
             <div id="coldRoomProModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
               <div class="auth-modal-backdrop" data-coldroompro-close></div>
-              <div class="auth-modal-panel" role="document" style="max-width:min(1200px,95vw);height:90vh;display:flex;flex-direction:column;padding:0;">
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.1);">
-                  <h2 style="margin:0;font-size:18px;">🧊 ColdRoomPro — Soğuk Oda Hesaplama</h2>
-                  <div style="display:flex;gap:8px;align-items:center;">
-                    <a href="/admin-tools/coldroompro/" target="_blank" rel="noopener" class="secondary-button" style="font-size:12px;">Yeni Sekmede Aç</a>
-                    <button type="button" class="auth-modal-close" data-coldroompro-close aria-label="Kapat" style="position:relative;inset:auto;">×</button>
+              <div class="auth-modal-panel" role="document" class="coldroom-pro-modal-shell">
+                <div class="coldroom-pro-modal-header">
+                  <h2 class="coldroom-pro-modal-title">🧊 ColdRoomPro — Soğuk Oda Hesaplama</h2>
+                  <div class="coldroom-pro-modal-actions">
+                    <a href="/admin-tools/coldroompro/" target="_blank" rel="noopener" class="secondary-button" class="u-muted-small">Yeni Sekmede Aç</a>
+                    <button type="button" class="auth-modal-close" data-coldroompro-close aria-label="Kapat" class="coldroom-pro-modal-close-btn">×</button>
                   </div>
                 </div>
-                <iframe id="coldRoomProFrame" src="" title="ColdRoomPro" style="flex:1;width:100%;border:0;background:#fff;"></iframe>
-                <p class="muted" style="padding:8px 20px;margin:0;font-size:12px;border-top:1px solid rgba(255,255,255,0.1);">
+                <iframe id="coldRoomProFrame" src="" title="ColdRoomPro" class="coldroom-pro-iframe"></iframe>
+                <p class="muted" class="coldroom-pro-footnote">
                   Hesaplamanızı tamamladıktan sonra ColdRoomPro içinden "Projeye Kaydet" butonuna basın — proje otomatik oluşturulacaktır.
                 </p>
               </div>
@@ -1432,20 +1439,20 @@
           </div>
 
           <div class="tab-content admin-only" data-tab-content="training">
-            <section class="card" id="drcManBulkImportCard" style="padding:14px 16px;margin-bottom:16px;background:linear-gradient(180deg,#f4f8ff,#eef3ff);border:1px solid #cfd9ef;border-radius:10px;">
-              <div class="section-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <section class="card" id="drcManBulkImportCard" >
+              <div class="section-head" >
                 <div>
-                  <h2 style="margin:0 0 4px 0;">DRC MAN Toplu Eğitim Yükle</h2>
-                  <p class="muted" id="drcManBulkImportHelp" style="margin:0;max-width:640px;">
+                  <h2 >DRC MAN Toplu Eğitim Yükle</h2>
+                  <p class="muted" id="drcManBulkImportHelp" class="drcman-bulk-help">
                     Tüm urun, ariza, elektrik, gaz, PT, master saha ve egitim FAQ dosyalarini canli Postgres'e yazar (assistant_troubleshooting_bank). Mevcut aynı kaynak satirlarini önce siler, sonra yeniden ekler. Surec yaklasik 10 saniye surer.
                   </p>
                 </div>
-                <div class="action-row" style="gap:8px;">
+                <div class="action-row" >
                   <button id="drcManBulkImportButton" class="primary-button" type="button">Eğitimi Yükle</button>
                   <button id="drcManBulkImportDryRunButton" class="secondary-button" type="button">On Izleme</button>
                 </div>
               </div>
-              <div id="drcManBulkImportResult" class="muted" style="margin-top:10px;font-size:13px;"></div>
+              <div id="drcManBulkImportResult" class="muted" class="drcman-bulk-result"></div>
             </section>
             <div class="two-column">
               <section>

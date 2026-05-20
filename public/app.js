@@ -853,6 +853,10 @@ const refs = {
   itemDetailDocuments: document.getElementById("itemDetailDocuments"),
   itemDetailNotes: document.getElementById("itemDetailNotes"),
   itemDetailDescription: document.getElementById("itemDetailDescription"),
+  itemDetailActions: document.getElementById("itemDetailActions"),
+  itemDetailImageAdmin: document.getElementById("itemDetailImageAdmin"),
+  itemDetailImageInput: document.getElementById("itemDetailImageInput"),
+  itemDetailImageStatus: document.getElementById("itemDetailImageStatus"),
   uiLanguageSelects: document.querySelectorAll(".ui-language-select"),
   pwaInstallButtons: document.querySelectorAll("#pwaInstallButton, #mobileInstallButton, #mobileMoreInstallButton"),
 };
@@ -1749,8 +1753,219 @@ function openItemDetailModal(item) {
   renderItemDetailFactList(refs.itemDetailNotes, buildItemNotesFacts(item));
   loadItemDocuments(item);
   setItemDetailTab("overview");
+  renderItemDetailActions(item);
+  renderItemDetailAdminControls(item);
   refs.itemDetailModal.removeAttribute("hidden");
   document.documentElement.classList.add("auth-modal-open");
+}
+
+function renderItemDetailAdminControls(item) {
+  const adminBox = refs.itemDetailImageAdmin;
+  if (adminBox) {
+    if (isAdminUser()) {
+      adminBox.removeAttribute("hidden");
+      const status = refs.itemDetailImageStatus;
+      if (status) status.textContent = "";
+    } else {
+      adminBox.setAttribute("hidden", "");
+    }
+  }
+  // Notlar tab'ı içine düzenleme paneli
+  appendNotesEditUi(item);
+  // PDF tab'ı içine yüklenen datasheet'leri ve yükleme formunu ekle
+  appendDatasheetUi(item);
+}
+
+function appendNotesEditUi(item) {
+  if (!refs.itemDetailNotes || !item) return;
+  // Eski edit alanını temizle (her açılışta yeniden kur)
+  refs.itemDetailNotes.querySelectorAll(".notes-edit-area").forEach((n) => n.remove());
+  if (!isAdminUser()) return;
+  const wrap = document.createElement("div");
+  wrap.className = "notes-edit-area";
+  wrap.innerHTML = `
+    <label style="font-size:12px;color:#475569;">${langText("Notlar (TR) — pipe \"|\" ile ayrı özellikler", "Notizen (TR) — Eigenschaften mit \"|\" trennen")}</label>
+    <textarea data-notes-tr placeholder="örn: 50 kg | Voltaj: 230V | Soğutucu gaz: R134a"></textarea>
+    <label style="font-size:12px;color:#475569;">${langText("Notlar (DE)", "Notizen (DE)")}</label>
+    <textarea data-notes-de></textarea>
+    <div class="notes-edit-row">
+      <button type="button" class="secondary-button small-button" data-notes-cancel>${langText("İptal", "Abbrechen")}</button>
+      <button type="button" class="primary-button small-button" data-notes-save>${langText("Kaydet", "Speichern")}</button>
+    </div>
+    <p class="muted u-muted-tiny" data-notes-status aria-live="polite"></p>
+  `;
+  refs.itemDetailNotes.append(wrap);
+  const trArea = wrap.querySelector("[data-notes-tr]");
+  const deArea = wrap.querySelector("[data-notes-de]");
+  trArea.value = item.notes || "";
+  deArea.value = item.notesDe || item.notes_de || "";
+  wrap.querySelector("[data-notes-cancel]").addEventListener("click", () => {
+    trArea.value = item.notes || "";
+    deArea.value = item.notesDe || item.notes_de || "";
+  });
+  wrap.querySelector("[data-notes-save]").addEventListener("click", async () => {
+    const statusEl = wrap.querySelector("[data-notes-status]");
+    statusEl.textContent = langText("Kaydediliyor…", "Wird gespeichert…");
+    try {
+      const resp = await fetch(`/api/items/${item.id}/notes`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notes: trArea.value, notesDe: deArea.value }),
+      });
+      if (!resp.ok) {
+        const data = await resp.json().catch(() => ({}));
+        throw new Error(data.error || "Sunucu hatası");
+      }
+      // Local item state'i de güncelle
+      const idx = state.items.findIndex((entry) => Number(entry.id) === Number(item.id));
+      if (idx >= 0) {
+        state.items[idx].notes = trArea.value;
+        state.items[idx].notesDe = deArea.value;
+        item.notes = trArea.value;
+        item.notesDe = deArea.value;
+      }
+      statusEl.textContent = langText("✓ Kaydedildi", "✓ Gespeichert");
+      // Teknik veri ve genel bilgi sekmelerini de yenile
+      renderItemDetailFactList(refs.itemDetailFacts, buildItemDetailFacts(item));
+      renderItemDetailFactList(refs.itemDetailTech, buildItemTechFacts(item));
+      renderItemDetailFactList(refs.itemDetailNotes, buildItemNotesFacts(item));
+      appendNotesEditUi(item);
+      // Stok kartı listesini de güncelle
+      if (typeof renderItems === "function") renderItems();
+    } catch (e) {
+      statusEl.textContent = `❌ ${e.message}`;
+    }
+  });
+}
+
+function appendDatasheetUi(item) {
+  if (!refs.itemDetailDocuments || !item) return;
+  // Eski admin alanlarını temizle
+  refs.itemDetailDocuments.querySelectorAll(".datasheet-admin-block, .datasheet-list, .datasheet-upload-row").forEach((n) => n.remove());
+  const wrap = document.createElement("div");
+  wrap.className = "datasheet-admin-block";
+  const listHost = document.createElement("div");
+  listHost.className = "datasheet-list";
+  listHost.id = "itemDatasheetList";
+  wrap.append(listHost);
+  if (isAdminUser()) {
+    const uploadRow = document.createElement("div");
+    uploadRow.className = "datasheet-upload-row";
+    uploadRow.innerHTML = `
+      <input type="file" data-datasheet-input accept="application/pdf,image/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+      <button type="button" class="secondary-button small-button" data-datasheet-pick>📎 ${langText("Datasheet / PDF Yükle", "Datenblatt / PDF Hochladen")}</button>
+      <span class="muted u-muted-tiny" data-datasheet-status aria-live="polite"></span>
+    `;
+    wrap.append(uploadRow);
+    const input = uploadRow.querySelector("[data-datasheet-input]");
+    uploadRow.querySelector("[data-datasheet-pick]").addEventListener("click", () => input.click());
+    input.addEventListener("change", async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      const statusEl = uploadRow.querySelector("[data-datasheet-status]");
+      statusEl.textContent = langText("Yükleniyor…", "Wird hochgeladen…");
+      const fd = new FormData();
+      fd.append("datasheet", file);
+      try {
+        const resp = await fetch(`/api/items/${item.id}/datasheet`, { method: "POST", body: fd });
+        if (!resp.ok) {
+          const data = await resp.json().catch(() => ({}));
+          throw new Error(data.error || "Sunucu hatası");
+        }
+        statusEl.textContent = "✓ " + langText("Yüklendi", "Hochgeladen");
+        input.value = "";
+        await refreshDatasheetList(item.id, listHost);
+      } catch (e) {
+        statusEl.textContent = `❌ ${e.message}`;
+      }
+    });
+  }
+  refs.itemDetailDocuments.append(wrap);
+  refreshDatasheetList(item.id, listHost);
+}
+
+async function refreshDatasheetList(itemId, listHost) {
+  if (!listHost) return;
+  listHost.innerHTML = `<div class="muted u-muted-tiny">${langText("Yükleniyor…", "Wird geladen…")}</div>`;
+  try {
+    const resp = await fetch(`/api/items/${itemId}/datasheets`);
+    if (!resp.ok) throw new Error("Liste alınamadı");
+    const { datasheets = [] } = await resp.json();
+    if (!datasheets.length) {
+      listHost.innerHTML = `<div class="muted u-muted-tiny">${langText("Henüz yüklenmiş datasheet yok.", "Noch keine Datenblätter hochgeladen.")}</div>`;
+      return;
+    }
+    listHost.innerHTML = "";
+    datasheets.forEach((doc) => {
+      const row = document.createElement("div");
+      row.className = "datasheet-list-item";
+      const sizeKb = Math.round((doc.sizeBytes || 0) / 1024);
+      row.innerHTML = `
+        <a class="ds-name" href="${escapeHtml(doc.url)}" target="_blank" rel="noopener">📄 ${escapeHtml(doc.filename)}</a>
+        <span class="ds-meta">${sizeKb} KB</span>
+      `;
+      if (isAdminUser()) {
+        const delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.className = "ghost-button small-button danger-text";
+        delBtn.textContent = "🗑️";
+        delBtn.title = langText("Sil", "Löschen");
+        delBtn.addEventListener("click", async () => {
+          if (!confirm(langText("Bu datasheet'i kalıcı sileyim mi?", "Soll dieses Datenblatt dauerhaft gelöscht werden?"))) return;
+          try {
+            const resp = await fetch(`/api/items/${itemId}/datasheet/${doc.id}`, { method: "DELETE" });
+            if (!resp.ok) {
+              const data = await resp.json().catch(() => ({}));
+              throw new Error(data.error || "Silinemedi");
+            }
+            await refreshDatasheetList(itemId, listHost);
+          } catch (e) {
+            alert(e.message);
+          }
+        });
+        row.append(delBtn);
+      }
+      listHost.append(row);
+    });
+  } catch (e) {
+    listHost.innerHTML = `<div class="muted u-muted-tiny">❌ ${e.message}</div>`;
+  }
+}
+
+function renderItemDetailActions(item) {
+  const host = refs.itemDetailActions;
+  if (!host) return;
+  host.innerHTML = "";
+  if (!item) return;
+  const stock = Number(item.currentStock) || 0;
+  const price = cartSalePrice(item, 1);
+  const canSell = stock > 0 && price > 0;
+  const isCustomer = isCustomerUser();
+
+  if (canSell) {
+    const cartBtn = document.createElement("button");
+    cartBtn.type = "button";
+    cartBtn.className = "primary-button";
+    cartBtn.textContent = t("common.addToCart");
+    cartBtn.addEventListener("click", () => {
+      addItemToQuote(item.id);
+      closeItemDetailModal();
+      if (isCustomer) navigateToTab("orders");
+    });
+    host.append(cartBtn);
+  }
+
+  if (!isCustomer) {
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "secondary-button";
+    editBtn.textContent = langText("Düzenle / Aç", "Bearbeiten / Öffnen");
+    editBtn.addEventListener("click", () => {
+      closeItemDetailModal();
+      navigateToItem(item.id);
+    });
+    host.append(editBtn);
+  }
 }
 
 function closeItemDetailModal() {
@@ -1779,6 +1994,67 @@ function bindItemDetailModal() {
       closeItemDetailModal();
     }
   });
+
+  // Admin: ürün görseli değiştir / sil
+  const imgChange = modal.querySelector("[data-item-image-change]");
+  const imgDelete = modal.querySelector("[data-item-image-delete]");
+  const imgInput = refs.itemDetailImageInput;
+  const status = refs.itemDetailImageStatus;
+  if (imgChange && imgInput) {
+    imgChange.addEventListener("click", () => imgInput.click());
+    imgInput.addEventListener("change", async () => {
+      const file = imgInput.files?.[0];
+      if (!file) return;
+      const item = state.itemDetailSelection;
+      if (!item) return;
+      if (status) status.textContent = langText("Yükleniyor…", "Wird hochgeladen…");
+      const fd = new FormData();
+      fd.append("image", file);
+      try {
+        const resp = await fetch(`/api/items/${item.id}/image`, { method: "POST", body: fd });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) throw new Error(data.error || "Sunucu hatası");
+        if (status) status.textContent = "✓ " + langText("Yüklendi", "Hochgeladen");
+        const bust = `?v=${Date.now()}`;
+        if (refs.itemDetailImage) refs.itemDetailImage.src = data.url + bust;
+        // Local state güncelle
+        const idx = state.items.findIndex((entry) => Number(entry.id) === Number(item.id));
+        if (idx >= 0) {
+          state.items[idx].imageUrl = data.url;
+          state.items[idx].image_url = data.url;
+          item.imageUrl = data.url;
+        }
+        imgInput.value = "";
+        if (typeof renderItems === "function") renderItems();
+      } catch (e) {
+        if (status) status.textContent = `❌ ${e.message}`;
+      }
+    });
+  }
+  if (imgDelete) {
+    imgDelete.addEventListener("click", async () => {
+      const item = state.itemDetailSelection;
+      if (!item) return;
+      if (!confirm(langText("Mevcut görseli kalıcı sileyim mi?", "Soll das aktuelle Bild dauerhaft entfernt werden?"))) return;
+      if (status) status.textContent = langText("Siliniyor…", "Wird gelöscht…");
+      try {
+        const resp = await fetch(`/api/items/${item.id}/image`, { method: "DELETE" });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) throw new Error(data.error || "Sunucu hatası");
+        if (status) status.textContent = "✓ " + langText("Silindi", "Gelöscht");
+        if (refs.itemDetailImage) refs.itemDetailImage.src = "/assets/drc-product-showcase.svg";
+        const idx = state.items.findIndex((entry) => Number(entry.id) === Number(item.id));
+        if (idx >= 0) {
+          state.items[idx].imageUrl = null;
+          state.items[idx].image_url = null;
+          item.imageUrl = null;
+        }
+        if (typeof renderItems === "function") renderItems();
+      } catch (e) {
+        if (status) status.textContent = `❌ ${e.message}`;
+      }
+    });
+  }
 }
 
 function setHtml(selector, value) {
