@@ -4864,55 +4864,17 @@ function renderStockedItems(filteredItems) {
     return;
   }
 
-  // Kategori filtresi aktifse veya arama aktifse → düz liste; aksi takdirde kategorik grup
-  const categoryFilterActive = state.filters?.category && state.filters.category !== "all";
-  const searchActive = Boolean((state.filters?.search || "").trim());
-  const shouldGroup = !categoryFilterActive && !searchActive;
-
-  if (!shouldGroup) {
-    // Düz liste (mevcut akış, 300 limit korunur)
-    stockedItems.slice(0, 300).forEach((item) => {
-      refs.stockedItemsList.append(buildStockedCard(item));
-    });
-  } else {
-    // Kategorik grup — tüm stoktaki ürünler kategori bazlı bölünür
-    const groups = new Map();
-    for (const item of stockedItems) {
-      const cat = getDisplayCategory(item.category) || langText("Kategorisiz", "Ohne Kategorie");
-      if (!groups.has(cat)) groups.set(cat, []);
-      groups.get(cat).push(item);
-    }
-    // Sayıya göre sırala (en kalabalik üstte)
-    const sortedGroups = Array.from(groups.entries()).sort((a, b) => b[1].length - a[1].length);
-    for (const [catName, items] of sortedGroups) {
-      const section = document.createElement("section");
-      section.className = "stocked-group";
-      const header = document.createElement("h3");
-      header.className = "stocked-group-header";
-      header.innerHTML = `
-        <span class="stocked-group-title">${escapeHtml(catName)}</span>
-        <span class="stocked-group-count">${items.length}</span>
-      `;
-      section.append(header);
-      const grid = document.createElement("div");
-      grid.className = "stocked-grid stocked-group-grid";
-      // Her kategori için max 100 kart göster (perf), aşılırsa "+X daha" linki
-      const MAX_PER_GROUP = 100;
-      const visibleItems = items.slice(0, MAX_PER_GROUP);
-      for (const item of visibleItems) grid.append(buildStockedCard(item));
-      section.append(grid);
-      if (items.length > MAX_PER_GROUP) {
-        const more = document.createElement("p");
-        more.className = "stocked-group-more muted";
-        more.textContent = langText(
-          `+${items.length - MAX_PER_GROUP} ürün daha bu kategoride var (filtreleyerek görebilirsiniz)`,
-          `+${items.length - MAX_PER_GROUP} weitere Artikel in dieser Kategorie (Filter benutzen)`
-        );
-        section.append(more);
-      }
-      refs.stockedItemsList.append(section);
-    }
-  }
+  // Aynı kategorideki ürünler yan yana çıksın — sadece sırala, başlık/grup ekleme
+  const sortedItems = [...stockedItems].sort((a, b) => {
+    const ca = (getDisplayCategory(a.category) || "").toLocaleLowerCase("tr");
+    const cb = (getDisplayCategory(b.category) || "").toLocaleLowerCase("tr");
+    if (ca < cb) return -1;
+    if (ca > cb) return 1;
+    return 0;
+  });
+  sortedItems.slice(0, 300).forEach((item) => {
+    refs.stockedItemsList.append(buildStockedCard(item));
+  });
 
   refs.stockedItemsList.querySelectorAll("[data-open-item-detail]").forEach((button) => {
     button.addEventListener("click", (event) => {

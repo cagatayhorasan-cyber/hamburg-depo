@@ -7098,58 +7098,7 @@ h3 {
   flex: 1;
 }
 
-/* ========================================================================
-   Stoklu ürünler — kategorik gruplama
-   Her kategori için sticky header + cards grid.
-   ======================================================================== */
-.stocked-group {
-  margin-bottom: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.stocked-group-header {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0;
-  padding: 10px 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,253,0.92));
-  backdrop-filter: blur(6px);
-  border-bottom: 2px solid rgba(15, 39, 72, 0.10);
-  font-size: 15px;
-  font-weight: 700;
-  color: #082b4c;
-}
-.stocked-group-title {
-  flex: 1;
-  min-width: 0;
-  text-transform: capitalize;
-  letter-spacing: 0.2px;
-}
-.stocked-group-count {
-  background: rgba(0, 142, 128, 0.12);
-  color: #00665a;
-  padding: 2px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 700;
-}
-.stocked-group-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
-}
-.stocked-group-more {
-  font-size: 12px;
-  text-align: center;
-  padding: 8px;
-  margin: 0;
-  border-top: 1px dashed rgba(15, 39, 72, 0.16);
-}
+/* Stoklu ürünler kategoriye göre sıralanır (yan yana grid, başlık yok) — bkz. JS renderStockedItems */
 
 /* ========================================================================
    STYLE-SRC HARDENING — 2026-05-20 Phase 2
