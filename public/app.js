@@ -8667,15 +8667,19 @@ function startColdroomFlow() {
   });
   renderAssistantMessages();
   setTimeout(() => {
-    if (typeof openColdRoomProModal === "function") {
+    // 1) DRC MAN panelini kapat — ColdRoomPro modal'inin üstünü kapatmasin
+    if (typeof closeAssistantPanel === "function") {
+      closeAssistantPanel();
+    }
+    // 2) ColdRoomPro modal'ini ac (DOM hazirsa). Hazir degilse yeni sekmede ac.
+    if (typeof openColdRoomProModal === "function" && refs.coldRoomProModal) {
       openColdRoomProModal();
     } else {
-      // Fallback: doğrudan iframe sayfasına git
       window.open("/admin-tools/coldroompro/", "_blank", "noopener");
     }
-    // Mod'u 'servis'e geri al ki dönüşte panel doğru çalışsın
+    // 3) Mod'u 'servis'e geri al ki donuste panel dogru calissin
     setAssistantMode("servis");
-  }, 2000);
+  }, 1500);
 }
 
 async function handleAssistantSubmit(event) {
