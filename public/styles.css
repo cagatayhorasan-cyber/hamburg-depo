@@ -6139,6 +6139,49 @@ h3 {
   padding: clamp(8px, 1.5vw, 16px) clamp(16px, 4vw, 32px);
   min-height: 0;
   overflow: auto;
+  gap: 14px;
+}
+.login-drcman-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  pointer-events: none;
+}
+.login-drcman-avatar {
+  width: clamp(120px, 18vw, 150px);
+  height: clamp(120px, 18vw, 150px);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #00897b;
+  box-shadow:
+    0 0 0 4px rgba(0, 142, 128, 0.12),
+    0 8px 22px rgba(7, 44, 87, 0.22);
+  animation: drcmanBob 4s ease-in-out infinite;
+  background: #f3f7ff;
+}
+@keyframes drcmanBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.login-drcman-greeting {
+  margin: 0;
+  font-size: 13px;
+  color: #475569;
+  font-style: italic;
+  text-align: center;
+  max-width: 320px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .login-drcman-avatar { animation: none; }
+}
+@media (max-height: 720px) {
+  .login-drcman-avatar {
+    width: clamp(96px, 14vw, 120px);
+    height: clamp(96px, 14vw, 120px);
+  }
+  .login-drcman-greeting { font-size: 12px; }
 }
 .login-card {
   background: #ffffff;
