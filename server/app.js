@@ -1657,6 +1657,24 @@ function createApp() {
 
   app.post("/api/item-intake", requireStaffOrAdmin, handleItemIntake);
 
+  // Tek ürün detayi — bootstrap'ta notes/notesDe truncated geliyor, detay modali tam veriyi
+  // buradan ceker. Customer'lar icin sanitize (alis fiyati ve hassas alanlari maskeler).
+  app.get("/api/items/:id", requireAuth, async (req, res) => {
+    const itemId = Number(req.params.id);
+    if (!Number.isFinite(itemId) || itemId <= 0) {
+      return res.status(400).json({ error: "Geçersiz malzeme id." });
+    }
+    const activeValue = dbClient === "postgres" ? true : 1;
+    const row = await get(
+      "SELECT * FROM items WHERE id = ? AND COALESCE(is_active, TRUE) = ?",
+      [itemId, activeValue]
+    );
+    if (!row) return res.status(404).json({ error: "Malzeme bulunamadi." });
+    // sanitizeItemsForRole tek-row formatina uygun (array uzerinde sanitize ediyor)
+    const sanitized = sanitizeItemsForRole([row], req.session.user);
+    return res.json({ item: sanitized[0] || null });
+  });
+
   app.post("/api/items", requireAdmin, async (req, res) => {
     const { name, nameDe, brand, category, unit, minStock, barcode, imageUrl, notes, notesDe, defaultPrice, listPrice, salePrice } = req.body || {};
     if (!name || !category || !unit) {
@@ -5036,7 +5054,7 @@ function firstPositiveNumber(...values) {
   return 0;
 }
 
-async function queryItems(isActive = true) {
+async function queryItems(isActive = true, options = {}) {
   const activeValue = dbClient === "postgres" ? Boolean(isActive) : (isActive ? 1 : 0);
   const rows = await query(
     `
@@ -5074,11 +5092,12 @@ async function queryItems(isActive = true) {
     [activeValue]
   );
 
-  return rows.map(mapItemRow);
+  return rows.map((r) => mapItemRow(r, options));
 }
 
 async function queryCustomerItems(options = {}) {
   const includePrices = options.includePrices === true;
+  const truncateNotes = options.truncateNotes === true;
   // includeBackorder: stoğu olmayan ama allow_backorder=true olan ürünleri de döndür
   // Default: true (backorder sistemi açık).
   const includeBackorder = options.includeBackorder !== false;
@@ -5147,19 +5166,29 @@ async function queryCustomerItems(options = {}) {
     [activeValue]
   );
 
-  return rows.map((row) => mapItemRow(row, { includePrices }));
+  return rows.map((row) => mapItemRow(row, { includePrices, truncateNotes }));
 }
 
 function mapItemRow(row, options = {}) {
   const includePrices = options.includePrices !== false;
+  // truncateNotes: bootstrap'ta payload kucultmek icin notes/notesDe'yi 80 char'a kis.
+  // Detay modali acildiginda /api/items/:id endpoint'inden full versiyon cekilir.
+  // Default: false (geri-uyumluluk — eski kod yolu degismez). Bootstrap explicit true verir.
+  const truncateNotes = options.truncateNotes === true;
+  const NOTES_PREVIEW_LEN = 80;
+  const trim = (s) => {
+    const str = String(s || "");
+    if (!truncateNotes || str.length <= NOTES_PREVIEW_LEN) return str;
+    return str.slice(0, NOTES_PREVIEW_LEN) + "…";
+  };
   const salePrice = includePrices ? resolveEffectiveSalePrice(row) : 0;
-  const supplierCatalogRefs = getSupplierCatalogRefsForItem(row.id);
-  const supplierCatalogCodes = [...new Set(
+  const supplierCatalogRefs = truncateNotes ? [] : getSupplierCatalogRefsForItem(row.id);
+  const supplierCatalogCodes = truncateNotes ? [] : [...new Set(
     supplierCatalogRefs
       .map((ref) => String(ref.code || "").trim())
       .filter(Boolean)
   )];
-  const supplierCatalogBrands = [...new Set(
+  const supplierCatalogBrands = truncateNotes ? [] : [...new Set(
     supplierCatalogRefs
       .map((ref) => String(ref.supplierBrand || "").trim())
       .filter(Boolean)
@@ -5175,8 +5204,9 @@ function mapItemRow(row, options = {}) {
     productCode: row.product_code || row.productCode || "",
     barcode: row.barcode || `ITEM-${String(row.id).padStart(5, "0")}`,
     imageUrl: normalizeItemImageUrl(row.image_url || row.imageUrl || ""),
-    notes: row.notes,
-    notesDe: row.notes_de || "",
+    notes: trim(row.notes),
+    notesDe: trim(row.notes_de),
+    notesTruncated: truncateNotes && (String(row.notes || "").length > NOTES_PREVIEW_LEN || String(row.notes_de || "").length > NOTES_PREVIEW_LEN),
     currentStock: Number(row.current_stock || 0),
     defaultPrice: includePrices ? Number(row.default_price || 0) : 0,
     listPrice: includePrices ? Number(row.list_price || 0) : 0,
@@ -5604,7 +5634,7 @@ async function buildBootstrap(user) {
   if (normalizedRole === "customer") {
     // Customer için limit yok — queryCustomerItems zaten sadece stoktaki urunleri dondurur (~100 adet)
     const [items, orders, adminMessages, projects] = await Promise.all([
-      queryCustomerItems({ includePrices: true }),
+      queryCustomerItems({ includePrices: true, truncateNotes: true }),
       queryOrders(user),
       queryAdminMessages(user),
       queryProjectsForUser(user),
@@ -5645,7 +5675,7 @@ async function buildBootstrap(user) {
   const includeSecurity = normalizedRole === "admin";
   const [summary, items, movements, expenses, cashbook, users, quotes, orders, adminMessages, securityEvents, securityBlocks, projects] = await Promise.all([
     computeSummary(user),
-    queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT }),
+    queryCustomerItems({ includePrices: true, limit: BOOTSTRAP_ITEM_LIMIT, truncateNotes: true }),
     queryMovements(user),
     includeExpenses ? queryExpenses() : Promise.resolve([]),
     includeCashbook ? queryCashbook(user) : Promise.resolve([]),

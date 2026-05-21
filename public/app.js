@@ -1683,6 +1683,37 @@ function openItemDetailModal(item) {
     return;
   }
   state.itemDetailSelection = item;
+  // Bootstrap'tan gelen notes truncated ise full versiyon icin lazy fetch yap
+  // (modal hemen render edilir; full notes geldiginde sekmeleri yeniden cizer).
+  if (item.notesTruncated && !item._notesFetched) {
+    item._notesFetched = true; // tekrar fetch'i engelle
+    fetch(`/api/items/${item.id}`, { credentials: "same-origin" })
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (!data?.item) return;
+        // State'i guncelle: notes + notesDe + supplierCatalogRefs
+        const idx = state.items.findIndex((x) => Number(x.id) === Number(item.id));
+        if (idx >= 0) {
+          state.items[idx].notes = data.item.notes;
+          state.items[idx].notesDe = data.item.notesDe;
+          state.items[idx].supplierCatalogRefs = data.item.supplierCatalogRefs || [];
+          state.items[idx].supplierCatalogCodes = data.item.supplierCatalogCodes || [];
+          state.items[idx].supplierCatalogBrands = data.item.supplierCatalogBrands || [];
+          state.items[idx].notesTruncated = false;
+        }
+        item.notes = data.item.notes;
+        item.notesDe = data.item.notesDe;
+        item.supplierCatalogRefs = data.item.supplierCatalogRefs || [];
+        item.notesTruncated = false;
+        // Yalnızca aktif modal hala bu item'sa rerender
+        if (state.itemDetailSelection?.id === item.id) {
+          renderItemDetailFactList(refs.itemDetailFacts, buildItemDetailFacts(item));
+          renderItemDetailFactList(refs.itemDetailTech, buildItemTechFacts(item));
+          renderItemDetailFactList(refs.itemDetailNotes, buildItemNotesFacts(item));
+        }
+      })
+      .catch(() => { item._notesFetched = false; });
+  }
   const detail = getPublicItemDetail(item);
   const media = getBrandMedia(item);
   const imageMedia = getItemImageSources(item);
