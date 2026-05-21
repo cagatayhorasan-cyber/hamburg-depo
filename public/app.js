@@ -8652,34 +8652,30 @@ function bindAssistantModes() {
 }
 
 // Soğuk Oda modu: ColdRoomPro çok detaylı bir hesap aracı (panel + kapı + zemin + borular +
-// dijital kontrol + uzaktan izleme + Cantaş otomatik seçim — 2882 satır algoritma). DRC MAN
-// onun yerini almaya çalışmaz; direkt o aracı açar ve müşteriyi yönlendirir.
+// dijital kontrol + uzaktan izleme + Cantaş otomatik seçim). DRC MAN tek tıkla
+// onu yeni sekmede acar — modal/panel cakismasi olmaz, mod sabit kalir.
 function startColdroomFlow() {
   const msg = state.assistantLanguage === "de"
-    ? "🧊 **Kuehlraum-Angebot**\n\nFuer eine detaillierte Berechnung (Paneele, Tueren, Boden, Rohre, digitale Regelung, Cantaş-Auswahl und Fernueberwachung) oeffne ich jetzt **ColdRoomPro** — unser professionelles Auslegungstool.\n\nDie Berechnung erfolgt dort mit aktuellen Preisen und vollstaendiger Stueckliste. Nach der Berechnung koennen Sie das Projekt direkt speichern."
-    : "🧊 **Soğuk Oda Teklifi**\n\nDetaylı hesap için (panel, kapı, zemin, borular, dijital kontrol, Cantaş otomatik seçim, uzaktan izleme) **ColdRoomPro** aracımızı açıyorum — profesyonel hesap motoru.\n\nGüncel fiyatlarla tam malzeme listesi orada üretilir. Hesap sonrası 'Projeye Kaydet' ile doğrudan kaydedilebilir.";
+    ? "🧊 **Kuehlraum-Angebot**\n\nIch oeffne **ColdRoomPro** in einem neuen Tab — unser professionelles Auslegungstool (Paneele, Tueren, Boden, Rohre, digitale Regelung, Cantaş-Auswahl, Fernueberwachung).\n\n👉 Neuer Tab oeffnet sich..."
+    : "🧊 **Soğuk Oda Teklifi**\n\n**ColdRoomPro**'yu yeni sekmede açıyorum — profesyonel hesap motoru (panel, kapı, zemin, borular, dijital kontrol, Cantaş otomatik seçim, uzaktan izleme).\n\n👉 Yeni sekme açılıyor...";
   state.assistantMessages.push({ role: "assistant", text: msg });
-  state.assistantMessages.push({
-    role: "assistant",
-    text: state.assistantLanguage === "de"
-      ? "👉 ColdRoomPro 2 saniye içinde açılacak..."
-      : "👉 ColdRoomPro 2 saniye içinde açılacak..."
-  });
   renderAssistantMessages();
-  setTimeout(() => {
-    // 1) DRC MAN panelini kapat — ColdRoomPro modal'inin üstünü kapatmasin
-    if (typeof closeAssistantPanel === "function") {
-      closeAssistantPanel();
+  // Yeni sekmede ac (popup blocker dostu — click event'inde sync acmak gerekiyor)
+  try {
+    const w = window.open("/admin-tools/coldroompro/", "_blank", "noopener,noreferrer");
+    if (!w) {
+      // Popup blocker engelledi → kullaniciya tikla notu goster
+      state.assistantMessages.push({
+        role: "assistant",
+        text: state.assistantLanguage === "de"
+          ? "⚠️ Popup-Blocker hat das Oeffnen verhindert. Bitte manuell oeffnen: /admin-tools/coldroompro/"
+          : "⚠️ Popup engelleyici sekmeyi engelledi. Lütfen manuel açın: /admin-tools/coldroompro/"
+      });
+      renderAssistantMessages();
     }
-    // 2) ColdRoomPro modal'ini ac (DOM hazirsa). Hazir degilse yeni sekmede ac.
-    if (typeof openColdRoomProModal === "function" && refs.coldRoomProModal) {
-      openColdRoomProModal();
-    } else {
-      window.open("/admin-tools/coldroompro/", "_blank", "noopener");
-    }
-    // 3) Mod'u 'servis'e geri al ki donuste panel dogru calissin
-    setAssistantMode("servis");
-  }, 1500);
+  } catch (e) {
+    console.warn("[coldroom] window.open hata:", e);
+  }
 }
 
 async function handleAssistantSubmit(event) {
