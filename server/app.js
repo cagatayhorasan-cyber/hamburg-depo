@@ -751,6 +751,22 @@ function createApp() {
       }, "built_in_price");
     }
 
+    // 2026-05-21 fix: "Liste" sorulari (kategoride/markada neler var, hangileri, liste)
+    // catalog-single-item match'inden ÖNCE training bank'a yonlendir. Boylece
+    // 'Sogutma Gruplari kategorisinde stokta neler var' tek ürün yerine zengin liste döner.
+    const listIntent = /\b(neler\s+var|hangileri|liste|tum\s+urun|hangi\s+(?:urun|marka|kategori|grup|model|cesit)|hangi\s+\w+\s+mevcut|markasi(?:nda|nin)?\s+(?:hangi|stok|neler)|kategori(?:si|sinde|nde)?\s+(?:hangi|stok|ne|neler))\b/i.test(normalizedMessage);
+    if (listIntent) {
+      const trainingMatchList = await matchAssistantTraining(message, language, req.session.user);
+      if (trainingMatchList?.answer) {
+        return sendAssistantReply({
+          answer: adaptAssistantTrainingAnswer(trainingMatchList.answer, language, answerLevel),
+          suggestions: trainingMatchList.suggestions || [],
+          provider: "drc_man",
+          sourceSummary: localizeAssistantSourceSummary(trainingMatchList.sourceSummary, language, "training"),
+        }, "training_list_intent");
+      }
+    }
+
     if (shouldPreferAssistantCatalogReply(message, catalogItems)) {
       const answer = answerAssistantQuestion(message, catalogItems, language, req.session.user);
       return sendAssistantReply({
