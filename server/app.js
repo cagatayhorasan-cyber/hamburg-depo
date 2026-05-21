@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const bwipjs = require("bwip-js");
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
-const XLSX = require("xlsx");
+const ExcelJS = require("exceljs");
 const multer = require("multer");
 const { saveItemImage, deleteItemImage, saveItemDatasheet, deleteItemDatasheet, isSupabaseConfigured } = require("./lib/image-storage");
 const { dbPath, dbClient, initDatabase, query, get, execute, withTransaction } = require("./db");
@@ -4062,16 +4062,33 @@ function createApp() {
 
   app.get("/api/reports/xlsx", requireAdmin, async (req, res) => {
     const bootstrap = await buildBootstrap(req.session.user);
-    const workbook = XLSX.utils.book_new();
+    const workbook = new ExcelJS.Workbook();
+    workbook.creator = "DRC Kältetechnik Portal";
+    workbook.created = new Date();
 
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(bootstrap.items), "Malzemeler");
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(bootstrap.movements), "Hareketler");
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(bootstrap.expenses), "Masraflar");
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(bootstrap.cashbook), "Kasa");
+    // Helper: array-of-objects → worksheet (ilk satir header, key adlari)
+    const addJsonSheet = (name, rows) => {
+      const ws = workbook.addWorksheet(name);
+      if (!Array.isArray(rows) || rows.length === 0) return ws;
+      const keys = Array.from(rows.reduce((set, row) => {
+        Object.keys(row || {}).forEach((k) => set.add(k));
+        return set;
+      }, new Set()));
+      ws.columns = keys.map((k) => ({ header: k, key: k, width: Math.min(40, Math.max(12, k.length + 4)) }));
+      for (const row of rows) ws.addRow(row);
+      // Header satirina kalin font
+      ws.getRow(1).font = { bold: true };
+      return ws;
+    };
 
-    const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
+    addJsonSheet("Malzemeler", bootstrap.items);
+    addJsonSheet("Hareketler", bootstrap.movements);
+    addJsonSheet("Masraflar", bootstrap.expenses);
+    addJsonSheet("Kasa", bootstrap.cashbook);
+
+    const buffer = await workbook.xlsx.writeBuffer();
     res.setHeader("Content-Disposition", 'attachment; filename="hamburg-depo-rapor.xlsx"');
-    res.type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet").send(buffer);
+    res.type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet").send(Buffer.from(buffer));
   });
 
   app.get("/api/reports/pdf", requireAdmin, async (req, res) => {
