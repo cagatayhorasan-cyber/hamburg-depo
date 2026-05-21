@@ -33,7 +33,7 @@
     {
       "src": "/",
       "headers": {
-        "Cache-Control": "no-store, max-age=0",
+        "Cache-Control": "public, max-age=0, must-revalidate",
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
         "Referrer-Policy": "strict-origin-when-cross-origin",
         "X-Content-Type-Options": "nosniff",
@@ -48,7 +48,7 @@
     {
       "src": "/app.js",
       "headers": {
-        "Cache-Control": "no-store, max-age=0",
+        "Cache-Control": "public, max-age=0, must-revalidate",
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
         "X-Content-Type-Options": "nosniff",
         "Cross-Origin-Resource-Policy": "same-origin",
@@ -59,7 +59,7 @@
     {
       "src": "/styles.css",
       "headers": {
-        "Cache-Control": "no-store, max-age=0",
+        "Cache-Control": "public, max-age=0, must-revalidate",
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
         "X-Content-Type-Options": "nosniff",
         "Cross-Origin-Resource-Policy": "same-origin",
