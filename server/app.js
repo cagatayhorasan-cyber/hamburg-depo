@@ -715,6 +715,28 @@ function createApp() {
       return res.status(400).json({ error: "Soru bos olamaz." });
     }
 
+    // 2026-05-22 fix: Cok soru tek mesajda → her birinin cevabi karisir, catalog'a yanlis düşer.
+    // 2+ soru isareti varsa nazikce tek soruya yonlendir.
+    const questionMarkCount = (message.match(/\?/g) || []).length;
+    if (questionMarkCount >= 2) {
+      // Soru cumlelerini ayir (basit splitter)
+      const questions = message
+        .split(/\?+/)
+        .map((q) => q.trim())
+        .filter((q) => q.length > 5)
+        .slice(0, 6);
+      const numberedTr = questions.map((q, i) => `${i + 1}. ${q.slice(0, 120)}${q.length > 120 ? "…" : ""}?`).join("\n");
+      const numberedDe = numberedTr;
+      const reply = language === "de"
+        ? `📌 **${questions.length} ayri soru tespit ettim** — her birine net cevap verebilmem icin lutfen **tek tek** sorun:\n\n${numberedDe}\n\nIlk soruyu kopyalayip tekrar gonderin, ardindan sirayla devam edelim.`
+        : `📌 **${questions.length} ayrı soru tespit ettim** — her birine net cevap verebilmem için lütfen **tek tek** sorun:\n\n${numberedTr}\n\nİlk soruyu kopyalayıp tekrar gönderin, ardından sırayla devam edelim.`;
+      return sendAssistantReply({
+        answer: reply,
+        suggestions: questions.slice(0, 3).map((q) => `${q.slice(0, 80)}?`),
+        provider: "drc_man",
+      }, "multi_question_split");
+    }
+
     const policyReply = evaluateAssistantSafetyPolicy(message, language, req.session.user, history);
     if (policyReply) {
       queueSecurityEvent(req, {
@@ -765,6 +787,40 @@ function createApp() {
           sourceSummary: localizeAssistantSourceSummary(trainingMatchList.sourceSummary, language, "training"),
         }, "training_list_intent");
       }
+    }
+
+    // 2026-05-22 fix: Aciklama isteyen sorular (neden, nasil, ne tur, nedir, niye,
+    // farki nedir, ayrimi, mekanizmasi, mantigi) catalog'a DUSMESIN — kullanici teknik
+    // aciklama bekliyor, ürün listesi degil. Training bank'a yonlendir.
+    const explanationIntent = /\b(neden(?:\s+olur|\s+yukselir|\s+düser|\s+oluşur)?|nasil(?:\s+(?:isler|olusur|olur|yapilir|ayirt|tani|teshis|kontrol|test))?|ne\s+tur|niye|nedir(?!\?\s*$)?|farki(?:\s+nedir)?|farkli(?:lik)?|ayrim(?:i)?|mekanizmasi|mantigi|prensi(?:bi|p)|teori|aciklayin|aciklamak?|gor(?:e)?vi|amaci|sebebi|sebeb?leri|nasil\s+ayirt|nasil\s+anlasilir|nasil\s+farkedilir)\b/i.test(normalizedMessage);
+    if (explanationIntent) {
+      const explainTraining = await matchAssistantTraining(message, language, req.session.user);
+      if (explainTraining?.answer) {
+        return sendAssistantReply({
+          answer: adaptAssistantTrainingAnswer(explainTraining.answer, language, answerLevel),
+          suggestions: explainTraining.suggestions || [],
+          provider: "drc_man",
+          sourceSummary: localizeAssistantSourceSummary(explainTraining.sourceSummary, language, "training"),
+        }, "training_explanation");
+      }
+      const explainTb = await matchAssistantTroubleshootingBank(message, language, req.session.user);
+      if (explainTb?.answer) {
+        return sendAssistantReply({
+          answer: adaptAssistantTrainingAnswer(explainTb.answer, language, answerLevel),
+          suggestions: explainTb.suggestions || [],
+          provider: "drc_man",
+          sourceSummary: localizeAssistantSourceSummary(explainTb.sourceSummary, language, "troubleshooting"),
+        }, "troubleshooting_explanation");
+      }
+      // Aciklama sorusu ama match yok → built_in_catalog yerine policy/aciklama mesaji
+      // (gelisigüzel urun listesi gostermek itibari zedeler)
+      return sendAssistantReply({
+        answer: language === "de"
+          ? "Diese Erlaeuterung habe ich derzeit nicht in der Wissensbasis. Bitte konkretisieren Sie die Frage oder kontaktieren Sie das DRC-Team."
+          : "Bu açıklamayı şu an bilgi tabanımda bulamadım. Sorunuzu netleştirin veya DRC ekibine danışın.",
+        suggestions: [],
+        provider: "drc_man",
+      }, "explanation_no_match");
     }
 
     if (shouldPreferAssistantCatalogReply(message, catalogItems)) {
