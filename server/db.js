@@ -578,6 +578,14 @@ async function initDatabase() {
 
     if (!postgresInitPromise) {
       postgresInitPromise = (async () => {
+        // Vercel serverless'da her cold-start'ta schema migration calistirmak
+        // (ensureUserRoleConstraintPostgres → ALTER TABLE) Supabase statement_timeout'a
+        // takiliyor ve 500 hatasi veriyor. Lokal sunucu zaten her aciliste calistiriyor,
+        // production'da schema kurulduktan sonra her cold-start'ta tekrar gereksiz.
+        // SKIP_SCHEMA_INIT=1 (Vercel env'de set) ile bypass.
+        if (process.env.SKIP_SCHEMA_INIT === "1") {
+          return;
+        }
         const client = await pgPool.connect();
         let lockAcquired = false;
         try {
