@@ -184,6 +184,54 @@ function resetAgentTrainingCache() {
   agentTrainingCache = { activeOnly: null, expiresAt: 0, entries: [] };
 }
 
+// item_visibility tablosu cache'i — bu tablo cok kucuk (sadece kisitli urunler icin).
+// Default: bos olunca tum urunler herkese gorunur (default davranis). Kayit varsa
+// allowed_roles / allowed_user_ids whitelist gibi davranir.
+const ITEM_VIS_CACHE_TTL_MS = 60 * 1000;
+let itemVisibilityCache = { expiresAt: 0, map: new Map() };
+
+async function getItemVisibilityMap() {
+  const now = Date.now();
+  if (itemVisibilityCache.expiresAt > now) return itemVisibilityCache.map;
+  try {
+    const rows = await query("SELECT item_id, allowed_roles, allowed_user_ids FROM item_visibility", []);
+    const map = new Map();
+    for (const r of rows) {
+      map.set(Number(r.item_id), {
+        allowedRoles: Array.isArray(r.allowed_roles) ? r.allowed_roles.map(String) : null,
+        allowedUserIds: Array.isArray(r.allowed_user_ids) ? r.allowed_user_ids.map(Number) : null,
+      });
+    }
+    itemVisibilityCache = { expiresAt: now + ITEM_VIS_CACHE_TTL_MS, map };
+    return map;
+  } catch (e) {
+    // Tablo yoksa veya hata olursa: bos map dondur (hicbir kisit yok).
+    console.warn("[item_visibility] read hata:", e.message);
+    return new Map();
+  }
+}
+
+function resetItemVisibilityCache() {
+  itemVisibilityCache = { expiresAt: 0, map: new Map() };
+}
+
+function isItemVisibleTo(itemId, user, visMap) {
+  const rule = visMap.get(Number(itemId));
+  if (!rule) return true; // kisit yoksa herkese acik
+  const userRole = user?.role || null;
+  const userId = user?.id != null ? Number(user.id) : null;
+  if (rule.allowedRoles && rule.allowedRoles.length && userRole && rule.allowedRoles.includes(userRole)) return true;
+  if (rule.allowedUserIds && rule.allowedUserIds.length && userId != null && rule.allowedUserIds.includes(userId)) return true;
+  return false;
+}
+
+async function filterItemsByVisibility(items, user) {
+  if (!Array.isArray(items) || items.length === 0) return items;
+  const visMap = await getItemVisibilityMap();
+  if (visMap.size === 0) return items; // hicbir kisit yok
+  return items.filter((it) => isItemVisibleTo(it.id, user, visMap));
+}
+
 async function handleItemIntake(req, res) {
   const {
     name,
@@ -619,9 +667,13 @@ function createApp() {
   app.get("/api/inventory", requireStaffOrAdmin, async (req, res) => {
     const includeArchive = isAdminRole(req.session.user?.role)
       && (req.query?.includeArchive === "1" || req.query?.archive === "1");
-    const [items, archivedItems] = await Promise.all([
+    const [rawItems, rawArchivedItems] = await Promise.all([
       queryItems(),
       includeArchive ? queryItems(false) : Promise.resolve([]),
+    ]);
+    const [items, archivedItems] = await Promise.all([
+      filterItemsByVisibility(rawItems, req.session.user),
+      filterItemsByVisibility(rawArchivedItems, req.session.user),
     ]);
 
     return res.json({
@@ -688,9 +740,11 @@ function createApp() {
         return assistantItems;
       }
       // Customer AI cevaplarında alış fiyatı/kritik stok/stok miktarı sızmasın diye sanitize.
-      assistantItems = isCustomerRole(req.session.user?.role)
-        ? sanitizeItemsForRole(await queryCustomerItems({ includePrices: true }), req.session.user)
-        : sanitizeItemsForRole(await queryItems(), req.session.user);
+      const rawItems = isCustomerRole(req.session.user?.role)
+        ? await queryCustomerItems({ includePrices: true })
+        : await queryItems();
+      const visibleItems = await filterItemsByVisibility(rawItems, req.session.user);
+      assistantItems = sanitizeItemsForRole(visibleItems, req.session.user);
       return assistantItems;
     };
     // finalize wrapper: eger reply 'policy' sağlayıcısına donerse güvenlik olayı kaydet.
@@ -1726,6 +1780,11 @@ function createApp() {
       [itemId, activeValue]
     );
     if (!row) return res.status(404).json({ error: "Malzeme bulunamadi." });
+    // 2026-05-30: item_visibility kontrolu — yetkisi yoksa 404 don (varligin sizmamasi icin).
+    const visMap = await getItemVisibilityMap();
+    if (!isItemVisibleTo(itemId, req.session.user, visMap)) {
+      return res.status(404).json({ error: "Malzeme bulunamadi." });
+    }
     // sanitizeItemsForRole tek-row formatina uygun (array uzerinde sanitize ediyor)
     const sanitized = sanitizeItemsForRole([row], req.session.user);
     return res.json({ item: sanitized[0] || null });
@@ -4167,7 +4226,7 @@ function createApp() {
 
   app.get("/api/reports/pdf", requireAdmin, async (req, res) => {
     const summary = sanitizeSummaryForRole(await computeSummary(), req.session.user?.role);
-    const items = sanitizeItemsForRole(await queryItems(), req.session.user);
+    const items = sanitizeItemsForRole(await filterItemsByVisibility(await queryItems(), req.session.user), req.session.user);
     const doc = new PDFDocument({ margin: 40, size: "A4" });
 
     res.setHeader("Content-Disposition", 'attachment; filename="hamburg-depo-ozet.pdf"');
@@ -5696,7 +5755,7 @@ async function buildBootstrap(user) {
       queryProjectsForUser(user),
     ]);
 
-    const customerItems = items;
+    const customerItems = await filterItemsByVisibility(items, user);
 
     return {
       summary: {
@@ -5744,9 +5803,10 @@ async function buildBootstrap(user) {
     queryProjectsForUser(user),
   ]);
 
+  const visibleItems = await filterItemsByVisibility(items, user);
   return {
     summary: sanitizeSummaryForRole(summary, user?.role),
-    items: sanitizeItemsForRole(items, user),
+    items: sanitizeItemsForRole(visibleItems, user),
     archivedItems: [],
     movements: sanitizeMovementsForRole(movements, user?.role),
     expenses,
