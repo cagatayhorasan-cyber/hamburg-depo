@@ -169,7 +169,9 @@ const SALE_PRICE_MULTIPLIER = 1.22;
 // Admin/staff bootstrap'ta tüm aktif ürünler gelsin (POS'ta ürün çeşitliliği için).
 // 10K+ ürün ~3MB JSON kabul edilebilir. Customer zaten ayrı path (limitsiz).
 // 0 = limitsiz (queryCustomerItems'a parametre olarak limit clause yazmaz).
-const BOOTSTRAP_ITEM_LIMIT = Number(process.env.BOOTSTRAP_ITEM_LIMIT || 0);
+// 2026-05-30 perf: 17K backorder item bootstrap'ta 12 MB / 18-38 s payload uretiyordu.
+// Default 500 — stoklu (158) + en son guncellenen ~342 backorder. Geri kalan icin /api/items/search.
+const BOOTSTRAP_ITEM_LIMIT = Number(process.env.BOOTSTRAP_ITEM_LIMIT || 500);
 // NOT: TROUBLESHOOTING_BANK_CACHE_TTL_MS, DRC_MAN_FAQ_MANIFEST,
 // TROUBLESHOOTING_STRONG_HINTS, TROUBLESHOOTING_SHORT_TOKENS,
 // TROUBLESHOOTING_STOP_WORDS, TROUBLESHOOTING_ANCHOR_TOKENS
@@ -1766,6 +1768,55 @@ function createApp() {
   });
 
   app.post("/api/item-intake", requireStaffOrAdmin, handleItemIntake);
+
+  // 2026-05-30 perf: Bootstrap 500 item ile sinirli, geri kalan 17K backorder icin server-side arama.
+  // q (zorunlu): arama terimi (min 2 karakter). 50 sonuc limit, hizli.
+  app.get("/api/items/search", requireAuth, async (req, res) => {
+    const q = String(req.query.q || "").trim();
+    if (q.length < 2) {
+      return res.json({ items: [], message: "Arama icin en az 2 karakter girin." });
+    }
+    const limit = Math.min(Number(req.query.limit) || 50, 200);
+    const pattern = `%${q.toLowerCase()}%`;
+    try {
+      const rows = await query(
+        `
+          WITH movement_summary AS (
+            SELECT item_id, SUM(CASE WHEN type = 'entry' THEN quantity ELSE -quantity END) AS current_stock
+            FROM movements GROUP BY item_id
+          )
+          SELECT
+            items.id, items.name, items.name_de, items.brand, items.category, items.unit,
+            items.min_stock, items.product_code AS "productCode", items.barcode, items.image_url,
+            items.notes, items.notes_de, items.default_price, items.list_price, items.sale_price,
+            items.lead_time_days AS "leadTimeDays", items.allow_backorder AS "allowBackorder",
+            COALESCE(movement_summary.current_stock, 0) AS current_stock
+          FROM items
+          LEFT JOIN movement_summary ON movement_summary.item_id = items.id
+          WHERE COALESCE(items.is_active, TRUE) = TRUE
+            AND (
+              LOWER(items.name) LIKE ? OR LOWER(items.name_de) LIKE ?
+              OR LOWER(items.brand) LIKE ? OR LOWER(items.product_code) LIKE ?
+              OR LOWER(items.barcode) LIKE ?
+            )
+          ORDER BY
+            CASE WHEN COALESCE(movement_summary.current_stock, 0) > 0 THEN 0 ELSE 1 END,
+            CASE WHEN LOWER(items.name) LIKE ? THEN 0 ELSE 1 END,
+            items.name ASC, items.id ASC
+          LIMIT ${limit}
+        `,
+        [pattern, pattern, pattern, pattern, pattern, `${q.toLowerCase()}%`],
+      );
+      const includePrices = !isCustomerRole(req.session.user?.role);
+      const mapped = rows.map((r) => mapItemRow(r, { includePrices, truncateNotes: true }));
+      const filtered = await filterItemsByVisibility(mapped, req.session.user);
+      const sanitized = sanitizeItemsForRole(filtered, req.session.user);
+      return res.json({ items: sanitized, query: q, count: sanitized.length });
+    } catch (e) {
+      console.error("[/api/items/search] err:", e.message);
+      return res.status(500).json({ error: "Arama hatasi." });
+    }
+  });
 
   // Tek ürün detayi — bootstrap'ta notes/notesDe truncated geliyor, detay modali tam veriyi
   // buradan ceker. Customer'lar icin sanitize (alis fiyati ve hassas alanlari maskeler).
@@ -5291,7 +5342,14 @@ function mapItemRow(row, options = {}) {
   // Default: false (geri-uyumluluk — eski kod yolu degismez). Bootstrap explicit true verir.
   const truncateNotes = options.truncateNotes === true;
   const NOTES_PREVIEW_LEN = 80;
+  // 2026-05-30 perf: 17K item'in 17K'sina notes ekleyince payload 14.5 MB oluyordu.
+  // Stoklu olmayan urunler (backorder) icin notes'i tamamen DROP — modal /api/items/:id
+  // ile zaten dolduyor. Stoklu 158 item icin truncated (80 char) tutulur ki ana sayfa
+  // search'unde notes'a gore eslesmeler korunsun.
+  const currentStockNum = Number(row.current_stock || 0);
+  const dropNotesForOutOfStock = truncateNotes && currentStockNum <= 0;
   const trim = (s) => {
+    if (dropNotesForOutOfStock) return "";
     const str = String(s || "");
     if (!truncateNotes || str.length <= NOTES_PREVIEW_LEN) return str;
     return str.slice(0, NOTES_PREVIEW_LEN) + "…";
@@ -5747,9 +5805,10 @@ async function buildBootstrap(user) {
   const assistantStatus = getAssistantStatus();
 
   if (normalizedRole === "customer") {
-    // Customer için limit yok — queryCustomerItems zaten sadece stoktaki urunleri dondurur (~100 adet)
+    // 2026-05-30 perf: BOOTSTRAP_ITEM_LIMIT ile sinirli. Geri kalan urunler icin
+    // /api/items/search?q=... server-side arama endpoint'ine basvuracak.
     const [items, orders, adminMessages, projects] = await Promise.all([
-      queryCustomerItems({ includePrices: true, truncateNotes: true }),
+      queryCustomerItems({ includePrices: true, truncateNotes: true, limit: BOOTSTRAP_ITEM_LIMIT }),
       queryOrders(user),
       queryAdminMessages(user),
       queryProjectsForUser(user),
