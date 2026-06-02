@@ -10845,10 +10845,8 @@ function pickLoginQuote() {
   if (!box) return;
   const q = LOGIN_QUOTES[Math.floor(Math.random() * LOGIN_QUOTES.length)];
   const deEl = box.querySelector("[data-quote-de]");
-  const trEl = box.querySelector("[data-quote-tr]");
   const auEl = box.querySelector("[data-quote-author]");
   if (deEl) deEl.textContent = q.de;
-  if (trEl) trEl.textContent = q.tr;
   if (auEl) auEl.textContent = q.author;
 }
 

@@ -6206,14 +6206,6 @@ h3 {
 }
 .login-quote-text::before { content: "„"; color: #00b8a4; font-size: 18px; vertical-align: -2px; }
 .login-quote-text::after  { content: """; color: #00b8a4; font-size: 18px; vertical-align: -2px; }
-.login-quote-text--tr {
-  margin-top: 6px;
-  font-size: 11.5px;
-  color: #5a6c80;
-  font-style: italic;
-}
-.login-quote-text--tr::before { content: "—"; color: #00897b; font-style: normal; margin-right: 4px; }
-.login-quote-text--tr::after { content: ""; }
 .login-quote-author {
   margin-top: 8px;
   font-size: 11px;
@@ -6229,7 +6221,6 @@ h3 {
 @media (max-height: 720px) {
   .login-quote { margin-top: 8px; padding: 10px 14px; }
   .login-quote-text { font-size: 12px; }
-  .login-quote-text--tr { font-size: 10.5px; }
   .login-quote-author { font-size: 10px; }
 }
 .login-card {
