@@ -6184,42 +6184,36 @@ h3 {
   .login-drcman-greeting { font-size: 12px; }
 }
 
-/* 2026-06-03: Acilis ekraninda Almanca/Turkce calisma, zeka, basari sozleri */
+/* 2026-06-03: Acilis ekraninda rastgele Almanca soz — minimal stil, avatar selamlamanin yerinde. */
 .login-quote {
-  margin: 14px auto 0;
-  max-width: 380px;
-  padding: 14px 18px 12px;
-  background: linear-gradient(135deg, rgba(0, 184, 164, 0.08) 0%, rgba(8, 43, 76, 0.06) 100%);
-  border-left: 3px solid #00b8a4;
-  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+  max-width: 360px;
   text-align: center;
   pointer-events: none;
-  animation: loginQuoteFadeIn 800ms ease-out;
+  animation: loginQuoteFadeIn 600ms ease-out;
 }
 .login-quote-text {
-  margin: 0;
+  margin: 0 0 4px;
   font-size: 13px;
   font-style: italic;
-  color: #082b4c;
+  color: #475569;
   line-height: 1.45;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: inherit;
 }
-.login-quote-text::before { content: "„"; color: #00b8a4; font-size: 18px; vertical-align: -2px; }
-.login-quote-text::after  { content: """; color: #00b8a4; font-size: 18px; vertical-align: -2px; }
 .login-quote-author {
-  margin-top: 8px;
+  margin: 0;
   font-size: 11px;
   color: #00897b;
   font-weight: 600;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 @keyframes loginQuoteFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 @media (max-height: 720px) {
-  .login-quote { margin-top: 8px; padding: 10px 14px; }
+  .login-quote { max-width: 300px; }
   .login-quote-text { font-size: 12px; }
   .login-quote-author { font-size: 10px; }
 }
