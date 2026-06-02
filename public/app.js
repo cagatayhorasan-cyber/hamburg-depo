@@ -10797,3 +10797,59 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("activityRefreshBtn")?.addEventListener("click", refresh);
 });
+
+// 2026-06-03: Açılış sayfası - Almanca/Türkçe çalışma, zekâ, başarı sözleri.
+// Her sayfa açılışında rastgele bir söz seçilir, sayfa orijinal akıcı yapısı ile
+// uyumlu — sadece login ekranı görünür durumda olduğunda yansır.
+const LOGIN_QUOTES = [
+  { de: "Erfolg hat drei Buchstaben: TUN!",
+    tr: "Başarının üç harfi vardır: YAP!",
+    author: "Johann Wolfgang von Goethe" },
+  { de: "Das wahre Zeichen von Intelligenz ist nicht Wissen, sondern Vorstellungskraft.",
+    tr: "Gerçek zekânın işareti bilgi değil, hayal gücüdür.",
+    author: "Albert Einstein" },
+  { de: "Erfolg besteht aus 1 % Inspiration und 99 % Transpiration.",
+    tr: "Başarı %1 ilham, %99 terdir.",
+    author: "Thomas Edison" },
+  { de: "Wähle einen Beruf, den du liebst, und du brauchst keinen Tag in deinem Leben mehr zu arbeiten.",
+    tr: "Sevdiğin bir iş seç, hayatın boyunca bir gün bile çalışmak zorunda kalmazsın.",
+    author: "Konfuzius" },
+  { de: "Versuche nicht, ein Mann des Erfolgs zu werden. Versuche lieber, ein Mann von Wert zu werden.",
+    tr: "Başarılı bir insan olmaya değil, değerli bir insan olmaya çalış.",
+    author: "Albert Einstein" },
+  { de: "Wer wagt, gewinnt.",
+    tr: "Cesaret eden kazanır.",
+    author: "Friedrich Schiller" },
+  { de: "Wir sind, was wir wiederholt tun. Vortrefflichkeit ist daher keine Handlung, sondern eine Gewohnheit.",
+    tr: "Biz, sürekli tekrar ettiğimiz şeyiz. Mükemmellik bu yüzden bir eylem değil, bir alışkanlıktır.",
+    author: "Aristoteles" },
+  { de: "Was du heute kannst besorgen, das verschiebe nicht auf morgen.",
+    tr: "Bugün yapabileceğini yarına bırakma.",
+    author: "Johann Wolfgang von Goethe" },
+  { de: "Wer ein Warum zum Leben hat, erträgt fast jedes Wie.",
+    tr: "Yaşamak için bir 'neden'i olan, neredeyse her 'nasıl'a katlanır.",
+    author: "Friedrich Nietzsche" },
+  { de: "Erfolg besteht darin, dass man genau die Fähigkeiten hat, die im Moment gefragt sind.",
+    tr: "Başarı, tam o anda gereken yeteneklere sahip olmaktır.",
+    author: "Henry Ford" },
+  { de: "Der Anfang ist die Hälfte des Ganzen.",
+    tr: "Başlangıç işin yarısıdır.",
+    author: "Aristoteles" },
+  { de: "Die Kraft kommt nicht aus der körperlichen Fähigkeit. Sie kommt aus einem unbeugsamen Willen.",
+    tr: "Güç bedensel yetenekten değil, eğilmez bir iradeden gelir.",
+    author: "Mahatma Gandhi" },
+];
+
+function pickLoginQuote() {
+  const box = document.getElementById("loginQuoteBox");
+  if (!box) return;
+  const q = LOGIN_QUOTES[Math.floor(Math.random() * LOGIN_QUOTES.length)];
+  const deEl = box.querySelector("[data-quote-de]");
+  const trEl = box.querySelector("[data-quote-tr]");
+  const auEl = box.querySelector("[data-quote-author]");
+  if (deEl) deEl.textContent = q.de;
+  if (trEl) trEl.textContent = q.tr;
+  if (auEl) auEl.textContent = q.author;
+}
+
+document.addEventListener("DOMContentLoaded", pickLoginQuote);

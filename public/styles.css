@@ -6183,6 +6183,55 @@ h3 {
   }
   .login-drcman-greeting { font-size: 12px; }
 }
+
+/* 2026-06-03: Acilis ekraninda Almanca/Turkce calisma, zeka, basari sozleri */
+.login-quote {
+  margin: 14px auto 0;
+  max-width: 380px;
+  padding: 14px 18px 12px;
+  background: linear-gradient(135deg, rgba(0, 184, 164, 0.08) 0%, rgba(8, 43, 76, 0.06) 100%);
+  border-left: 3px solid #00b8a4;
+  border-radius: 8px;
+  text-align: center;
+  pointer-events: none;
+  animation: loginQuoteFadeIn 800ms ease-out;
+}
+.login-quote-text {
+  margin: 0;
+  font-size: 13px;
+  font-style: italic;
+  color: #082b4c;
+  line-height: 1.45;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.login-quote-text::before { content: "„"; color: #00b8a4; font-size: 18px; vertical-align: -2px; }
+.login-quote-text::after  { content: """; color: #00b8a4; font-size: 18px; vertical-align: -2px; }
+.login-quote-text--tr {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: #5a6c80;
+  font-style: italic;
+}
+.login-quote-text--tr::before { content: "—"; color: #00897b; font-style: normal; margin-right: 4px; }
+.login-quote-text--tr::after { content: ""; }
+.login-quote-author {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #00897b;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+@keyframes loginQuoteFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (max-height: 720px) {
+  .login-quote { margin-top: 8px; padding: 10px 14px; }
+  .login-quote-text { font-size: 12px; }
+  .login-quote-text--tr { font-size: 10.5px; }
+  .login-quote-author { font-size: 10px; }
+}
 .login-card {
   background: #ffffff;
   border-radius: 14px;
