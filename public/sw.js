@@ -7,7 +7,7 @@
 // Cache version her deploy'da artırılır. Eski version'lar 'activate'te
 // otomatik temizlenir + "controllerchange" event'i ile sayfa otomatik yenilenir.
 
-const CACHE_VERSION = "v20260603-login-quote-minimal";
+const CACHE_VERSION = "v20260603-sidebar-badge-contrast";
 const STATIC_CACHE = `drc-portal-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `drc-portal-runtime-${CACHE_VERSION}`;
 
