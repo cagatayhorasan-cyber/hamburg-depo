@@ -388,13 +388,17 @@
           </div>
         </section>
 
-        <section class="overview-grid">
+        <!-- 2026-06-04: kullanici geri bildirimi — bu kartlar "cok buyuk ve gereksiz",
+             urunler asagidayken kartlar yukaridaydi. Hidden default + JS hala doldurur
+             (refs.opsOverview.innerHTML calismaya devam etsin). Stat ozetleri ileride
+             ayri bir sekmede gosterilebilir. -->
+        <section class="overview-grid" hidden>
           <article id="opsOverview" class="overview-card overview-card-ops"></article>
           <article id="carbonOverview" class="overview-card overview-card-carbon"></article>
           <article id="iotOverview" class="overview-card overview-card-iot" hidden></article>
         </section>
 
-        <section class="stats-grid" id="statsGrid"></section>
+        <section class="stats-grid" id="statsGrid" hidden></section>
 
         <section class="panel tabs-panel erp-tabs-panel">
 

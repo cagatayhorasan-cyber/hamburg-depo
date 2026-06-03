@@ -4915,19 +4915,9 @@ function renderStockedItems(filteredItems) {
       openItemDetailModal(item);
     });
   });
-  refs.stockedItemsList.querySelectorAll("[data-item-detail-id]").forEach((card) => {
-    const open = () => {
-      const item = state.items.find((entry) => Number(entry.id) === Number(card.dataset.itemDetailId));
-      openItemDetailModal(item);
-    };
-    card.addEventListener("click", open);
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        open();
-      }
-    });
-  });
+  // 2026-06-04: kullanici geri bildirimi — kartin her yerine basinca detay aciliyor.
+  // Sadece "Detay" butonu detayi acsin diye whole-card click handler'i kaldirildi.
+  // role="button" + tabindex="0" da kaldirildi (asagida buildStockedCard'da).
 }
 
 // Tek bir stoklu ürün kartını üretir (hem düz hem gruplu render bunu kullanır)
@@ -4938,8 +4928,7 @@ function buildStockedCard(item) {
   const itemCode = item.barcode || item.productCode || "-";
   const card = document.createElement("article");
   card.className = "stocked-card";
-  card.setAttribute("role", "button");
-  card.setAttribute("tabindex", "0");
+  // 2026-06-04: role/tabindex kaldirildi — kart artik clickable degil, sadece "Detay" butonu.
   card.dataset.itemDetailId = String(item.id);
   card.innerHTML = `
     ${getItemImageMarkup(item, { wrapperClass: "stocked-card-media", imageClass: "stocked-card-image" })}
