@@ -1303,18 +1303,21 @@ label {
   gap: 16px;
 }
 
-.stats-grid,
-.two-column,
-.overview-grid {
+/* 2026-06-06: hidden attribute browser default'u [hidden]{display:none} ama
+   asagidaki .stats-grid/.overview-grid { display:grid } class selectorlari
+   onun uzerine yaziyordu. :not([hidden]) ile koruyalim. */
+.stats-grid:not([hidden]),
+.two-column:not([hidden]),
+.overview-grid:not([hidden]) {
   display: grid;
   gap: 16px;
 }
 
-.stats-grid {
+.stats-grid:not([hidden]) {
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 }
 
-.overview-grid {
+.overview-grid:not([hidden]) {
   grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
   align-items: start;
 }

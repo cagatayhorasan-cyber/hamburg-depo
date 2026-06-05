@@ -7,7 +7,7 @@
 // Cache version her deploy'da artırılır. Eski version'lar 'activate'te
 // otomatik temizlenir + "controllerchange" event'i ile sayfa otomatik yenilenir.
 
-const CACHE_VERSION = "v20260605-material-focus-pos";
+const CACHE_VERSION = "v20260606-hidden-attribute-fix";
 const STATIC_CACHE = `drc-portal-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `drc-portal-runtime-${CACHE_VERSION}`;
 
