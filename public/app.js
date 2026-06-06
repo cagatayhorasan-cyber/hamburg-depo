@@ -3090,9 +3090,18 @@ function bindEvents() {
 
   // Customer catalog filters
   refs.customerCatalogSearch?.addEventListener("input", (e) => {
-    state.customerCatalogFilters.search = e.target.value;
+    const q = e.target.value;
+    state.customerCatalogFilters.search = q;
     if (state._customerFilterTimer) clearTimeout(state._customerFilterTimer);
-    state._customerFilterTimer = setTimeout(() => renderCustomerCatalog(), 150);
+    state._customerFilterTimer = setTimeout(async () => {
+      // 2026-06-06: 2+ char ise sunucu tarafi arama — bootstrap'ta olmayan 17K backorder da bulunur
+      if (q && q.trim().length >= 2) {
+        await fetchServerSearch(q.trim(), "customer");
+      } else {
+        state.serverSearch = { query: "", results: [], for: null, ts: 0, inFlight: false };
+      }
+      renderCustomerCatalog();
+    }, 300);
   });
   refs.customerCatalogCategory?.addEventListener("change", (e) => {
     state.customerCatalogFilters.category = e.target.value;
@@ -7777,9 +7786,16 @@ function getFilteredCustomerItems() {
   const termRaw = normalizeSearchStr(filters.search || "");
   // Boşluksuz varyant da eşleştir ("dcb100" ↔ "dcb 100")
   const termNoSpace = termRaw.replace(/\s+/g, "");
-  // Tüm aktif ürünler: stoklu + ön sipariş açık stoksuz (allowBackorder=true)
-  // sanitizeItemsForRole zaten currentStock'u 0/1'e indiriyor + inStock flag bırakıyor
-  let items = state.items.filter((item) => {
+  // 2026-06-06 perf: Bootstrap 500 item, geri kalan 17K backorder için
+  // /api/items/search sunucu tarafı arama. Term varsa server sonuçlarını + state.items merge.
+  let baseItems = state.items;
+  if (termRaw && state.serverSearch && state.serverSearch.query === filters.search) {
+    // server sonuçlarını bootstrap items ile birleştir (dedupe by id)
+    const seen = new Set(state.items.map((it) => it.id));
+    const serverNew = state.serverSearch.results.filter((it) => !seen.has(it.id));
+    baseItems = [...state.items, ...serverNew];
+  }
+  let items = baseItems.filter((item) => {
     if (item.allowBackorder === false) return false;  // backorder kapalı tek tek ürünler
     return true;
   });
@@ -8375,12 +8391,57 @@ function renderTabData(tab) {
   renderQuotes();
 }
 
+// 2026-06-06: server-side arama buffer'i — 17K backorder urunu icin
+state.serverSearch = { query: "", results: [], for: null, ts: 0, inFlight: false };
+let serverSearchAbortController = null;
+
+async function fetchServerSearch(query, useFor) {
+  const q = String(query || "").trim();
+  if (q.length < 2) {
+    state.serverSearch = { query: "", results: [], for: null, ts: 0, inFlight: false };
+    return;
+  }
+  // Onceki istegi iptal et
+  if (serverSearchAbortController) {
+    serverSearchAbortController.abort();
+  }
+  serverSearchAbortController = new AbortController();
+  state.serverSearch.inFlight = true;
+  try {
+    const r = await fetch(`/api/items/search?q=${encodeURIComponent(q)}&limit=200`, {
+      credentials: "same-origin",
+      signal: serverSearchAbortController.signal,
+    });
+    if (!r.ok) return;
+    const data = await r.json();
+    state.serverSearch = {
+      query: q,
+      results: Array.isArray(data.items) ? data.items : [],
+      for: useFor,
+      ts: Date.now(),
+      inFlight: false,
+    };
+  } catch (e) {
+    if (e.name !== "AbortError") {
+      console.warn("[serverSearch] err:", e.message);
+    }
+    state.serverSearch.inFlight = false;
+  }
+}
+
 function handleFilterChange() {
   window.clearTimeout(filterDebounceTimer);
-  filterDebounceTimer = window.setTimeout(() => {
-    state.filters.search = refs.itemSearch.value.trim().toLowerCase();
+  filterDebounceTimer = window.setTimeout(async () => {
+    const q = refs.itemSearch.value.trim();
+    state.filters.search = q.toLowerCase();
     state.filters.brand = refs.brandFilter.value;
     state.filters.category = refs.categoryFilter.value;
+    // Server-side arama (2+ char) — 17K backorder urunu da bulunabilsin
+    if (q.length >= 2) {
+      await fetchServerSearch(q, "items");
+    } else {
+      state.serverSearch = { query: "", results: [], for: null, ts: 0, inFlight: false };
+    }
     renderItems();
     renderSearchDropdown();
   }, SEARCH_DEBOUNCE_MS);
@@ -8388,10 +8449,16 @@ function handleFilterChange() {
 
 function handleQuoteFilterChange() {
   window.clearTimeout(quoteFilterDebounceTimer);
-  quoteFilterDebounceTimer = window.setTimeout(() => {
-    state.quoteFilters.search = refs.quoteItemSearch.value.trim().toLowerCase();
+  quoteFilterDebounceTimer = window.setTimeout(async () => {
+    const q = refs.quoteItemSearch.value.trim();
+    state.quoteFilters.search = q.toLowerCase();
     state.quoteFilters.brand = refs.quoteBrandFilter.value;
     state.quoteFilters.category = refs.quoteCategoryFilter.value;
+    if (q.length >= 2) {
+      await fetchServerSearch(q, "quotes");
+    } else {
+      state.serverSearch = { query: "", results: [], for: null, ts: 0, inFlight: false };
+    }
     renderQuotes();
   }, SEARCH_DEBOUNCE_MS);
 }

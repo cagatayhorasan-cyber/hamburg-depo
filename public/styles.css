@@ -5161,6 +5161,44 @@ h3 {
   }
 }
 
+/* 2026-06-06 mobil: pos-layout tek sutuna, sepet sticky kalksin (klasik scroll) */
+@media (max-width: 900px) {
+  .pos-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .pos-cart {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+  /* Daha denser kart grid */
+  .pos-catalog-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px;
+  }
+  .pos-card {
+    padding: 10px;
+    gap: 6px;
+    border-radius: 14px;
+  }
+  .pos-catalog,
+  .pos-cart {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .pos-catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .pos-card {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
 /* Cart totals (müşteri sepeti net/KDV/brüt) */
 .cart-totals {
   display: grid;
