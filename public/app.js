@@ -10888,6 +10888,140 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("activityRefreshBtn")?.addEventListener("click", refresh);
 });
 
+// 2026-06-07 Finansal Rapor Dashboard
+async function loadFinancialReport() {
+  const period = document.getElementById("reportPeriod")?.value || "year";
+  const kpiGrid = document.getElementById("reportKpis");
+  const brandsBody = document.getElementById("reportBrandsBody");
+  const status = document.getElementById("reportStatus");
+  if (!kpiGrid) return;
+
+  // Loading state
+  kpiGrid.innerHTML = '<div class="report-kpi-card" data-skeleton></div>'.repeat(4);
+  if (status) status.textContent = "Yükleniyor...";
+
+  try {
+    const r = await fetch(`/api/admin/reports/summary?period=${period}`, { credentials: "same-origin" });
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}));
+      throw new Error(err.error || `HTTP ${r.status}`);
+    }
+    const data = await r.json();
+    const fmt = (n) => new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(Number(n || 0));
+    const eur = (n) => `${fmt(n)} €`;
+
+    const q = data.quotes || {};
+    const o = data.orders || {};
+    const m = data.movements || {};
+
+    // KPI kartları
+    kpiGrid.innerHTML = `
+      <div class="report-kpi-card report-kpi-card--green">
+        <div class="report-kpi-label">📋 Teklifler</div>
+        <div class="report-kpi-value">${fmt(q.total)}</div>
+        <div class="report-kpi-meta">Tutar: <strong>${eur(q.revenue)}</strong></div>
+        <div class="report-kpi-meta">İhracat: ${fmt(q.export_count)} adet</div>
+      </div>
+      <div class="report-kpi-card report-kpi-card--blue">
+        <div class="report-kpi-label">📦 Siparişler</div>
+        <div class="report-kpi-value">${fmt(o.total)}</div>
+        <div class="report-kpi-meta">Ödendi: ${fmt(o.paid)} · Bekleyen: ${fmt(o.pending)}</div>
+        <div class="report-kpi-meta">Tahsilat: <strong>${eur(o.collected)}</strong></div>
+      </div>
+      <div class="report-kpi-card report-kpi-card--orange">
+        <div class="report-kpi-label">📥 Alış (Hareketler)</div>
+        <div class="report-kpi-value">${eur(m.purchases)}</div>
+        <div class="report-kpi-meta">Stok giriş hareketleri</div>
+      </div>
+      <div class="report-kpi-card report-kpi-card--purple">
+        <div class="report-kpi-label">📤 Satış (Hareketler)</div>
+        <div class="report-kpi-value">${eur(m.sales)}</div>
+        <div class="report-kpi-meta">Stok çıkış hareketleri</div>
+      </div>
+    `;
+
+    // Top markalar tablosu
+    if (brandsBody) {
+      brandsBody.innerHTML = (data.topBrandsByMargin || []).map((b) => `
+        <tr>
+          <td><strong>${b.brand || "-"}</strong></td>
+          <td>${fmt(b.n)}</td>
+          <td><span style="color:${Number(b.avg_margin_pct) >= 50 ? "#00897b" : "#ff8a00"};font-weight:600;">${fmt(b.avg_margin_pct)}%</span></td>
+          <td>${eur(b.list_value)}</td>
+        </tr>
+      `).join("") || `<tr><td colspan="4" class="muted">Veri yok</td></tr>`;
+    }
+
+    if (status) {
+      const sinceStr = data.since ? new Date(data.since).toLocaleDateString("tr-TR") : "tüm zamanlar";
+      status.textContent = `Veri tarihi: ${sinceStr} sonrası · Son güncelleme: ${new Date().toLocaleTimeString("tr-TR")}`;
+    }
+  } catch (e) {
+    kpiGrid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1;">❌ Yüklenemedi: ${e.message}</div>`;
+    if (status) status.textContent = "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const refreshBtn = document.getElementById("reportRefreshBtn");
+  const periodSelect = document.getElementById("reportPeriod");
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", loadFinancialReport);
+  }
+  if (periodSelect) {
+    periodSelect.addEventListener("change", loadFinancialReport);
+  }
+  // Tab açılınca otomatik yükle
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest('[data-tab="reports"]');
+    if (btn) setTimeout(loadFinancialReport, 200);
+  });
+});
+
+// 2026-06-07 PWA Install Banner
+let deferredInstallPrompt = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  // Banner zaten gosterildi mi?
+  if (localStorage.getItem("pwaInstallDismissed") === "1") return;
+  // 5 saniye sonra göster (sayfa yuklensin)
+  setTimeout(showPwaInstallBanner, 5000);
+});
+
+function showPwaInstallBanner() {
+  if (!deferredInstallPrompt) return;
+  if (document.getElementById("pwaInstallBanner")) return;
+  const banner = document.createElement("div");
+  banner.id = "pwaInstallBanner";
+  banner.className = "pwa-install-banner";
+  banner.innerHTML = `
+    <img src="/assets/pwa/icon-192.png" alt="DRC">
+    <div class="pwa-install-banner-content">
+      <strong>📱 Ana ekrana ekle</strong>
+      <small>DRC Portal'ı uygulama gibi kullan — daha hızlı erişim</small>
+    </div>
+    <button class="pwa-install-banner-install" type="button">Yükle</button>
+    <button class="pwa-install-banner-close" type="button" aria-label="Kapat">×</button>
+  `;
+  document.body.appendChild(banner);
+
+  banner.querySelector(".pwa-install-banner-install").addEventListener("click", async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    const choice = await deferredInstallPrompt.userChoice;
+    if (choice.outcome === "accepted") {
+      localStorage.setItem("pwaInstallDismissed", "1");
+    }
+    deferredInstallPrompt = null;
+    banner.remove();
+  });
+  banner.querySelector(".pwa-install-banner-close").addEventListener("click", () => {
+    localStorage.setItem("pwaInstallDismissed", "1");
+    banner.remove();
+  });
+}
+
 // 2026-06-07 Mobil barkod tarama — native BarcodeDetector API + camera stream
 // Desteklenen tarayicilar: Chrome 83+, Edge, Samsung Internet, Android Chrome
 // Fallback: iOS Safari icin manuel input (BarcodeDetector yok)

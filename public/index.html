@@ -339,6 +339,7 @@
                 <div class="erp-nav-dropdown-menu" data-erp-dropdown-menu="yonetim" hidden role="menu">
                   <button class="tab-button" data-tab="users" type="button" role="menuitem"><span class="erp-nav-icon">👥</span><span class="tab-title">Kullanıcılar</span></button>
                   <button class="tab-button" data-tab="security" type="button" role="menuitem"><span class="erp-nav-icon">🛡️</span><span class="tab-title">Güvenlik</span></button>
+                  <button class="tab-button" data-tab="reports" type="button" role="menuitem"><span class="erp-nav-icon">💰</span><span class="tab-title">Finansal Rapor</span></button>
                   <button class="tab-button" data-tab="activity" type="button" role="menuitem"><span class="erp-nav-icon">📊</span><span class="tab-title">Müşteri Hareketleri</span></button>
                   <button class="tab-button" data-tab="messages" type="button" role="menuitem"><span class="erp-nav-icon">💬</span><span class="tab-title">Mesajlar</span></button>
                   <button class="tab-button" data-tab="training" type="button" role="menuitem"><span class="erp-nav-icon">🤖</span><span class="tab-title">DRC MAN</span></button>
@@ -1238,6 +1239,52 @@
                 </div>
               </section>
             </div>
+          </div>
+
+          <div class="tab-content admin-only" data-tab-content="reports">
+            <section>
+              <div class="section-head">
+                <div>
+                  <h2>💰 Finansal Rapor</h2>
+                  <p class="muted">Teklif, sipariş, kasa hareketleri ve marka bazlı kar marjı özeti.</p>
+                </div>
+                <div class="action-row">
+                  <select id="reportPeriod" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);">
+                    <option value="30days">Son 30 gün</option>
+                    <option value="90days">Son 90 gün</option>
+                    <option value="year" selected>Bu yıl</option>
+                    <option value="all">Tümü</option>
+                  </select>
+                  <button id="reportRefreshBtn" class="secondary-button" type="button">↻ Yenile</button>
+                </div>
+              </div>
+
+              <!-- KPI kartları -->
+              <div id="reportKpis" class="report-kpi-grid">
+                <div class="report-kpi-card" data-skeleton></div>
+                <div class="report-kpi-card" data-skeleton></div>
+                <div class="report-kpi-card" data-skeleton></div>
+                <div class="report-kpi-card" data-skeleton></div>
+              </div>
+
+              <!-- Top markalar tablo -->
+              <h3 style="margin-top: 24px;">🏆 En Yüksek Kar Marjlı Markalar</h3>
+              <div class="table-wrap">
+                <table id="reportBrandsTable">
+                  <thead>
+                    <tr>
+                      <th>Marka</th>
+                      <th>Ürün Sayısı</th>
+                      <th>Ort. Kar Marjı %</th>
+                      <th>Toplam Liste Değeri</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reportBrandsBody"></tbody>
+                </table>
+              </div>
+
+              <p class="muted" id="reportStatus" style="margin-top: 12px; font-size: 12px;"></p>
+            </section>
           </div>
 
           <div class="tab-content admin-only" data-tab-content="activity">

@@ -5199,6 +5199,128 @@ h3 {
   }
 }
 
+/* 2026-06-07 Finansal Rapor */
+.report-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.report-kpi-card {
+  background: linear-gradient(135deg, #ffffff, #f8fbff);
+  border: 1px solid var(--line);
+  border-left: 4px solid #00b8a4;
+  border-radius: 12px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.report-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(8, 43, 76, 0.10);
+}
+.report-kpi-card[data-skeleton] {
+  background: linear-gradient(90deg, #f3f7ff 25%, #e8eef7 50%, #f3f7ff 75%);
+  background-size: 200% 100%;
+  animation: skel 1.4s ease-in-out infinite;
+  min-height: 90px;
+}
+@keyframes skel {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.report-kpi-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5a6c80;
+  font-weight: 700;
+}
+.report-kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #082b4c;
+  margin: 6px 0 2px;
+  font-variant-numeric: tabular-nums;
+}
+.report-kpi-meta {
+  font-size: 11.5px;
+  color: #7a8fa8;
+}
+.report-kpi-card--green { border-left-color: #00b8a4; }
+.report-kpi-card--blue { border-left-color: #2d6cff; }
+.report-kpi-card--orange { border-left-color: #ff8a00; }
+.report-kpi-card--purple { border-left-color: #8b5cf6; }
+
+/* 2026-06-07 PWA Install Banner */
+.pwa-install-banner {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #082b4c, #1a4f7f);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 28px rgba(8, 43, 76, 0.35);
+  z-index: 9000;
+  animation: pwaSlide 400ms ease-out;
+}
+@keyframes pwaSlide {
+  from { transform: translateY(120%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.pwa-install-banner img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  flex: none;
+}
+.pwa-install-banner-content {
+  flex: 1;
+  min-width: 0;
+}
+.pwa-install-banner-content strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.pwa-install-banner-content small {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.pwa-install-banner button {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pwa-install-banner-install {
+  background: #00b8a4;
+  color: #fff;
+}
+.pwa-install-banner-install:hover {
+  background: #00897b;
+}
+.pwa-install-banner-close {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 16px;
+}
+
 /* 2026-06-07 Barkod tarama */
 .search-with-scan {
   display: flex;
