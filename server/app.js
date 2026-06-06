@@ -4204,15 +4204,18 @@ function createApp() {
       const [quotesRow, ordersRow, salesRow, profitRow] = await Promise.all([
         query(`
           SELECT COUNT(*)::int total,
-            COUNT(*) FILTER (WHERE status = 'sold')::int sold,
-            COUNT(*) FILTER (WHERE status = 'pending')::int pending,
-            COALESCE(SUM(total), 0) AS revenue
+            COALESCE(SUM(total), 0) AS revenue,
+            COALESCE(SUM(gross_total), 0) AS gross_total,
+            COALESCE(SUM(net_total), 0) AS net_total,
+            COUNT(*) FILTER (WHERE is_export = true)::int export_count
           FROM quotes q ${dateFilter}
         `, []),
         query(`
           SELECT COUNT(*)::int total,
             COUNT(*) FILTER (WHERE payment_status = 'paid')::int paid,
             COUNT(*) FILTER (WHERE payment_status = 'partial')::int partial,
+            COUNT(*) FILTER (WHERE status = 'pending')::int pending,
+            COUNT(*) FILTER (WHERE status = 'ready')::int ready,
             COALESCE(SUM(paid_amount), 0) AS collected
           FROM orders q ${dateFilter}
         `, []),
