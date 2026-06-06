@@ -4155,6 +4155,151 @@ function createApp() {
     }
   });
 
+  // 2026-06-06 Toplu fiyat preview — admin CSV satirlari gonderir, eslesmeleri doner
+  // Body: { rows: [{ brand?, productCode?, barcode?, name?, list?, default?, sale? }, ...] }
+  // Donus: { matches: [...], unmatched: [...], ambiguous: [...] }
+  app.post("/api/admin/bulk-price-preview", requireAdmin, async (req, res) => {
+    const rows = Array.isArray(req.body?.rows) ? req.body.rows : [];
+    if (!rows.length) return res.status(400).json({ error: "Satir yok." });
+    if (rows.length > 5000) return res.status(400).json({ error: "Max 5000 satir." });
+
+    const normalize = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+
+    // Tum aktif urunleri cek (sadece eslestirmeye yetecek alanlar)
+    const allItems = await query(`
+      SELECT id, name, brand, product_code, barcode, list_price, default_price, sale_price
+      FROM items WHERE COALESCE(is_active, TRUE) = TRUE
+    `);
+    // Hizli erisim haritalari
+    const byCodeBrand = new Map();   // brand|code → [item]
+    const byBarcodeBrand = new Map();
+    const byNameBrand = new Map();
+    for (const it of allItems) {
+      const brand = normalize(it.brand);
+      if (it.product_code) {
+        const key = `${brand}|${normalize(it.product_code)}`;
+        (byCodeBrand.get(key) || byCodeBrand.set(key, []).get(key)).push(it);
+      }
+      if (it.barcode) {
+        const key = `${brand}|${normalize(it.barcode)}`;
+        (byBarcodeBrand.get(key) || byBarcodeBrand.set(key, []).get(key)).push(it);
+      }
+      if (it.name) {
+        const key = `${brand}|${normalize(it.name)}`;
+        (byNameBrand.get(key) || byNameBrand.set(key, []).get(key)).push(it);
+      }
+    }
+
+    const matches = [];
+    const unmatched = [];
+    const ambiguous = [];
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      const brand = normalize(row.brand);
+      let found = null;
+      let strategy = null;
+
+      // 1) brand + productCode
+      if (row.productCode) {
+        const c = byCodeBrand.get(`${brand}|${normalize(row.productCode)}`);
+        if (c && c.length === 1) { found = c[0]; strategy = "code"; }
+        else if (c && c.length > 1) { ambiguous.push({ row: i, input: row, candidates: c.map(x=>({id:x.id,name:x.name})), reason: "Birden cok productCode eslesmesi" }); continue; }
+      }
+      // 2) brand + barcode
+      if (!found && row.barcode) {
+        const c = byBarcodeBrand.get(`${brand}|${normalize(row.barcode)}`);
+        if (c && c.length === 1) { found = c[0]; strategy = "barcode"; }
+      }
+      // 3) brand + tam name eslesmesi
+      if (!found && row.name) {
+        const c = byNameBrand.get(`${brand}|${normalize(row.name)}`);
+        if (c && c.length === 1) { found = c[0]; strategy = "name"; }
+        else if (c && c.length > 1) { ambiguous.push({ row: i, input: row, candidates: c.map(x=>({id:x.id,name:x.name})), reason: "Birden cok name eslesmesi" }); continue; }
+      }
+
+      if (found) {
+        // Yeni fiyatlar (verilenler, gerisi mevcut kalır)
+        const newList = Number(row.list || 0);
+        const newDefault = Number(row.default || 0);
+        const newSale = Number(row.sale || 0);
+        matches.push({
+          row: i,
+          input: row,
+          id: Number(found.id),
+          name: found.name,
+          strategy,
+          before: {
+            list: Number(found.list_price || 0),
+            default: Number(found.default_price || 0),
+            sale: Number(found.sale_price || 0),
+          },
+          after: {
+            list: newList || Number(found.list_price || 0),
+            default: newDefault || Number(found.default_price || 0),
+            sale: newSale || Number(found.sale_price || 0),
+          },
+        });
+      } else {
+        unmatched.push({ row: i, input: row });
+      }
+    }
+
+    return res.json({
+      total: rows.length,
+      matched: matches.length,
+      unmatchedCount: unmatched.length,
+      ambiguousCount: ambiguous.length,
+      matches,
+      unmatched,
+      ambiguous,
+    });
+  });
+
+  // Toplu fiyat APPLY — preview onaylanmis matches'i uygular
+  // Body: { matches: [{ id, after: { list?, default?, sale? } }] }
+  app.post("/api/admin/bulk-price-apply", requireAdmin, async (req, res) => {
+    const matches = Array.isArray(req.body?.matches) ? req.body.matches : [];
+    if (!matches.length) return res.status(400).json({ error: "Eslesme yok." });
+    if (matches.length > 5000) return res.status(400).json({ error: "Max 5000 satir." });
+
+    let updated = 0;
+    const errors = [];
+
+    for (const m of matches) {
+      const id = Number(m.id);
+      if (!Number.isFinite(id) || id <= 0) {
+        errors.push({ id, error: "Gecersiz id" });
+        continue;
+      }
+      const after = m.after || {};
+      const fields = [];
+      const values = [];
+      let paramIdx = 1;
+      if (Number(after.list) > 0) { fields.push(`list_price = $${paramIdx++}`); values.push(Number(after.list)); }
+      if (Number(after.default) > 0) { fields.push(`default_price = $${paramIdx++}`); values.push(Number(after.default)); }
+      if (Number(after.sale) > 0) { fields.push(`sale_price = $${paramIdx++}`); values.push(Number(after.sale)); }
+      if (!fields.length) continue;
+      values.push(id);
+      try {
+        await execute(`UPDATE items SET ${fields.join(", ")} WHERE id = $${paramIdx}`, values);
+        updated++;
+      } catch (e) {
+        errors.push({ id, error: e.message });
+      }
+    }
+
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "bulk_price_apply",
+      severity: "info",
+      details: { updated, errors: errors.length, total: matches.length },
+    });
+
+    return res.json({ updated, errors, total: matches.length });
+  });
+
   app.get("/api/quotes/:id/pdf", requireStaffOrAdmin, async (req, res) => {
     const quote = await getQuoteById(Number(req.params.id), req.session.user);
     if (!quote) {

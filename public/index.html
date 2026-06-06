@@ -458,6 +458,20 @@
             <details class="management-drawer admin-only">
               <summary>Yönetim Araçları</summary>
               <div class="drawer-grid">
+                <!-- 2026-06-06 Toplu fiyat upload sihirbazi -->
+                <section class="bulk-price-section">
+                  <h2>💰 Toplu Fiyat Güncelleme</h2>
+                  <p class="muted">CSV yapıştır: <code>brand,productCode,name,list,default,sale</code> (1. satır başlık).</p>
+                  <textarea id="bulkPriceCsv" rows="6" placeholder="Embraco,NJX2219GS,Embraco NJX2219GS,420,300,350&#10;Danfoss,068Z3414,Danfoss TE 2,180,130,150" style="width:100%;font-family:monospace;font-size:12px;padding:8px;border:1px solid var(--line);border-radius:8px;"></textarea>
+                  <div class="action-row" style="margin-top:8px;gap:8px;">
+                    <button id="bulkPricePreviewBtn" class="secondary-button" type="button">🔍 Önizleme (eşleştir)</button>
+                    <button id="bulkPriceApplyBtn" class="primary-button" type="button" disabled>✅ Uygula</button>
+                    <button id="bulkPriceClearBtn" class="ghost-button" type="button">Temizle</button>
+                  </div>
+                  <div id="bulkPriceResult" class="muted" style="margin-top:8px;font-size:13px;"></div>
+                  <div id="bulkPricePreviewTable" style="margin-top:8px;max-height:300px;overflow-y:auto;"></div>
+                </section>
+
                 <section>
                   <h2>Malzeme Kartı</h2>
                   <form id="itemForm" class="form-grid">

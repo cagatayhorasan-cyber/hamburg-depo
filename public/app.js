@@ -10854,6 +10854,150 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("activityRefreshBtn")?.addEventListener("click", refresh);
 });
 
+// 2026-06-06 Toplu fiyat upload wizard
+function parseBulkPriceCsv(text) {
+  const lines = String(text || "").split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  if (!lines.length) return [];
+  const header = lines[0].split(",").map(h => h.trim().toLowerCase());
+  const idx = {
+    brand: header.indexOf("brand"),
+    productCode: header.indexOf("productcode"),
+    barcode: header.indexOf("barcode"),
+    name: header.indexOf("name"),
+    list: header.indexOf("list"),
+    default: header.indexOf("default"),
+    sale: header.indexOf("sale"),
+  };
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const parts = lines[i].split(",").map(s => s.trim());
+    const r = {};
+    if (idx.brand >= 0) r.brand = parts[idx.brand];
+    if (idx.productCode >= 0) r.productCode = parts[idx.productCode];
+    if (idx.barcode >= 0) r.barcode = parts[idx.barcode];
+    if (idx.name >= 0) r.name = parts[idx.name];
+    if (idx.list >= 0) r.list = parts[idx.list];
+    if (idx.default >= 0) r.default = parts[idx.default];
+    if (idx.sale >= 0) r.sale = parts[idx.sale];
+    rows.push(r);
+  }
+  return rows;
+}
+
+let bulkPricePreviewData = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const csvInput = document.getElementById("bulkPriceCsv");
+  const previewBtn = document.getElementById("bulkPricePreviewBtn");
+  const applyBtn = document.getElementById("bulkPriceApplyBtn");
+  const clearBtn = document.getElementById("bulkPriceClearBtn");
+  const resultEl = document.getElementById("bulkPriceResult");
+  const tableEl = document.getElementById("bulkPricePreviewTable");
+  if (!csvInput || !previewBtn) return;
+
+  previewBtn.addEventListener("click", async () => {
+    const rows = parseBulkPriceCsv(csvInput.value);
+    if (!rows.length) {
+      resultEl.textContent = "Geçerli satır yok. Başlık satırı ekledin mi?";
+      return;
+    }
+    resultEl.textContent = `${rows.length} satır gönderiliyor...`;
+    previewBtn.disabled = true;
+    try {
+      const r = await fetch("/api/admin/bulk-price-preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ rows }),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        resultEl.textContent = `Hata: ${data.error || r.status}`;
+        return;
+      }
+      bulkPricePreviewData = data;
+      resultEl.innerHTML = `<strong>${data.total}</strong> satır → ✅ <strong>${data.matched}</strong> eşleşti · ❌ ${data.unmatchedCount} eşleşmedi · ⚠️ ${data.ambiguousCount} belirsiz`;
+
+      // Önizleme tablosu
+      let html = '<table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:#f3f7ff;text-align:left;"><th style="padding:6px;border:1px solid #ddd;">✓</th><th style="padding:6px;border:1px solid #ddd;">ID</th><th style="padding:6px;border:1px solid #ddd;">Ürün</th><th style="padding:6px;border:1px solid #ddd;">Eski Liste</th><th style="padding:6px;border:1px solid #ddd;">Yeni Liste</th></tr></thead><tbody>';
+      data.matches.slice(0, 100).forEach((m, i) => {
+        html += `<tr><td style="padding:4px;border:1px solid #ddd;text-align:center;"><input type="checkbox" data-match-idx="${i}" checked></td>` +
+          `<td style="padding:4px;border:1px solid #ddd;">#${m.id}</td>` +
+          `<td style="padding:4px;border:1px solid #ddd;">${(m.name||"").slice(0,55)}</td>` +
+          `<td style="padding:4px;border:1px solid #ddd;text-align:right;">${m.before.list.toFixed(2)} €</td>` +
+          `<td style="padding:4px;border:1px solid #ddd;text-align:right;color:#00897b;font-weight:600;">${m.after.list.toFixed(2)} €</td></tr>`;
+      });
+      html += '</tbody></table>';
+      if (data.matches.length > 100) html += `<p class="muted">+${data.matches.length - 100} eşleşme daha (uygulamada hepsi işlenir)</p>`;
+      if (data.unmatched.length) {
+        html += `<details style="margin-top:8px;"><summary>❌ ${data.unmatched.length} eşleşmeyen satır</summary><ul style="font-size:12px;">`;
+        data.unmatched.slice(0, 20).forEach(u => {
+          html += `<li>${u.input.brand || "?"} · ${u.input.productCode || u.input.name || "?"}</li>`;
+        });
+        html += '</ul></details>';
+      }
+      tableEl.innerHTML = html;
+      applyBtn.disabled = data.matches.length === 0;
+    } catch (e) {
+      resultEl.textContent = `Hata: ${e.message}`;
+    } finally {
+      previewBtn.disabled = false;
+    }
+  });
+
+  applyBtn.addEventListener("click", async () => {
+    if (!bulkPricePreviewData) return;
+    // Checkbox'ları oku — sadece işaretli olanları uygula
+    const checked = new Set(
+      [...tableEl.querySelectorAll('input[type="checkbox"][data-match-idx]:checked')]
+        .map(cb => Number(cb.dataset.matchIdx))
+    );
+    // 100'den fazla varsa preview'da görünmeyen hepsi de işaretli sayılır
+    const toApply = bulkPricePreviewData.matches.filter((_, i) =>
+      i >= 100 || checked.has(i)
+    );
+    if (!toApply.length) {
+      resultEl.textContent = "Uygulanacak satır yok.";
+      return;
+    }
+    if (!confirm(`${toApply.length} ürünün fiyatı güncellenecek. Onayla?`)) return;
+
+    applyBtn.disabled = true;
+    resultEl.textContent = "Uygulanıyor...";
+    try {
+      const r = await fetch("/api/admin/bulk-price-apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ matches: toApply }),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        resultEl.textContent = `Hata: ${data.error || r.status}`;
+        return;
+      }
+      resultEl.innerHTML = `✅ <strong>${data.updated}</strong> / ${data.total} ürün güncellendi.` + (data.errors?.length ? ` ⚠️ ${data.errors.length} hata.` : "");
+      bulkPricePreviewData = null;
+      tableEl.innerHTML = "";
+      csvInput.value = "";
+      // Refresh bootstrap
+      setTimeout(() => location.reload(), 1500);
+    } catch (e) {
+      resultEl.textContent = `Hata: ${e.message}`;
+    } finally {
+      applyBtn.disabled = false;
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    csvInput.value = "";
+    tableEl.innerHTML = "";
+    resultEl.textContent = "";
+    bulkPricePreviewData = null;
+    applyBtn.disabled = true;
+  });
+});
+
 // 2026-06-03: Açılış sayfası - Almanca/Türkçe çalışma, zekâ, başarı sözleri.
 // Her sayfa açılışında rastgele bir söz seçilir, sayfa orijinal akıcı yapısı ile
 // uyumlu — sadece login ekranı görünür durumda olduğunda yansır.
