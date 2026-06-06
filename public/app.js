@@ -8599,7 +8599,41 @@ function toggleAssistantPanel() {
   refs.assistantToggle.setAttribute("aria-expanded", String(isHidden));
   if (isHidden) {
     refs.assistantInput.focus();
+    // 2026-06-07: Açılınca server-side history'i yükle (refresh sonrası eski sohbet)
+    loadAssistantHistoryFromServer();
   }
+}
+
+async function loadAssistantHistoryFromServer() {
+  // Sadece welcome mesajı varsa (yeni session) — yoksa kullanıcı zaten konuştu
+  if (!state.assistantMessages || state.assistantMessages.length > 1) return;
+  try {
+    const r = await fetch("/api/assistant/history", { credentials: "same-origin" });
+    if (!r.ok) return;
+    const data = await r.json();
+    const messages = Array.isArray(data.messages) ? data.messages : [];
+    if (!messages.length) return;
+    // Server mesajlarını UI formatına çevir
+    state.assistantMessages = [
+      { role: "assistant", text: getAssistantWelcomeMessage() },
+      ...messages.map((m) => ({
+        role: m.role,
+        text: String(m.content || ""),
+        provider: m.provider,
+        ts: m.ts,
+      })),
+    ];
+    if (typeof renderAssistantMessages === "function") renderAssistantMessages();
+  } catch (e) { /* sessiz */ }
+}
+
+async function clearAssistantHistory() {
+  if (!confirm("Sohbet geçmişini temizlemek istiyor musun?")) return;
+  try {
+    await fetch("/api/assistant/history", { method: "DELETE", credentials: "same-origin" });
+    state.assistantMessages = [{ role: "assistant", text: getAssistantWelcomeMessage() }];
+    if (typeof renderAssistantMessages === "function") renderAssistantMessages();
+  } catch (e) { /* sessiz */ }
 }
 
 function closeAssistantPanel() {

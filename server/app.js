@@ -4188,6 +4188,68 @@ function createApp() {
     }
   });
 
+  // 2026-06-07 Finansal mini raporlar — admin overview için
+  app.get("/api/admin/reports/summary", requireAdmin, async (req, res) => {
+    try {
+      const period = String(req.query.period || "30days"); // 30days | 90days | year | all
+      const now = new Date();
+      let since = null;
+      if (period === "30days") since = new Date(now - 30 * 86400 * 1000);
+      else if (period === "90days") since = new Date(now - 90 * 86400 * 1000);
+      else if (period === "year") since = new Date(now.getFullYear(), 0, 1);
+
+      const dateFilter = since ? `WHERE q.created_at >= '${since.toISOString()}'` : "";
+      const dateFilterMov = since ? `AND m.movement_date >= '${since.toISOString()}'` : "";
+
+      const [quotesRow, ordersRow, salesRow, profitRow] = await Promise.all([
+        query(`
+          SELECT COUNT(*)::int total,
+            COUNT(*) FILTER (WHERE status = 'sold')::int sold,
+            COUNT(*) FILTER (WHERE status = 'pending')::int pending,
+            COALESCE(SUM(total), 0) AS revenue
+          FROM quotes q ${dateFilter}
+        `, []),
+        query(`
+          SELECT COUNT(*)::int total,
+            COUNT(*) FILTER (WHERE payment_status = 'paid')::int paid,
+            COUNT(*) FILTER (WHERE payment_status = 'partial')::int partial,
+            COALESCE(SUM(paid_amount), 0) AS collected
+          FROM orders q ${dateFilter}
+        `, []),
+        query(`
+          SELECT
+            COALESCE(SUM(CASE WHEN type = 'entry' THEN quantity * unit_price ELSE 0 END), 0) AS purchases,
+            COALESCE(SUM(CASE WHEN type = 'exit' THEN quantity * unit_price ELSE 0 END), 0) AS sales
+          FROM movements m WHERE 1=1 ${dateFilterMov}
+        `, []),
+        query(`
+          SELECT
+            brand,
+            COUNT(*)::int n,
+            ROUND(AVG(CASE WHEN list_price > 0 AND default_price > 0 THEN ((sale_price - default_price) / default_price * 100) ELSE NULL END)::numeric, 1) AS avg_margin_pct,
+            COALESCE(SUM(CASE WHEN list_price > 0 THEN list_price ELSE 0 END), 0) AS list_value
+          FROM items
+          WHERE COALESCE(is_active, TRUE) = TRUE AND default_price > 0 AND sale_price > 0
+          GROUP BY brand
+          ORDER BY n DESC
+          LIMIT 10
+        `, []),
+      ]);
+
+      return res.json({
+        period,
+        since: since ? since.toISOString() : null,
+        quotes: quotesRow[0] || {},
+        orders: ordersRow[0] || {},
+        movements: salesRow[0] || {},
+        topBrandsByMargin: profitRow,
+      });
+    } catch (e) {
+      console.error("[reports/summary]", e.message);
+      return res.status(500).json({ error: e.message });
+    }
+  });
+
   // 2026-06-06 Toplu fiyat preview — admin CSV satirlari gonderir, eslesmeleri doner
   // Body: { rows: [{ brand?, productCode?, barcode?, name?, list?, default?, sale? }, ...] }
   // Donus: { matches: [...], unmatched: [...], ambiguous: [...] }
