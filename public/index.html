@@ -410,12 +410,36 @@
                 </div>
               </div>
               <div class="filter-grid simple-filter-grid">
-                  <label>Arama<input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Ürün, marka veya stok kodu ara"></label>
+                  <label>Arama
+                    <div class="search-with-scan">
+                      <input id="itemSearch" type="search" list="itemSearchSuggestions" placeholder="Ürün, marka veya stok kodu ara">
+                      <button id="barcodeScanBtn" type="button" class="barcode-scan-btn" title="Barkod tara (kamera)" aria-label="Barkod tara">📷</button>
+                    </div>
+                  </label>
                 <label>Marka<select id="brandFilter"></select></label>
                 <label>Kategori<select id="categoryFilter"></select></label>
               </div>
               <datalist id="itemSearchSuggestions"></datalist>
               <div id="itemSearchDropdown" class="search-dropdown hidden"></div>
+
+              <!-- 2026-06-07 Barkod tarama modali -->
+              <div id="barcodeScanModal" class="barcode-modal" hidden>
+                <div class="barcode-modal-backdrop" data-barcode-close></div>
+                <div class="barcode-modal-panel">
+                  <button type="button" class="barcode-modal-close" data-barcode-close aria-label="Kapat">×</button>
+                  <h3>📷 Barkod Tara</h3>
+                  <p id="barcodeScanStatus" class="muted">Kamera başlatılıyor...</p>
+                  <div class="barcode-video-wrap">
+                    <video id="barcodeVideo" playsinline muted autoplay></video>
+                    <div class="barcode-viewfinder"></div>
+                  </div>
+                  <div id="barcodeManualWrap" hidden>
+                    <p class="muted">Bu tarayıcı kamera desteği yok. Barkodu elle gir:</p>
+                    <input id="barcodeManualInput" type="text" placeholder="Barkod / Stok kodu" autofocus>
+                    <button type="button" class="primary-button" id="barcodeManualSubmit">Tamam</button>
+                  </div>
+                </div>
+              </div>
               <section class="stocked-panel">
                 <div class="section-head">
                   <div>

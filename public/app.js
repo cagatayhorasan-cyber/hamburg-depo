@@ -10854,6 +10854,116 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("activityRefreshBtn")?.addEventListener("click", refresh);
 });
 
+// 2026-06-07 Mobil barkod tarama — native BarcodeDetector API + camera stream
+// Desteklenen tarayicilar: Chrome 83+, Edge, Samsung Internet, Android Chrome
+// Fallback: iOS Safari icin manuel input (BarcodeDetector yok)
+const BarcodeScanner = (() => {
+  let stream = null;
+  let detector = null;
+  let scanInterval = null;
+  let onDetected = null;
+  let videoEl = null;
+
+  async function start(callback) {
+    onDetected = callback;
+    const modal = document.getElementById("barcodeScanModal");
+    const status = document.getElementById("barcodeScanStatus");
+    const manualWrap = document.getElementById("barcodeManualWrap");
+    videoEl = document.getElementById("barcodeVideo");
+    if (!modal || !videoEl) return;
+    modal.removeAttribute("hidden");
+    manualWrap.setAttribute("hidden", "");
+
+    // BarcodeDetector destegi var mi?
+    if (!("BarcodeDetector" in window)) {
+      status.textContent = "Bu tarayıcı barkod algılamayı desteklemiyor.";
+      manualWrap.removeAttribute("hidden");
+      return;
+    }
+
+    try {
+      status.textContent = "Kamera izni bekleniyor...";
+      stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } },
+        audio: false,
+      });
+      videoEl.srcObject = stream;
+      await videoEl.play();
+      status.textContent = "Barkodu çerçeve içine getir...";
+
+      detector = new BarcodeDetector({
+        formats: ["ean_13", "ean_8", "code_128", "code_39", "code_93", "upc_a", "upc_e", "qr_code", "data_matrix"],
+      });
+
+      scanInterval = setInterval(async () => {
+        if (!videoEl || videoEl.readyState !== 4) return;
+        try {
+          const barcodes = await detector.detect(videoEl);
+          if (barcodes.length > 0) {
+            const code = barcodes[0].rawValue;
+            navigator.vibrate?.(120); // titreşim
+            stop();
+            if (onDetected) onDetected(code);
+          }
+        } catch (e) { /* ignore detection errors */ }
+      }, 250);
+    } catch (e) {
+      console.warn("[barcode]", e.message);
+      status.textContent = "Kamera açılamadı: " + e.message;
+      manualWrap.removeAttribute("hidden");
+    }
+  }
+
+  function stop() {
+    if (scanInterval) { clearInterval(scanInterval); scanInterval = null; }
+    if (stream) { stream.getTracks().forEach((t) => t.stop()); stream = null; }
+    if (videoEl) { videoEl.srcObject = null; }
+    const modal = document.getElementById("barcodeScanModal");
+    if (modal) modal.setAttribute("hidden", "");
+  }
+
+  return { start, stop };
+})();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scanBtn = document.getElementById("barcodeScanBtn");
+  const modal = document.getElementById("barcodeScanModal");
+  const manualInput = document.getElementById("barcodeManualInput");
+  const manualSubmit = document.getElementById("barcodeManualSubmit");
+  if (!scanBtn || !modal) return;
+
+  const onScan = (code) => {
+    // Aramaya yaz + filter çalıştır
+    const searchInput = document.getElementById("itemSearch");
+    if (searchInput) {
+      searchInput.value = code;
+      searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+      searchInput.focus();
+    }
+  };
+
+  scanBtn.addEventListener("click", () => BarcodeScanner.start(onScan));
+  modal.querySelectorAll("[data-barcode-close]").forEach((el) =>
+    el.addEventListener("click", () => BarcodeScanner.stop())
+  );
+  manualSubmit?.addEventListener("click", () => {
+    const code = manualInput?.value.trim();
+    if (code) {
+      BarcodeScanner.stop();
+      onScan(code);
+    }
+  });
+  manualInput?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const code = manualInput.value.trim();
+      if (code) {
+        BarcodeScanner.stop();
+        onScan(code);
+      }
+    }
+  });
+});
+
 // 2026-06-06 Toplu fiyat upload wizard
 function parseBulkPriceCsv(text) {
   const lines = String(text || "").split(/\r?\n/).map(l => l.trim()).filter(Boolean);

@@ -727,6 +727,18 @@ function createApp() {
     }
   };
 
+  // 2026-06-07: DRC MAN dialog history endpoints
+  // Session bazli son N mesaji kaydeder, frontend refresh sonrasi geri yukler
+  app.get("/api/assistant/history", requireAuth, (req, res) => {
+    const hist = Array.isArray(req.session?.assistantHistory) ? req.session.assistantHistory : [];
+    res.json({ messages: hist });
+  });
+
+  app.delete("/api/assistant/history", requireAuth, (req, res) => {
+    if (req.session) req.session.assistantHistory = [];
+    res.json({ ok: true });
+  });
+
   app.post("/api/assistant/query", requireAuth, assistantRateLimiter, assistantRoleLimiter, async (req, res) => {
     const message = cleanOptional(req.body?.message);
     const language = req.body?.language === "de" ? "de" : "tr";
@@ -765,6 +777,27 @@ function createApp() {
           },
         });
       }
+      // 2026-06-07: Session bazli dialog history — son 20 mesaj tutulur
+      try {
+        if (!Array.isArray(req.session.assistantHistory)) req.session.assistantHistory = [];
+        req.session.assistantHistory.push({
+          role: "user",
+          content: String(message || "").slice(0, 1000),
+          ts: Date.now(),
+          mode,
+        });
+        req.session.assistantHistory.push({
+          role: "assistant",
+          content: String(finalized?.answer || "").slice(0, 4000),
+          provider: finalized?.provider || "unknown",
+          stage,
+          ts: Date.now(),
+        });
+        // Son 20 mesajla sinirla (10 turn)
+        if (req.session.assistantHistory.length > 20) {
+          req.session.assistantHistory = req.session.assistantHistory.slice(-20);
+        }
+      } catch (e) { /* sessiz */ }
       return res.json(finalized);
     };
     if (!message) {
