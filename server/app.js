@@ -456,6 +456,107 @@ function createApp() {
     res.json({ user: req.session.user || null });
   });
 
+  // Self-service: kullanici kendi profilini guncelleyebilir (ad/e-posta/telefon)
+  app.put("/api/account/profile", requireAuth, async (req, res) => {
+    const userId = Number(req.session.user?.id);
+    if (!Number.isFinite(userId) || userId <= 0) {
+      return res.status(401).json({ error: "Oturum bulunamadi." });
+    }
+
+    const { name, email, phone } = req.body || {};
+    const updates = [];
+    const values = [];
+
+    if (typeof name === "string" && name.trim()) {
+      updates.push("name = ?");
+      values.push(name.trim());
+    }
+    if (email !== undefined) {
+      const normEmail = normalizeEmail(email);
+      if (normEmail && !isValidEmail(normEmail)) {
+        return res.status(400).json({ error: "Gecerli bir e-posta adresi girin." });
+      }
+      updates.push("email = ?");
+      values.push(normEmail || null);
+    }
+    if (phone !== undefined) {
+      const normPhone = normalizePhone(phone);
+      updates.push("phone = ?");
+      values.push(normPhone || null);
+    }
+
+    if (updates.length === 0) {
+      return res.status(400).json({ error: "Guncellenecek alan gonderilmedi." });
+    }
+
+    try {
+      values.push(userId);
+      await execute(`UPDATE users SET ${updates.join(", ")} WHERE id = ?`, values);
+
+      const updated = await get(
+        "SELECT id, name, username, email, phone, role, email_verified FROM users WHERE id = ?",
+        [userId]
+      );
+      if (updated) {
+        req.session.user = sessionUserFromRow(updated);
+      }
+
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "account_profile_updated",
+        severity: "info",
+        details: { changedFields: updates.map((u) => u.split(" ")[0]) },
+      });
+
+      return res.json({ ok: true, user: req.session.user });
+    } catch (_error) {
+      return res.status(400).json({ error: "Profil guncellenemedi. E-posta benzersiz olmali." });
+    }
+  });
+
+  // Self-service: kullanici kendi sifresini degistirebilir (mevcut sifre dogrulamasiyla)
+  app.post("/api/account/change-password", requireAuth, authRateLimiter, async (req, res) => {
+    const userId = Number(req.session.user?.id);
+    if (!Number.isFinite(userId) || userId <= 0) {
+      return res.status(401).json({ error: "Oturum bulunamadi." });
+    }
+
+    const currentPassword = typeof req.body?.currentPassword === "string" ? req.body.currentPassword : "";
+    const newPassword = typeof req.body?.newPassword === "string" ? req.body.newPassword : "";
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: "Yeni sifre en az 6 karakter olmali." });
+    }
+
+    const user = await get("SELECT id, password_hash FROM users WHERE id = ?", [userId]);
+    if (!user) {
+      return res.status(404).json({ error: "Kullanici bulunamadi." });
+    }
+
+    if (!bcrypt.compareSync(currentPassword, user.password_hash)) {
+      queueSecurityEvent(req, {
+        user: req.session.user,
+        eventType: "password_change_failed",
+        severity: "warn",
+        details: { reason: "current_password_mismatch" },
+      });
+      return res.status(401).json({ error: "Mevcut sifre hatali." });
+    }
+
+    if (bcrypt.compareSync(newPassword, user.password_hash)) {
+      return res.status(400).json({ error: "Yeni sifre mevcut sifreden farkli olmali." });
+    }
+
+    await execute("UPDATE users SET password_hash = ? WHERE id = ?", [bcrypt.hashSync(newPassword, 10), userId]);
+    queueSecurityEvent(req, {
+      user: req.session.user,
+      eventType: "password_change_completed",
+      severity: "info",
+    });
+
+    return res.json({ ok: true, message: "Sifreniz guncellendi." });
+  });
+
   app.post("/api/auth/forgot-password", authRateLimiter, async (req, res) => {
     const identifier = cleanOptional(req.body?.identifier || req.body?.email || req.body?.username);
     const language = req.body?.language === "de" ? "de" : "tr";

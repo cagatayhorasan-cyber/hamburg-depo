@@ -303,6 +303,47 @@
     </section>
 
     <section id="appScreen" class="hidden">
+      <!-- Hesabım — self-service profil + şifre değiştirme -->
+      <div id="accountModal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle" hidden>
+        <div class="auth-modal-backdrop" data-account-close></div>
+        <div class="auth-modal-panel account-panel" role="document">
+          <button type="button" class="auth-modal-close" data-account-close aria-label="Kapat">×</button>
+          <h2 id="accountModalTitle" data-tr="Hesabım" data-de="Mein Konto">Hesabım</h2>
+          <p class="account-id-line muted"><span id="accountUserLabel">—</span></p>
+
+          <form id="accountProfileForm" class="account-form" autocomplete="off">
+            <h3 data-tr="Profil Bilgileri" data-de="Profildaten">Profil Bilgileri</h3>
+            <label data-tr="Ad Soyad" data-de="Name">Ad Soyad
+              <input type="text" name="name" id="accountName" autocomplete="name">
+            </label>
+            <label>E-posta
+              <input type="email" name="email" id="accountEmail" autocomplete="email">
+            </label>
+            <label data-tr="Telefon" data-de="Telefon">Telefon
+              <input type="tel" name="phone" id="accountPhone" autocomplete="tel">
+            </label>
+            <button type="submit" class="primary-button" data-tr="Profili Kaydet" data-de="Profil speichern">Profili Kaydet</button>
+            <p id="accountProfileMsg" class="account-msg" role="status" aria-live="polite"></p>
+          </form>
+
+          <hr class="account-divider">
+
+          <form id="accountPasswordForm" class="account-form" autocomplete="off">
+            <h3 data-tr="Şifre Değiştir" data-de="Passwort ändern">Şifre Değiştir</h3>
+            <label data-tr="Mevcut Şifre" data-de="Aktuelles Passwort">Mevcut Şifre
+              <input type="password" name="currentPassword" id="accountCurrentPassword" autocomplete="current-password" required>
+            </label>
+            <label data-tr="Yeni Şifre (en az 6)" data-de="Neues Passwort (min. 6)">Yeni Şifre (en az 6)
+              <input type="password" name="newPassword" id="accountNewPassword" autocomplete="new-password" minlength="6" required>
+            </label>
+            <label data-tr="Yeni Şifre (tekrar)" data-de="Neues Passwort (wiederholen)">Yeni Şifre (tekrar)
+              <input type="password" name="newPassword2" id="accountNewPassword2" autocomplete="new-password" minlength="6" required>
+            </label>
+            <button type="submit" class="primary-button" data-tr="Şifreyi Güncelle" data-de="Passwort aktualisieren">Şifreyi Güncelle</button>
+            <p id="accountPasswordMsg" class="account-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
       <div class="erp-layout">
         <aside class="erp-sidebar" id="erpSidebar">
           <div class="erp-sidebar-brand">
@@ -363,6 +404,7 @@
               <button id="downloadXlsx" class="erp-action-btn admin-only" type="button">Excel</button>
               <button id="downloadPdf" class="erp-action-btn admin-only" type="button">PDF</button>
               <a id="helpLink" class="erp-action-btn" href="/help/customer.html" target="_blank" rel="noopener" data-tr="Yardım" data-de="Hilfe">Yardım</a>
+              <button id="accountSettingsButton" class="erp-action-btn" type="button" data-tr="Hesabım" data-de="Mein Konto">Hesabım</button>
               <button id="logoutButton" class="erp-logout-btn" type="button">Çıkış Yap</button>
             </div>
           </div>

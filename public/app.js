@@ -3160,6 +3160,10 @@ function bindEvents() {
   refs.retrofitChecklistCopyButton?.addEventListener("click", copyRetrofitChecklist);
 
   refs.logoutButton.addEventListener("click", logout);
+  document.getElementById("accountSettingsButton")?.addEventListener("click", openAccountModal);
+  document.querySelectorAll("[data-account-close]").forEach((node) => node.addEventListener("click", closeAccountModal));
+  document.getElementById("accountProfileForm")?.addEventListener("submit", handleAccountProfileSubmit);
+  document.getElementById("accountPasswordForm")?.addEventListener("submit", handleAccountPasswordSubmit);
   refs.downloadXlsx.addEventListener("click", () => {
     window.location.href = "/api/reports/xlsx";
   });
@@ -3762,6 +3766,90 @@ async function logout() {
   await request("/api/logout", { method: "POST" });
   state.user = null;
   showLogin();
+}
+
+// === Hesabım (self-service profil + şifre) ===
+function openAccountModal() {
+  const modal = document.getElementById("accountModal");
+  if (!modal) return;
+  const u = state.user || {};
+  const label = document.getElementById("accountUserLabel");
+  if (label) {
+    const roleMap = { admin: langText("Yönetici", "Admin"), staff: langText("Personel", "Personal"), customer: langText("Müşteri", "Kunde"), operator: langText("Operatör", "Operator") };
+    label.textContent = `${u.username || "—"} · ${roleMap[(u.role || "").toLowerCase()] || u.role || "—"}`;
+  }
+  const nameInput = document.getElementById("accountName");
+  const emailInput = document.getElementById("accountEmail");
+  const phoneInput = document.getElementById("accountPhone");
+  if (nameInput) nameInput.value = u.name || "";
+  if (emailInput) emailInput.value = u.email || "";
+  if (phoneInput) phoneInput.value = u.phone || "";
+  const pMsg = document.getElementById("accountProfileMsg");
+  const pwMsg = document.getElementById("accountPasswordMsg");
+  if (pMsg) { pMsg.textContent = ""; pMsg.className = "account-msg"; }
+  if (pwMsg) { pwMsg.textContent = ""; pwMsg.className = "account-msg"; }
+  const pwForm = document.getElementById("accountPasswordForm");
+  if (pwForm) pwForm.reset();
+  modal.hidden = false;
+  modal.classList.add("is-open");
+  if (nameInput) nameInput.focus();
+}
+
+function closeAccountModal() {
+  const modal = document.getElementById("accountModal");
+  if (!modal) return;
+  modal.hidden = true;
+  modal.classList.remove("is-open");
+}
+
+async function handleAccountProfileSubmit(event) {
+  event.preventDefault();
+  const msg = document.getElementById("accountProfileMsg");
+  const payload = {
+    name: document.getElementById("accountName")?.value || "",
+    email: document.getElementById("accountEmail")?.value || "",
+    phone: document.getElementById("accountPhone")?.value || "",
+  };
+  if (msg) { msg.textContent = langText("Kaydediliyor…", "Speichern…"); msg.className = "account-msg"; }
+  const result = await request("/api/account/profile", { method: "PUT", body: JSON.stringify(payload) });
+  if (result?.error) {
+    if (msg) { msg.textContent = result.error; msg.className = "account-msg account-msg--error"; }
+    return;
+  }
+  if (result?.user) {
+    state.user = result.user;
+    const nameEl = document.getElementById("erpUserName");
+    if (nameEl) nameEl.textContent = result.user.name || result.user.username || "—";
+  }
+  if (msg) { msg.textContent = langText("Profil güncellendi ✓", "Profil aktualisiert ✓"); msg.className = "account-msg account-msg--ok"; }
+}
+
+async function handleAccountPasswordSubmit(event) {
+  event.preventDefault();
+  const msg = document.getElementById("accountPasswordMsg");
+  const current = document.getElementById("accountCurrentPassword")?.value || "";
+  const next = document.getElementById("accountNewPassword")?.value || "";
+  const next2 = document.getElementById("accountNewPassword2")?.value || "";
+  if (next.length < 6) {
+    if (msg) { msg.textContent = langText("Yeni şifre en az 6 karakter olmalı.", "Neues Passwort min. 6 Zeichen."); msg.className = "account-msg account-msg--error"; }
+    return;
+  }
+  if (next !== next2) {
+    if (msg) { msg.textContent = langText("Yeni şifreler eşleşmiyor.", "Passwörter stimmen nicht überein."); msg.className = "account-msg account-msg--error"; }
+    return;
+  }
+  if (msg) { msg.textContent = langText("Güncelleniyor…", "Aktualisieren…"); msg.className = "account-msg"; }
+  const result = await request("/api/account/change-password", {
+    method: "POST",
+    body: JSON.stringify({ currentPassword: current, newPassword: next }),
+  });
+  if (result?.error) {
+    if (msg) { msg.textContent = result.error; msg.className = "account-msg account-msg--error"; }
+    return;
+  }
+  const form = document.getElementById("accountPasswordForm");
+  if (form) form.reset();
+  if (msg) { msg.textContent = langText("Şifreniz güncellendi ✓", "Passwort aktualisiert ✓"); msg.className = "account-msg account-msg--ok"; }
 }
 
 function showGlobalLoading(message) {

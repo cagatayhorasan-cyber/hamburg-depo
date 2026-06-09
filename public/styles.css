@@ -4736,6 +4736,27 @@ html.auth-modal-open body {
   max-height: min(92vh, 860px);
   padding: 0;
 }
+
+/* Hesabım — self-service profil + şifre */
+.auth-modal-panel.account-panel { width: min(420px, 100%); }
+.account-panel h2 { margin: 0 0 2px; font-size: 1.25rem; }
+.account-id-line { font-size: 0.82rem; margin: 0 0 16px; }
+.account-form { display: flex; flex-direction: column; gap: 12px; }
+.account-form h3 { margin: 4px 0 2px; font-size: 0.98rem; color: #0f3d6b; }
+.account-form label { display: flex; flex-direction: column; gap: 5px; font-size: 0.82rem; font-weight: 600; color: #324a66; }
+.account-form input {
+  padding: 9px 11px;
+  border: 1px solid #cdd9e6;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-family: inherit;
+}
+.account-form input:focus { outline: none; border-color: #1769aa; box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.16); }
+.account-form .primary-button { margin-top: 4px; }
+.account-divider { border: none; border-top: 1px solid #e2eaf2; margin: 20px 0 4px; }
+.account-msg { margin: 2px 0 0; font-size: 0.82rem; min-height: 1.1em; }
+.account-msg--ok { color: #15803d; font-weight: 600; }
+.account-msg--error { color: #c0392b; font-weight: 600; }
 .auth-modal-close {
   position: absolute;
   top: 10px;
