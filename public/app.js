@@ -8834,25 +8834,17 @@ function bindAssistantModes() {
 // onu yeni sekmede acar — modal/panel cakismasi olmaz, mod sabit kalir.
 function startColdroomFlow() {
   const msg = state.assistantLanguage === "de"
-    ? "🧊 **Kuehlraum-Angebot**\n\nIch oeffne **ColdRoomPro** in einem neuen Tab — unser professionelles Auslegungstool (Paneele, Tueren, Boden, Rohre, digitale Regelung, Cantaş-Auswahl, Fernueberwachung).\n\n👉 Neuer Tab oeffnet sich..."
-    : "🧊 **Soğuk Oda Teklifi**\n\n**ColdRoomPro**'yu yeni sekmede açıyorum — profesyonel hesap motoru (panel, kapı, zemin, borular, dijital kontrol, Cantaş otomatik seçim, uzaktan izleme).\n\n👉 Yeni sekme açılıyor...";
+    ? "🧊 **Kuehlraum-Angebot**\n\nIch oeffne **ColdRoomPro** — unser professionelles Auslegungstool (Paneele, Tueren, Boden, Rohre, digitale Regelung, Cantaş-Auswahl, Fernueberwachung).\n\nNach der Berechnung auf **„DRC Projeye Kaydet“** klicken — das Projekt wird automatisch erstellt."
+    : "🧊 **Soğuk Oda Teklifi**\n\n**ColdRoomPro**'yu açıyorum — profesyonel hesap motoru (panel, kapı, zemin, borular, dijital kontrol, Cantaş otomatik seçim, uzaktan izleme).\n\nHesabı bitirince **\"DRC Projeye Kaydet\"** butonuna basın — proje otomatik oluşturulur.";
   state.assistantMessages.push({ role: "assistant", text: msg });
   renderAssistantMessages();
-  // Yeni sekmede ac (popup blocker dostu — click event'inde sync acmak gerekiyor)
+  // Iframe modal ile aç — böylece "DRC Projeye Kaydet" köprüsü (postMessage→parent)
+  // çalışır. Yeni sekme açılınca noopener nedeniyle köprü sessizce kopuyordu.
   try {
-    const w = window.open("/admin-tools/coldroompro/", "_blank", "noopener,noreferrer");
-    if (!w) {
-      // Popup blocker engelledi → kullaniciya tikla notu goster
-      state.assistantMessages.push({
-        role: "assistant",
-        text: state.assistantLanguage === "de"
-          ? "⚠️ Popup-Blocker hat das Oeffnen verhindert. Bitte manuell oeffnen: /admin-tools/coldroompro/"
-          : "⚠️ Popup engelleyici sekmeyi engelledi. Lütfen manuel açın: /admin-tools/coldroompro/"
-      });
-      renderAssistantMessages();
-    }
+    openColdRoomProModal();
   } catch (e) {
-    console.warn("[coldroom] window.open hata:", e);
+    console.warn("[coldroom] modal acilamadi, yeni sekmeye dusuluyor:", e);
+    window.open("/admin-tools/coldroompro/", "_blank", "noopener,noreferrer");
   }
 }
 

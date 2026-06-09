@@ -344,6 +344,23 @@
           </form>
         </div>
       </div>
+      <!-- ColdRoomPro Launcher Modal (top-level overlay — her sekmeden açılabilir) -->
+      <div id="coldRoomProModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
+        <div class="auth-modal-backdrop" data-coldroompro-close></div>
+        <div class="auth-modal-panel coldroom-pro-modal-shell" role="document">
+          <div class="coldroom-pro-modal-header">
+            <h2 class="coldroom-pro-modal-title">🧊 ColdRoomPro — Soğuk Oda Hesaplama</h2>
+            <div class="coldroom-pro-modal-actions">
+              <a href="/admin-tools/coldroompro/" target="_blank" rel="noopener" class="secondary-button u-muted-small">Yeni Sekmede Aç</a>
+              <button type="button" class="auth-modal-close coldroom-pro-modal-close-btn" data-coldroompro-close aria-label="Kapat">×</button>
+            </div>
+          </div>
+          <iframe id="coldRoomProFrame" src="" title="ColdRoomPro" class="coldroom-pro-iframe"></iframe>
+          <p class="muted coldroom-pro-footnote">
+            Hesaplamanızı tamamladıktan sonra ColdRoomPro içinden "DRC Projeye Kaydet" butonuna basın — proje otomatik oluşturulacaktır.
+          </p>
+        </div>
+      </div>
       <div class="erp-layout">
         <aside class="erp-sidebar" id="erpSidebar">
           <div class="erp-sidebar-brand">
@@ -1529,23 +1546,6 @@
               </div>
             </div>
 
-            <!-- ColdRoomPro Launcher Modal -->
-            <div id="coldRoomProModal" class="auth-modal" role="dialog" aria-modal="true" hidden>
-              <div class="auth-modal-backdrop" data-coldroompro-close></div>
-              <div class="auth-modal-panel" role="document" class="coldroom-pro-modal-shell">
-                <div class="coldroom-pro-modal-header">
-                  <h2 class="coldroom-pro-modal-title">🧊 ColdRoomPro — Soğuk Oda Hesaplama</h2>
-                  <div class="coldroom-pro-modal-actions">
-                    <a href="/admin-tools/coldroompro/" target="_blank" rel="noopener" class="secondary-button" class="u-muted-small">Yeni Sekmede Aç</a>
-                    <button type="button" class="auth-modal-close" data-coldroompro-close aria-label="Kapat" class="coldroom-pro-modal-close-btn">×</button>
-                  </div>
-                </div>
-                <iframe id="coldRoomProFrame" src="" title="ColdRoomPro" class="coldroom-pro-iframe"></iframe>
-                <p class="muted" class="coldroom-pro-footnote">
-                  Hesaplamanızı tamamladıktan sonra ColdRoomPro içinden "Projeye Kaydet" butonuna basın — proje otomatik oluşturulacaktır.
-                </p>
-              </div>
-            </div>
           </div>
 
           <div class="tab-content" data-tab-content="tools">

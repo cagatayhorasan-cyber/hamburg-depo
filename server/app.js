@@ -4093,9 +4093,9 @@ function createApp() {
 
         for (const it of items) {
           await tx.execute(
-            `INSERT INTO order_items (order_id, item_id, item_name, quantity, unit)
-             VALUES (?, ?, ?, ?, ?)`,
-            [orderId, it.item_id, it.item_name, Number(it.quantity), it.unit || "adet"]
+            `INSERT INTO order_items (order_id, item_id, item_name, quantity, unit, unit_price)
+             VALUES (?, ?, ?, ?, ?, ?)`,
+            [orderId, it.item_id, it.item_name, Number(it.quantity), it.unit || "adet", Number(it.unit_price || 0)]
           );
         }
 
